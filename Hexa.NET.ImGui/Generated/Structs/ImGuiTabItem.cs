@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Storage for one active tab item (sizeof() 48 bytes)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTabItem
@@ -108,6 +108,17 @@ namespace Hexa.NET.ImGui
 			WantClose = wantClose ? (byte)1 : (byte)0;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTabItem* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -204,6 +215,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool WantClose => ref Unsafe.AsRef<bool>(&Handle->WantClose);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

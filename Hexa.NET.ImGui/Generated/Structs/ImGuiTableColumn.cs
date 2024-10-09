@@ -17,7 +17,10 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// [Internal] sizeof() ~ 112<br/>
+	/// We use the terminology "Enabled" to refer to a column that is not Hidden by userapi.<br/>
+	/// We use the terminology "Clipped" to refer to a column that is out of sight because of scrollingclipping.<br/>
+	/// This is in contrast with some user-facing api such as IsItemVisible()  IsRectVisible() which use "Visible" to mean "not clipped".<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableColumn
@@ -283,6 +286,17 @@ namespace Hexa.NET.ImGui
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTableColumn* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -494,6 +508,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref byte SortDirectionsAvailList => ref Unsafe.AsRef<byte>(&Handle->SortDirectionsAvailList);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

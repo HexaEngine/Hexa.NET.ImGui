@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Storage for popup stacks (g.OpenPopupStack and g.BeginPopupStack)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiPopupData
@@ -78,6 +78,17 @@ namespace Hexa.NET.ImGui
 			OpenMousePos = openMousePos;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiPopupData* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -154,6 +165,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref Vector2 OpenMousePos => ref Unsafe.AsRef<Vector2>(&Handle->OpenMousePos);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

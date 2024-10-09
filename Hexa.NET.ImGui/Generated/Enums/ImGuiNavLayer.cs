@@ -20,12 +20,12 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiNavLayer : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Main scrolling layer<br/>
 		/// </summary>
 		Main = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Menu layer (access with Alt)<br/>
 		/// </summary>
 		Menu = unchecked(1),
 

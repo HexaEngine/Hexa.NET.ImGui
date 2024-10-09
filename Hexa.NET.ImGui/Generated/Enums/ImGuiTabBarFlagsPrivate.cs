@@ -20,7 +20,7 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiTabBarFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Part of a dock node [we don't use this in the master branch but it facilitate branch syncing to keep this around]<br/>
 		/// </summary>
 		DockNode = unchecked(1048576),
 
@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		IsFocused = unchecked(2097152),
 
 		/// <summary>
-		/// To be documented.
+		/// FIXME: Settings are handled by the docking system, this only request the tab bar to mark settings dirty when reordering tabs<br/>
 		/// </summary>
 		SaveSettings = unchecked(4194304),
 	}

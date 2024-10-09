@@ -62,6 +62,198 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, byte* label)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ref byte label)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				fixed (byte* plabel = &label)
+				{
+					ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				fixed (byte* plabel = label)
+				{
+					ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, string label)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(ImPlotTick tick)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, tick);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetText(int idx)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				byte* ret = ImPlot.GetTextNative(@this, idx);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetTextS(int idx)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlot.GetTextNative(@this, idx));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetText(ImPlotTick tick)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				byte* ret = ImPlot.GetTextNative(@this, tick);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetTextS(ImPlotTick tick)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlot.GetTextNative(@this, tick));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void OverrideSizeLate(Vector2 size)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlot.OverrideSizeLateNative(@this, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlot.ResetNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int TickCount()
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				int ret = ImPlot.TickCountNative(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -125,6 +317,156 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref int Levels => ref Unsafe.AsRef<int>(&Handle->Levels);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, byte* label)
+		{
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		{
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(ImPlotTick tick)
+		{
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, tick);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetText(int idx)
+		{
+			byte* ret = ImPlot.GetTextNative(Handle, idx);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetTextS(int idx)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlot.GetTextNative(Handle, idx));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetText(ImPlotTick tick)
+		{
+			byte* ret = ImPlot.GetTextNative(Handle, tick);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetTextS(ImPlotTick tick)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlot.GetTextNative(Handle, tick));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void OverrideSizeLate(Vector2 size)
+		{
+			ImPlot.OverrideSizeLateNative(Handle, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			ImPlot.ResetNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int TickCount()
+		{
+			int ret = ImPlot.TickCountNative(Handle);
+			return ret;
+		}
+
 	}
 
 }

@@ -2215,7 +2215,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImLog10FloatNative(float x)
+		internal static float ImLog10Native(float x)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<float, float>)vt[364])(x);
@@ -2227,16 +2227,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImLog10Float(float x)
+		public static float ImLog10(float x)
 		{
-			float ret = ImLog10FloatNative(x);
+			float ret = ImLog10Native(x);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImLog10DoubleNative(double x)
+		internal static double ImLog10Native(double x)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, double>)vt[365])(x);
@@ -2248,16 +2248,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImLog10Double(double x)
+		public static double ImLog10(double x)
 		{
-			double ret = ImLog10DoubleNative(x);
+			double ret = ImLog10Native(x);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImSinhFloatNative(float x)
+		internal static float ImSinhNative(float x)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<float, float>)vt[366])(x);
@@ -2269,16 +2269,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImSinhFloat(float x)
+		public static float ImSinh(float x)
 		{
-			float ret = ImSinhFloatNative(x);
+			float ret = ImSinhNative(x);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImSinhDoubleNative(double x)
+		internal static double ImSinhNative(double x)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, double>)vt[367])(x);
@@ -2290,16 +2290,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImSinhDouble(double x)
+		public static double ImSinh(double x)
 		{
-			double ret = ImSinhDoubleNative(x);
+			double ret = ImSinhNative(x);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImAsinhFloatNative(float x)
+		internal static float ImAsinhNative(float x)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<float, float>)vt[368])(x);
@@ -2311,16 +2311,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImAsinhFloat(float x)
+		public static float ImAsinh(float x)
 		{
-			float ret = ImAsinhFloatNative(x);
+			float ret = ImAsinhNative(x);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImAsinhDoubleNative(double x)
+		internal static double ImAsinhNative(double x)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, double>)vt[369])(x);
@@ -2332,16 +2332,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImAsinhDouble(double x)
+		public static double ImAsinh(double x)
 		{
-			double ret = ImAsinhDoubleNative(x);
+			double ret = ImAsinhNative(x);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImRemapFloatNative(float x, float x0, float x1, float y0, float y1)
+		internal static float ImRemapNative(float x, float x0, float x1, float y0, float y1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<float, float, float, float, float, float>)vt[370])(x, x0, x1, y0, y1);
@@ -2353,16 +2353,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImRemapFloat(float x, float x0, float x1, float y0, float y1)
+		public static float ImRemap(float x, float x0, float x1, float y0, float y1)
 		{
-			float ret = ImRemapFloatNative(x, x0, x1, y0, y1);
+			float ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImRemapDoubleNative(double x, double x0, double x1, double y0, double y1)
+		internal static double ImRemapNative(double x, double x0, double x1, double y0, double y1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, double, double, double, double, double>)vt[371])(x, x0, x1, y0, y1);
@@ -2374,16 +2374,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImRemapDouble(double x, double x0, double x1, double y0, double y1)
+		public static double ImRemap(double x, double x0, double x1, double y0, double y1)
 		{
-			double ret = ImRemapDoubleNative(x, x0, x1, y0, y1);
+			double ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImRemapS8Native(byte x, byte x0, byte x1, byte y0, byte y1)
+		internal static byte ImRemapNative(byte x, byte x0, byte x1, byte y0, byte y1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte, byte>)vt[372])(x, x0, x1, y0, y1);
@@ -2395,366 +2395,324 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImRemapS8(byte x, byte x0, byte x1, byte y0, byte y1)
+		public static byte ImRemap(byte x, byte x0, byte x1, byte y0, byte y1)
 		{
-			byte ret = ImRemapS8Native(x, x0, x1, y0, y1);
+			byte ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImRemapU8Native(byte x, byte x0, byte x1, byte y0, byte y1)
+		internal static short ImRemapNative(short x, short x0, short x1, short y0, short y1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte, byte>)vt[373])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<short, short, short, short, short, short>)vt[373])(x, x0, x1, y0, y1);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte, byte>)vt[373])(x, x0, x1, y0, y1);
+			return (short)((delegate* unmanaged[Cdecl]<short, short, short, short, short, short>)vt[373])(x, x0, x1, y0, y1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImRemapU8(byte x, byte x0, byte x1, byte y0, byte y1)
+		public static short ImRemap(short x, short x0, short x1, short y0, short y1)
 		{
-			byte ret = ImRemapU8Native(x, x0, x1, y0, y1);
+			short ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static short ImRemapS16Native(short x, short x0, short x1, short y0, short y1)
+		internal static ushort ImRemapNative(ushort x, ushort x0, ushort x1, ushort y0, ushort y1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short, short, short>)vt[374])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, ushort, ushort>)vt[374])(x, x0, x1, y0, y1);
 			#else
-			return (short)((delegate* unmanaged[Cdecl]<short, short, short, short, short, short>)vt[374])(x, x0, x1, y0, y1);
+			return (ushort)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, ushort, ushort>)vt[374])(x, x0, x1, y0, y1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static short ImRemapS16(short x, short x0, short x1, short y0, short y1)
+		public static ushort ImRemap(ushort x, ushort x0, ushort x1, ushort y0, ushort y1)
 		{
-			short ret = ImRemapS16Native(x, x0, x1, y0, y1);
+			ushort ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ushort ImRemapU16Native(ushort x, ushort x0, ushort x1, ushort y0, ushort y1)
+		internal static int ImRemapNative(int x, int x0, int x1, int y0, int y1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, ushort, ushort>)vt[375])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<int, int, int, int, int, int>)vt[375])(x, x0, x1, y0, y1);
 			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, ushort, ushort>)vt[375])(x, x0, x1, y0, y1);
+			return (int)((delegate* unmanaged[Cdecl]<int, int, int, int, int, int>)vt[375])(x, x0, x1, y0, y1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImRemapU16(ushort x, ushort x0, ushort x1, ushort y0, ushort y1)
+		public static int ImRemap(int x, int x0, int x1, int y0, int y1)
 		{
-			ushort ret = ImRemapU16Native(x, x0, x1, y0, y1);
+			int ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImRemapS32Native(int x, int x0, int x1, int y0, int y1)
+		internal static uint ImRemapNative(uint x, uint x0, uint x1, uint y0, uint y1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int, int, int>)vt[376])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, uint, uint>)vt[376])(x, x0, x1, y0, y1);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int, int, int, int>)vt[376])(x, x0, x1, y0, y1);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, uint, uint>)vt[376])(x, x0, x1, y0, y1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImRemapS32(int x, int x0, int x1, int y0, int y1)
+		public static uint ImRemap(uint x, uint x0, uint x1, uint y0, uint y1)
 		{
-			int ret = ImRemapS32Native(x, x0, x1, y0, y1);
+			uint ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImRemapU32Native(uint x, uint x0, uint x1, uint y0, uint y1)
+		internal static long ImRemapNative(long x, long x0, long x1, long y0, long y1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, uint, uint>)vt[377])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<long, long, long, long, long, long>)vt[377])(x, x0, x1, y0, y1);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, uint, uint>)vt[377])(x, x0, x1, y0, y1);
+			return (long)((delegate* unmanaged[Cdecl]<long, long, long, long, long, long>)vt[377])(x, x0, x1, y0, y1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImRemapU32(uint x, uint x0, uint x1, uint y0, uint y1)
+		public static long ImRemap(long x, long x0, long x1, long y0, long y1)
 		{
-			uint ret = ImRemapU32Native(x, x0, x1, y0, y1);
+			long ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static long ImRemapS64Native(long x, long x0, long x1, long y0, long y1)
+		internal static ulong ImRemapNative(ulong x, ulong x0, ulong x1, ulong y0, ulong y1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long, long, long>)vt[378])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, ulong, ulong>)vt[378])(x, x0, x1, y0, y1);
 			#else
-			return (long)((delegate* unmanaged[Cdecl]<long, long, long, long, long, long>)vt[378])(x, x0, x1, y0, y1);
+			return (ulong)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, ulong, ulong>)vt[378])(x, x0, x1, y0, y1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImRemapS64(long x, long x0, long x1, long y0, long y1)
+		public static ulong ImRemap(ulong x, ulong x0, ulong x1, ulong y0, ulong y1)
 		{
-			long ret = ImRemapS64Native(x, x0, x1, y0, y1);
+			ulong ret = ImRemapNative(x, x0, x1, y0, y1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ulong ImRemapU64Native(ulong x, ulong x0, ulong x1, ulong y0, ulong y1)
+		internal static float ImRemap01Native(float x, float x0, float x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, ulong, ulong>)vt[379])(x, x0, x1, y0, y1);
+			return ((delegate* unmanaged[Cdecl]<float, float, float, float>)vt[379])(x, x0, x1);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, ulong, ulong>)vt[379])(x, x0, x1, y0, y1);
+			return (float)((delegate* unmanaged[Cdecl]<float, float, float, float>)vt[379])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImRemapU64(ulong x, ulong x0, ulong x1, ulong y0, ulong y1)
+		public static float ImRemap01(float x, float x0, float x1)
 		{
-			ulong ret = ImRemapU64Native(x, x0, x1, y0, y1);
+			float ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImRemap01FloatNative(float x, float x0, float x1)
+		internal static double ImRemap01Native(double x, double x0, double x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float>)vt[380])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double>)vt[380])(x, x0, x1);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float, float, float, float>)vt[380])(x, x0, x1);
+			return (double)((delegate* unmanaged[Cdecl]<double, double, double, double>)vt[380])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImRemap01Float(float x, float x0, float x1)
+		public static double ImRemap01(double x, double x0, double x1)
 		{
-			float ret = ImRemap01FloatNative(x, x0, x1);
+			double ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImRemap01DoubleNative(double x, double x0, double x1)
+		internal static byte ImRemap01Native(byte x, byte x0, byte x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double>)vt[381])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)vt[381])(x, x0, x1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double, double, double>)vt[381])(x, x0, x1);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)vt[381])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImRemap01Double(double x, double x0, double x1)
+		public static byte ImRemap01(byte x, byte x0, byte x1)
 		{
-			double ret = ImRemap01DoubleNative(x, x0, x1);
+			byte ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImRemap01S8Native(byte x, byte x0, byte x1)
+		internal static short ImRemap01Native(short x, short x0, short x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)vt[382])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<short, short, short, short>)vt[382])(x, x0, x1);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)vt[382])(x, x0, x1);
+			return (short)((delegate* unmanaged[Cdecl]<short, short, short, short>)vt[382])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImRemap01S8(byte x, byte x0, byte x1)
+		public static short ImRemap01(short x, short x0, short x1)
 		{
-			byte ret = ImRemap01S8Native(x, x0, x1);
+			short ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImRemap01U8Native(byte x, byte x0, byte x1)
+		internal static ushort ImRemap01Native(ushort x, ushort x0, ushort x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)vt[383])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort>)vt[383])(x, x0, x1);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)vt[383])(x, x0, x1);
+			return (ushort)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort>)vt[383])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImRemap01U8(byte x, byte x0, byte x1)
+		public static ushort ImRemap01(ushort x, ushort x0, ushort x1)
 		{
-			byte ret = ImRemap01U8Native(x, x0, x1);
+			ushort ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static short ImRemap01S16Native(short x, short x0, short x1)
+		internal static int ImRemap01Native(int x, int x0, int x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short>)vt[384])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<int, int, int, int>)vt[384])(x, x0, x1);
 			#else
-			return (short)((delegate* unmanaged[Cdecl]<short, short, short, short>)vt[384])(x, x0, x1);
+			return (int)((delegate* unmanaged[Cdecl]<int, int, int, int>)vt[384])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static short ImRemap01S16(short x, short x0, short x1)
+		public static int ImRemap01(int x, int x0, int x1)
 		{
-			short ret = ImRemap01S16Native(x, x0, x1);
+			int ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ushort ImRemap01U16Native(ushort x, ushort x0, ushort x1)
+		internal static uint ImRemap01Native(uint x, uint x0, uint x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort>)vt[385])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[385])(x, x0, x1);
 			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort>)vt[385])(x, x0, x1);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[385])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImRemap01U16(ushort x, ushort x0, ushort x1)
+		public static uint ImRemap01(uint x, uint x0, uint x1)
 		{
-			ushort ret = ImRemap01U16Native(x, x0, x1);
+			uint ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImRemap01S32Native(int x, int x0, int x1)
+		internal static long ImRemap01Native(long x, long x0, long x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int>)vt[386])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<long, long, long, long>)vt[386])(x, x0, x1);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int, int>)vt[386])(x, x0, x1);
+			return (long)((delegate* unmanaged[Cdecl]<long, long, long, long>)vt[386])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImRemap01S32(int x, int x0, int x1)
+		public static long ImRemap01(long x, long x0, long x1)
 		{
-			int ret = ImRemap01S32Native(x, x0, x1);
+			long ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImRemap01U32Native(uint x, uint x0, uint x1)
+		internal static ulong ImRemap01Native(ulong x, ulong x0, ulong x1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[387])(x, x0, x1);
+			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong>)vt[387])(x, x0, x1);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[387])(x, x0, x1);
+			return (ulong)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong>)vt[387])(x, x0, x1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImRemap01U32(uint x, uint x0, uint x1)
+		public static ulong ImRemap01(ulong x, ulong x0, ulong x1)
 		{
-			uint ret = ImRemap01U32Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static long ImRemap01S64Native(long x, long x0, long x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long>)vt[388])(x, x0, x1);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<long, long, long, long>)vt[388])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static long ImRemap01S64(long x, long x0, long x1)
-		{
-			long ret = ImRemap01S64Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static ulong ImRemap01U64Native(ulong x, ulong x0, ulong x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong>)vt[389])(x, x0, x1);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong>)vt[389])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ulong ImRemap01U64(ulong x, ulong x0, ulong x1)
-		{
-			ulong ret = ImRemap01U64Native(x, x0, x1);
+			ulong ret = ImRemap01Native(x, x0, x1);
 			return ret;
 		}
 
@@ -2764,9 +2722,9 @@ namespace Hexa.NET.ImPlot
 		internal static int ImPosModNative(int l, int r)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int>)vt[390])(l, r);
+			return ((delegate* unmanaged[Cdecl]<int, int, int>)vt[388])(l, r);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int>)vt[390])(l, r);
+			return (int)((delegate* unmanaged[Cdecl]<int, int, int>)vt[388])(l, r);
 			#endif
 		}
 
@@ -2785,9 +2743,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ImNanNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte>)vt[391])(val);
+			return ((delegate* unmanaged[Cdecl]<double, byte>)vt[389])(val);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, byte>)vt[391])(val);
+			return (byte)((delegate* unmanaged[Cdecl]<double, byte>)vt[389])(val);
 			#endif
 		}
 
@@ -2806,9 +2764,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ImNanOrInfNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte>)vt[392])(val);
+			return ((delegate* unmanaged[Cdecl]<double, byte>)vt[390])(val);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, byte>)vt[392])(val);
+			return (byte)((delegate* unmanaged[Cdecl]<double, byte>)vt[390])(val);
 			#endif
 		}
 
@@ -2827,9 +2785,9 @@ namespace Hexa.NET.ImPlot
 		internal static double ImConstrainNanNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)vt[393])(val);
+			return ((delegate* unmanaged[Cdecl]<double, double>)vt[391])(val);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[393])(val);
+			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[391])(val);
 			#endif
 		}
 
@@ -2848,9 +2806,9 @@ namespace Hexa.NET.ImPlot
 		internal static double ImConstrainInfNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)vt[394])(val);
+			return ((delegate* unmanaged[Cdecl]<double, double>)vt[392])(val);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[394])(val);
+			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[392])(val);
 			#endif
 		}
 
@@ -2869,9 +2827,9 @@ namespace Hexa.NET.ImPlot
 		internal static double ImConstrainLogNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)vt[395])(val);
+			return ((delegate* unmanaged[Cdecl]<double, double>)vt[393])(val);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[395])(val);
+			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[393])(val);
 			#endif
 		}
 
@@ -2890,9 +2848,9 @@ namespace Hexa.NET.ImPlot
 		internal static double ImConstrainTimeNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)vt[396])(val);
+			return ((delegate* unmanaged[Cdecl]<double, double>)vt[394])(val);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[396])(val);
+			return (double)((delegate* unmanaged[Cdecl]<double, double>)vt[394])(val);
 			#endif
 		}
 
@@ -2911,9 +2869,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ImAlmostEqualNative(double v1, double v2, int ulp)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, int, byte>)vt[397])(v1, v2, ulp);
+			return ((delegate* unmanaged[Cdecl]<double, double, int, byte>)vt[395])(v1, v2, ulp);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, double, int, byte>)vt[397])(v1, v2, ulp);
+			return (byte)((delegate* unmanaged[Cdecl]<double, double, int, byte>)vt[395])(v1, v2, ulp);
 			#endif
 		}
 
@@ -2929,32 +2887,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImMinArrayFloatPtrNative(float* values, int count)
+		public static bool ImAlmostEqual(double v1, double v2)
+		{
+			byte ret = ImAlmostEqualNative(v1, v2, (int)(2));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static float ImMinArrayNative(float* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[398])(values, count);
+			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[396])(values, count);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[398])((nint)values, count);
+			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[396])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImMinArrayFloatPtr(float* values, int count)
+		public static float ImMinArray(float* values, int count)
 		{
-			float ret = ImMinArrayFloatPtrNative(values, count);
+			float ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImMinArrayFloatPtr(ref float values, int count)
+		public static float ImMinArray(ref float values, int count)
 		{
 			fixed (float* pvalues = &values)
 			{
-				float ret = ImMinArrayFloatPtrNative((float*)pvalues, count);
+				float ret = ImMinArrayNative((float*)pvalues, count);
 				return ret;
 			}
 		}
@@ -2962,32 +2929,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMinArrayDoublePtrNative(double* values, int count)
+		internal static double ImMinArrayNative(double* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[399])(values, count);
+			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[397])(values, count);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[399])((nint)values, count);
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[397])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMinArrayDoublePtr(double* values, int count)
+		public static double ImMinArray(double* values, int count)
 		{
-			double ret = ImMinArrayDoublePtrNative(values, count);
+			double ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMinArrayDoublePtr(ref double values, int count)
+		public static double ImMinArray(ref double values, int count)
 		{
 			fixed (double* pvalues = &values)
 			{
-				double ret = ImMinArrayDoublePtrNative((double*)pvalues, count);
+				double ret = ImMinArrayNative((double*)pvalues, count);
 				return ret;
 			}
 		}
@@ -2995,32 +2962,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImMinArrayS8PtrNative(byte* values, int count)
+		internal static byte ImMinArrayNative(byte* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[400])(values, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[398])(values, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[400])((nint)values, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[398])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMinArrayS8Ptr(byte* values, int count)
+		public static byte ImMinArray(byte* values, int count)
 		{
-			byte ret = ImMinArrayS8PtrNative(values, count);
+			byte ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMinArrayS8Ptr(ref byte values, int count)
+		public static byte ImMinArray(ref byte values, int count)
 		{
 			fixed (byte* pvalues = &values)
 			{
-				byte ret = ImMinArrayS8PtrNative((byte*)pvalues, count);
+				byte ret = ImMinArrayNative((byte*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3028,65 +2995,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImMinArrayU8PtrNative(byte* values, int count)
+		internal static short ImMinArrayNative(short* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[401])(values, count);
+			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[399])(values, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[401])((nint)values, count);
+			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[399])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMinArrayU8Ptr(byte* values, int count)
+		public static short ImMinArray(short* values, int count)
 		{
-			byte ret = ImMinArrayU8PtrNative(values, count);
+			short ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMinArrayU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte ret = ImMinArrayU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static short ImMinArrayS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[402])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[402])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImMinArrayS16Ptr(short* values, int count)
-		{
-			short ret = ImMinArrayS16PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImMinArrayS16Ptr(ref short values, int count)
+		public static short ImMinArray(ref short values, int count)
 		{
 			fixed (short* pvalues = &values)
 			{
-				short ret = ImMinArrayS16PtrNative((short*)pvalues, count);
+				short ret = ImMinArrayNative((short*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3094,32 +3028,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ushort ImMinArrayU16PtrNative(ushort* values, int count)
+		internal static ushort ImMinArrayNative(ushort* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[403])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[400])(values, count);
 			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[403])((nint)values, count);
+			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[400])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImMinArrayU16Ptr(ushort* values, int count)
+		public static ushort ImMinArray(ushort* values, int count)
 		{
-			ushort ret = ImMinArrayU16PtrNative(values, count);
+			ushort ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImMinArrayU16Ptr(ref ushort values, int count)
+		public static ushort ImMinArray(ref ushort values, int count)
 		{
 			fixed (ushort* pvalues = &values)
 			{
-				ushort ret = ImMinArrayU16PtrNative((ushort*)pvalues, count);
+				ushort ret = ImMinArrayNative((ushort*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3127,32 +3061,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImMinArrayS32PtrNative(int* values, int count)
+		internal static int ImMinArrayNative(int* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[404])(values, count);
+			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[401])(values, count);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[404])((nint)values, count);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[401])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImMinArrayS32Ptr(int* values, int count)
+		public static int ImMinArray(int* values, int count)
 		{
-			int ret = ImMinArrayS32PtrNative(values, count);
+			int ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImMinArrayS32Ptr(ref int values, int count)
+		public static int ImMinArray(ref int values, int count)
 		{
 			fixed (int* pvalues = &values)
 			{
-				int ret = ImMinArrayS32PtrNative((int*)pvalues, count);
+				int ret = ImMinArrayNative((int*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3160,32 +3094,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImMinArrayU32PtrNative(uint* values, int count)
+		internal static uint ImMinArrayNative(uint* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[405])(values, count);
+			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[402])(values, count);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[405])((nint)values, count);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[402])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImMinArrayU32Ptr(uint* values, int count)
+		public static uint ImMinArray(uint* values, int count)
 		{
-			uint ret = ImMinArrayU32PtrNative(values, count);
+			uint ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImMinArrayU32Ptr(ref uint values, int count)
+		public static uint ImMinArray(ref uint values, int count)
 		{
 			fixed (uint* pvalues = &values)
 			{
-				uint ret = ImMinArrayU32PtrNative((uint*)pvalues, count);
+				uint ret = ImMinArrayNative((uint*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3193,32 +3127,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static long ImMinArrayS64PtrNative(long* values, int count)
+		internal static long ImMinArrayNative(long* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[406])(values, count);
+			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[403])(values, count);
 			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[406])((nint)values, count);
+			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[403])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImMinArrayS64Ptr(long* values, int count)
+		public static long ImMinArray(long* values, int count)
 		{
-			long ret = ImMinArrayS64PtrNative(values, count);
+			long ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImMinArrayS64Ptr(ref long values, int count)
+		public static long ImMinArray(ref long values, int count)
 		{
 			fixed (long* pvalues = &values)
 			{
-				long ret = ImMinArrayS64PtrNative((long*)pvalues, count);
+				long ret = ImMinArrayNative((long*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3226,32 +3160,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ulong ImMinArrayU64PtrNative(ulong* values, int count)
+		internal static ulong ImMinArrayNative(ulong* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[407])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[404])(values, count);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[407])((nint)values, count);
+			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[404])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImMinArrayU64Ptr(ulong* values, int count)
+		public static ulong ImMinArray(ulong* values, int count)
 		{
-			ulong ret = ImMinArrayU64PtrNative(values, count);
+			ulong ret = ImMinArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImMinArrayU64Ptr(ref ulong values, int count)
+		public static ulong ImMinArray(ref ulong values, int count)
 		{
 			fixed (ulong* pvalues = &values)
 			{
-				ulong ret = ImMinArrayU64PtrNative((ulong*)pvalues, count);
+				ulong ret = ImMinArrayNative((ulong*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3259,32 +3193,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImMaxArrayFloatPtrNative(float* values, int count)
+		internal static float ImMaxArrayNative(float* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[408])(values, count);
+			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[405])(values, count);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[408])((nint)values, count);
+			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[405])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImMaxArrayFloatPtr(float* values, int count)
+		public static float ImMaxArray(float* values, int count)
 		{
-			float ret = ImMaxArrayFloatPtrNative(values, count);
+			float ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImMaxArrayFloatPtr(ref float values, int count)
+		public static float ImMaxArray(ref float values, int count)
 		{
 			fixed (float* pvalues = &values)
 			{
-				float ret = ImMaxArrayFloatPtrNative((float*)pvalues, count);
+				float ret = ImMaxArrayNative((float*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3292,32 +3226,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMaxArrayDoublePtrNative(double* values, int count)
+		internal static double ImMaxArrayNative(double* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[409])(values, count);
+			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[406])(values, count);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[409])((nint)values, count);
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[406])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMaxArrayDoublePtr(double* values, int count)
+		public static double ImMaxArray(double* values, int count)
 		{
-			double ret = ImMaxArrayDoublePtrNative(values, count);
+			double ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMaxArrayDoublePtr(ref double values, int count)
+		public static double ImMaxArray(ref double values, int count)
 		{
 			fixed (double* pvalues = &values)
 			{
-				double ret = ImMaxArrayDoublePtrNative((double*)pvalues, count);
+				double ret = ImMaxArrayNative((double*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3325,32 +3259,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImMaxArrayS8PtrNative(byte* values, int count)
+		internal static byte ImMaxArrayNative(byte* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[410])(values, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[407])(values, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[410])((nint)values, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[407])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMaxArrayS8Ptr(byte* values, int count)
+		public static byte ImMaxArray(byte* values, int count)
 		{
-			byte ret = ImMaxArrayS8PtrNative(values, count);
+			byte ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMaxArrayS8Ptr(ref byte values, int count)
+		public static byte ImMaxArray(ref byte values, int count)
 		{
 			fixed (byte* pvalues = &values)
 			{
-				byte ret = ImMaxArrayS8PtrNative((byte*)pvalues, count);
+				byte ret = ImMaxArrayNative((byte*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3358,65 +3292,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImMaxArrayU8PtrNative(byte* values, int count)
+		internal static short ImMaxArrayNative(short* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[411])(values, count);
+			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[408])(values, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[411])((nint)values, count);
+			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[408])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMaxArrayU8Ptr(byte* values, int count)
+		public static short ImMaxArray(short* values, int count)
 		{
-			byte ret = ImMaxArrayU8PtrNative(values, count);
+			short ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImMaxArrayU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte ret = ImMaxArrayU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static short ImMaxArrayS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[412])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[412])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImMaxArrayS16Ptr(short* values, int count)
-		{
-			short ret = ImMaxArrayS16PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImMaxArrayS16Ptr(ref short values, int count)
+		public static short ImMaxArray(ref short values, int count)
 		{
 			fixed (short* pvalues = &values)
 			{
-				short ret = ImMaxArrayS16PtrNative((short*)pvalues, count);
+				short ret = ImMaxArrayNative((short*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3424,32 +3325,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ushort ImMaxArrayU16PtrNative(ushort* values, int count)
+		internal static ushort ImMaxArrayNative(ushort* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[413])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[409])(values, count);
 			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[413])((nint)values, count);
+			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[409])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImMaxArrayU16Ptr(ushort* values, int count)
+		public static ushort ImMaxArray(ushort* values, int count)
 		{
-			ushort ret = ImMaxArrayU16PtrNative(values, count);
+			ushort ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImMaxArrayU16Ptr(ref ushort values, int count)
+		public static ushort ImMaxArray(ref ushort values, int count)
 		{
 			fixed (ushort* pvalues = &values)
 			{
-				ushort ret = ImMaxArrayU16PtrNative((ushort*)pvalues, count);
+				ushort ret = ImMaxArrayNative((ushort*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3457,32 +3358,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImMaxArrayS32PtrNative(int* values, int count)
+		internal static int ImMaxArrayNative(int* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[414])(values, count);
+			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[410])(values, count);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[414])((nint)values, count);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[410])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImMaxArrayS32Ptr(int* values, int count)
+		public static int ImMaxArray(int* values, int count)
 		{
-			int ret = ImMaxArrayS32PtrNative(values, count);
+			int ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImMaxArrayS32Ptr(ref int values, int count)
+		public static int ImMaxArray(ref int values, int count)
 		{
 			fixed (int* pvalues = &values)
 			{
-				int ret = ImMaxArrayS32PtrNative((int*)pvalues, count);
+				int ret = ImMaxArrayNative((int*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3490,32 +3391,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImMaxArrayU32PtrNative(uint* values, int count)
+		internal static uint ImMaxArrayNative(uint* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[415])(values, count);
+			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[411])(values, count);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[415])((nint)values, count);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[411])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImMaxArrayU32Ptr(uint* values, int count)
+		public static uint ImMaxArray(uint* values, int count)
 		{
-			uint ret = ImMaxArrayU32PtrNative(values, count);
+			uint ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImMaxArrayU32Ptr(ref uint values, int count)
+		public static uint ImMaxArray(ref uint values, int count)
 		{
 			fixed (uint* pvalues = &values)
 			{
-				uint ret = ImMaxArrayU32PtrNative((uint*)pvalues, count);
+				uint ret = ImMaxArrayNative((uint*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3523,32 +3424,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static long ImMaxArrayS64PtrNative(long* values, int count)
+		internal static long ImMaxArrayNative(long* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[416])(values, count);
+			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[412])(values, count);
 			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[416])((nint)values, count);
+			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[412])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImMaxArrayS64Ptr(long* values, int count)
+		public static long ImMaxArray(long* values, int count)
 		{
-			long ret = ImMaxArrayS64PtrNative(values, count);
+			long ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImMaxArrayS64Ptr(ref long values, int count)
+		public static long ImMaxArray(ref long values, int count)
 		{
 			fixed (long* pvalues = &values)
 			{
-				long ret = ImMaxArrayS64PtrNative((long*)pvalues, count);
+				long ret = ImMaxArrayNative((long*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3556,32 +3457,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ulong ImMaxArrayU64PtrNative(ulong* values, int count)
+		internal static ulong ImMaxArrayNative(ulong* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[417])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[413])(values, count);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[417])((nint)values, count);
+			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[413])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImMaxArrayU64Ptr(ulong* values, int count)
+		public static ulong ImMaxArray(ulong* values, int count)
 		{
-			ulong ret = ImMaxArrayU64PtrNative(values, count);
+			ulong ret = ImMaxArrayNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImMaxArrayU64Ptr(ref ulong values, int count)
+		public static ulong ImMaxArray(ref ulong values, int count)
 		{
 			fixed (ulong* pvalues = &values)
 			{
-				ulong ret = ImMaxArrayU64PtrNative((ulong*)pvalues, count);
+				ulong ret = ImMaxArrayNative((ulong*)pvalues, count);
 				return ret;
 			}
 		}
@@ -3589,10 +3490,458 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImMinMaxArrayFloatPtrNative(float* values, int count, float* minOut, float* maxOut)
+		internal static void ImMinMaxArrayNative(float* values, int count, float* minOut, float* maxOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, int, float*, float*, void>)vt[418])(values, count, minOut, maxOut);
+			((delegate* unmanaged[Cdecl]<float*, int, float*, float*, void>)vt[414])(values, count, minOut, maxOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[414])((nint)values, count, (nint)minOut, (nint)maxOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(float* values, int count, float* minOut, float* maxOut)
+		{
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref float values, int count, float* minOut, float* maxOut)
+		{
+			fixed (float* pvalues = &values)
+			{
+				ImMinMaxArrayNative((float*)pvalues, count, minOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(float* values, int count, ref float minOut, float* maxOut)
+		{
+			fixed (float* pminOut = &minOut)
+			{
+				ImMinMaxArrayNative(values, count, (float*)pminOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref float values, int count, ref float minOut, float* maxOut)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pminOut = &minOut)
+				{
+					ImMinMaxArrayNative((float*)pvalues, count, (float*)pminOut, maxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(float* values, int count, float* minOut, ref float maxOut)
+		{
+			fixed (float* pmaxOut = &maxOut)
+			{
+				ImMinMaxArrayNative(values, count, minOut, (float*)pmaxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref float values, int count, float* minOut, ref float maxOut)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative((float*)pvalues, count, minOut, (float*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(float* values, int count, ref float minOut, ref float maxOut)
+		{
+			fixed (float* pminOut = &minOut)
+			{
+				fixed (float* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative(values, count, (float*)pminOut, (float*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref float values, int count, ref float minOut, ref float maxOut)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pminOut = &minOut)
+				{
+					fixed (float* pmaxOut = &maxOut)
+					{
+						ImMinMaxArrayNative((float*)pvalues, count, (float*)pminOut, (float*)pmaxOut);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void ImMinMaxArrayNative(double* values, int count, double* minOut, double* maxOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<double*, int, double*, double*, void>)vt[415])(values, count, minOut, maxOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[415])((nint)values, count, (nint)minOut, (nint)maxOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(double* values, int count, double* minOut, double* maxOut)
+		{
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref double values, int count, double* minOut, double* maxOut)
+		{
+			fixed (double* pvalues = &values)
+			{
+				ImMinMaxArrayNative((double*)pvalues, count, minOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(double* values, int count, ref double minOut, double* maxOut)
+		{
+			fixed (double* pminOut = &minOut)
+			{
+				ImMinMaxArrayNative(values, count, (double*)pminOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref double values, int count, ref double minOut, double* maxOut)
+		{
+			fixed (double* pvalues = &values)
+			{
+				fixed (double* pminOut = &minOut)
+				{
+					ImMinMaxArrayNative((double*)pvalues, count, (double*)pminOut, maxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(double* values, int count, double* minOut, ref double maxOut)
+		{
+			fixed (double* pmaxOut = &maxOut)
+			{
+				ImMinMaxArrayNative(values, count, minOut, (double*)pmaxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref double values, int count, double* minOut, ref double maxOut)
+		{
+			fixed (double* pvalues = &values)
+			{
+				fixed (double* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative((double*)pvalues, count, minOut, (double*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(double* values, int count, ref double minOut, ref double maxOut)
+		{
+			fixed (double* pminOut = &minOut)
+			{
+				fixed (double* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative(values, count, (double*)pminOut, (double*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref double values, int count, ref double minOut, ref double maxOut)
+		{
+			fixed (double* pvalues = &values)
+			{
+				fixed (double* pminOut = &minOut)
+				{
+					fixed (double* pmaxOut = &maxOut)
+					{
+						ImMinMaxArrayNative((double*)pvalues, count, (double*)pminOut, (double*)pmaxOut);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void ImMinMaxArrayNative(byte* values, int count, byte* minOut, byte* maxOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, int, byte*, byte*, void>)vt[416])(values, count, minOut, maxOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[416])((nint)values, count, (nint)minOut, (nint)maxOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(byte* values, int count, byte* minOut, byte* maxOut)
+		{
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref byte values, int count, byte* minOut, byte* maxOut)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				ImMinMaxArrayNative((byte*)pvalues, count, minOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(byte* values, int count, ref byte minOut, byte* maxOut)
+		{
+			fixed (byte* pminOut = &minOut)
+			{
+				ImMinMaxArrayNative(values, count, (byte*)pminOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref byte values, int count, ref byte minOut, byte* maxOut)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				fixed (byte* pminOut = &minOut)
+				{
+					ImMinMaxArrayNative((byte*)pvalues, count, (byte*)pminOut, maxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(byte* values, int count, byte* minOut, ref byte maxOut)
+		{
+			fixed (byte* pmaxOut = &maxOut)
+			{
+				ImMinMaxArrayNative(values, count, minOut, (byte*)pmaxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref byte values, int count, byte* minOut, ref byte maxOut)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				fixed (byte* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative((byte*)pvalues, count, minOut, (byte*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(byte* values, int count, ref byte minOut, ref byte maxOut)
+		{
+			fixed (byte* pminOut = &minOut)
+			{
+				fixed (byte* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative(values, count, (byte*)pminOut, (byte*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref byte values, int count, ref byte minOut, ref byte maxOut)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				fixed (byte* pminOut = &minOut)
+				{
+					fixed (byte* pmaxOut = &maxOut)
+					{
+						ImMinMaxArrayNative((byte*)pvalues, count, (byte*)pminOut, (byte*)pmaxOut);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void ImMinMaxArrayNative(short* values, int count, short* minOut, short* maxOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<short*, int, short*, short*, void>)vt[417])(values, count, minOut, maxOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[417])((nint)values, count, (nint)minOut, (nint)maxOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(short* values, int count, short* minOut, short* maxOut)
+		{
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref short values, int count, short* minOut, short* maxOut)
+		{
+			fixed (short* pvalues = &values)
+			{
+				ImMinMaxArrayNative((short*)pvalues, count, minOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(short* values, int count, ref short minOut, short* maxOut)
+		{
+			fixed (short* pminOut = &minOut)
+			{
+				ImMinMaxArrayNative(values, count, (short*)pminOut, maxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref short values, int count, ref short minOut, short* maxOut)
+		{
+			fixed (short* pvalues = &values)
+			{
+				fixed (short* pminOut = &minOut)
+				{
+					ImMinMaxArrayNative((short*)pvalues, count, (short*)pminOut, maxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(short* values, int count, short* minOut, ref short maxOut)
+		{
+			fixed (short* pmaxOut = &maxOut)
+			{
+				ImMinMaxArrayNative(values, count, minOut, (short*)pmaxOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref short values, int count, short* minOut, ref short maxOut)
+		{
+			fixed (short* pvalues = &values)
+			{
+				fixed (short* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative((short*)pvalues, count, minOut, (short*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(short* values, int count, ref short minOut, ref short maxOut)
+		{
+			fixed (short* pminOut = &minOut)
+			{
+				fixed (short* pmaxOut = &maxOut)
+				{
+					ImMinMaxArrayNative(values, count, (short*)pminOut, (short*)pmaxOut);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImMinMaxArray(ref short values, int count, ref short minOut, ref short maxOut)
+		{
+			fixed (short* pvalues = &values)
+			{
+				fixed (short* pminOut = &minOut)
+				{
+					fixed (short* pmaxOut = &maxOut)
+					{
+						ImMinMaxArrayNative((short*)pvalues, count, (short*)pminOut, (short*)pmaxOut);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void ImMinMaxArrayNative(ushort* values, int count, ushort* minOut, ushort* maxOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ushort*, int, ushort*, ushort*, void>)vt[418])(values, count, minOut, maxOut);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[418])((nint)values, count, (nint)minOut, (nint)maxOut);
 			#endif
@@ -3601,43 +3950,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(float* values, int count, float* minOut, float* maxOut)
+		public static void ImMinMaxArray(ushort* values, int count, ushort* minOut, ushort* maxOut)
 		{
-			ImMinMaxArrayFloatPtrNative(values, count, minOut, maxOut);
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(ref float values, int count, float* minOut, float* maxOut)
+		public static void ImMinMaxArray(ref ushort values, int count, ushort* minOut, ushort* maxOut)
 		{
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				ImMinMaxArrayFloatPtrNative((float*)pvalues, count, minOut, maxOut);
+				ImMinMaxArrayNative((ushort*)pvalues, count, minOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(float* values, int count, ref float minOut, float* maxOut)
+		public static void ImMinMaxArray(ushort* values, int count, ref ushort minOut, ushort* maxOut)
 		{
-			fixed (float* pminOut = &minOut)
+			fixed (ushort* pminOut = &minOut)
 			{
-				ImMinMaxArrayFloatPtrNative(values, count, (float*)pminOut, maxOut);
+				ImMinMaxArrayNative(values, count, (ushort*)pminOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(ref float values, int count, ref float minOut, float* maxOut)
+		public static void ImMinMaxArray(ref ushort values, int count, ref ushort minOut, ushort* maxOut)
 		{
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pminOut = &minOut)
+				fixed (ushort* pminOut = &minOut)
 				{
-					ImMinMaxArrayFloatPtrNative((float*)pvalues, count, (float*)pminOut, maxOut);
+					ImMinMaxArrayNative((ushort*)pvalues, count, (ushort*)pminOut, maxOut);
 				}
 			}
 		}
@@ -3645,24 +3994,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(float* values, int count, float* minOut, ref float maxOut)
+		public static void ImMinMaxArray(ushort* values, int count, ushort* minOut, ref ushort maxOut)
 		{
-			fixed (float* pmaxOut = &maxOut)
+			fixed (ushort* pmaxOut = &maxOut)
 			{
-				ImMinMaxArrayFloatPtrNative(values, count, minOut, (float*)pmaxOut);
+				ImMinMaxArrayNative(values, count, minOut, (ushort*)pmaxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(ref float values, int count, float* minOut, ref float maxOut)
+		public static void ImMinMaxArray(ref ushort values, int count, ushort* minOut, ref ushort maxOut)
 		{
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pmaxOut = &maxOut)
+				fixed (ushort* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayFloatPtrNative((float*)pvalues, count, minOut, (float*)pmaxOut);
+					ImMinMaxArrayNative((ushort*)pvalues, count, minOut, (ushort*)pmaxOut);
 				}
 			}
 		}
@@ -3670,13 +4019,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(float* values, int count, ref float minOut, ref float maxOut)
+		public static void ImMinMaxArray(ushort* values, int count, ref ushort minOut, ref ushort maxOut)
 		{
-			fixed (float* pminOut = &minOut)
+			fixed (ushort* pminOut = &minOut)
 			{
-				fixed (float* pmaxOut = &maxOut)
+				fixed (ushort* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayFloatPtrNative(values, count, (float*)pminOut, (float*)pmaxOut);
+					ImMinMaxArrayNative(values, count, (ushort*)pminOut, (ushort*)pmaxOut);
 				}
 			}
 		}
@@ -3684,15 +4033,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayFloatPtr(ref float values, int count, ref float minOut, ref float maxOut)
+		public static void ImMinMaxArray(ref ushort values, int count, ref ushort minOut, ref ushort maxOut)
 		{
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pminOut = &minOut)
+				fixed (ushort* pminOut = &minOut)
 				{
-					fixed (float* pmaxOut = &maxOut)
+					fixed (ushort* pmaxOut = &maxOut)
 					{
-						ImMinMaxArrayFloatPtrNative((float*)pvalues, count, (float*)pminOut, (float*)pmaxOut);
+						ImMinMaxArrayNative((ushort*)pvalues, count, (ushort*)pminOut, (ushort*)pmaxOut);
 					}
 				}
 			}
@@ -3701,10 +4050,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImMinMaxArrayDoublePtrNative(double* values, int count, double* minOut, double* maxOut)
+		internal static void ImMinMaxArrayNative(int* values, int count, int* minOut, int* maxOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double*, int, double*, double*, void>)vt[419])(values, count, minOut, maxOut);
+			((delegate* unmanaged[Cdecl]<int*, int, int*, int*, void>)vt[419])(values, count, minOut, maxOut);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[419])((nint)values, count, (nint)minOut, (nint)maxOut);
 			#endif
@@ -3713,43 +4062,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(double* values, int count, double* minOut, double* maxOut)
+		public static void ImMinMaxArray(int* values, int count, int* minOut, int* maxOut)
 		{
-			ImMinMaxArrayDoublePtrNative(values, count, minOut, maxOut);
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(ref double values, int count, double* minOut, double* maxOut)
+		public static void ImMinMaxArray(ref int values, int count, int* minOut, int* maxOut)
 		{
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				ImMinMaxArrayDoublePtrNative((double*)pvalues, count, minOut, maxOut);
+				ImMinMaxArrayNative((int*)pvalues, count, minOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(double* values, int count, ref double minOut, double* maxOut)
+		public static void ImMinMaxArray(int* values, int count, ref int minOut, int* maxOut)
 		{
-			fixed (double* pminOut = &minOut)
+			fixed (int* pminOut = &minOut)
 			{
-				ImMinMaxArrayDoublePtrNative(values, count, (double*)pminOut, maxOut);
+				ImMinMaxArrayNative(values, count, (int*)pminOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(ref double values, int count, ref double minOut, double* maxOut)
+		public static void ImMinMaxArray(ref int values, int count, ref int minOut, int* maxOut)
 		{
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				fixed (double* pminOut = &minOut)
+				fixed (int* pminOut = &minOut)
 				{
-					ImMinMaxArrayDoublePtrNative((double*)pvalues, count, (double*)pminOut, maxOut);
+					ImMinMaxArrayNative((int*)pvalues, count, (int*)pminOut, maxOut);
 				}
 			}
 		}
@@ -3757,24 +4106,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(double* values, int count, double* minOut, ref double maxOut)
+		public static void ImMinMaxArray(int* values, int count, int* minOut, ref int maxOut)
 		{
-			fixed (double* pmaxOut = &maxOut)
+			fixed (int* pmaxOut = &maxOut)
 			{
-				ImMinMaxArrayDoublePtrNative(values, count, minOut, (double*)pmaxOut);
+				ImMinMaxArrayNative(values, count, minOut, (int*)pmaxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(ref double values, int count, double* minOut, ref double maxOut)
+		public static void ImMinMaxArray(ref int values, int count, int* minOut, ref int maxOut)
 		{
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				fixed (double* pmaxOut = &maxOut)
+				fixed (int* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayDoublePtrNative((double*)pvalues, count, minOut, (double*)pmaxOut);
+					ImMinMaxArrayNative((int*)pvalues, count, minOut, (int*)pmaxOut);
 				}
 			}
 		}
@@ -3782,13 +4131,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(double* values, int count, ref double minOut, ref double maxOut)
+		public static void ImMinMaxArray(int* values, int count, ref int minOut, ref int maxOut)
 		{
-			fixed (double* pminOut = &minOut)
+			fixed (int* pminOut = &minOut)
 			{
-				fixed (double* pmaxOut = &maxOut)
+				fixed (int* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayDoublePtrNative(values, count, (double*)pminOut, (double*)pmaxOut);
+					ImMinMaxArrayNative(values, count, (int*)pminOut, (int*)pmaxOut);
 				}
 			}
 		}
@@ -3796,15 +4145,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayDoublePtr(ref double values, int count, ref double minOut, ref double maxOut)
+		public static void ImMinMaxArray(ref int values, int count, ref int minOut, ref int maxOut)
 		{
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				fixed (double* pminOut = &minOut)
+				fixed (int* pminOut = &minOut)
 				{
-					fixed (double* pmaxOut = &maxOut)
+					fixed (int* pmaxOut = &maxOut)
 					{
-						ImMinMaxArrayDoublePtrNative((double*)pvalues, count, (double*)pminOut, (double*)pmaxOut);
+						ImMinMaxArrayNative((int*)pvalues, count, (int*)pminOut, (int*)pmaxOut);
 					}
 				}
 			}
@@ -3813,10 +4162,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImMinMaxArrayS8PtrNative(byte* values, int count, byte* minOut, byte* maxOut)
+		internal static void ImMinMaxArrayNative(uint* values, int count, uint* minOut, uint* maxOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, byte*, byte*, void>)vt[420])(values, count, minOut, maxOut);
+			((delegate* unmanaged[Cdecl]<uint*, int, uint*, uint*, void>)vt[420])(values, count, minOut, maxOut);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[420])((nint)values, count, (nint)minOut, (nint)maxOut);
 			#endif
@@ -3825,43 +4174,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(byte* values, int count, byte* minOut, byte* maxOut)
+		public static void ImMinMaxArray(uint* values, int count, uint* minOut, uint* maxOut)
 		{
-			ImMinMaxArrayS8PtrNative(values, count, minOut, maxOut);
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(ref byte values, int count, byte* minOut, byte* maxOut)
+		public static void ImMinMaxArray(ref uint values, int count, uint* minOut, uint* maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (uint* pvalues = &values)
 			{
-				ImMinMaxArrayS8PtrNative((byte*)pvalues, count, minOut, maxOut);
+				ImMinMaxArrayNative((uint*)pvalues, count, minOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(byte* values, int count, ref byte minOut, byte* maxOut)
+		public static void ImMinMaxArray(uint* values, int count, ref uint minOut, uint* maxOut)
 		{
-			fixed (byte* pminOut = &minOut)
+			fixed (uint* pminOut = &minOut)
 			{
-				ImMinMaxArrayS8PtrNative(values, count, (byte*)pminOut, maxOut);
+				ImMinMaxArrayNative(values, count, (uint*)pminOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(ref byte values, int count, ref byte minOut, byte* maxOut)
+		public static void ImMinMaxArray(ref uint values, int count, ref uint minOut, uint* maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (uint* pvalues = &values)
 			{
-				fixed (byte* pminOut = &minOut)
+				fixed (uint* pminOut = &minOut)
 				{
-					ImMinMaxArrayS8PtrNative((byte*)pvalues, count, (byte*)pminOut, maxOut);
+					ImMinMaxArrayNative((uint*)pvalues, count, (uint*)pminOut, maxOut);
 				}
 			}
 		}
@@ -3869,24 +4218,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(byte* values, int count, byte* minOut, ref byte maxOut)
+		public static void ImMinMaxArray(uint* values, int count, uint* minOut, ref uint maxOut)
 		{
-			fixed (byte* pmaxOut = &maxOut)
+			fixed (uint* pmaxOut = &maxOut)
 			{
-				ImMinMaxArrayS8PtrNative(values, count, minOut, (byte*)pmaxOut);
+				ImMinMaxArrayNative(values, count, minOut, (uint*)pmaxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(ref byte values, int count, byte* minOut, ref byte maxOut)
+		public static void ImMinMaxArray(ref uint values, int count, uint* minOut, ref uint maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (uint* pvalues = &values)
 			{
-				fixed (byte* pmaxOut = &maxOut)
+				fixed (uint* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayS8PtrNative((byte*)pvalues, count, minOut, (byte*)pmaxOut);
+					ImMinMaxArrayNative((uint*)pvalues, count, minOut, (uint*)pmaxOut);
 				}
 			}
 		}
@@ -3894,13 +4243,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(byte* values, int count, ref byte minOut, ref byte maxOut)
+		public static void ImMinMaxArray(uint* values, int count, ref uint minOut, ref uint maxOut)
 		{
-			fixed (byte* pminOut = &minOut)
+			fixed (uint* pminOut = &minOut)
 			{
-				fixed (byte* pmaxOut = &maxOut)
+				fixed (uint* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayS8PtrNative(values, count, (byte*)pminOut, (byte*)pmaxOut);
+					ImMinMaxArrayNative(values, count, (uint*)pminOut, (uint*)pmaxOut);
 				}
 			}
 		}
@@ -3908,15 +4257,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS8Ptr(ref byte values, int count, ref byte minOut, ref byte maxOut)
+		public static void ImMinMaxArray(ref uint values, int count, ref uint minOut, ref uint maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (uint* pvalues = &values)
 			{
-				fixed (byte* pminOut = &minOut)
+				fixed (uint* pminOut = &minOut)
 				{
-					fixed (byte* pmaxOut = &maxOut)
+					fixed (uint* pmaxOut = &maxOut)
 					{
-						ImMinMaxArrayS8PtrNative((byte*)pvalues, count, (byte*)pminOut, (byte*)pmaxOut);
+						ImMinMaxArrayNative((uint*)pvalues, count, (uint*)pminOut, (uint*)pmaxOut);
 					}
 				}
 			}
@@ -3925,10 +4274,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImMinMaxArrayU8PtrNative(byte* values, int count, byte* minOut, byte* maxOut)
+		internal static void ImMinMaxArrayNative(long* values, int count, long* minOut, long* maxOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, byte*, byte*, void>)vt[421])(values, count, minOut, maxOut);
+			((delegate* unmanaged[Cdecl]<long*, int, long*, long*, void>)vt[421])(values, count, minOut, maxOut);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[421])((nint)values, count, (nint)minOut, (nint)maxOut);
 			#endif
@@ -3937,43 +4286,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(byte* values, int count, byte* minOut, byte* maxOut)
+		public static void ImMinMaxArray(long* values, int count, long* minOut, long* maxOut)
 		{
-			ImMinMaxArrayU8PtrNative(values, count, minOut, maxOut);
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(ref byte values, int count, byte* minOut, byte* maxOut)
+		public static void ImMinMaxArray(ref long values, int count, long* minOut, long* maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (long* pvalues = &values)
 			{
-				ImMinMaxArrayU8PtrNative((byte*)pvalues, count, minOut, maxOut);
+				ImMinMaxArrayNative((long*)pvalues, count, minOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(byte* values, int count, ref byte minOut, byte* maxOut)
+		public static void ImMinMaxArray(long* values, int count, ref long minOut, long* maxOut)
 		{
-			fixed (byte* pminOut = &minOut)
+			fixed (long* pminOut = &minOut)
 			{
-				ImMinMaxArrayU8PtrNative(values, count, (byte*)pminOut, maxOut);
+				ImMinMaxArrayNative(values, count, (long*)pminOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(ref byte values, int count, ref byte minOut, byte* maxOut)
+		public static void ImMinMaxArray(ref long values, int count, ref long minOut, long* maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (long* pvalues = &values)
 			{
-				fixed (byte* pminOut = &minOut)
+				fixed (long* pminOut = &minOut)
 				{
-					ImMinMaxArrayU8PtrNative((byte*)pvalues, count, (byte*)pminOut, maxOut);
+					ImMinMaxArrayNative((long*)pvalues, count, (long*)pminOut, maxOut);
 				}
 			}
 		}
@@ -3981,24 +4330,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(byte* values, int count, byte* minOut, ref byte maxOut)
+		public static void ImMinMaxArray(long* values, int count, long* minOut, ref long maxOut)
 		{
-			fixed (byte* pmaxOut = &maxOut)
+			fixed (long* pmaxOut = &maxOut)
 			{
-				ImMinMaxArrayU8PtrNative(values, count, minOut, (byte*)pmaxOut);
+				ImMinMaxArrayNative(values, count, minOut, (long*)pmaxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(ref byte values, int count, byte* minOut, ref byte maxOut)
+		public static void ImMinMaxArray(ref long values, int count, long* minOut, ref long maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (long* pvalues = &values)
 			{
-				fixed (byte* pmaxOut = &maxOut)
+				fixed (long* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayU8PtrNative((byte*)pvalues, count, minOut, (byte*)pmaxOut);
+					ImMinMaxArrayNative((long*)pvalues, count, minOut, (long*)pmaxOut);
 				}
 			}
 		}
@@ -4006,13 +4355,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(byte* values, int count, ref byte minOut, ref byte maxOut)
+		public static void ImMinMaxArray(long* values, int count, ref long minOut, ref long maxOut)
 		{
-			fixed (byte* pminOut = &minOut)
+			fixed (long* pminOut = &minOut)
 			{
-				fixed (byte* pmaxOut = &maxOut)
+				fixed (long* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayU8PtrNative(values, count, (byte*)pminOut, (byte*)pmaxOut);
+					ImMinMaxArrayNative(values, count, (long*)pminOut, (long*)pmaxOut);
 				}
 			}
 		}
@@ -4020,15 +4369,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU8Ptr(ref byte values, int count, ref byte minOut, ref byte maxOut)
+		public static void ImMinMaxArray(ref long values, int count, ref long minOut, ref long maxOut)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (long* pvalues = &values)
 			{
-				fixed (byte* pminOut = &minOut)
+				fixed (long* pminOut = &minOut)
 				{
-					fixed (byte* pmaxOut = &maxOut)
+					fixed (long* pmaxOut = &maxOut)
 					{
-						ImMinMaxArrayU8PtrNative((byte*)pvalues, count, (byte*)pminOut, (byte*)pmaxOut);
+						ImMinMaxArrayNative((long*)pvalues, count, (long*)pminOut, (long*)pmaxOut);
 					}
 				}
 			}
@@ -4037,10 +4386,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImMinMaxArrayS16PtrNative(short* values, int count, short* minOut, short* maxOut)
+		internal static void ImMinMaxArrayNative(ulong* values, int count, ulong* minOut, ulong* maxOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<short*, int, short*, short*, void>)vt[422])(values, count, minOut, maxOut);
+			((delegate* unmanaged[Cdecl]<ulong*, int, ulong*, ulong*, void>)vt[422])(values, count, minOut, maxOut);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[422])((nint)values, count, (nint)minOut, (nint)maxOut);
 			#endif
@@ -4049,603 +4398,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(short* values, int count, short* minOut, short* maxOut)
+		public static void ImMinMaxArray(ulong* values, int count, ulong* minOut, ulong* maxOut)
 		{
-			ImMinMaxArrayS16PtrNative(values, count, minOut, maxOut);
+			ImMinMaxArrayNative(values, count, minOut, maxOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(ref short values, int count, short* minOut, short* maxOut)
-		{
-			fixed (short* pvalues = &values)
-			{
-				ImMinMaxArrayS16PtrNative((short*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(short* values, int count, ref short minOut, short* maxOut)
-		{
-			fixed (short* pminOut = &minOut)
-			{
-				ImMinMaxArrayS16PtrNative(values, count, (short*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(ref short values, int count, ref short minOut, short* maxOut)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (short* pminOut = &minOut)
-				{
-					ImMinMaxArrayS16PtrNative((short*)pvalues, count, (short*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(short* values, int count, short* minOut, ref short maxOut)
-		{
-			fixed (short* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayS16PtrNative(values, count, minOut, (short*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(ref short values, int count, short* minOut, ref short maxOut)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (short* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayS16PtrNative((short*)pvalues, count, minOut, (short*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(short* values, int count, ref short minOut, ref short maxOut)
-		{
-			fixed (short* pminOut = &minOut)
-			{
-				fixed (short* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayS16PtrNative(values, count, (short*)pminOut, (short*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS16Ptr(ref short values, int count, ref short minOut, ref short maxOut)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (short* pminOut = &minOut)
-				{
-					fixed (short* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayS16PtrNative((short*)pvalues, count, (short*)pminOut, (short*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void ImMinMaxArrayU16PtrNative(ushort* values, int count, ushort* minOut, ushort* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ushort*, int, ushort*, ushort*, void>)vt[423])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[423])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ushort* values, int count, ushort* minOut, ushort* maxOut)
-		{
-			ImMinMaxArrayU16PtrNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ref ushort values, int count, ushort* minOut, ushort* maxOut)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				ImMinMaxArrayU16PtrNative((ushort*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ushort* values, int count, ref ushort minOut, ushort* maxOut)
-		{
-			fixed (ushort* pminOut = &minOut)
-			{
-				ImMinMaxArrayU16PtrNative(values, count, (ushort*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ref ushort values, int count, ref ushort minOut, ushort* maxOut)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (ushort* pminOut = &minOut)
-				{
-					ImMinMaxArrayU16PtrNative((ushort*)pvalues, count, (ushort*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ushort* values, int count, ushort* minOut, ref ushort maxOut)
-		{
-			fixed (ushort* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayU16PtrNative(values, count, minOut, (ushort*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ref ushort values, int count, ushort* minOut, ref ushort maxOut)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (ushort* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayU16PtrNative((ushort*)pvalues, count, minOut, (ushort*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ushort* values, int count, ref ushort minOut, ref ushort maxOut)
-		{
-			fixed (ushort* pminOut = &minOut)
-			{
-				fixed (ushort* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayU16PtrNative(values, count, (ushort*)pminOut, (ushort*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU16Ptr(ref ushort values, int count, ref ushort minOut, ref ushort maxOut)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (ushort* pminOut = &minOut)
-				{
-					fixed (ushort* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayU16PtrNative((ushort*)pvalues, count, (ushort*)pminOut, (ushort*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void ImMinMaxArrayS32PtrNative(int* values, int count, int* minOut, int* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int*, int, int*, int*, void>)vt[424])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[424])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(int* values, int count, int* minOut, int* maxOut)
-		{
-			ImMinMaxArrayS32PtrNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(ref int values, int count, int* minOut, int* maxOut)
-		{
-			fixed (int* pvalues = &values)
-			{
-				ImMinMaxArrayS32PtrNative((int*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(int* values, int count, ref int minOut, int* maxOut)
-		{
-			fixed (int* pminOut = &minOut)
-			{
-				ImMinMaxArrayS32PtrNative(values, count, (int*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(ref int values, int count, ref int minOut, int* maxOut)
-		{
-			fixed (int* pvalues = &values)
-			{
-				fixed (int* pminOut = &minOut)
-				{
-					ImMinMaxArrayS32PtrNative((int*)pvalues, count, (int*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(int* values, int count, int* minOut, ref int maxOut)
-		{
-			fixed (int* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayS32PtrNative(values, count, minOut, (int*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(ref int values, int count, int* minOut, ref int maxOut)
-		{
-			fixed (int* pvalues = &values)
-			{
-				fixed (int* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayS32PtrNative((int*)pvalues, count, minOut, (int*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(int* values, int count, ref int minOut, ref int maxOut)
-		{
-			fixed (int* pminOut = &minOut)
-			{
-				fixed (int* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayS32PtrNative(values, count, (int*)pminOut, (int*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS32Ptr(ref int values, int count, ref int minOut, ref int maxOut)
-		{
-			fixed (int* pvalues = &values)
-			{
-				fixed (int* pminOut = &minOut)
-				{
-					fixed (int* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayS32PtrNative((int*)pvalues, count, (int*)pminOut, (int*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void ImMinMaxArrayU32PtrNative(uint* values, int count, uint* minOut, uint* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, uint*, uint*, void>)vt[425])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[425])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(uint* values, int count, uint* minOut, uint* maxOut)
-		{
-			ImMinMaxArrayU32PtrNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(ref uint values, int count, uint* minOut, uint* maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				ImMinMaxArrayU32PtrNative((uint*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(uint* values, int count, ref uint minOut, uint* maxOut)
-		{
-			fixed (uint* pminOut = &minOut)
-			{
-				ImMinMaxArrayU32PtrNative(values, count, (uint*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(ref uint values, int count, ref uint minOut, uint* maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				fixed (uint* pminOut = &minOut)
-				{
-					ImMinMaxArrayU32PtrNative((uint*)pvalues, count, (uint*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(uint* values, int count, uint* minOut, ref uint maxOut)
-		{
-			fixed (uint* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayU32PtrNative(values, count, minOut, (uint*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(ref uint values, int count, uint* minOut, ref uint maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				fixed (uint* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayU32PtrNative((uint*)pvalues, count, minOut, (uint*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(uint* values, int count, ref uint minOut, ref uint maxOut)
-		{
-			fixed (uint* pminOut = &minOut)
-			{
-				fixed (uint* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayU32PtrNative(values, count, (uint*)pminOut, (uint*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU32Ptr(ref uint values, int count, ref uint minOut, ref uint maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				fixed (uint* pminOut = &minOut)
-				{
-					fixed (uint* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayU32PtrNative((uint*)pvalues, count, (uint*)pminOut, (uint*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void ImMinMaxArrayS64PtrNative(long* values, int count, long* minOut, long* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<long*, int, long*, long*, void>)vt[426])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[426])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(long* values, int count, long* minOut, long* maxOut)
-		{
-			ImMinMaxArrayS64PtrNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(ref long values, int count, long* minOut, long* maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				ImMinMaxArrayS64PtrNative((long*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(long* values, int count, ref long minOut, long* maxOut)
-		{
-			fixed (long* pminOut = &minOut)
-			{
-				ImMinMaxArrayS64PtrNative(values, count, (long*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(ref long values, int count, ref long minOut, long* maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				fixed (long* pminOut = &minOut)
-				{
-					ImMinMaxArrayS64PtrNative((long*)pvalues, count, (long*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(long* values, int count, long* minOut, ref long maxOut)
-		{
-			fixed (long* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayS64PtrNative(values, count, minOut, (long*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(ref long values, int count, long* minOut, ref long maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				fixed (long* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayS64PtrNative((long*)pvalues, count, minOut, (long*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(long* values, int count, ref long minOut, ref long maxOut)
-		{
-			fixed (long* pminOut = &minOut)
-			{
-				fixed (long* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayS64PtrNative(values, count, (long*)pminOut, (long*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayS64Ptr(ref long values, int count, ref long minOut, ref long maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				fixed (long* pminOut = &minOut)
-				{
-					fixed (long* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayS64PtrNative((long*)pvalues, count, (long*)pminOut, (long*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void ImMinMaxArrayU64PtrNative(ulong* values, int count, ulong* minOut, ulong* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ulong*, int, ulong*, ulong*, void>)vt[427])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[427])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ulong* values, int count, ulong* minOut, ulong* maxOut)
-		{
-			ImMinMaxArrayU64PtrNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ref ulong values, int count, ulong* minOut, ulong* maxOut)
+		public static void ImMinMaxArray(ref ulong values, int count, ulong* minOut, ulong* maxOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
-				ImMinMaxArrayU64PtrNative((ulong*)pvalues, count, minOut, maxOut);
+				ImMinMaxArrayNative((ulong*)pvalues, count, minOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ulong* values, int count, ref ulong minOut, ulong* maxOut)
+		public static void ImMinMaxArray(ulong* values, int count, ref ulong minOut, ulong* maxOut)
 		{
 			fixed (ulong* pminOut = &minOut)
 			{
-				ImMinMaxArrayU64PtrNative(values, count, (ulong*)pminOut, maxOut);
+				ImMinMaxArrayNative(values, count, (ulong*)pminOut, maxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ref ulong values, int count, ref ulong minOut, ulong* maxOut)
+		public static void ImMinMaxArray(ref ulong values, int count, ref ulong minOut, ulong* maxOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
 				fixed (ulong* pminOut = &minOut)
 				{
-					ImMinMaxArrayU64PtrNative((ulong*)pvalues, count, (ulong*)pminOut, maxOut);
+					ImMinMaxArrayNative((ulong*)pvalues, count, (ulong*)pminOut, maxOut);
 				}
 			}
 		}
@@ -4653,24 +4442,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ulong* values, int count, ulong* minOut, ref ulong maxOut)
+		public static void ImMinMaxArray(ulong* values, int count, ulong* minOut, ref ulong maxOut)
 		{
 			fixed (ulong* pmaxOut = &maxOut)
 			{
-				ImMinMaxArrayU64PtrNative(values, count, minOut, (ulong*)pmaxOut);
+				ImMinMaxArrayNative(values, count, minOut, (ulong*)pmaxOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ref ulong values, int count, ulong* minOut, ref ulong maxOut)
+		public static void ImMinMaxArray(ref ulong values, int count, ulong* minOut, ref ulong maxOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
 				fixed (ulong* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayU64PtrNative((ulong*)pvalues, count, minOut, (ulong*)pmaxOut);
+					ImMinMaxArrayNative((ulong*)pvalues, count, minOut, (ulong*)pmaxOut);
 				}
 			}
 		}
@@ -4678,13 +4467,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ulong* values, int count, ref ulong minOut, ref ulong maxOut)
+		public static void ImMinMaxArray(ulong* values, int count, ref ulong minOut, ref ulong maxOut)
 		{
 			fixed (ulong* pminOut = &minOut)
 			{
 				fixed (ulong* pmaxOut = &maxOut)
 				{
-					ImMinMaxArrayU64PtrNative(values, count, (ulong*)pminOut, (ulong*)pmaxOut);
+					ImMinMaxArrayNative(values, count, (ulong*)pminOut, (ulong*)pmaxOut);
 				}
 			}
 		}
@@ -4692,7 +4481,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImMinMaxArrayU64Ptr(ref ulong values, int count, ref ulong minOut, ref ulong maxOut)
+		public static void ImMinMaxArray(ref ulong values, int count, ref ulong minOut, ref ulong maxOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
@@ -4700,7 +4489,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ulong* pmaxOut = &maxOut)
 					{
-						ImMinMaxArrayU64PtrNative((ulong*)pvalues, count, (ulong*)pminOut, (ulong*)pmaxOut);
+						ImMinMaxArrayNative((ulong*)pvalues, count, (ulong*)pminOut, (ulong*)pmaxOut);
 					}
 				}
 			}
@@ -4709,32 +4498,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float ImSumFloatPtrNative(float* values, int count)
+		internal static float ImSumNative(float* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[428])(values, count);
+			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[423])(values, count);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[428])((nint)values, count);
+			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[423])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImSumFloatPtr(float* values, int count)
+		public static float ImSum(float* values, int count)
 		{
-			float ret = ImSumFloatPtrNative(values, count);
+			float ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float ImSumFloatPtr(ref float values, int count)
+		public static float ImSum(ref float values, int count)
 		{
 			fixed (float* pvalues = &values)
 			{
-				float ret = ImSumFloatPtrNative((float*)pvalues, count);
+				float ret = ImSumNative((float*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4742,32 +4531,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImSumDoublePtrNative(double* values, int count)
+		internal static double ImSumNative(double* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[429])(values, count);
+			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[424])(values, count);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[429])((nint)values, count);
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[424])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImSumDoublePtr(double* values, int count)
+		public static double ImSum(double* values, int count)
 		{
-			double ret = ImSumDoublePtrNative(values, count);
+			double ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImSumDoublePtr(ref double values, int count)
+		public static double ImSum(ref double values, int count)
 		{
 			fixed (double* pvalues = &values)
 			{
-				double ret = ImSumDoublePtrNative((double*)pvalues, count);
+				double ret = ImSumNative((double*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4775,32 +4564,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImSumS8PtrNative(byte* values, int count)
+		internal static byte ImSumNative(byte* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[430])(values, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[425])(values, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[430])((nint)values, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[425])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImSumS8Ptr(byte* values, int count)
+		public static byte ImSum(byte* values, int count)
 		{
-			byte ret = ImSumS8PtrNative(values, count);
+			byte ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImSumS8Ptr(ref byte values, int count)
+		public static byte ImSum(ref byte values, int count)
 		{
 			fixed (byte* pvalues = &values)
 			{
-				byte ret = ImSumS8PtrNative((byte*)pvalues, count);
+				byte ret = ImSumNative((byte*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4808,65 +4597,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImSumU8PtrNative(byte* values, int count)
+		internal static short ImSumNative(short* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[431])(values, count);
+			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[426])(values, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[431])((nint)values, count);
+			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[426])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImSumU8Ptr(byte* values, int count)
+		public static short ImSum(short* values, int count)
 		{
-			byte ret = ImSumU8PtrNative(values, count);
+			short ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte ImSumU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte ret = ImSumU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static short ImSumS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[432])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[432])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImSumS16Ptr(short* values, int count)
-		{
-			short ret = ImSumS16PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImSumS16Ptr(ref short values, int count)
+		public static short ImSum(ref short values, int count)
 		{
 			fixed (short* pvalues = &values)
 			{
-				short ret = ImSumS16PtrNative((short*)pvalues, count);
+				short ret = ImSumNative((short*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4874,32 +4630,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ushort ImSumU16PtrNative(ushort* values, int count)
+		internal static ushort ImSumNative(ushort* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[433])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[427])(values, count);
 			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[433])((nint)values, count);
+			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[427])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImSumU16Ptr(ushort* values, int count)
+		public static ushort ImSum(ushort* values, int count)
 		{
-			ushort ret = ImSumU16PtrNative(values, count);
+			ushort ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ushort ImSumU16Ptr(ref ushort values, int count)
+		public static ushort ImSum(ref ushort values, int count)
 		{
 			fixed (ushort* pvalues = &values)
 			{
-				ushort ret = ImSumU16PtrNative((ushort*)pvalues, count);
+				ushort ret = ImSumNative((ushort*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4907,32 +4663,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImSumS32PtrNative(int* values, int count)
+		internal static int ImSumNative(int* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[434])(values, count);
+			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[428])(values, count);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[434])((nint)values, count);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[428])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImSumS32Ptr(int* values, int count)
+		public static int ImSum(int* values, int count)
 		{
-			int ret = ImSumS32PtrNative(values, count);
+			int ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImSumS32Ptr(ref int values, int count)
+		public static int ImSum(ref int values, int count)
 		{
 			fixed (int* pvalues = &values)
 			{
-				int ret = ImSumS32PtrNative((int*)pvalues, count);
+				int ret = ImSumNative((int*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4940,32 +4696,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImSumU32PtrNative(uint* values, int count)
+		internal static uint ImSumNative(uint* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[435])(values, count);
+			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[429])(values, count);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[435])((nint)values, count);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[429])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImSumU32Ptr(uint* values, int count)
+		public static uint ImSum(uint* values, int count)
 		{
-			uint ret = ImSumU32PtrNative(values, count);
+			uint ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImSumU32Ptr(ref uint values, int count)
+		public static uint ImSum(ref uint values, int count)
 		{
 			fixed (uint* pvalues = &values)
 			{
-				uint ret = ImSumU32PtrNative((uint*)pvalues, count);
+				uint ret = ImSumNative((uint*)pvalues, count);
 				return ret;
 			}
 		}
@@ -4973,32 +4729,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static long ImSumS64PtrNative(long* values, int count)
+		internal static long ImSumNative(long* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[436])(values, count);
+			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[430])(values, count);
 			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[436])((nint)values, count);
+			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[430])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImSumS64Ptr(long* values, int count)
+		public static long ImSum(long* values, int count)
 		{
-			long ret = ImSumS64PtrNative(values, count);
+			long ret = ImSumNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static long ImSumS64Ptr(ref long values, int count)
+		public static long ImSum(ref long values, int count)
 		{
 			fixed (long* pvalues = &values)
 			{
-				long ret = ImSumS64PtrNative((long*)pvalues, count);
+				long ret = ImSumNative((long*)pvalues, count);
 				return ret;
 			}
 		}
@@ -5006,22 +4762,265 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ulong ImSumU64PtrNative(ulong* values, int count)
+		internal static ulong ImSumNative(ulong* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[437])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[431])(values, count);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[437])((nint)values, count);
+			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[431])((nint)values, count);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImSumU64Ptr(ulong* values, int count)
+		public static ulong ImSum(ulong* values, int count)
 		{
-			ulong ret = ImSumU64PtrNative(values, count);
+			ulong ret = ImSumNative(values, count);
 			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ulong ImSum(ref ulong values, int count)
+		{
+			fixed (ulong* pvalues = &values)
+			{
+				ulong ret = ImSumNative((ulong*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(float* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<float*, int, double>)vt[432])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[432])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(float* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref float values, int count)
+		{
+			fixed (float* pvalues = &values)
+			{
+				double ret = ImMeanNative((float*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(double* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[433])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[433])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(double* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref double values, int count)
+		{
+			fixed (double* pvalues = &values)
+			{
+				double ret = ImMeanNative((double*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(byte* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[434])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[434])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(byte* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref byte values, int count)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				double ret = ImMeanNative((byte*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(short* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<short*, int, double>)vt[435])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[435])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(short* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref short values, int count)
+		{
+			fixed (short* pvalues = &values)
+			{
+				double ret = ImMeanNative((short*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(ushort* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)vt[436])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[436])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ushort* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref ushort values, int count)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				double ret = ImMeanNative((ushort*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(int* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, int, double>)vt[437])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[437])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(int* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref int values, int count)
+		{
+			fixed (int* pvalues = &values)
+			{
+				double ret = ImMeanNative((int*)pvalues, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ImMeanNative(uint* values, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)vt[438])(values, count);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[438])((nint)values, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(uint* values, int count)
+		{
+			double ret = ImMeanNative(values, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ImMean(ref uint values, int count)
+		{
+			fixed (uint* pvalues = &values)
+			{
+				double ret = ImMeanNative((uint*)pvalues, count);
+				return ret;
+			}
 		}
 	}
 }

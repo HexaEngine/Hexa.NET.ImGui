@@ -17,7 +17,9 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Windows data saved in imgui.ini file<br/>
+	/// Because we never destroy or rename ImGuiWindowSettings, we can store the names in a separate buffer easily.<br/>
+	/// (this is designed to be stored in a ImChunkStream buffer, with the variable-length Name following our structure)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiWindowSettings
@@ -102,6 +104,17 @@ namespace Hexa.NET.ImGui
 			WantDelete = wantDelete ? (byte)1 : (byte)0;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiWindowSettings* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -194,6 +207,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool WantDelete => ref Unsafe.AsRef<bool>(&Handle->WantDelete);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

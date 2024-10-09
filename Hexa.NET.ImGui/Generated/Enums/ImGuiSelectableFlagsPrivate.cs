@@ -25,37 +25,37 @@ namespace Hexa.NET.ImGui
 		NoHoldingActiveId = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// (WIP) Auto-select when moved into. This is not exposed in public API as to handle multi-select and modifiers we will need user to explicitly control focus scope. May be replaced with a BeginSelection() API.<br/>
 		/// </summary>
 		SelectOnNav = unchecked(2097152),
 
 		/// <summary>
-		/// To be documented.
+		/// Override button behavior to react on Click (default is Click+Release)<br/>
 		/// </summary>
 		SelectOnClick = unchecked(4194304),
 
 		/// <summary>
-		/// To be documented.
+		/// Override button behavior to react on Release (default is Click+Release)<br/>
 		/// </summary>
 		SelectOnRelease = unchecked(8388608),
 
 		/// <summary>
-		/// To be documented.
+		/// Span all avail width even if we declared less for layout purpose. FIXME: We may be able to remove this (added in 6251d379, 2bcafc86 for menus)<br/>
 		/// </summary>
 		SpanAvailWidth = unchecked(16777216),
 
 		/// <summary>
-		/// To be documented.
+		/// Set NavFocus ID on mouse hover (used by MenuItem)<br/>
 		/// </summary>
 		SetNavIdOnHover = unchecked(33554432),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable padding each side with ItemSpacing * 0.5f<br/>
 		/// </summary>
 		NoPadWithHalfSpacing = unchecked(67108864),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't set keyinput owner on the initial click (note: mouse buttons are keys! often, the key in question will be ImGuiKey_MouseLeft!)<br/>
 		/// </summary>
 		NoSetKeyOwner = unchecked(134217728),
 	}

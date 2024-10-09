@@ -25,17 +25,17 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// [EXPERIMENTAL] Try to keep existing contents, USER MUST NOT HONOR BEGIN() RETURNING FALSE AND NOT APPEND.<br/>
 		/// </summary>
 		TryToAvoidRefresh = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// [EXPERIMENTAL] Always refresh on hover<br/>
 		/// </summary>
 		OnHover = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// [EXPERIMENTAL] Always refresh on focus<br/>
 		/// </summary>
 		OnFocus = unchecked(4),
 	}

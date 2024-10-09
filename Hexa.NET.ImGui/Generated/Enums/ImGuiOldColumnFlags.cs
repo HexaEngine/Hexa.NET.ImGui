@@ -25,27 +25,27 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable column dividers<br/>
 		/// </summary>
 		NoBorder = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable resizing columns when clicking on the dividers<br/>
 		/// </summary>
 		NoResize = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable column width preservation when adjusting columns<br/>
 		/// </summary>
 		NoPreserveWidths = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable forcing columns to fit within window<br/>
 		/// </summary>
 		NoForceWithinWindow = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Restore pre-1.51 behavior of extending the parent window contents size but _without affecting the columns width at all_. Will eventually remove.<br/>
 		/// </summary>
 		GrowParentContentsSize = unchecked(16),
 	}

@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Status storage for the last submitted item<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiLastItemData
@@ -78,6 +78,17 @@ namespace Hexa.NET.ImGui
 			Shortcut = shortcut;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiLastItemData* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -154,6 +165,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref int Shortcut => ref Unsafe.AsRef<int>(&Handle->Shortcut);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

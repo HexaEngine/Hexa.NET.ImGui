@@ -22,7 +22,7 @@ namespace Hexa.NET.ImGuizmo
 
 		public static void InitApi()
 		{
-			vt = new VTable(LibraryLoader.LoadLibrary(), 26);
+			vt = new VTable(LibraryLoader.LoadLibrary(GetLibarayName, null), 26);
 			vt.Load(0, "ImGuizmo_SetDrawlist");
 			vt.Load(1, "ImGuizmo_BeginFrame");
 			vt.Load(2, "ImGuizmo_SetImGuiContext");

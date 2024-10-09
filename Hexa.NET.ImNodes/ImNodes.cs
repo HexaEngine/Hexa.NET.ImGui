@@ -6,5 +6,10 @@ namespace Hexa.NET.ImNodes
         {
             InitApi();
         }
+
+        public static string GetLibarayName()
+        {
+            return "cimnodes";
+        }
     }
 }

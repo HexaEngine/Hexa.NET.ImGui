@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Temporary storage for multi-select<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMultiSelectTempData
@@ -127,6 +127,17 @@ namespace Hexa.NET.ImGui
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiMultiSelectTempData* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -234,6 +245,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool RangeDstPassedBy => ref Unsafe.AsRef<bool>(&Handle->RangeDstPassedBy);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

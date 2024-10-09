@@ -22,55 +22,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ulong ImSumU64Ptr(ref ulong values, int count)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				ulong ret = ImSumU64PtrNative((ulong*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImMeanFloatPtrNative(float* values, int count)
+		internal static double ImMeanNative(long* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, double>)vt[438])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[438])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMeanFloatPtr(float* values, int count)
-		{
-			double ret = ImMeanFloatPtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMeanFloatPtr(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				double ret = ImMeanFloatPtrNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImMeanDoublePtrNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[439])(values, count);
+			return ((delegate* unmanaged[Cdecl]<long*, int, double>)vt[439])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[439])((nint)values, count);
 			#endif
@@ -79,20 +34,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanDoublePtr(double* values, int count)
+		public static double ImMean(long* values, int count)
 		{
-			double ret = ImMeanDoublePtrNative(values, count);
+			double ret = ImMeanNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanDoublePtr(ref double values, int count)
+		public static double ImMean(ref long values, int count)
 		{
-			fixed (double* pvalues = &values)
+			fixed (long* pvalues = &values)
 			{
-				double ret = ImMeanDoublePtrNative((double*)pvalues, count);
+				double ret = ImMeanNative((long*)pvalues, count);
 				return ret;
 			}
 		}
@@ -100,10 +55,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanS8PtrNative(byte* values, int count)
+		internal static double ImMeanNative(ulong* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[440])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)vt[440])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[440])((nint)values, count);
 			#endif
@@ -112,20 +67,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS8Ptr(byte* values, int count)
+		public static double ImMean(ulong* values, int count)
 		{
-			double ret = ImMeanS8PtrNative(values, count);
+			double ret = ImMeanNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS8Ptr(ref byte values, int count)
+		public static double ImMean(ref ulong values, int count)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = ImMeanS8PtrNative((byte*)pvalues, count);
+				double ret = ImMeanNative((ulong*)pvalues, count);
 				return ret;
 			}
 		}
@@ -133,10 +88,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanU8PtrNative(byte* values, int count)
+		internal static double ImStdDevNative(float* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[441])(values, count);
+			return ((delegate* unmanaged[Cdecl]<float*, int, double>)vt[441])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[441])((nint)values, count);
 			#endif
@@ -145,20 +100,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU8Ptr(byte* values, int count)
+		public static double ImStdDev(float* values, int count)
 		{
-			double ret = ImMeanU8PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU8Ptr(ref byte values, int count)
+		public static double ImStdDev(ref float values, int count)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = ImMeanU8PtrNative((byte*)pvalues, count);
+				double ret = ImStdDevNative((float*)pvalues, count);
 				return ret;
 			}
 		}
@@ -166,10 +121,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanS16PtrNative(short* values, int count)
+		internal static double ImStdDevNative(double* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, double>)vt[442])(values, count);
+			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[442])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[442])((nint)values, count);
 			#endif
@@ -178,20 +133,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS16Ptr(short* values, int count)
+		public static double ImStdDev(double* values, int count)
 		{
-			double ret = ImMeanS16PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS16Ptr(ref short values, int count)
+		public static double ImStdDev(ref double values, int count)
 		{
-			fixed (short* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = ImMeanS16PtrNative((short*)pvalues, count);
+				double ret = ImStdDevNative((double*)pvalues, count);
 				return ret;
 			}
 		}
@@ -199,10 +154,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanU16PtrNative(ushort* values, int count)
+		internal static double ImStdDevNative(byte* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)vt[443])(values, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[443])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[443])((nint)values, count);
 			#endif
@@ -211,20 +166,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU16Ptr(ushort* values, int count)
+		public static double ImStdDev(byte* values, int count)
 		{
-			double ret = ImMeanU16PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU16Ptr(ref ushort values, int count)
+		public static double ImStdDev(ref byte values, int count)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (byte* pvalues = &values)
 			{
-				double ret = ImMeanU16PtrNative((ushort*)pvalues, count);
+				double ret = ImStdDevNative((byte*)pvalues, count);
 				return ret;
 			}
 		}
@@ -232,10 +187,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanS32PtrNative(int* values, int count)
+		internal static double ImStdDevNative(short* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, double>)vt[444])(values, count);
+			return ((delegate* unmanaged[Cdecl]<short*, int, double>)vt[444])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[444])((nint)values, count);
 			#endif
@@ -244,20 +199,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS32Ptr(int* values, int count)
+		public static double ImStdDev(short* values, int count)
 		{
-			double ret = ImMeanS32PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS32Ptr(ref int values, int count)
+		public static double ImStdDev(ref short values, int count)
 		{
-			fixed (int* pvalues = &values)
+			fixed (short* pvalues = &values)
 			{
-				double ret = ImMeanS32PtrNative((int*)pvalues, count);
+				double ret = ImStdDevNative((short*)pvalues, count);
 				return ret;
 			}
 		}
@@ -265,10 +220,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanU32PtrNative(uint* values, int count)
+		internal static double ImStdDevNative(ushort* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)vt[445])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)vt[445])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[445])((nint)values, count);
 			#endif
@@ -277,20 +232,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU32Ptr(uint* values, int count)
+		public static double ImStdDev(ushort* values, int count)
 		{
-			double ret = ImMeanU32PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU32Ptr(ref uint values, int count)
+		public static double ImStdDev(ref ushort values, int count)
 		{
-			fixed (uint* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				double ret = ImMeanU32PtrNative((uint*)pvalues, count);
+				double ret = ImStdDevNative((ushort*)pvalues, count);
 				return ret;
 			}
 		}
@@ -298,10 +253,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanS64PtrNative(long* values, int count)
+		internal static double ImStdDevNative(int* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, double>)vt[446])(values, count);
+			return ((delegate* unmanaged[Cdecl]<int*, int, double>)vt[446])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[446])((nint)values, count);
 			#endif
@@ -310,20 +265,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS64Ptr(long* values, int count)
+		public static double ImStdDev(int* values, int count)
 		{
-			double ret = ImMeanS64PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanS64Ptr(ref long values, int count)
+		public static double ImStdDev(ref int values, int count)
 		{
-			fixed (long* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				double ret = ImMeanS64PtrNative((long*)pvalues, count);
+				double ret = ImStdDevNative((int*)pvalues, count);
 				return ret;
 			}
 		}
@@ -331,10 +286,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImMeanU64PtrNative(ulong* values, int count)
+		internal static double ImStdDevNative(uint* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)vt[447])(values, count);
+			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)vt[447])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[447])((nint)values, count);
 			#endif
@@ -343,20 +298,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU64Ptr(ulong* values, int count)
+		public static double ImStdDev(uint* values, int count)
 		{
-			double ret = ImMeanU64PtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImMeanU64Ptr(ref ulong values, int count)
+		public static double ImStdDev(ref uint values, int count)
 		{
-			fixed (ulong* pvalues = &values)
+			fixed (uint* pvalues = &values)
 			{
-				double ret = ImMeanU64PtrNative((ulong*)pvalues, count);
+				double ret = ImStdDevNative((uint*)pvalues, count);
 				return ret;
 			}
 		}
@@ -364,10 +319,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImStdDevFloatPtrNative(float* values, int count)
+		internal static double ImStdDevNative(long* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, double>)vt[448])(values, count);
+			return ((delegate* unmanaged[Cdecl]<long*, int, double>)vt[448])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[448])((nint)values, count);
 			#endif
@@ -376,20 +331,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImStdDevFloatPtr(float* values, int count)
+		public static double ImStdDev(long* values, int count)
 		{
-			double ret = ImStdDevFloatPtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImStdDevFloatPtr(ref float values, int count)
+		public static double ImStdDev(ref long values, int count)
 		{
-			fixed (float* pvalues = &values)
+			fixed (long* pvalues = &values)
 			{
-				double ret = ImStdDevFloatPtrNative((float*)pvalues, count);
+				double ret = ImStdDevNative((long*)pvalues, count);
 				return ret;
 			}
 		}
@@ -397,10 +352,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImStdDevDoublePtrNative(double* values, int count)
+		internal static double ImStdDevNative(ulong* values, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[449])(values, count);
+			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)vt[449])(values, count);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[449])((nint)values, count);
 			#endif
@@ -409,284 +364,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImStdDevDoublePtr(double* values, int count)
+		public static double ImStdDev(ulong* values, int count)
 		{
-			double ret = ImStdDevDoublePtrNative(values, count);
+			double ret = ImStdDevNative(values, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImStdDevDoublePtr(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImStdDevDoublePtrNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevS8PtrNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[450])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[450])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS8Ptr(byte* values, int count)
-		{
-			double ret = ImStdDevS8PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				double ret = ImStdDevS8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevU8PtrNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[451])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[451])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU8Ptr(byte* values, int count)
-		{
-			double ret = ImStdDevU8PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				double ret = ImStdDevU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, double>)vt[452])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[452])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS16Ptr(short* values, int count)
-		{
-			double ret = ImStdDevS16PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS16Ptr(ref short values, int count)
-		{
-			fixed (short* pvalues = &values)
-			{
-				double ret = ImStdDevS16PtrNative((short*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevU16PtrNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)vt[453])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[453])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU16Ptr(ushort* values, int count)
-		{
-			double ret = ImStdDevU16PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU16Ptr(ref ushort values, int count)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				double ret = ImStdDevU16PtrNative((ushort*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevS32PtrNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, double>)vt[454])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[454])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS32Ptr(int* values, int count)
-		{
-			double ret = ImStdDevS32PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS32Ptr(ref int values, int count)
-		{
-			fixed (int* pvalues = &values)
-			{
-				double ret = ImStdDevS32PtrNative((int*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevU32PtrNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)vt[455])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[455])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU32Ptr(uint* values, int count)
-		{
-			double ret = ImStdDevU32PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU32Ptr(ref uint values, int count)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				double ret = ImStdDevU32PtrNative((uint*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevS64PtrNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, double>)vt[456])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[456])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS64Ptr(long* values, int count)
-		{
-			double ret = ImStdDevS64PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevS64Ptr(ref long values, int count)
-		{
-			fixed (long* pvalues = &values)
-			{
-				double ret = ImStdDevS64PtrNative((long*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double ImStdDevU64PtrNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)vt[457])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[457])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU64Ptr(ulong* values, int count)
-		{
-			double ret = ImStdDevU64PtrNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDevU64Ptr(ref ulong values, int count)
+		public static double ImStdDev(ref ulong values, int count)
 		{
 			fixed (ulong* pvalues = &values)
 			{
-				double ret = ImStdDevU64PtrNative((ulong*)pvalues, count);
+				double ret = ImStdDevNative((ulong*)pvalues, count);
 				return ret;
 			}
 		}
@@ -697,9 +388,9 @@ namespace Hexa.NET.ImPlot
 		internal static uint ImMixU32Native(uint a, uint b, uint s)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[458])(a, b, s);
+			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[450])(a, b, s);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[458])(a, b, s);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[450])(a, b, s);
 			#endif
 		}
 
@@ -718,9 +409,9 @@ namespace Hexa.NET.ImPlot
 		internal static uint ImLerpU32Native(uint* colors, int size, float t)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, float, uint>)vt[459])(colors, size, t);
+			return ((delegate* unmanaged[Cdecl]<uint*, int, float, uint>)vt[451])(colors, size, t);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, float, uint>)vt[459])((nint)colors, size, t);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, float, uint>)vt[451])((nint)colors, size, t);
 			#endif
 		}
 
@@ -751,9 +442,9 @@ namespace Hexa.NET.ImPlot
 		internal static uint ImAlphaU32Native(uint col, float alpha)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[460])(col, alpha);
+			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[452])(col, alpha);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[460])(col, alpha);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[452])(col, alpha);
 			#endif
 		}
 
@@ -769,241 +460,498 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsFloatNative(float minA, float maxA, float minB, float maxB)
+		internal static byte ImOverlapsNative(float minA, float maxA, float minB, float maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)vt[461])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)vt[453])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)vt[461])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)vt[453])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsFloat(float minA, float maxA, float minB, float maxB)
+		public static bool ImOverlaps(float minA, float maxA, float minB, float maxB)
 		{
-			byte ret = ImOverlapsFloatNative(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsDoubleNative(double minA, double maxA, double minB, double maxB)
+		internal static byte ImOverlapsNative(double minA, double maxA, double minB, double maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)vt[462])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)vt[454])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)vt[462])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)vt[454])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsDouble(double minA, double maxA, double minB, double maxB)
+		public static bool ImOverlaps(double minA, double maxA, double minB, double maxB)
 		{
-			byte ret = ImOverlapsDoubleNative(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsS8Native(byte minA, byte maxA, byte minB, byte maxB)
+		internal static byte ImOverlapsNative(byte minA, byte maxA, byte minB, byte maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[463])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[455])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[463])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[455])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsS8(byte minA, byte maxA, byte minB, byte maxB)
+		public static bool ImOverlaps(byte minA, byte maxA, byte minB, byte maxB)
 		{
-			byte ret = ImOverlapsS8Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsU8Native(byte minA, byte maxA, byte minB, byte maxB)
+		internal static byte ImOverlapsNative(short minA, short maxA, short minB, short maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[464])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)vt[456])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[464])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)vt[456])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsU8(byte minA, byte maxA, byte minB, byte maxB)
+		public static bool ImOverlaps(short minA, short maxA, short minB, short maxB)
 		{
-			byte ret = ImOverlapsU8Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsS16Native(short minA, short maxA, short minB, short maxB)
+		internal static byte ImOverlapsNative(ushort minA, ushort maxA, ushort minB, ushort maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)vt[465])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)vt[457])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)vt[465])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)vt[457])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsS16(short minA, short maxA, short minB, short maxB)
+		public static bool ImOverlaps(ushort minA, ushort maxA, ushort minB, ushort maxB)
 		{
-			byte ret = ImOverlapsS16Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsU16Native(ushort minA, ushort maxA, ushort minB, ushort maxB)
+		internal static byte ImOverlapsNative(int minA, int maxA, int minB, int maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)vt[466])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)vt[458])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)vt[466])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)vt[458])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsU16(ushort minA, ushort maxA, ushort minB, ushort maxB)
+		public static bool ImOverlaps(int minA, int maxA, int minB, int maxB)
 		{
-			byte ret = ImOverlapsU16Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsS32Native(int minA, int maxA, int minB, int maxB)
+		internal static byte ImOverlapsNative(uint minA, uint maxA, uint minB, uint maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)vt[467])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)vt[459])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)vt[467])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)vt[459])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsS32(int minA, int maxA, int minB, int maxB)
+		public static bool ImOverlaps(uint minA, uint maxA, uint minB, uint maxB)
 		{
-			byte ret = ImOverlapsS32Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsU32Native(uint minA, uint maxA, uint minB, uint maxB)
+		internal static byte ImOverlapsNative(long minA, long maxA, long minB, long maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)vt[468])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)vt[460])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)vt[468])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)vt[460])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsU32(uint minA, uint maxA, uint minB, uint maxB)
+		public static bool ImOverlaps(long minA, long maxA, long minB, long maxB)
 		{
-			byte ret = ImOverlapsU32Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsS64Native(long minA, long maxA, long minB, long maxB)
+		internal static byte ImOverlapsNative(ulong minA, ulong maxA, ulong minB, ulong maxB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)vt[469])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)vt[461])(minA, maxA, minB, maxB);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)vt[469])(minA, maxA, minB, maxB);
+			return (byte)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)vt[461])(minA, maxA, minB, maxB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsS64(long minA, long maxA, long minB, long maxB)
+		public static bool ImOverlaps(ulong minA, ulong maxA, ulong minB, ulong maxB)
 		{
-			byte ret = ImOverlapsS64Native(minA, maxA, minB, maxB);
+			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImOverlapsU64Native(ulong minA, ulong maxA, ulong minB, ulong maxB)
+		internal static ImPlotDateTimeSpec* ImPlotDateTimeSpecNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)vt[470])(minA, maxA, minB, maxB);
+			return ((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*>)vt[462])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)vt[470])(minA, maxA, minB, maxB);
+			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<nint>)vt[462])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImOverlapsU64(ulong minA, ulong maxA, ulong minB, ulong maxB)
+		public static ImPlotDateTimeSpecPtr ImPlotDateTimeSpec()
 		{
-			byte ret = ImOverlapsU64Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static ImPlotDateTimeSpec* DateTimeSpecImPlotDateTimeSpecNilNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*>)vt[471])();
-			#else
-			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<nint>)vt[471])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotDateTimeSpecPtr DateTimeSpecImPlotDateTimeSpecNil()
-		{
-			ImPlotDateTimeSpecPtr ret = DateTimeSpecImPlotDateTimeSpecNilNative();
+			ImPlotDateTimeSpecPtr ret = ImPlotDateTimeSpecNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void DateTimeSpecDestroyNative(ImPlotDateTimeSpec* self)
+		internal static void DestroyNative(ImPlotDateTimeSpec* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*, void>)vt[472])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*, void>)vt[463])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[463])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImPlotDateTimeSpecPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImPlotDateTimeSpec self)
+		{
+			fixed (ImPlotDateTimeSpec* pself = &self)
+			{
+				DestroyNative((ImPlotDateTimeSpec*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static ImPlotDateTimeSpec* ImPlotDateTimeSpecNative(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, byte use24HrClk, byte useIso8601)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotDateFmt, ImPlotTimeFmt, byte, byte, ImPlotDateTimeSpec*>)vt[464])(dateFmt, timeFmt, use24HrClk, useIso8601);
+			#else
+			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<ImPlotDateFmt, ImPlotTimeFmt, byte, byte, nint>)vt[464])(dateFmt, timeFmt, use24HrClk, useIso8601);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotDateTimeSpecPtr ImPlotDateTimeSpec(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, bool use24HrClk, bool useIso8601)
+		{
+			ImPlotDateTimeSpecPtr ret = ImPlotDateTimeSpecNative(dateFmt, timeFmt, use24HrClk ? (byte)1 : (byte)0, useIso8601 ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotDateTimeSpecPtr ImPlotDateTimeSpec(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, bool use24HrClk)
+		{
+			ImPlotDateTimeSpecPtr ret = ImPlotDateTimeSpecNative(dateFmt, timeFmt, use24HrClk ? (byte)1 : (byte)0, (byte)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotDateTimeSpecPtr ImPlotDateTimeSpec(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt)
+		{
+			ImPlotDateTimeSpecPtr ret = ImPlotDateTimeSpecNative(dateFmt, timeFmt, (byte)(0), (byte)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static ImPlotTime* ImPlotTimeNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime*>)vt[465])();
+			#else
+			return (ImPlotTime*)((delegate* unmanaged[Cdecl]<nint>)vt[465])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTimePtr ImPlotTime()
+		{
+			ImPlotTimePtr ret = ImPlotTimeNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void DestroyNative(ImPlotTime* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)vt[466])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[466])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImPlotTimePtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImPlotTime self)
+		{
+			fixed (ImPlotTime* pself = &self)
+			{
+				DestroyNative((ImPlotTime*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static ImPlotTime* ImPlotTimeNative(long s, int us)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<long, int, ImPlotTime*>)vt[467])(s, us);
+			#else
+			return (ImPlotTime*)((delegate* unmanaged[Cdecl]<long, int, nint>)vt[467])(s, us);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTimePtr ImPlotTime(long s, int us)
+		{
+			ImPlotTimePtr ret = ImPlotTimeNative(s, us);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTimePtr ImPlotTime(long s)
+		{
+			ImPlotTimePtr ret = ImPlotTimeNative(s, (int)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void RollOverNative(ImPlotTime* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)vt[468])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[468])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RollOver(ImPlotTimePtr self)
+		{
+			RollOverNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RollOver(ref ImPlotTime self)
+		{
+			fixed (ImPlotTime* pself = &self)
+			{
+				RollOverNative((ImPlotTime*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double ToDoubleNative(ImPlotTime* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime*, double>)vt[469])(self);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[469])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ToDouble(ImPlotTimePtr self)
+		{
+			double ret = ToDoubleNative(self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double ToDouble(ref ImPlotTime self)
+		{
+			fixed (ImPlotTime* pself = &self)
+			{
+				double ret = ToDoubleNative((ImPlotTime*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void FromDoubleNative(ImPlotTime* pOut, double t)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, double, void>)vt[470])(pOut, t);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[470])((nint)pOut, t);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTime FromDouble(double t)
+		{
+			ImPlotTime ret;
+			FromDoubleNative(&ret, t);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void FromDouble(ImPlotTimePtr pOut, double t)
+		{
+			FromDoubleNative(pOut, t);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void FromDouble(ref ImPlotTime pOut, double t)
+		{
+			fixed (ImPlotTime* ppOut = &pOut)
+			{
+				FromDoubleNative((ImPlotTime*)ppOut, t);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static ImPlotColormapData* ImPlotColormapDataNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*>)vt[471])();
+			#else
+			return (ImPlotColormapData*)((delegate* unmanaged[Cdecl]<nint>)vt[471])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotColormapDataPtr ImPlotColormapData()
+		{
+			ImPlotColormapDataPtr ret = ImPlotColormapDataNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void DestroyNative(ImPlotColormapData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, void>)vt[472])(self);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)vt[472])((nint)self);
 			#endif
@@ -1012,176 +960,51 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void DateTimeSpecDestroy(ImPlotDateTimeSpecPtr self)
+		public static void Destroy(ImPlotColormapDataPtr self)
 		{
-			DateTimeSpecDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void DateTimeSpecDestroy(ref ImPlotDateTimeSpec self)
+		public static void Destroy(ref ImPlotColormapData self)
 		{
-			fixed (ImPlotDateTimeSpec* pself = &self)
+			fixed (ImPlotColormapData* pself = &self)
 			{
-				DateTimeSpecDestroyNative((ImPlotDateTimeSpec*)pself);
+				DestroyNative((ImPlotColormapData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotDateTimeSpec* DateTimeSpecImPlotDateTimeSpecPlotDateFmtNative(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, byte use24HrClk, byte useIso8601)
+		internal static int AppendNative(ImPlotColormapData* self, byte* name, uint* keys, int count, byte qual)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotDateFmt, ImPlotTimeFmt, byte, byte, ImPlotDateTimeSpec*>)vt[473])(dateFmt, timeFmt, use24HrClk, useIso8601);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, byte*, uint*, int, byte, int>)vt[473])(self, name, keys, count, qual);
 			#else
-			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<ImPlotDateFmt, ImPlotTimeFmt, byte, byte, nint>)vt[473])(dateFmt, timeFmt, use24HrClk, useIso8601);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, byte, int>)vt[473])((nint)self, (nint)name, (nint)keys, count, qual);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotDateTimeSpecPtr DateTimeSpecImPlotDateTimeSpecPlotDateFmt(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, bool use24HrClk, bool useIso8601)
+		public static int Append(ImPlotColormapDataPtr self, byte* name, uint* keys, int count, bool qual)
 		{
-			ImPlotDateTimeSpecPtr ret = DateTimeSpecImPlotDateTimeSpecPlotDateFmtNative(dateFmt, timeFmt, use24HrClk ? (byte)1 : (byte)0, useIso8601 ? (byte)1 : (byte)0);
+			int ret = AppendNative(self, name, keys, count, qual ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTime* TimeImPlotTimeNilNative()
+		public static int Append(ref ImPlotColormapData self, byte* name, uint* keys, int count, bool qual)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime*>)vt[474])();
-			#else
-			return (ImPlotTime*)((delegate* unmanaged[Cdecl]<nint>)vt[474])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotTimePtr TimeImPlotTimeNil()
-		{
-			ImPlotTimePtr ret = TimeImPlotTimeNilNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void TimeDestroyNative(ImPlotTime* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)vt[475])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[475])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TimeDestroy(ImPlotTimePtr self)
-		{
-			TimeDestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TimeDestroy(ref ImPlotTime self)
-		{
-			fixed (ImPlotTime* pself = &self)
+			fixed (ImPlotColormapData* pself = &self)
 			{
-				TimeDestroyNative((ImPlotTime*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static ImPlotTime* TimeImPlotTimeTimeNative(long s, int us)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, int, ImPlotTime*>)vt[476])(s, us);
-			#else
-			return (ImPlotTime*)((delegate* unmanaged[Cdecl]<long, int, nint>)vt[476])(s, us);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotTimePtr TimeImPlotTimeTime(long s, int us)
-		{
-			ImPlotTimePtr ret = TimeImPlotTimeTimeNative(s, us);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void TimeRollOverNative(ImPlotTime* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)vt[477])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[477])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TimeRollOver(ImPlotTimePtr self)
-		{
-			TimeRollOverNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TimeRollOver(ref ImPlotTime self)
-		{
-			fixed (ImPlotTime* pself = &self)
-			{
-				TimeRollOverNative((ImPlotTime*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double TimeToDoubleNative(ImPlotTime* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime*, double>)vt[478])(self);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[478])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double TimeToDouble(ImPlotTimePtr self)
-		{
-			double ret = TimeToDoubleNative(self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double TimeToDouble(ref ImPlotTime self)
-		{
-			fixed (ImPlotTime* pself = &self)
-			{
-				double ret = TimeToDoubleNative((ImPlotTime*)pself);
+				int ret = AppendNative((ImPlotColormapData*)pself, name, keys, count, qual ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -1189,137 +1012,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TimeFromDoubleNative(ImPlotTime* pOut, double t)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, double, void>)vt[479])(pOut, t);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[479])((nint)pOut, t);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotTime TimeFromDouble(double t)
-		{
-			ImPlotTime ret;
-			TimeFromDoubleNative(&ret, t);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TimeFromDouble(ImPlotTimePtr pOut, double t)
-		{
-			TimeFromDoubleNative(pOut, t);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TimeFromDouble(ref ImPlotTime pOut, double t)
-		{
-			fixed (ImPlotTime* ppOut = &pOut)
-			{
-				TimeFromDoubleNative((ImPlotTime*)ppOut, t);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static ImPlotColormapData* ColormapDataImPlotColormapDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*>)vt[480])();
-			#else
-			return (ImPlotColormapData*)((delegate* unmanaged[Cdecl]<nint>)vt[480])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotColormapDataPtr ColormapDataImPlotColormapData()
-		{
-			ImPlotColormapDataPtr ret = ColormapDataImPlotColormapDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void ColormapDataDestroyNative(ImPlotColormapData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, void>)vt[481])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[481])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColormapDataDestroy(ImPlotColormapDataPtr self)
-		{
-			ColormapDataDestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColormapDataDestroy(ref ImPlotColormapData self)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				ColormapDataDestroyNative((ImPlotColormapData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static int ColormapDataAppendNative(ImPlotColormapData* self, byte* name, uint* keys, int count, byte qual)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, byte*, uint*, int, byte, int>)vt[482])(self, name, keys, count, qual);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, byte, int>)vt[482])((nint)self, (nint)name, (nint)keys, count, qual);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, byte* name, uint* keys, int count, bool qual)
-		{
-			int ret = ColormapDataAppendNative(self, name, keys, count, qual ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, byte* name, uint* keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, name, keys, count, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, ref byte name, uint* keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, ref byte name, uint* keys, int count, bool qual)
 		{
 			fixed (byte* pname = &name)
 			{
-				int ret = ColormapDataAppendNative(self, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+				int ret = AppendNative(self, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -1327,11 +1024,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
 		{
 			fixed (byte* pname = name)
 			{
-				int ret = ColormapDataAppendNative(self, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+				int ret = AppendNative(self, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -1339,7 +1036,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, string name, uint* keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, string name, uint* keys, int count, bool qual)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1358,7 +1055,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ColormapDataAppendNative(self, pStr0, keys, count, qual ? (byte)1 : (byte)0);
+			int ret = AppendNative(self, pStr0, keys, count, qual ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1369,13 +1066,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, ref byte name, uint* keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, ref byte name, uint* keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
 				fixed (byte* pname = &name)
 				{
-					int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+					int ret = AppendNative((ImPlotColormapData*)pself, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
 					return ret;
 				}
 			}
@@ -1384,13 +1081,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
 				fixed (byte* pname = name)
 				{
-					int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+					int ret = AppendNative((ImPlotColormapData*)pself, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
 					return ret;
 				}
 			}
@@ -1399,7 +1096,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, string name, uint* keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, string name, uint* keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
@@ -1420,7 +1117,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, pStr0, keys, count, qual ? (byte)1 : (byte)0);
+				int ret = AppendNative((ImPlotColormapData*)pself, pStr0, keys, count, qual ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1432,11 +1129,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, byte* name, ref uint keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, byte* name, ref uint keys, int count, bool qual)
 		{
 			fixed (uint* pkeys = &keys)
 			{
-				int ret = ColormapDataAppendNative(self, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+				int ret = AppendNative(self, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -1444,13 +1141,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, byte* name, ref uint keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, byte* name, ref uint keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
 				fixed (uint* pkeys = &keys)
 				{
-					int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					int ret = AppendNative((ImPlotColormapData*)pself, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 					return ret;
 				}
 			}
@@ -1459,13 +1156,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, ref byte name, ref uint keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, ref byte name, ref uint keys, int count, bool qual)
 		{
 			fixed (byte* pname = &name)
 			{
 				fixed (uint* pkeys = &keys)
 				{
-					int ret = ColormapDataAppendNative(self, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					int ret = AppendNative(self, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 					return ret;
 				}
 			}
@@ -1474,13 +1171,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
 		{
 			fixed (byte* pname = name)
 			{
 				fixed (uint* pkeys = &keys)
 				{
-					int ret = ColormapDataAppendNative(self, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					int ret = AppendNative(self, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 					return ret;
 				}
 			}
@@ -1489,7 +1186,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ImPlotColormapDataPtr self, string name, ref uint keys, int count, bool qual)
+		public static int Append(ImPlotColormapDataPtr self, string name, ref uint keys, int count, bool qual)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1510,7 +1207,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (uint* pkeys = &keys)
 			{
-				int ret = ColormapDataAppendNative(self, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+				int ret = AppendNative(self, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1522,7 +1219,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, ref byte name, ref uint keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, ref byte name, ref uint keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
@@ -1530,7 +1227,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (uint* pkeys = &keys)
 					{
-						int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						int ret = AppendNative((ImPlotColormapData*)pself, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 						return ret;
 					}
 				}
@@ -1540,7 +1237,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
@@ -1548,7 +1245,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (uint* pkeys = &keys)
 					{
-						int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						int ret = AppendNative((ImPlotColormapData*)pself, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 						return ret;
 					}
 				}
@@ -1558,7 +1255,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataAppend(ref ImPlotColormapData self, string name, ref uint keys, int count, bool qual)
+		public static int Append(ref ImPlotColormapData self, string name, ref uint keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
@@ -1581,7 +1278,7 @@ namespace Hexa.NET.ImPlot
 				}
 				fixed (uint* pkeys = &keys)
 				{
-					int ret = ColormapDataAppendNative((ImPlotColormapData*)pself, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					int ret = AppendNative((ImPlotColormapData*)pself, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1594,94 +1291,94 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ColormapDataAppendTableNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static void _AppendTableNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, void>)vt[483])(self, cmap);
+			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, void>)vt[474])(self, cmap);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, void>)vt[483])((nint)self, cmap);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, void>)vt[474])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ColormapDataAppendTable(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static void _AppendTable(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			ColormapDataAppendTableNative(self, cmap);
+			_AppendTableNative(self, cmap);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ColormapDataAppendTable(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static void _AppendTable(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				ColormapDataAppendTableNative((ImPlotColormapData*)pself, cmap);
+				_AppendTableNative((ImPlotColormapData*)pself, cmap);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ColormapDataRebuildTablesNative(ImPlotColormapData* self)
+		internal static void RebuildTablesNative(ImPlotColormapData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, void>)vt[484])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, void>)vt[475])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[484])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[475])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ColormapDataRebuildTables(ImPlotColormapDataPtr self)
+		public static void RebuildTables(ImPlotColormapDataPtr self)
 		{
-			ColormapDataRebuildTablesNative(self);
+			RebuildTablesNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ColormapDataRebuildTables(ref ImPlotColormapData self)
+		public static void RebuildTables(ref ImPlotColormapData self)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				ColormapDataRebuildTablesNative((ImPlotColormapData*)pself);
+				RebuildTablesNative((ImPlotColormapData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ColormapDataIsQualNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static byte IsQualNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, byte>)vt[485])(self, cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, byte>)vt[476])(self, cmap);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, byte>)vt[485])((nint)self, cmap);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, byte>)vt[476])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapDataIsQual(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static bool IsQual(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			byte ret = ColormapDataIsQualNative(self, cmap);
+			byte ret = IsQualNative(self, cmap);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapDataIsQual(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static bool IsQual(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				byte ret = ColormapDataIsQualNative((ImPlotColormapData*)pself, cmap);
+				byte ret = IsQualNative((ImPlotColormapData*)pself, cmap);
 				return ret != 0;
 			}
 		}
@@ -1689,41 +1386,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* ColormapDataGetNameNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static byte* GetNameNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, byte*>)vt[486])(self, cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, byte*>)vt[477])(self, cmap);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[486])((nint)self, cmap);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[477])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ColormapDataGetName(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static byte* GetName(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			byte* ret = ColormapDataGetNameNative(self, cmap);
+			byte* ret = GetNameNative(self, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ColormapDataGetNameS(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static string GetNameS(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			string ret = Utils.DecodeStringUTF8(ColormapDataGetNameNative(self, cmap));
+			string ret = Utils.DecodeStringUTF8(GetNameNative(self, cmap));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ColormapDataGetName(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static byte* GetName(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				byte* ret = ColormapDataGetNameNative((ImPlotColormapData*)pself, cmap);
+				byte* ret = GetNameNative((ImPlotColormapData*)pself, cmap);
 				return ret;
 			}
 		}
@@ -1731,11 +1428,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ColormapDataGetNameS(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static string GetNameS(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(ColormapDataGetNameNative((ImPlotColormapData*)pself, cmap));
+				string ret = Utils.DecodeStringUTF8(GetNameNative((ImPlotColormapData*)pself, cmap));
 				return ret;
 			}
 		}
@@ -1743,32 +1440,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotColormap ColormapDataGetIndexNative(ImPlotColormapData* self, byte* name)
+		internal static ImPlotColormap GetIndexNative(ImPlotColormapData* self, byte* name)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, byte*, ImPlotColormap>)vt[487])(self, name);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, byte*, ImPlotColormap>)vt[478])(self, name);
 			#else
-			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, nint, ImPlotColormap>)vt[487])((nint)self, (nint)name);
+			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, nint, ImPlotColormap>)vt[478])((nint)self, (nint)name);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ImPlotColormapDataPtr self, byte* name)
+		public static ImPlotColormap GetIndex(ImPlotColormapDataPtr self, byte* name)
 		{
-			ImPlotColormap ret = ColormapDataGetIndexNative(self, name);
+			ImPlotColormap ret = GetIndexNative(self, name);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ref ImPlotColormapData self, byte* name)
+		public static ImPlotColormap GetIndex(ref ImPlotColormapData self, byte* name)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				ImPlotColormap ret = ColormapDataGetIndexNative((ImPlotColormapData*)pself, name);
+				ImPlotColormap ret = GetIndexNative((ImPlotColormapData*)pself, name);
 				return ret;
 			}
 		}
@@ -1776,11 +1473,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ImPlotColormapDataPtr self, ref byte name)
+		public static ImPlotColormap GetIndex(ImPlotColormapDataPtr self, ref byte name)
 		{
 			fixed (byte* pname = &name)
 			{
-				ImPlotColormap ret = ColormapDataGetIndexNative(self, (byte*)pname);
+				ImPlotColormap ret = GetIndexNative(self, (byte*)pname);
 				return ret;
 			}
 		}
@@ -1788,11 +1485,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name)
+		public static ImPlotColormap GetIndex(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name)
 		{
 			fixed (byte* pname = name)
 			{
-				ImPlotColormap ret = ColormapDataGetIndexNative(self, (byte*)pname);
+				ImPlotColormap ret = GetIndexNative(self, (byte*)pname);
 				return ret;
 			}
 		}
@@ -1800,7 +1497,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ImPlotColormapDataPtr self, string name)
+		public static ImPlotColormap GetIndex(ImPlotColormapDataPtr self, string name)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1819,7 +1516,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlotColormap ret = ColormapDataGetIndexNative(self, pStr0);
+			ImPlotColormap ret = GetIndexNative(self, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1830,13 +1527,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ref ImPlotColormapData self, ref byte name)
+		public static ImPlotColormap GetIndex(ref ImPlotColormapData self, ref byte name)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
 				fixed (byte* pname = &name)
 				{
-					ImPlotColormap ret = ColormapDataGetIndexNative((ImPlotColormapData*)pself, (byte*)pname);
+					ImPlotColormap ret = GetIndexNative((ImPlotColormapData*)pself, (byte*)pname);
 					return ret;
 				}
 			}
@@ -1845,13 +1542,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ref ImPlotColormapData self, ReadOnlySpan<byte> name)
+		public static ImPlotColormap GetIndex(ref ImPlotColormapData self, ReadOnlySpan<byte> name)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
 				fixed (byte* pname = name)
 				{
-					ImPlotColormap ret = ColormapDataGetIndexNative((ImPlotColormapData*)pself, (byte*)pname);
+					ImPlotColormap ret = GetIndexNative((ImPlotColormapData*)pself, (byte*)pname);
 					return ret;
 				}
 			}
@@ -1860,7 +1557,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotColormap ColormapDataGetIndex(ref ImPlotColormapData self, string name)
+		public static ImPlotColormap GetIndex(ref ImPlotColormapData self, string name)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
@@ -1881,7 +1578,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImPlotColormap ret = ColormapDataGetIndexNative((ImPlotColormapData*)pself, pStr0);
+				ImPlotColormap ret = GetIndexNative((ImPlotColormapData*)pself, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1893,32 +1590,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint* ColormapDataGetKeysNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static uint* GetKeysNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, uint*>)vt[488])(self, cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, uint*>)vt[479])(self, cmap);
 			#else
-			return (uint*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[488])((nint)self, cmap);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[479])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint* ColormapDataGetKeys(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static uint* GetKeys(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			uint* ret = ColormapDataGetKeysNative(self, cmap);
+			uint* ret = GetKeysNative(self, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint* ColormapDataGetKeys(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static uint* GetKeys(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				uint* ret = ColormapDataGetKeysNative((ImPlotColormapData*)pself, cmap);
+				uint* ret = GetKeysNative((ImPlotColormapData*)pself, cmap);
 				return ret;
 			}
 		}
@@ -1926,32 +1623,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ColormapDataGetKeyCountNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static int GetKeyCountNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int>)vt[489])(self, cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int>)vt[480])(self, cmap);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int>)vt[489])((nint)self, cmap);
+			return (int)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int>)vt[480])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataGetKeyCount(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static int GetKeyCount(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			int ret = ColormapDataGetKeyCountNative(self, cmap);
+			int ret = GetKeyCountNative(self, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataGetKeyCount(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static int GetKeyCount(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				int ret = ColormapDataGetKeyCountNative((ImPlotColormapData*)pself, cmap);
+				int ret = GetKeyCountNative((ImPlotColormapData*)pself, cmap);
 				return ret;
 			}
 		}
@@ -1959,32 +1656,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ColormapDataGetKeyColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx)
+		internal static uint GetKeyColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint>)vt[490])(self, cmap, idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint>)vt[481])(self, cmap, idx);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint>)vt[490])((nint)self, cmap, idx);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint>)vt[481])((nint)self, cmap, idx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ColormapDataGetKeyColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx)
+		public static uint GetKeyColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx)
 		{
-			uint ret = ColormapDataGetKeyColorNative(self, cmap, idx);
+			uint ret = GetKeyColorNative(self, cmap, idx);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ColormapDataGetKeyColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx)
+		public static uint GetKeyColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				uint ret = ColormapDataGetKeyColorNative((ImPlotColormapData*)pself, cmap, idx);
+				uint ret = GetKeyColorNative((ImPlotColormapData*)pself, cmap, idx);
 				return ret;
 			}
 		}
@@ -1992,63 +1689,63 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ColormapDataSetKeyColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx, uint value)
+		internal static void SetKeyColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx, uint value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint, void>)vt[491])(self, cmap, idx, value);
+			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint, void>)vt[482])(self, cmap, idx, value);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint, void>)vt[491])((nint)self, cmap, idx, value);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint, void>)vt[482])((nint)self, cmap, idx, value);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ColormapDataSetKeyColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx, uint value)
+		public static void SetKeyColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx, uint value)
 		{
-			ColormapDataSetKeyColorNative(self, cmap, idx, value);
+			SetKeyColorNative(self, cmap, idx, value);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ColormapDataSetKeyColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx, uint value)
+		public static void SetKeyColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx, uint value)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				ColormapDataSetKeyColorNative((ImPlotColormapData*)pself, cmap, idx, value);
+				SetKeyColorNative((ImPlotColormapData*)pself, cmap, idx, value);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint* ColormapDataGetTableNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static uint* GetTableNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, uint*>)vt[492])(self, cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, uint*>)vt[483])(self, cmap);
 			#else
-			return (uint*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[492])((nint)self, cmap);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[483])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint* ColormapDataGetTable(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static uint* GetTable(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			uint* ret = ColormapDataGetTableNative(self, cmap);
+			uint* ret = GetTableNative(self, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint* ColormapDataGetTable(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static uint* GetTable(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				uint* ret = ColormapDataGetTableNative((ImPlotColormapData*)pself, cmap);
+				uint* ret = GetTableNative((ImPlotColormapData*)pself, cmap);
 				return ret;
 			}
 		}
@@ -2056,32 +1753,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ColormapDataGetTableSizeNative(ImPlotColormapData* self, ImPlotColormap cmap)
+		internal static int GetTableSizeNative(ImPlotColormapData* self, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int>)vt[493])(self, cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int>)vt[484])(self, cmap);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int>)vt[493])((nint)self, cmap);
+			return (int)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int>)vt[484])((nint)self, cmap);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataGetTableSize(ImPlotColormapDataPtr self, ImPlotColormap cmap)
+		public static int GetTableSize(ImPlotColormapDataPtr self, ImPlotColormap cmap)
 		{
-			int ret = ColormapDataGetTableSizeNative(self, cmap);
+			int ret = GetTableSizeNative(self, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ColormapDataGetTableSize(ref ImPlotColormapData self, ImPlotColormap cmap)
+		public static int GetTableSize(ref ImPlotColormapData self, ImPlotColormap cmap)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				int ret = ColormapDataGetTableSizeNative((ImPlotColormapData*)pself, cmap);
+				int ret = GetTableSizeNative((ImPlotColormapData*)pself, cmap);
 				return ret;
 			}
 		}
@@ -2089,32 +1786,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ColormapDataGetTableColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx)
+		internal static uint GetTableColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint>)vt[494])(self, cmap, idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint>)vt[485])(self, cmap, idx);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint>)vt[494])((nint)self, cmap, idx);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint>)vt[485])((nint)self, cmap, idx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ColormapDataGetTableColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx)
+		public static uint GetTableColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx)
 		{
-			uint ret = ColormapDataGetTableColorNative(self, cmap, idx);
+			uint ret = GetTableColorNative(self, cmap, idx);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ColormapDataGetTableColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx)
+		public static uint GetTableColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				uint ret = ColormapDataGetTableColorNative((ImPlotColormapData*)pself, cmap, idx);
+				uint ret = GetTableColorNative((ImPlotColormapData*)pself, cmap, idx);
 				return ret;
 			}
 		}
@@ -2122,32 +1819,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ColormapDataLerpTableNative(ImPlotColormapData* self, ImPlotColormap cmap, float t)
+		internal static uint LerpTableNative(ImPlotColormapData* self, ImPlotColormap cmap, float t)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, float, uint>)vt[495])(self, cmap, t);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, float, uint>)vt[486])(self, cmap, t);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, float, uint>)vt[495])((nint)self, cmap, t);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, float, uint>)vt[486])((nint)self, cmap, t);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ColormapDataLerpTable(ImPlotColormapDataPtr self, ImPlotColormap cmap, float t)
+		public static uint LerpTable(ImPlotColormapDataPtr self, ImPlotColormap cmap, float t)
 		{
-			uint ret = ColormapDataLerpTableNative(self, cmap, t);
+			uint ret = LerpTableNative(self, cmap, t);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ColormapDataLerpTable(ref ImPlotColormapData self, ImPlotColormap cmap, float t)
+		public static uint LerpTable(ref ImPlotColormapData self, ImPlotColormap cmap, float t)
 		{
 			fixed (ImPlotColormapData* pself = &self)
 			{
-				uint ret = ColormapDataLerpTableNative((ImPlotColormapData*)pself, cmap, t);
+				uint ret = LerpTableNative((ImPlotColormapData*)pself, cmap, t);
 				return ret;
 			}
 		}
@@ -2155,216 +1852,216 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotPointError* PointErrorImPlotPointErrorNative(double x, double y, double neg, double pos)
+		internal static ImPlotPointError* ImPlotPointErrorNative(double x, double y, double neg, double pos)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotPointError*>)vt[496])(x, y, neg, pos);
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotPointError*>)vt[487])(x, y, neg, pos);
 			#else
-			return (ImPlotPointError*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)vt[496])(x, y, neg, pos);
+			return (ImPlotPointError*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)vt[487])(x, y, neg, pos);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointErrorPtr PointErrorImPlotPointError(double x, double y, double neg, double pos)
+		public static ImPlotPointErrorPtr ImPlotPointError(double x, double y, double neg, double pos)
 		{
-			ImPlotPointErrorPtr ret = PointErrorImPlotPointErrorNative(x, y, neg, pos);
+			ImPlotPointErrorPtr ret = ImPlotPointErrorNative(x, y, neg, pos);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void PointErrorDestroyNative(ImPlotPointError* self)
+		internal static void DestroyNative(ImPlotPointError* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPointError*, void>)vt[497])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotPointError*, void>)vt[488])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[497])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[488])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PointErrorDestroy(ImPlotPointErrorPtr self)
+		public static void Destroy(ImPlotPointErrorPtr self)
 		{
-			PointErrorDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PointErrorDestroy(ref ImPlotPointError self)
+		public static void Destroy(ref ImPlotPointError self)
 		{
 			fixed (ImPlotPointError* pself = &self)
 			{
-				PointErrorDestroyNative((ImPlotPointError*)pself);
+				DestroyNative((ImPlotPointError*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAnnotation* AnnotationImPlotAnnotationNative()
+		internal static ImPlotAnnotation* ImPlotAnnotationNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotation*>)vt[498])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotation*>)vt[489])();
 			#else
-			return (ImPlotAnnotation*)((delegate* unmanaged[Cdecl]<nint>)vt[498])();
+			return (ImPlotAnnotation*)((delegate* unmanaged[Cdecl]<nint>)vt[489])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAnnotationPtr AnnotationImPlotAnnotation()
+		public static ImPlotAnnotationPtr ImPlotAnnotation()
 		{
-			ImPlotAnnotationPtr ret = AnnotationImPlotAnnotationNative();
+			ImPlotAnnotationPtr ret = ImPlotAnnotationNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AnnotationDestroyNative(ImPlotAnnotation* self)
+		internal static void DestroyNative(ImPlotAnnotation* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotation*, void>)vt[499])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAnnotation*, void>)vt[490])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[499])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[490])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationDestroy(ImPlotAnnotationPtr self)
+		public static void Destroy(ImPlotAnnotationPtr self)
 		{
-			AnnotationDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationDestroy(ref ImPlotAnnotation self)
+		public static void Destroy(ref ImPlotAnnotation self)
 		{
 			fixed (ImPlotAnnotation* pself = &self)
 			{
-				AnnotationDestroyNative((ImPlotAnnotation*)pself);
+				DestroyNative((ImPlotAnnotation*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAnnotationCollection* AnnotationCollectionImPlotAnnotationCollectionNative()
+		internal static ImPlotAnnotationCollection* ImPlotAnnotationCollectionNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*>)vt[500])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*>)vt[491])();
 			#else
-			return (ImPlotAnnotationCollection*)((delegate* unmanaged[Cdecl]<nint>)vt[500])();
+			return (ImPlotAnnotationCollection*)((delegate* unmanaged[Cdecl]<nint>)vt[491])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAnnotationCollectionPtr AnnotationCollectionImPlotAnnotationCollection()
+		public static ImPlotAnnotationCollectionPtr ImPlotAnnotationCollection()
 		{
-			ImPlotAnnotationCollectionPtr ret = AnnotationCollectionImPlotAnnotationCollectionNative();
+			ImPlotAnnotationCollectionPtr ret = ImPlotAnnotationCollectionNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AnnotationCollectionDestroyNative(ImPlotAnnotationCollection* self)
+		internal static void DestroyNative(ImPlotAnnotationCollection* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, void>)vt[501])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, void>)vt[492])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[501])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[492])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionDestroy(ImPlotAnnotationCollectionPtr self)
+		public static void Destroy(ImPlotAnnotationCollectionPtr self)
 		{
-			AnnotationCollectionDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionDestroy(ref ImPlotAnnotationCollection self)
+		public static void Destroy(ref ImPlotAnnotationCollection self)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				AnnotationCollectionDestroyNative((ImPlotAnnotationCollection*)pself);
+				DestroyNative((ImPlotAnnotationCollection*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AnnotationCollectionAppendVNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt, nuint args)
+		internal static void AppendVNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, Vector2, Vector2, uint, uint, byte, byte*, nuint, void>)vt[502])(self, pos, off, bg, fg, clamp, fmt, args);
+			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, Vector2, Vector2, uint, uint, byte, byte*, nuint, void>)vt[493])(self, pos, off, bg, fg, clamp, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, byte, nint, nuint, void>)vt[502])((nint)self, pos, off, bg, fg, clamp, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, byte, nint, nuint, void>)vt[493])((nint)self, pos, off, bg, fg, clamp, (nint)fmt, args);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt, nuint args)
+		public static void AppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt, nuint args)
 		{
-			AnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt, args);
+			AppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt, args);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt, nuint args)
+		public static void AppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt, nuint args)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				AnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt, args);
+				AppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
+		public static void AppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				AnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
+				AppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt, nuint args)
+		public static void AppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				AnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
+				AppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt, nuint args)
+		public static void AppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt, nuint args)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2383,7 +2080,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			AnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0, args);
+			AppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0, args);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2393,13 +2090,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
+		public static void AppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					AnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
+					AppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -2407,13 +2104,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt, nuint args)
+		public static void AppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
 				fixed (byte* pfmt = fmt)
 				{
-					AnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
+					AppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -2421,7 +2118,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt, nuint args)
+		public static void AppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt, nuint args)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
@@ -2442,7 +2139,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				AnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0, args);
+				AppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0, args);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2453,60 +2150,60 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AnnotationCollectionAppendNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt)
+		internal static void AppendNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, Vector2, Vector2, uint, uint, byte, byte*, void>)vt[503])(self, pos, off, bg, fg, clamp, fmt);
+			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, Vector2, Vector2, uint, uint, byte, byte*, void>)vt[494])(self, pos, off, bg, fg, clamp, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, byte, nint, void>)vt[503])((nint)self, pos, off, bg, fg, clamp, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, byte, nint, void>)vt[494])((nint)self, pos, off, bg, fg, clamp, (nint)fmt);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
+		public static void Append(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
 		{
-			AnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
+			AppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
+		public static void Append(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				AnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
+				AppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
+		public static void Append(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				AnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
+				AppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt)
+		public static void Append(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				AnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
+				AppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
+		public static void Append(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2525,7 +2222,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			AnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
+			AppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2535,13 +2232,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
+		public static void Append(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					AnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
+					AppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
 				}
 			}
 		}
@@ -2549,13 +2246,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt)
+		public static void Append(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
 				fixed (byte* pfmt = fmt)
 				{
-					AnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
+					AppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
 				}
 			}
 		}
@@ -2563,7 +2260,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
+		public static void Append(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
@@ -2584,7 +2281,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				AnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
+				AppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2595,41 +2292,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* AnnotationCollectionGetTextNative(ImPlotAnnotationCollection* self, int idx)
+		internal static byte* GetTextNative(ImPlotAnnotationCollection* self, int idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, int, byte*>)vt[504])(self, idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, int, byte*>)vt[495])(self, idx);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[504])((nint)self, idx);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[495])((nint)self, idx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* AnnotationCollectionGetText(ImPlotAnnotationCollectionPtr self, int idx)
+		public static byte* GetText(ImPlotAnnotationCollectionPtr self, int idx)
 		{
-			byte* ret = AnnotationCollectionGetTextNative(self, idx);
+			byte* ret = GetTextNative(self, idx);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string AnnotationCollectionGetTextS(ImPlotAnnotationCollectionPtr self, int idx)
+		public static string GetTextS(ImPlotAnnotationCollectionPtr self, int idx)
 		{
-			string ret = Utils.DecodeStringUTF8(AnnotationCollectionGetTextNative(self, idx));
+			string ret = Utils.DecodeStringUTF8(GetTextNative(self, idx));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* AnnotationCollectionGetText(ref ImPlotAnnotationCollection self, int idx)
+		public static byte* GetText(ref ImPlotAnnotationCollection self, int idx)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				byte* ret = AnnotationCollectionGetTextNative((ImPlotAnnotationCollection*)pself, idx);
+				byte* ret = GetTextNative((ImPlotAnnotationCollection*)pself, idx);
 				return ret;
 			}
 		}
@@ -2637,11 +2334,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string AnnotationCollectionGetTextS(ref ImPlotAnnotationCollection self, int idx)
+		public static string GetTextS(ref ImPlotAnnotationCollection self, int idx)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(AnnotationCollectionGetTextNative((ImPlotAnnotationCollection*)pself, idx));
+				string ret = Utils.DecodeStringUTF8(GetTextNative((ImPlotAnnotationCollection*)pself, idx));
 				return ret;
 			}
 		}
@@ -2649,143 +2346,143 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AnnotationCollectionResetNative(ImPlotAnnotationCollection* self)
+		internal static void ResetNative(ImPlotAnnotationCollection* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, void>)vt[505])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, void>)vt[496])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[505])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[496])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionReset(ImPlotAnnotationCollectionPtr self)
+		public static void Reset(ImPlotAnnotationCollectionPtr self)
 		{
-			AnnotationCollectionResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AnnotationCollectionReset(ref ImPlotAnnotationCollection self)
+		public static void Reset(ref ImPlotAnnotationCollection self)
 		{
 			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				AnnotationCollectionResetNative((ImPlotAnnotationCollection*)pself);
+				ResetNative((ImPlotAnnotationCollection*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTagCollection* TagCollectionImPlotTagCollectionNative()
+		internal static ImPlotTagCollection* ImPlotTagCollectionNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTagCollection*>)vt[506])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotTagCollection*>)vt[497])();
 			#else
-			return (ImPlotTagCollection*)((delegate* unmanaged[Cdecl]<nint>)vt[506])();
+			return (ImPlotTagCollection*)((delegate* unmanaged[Cdecl]<nint>)vt[497])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTagCollectionPtr TagCollectionImPlotTagCollection()
+		public static ImPlotTagCollectionPtr ImPlotTagCollection()
 		{
-			ImPlotTagCollectionPtr ret = TagCollectionImPlotTagCollectionNative();
+			ImPlotTagCollectionPtr ret = ImPlotTagCollectionNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TagCollectionDestroyNative(ImPlotTagCollection* self)
+		internal static void DestroyNative(ImPlotTagCollection* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, void>)vt[507])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, void>)vt[498])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[507])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[498])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionDestroy(ImPlotTagCollectionPtr self)
+		public static void Destroy(ImPlotTagCollectionPtr self)
 		{
-			TagCollectionDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionDestroy(ref ImPlotTagCollection self)
+		public static void Destroy(ref ImPlotTagCollection self)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
-				TagCollectionDestroyNative((ImPlotTagCollection*)pself);
+				DestroyNative((ImPlotTagCollection*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TagCollectionAppendVNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
+		internal static void AppendVNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, ImAxis, double, uint, uint, byte*, nuint, void>)vt[508])(self, axis, value, bg, fg, fmt, args);
+			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, ImAxis, double, uint, uint, byte*, nuint, void>)vt[499])(self, axis, value, bg, fg, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImAxis, double, uint, uint, nint, nuint, void>)vt[508])((nint)self, axis, value, bg, fg, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, ImAxis, double, uint, uint, nint, nuint, void>)vt[499])((nint)self, axis, value, bg, fg, (nint)fmt, args);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
+		public static void AppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
 		{
-			TagCollectionAppendVNative(self, axis, value, bg, fg, fmt, args);
+			AppendVNative(self, axis, value, bg, fg, fmt, args);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
+		public static void AppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
-				TagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt, args);
+				AppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
+		public static void AppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				TagCollectionAppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
+				AppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt, nuint args)
+		public static void AppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				TagCollectionAppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
+				AppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
+		public static void AppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2804,7 +2501,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TagCollectionAppendVNative(self, axis, value, bg, fg, pStr0, args);
+			AppendVNative(self, axis, value, bg, fg, pStr0, args);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2814,13 +2511,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
+		public static void AppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					TagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
+					AppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -2828,13 +2525,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt, nuint args)
+		public static void AppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
 				fixed (byte* pfmt = fmt)
 				{
-					TagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
+					AppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -2842,7 +2539,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
+		public static void AppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
@@ -2863,7 +2560,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				TagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0, args);
+				AppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0, args);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2874,60 +2571,60 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TagCollectionAppendNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
+		internal static void AppendNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, ImAxis, double, uint, uint, byte*, void>)vt[509])(self, axis, value, bg, fg, fmt);
+			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, ImAxis, double, uint, uint, byte*, void>)vt[500])(self, axis, value, bg, fg, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImAxis, double, uint, uint, nint, void>)vt[509])((nint)self, axis, value, bg, fg, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, ImAxis, double, uint, uint, nint, void>)vt[500])((nint)self, axis, value, bg, fg, (nint)fmt);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
+		public static void Append(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
 		{
-			TagCollectionAppendNative(self, axis, value, bg, fg, fmt);
+			AppendNative(self, axis, value, bg, fg, fmt);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
+		public static void Append(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
-				TagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt);
+				AppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
+		public static void Append(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				TagCollectionAppendNative(self, axis, value, bg, fg, (byte*)pfmt);
+				AppendNative(self, axis, value, bg, fg, (byte*)pfmt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt)
+		public static void Append(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				TagCollectionAppendNative(self, axis, value, bg, fg, (byte*)pfmt);
+				AppendNative(self, axis, value, bg, fg, (byte*)pfmt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt)
+		public static void Append(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2946,7 +2643,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TagCollectionAppendNative(self, axis, value, bg, fg, pStr0);
+			AppendNative(self, axis, value, bg, fg, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2956,13 +2653,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
+		public static void Append(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					TagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
+					AppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
 				}
 			}
 		}
@@ -2970,13 +2667,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt)
+		public static void Append(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
 				fixed (byte* pfmt = fmt)
 				{
-					TagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
+					AppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
 				}
 			}
 		}
@@ -2984,7 +2681,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt)
+		public static void Append(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
@@ -3005,7 +2702,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				TagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0);
+				AppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3016,41 +2713,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* TagCollectionGetTextNative(ImPlotTagCollection* self, int idx)
+		internal static byte* GetTextNative(ImPlotTagCollection* self, int idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, int, byte*>)vt[510])(self, idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, int, byte*>)vt[501])(self, idx);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[510])((nint)self, idx);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[501])((nint)self, idx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* TagCollectionGetText(ImPlotTagCollectionPtr self, int idx)
+		public static byte* GetText(ImPlotTagCollectionPtr self, int idx)
 		{
-			byte* ret = TagCollectionGetTextNative(self, idx);
+			byte* ret = GetTextNative(self, idx);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TagCollectionGetTextS(ImPlotTagCollectionPtr self, int idx)
+		public static string GetTextS(ImPlotTagCollectionPtr self, int idx)
 		{
-			string ret = Utils.DecodeStringUTF8(TagCollectionGetTextNative(self, idx));
+			string ret = Utils.DecodeStringUTF8(GetTextNative(self, idx));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* TagCollectionGetText(ref ImPlotTagCollection self, int idx)
+		public static byte* GetText(ref ImPlotTagCollection self, int idx)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
-				byte* ret = TagCollectionGetTextNative((ImPlotTagCollection*)pself, idx);
+				byte* ret = GetTextNative((ImPlotTagCollection*)pself, idx);
 				return ret;
 			}
 		}
@@ -3058,11 +2755,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TagCollectionGetTextS(ref ImPlotTagCollection self, int idx)
+		public static string GetTextS(ref ImPlotTagCollection self, int idx)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(TagCollectionGetTextNative((ImPlotTagCollection*)pself, idx));
+				string ret = Utils.DecodeStringUTF8(GetTextNative((ImPlotTagCollection*)pself, idx));
 				return ret;
 			}
 		}
@@ -3070,167 +2767,167 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TagCollectionResetNative(ImPlotTagCollection* self)
+		internal static void ResetNative(ImPlotTagCollection* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, void>)vt[511])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, void>)vt[502])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[511])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[502])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionReset(ImPlotTagCollectionPtr self)
+		public static void Reset(ImPlotTagCollectionPtr self)
 		{
-			TagCollectionResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TagCollectionReset(ref ImPlotTagCollection self)
+		public static void Reset(ref ImPlotTagCollection self)
 		{
 			fixed (ImPlotTagCollection* pself = &self)
 			{
-				TagCollectionResetNative((ImPlotTagCollection*)pself);
+				ResetNative((ImPlotTagCollection*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTick* TickImPlotTickNative(double value, byte major, int level, byte showLabel)
+		internal static ImPlotTick* ImPlotTickNative(double value, byte major, int level, byte showLabel)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte, int, byte, ImPlotTick*>)vt[512])(value, major, level, showLabel);
+			return ((delegate* unmanaged[Cdecl]<double, byte, int, byte, ImPlotTick*>)vt[503])(value, major, level, showLabel);
 			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<double, byte, int, byte, nint>)vt[512])(value, major, level, showLabel);
+			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<double, byte, int, byte, nint>)vt[503])(value, major, level, showLabel);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickImPlotTick(double value, bool major, int level, bool showLabel)
+		public static ImPlotTickPtr ImPlotTick(double value, bool major, int level, bool showLabel)
 		{
-			ImPlotTickPtr ret = TickImPlotTickNative(value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0);
+			ImPlotTickPtr ret = ImPlotTickNative(value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TickDestroyNative(ImPlotTick* self)
+		internal static void DestroyNative(ImPlotTick* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTick*, void>)vt[513])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotTick*, void>)vt[504])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[513])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[504])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickDestroy(ImPlotTickPtr self)
+		public static void Destroy(ImPlotTickPtr self)
 		{
-			TickDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickDestroy(ref ImPlotTick self)
+		public static void Destroy(ref ImPlotTick self)
 		{
 			fixed (ImPlotTick* pself = &self)
 			{
-				TickDestroyNative((ImPlotTick*)pself);
+				DestroyNative((ImPlotTick*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTicker* TickerImPlotTickerNative()
+		internal static ImPlotTicker* ImPlotTickerNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*>)vt[514])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*>)vt[505])();
 			#else
-			return (ImPlotTicker*)((delegate* unmanaged[Cdecl]<nint>)vt[514])();
+			return (ImPlotTicker*)((delegate* unmanaged[Cdecl]<nint>)vt[505])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickerPtr TickerImPlotTicker()
+		public static ImPlotTickerPtr ImPlotTicker()
 		{
-			ImPlotTickerPtr ret = TickerImPlotTickerNative();
+			ImPlotTickerPtr ret = ImPlotTickerNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TickerDestroyNative(ImPlotTicker* self)
+		internal static void DestroyNative(ImPlotTicker* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, void>)vt[515])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, void>)vt[506])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[515])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[506])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickerDestroy(ImPlotTickerPtr self)
+		public static void Destroy(ImPlotTickerPtr self)
 		{
-			TickerDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickerDestroy(ref ImPlotTicker self)
+		public static void Destroy(ref ImPlotTicker self)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				TickerDestroyNative((ImPlotTicker*)pself);
+				DestroyNative((ImPlotTicker*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTick* TickerAddTickDoubleNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, byte* label)
+		internal static ImPlotTick* AddTickNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, double, byte, int, byte, byte*, ImPlotTick*>)vt[516])(self, value, major, level, showLabel, label);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, double, byte, int, byte, byte*, ImPlotTick*>)vt[507])(self, value, major, level, showLabel, label);
 			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, double, byte, int, byte, nint, nint>)vt[516])((nint)self, value, major, level, showLabel, (nint)label);
+			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, double, byte, int, byte, nint, nint>)vt[507])((nint)self, value, major, level, showLabel, (nint)label);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, byte* label)
+		public static ImPlotTickPtr AddTick(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, byte* label)
 		{
-			ImPlotTickPtr ret = TickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+			ImPlotTickPtr ret = AddTickNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, byte* label)
+		public static ImPlotTickPtr AddTick(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, byte* label)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				ImPlotTickPtr ret = TickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+				ImPlotTickPtr ret = AddTickNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
 				return ret;
 			}
 		}
@@ -3238,11 +2935,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ref byte label)
+		public static ImPlotTickPtr AddTick(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ref byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
-				ImPlotTickPtr ret = TickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				ImPlotTickPtr ret = AddTickNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 				return ret;
 			}
 		}
@@ -3250,11 +2947,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
+		public static ImPlotTickPtr AddTick(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
 		{
 			fixed (byte* plabel = label)
 			{
-				ImPlotTickPtr ret = TickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				ImPlotTickPtr ret = AddTickNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 				return ret;
 			}
 		}
@@ -3262,7 +2959,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, string label)
+		public static ImPlotTickPtr AddTick(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, string label)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3281,7 +2978,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlotTickPtr ret = TickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+			ImPlotTickPtr ret = AddTickNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3292,13 +2989,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ref byte label)
+		public static ImPlotTickPtr AddTick(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ref byte label)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
 				fixed (byte* plabel = &label)
 				{
-					ImPlotTickPtr ret = TickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					ImPlotTickPtr ret = AddTickNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 					return ret;
 				}
 			}
@@ -3307,13 +3004,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
+		public static ImPlotTickPtr AddTick(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
 				fixed (byte* plabel = label)
 				{
-					ImPlotTickPtr ret = TickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					ImPlotTickPtr ret = AddTickNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 					return ret;
 				}
 			}
@@ -3322,7 +3019,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, string label)
+		public static ImPlotTickPtr AddTick(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, string label)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
@@ -3343,7 +3040,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImPlotTickPtr ret = TickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+				ImPlotTickPtr ret = AddTickNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3355,32 +3052,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTick* TickerAddTickDoublePlotFormatterNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, ImPlotFormatter formatter, void* data)
+		internal static ImPlotTick* AddTickNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, ImPlotFormatter formatter, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, double, byte, int, byte, delegate*<double, byte*, int, void*, int>, void*, ImPlotTick*>)vt[517])(self, value, major, level, showLabel, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, double, byte, int, byte, delegate*<double, byte*, int, void*, int>, void*, ImPlotTick*>)vt[508])(self, value, major, level, showLabel, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
 			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, double, byte, int, byte, nint, nint, nint>)vt[517])((nint)self, value, major, level, showLabel, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
+			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, double, byte, int, byte, nint, nint, nint>)vt[508])((nint)self, value, major, level, showLabel, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDoublePlotFormatter(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		public static ImPlotTickPtr AddTick(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
 		{
-			ImPlotTickPtr ret = TickerAddTickDoublePlotFormatterNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+			ImPlotTickPtr ret = AddTickNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickDoublePlotFormatter(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		public static ImPlotTickPtr AddTick(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				ImPlotTickPtr ret = TickerAddTickDoublePlotFormatterNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+				ImPlotTickPtr ret = AddTickNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
 				return ret;
 			}
 		}
@@ -3388,32 +3085,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotTick* TickerAddTickPlotTickNative(ImPlotTicker* self, ImPlotTick tick)
+		internal static ImPlotTick* AddTickNative(ImPlotTicker* self, ImPlotTick tick)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotTick, ImPlotTick*>)vt[518])(self, tick);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotTick, ImPlotTick*>)vt[509])(self, tick);
 			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, ImPlotTick, nint>)vt[518])((nint)self, tick);
+			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, ImPlotTick, nint>)vt[509])((nint)self, tick);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickPlotTick(ImPlotTickerPtr self, ImPlotTick tick)
+		public static ImPlotTickPtr AddTick(ImPlotTickerPtr self, ImPlotTick tick)
 		{
-			ImPlotTickPtr ret = TickerAddTickPlotTickNative(self, tick);
+			ImPlotTickPtr ret = AddTickNative(self, tick);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTickPtr TickerAddTickPlotTick(ref ImPlotTicker self, ImPlotTick tick)
+		public static ImPlotTickPtr AddTick(ref ImPlotTicker self, ImPlotTick tick)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				ImPlotTickPtr ret = TickerAddTickPlotTickNative((ImPlotTicker*)pself, tick);
+				ImPlotTickPtr ret = AddTickNative((ImPlotTicker*)pself, tick);
 				return ret;
 			}
 		}
@@ -3421,41 +3118,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* TickerGetTextIntNative(ImPlotTicker* self, int idx)
+		internal static byte* GetTextNative(ImPlotTicker* self, int idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, int, byte*>)vt[519])(self, idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, int, byte*>)vt[510])(self, idx);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[519])((nint)self, idx);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[510])((nint)self, idx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* TickerGetTextInt(ImPlotTickerPtr self, int idx)
+		public static byte* GetText(ImPlotTickerPtr self, int idx)
 		{
-			byte* ret = TickerGetTextIntNative(self, idx);
+			byte* ret = GetTextNative(self, idx);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TickerGetTextIntS(ImPlotTickerPtr self, int idx)
+		public static string GetTextS(ImPlotTickerPtr self, int idx)
 		{
-			string ret = Utils.DecodeStringUTF8(TickerGetTextIntNative(self, idx));
+			string ret = Utils.DecodeStringUTF8(GetTextNative(self, idx));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* TickerGetTextInt(ref ImPlotTicker self, int idx)
+		public static byte* GetText(ref ImPlotTicker self, int idx)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				byte* ret = TickerGetTextIntNative((ImPlotTicker*)pself, idx);
+				byte* ret = GetTextNative((ImPlotTicker*)pself, idx);
 				return ret;
 			}
 		}
@@ -3463,11 +3160,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TickerGetTextIntS(ref ImPlotTicker self, int idx)
+		public static string GetTextS(ref ImPlotTicker self, int idx)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(TickerGetTextIntNative((ImPlotTicker*)pself, idx));
+				string ret = Utils.DecodeStringUTF8(GetTextNative((ImPlotTicker*)pself, idx));
 				return ret;
 			}
 		}
@@ -3475,41 +3172,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* TickerGetTextPlotTickNative(ImPlotTicker* self, ImPlotTick tick)
+		internal static byte* GetTextNative(ImPlotTicker* self, ImPlotTick tick)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotTick, byte*>)vt[520])(self, tick);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotTick, byte*>)vt[511])(self, tick);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotTick, nint>)vt[520])((nint)self, tick);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotTick, nint>)vt[511])((nint)self, tick);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* TickerGetTextPlotTick(ImPlotTickerPtr self, ImPlotTick tick)
+		public static byte* GetText(ImPlotTickerPtr self, ImPlotTick tick)
 		{
-			byte* ret = TickerGetTextPlotTickNative(self, tick);
+			byte* ret = GetTextNative(self, tick);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TickerGetTextPlotTickS(ImPlotTickerPtr self, ImPlotTick tick)
+		public static string GetTextS(ImPlotTickerPtr self, ImPlotTick tick)
 		{
-			string ret = Utils.DecodeStringUTF8(TickerGetTextPlotTickNative(self, tick));
+			string ret = Utils.DecodeStringUTF8(GetTextNative(self, tick));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* TickerGetTextPlotTick(ref ImPlotTicker self, ImPlotTick tick)
+		public static byte* GetText(ref ImPlotTicker self, ImPlotTick tick)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				byte* ret = TickerGetTextPlotTickNative((ImPlotTicker*)pself, tick);
+				byte* ret = GetTextNative((ImPlotTicker*)pself, tick);
 				return ret;
 			}
 		}
@@ -3517,11 +3214,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TickerGetTextPlotTickS(ref ImPlotTicker self, ImPlotTick tick)
+		public static string GetTextS(ref ImPlotTicker self, ImPlotTick tick)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(TickerGetTextPlotTickNative((ImPlotTicker*)pself, tick));
+				string ret = Utils.DecodeStringUTF8(GetTextNative((ImPlotTicker*)pself, tick));
 				return ret;
 			}
 		}
@@ -3529,94 +3226,94 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TickerOverrideSizeLateNative(ImPlotTicker* self, Vector2 size)
+		internal static void OverrideSizeLateNative(ImPlotTicker* self, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, Vector2, void>)vt[521])(self, size);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, Vector2, void>)vt[512])(self, size);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)vt[521])((nint)self, size);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)vt[512])((nint)self, size);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickerOverrideSizeLate(ImPlotTickerPtr self, Vector2 size)
+		public static void OverrideSizeLate(ImPlotTickerPtr self, Vector2 size)
 		{
-			TickerOverrideSizeLateNative(self, size);
+			OverrideSizeLateNative(self, size);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickerOverrideSizeLate(ref ImPlotTicker self, Vector2 size)
+		public static void OverrideSizeLate(ref ImPlotTicker self, Vector2 size)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				TickerOverrideSizeLateNative((ImPlotTicker*)pself, size);
+				OverrideSizeLateNative((ImPlotTicker*)pself, size);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void TickerResetNative(ImPlotTicker* self)
+		internal static void ResetNative(ImPlotTicker* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, void>)vt[522])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, void>)vt[513])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[522])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[513])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickerReset(ImPlotTickerPtr self)
+		public static void Reset(ImPlotTickerPtr self)
 		{
-			TickerResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TickerReset(ref ImPlotTicker self)
+		public static void Reset(ref ImPlotTicker self)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				TickerResetNative((ImPlotTicker*)pself);
+				ResetNative((ImPlotTicker*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int TickerTickCountNative(ImPlotTicker* self)
+		internal static int TickCountNative(ImPlotTicker* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, int>)vt[523])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, int>)vt[514])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[523])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[514])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int TickerTickCount(ImPlotTickerPtr self)
+		public static int TickCount(ImPlotTickerPtr self)
 		{
-			int ret = TickerTickCountNative(self);
+			int ret = TickCountNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int TickerTickCount(ref ImPlotTicker self)
+		public static int TickCount(ref ImPlotTicker self)
 		{
 			fixed (ImPlotTicker* pself = &self)
 			{
-				int ret = TickerTickCountNative((ImPlotTicker*)pself);
+				int ret = TickCountNative((ImPlotTicker*)pself);
 				return ret;
 			}
 		}
@@ -3624,28 +3321,357 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAxis* AxisImPlotAxisNative()
+		internal static ImPlotAxis* ImPlotAxisNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*>)vt[524])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*>)vt[515])();
 			#else
-			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint>)vt[524])();
+			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint>)vt[515])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr AxisImPlotAxis()
+		public static ImPlotAxisPtr ImPlotAxis()
 		{
-			ImPlotAxisPtr ret = AxisImPlotAxisNative();
+			ImPlotAxisPtr ret = ImPlotAxisNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AxisDestroyNative(ImPlotAxis* self)
+		internal static void DestroyNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[516])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[516])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImPlotAxisPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				DestroyNative((ImPlotAxis*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void ResetNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[517])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[517])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Reset(ImPlotAxisPtr self)
+		{
+			ResetNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Reset(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ResetNative((ImPlotAxis*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte SetMinNative(ImPlotAxis* self, double min, byte force)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, byte, byte>)vt[518])(self, min, force);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte, byte>)vt[518])((nint)self, min, force);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMin(ImPlotAxisPtr self, double min, bool force)
+		{
+			byte ret = SetMinNative(self, min, force ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMin(ImPlotAxisPtr self, double min)
+		{
+			byte ret = SetMinNative(self, min, (byte)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMin(ref ImPlotAxis self, double min, bool force)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = SetMinNative((ImPlotAxis*)pself, min, force ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMin(ref ImPlotAxis self, double min)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = SetMinNative((ImPlotAxis*)pself, min, (byte)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte SetMaxNative(ImPlotAxis* self, double max, byte force)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, byte, byte>)vt[519])(self, max, force);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte, byte>)vt[519])((nint)self, max, force);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMax(ImPlotAxisPtr self, double max, bool force)
+		{
+			byte ret = SetMaxNative(self, max, force ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMax(ImPlotAxisPtr self, double max)
+		{
+			byte ret = SetMaxNative(self, max, (byte)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMax(ref ImPlotAxis self, double max, bool force)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = SetMaxNative((ImPlotAxis*)pself, max, force ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SetMax(ref ImPlotAxis self, double max)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = SetMaxNative((ImPlotAxis*)pself, max, (byte)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void SetRangeNative(ImPlotAxis* self, double v1, double v2)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, double, void>)vt[520])(self, v1, v2);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, double, double, void>)vt[520])((nint)self, v1, v2);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetRange(ImPlotAxisPtr self, double v1, double v2)
+		{
+			SetRangeNative(self, v1, v2);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetRange(ref ImPlotAxis self, double v1, double v2)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				SetRangeNative((ImPlotAxis*)pself, v1, v2);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void SetRangeNative(ImPlotAxis* self, ImPlotRange range)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotRange, void>)vt[521])(self, range);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, void>)vt[521])((nint)self, range);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetRange(ImPlotAxisPtr self, ImPlotRange range)
+		{
+			SetRangeNative(self, range);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetRange(ref ImPlotAxis self, ImPlotRange range)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				SetRangeNative((ImPlotAxis*)pself, range);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void SetAspectNative(ImPlotAxis* self, double unitPerPix)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, void>)vt[522])(self, unitPerPix);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[522])((nint)self, unitPerPix);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetAspect(ImPlotAxisPtr self, double unitPerPix)
+		{
+			SetAspectNative(self, unitPerPix);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetAspect(ref ImPlotAxis self, double unitPerPix)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				SetAspectNative((ImPlotAxis*)pself, unitPerPix);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static float PixelSizeNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, float>)vt[523])(self);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)vt[523])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float PixelSize(ImPlotAxisPtr self)
+		{
+			float ret = PixelSizeNative(self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float PixelSize(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				float ret = PixelSizeNative((ImPlotAxis*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double GetAspectNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double>)vt[524])(self);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[524])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double GetAspect(ImPlotAxisPtr self)
+		{
+			double ret = GetAspectNative(self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double GetAspect(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				double ret = GetAspectNative((ImPlotAxis*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void ConstrainNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[525])(self);
@@ -3657,26 +3683,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisDestroy(ImPlotAxisPtr self)
+		public static void Constrain(ImPlotAxisPtr self)
 		{
-			AxisDestroyNative(self);
+			ConstrainNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisDestroy(ref ImPlotAxis self)
+		public static void Constrain(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				AxisDestroyNative((ImPlotAxis*)pself);
+				ConstrainNative((ImPlotAxis*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AxisResetNative(ImPlotAxis* self)
+		internal static void UpdateTransformCacheNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[526])(self);
@@ -3688,210 +3714,51 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisReset(ImPlotAxisPtr self)
+		public static void UpdateTransformCache(ImPlotAxisPtr self)
 		{
-			AxisResetNative(self);
+			UpdateTransformCacheNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisReset(ref ImPlotAxis self)
+		public static void UpdateTransformCache(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				AxisResetNative((ImPlotAxis*)pself);
+				UpdateTransformCacheNative((ImPlotAxis*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisSetMinNative(ImPlotAxis* self, double min, byte force)
+		internal static float PlotToPixelsNative(ImPlotAxis* self, double plt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, byte, byte>)vt[527])(self, min, force);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, float>)vt[527])(self, plt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte, byte>)vt[527])((nint)self, min, force);
+			return (float)((delegate* unmanaged[Cdecl]<nint, double, float>)vt[527])((nint)self, plt);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisSetMin(ImPlotAxisPtr self, double min, bool force)
+		public static float PlotToPixels(ImPlotAxisPtr self, double plt)
 		{
-			byte ret = AxisSetMinNative(self, min, force ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisSetMin(ref ImPlotAxis self, double min, bool force)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisSetMinNative((ImPlotAxis*)pself, min, force ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisSetMaxNative(ImPlotAxis* self, double max, byte force)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, byte, byte>)vt[528])(self, max, force);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte, byte>)vt[528])((nint)self, max, force);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisSetMax(ImPlotAxisPtr self, double max, bool force)
-		{
-			byte ret = AxisSetMaxNative(self, max, force ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisSetMax(ref ImPlotAxis self, double max, bool force)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisSetMaxNative((ImPlotAxis*)pself, max, force ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisSetRangeDoubleNative(ImPlotAxis* self, double v1, double v2)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, double, void>)vt[529])(self, v1, v2);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, void>)vt[529])((nint)self, v1, v2);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisSetRangeDouble(ImPlotAxisPtr self, double v1, double v2)
-		{
-			AxisSetRangeDoubleNative(self, v1, v2);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisSetRangeDouble(ref ImPlotAxis self, double v1, double v2)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisSetRangeDoubleNative((ImPlotAxis*)pself, v1, v2);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisSetRangePlotRangeNative(ImPlotAxis* self, ImPlotRange range)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotRange, void>)vt[530])(self, range);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, void>)vt[530])((nint)self, range);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisSetRangePlotRange(ImPlotAxisPtr self, ImPlotRange range)
-		{
-			AxisSetRangePlotRangeNative(self, range);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisSetRangePlotRange(ref ImPlotAxis self, ImPlotRange range)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisSetRangePlotRangeNative((ImPlotAxis*)pself, range);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisSetAspectNative(ImPlotAxis* self, double unitPerPix)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, void>)vt[531])(self, unitPerPix);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[531])((nint)self, unitPerPix);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisSetAspect(ImPlotAxisPtr self, double unitPerPix)
-		{
-			AxisSetAspectNative(self, unitPerPix);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisSetAspect(ref ImPlotAxis self, double unitPerPix)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisSetAspectNative((ImPlotAxis*)pself, unitPerPix);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static float AxisPixelSizeNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, float>)vt[532])(self);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)vt[532])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float AxisPixelSize(ImPlotAxisPtr self)
-		{
-			float ret = AxisPixelSizeNative(self);
+			float ret = PlotToPixelsNative(self, plt);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float AxisPixelSize(ref ImPlotAxis self)
+		public static float PlotToPixels(ref ImPlotAxis self, double plt)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				float ret = AxisPixelSizeNative((ImPlotAxis*)pself);
+				float ret = PlotToPixelsNative((ImPlotAxis*)pself, plt);
 				return ret;
 			}
 		}
@@ -3899,32 +3766,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double AxisGetAspectNative(ImPlotAxis* self)
+		internal static double PixelsToPlotNative(ImPlotAxis* self, float pix)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double>)vt[533])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, float, double>)vt[528])(self, pix);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[533])((nint)self);
+			return (double)((delegate* unmanaged[Cdecl]<nint, float, double>)vt[528])((nint)self, pix);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double AxisGetAspect(ImPlotAxisPtr self)
+		public static double PixelsToPlot(ImPlotAxisPtr self, float pix)
 		{
-			double ret = AxisGetAspectNative(self);
+			double ret = PixelsToPlotNative(self, pix);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double AxisGetAspect(ref ImPlotAxis self)
+		public static double PixelsToPlot(ref ImPlotAxis self, float pix)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				double ret = AxisGetAspectNative((ImPlotAxis*)pself);
+				double ret = PixelsToPlotNative((ImPlotAxis*)pself, pix);
 				return ret;
 			}
 		}
@@ -3932,214 +3799,86 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AxisConstrainNative(ImPlotAxis* self)
+		internal static void ExtendFitNative(ImPlotAxis* self, double v)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[534])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, void>)vt[529])(self, v);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[534])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[529])((nint)self, v);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisConstrain(ImPlotAxisPtr self)
+		public static void ExtendFit(ImPlotAxisPtr self, double v)
 		{
-			AxisConstrainNative(self);
+			ExtendFitNative(self, v);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisConstrain(ref ImPlotAxis self)
+		public static void ExtendFit(ref ImPlotAxis self, double v)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				AxisConstrainNative((ImPlotAxis*)pself);
+				ExtendFitNative((ImPlotAxis*)pself, v);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AxisUpdateTransformCacheNative(ImPlotAxis* self)
+		internal static void ExtendFitWithNative(ImPlotAxis* self, ImPlotAxis* alt, double v, double vAlt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[535])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotAxis*, double, double, void>)vt[530])(self, alt, v, vAlt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[535])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)vt[530])((nint)self, (nint)alt, v, vAlt);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisUpdateTransformCache(ImPlotAxisPtr self)
+		public static void ExtendFitWith(ImPlotAxisPtr self, ImPlotAxisPtr alt, double v, double vAlt)
 		{
-			AxisUpdateTransformCacheNative(self);
+			ExtendFitWithNative(self, alt, v, vAlt);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisUpdateTransformCache(ref ImPlotAxis self)
+		public static void ExtendFitWith(ref ImPlotAxis self, ImPlotAxisPtr alt, double v, double vAlt)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				AxisUpdateTransformCacheNative((ImPlotAxis*)pself);
+				ExtendFitWithNative((ImPlotAxis*)pself, alt, v, vAlt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static float AxisPlotToPixelsNative(ImPlotAxis* self, double plt)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, float>)vt[536])(self, plt);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, double, float>)vt[536])((nint)self, plt);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float AxisPlotToPixels(ImPlotAxisPtr self, double plt)
-		{
-			float ret = AxisPlotToPixelsNative(self, plt);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float AxisPlotToPixels(ref ImPlotAxis self, double plt)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				float ret = AxisPlotToPixelsNative((ImPlotAxis*)pself, plt);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static double AxisPixelsToPlotNative(ImPlotAxis* self, float pix)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, float, double>)vt[537])(self, pix);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, float, double>)vt[537])((nint)self, pix);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double AxisPixelsToPlot(ImPlotAxisPtr self, float pix)
-		{
-			double ret = AxisPixelsToPlotNative(self, pix);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double AxisPixelsToPlot(ref ImPlotAxis self, float pix)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				double ret = AxisPixelsToPlotNative((ImPlotAxis*)pself, pix);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisExtendFitNative(ImPlotAxis* self, double v)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, void>)vt[538])(self, v);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[538])((nint)self, v);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisExtendFit(ImPlotAxisPtr self, double v)
-		{
-			AxisExtendFitNative(self, v);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisExtendFit(ref ImPlotAxis self, double v)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisExtendFitNative((ImPlotAxis*)pself, v);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisExtendFitWithNative(ImPlotAxis* self, ImPlotAxis* alt, double v, double vAlt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotAxis*, double, double, void>)vt[539])(self, alt, v, vAlt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)vt[539])((nint)self, (nint)alt, v, vAlt);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisExtendFitWith(ImPlotAxisPtr self, ImPlotAxisPtr alt, double v, double vAlt)
-		{
-			AxisExtendFitWithNative(self, alt, v, vAlt);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisExtendFitWith(ref ImPlotAxis self, ImPlotAxisPtr alt, double v, double vAlt)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisExtendFitWithNative((ImPlotAxis*)pself, alt, v, vAlt);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisExtendFitWith(ImPlotAxisPtr self, ref ImPlotAxis alt, double v, double vAlt)
+		public static void ExtendFitWith(ImPlotAxisPtr self, ref ImPlotAxis alt, double v, double vAlt)
 		{
 			fixed (ImPlotAxis* palt = &alt)
 			{
-				AxisExtendFitWithNative(self, (ImPlotAxis*)palt, v, vAlt);
+				ExtendFitWithNative(self, (ImPlotAxis*)palt, v, vAlt);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisExtendFitWith(ref ImPlotAxis self, ref ImPlotAxis alt, double v, double vAlt)
+		public static void ExtendFitWith(ref ImPlotAxis self, ref ImPlotAxis alt, double v, double vAlt)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
 				fixed (ImPlotAxis* palt = &alt)
 				{
-					AxisExtendFitWithNative((ImPlotAxis*)pself, (ImPlotAxis*)palt, v, vAlt);
+					ExtendFitWithNative((ImPlotAxis*)pself, (ImPlotAxis*)palt, v, vAlt);
 				}
 			}
 		}
@@ -4147,38 +3886,335 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AxisApplyFitNative(ImPlotAxis* self, float padding)
+		internal static void ApplyFitNative(ImPlotAxis* self, float padding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, float, void>)vt[540])(self, padding);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, float, void>)vt[531])(self, padding);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)vt[540])((nint)self, padding);
+			((delegate* unmanaged[Cdecl]<nint, float, void>)vt[531])((nint)self, padding);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisApplyFit(ImPlotAxisPtr self, float padding)
+		public static void ApplyFit(ImPlotAxisPtr self, float padding)
 		{
-			AxisApplyFitNative(self, padding);
+			ApplyFitNative(self, padding);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AxisApplyFit(ref ImPlotAxis self, float padding)
+		public static void ApplyFit(ref ImPlotAxis self, float padding)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				AxisApplyFitNative((ImPlotAxis*)pself, padding);
+				ApplyFitNative((ImPlotAxis*)pself, padding);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisHasLabelNative(ImPlotAxis* self)
+		internal static byte HasLabelNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[532])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[532])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasLabel(ImPlotAxisPtr self)
+		{
+			byte ret = HasLabelNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasLabel(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = HasLabelNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte HasGridLinesNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[533])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[533])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasGridLines(ImPlotAxisPtr self)
+		{
+			byte ret = HasGridLinesNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasGridLines(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = HasGridLinesNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte HasTickLabelsNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[534])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[534])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasTickLabels(ImPlotAxisPtr self)
+		{
+			byte ret = HasTickLabelsNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasTickLabels(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = HasTickLabelsNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte HasTickMarksNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[535])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[535])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasTickMarks(ImPlotAxisPtr self)
+		{
+			byte ret = HasTickMarksNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool HasTickMarks(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = HasTickMarksNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte WillRenderNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[536])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[536])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool WillRender(ImPlotAxisPtr self)
+		{
+			byte ret = WillRenderNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool WillRender(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = WillRenderNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte IsOppositeNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[537])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[537])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsOpposite(ImPlotAxisPtr self)
+		{
+			byte ret = IsOppositeNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsOpposite(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = IsOppositeNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte IsInvertedNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[538])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[538])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsInverted(ImPlotAxisPtr self)
+		{
+			byte ret = IsInvertedNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsInverted(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = IsInvertedNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte IsForegroundNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[539])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[539])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsForeground(ImPlotAxisPtr self)
+		{
+			byte ret = IsForegroundNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsForeground(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = IsForegroundNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte IsAutoFittingNative(ImPlotAxis* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[540])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[540])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsAutoFitting(ImPlotAxisPtr self)
+		{
+			byte ret = IsAutoFittingNative(self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsAutoFitting(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = IsAutoFittingNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte CanInitFitNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[541])(self);
@@ -4190,20 +4226,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasLabel(ImPlotAxisPtr self)
+		public static bool CanInitFit(ImPlotAxisPtr self)
 		{
-			byte ret = AxisHasLabelNative(self);
+			byte ret = CanInitFitNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasLabel(ref ImPlotAxis self)
+		public static bool CanInitFit(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisHasLabelNative((ImPlotAxis*)pself);
+				byte ret = CanInitFitNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4211,7 +4247,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisHasGridLinesNative(ImPlotAxis* self)
+		internal static byte IsRangeLockedNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[542])(self);
@@ -4223,20 +4259,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasGridLines(ImPlotAxisPtr self)
+		public static bool IsRangeLocked(ImPlotAxisPtr self)
 		{
-			byte ret = AxisHasGridLinesNative(self);
+			byte ret = IsRangeLockedNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasGridLines(ref ImPlotAxis self)
+		public static bool IsRangeLocked(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisHasGridLinesNative((ImPlotAxis*)pself);
+				byte ret = IsRangeLockedNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4244,7 +4280,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisHasTickLabelsNative(ImPlotAxis* self)
+		internal static byte IsLockedMinNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[543])(self);
@@ -4256,20 +4292,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasTickLabels(ImPlotAxisPtr self)
+		public static bool IsLockedMin(ImPlotAxisPtr self)
 		{
-			byte ret = AxisHasTickLabelsNative(self);
+			byte ret = IsLockedMinNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasTickLabels(ref ImPlotAxis self)
+		public static bool IsLockedMin(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisHasTickLabelsNative((ImPlotAxis*)pself);
+				byte ret = IsLockedMinNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4277,7 +4313,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisHasTickMarksNative(ImPlotAxis* self)
+		internal static byte IsLockedMaxNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[544])(self);
@@ -4289,20 +4325,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasTickMarks(ImPlotAxisPtr self)
+		public static bool IsLockedMax(ImPlotAxisPtr self)
 		{
-			byte ret = AxisHasTickMarksNative(self);
+			byte ret = IsLockedMaxNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisHasTickMarks(ref ImPlotAxis self)
+		public static bool IsLockedMax(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisHasTickMarksNative((ImPlotAxis*)pself);
+				byte ret = IsLockedMaxNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4310,7 +4346,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisWillRenderNative(ImPlotAxis* self)
+		internal static byte IsLockedNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[545])(self);
@@ -4322,20 +4358,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisWillRender(ImPlotAxisPtr self)
+		public static bool IsLocked(ImPlotAxisPtr self)
 		{
-			byte ret = AxisWillRenderNative(self);
+			byte ret = IsLockedNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisWillRender(ref ImPlotAxis self)
+		public static bool IsLocked(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisWillRenderNative((ImPlotAxis*)pself);
+				byte ret = IsLockedNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4343,7 +4379,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsOppositeNative(ImPlotAxis* self)
+		internal static byte IsInputLockedMinNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[546])(self);
@@ -4355,20 +4391,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsOpposite(ImPlotAxisPtr self)
+		public static bool IsInputLockedMin(ImPlotAxisPtr self)
 		{
-			byte ret = AxisIsOppositeNative(self);
+			byte ret = IsInputLockedMinNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsOpposite(ref ImPlotAxis self)
+		public static bool IsInputLockedMin(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisIsOppositeNative((ImPlotAxis*)pself);
+				byte ret = IsInputLockedMinNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4376,7 +4412,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsInvertedNative(ImPlotAxis* self)
+		internal static byte IsInputLockedMaxNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[547])(self);
@@ -4388,20 +4424,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsInverted(ImPlotAxisPtr self)
+		public static bool IsInputLockedMax(ImPlotAxisPtr self)
 		{
-			byte ret = AxisIsInvertedNative(self);
+			byte ret = IsInputLockedMaxNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsInverted(ref ImPlotAxis self)
+		public static bool IsInputLockedMax(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisIsInvertedNative((ImPlotAxis*)pself);
+				byte ret = IsInputLockedMaxNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4409,7 +4445,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsForegroundNative(ImPlotAxis* self)
+		internal static byte IsInputLockedNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[548])(self);
@@ -4421,20 +4457,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsForeground(ImPlotAxisPtr self)
+		public static bool IsInputLocked(ImPlotAxisPtr self)
 		{
-			byte ret = AxisIsForegroundNative(self);
+			byte ret = IsInputLockedNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsForeground(ref ImPlotAxis self)
+		public static bool IsInputLocked(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisIsForegroundNative((ImPlotAxis*)pself);
+				byte ret = IsInputLockedNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4442,7 +4478,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsAutoFittingNative(ImPlotAxis* self)
+		internal static byte HasMenusNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[549])(self);
@@ -4454,20 +4490,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsAutoFitting(ImPlotAxisPtr self)
+		public static bool HasMenus(ImPlotAxisPtr self)
 		{
-			byte ret = AxisIsAutoFittingNative(self);
+			byte ret = HasMenusNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsAutoFitting(ref ImPlotAxis self)
+		public static bool HasMenus(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisIsAutoFittingNative((ImPlotAxis*)pself);
+				byte ret = HasMenusNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
@@ -4475,32 +4511,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisCanInitFitNative(ImPlotAxis* self)
+		internal static byte IsPanLockedNative(ImPlotAxis* self, byte increasing)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[550])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte, byte>)vt[550])(self, increasing);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[550])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[550])((nint)self, increasing);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisCanInitFit(ImPlotAxisPtr self)
+		public static bool IsPanLocked(ImPlotAxisPtr self, bool increasing)
 		{
-			byte ret = AxisCanInitFitNative(self);
+			byte ret = IsPanLockedNative(self, increasing ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisCanInitFit(ref ImPlotAxis self)
+		public static bool IsPanLocked(ref ImPlotAxis self, bool increasing)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisCanInitFitNative((ImPlotAxis*)pself);
+				byte ret = IsPanLockedNative((ImPlotAxis*)pself, increasing ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -4508,497 +4544,200 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsRangeLockedNative(ImPlotAxis* self)
+		internal static void PushLinksNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[551])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[551])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[551])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[551])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsRangeLocked(ImPlotAxisPtr self)
+		public static void PushLinks(ImPlotAxisPtr self)
 		{
-			byte ret = AxisIsRangeLockedNative(self);
-			return ret != 0;
+			PushLinksNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsRangeLocked(ref ImPlotAxis self)
+		public static void PushLinks(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisIsRangeLockedNative((ImPlotAxis*)pself);
-				return ret != 0;
+				PushLinksNative((ImPlotAxis*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsLockedMinNative(ImPlotAxis* self)
+		internal static void PullLinksNative(ImPlotAxis* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[552])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[552])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[552])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[552])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsLockedMin(ImPlotAxisPtr self)
+		public static void PullLinks(ImPlotAxisPtr self)
 		{
-			byte ret = AxisIsLockedMinNative(self);
-			return ret != 0;
+			PullLinksNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsLockedMin(ref ImPlotAxis self)
+		public static void PullLinks(ref ImPlotAxis self)
 		{
 			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = AxisIsLockedMinNative((ImPlotAxis*)pself);
-				return ret != 0;
+				PullLinksNative((ImPlotAxis*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte AxisIsLockedMaxNative(ImPlotAxis* self)
+		internal static ImPlotAlignmentData* ImPlotAlignmentDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[553])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*>)vt[553])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[553])((nint)self);
+			return (ImPlotAlignmentData*)((delegate* unmanaged[Cdecl]<nint>)vt[553])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool AxisIsLockedMax(ImPlotAxisPtr self)
+		public static ImPlotAlignmentDataPtr ImPlotAlignmentData()
 		{
-			byte ret = AxisIsLockedMaxNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsLockedMax(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisIsLockedMaxNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisIsLockedNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[554])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[554])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsLocked(ImPlotAxisPtr self)
-		{
-			byte ret = AxisIsLockedNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsLocked(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisIsLockedNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisIsInputLockedMinNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[555])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[555])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsInputLockedMin(ImPlotAxisPtr self)
-		{
-			byte ret = AxisIsInputLockedMinNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsInputLockedMin(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisIsInputLockedMinNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisIsInputLockedMaxNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[556])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[556])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsInputLockedMax(ImPlotAxisPtr self)
-		{
-			byte ret = AxisIsInputLockedMaxNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsInputLockedMax(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisIsInputLockedMaxNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisIsInputLockedNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[557])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[557])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsInputLocked(ImPlotAxisPtr self)
-		{
-			byte ret = AxisIsInputLockedNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsInputLocked(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisIsInputLockedNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisHasMenusNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[558])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[558])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisHasMenus(ImPlotAxisPtr self)
-		{
-			byte ret = AxisHasMenusNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisHasMenus(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisHasMenusNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte AxisIsPanLockedNative(ImPlotAxis* self, byte increasing)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte, byte>)vt[559])(self, increasing);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[559])((nint)self, increasing);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsPanLocked(ImPlotAxisPtr self, bool increasing)
-		{
-			byte ret = AxisIsPanLockedNative(self, increasing ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool AxisIsPanLocked(ref ImPlotAxis self, bool increasing)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = AxisIsPanLockedNative((ImPlotAxis*)pself, increasing ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisPushLinksNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[560])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[560])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisPushLinks(ImPlotAxisPtr self)
-		{
-			AxisPushLinksNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisPushLinks(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisPushLinksNative((ImPlotAxis*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void AxisPullLinksNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[561])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[561])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisPullLinks(ImPlotAxisPtr self)
-		{
-			AxisPullLinksNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AxisPullLinks(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				AxisPullLinksNative((ImPlotAxis*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static ImPlotAlignmentData* AlignmentDataImPlotAlignmentDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*>)vt[562])();
-			#else
-			return (ImPlotAlignmentData*)((delegate* unmanaged[Cdecl]<nint>)vt[562])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotAlignmentDataPtr AlignmentDataImPlotAlignmentData()
-		{
-			ImPlotAlignmentDataPtr ret = AlignmentDataImPlotAlignmentDataNative();
+			ImPlotAlignmentDataPtr ret = ImPlotAlignmentDataNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AlignmentDataDestroyNative(ImPlotAlignmentData* self)
+		internal static void DestroyNative(ImPlotAlignmentData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[563])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[554])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[563])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[554])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataDestroy(ImPlotAlignmentDataPtr self)
+		public static void Destroy(ImPlotAlignmentDataPtr self)
 		{
-			AlignmentDataDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataDestroy(ref ImPlotAlignmentData self)
+		public static void Destroy(ref ImPlotAlignmentData self)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				AlignmentDataDestroyNative((ImPlotAlignmentData*)pself);
+				DestroyNative((ImPlotAlignmentData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AlignmentDataBeginNative(ImPlotAlignmentData* self)
+		internal static void BeginNative(ImPlotAlignmentData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[564])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[555])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[564])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[555])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataBegin(ImPlotAlignmentDataPtr self)
+		public static void Begin(ImPlotAlignmentDataPtr self)
 		{
-			AlignmentDataBeginNative(self);
+			BeginNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataBegin(ref ImPlotAlignmentData self)
+		public static void Begin(ref ImPlotAlignmentData self)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				AlignmentDataBeginNative((ImPlotAlignmentData*)pself);
+				BeginNative((ImPlotAlignmentData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AlignmentDataUpdateNative(ImPlotAlignmentData* self, float* padA, float* padB, float* deltaA, float* deltaB)
+		internal static void UpdateNative(ImPlotAlignmentData* self, float* padA, float* padB, float* deltaA, float* deltaB)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, float*, float*, float*, float*, void>)vt[565])(self, padA, padB, deltaA, deltaB);
+			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, float*, float*, float*, float*, void>)vt[556])(self, padA, padB, deltaA, deltaB);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[565])((nint)self, (nint)padA, (nint)padB, (nint)deltaA, (nint)deltaB);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[556])((nint)self, (nint)padA, (nint)padB, (nint)deltaA, (nint)deltaB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, float* deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, float* deltaB)
 		{
-			AlignmentDataUpdateNative(self, padA, padB, deltaA, deltaB);
+			UpdateNative(self, padA, padB, deltaA, deltaB);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, float* deltaB)
+		public static void Update(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, float* deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, deltaB);
+				UpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, deltaB);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, float* deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, float* deltaB)
 		{
 			fixed (float* ppadA = &padA)
 			{
-				AlignmentDataUpdateNative(self, (float*)ppadA, padB, deltaA, deltaB);
+				UpdateNative(self, (float*)ppadA, padB, deltaA, deltaB);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, float* deltaB)
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, float* deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
 				fixed (float* ppadA = &padA)
 				{
-					AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, deltaB);
+					UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, deltaB);
 				}
 			}
 		}
@@ -5006,24 +4745,283 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, float* deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, float* deltaB)
 		{
 			fixed (float* ppadB = &padB)
 			{
-				AlignmentDataUpdateNative(self, padA, (float*)ppadB, deltaA, deltaB);
+				UpdateNative(self, padA, (float*)ppadB, deltaA, deltaB);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, float* deltaB)
+		public static void Update(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, float* deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
 				fixed (float* ppadB = &padB)
 				{
-					AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, deltaB);
+					UpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					UpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* pdeltaA = &deltaA)
+			{
+				UpdateNative(self, padA, padB, (float*)pdeltaA, deltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					UpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					UpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					UpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						UpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						UpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaA = &deltaA)
+						{
+							UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* pdeltaB = &deltaB)
+			{
+				UpdateNative(self, padA, padB, deltaA, (float*)pdeltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					UpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					UpdateNative(self, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					UpdateNative(self, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						UpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						UpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
+					}
 				}
 			}
 		}

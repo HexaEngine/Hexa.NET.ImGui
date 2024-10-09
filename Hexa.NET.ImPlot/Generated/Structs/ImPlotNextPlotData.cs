@@ -249,6 +249,28 @@ namespace Hexa.NET.ImPlot
 				}
 			}
 		}
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotNextPlotData* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			fixed (ImPlotNextPlotData* @this = &this)
+			{
+				ImPlot.ResetNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -342,6 +364,22 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			ImPlot.ResetNative(Handle);
+		}
+
 	}
 
 }

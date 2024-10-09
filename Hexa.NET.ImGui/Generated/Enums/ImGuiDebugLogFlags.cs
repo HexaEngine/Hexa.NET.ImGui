@@ -80,12 +80,12 @@ namespace Hexa.NET.ImGui
 		EventMask = unchecked(1023),
 
 		/// <summary>
-		/// To be documented.
+		/// Also send output to TTY<br/>
 		/// </summary>
 		OutputToTty = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Also send output to Test Engine<br/>
 		/// </summary>
 		OutputToTestEngine = unchecked(2097152),
 	}

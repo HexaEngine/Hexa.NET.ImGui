@@ -20,12 +20,12 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiSliderFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Should this slider be orientated vertically?<br/>
 		/// </summary>
 		Vertical = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Consider using g.NextItemData.ItemFlags |= ImGuiItemFlags_ReadOnly instead.<br/>
 		/// </summary>
 		ReadOnly = unchecked(2097152),
 	}

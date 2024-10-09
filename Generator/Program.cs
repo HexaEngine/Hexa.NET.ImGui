@@ -8,6 +8,7 @@
     internal unsafe class Program
     {
         private const string CImGuiConfig = "cimgui/generator.json";
+
         private const string CImGuizmoConfig = "cimguizmo/generator.json";
         private const string CImNodesConfig = "cimnodes/generator.json";
         private const string CImPlotConfig = "cimplot/generator.json";
@@ -18,6 +19,7 @@
         private const string CImPlotHeader = "cimplot/cimplot.h";
 
         private const string ImGuiOutputPath = "../../../../Hexa.NET.ImGui/Generated";
+
         private const string ImGuizmoOutputPath = "../../../../Hexa.NET.ImGuizmo/Generated";
         private const string ImNodesOutputPath = "../../../../Hexa.NET.ImNodes/Generated";
         private const string ImPlotOutputPath = "../../../../Hexa.NET.ImPlot/Generated";
@@ -30,19 +32,21 @@
             }
 
             Directory.CreateDirectory("./patches");
-            Generate(CImGuiHeader, CImGuiConfig, ImGuiOutputPath, null, out var metadata);
-            Generate(CImGuizmoHeader, CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _);
-            Generate(CImPlotHeader, CImPlotConfig, ImPlotOutputPath, metadata, out _);
-            Generate(CImNodesHeader, CImNodesConfig, ImNodesOutputPath, metadata, out _);
+            // don't worry about "NoInternals" internals will be generated in a substep (post-patch) when generating. see ImGuiPostPatch.cs
+            Generate(CImGuiHeader, CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
+
+            Generate(CImGuizmoHeader, CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+            Generate(CImPlotHeader, CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
+            Generate(CImNodesHeader, CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
         }
 
-        private static bool Generate(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata)
+        private static bool Generate(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
             settings.WrapPointersAsHandle = true;
             ImGuiCodeGenerator generator = new(settings);
             generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
-            generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch());
+            generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(type));
             generator.PatchEngine.RegisterPrePatch(new ImGuizmoPrePatch());
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
             generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None));
@@ -59,6 +63,8 @@
             metadata = generator.GetMetadata();
 
             generator.LogEvent -= GeneratorLogEvent;
+
+            File.WriteAllText(settings.LibName + ".log", string.Join(Environment.NewLine, generator.Messages.Select(x => x.ToString())));
 
             return result;
         }

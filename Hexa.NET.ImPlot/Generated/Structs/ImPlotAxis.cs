@@ -422,6 +422,476 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ApplyFit(float padding)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.ApplyFitNative(@this, padding);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool CanInitFit()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.CanInitFitNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Constrain()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.ConstrainNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ExtendFit(double v)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.ExtendFitNative(@this, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ExtendFitWith(ImPlotAxis* alt, double v, double vAlt)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.ExtendFitWithNative(@this, alt, v, vAlt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ExtendFitWith(ref ImPlotAxis alt, double v, double vAlt)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				fixed (ImPlotAxis* palt = &alt)
+				{
+					ImPlot.ExtendFitWithNative(@this, (ImPlotAxis*)palt, v, vAlt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe double GetAspect()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				double ret = ImPlot.GetAspectNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasGridLines()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.HasGridLinesNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasLabel()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.HasLabelNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasMenus()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.HasMenusNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasTickLabels()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.HasTickLabelsNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasTickMarks()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.HasTickMarksNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsAutoFitting()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsAutoFittingNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsForeground()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsForegroundNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLocked()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsInputLockedNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLockedMax()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsInputLockedMaxNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLockedMin()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsInputLockedMinNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInverted()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsInvertedNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsLocked()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsLockedNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsLockedMax()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsLockedMaxNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsLockedMin()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsLockedMinNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsOpposite()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsOppositeNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsPanLocked(bool increasing)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsPanLockedNative(@this, increasing ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsRangeLocked()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.IsRangeLockedNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe float PixelSize()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				float ret = ImPlot.PixelSizeNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe double PixelsToPlot(float pix)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				double ret = ImPlot.PixelsToPlotNative(@this, pix);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe float PlotToPixels(double plt)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				float ret = ImPlot.PlotToPixelsNative(@this, plt);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PullLinks()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.PullLinksNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PushLinks()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.PushLinksNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.ResetNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAspect(double unitPerPix)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.SetAspectNative(@this, unitPerPix);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMax(double max, bool force)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.SetMaxNative(@this, max, force ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMax(double max)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.SetMaxNative(@this, max, (byte)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMin(double min, bool force)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.SetMinNative(@this, min, force ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMin(double min)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.SetMinNative(@this, min, (byte)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetRange(double v1, double v2)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.SetRangeNative(@this, v1, v2);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetRange(ImPlotRange range)
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.SetRangeNative(@this, range);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void UpdateTransformCache()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				ImPlot.UpdateTransformCacheNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool WillRender()
+		{
+			fixed (ImPlotAxis* @this = &this)
+			{
+				byte ret = ImPlot.WillRenderNative(@this);
+				return ret != 0;
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -664,6 +1134,356 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref bool Held => ref Unsafe.AsRef<bool>(&Handle->Held);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ApplyFit(float padding)
+		{
+			ImPlot.ApplyFitNative(Handle, padding);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool CanInitFit()
+		{
+			byte ret = ImPlot.CanInitFitNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Constrain()
+		{
+			ImPlot.ConstrainNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ExtendFit(double v)
+		{
+			ImPlot.ExtendFitNative(Handle, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ExtendFitWith(ImPlotAxis* alt, double v, double vAlt)
+		{
+			ImPlot.ExtendFitWithNative(Handle, alt, v, vAlt);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ExtendFitWith(ref ImPlotAxis alt, double v, double vAlt)
+		{
+			fixed (ImPlotAxis* palt = &alt)
+			{
+				ImPlot.ExtendFitWithNative(Handle, (ImPlotAxis*)palt, v, vAlt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe double GetAspect()
+		{
+			double ret = ImPlot.GetAspectNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasGridLines()
+		{
+			byte ret = ImPlot.HasGridLinesNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasLabel()
+		{
+			byte ret = ImPlot.HasLabelNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasMenus()
+		{
+			byte ret = ImPlot.HasMenusNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasTickLabels()
+		{
+			byte ret = ImPlot.HasTickLabelsNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasTickMarks()
+		{
+			byte ret = ImPlot.HasTickMarksNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsAutoFitting()
+		{
+			byte ret = ImPlot.IsAutoFittingNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsForeground()
+		{
+			byte ret = ImPlot.IsForegroundNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLocked()
+		{
+			byte ret = ImPlot.IsInputLockedNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLockedMax()
+		{
+			byte ret = ImPlot.IsInputLockedMaxNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLockedMin()
+		{
+			byte ret = ImPlot.IsInputLockedMinNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInverted()
+		{
+			byte ret = ImPlot.IsInvertedNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsLocked()
+		{
+			byte ret = ImPlot.IsLockedNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsLockedMax()
+		{
+			byte ret = ImPlot.IsLockedMaxNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsLockedMin()
+		{
+			byte ret = ImPlot.IsLockedMinNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsOpposite()
+		{
+			byte ret = ImPlot.IsOppositeNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsPanLocked(bool increasing)
+		{
+			byte ret = ImPlot.IsPanLockedNative(Handle, increasing ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsRangeLocked()
+		{
+			byte ret = ImPlot.IsRangeLockedNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe float PixelSize()
+		{
+			float ret = ImPlot.PixelSizeNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe double PixelsToPlot(float pix)
+		{
+			double ret = ImPlot.PixelsToPlotNative(Handle, pix);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe float PlotToPixels(double plt)
+		{
+			float ret = ImPlot.PlotToPixelsNative(Handle, plt);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PullLinks()
+		{
+			ImPlot.PullLinksNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PushLinks()
+		{
+			ImPlot.PushLinksNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			ImPlot.ResetNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAspect(double unitPerPix)
+		{
+			ImPlot.SetAspectNative(Handle, unitPerPix);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMax(double max, bool force)
+		{
+			byte ret = ImPlot.SetMaxNative(Handle, max, force ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMax(double max)
+		{
+			byte ret = ImPlot.SetMaxNative(Handle, max, (byte)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMin(double min, bool force)
+		{
+			byte ret = ImPlot.SetMinNative(Handle, min, force ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool SetMin(double min)
+		{
+			byte ret = ImPlot.SetMinNative(Handle, min, (byte)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetRange(double v1, double v2)
+		{
+			ImPlot.SetRangeNative(Handle, v1, v2);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetRange(ImPlotRange range)
+		{
+			ImPlot.SetRangeNative(Handle, range);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void UpdateTransformCache()
+		{
+			ImPlot.UpdateTransformCacheNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool WillRender()
+		{
+			byte ret = ImPlot.WillRenderNative(Handle);
+			return ret != 0;
+		}
+
 	}
 
 }

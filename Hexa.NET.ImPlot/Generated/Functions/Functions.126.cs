@@ -22,266 +22,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					AlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* ppadB = &padB)
-					{
-						AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* pdeltaA = &deltaA)
-			{
-				AlignmentDataUpdateNative(self, padA, padB, (float*)pdeltaA, deltaB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, deltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					AlignmentDataUpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* ppadB = &padB)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					AlignmentDataUpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						AlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* ppadB = &padB)
-					{
-						fixed (float* pdeltaA = &deltaA)
-						{
-							AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* pdeltaB = &deltaB)
-			{
-				AlignmentDataUpdateNative(self, padA, padB, deltaA, (float*)pdeltaB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					AlignmentDataUpdateNative(self, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* ppadB = &padB)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					AlignmentDataUpdateNative(self, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						AlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
@@ -291,7 +32,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (float* pdeltaB = &deltaB)
 						{
-							AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
+							UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
 						}
 					}
 				}
@@ -301,13 +42,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, ref float deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (float* pdeltaA = &deltaA)
 			{
 				fixed (float* pdeltaB = &deltaB)
 				{
-					AlignmentDataUpdateNative(self, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
+					UpdateNative(self, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
 				}
 			}
 		}
@@ -315,7 +56,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, ref float deltaB)
+		public static void Update(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
@@ -323,7 +64,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (float* pdeltaB = &deltaB)
 					{
-						AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
+						UpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
 					}
 				}
 			}
@@ -332,7 +73,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (float* ppadA = &padA)
 			{
@@ -340,7 +81,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (float* pdeltaB = &deltaB)
 					{
-						AlignmentDataUpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
+						UpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
 					}
 				}
 			}
@@ -349,7 +90,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
@@ -359,7 +100,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (float* pdeltaB = &deltaB)
 						{
-							AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
+							UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
 						}
 					}
 				}
@@ -369,7 +110,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (float* ppadB = &padB)
 			{
@@ -377,7 +118,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (float* pdeltaB = &deltaB)
 					{
-						AlignmentDataUpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+						UpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 					}
 				}
 			}
@@ -386,7 +127,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
+		public static void Update(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
@@ -396,7 +137,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (float* pdeltaB = &deltaB)
 						{
-							AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+							UpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 						}
 					}
 				}
@@ -406,7 +147,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
+		public static void Update(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (float* ppadA = &padA)
 			{
@@ -416,7 +157,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (float* pdeltaB = &deltaB)
 						{
-							AlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+							UpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 						}
 					}
 				}
@@ -426,7 +167,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
+		public static void Update(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
@@ -438,7 +179,7 @@ namespace Hexa.NET.ImPlot
 						{
 							fixed (float* pdeltaB = &deltaB)
 							{
-								AlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+								UpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 							}
 						}
 					}
@@ -449,281 +190,281 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AlignmentDataEndNative(ImPlotAlignmentData* self)
+		internal static void EndNative(ImPlotAlignmentData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[566])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[557])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[566])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[557])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataEnd(ImPlotAlignmentDataPtr self)
+		public static void End(ImPlotAlignmentDataPtr self)
 		{
-			AlignmentDataEndNative(self);
+			EndNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataEnd(ref ImPlotAlignmentData self)
+		public static void End(ref ImPlotAlignmentData self)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				AlignmentDataEndNative((ImPlotAlignmentData*)pself);
+				EndNative((ImPlotAlignmentData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void AlignmentDataResetNative(ImPlotAlignmentData* self)
+		internal static void ResetNative(ImPlotAlignmentData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[567])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[558])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[567])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[558])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataReset(ImPlotAlignmentDataPtr self)
+		public static void Reset(ImPlotAlignmentDataPtr self)
 		{
-			AlignmentDataResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AlignmentDataReset(ref ImPlotAlignmentData self)
+		public static void Reset(ref ImPlotAlignmentData self)
 		{
 			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				AlignmentDataResetNative((ImPlotAlignmentData*)pself);
+				ResetNative((ImPlotAlignmentData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItem* ItemImPlotItemNative()
+		internal static ImPlotItem* ImPlotItemNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItem*>)vt[568])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotItem*>)vt[559])();
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint>)vt[568])();
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint>)vt[559])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemImPlotItem()
+		public static ImPlotItemPtr ImPlotItem()
 		{
-			ImPlotItemPtr ret = ItemImPlotItemNative();
+			ImPlotItemPtr ret = ImPlotItemNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ItemDestroyNative(ImPlotItem* self)
+		internal static void DestroyNative(ImPlotItem* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotItem*, void>)vt[569])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotItem*, void>)vt[560])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[569])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[560])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ItemDestroy(ImPlotItemPtr self)
+		public static void Destroy(ImPlotItemPtr self)
 		{
-			ItemDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ItemDestroy(ref ImPlotItem self)
+		public static void Destroy(ref ImPlotItem self)
 		{
 			fixed (ImPlotItem* pself = &self)
 			{
-				ItemDestroyNative((ImPlotItem*)pself);
+				DestroyNative((ImPlotItem*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotLegend* LegendImPlotLegendNative()
+		internal static ImPlotLegend* ImPlotLegendNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotLegend*>)vt[570])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotLegend*>)vt[561])();
 			#else
-			return (ImPlotLegend*)((delegate* unmanaged[Cdecl]<nint>)vt[570])();
+			return (ImPlotLegend*)((delegate* unmanaged[Cdecl]<nint>)vt[561])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotLegendPtr LegendImPlotLegend()
+		public static ImPlotLegendPtr ImPlotLegend()
 		{
-			ImPlotLegendPtr ret = LegendImPlotLegendNative();
+			ImPlotLegendPtr ret = ImPlotLegendNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void LegendDestroyNative(ImPlotLegend* self)
+		internal static void DestroyNative(ImPlotLegend* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLegend*, void>)vt[571])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotLegend*, void>)vt[562])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[571])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[562])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LegendDestroy(ImPlotLegendPtr self)
+		public static void Destroy(ImPlotLegendPtr self)
 		{
-			LegendDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LegendDestroy(ref ImPlotLegend self)
+		public static void Destroy(ref ImPlotLegend self)
 		{
 			fixed (ImPlotLegend* pself = &self)
 			{
-				LegendDestroyNative((ImPlotLegend*)pself);
+				DestroyNative((ImPlotLegend*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void LegendResetNative(ImPlotLegend* self)
+		internal static void ResetNative(ImPlotLegend* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLegend*, void>)vt[572])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotLegend*, void>)vt[563])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[572])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[563])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LegendReset(ImPlotLegendPtr self)
+		public static void Reset(ImPlotLegendPtr self)
 		{
-			LegendResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LegendReset(ref ImPlotLegend self)
+		public static void Reset(ref ImPlotLegend self)
 		{
 			fixed (ImPlotLegend* pself = &self)
 			{
-				LegendResetNative((ImPlotLegend*)pself);
+				ResetNative((ImPlotLegend*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItemGroup* ItemGroupImPlotItemGroupNative()
+		internal static ImPlotItemGroup* ImPlotItemGroupNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*>)vt[573])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*>)vt[564])();
 			#else
-			return (ImPlotItemGroup*)((delegate* unmanaged[Cdecl]<nint>)vt[573])();
+			return (ImPlotItemGroup*)((delegate* unmanaged[Cdecl]<nint>)vt[564])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemGroupPtr ItemGroupImPlotItemGroup()
+		public static ImPlotItemGroupPtr ImPlotItemGroup()
 		{
-			ImPlotItemGroupPtr ret = ItemGroupImPlotItemGroupNative();
+			ImPlotItemGroupPtr ret = ImPlotItemGroupNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ItemGroupDestroyNative(ImPlotItemGroup* self)
+		internal static void DestroyNative(ImPlotItemGroup* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, void>)vt[574])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, void>)vt[565])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[574])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[565])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ItemGroupDestroy(ImPlotItemGroupPtr self)
+		public static void Destroy(ImPlotItemGroupPtr self)
 		{
-			ItemGroupDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ItemGroupDestroy(ref ImPlotItemGroup self)
+		public static void Destroy(ref ImPlotItemGroup self)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ItemGroupDestroyNative((ImPlotItemGroup*)pself);
+				DestroyNative((ImPlotItemGroup*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ItemGroupGetItemCountNative(ImPlotItemGroup* self)
+		internal static int GetItemCountNative(ImPlotItemGroup* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int>)vt[575])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int>)vt[566])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[575])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[566])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetItemCount(ImPlotItemGroupPtr self)
+		public static int GetItemCount(ImPlotItemGroupPtr self)
 		{
-			int ret = ItemGroupGetItemCountNative(self);
+			int ret = GetItemCountNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetItemCount(ref ImPlotItemGroup self)
+		public static int GetItemCount(ref ImPlotItemGroup self)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				int ret = ItemGroupGetItemCountNative((ImPlotItemGroup*)pself);
+				int ret = GetItemCountNative((ImPlotItemGroup*)pself);
 				return ret;
 			}
 		}
@@ -731,32 +472,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ItemGroupGetItemIDNative(ImPlotItemGroup* self, byte* labelId)
+		internal static uint GetItemIDNative(ImPlotItemGroup* self, byte* labelId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, byte*, uint>)vt[576])(self, labelId);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, byte*, uint>)vt[567])(self, labelId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)vt[576])((nint)self, (nint)labelId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)vt[567])((nint)self, (nint)labelId);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ImPlotItemGroupPtr self, byte* labelId)
+		public static uint GetItemID(ImPlotItemGroupPtr self, byte* labelId)
 		{
-			uint ret = ItemGroupGetItemIDNative(self, labelId);
+			uint ret = GetItemIDNative(self, labelId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ref ImPlotItemGroup self, byte* labelId)
+		public static uint GetItemID(ref ImPlotItemGroup self, byte* labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				uint ret = ItemGroupGetItemIDNative((ImPlotItemGroup*)pself, labelId);
+				uint ret = GetItemIDNative((ImPlotItemGroup*)pself, labelId);
 				return ret;
 			}
 		}
@@ -764,11 +505,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ImPlotItemGroupPtr self, ref byte labelId)
+		public static uint GetItemID(ImPlotItemGroupPtr self, ref byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				uint ret = ItemGroupGetItemIDNative(self, (byte*)plabelId);
+				uint ret = GetItemIDNative(self, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -776,11 +517,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ImPlotItemGroupPtr self, ReadOnlySpan<byte> labelId)
+		public static uint GetItemID(ImPlotItemGroupPtr self, ReadOnlySpan<byte> labelId)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				uint ret = ItemGroupGetItemIDNative(self, (byte*)plabelId);
+				uint ret = GetItemIDNative(self, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -788,7 +529,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ImPlotItemGroupPtr self, string labelId)
+		public static uint GetItemID(ImPlotItemGroupPtr self, string labelId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -807,7 +548,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			uint ret = ItemGroupGetItemIDNative(self, pStr0);
+			uint ret = GetItemIDNative(self, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -818,13 +559,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ref ImPlotItemGroup self, ref byte labelId)
+		public static uint GetItemID(ref ImPlotItemGroup self, ref byte labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
 				fixed (byte* plabelId = &labelId)
 				{
-					uint ret = ItemGroupGetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
+					uint ret = GetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -833,13 +574,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ref ImPlotItemGroup self, ReadOnlySpan<byte> labelId)
+		public static uint GetItemID(ref ImPlotItemGroup self, ReadOnlySpan<byte> labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
 				fixed (byte* plabelId = labelId)
 				{
-					uint ret = ItemGroupGetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
+					uint ret = GetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -848,7 +589,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ItemGroupGetItemID(ref ImPlotItemGroup self, string labelId)
+		public static uint GetItemID(ref ImPlotItemGroup self, string labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
@@ -869,7 +610,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				uint ret = ItemGroupGetItemIDNative((ImPlotItemGroup*)pself, pStr0);
+				uint ret = GetItemIDNative((ImPlotItemGroup*)pself, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -881,32 +622,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItem* ItemGroupGetItemIDNative(ImPlotItemGroup* self, uint id)
+		internal static ImPlotItem* GetItemNative(ImPlotItemGroup* self, uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, uint, ImPlotItem*>)vt[577])(self, id);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, uint, ImPlotItem*>)vt[568])(self, id);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)vt[577])((nint)self, id);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)vt[568])((nint)self, id);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItemID(ImPlotItemGroupPtr self, uint id)
+		public static ImPlotItemPtr GetItem(ImPlotItemGroupPtr self, uint id)
 		{
-			ImPlotItemPtr ret = ItemGroupGetItemIDNative(self, id);
+			ImPlotItemPtr ret = GetItemNative(self, id);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItemID(ref ImPlotItemGroup self, uint id)
+		public static ImPlotItemPtr GetItem(ref ImPlotItemGroup self, uint id)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ImPlotItemPtr ret = ItemGroupGetItemIDNative((ImPlotItemGroup*)pself, id);
+				ImPlotItemPtr ret = GetItemNative((ImPlotItemGroup*)pself, id);
 				return ret;
 			}
 		}
@@ -914,32 +655,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItem* ItemGroupGetItemNative(ImPlotItemGroup* self, byte* labelId)
+		internal static ImPlotItem* GetItemNative(ImPlotItemGroup* self, byte* labelId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, byte*, ImPlotItem*>)vt[578])(self, labelId);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, byte*, ImPlotItem*>)vt[569])(self, labelId);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[578])((nint)self, (nint)labelId);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[569])((nint)self, (nint)labelId);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ImPlotItemGroupPtr self, byte* labelId)
+		public static ImPlotItemPtr GetItem(ImPlotItemGroupPtr self, byte* labelId)
 		{
-			ImPlotItemPtr ret = ItemGroupGetItemNative(self, labelId);
+			ImPlotItemPtr ret = GetItemNative(self, labelId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ref ImPlotItemGroup self, byte* labelId)
+		public static ImPlotItemPtr GetItem(ref ImPlotItemGroup self, byte* labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ImPlotItemPtr ret = ItemGroupGetItemNative((ImPlotItemGroup*)pself, labelId);
+				ImPlotItemPtr ret = GetItemNative((ImPlotItemGroup*)pself, labelId);
 				return ret;
 			}
 		}
@@ -947,11 +688,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ImPlotItemGroupPtr self, ref byte labelId)
+		public static ImPlotItemPtr GetItem(ImPlotItemGroupPtr self, ref byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				ImPlotItemPtr ret = ItemGroupGetItemNative(self, (byte*)plabelId);
+				ImPlotItemPtr ret = GetItemNative(self, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -959,11 +700,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ImPlotItemGroupPtr self, ReadOnlySpan<byte> labelId)
+		public static ImPlotItemPtr GetItem(ImPlotItemGroupPtr self, ReadOnlySpan<byte> labelId)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				ImPlotItemPtr ret = ItemGroupGetItemNative(self, (byte*)plabelId);
+				ImPlotItemPtr ret = GetItemNative(self, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -971,7 +712,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ImPlotItemGroupPtr self, string labelId)
+		public static ImPlotItemPtr GetItem(ImPlotItemGroupPtr self, string labelId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -990,7 +731,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlotItemPtr ret = ItemGroupGetItemNative(self, pStr0);
+			ImPlotItemPtr ret = GetItemNative(self, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1001,13 +742,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ref ImPlotItemGroup self, ref byte labelId)
+		public static ImPlotItemPtr GetItem(ref ImPlotItemGroup self, ref byte labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
 				fixed (byte* plabelId = &labelId)
 				{
-					ImPlotItemPtr ret = ItemGroupGetItemNative((ImPlotItemGroup*)pself, (byte*)plabelId);
+					ImPlotItemPtr ret = GetItemNative((ImPlotItemGroup*)pself, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -1016,13 +757,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ref ImPlotItemGroup self, ReadOnlySpan<byte> labelId)
+		public static ImPlotItemPtr GetItem(ref ImPlotItemGroup self, ReadOnlySpan<byte> labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
 				fixed (byte* plabelId = labelId)
 				{
-					ImPlotItemPtr ret = ItemGroupGetItemNative((ImPlotItemGroup*)pself, (byte*)plabelId);
+					ImPlotItemPtr ret = GetItemNative((ImPlotItemGroup*)pself, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -1031,7 +772,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItem(ref ImPlotItemGroup self, string labelId)
+		public static ImPlotItemPtr GetItem(ref ImPlotItemGroup self, string labelId)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
@@ -1052,7 +793,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImPlotItemPtr ret = ItemGroupGetItemNative((ImPlotItemGroup*)pself, pStr0);
+				ImPlotItemPtr ret = GetItemNative((ImPlotItemGroup*)pself, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1064,32 +805,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItem* ItemGroupGetOrAddItemNative(ImPlotItemGroup* self, uint id)
+		internal static ImPlotItem* GetOrAddItemNative(ImPlotItemGroup* self, uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, uint, ImPlotItem*>)vt[579])(self, id);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, uint, ImPlotItem*>)vt[570])(self, id);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)vt[579])((nint)self, id);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)vt[570])((nint)self, id);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetOrAddItem(ImPlotItemGroupPtr self, uint id)
+		public static ImPlotItemPtr GetOrAddItem(ImPlotItemGroupPtr self, uint id)
 		{
-			ImPlotItemPtr ret = ItemGroupGetOrAddItemNative(self, id);
+			ImPlotItemPtr ret = GetOrAddItemNative(self, id);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetOrAddItem(ref ImPlotItemGroup self, uint id)
+		public static ImPlotItemPtr GetOrAddItem(ref ImPlotItemGroup self, uint id)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ImPlotItemPtr ret = ItemGroupGetOrAddItemNative((ImPlotItemGroup*)pself, id);
+				ImPlotItemPtr ret = GetOrAddItemNative((ImPlotItemGroup*)pself, id);
 				return ret;
 			}
 		}
@@ -1097,32 +838,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItem* ItemGroupGetItemByIndexNative(ImPlotItemGroup* self, int i)
+		internal static ImPlotItem* GetItemByIndexNative(ImPlotItemGroup* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, ImPlotItem*>)vt[580])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, ImPlotItem*>)vt[571])(self, i);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[580])((nint)self, i);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[571])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItemByIndex(ImPlotItemGroupPtr self, int i)
+		public static ImPlotItemPtr GetItemByIndex(ImPlotItemGroupPtr self, int i)
 		{
-			ImPlotItemPtr ret = ItemGroupGetItemByIndexNative(self, i);
+			ImPlotItemPtr ret = GetItemByIndexNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetItemByIndex(ref ImPlotItemGroup self, int i)
+		public static ImPlotItemPtr GetItemByIndex(ref ImPlotItemGroup self, int i)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ImPlotItemPtr ret = ItemGroupGetItemByIndexNative((ImPlotItemGroup*)pself, i);
+				ImPlotItemPtr ret = GetItemByIndexNative((ImPlotItemGroup*)pself, i);
 				return ret;
 			}
 		}
@@ -1130,32 +871,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ItemGroupGetItemIndexNative(ImPlotItemGroup* self, ImPlotItem* item)
+		internal static int GetItemIndexNative(ImPlotItemGroup* self, ImPlotItem* item)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, ImPlotItem*, int>)vt[581])(self, item);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, ImPlotItem*, int>)vt[572])(self, item);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)vt[581])((nint)self, (nint)item);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)vt[572])((nint)self, (nint)item);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetItemIndex(ImPlotItemGroupPtr self, ImPlotItemPtr item)
+		public static int GetItemIndex(ImPlotItemGroupPtr self, ImPlotItemPtr item)
 		{
-			int ret = ItemGroupGetItemIndexNative(self, item);
+			int ret = GetItemIndexNative(self, item);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetItemIndex(ref ImPlotItemGroup self, ImPlotItemPtr item)
+		public static int GetItemIndex(ref ImPlotItemGroup self, ImPlotItemPtr item)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				int ret = ItemGroupGetItemIndexNative((ImPlotItemGroup*)pself, item);
+				int ret = GetItemIndexNative((ImPlotItemGroup*)pself, item);
 				return ret;
 			}
 		}
@@ -1163,11 +904,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetItemIndex(ImPlotItemGroupPtr self, ref ImPlotItem item)
+		public static int GetItemIndex(ImPlotItemGroupPtr self, ref ImPlotItem item)
 		{
 			fixed (ImPlotItem* pitem = &item)
 			{
-				int ret = ItemGroupGetItemIndexNative(self, (ImPlotItem*)pitem);
+				int ret = GetItemIndexNative(self, (ImPlotItem*)pitem);
 				return ret;
 			}
 		}
@@ -1175,13 +916,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetItemIndex(ref ImPlotItemGroup self, ref ImPlotItem item)
+		public static int GetItemIndex(ref ImPlotItemGroup self, ref ImPlotItem item)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
 				fixed (ImPlotItem* pitem = &item)
 				{
-					int ret = ItemGroupGetItemIndexNative((ImPlotItemGroup*)pself, (ImPlotItem*)pitem);
+					int ret = GetItemIndexNative((ImPlotItemGroup*)pself, (ImPlotItem*)pitem);
 					return ret;
 				}
 			}
@@ -1190,32 +931,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ItemGroupGetLegendCountNative(ImPlotItemGroup* self)
+		internal static int GetLegendCountNative(ImPlotItemGroup* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int>)vt[582])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int>)vt[573])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[582])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[573])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetLegendCount(ImPlotItemGroupPtr self)
+		public static int GetLegendCount(ImPlotItemGroupPtr self)
 		{
-			int ret = ItemGroupGetLegendCountNative(self);
+			int ret = GetLegendCountNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ItemGroupGetLegendCount(ref ImPlotItemGroup self)
+		public static int GetLegendCount(ref ImPlotItemGroup self)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				int ret = ItemGroupGetLegendCountNative((ImPlotItemGroup*)pself);
+				int ret = GetLegendCountNative((ImPlotItemGroup*)pself);
 				return ret;
 			}
 		}
@@ -1223,32 +964,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotItem* ItemGroupGetLegendItemNative(ImPlotItemGroup* self, int i)
+		internal static ImPlotItem* GetLegendItemNative(ImPlotItemGroup* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, ImPlotItem*>)vt[583])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, ImPlotItem*>)vt[574])(self, i);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[583])((nint)self, i);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[574])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetLegendItem(ImPlotItemGroupPtr self, int i)
+		public static ImPlotItemPtr GetLegendItem(ImPlotItemGroupPtr self, int i)
 		{
-			ImPlotItemPtr ret = ItemGroupGetLegendItemNative(self, i);
+			ImPlotItemPtr ret = GetLegendItemNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotItemPtr ItemGroupGetLegendItem(ref ImPlotItemGroup self, int i)
+		public static ImPlotItemPtr GetLegendItem(ref ImPlotItemGroup self, int i)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ImPlotItemPtr ret = ItemGroupGetLegendItemNative((ImPlotItemGroup*)pself, i);
+				ImPlotItemPtr ret = GetLegendItemNative((ImPlotItemGroup*)pself, i);
 				return ret;
 			}
 		}
@@ -1256,41 +997,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* ItemGroupGetLegendLabelNative(ImPlotItemGroup* self, int i)
+		internal static byte* GetLegendLabelNative(ImPlotItemGroup* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, byte*>)vt[584])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, byte*>)vt[575])(self, i);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[584])((nint)self, i);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[575])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ItemGroupGetLegendLabel(ImPlotItemGroupPtr self, int i)
+		public static byte* GetLegendLabel(ImPlotItemGroupPtr self, int i)
 		{
-			byte* ret = ItemGroupGetLegendLabelNative(self, i);
+			byte* ret = GetLegendLabelNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ItemGroupGetLegendLabelS(ImPlotItemGroupPtr self, int i)
+		public static string GetLegendLabelS(ImPlotItemGroupPtr self, int i)
 		{
-			string ret = Utils.DecodeStringUTF8(ItemGroupGetLegendLabelNative(self, i));
+			string ret = Utils.DecodeStringUTF8(GetLegendLabelNative(self, i));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ItemGroupGetLegendLabel(ref ImPlotItemGroup self, int i)
+		public static byte* GetLegendLabel(ref ImPlotItemGroup self, int i)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				byte* ret = ItemGroupGetLegendLabelNative((ImPlotItemGroup*)pself, i);
+				byte* ret = GetLegendLabelNative((ImPlotItemGroup*)pself, i);
 				return ret;
 			}
 		}
@@ -1298,11 +1039,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ItemGroupGetLegendLabelS(ref ImPlotItemGroup self, int i)
+		public static string GetLegendLabelS(ref ImPlotItemGroup self, int i)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(ItemGroupGetLegendLabelNative((ImPlotItemGroup*)pself, i));
+				string ret = Utils.DecodeStringUTF8(GetLegendLabelNative((ImPlotItemGroup*)pself, i));
 				return ret;
 			}
 		}
@@ -1310,115 +1051,115 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ItemGroupResetNative(ImPlotItemGroup* self)
+		internal static void ResetNative(ImPlotItemGroup* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, void>)vt[585])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, void>)vt[576])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[585])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[576])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ItemGroupReset(ImPlotItemGroupPtr self)
+		public static void Reset(ImPlotItemGroupPtr self)
 		{
-			ItemGroupResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ItemGroupReset(ref ImPlotItemGroup self)
+		public static void Reset(ref ImPlotItemGroup self)
 		{
 			fixed (ImPlotItemGroup* pself = &self)
 			{
-				ItemGroupResetNative((ImPlotItemGroup*)pself);
+				ResetNative((ImPlotItemGroup*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotPlot* PlotImPlotPlotNative()
+		internal static ImPlotPlot* ImPlotPlotNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*>)vt[586])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*>)vt[577])();
 			#else
-			return (ImPlotPlot*)((delegate* unmanaged[Cdecl]<nint>)vt[586])();
+			return (ImPlotPlot*)((delegate* unmanaged[Cdecl]<nint>)vt[577])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPlotPtr PlotImPlotPlot()
+		public static ImPlotPlotPtr ImPlotPlot()
 		{
-			ImPlotPlotPtr ret = PlotImPlotPlotNative();
+			ImPlotPlotPtr ret = ImPlotPlotNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void PlotDestroyNative(ImPlotPlot* self)
+		internal static void DestroyNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPlot*, void>)vt[587])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotPlot*, void>)vt[578])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[587])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[578])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotDestroy(ImPlotPlotPtr self)
+		public static void Destroy(ImPlotPlotPtr self)
 		{
-			PlotDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotDestroy(ref ImPlotPlot self)
+		public static void Destroy(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				PlotDestroyNative((ImPlotPlot*)pself);
+				DestroyNative((ImPlotPlot*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte PlotIsInputLockedNative(ImPlotPlot* self)
+		internal static byte IsInputLockedNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte>)vt[588])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte>)vt[579])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[588])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[579])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool PlotIsInputLocked(ImPlotPlotPtr self)
+		public static bool IsInputLocked(ImPlotPlotPtr self)
 		{
-			byte ret = PlotIsInputLockedNative(self);
+			byte ret = IsInputLockedNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool PlotIsInputLocked(ref ImPlotPlot self)
+		public static bool IsInputLocked(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				byte ret = PlotIsInputLockedNative((ImPlotPlot*)pself);
+				byte ret = IsInputLockedNative((ImPlotPlot*)pself);
 				return ret != 0;
 			}
 		}
@@ -1426,91 +1167,91 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void PlotClearTextBufferNative(ImPlotPlot* self)
+		internal static void ClearTextBufferNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPlot*, void>)vt[589])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotPlot*, void>)vt[580])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[589])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[580])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotClearTextBuffer(ImPlotPlotPtr self)
+		public static void ClearTextBuffer(ImPlotPlotPtr self)
 		{
-			PlotClearTextBufferNative(self);
+			ClearTextBufferNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotClearTextBuffer(ref ImPlotPlot self)
+		public static void ClearTextBuffer(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				PlotClearTextBufferNative((ImPlotPlot*)pself);
+				ClearTextBufferNative((ImPlotPlot*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void PlotSetTitleNative(ImPlotPlot* self, byte* title)
+		internal static void SetTitleNative(ImPlotPlot* self, byte* title)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte*, void>)vt[590])(self, title);
+			((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte*, void>)vt[581])(self, title);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[590])((nint)self, (nint)title);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[581])((nint)self, (nint)title);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ImPlotPlotPtr self, byte* title)
+		public static void SetTitle(ImPlotPlotPtr self, byte* title)
 		{
-			PlotSetTitleNative(self, title);
+			SetTitleNative(self, title);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ref ImPlotPlot self, byte* title)
+		public static void SetTitle(ref ImPlotPlot self, byte* title)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				PlotSetTitleNative((ImPlotPlot*)pself, title);
+				SetTitleNative((ImPlotPlot*)pself, title);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ImPlotPlotPtr self, ref byte title)
+		public static void SetTitle(ImPlotPlotPtr self, ref byte title)
 		{
 			fixed (byte* ptitle = &title)
 			{
-				PlotSetTitleNative(self, (byte*)ptitle);
+				SetTitleNative(self, (byte*)ptitle);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ImPlotPlotPtr self, ReadOnlySpan<byte> title)
+		public static void SetTitle(ImPlotPlotPtr self, ReadOnlySpan<byte> title)
 		{
 			fixed (byte* ptitle = title)
 			{
-				PlotSetTitleNative(self, (byte*)ptitle);
+				SetTitleNative(self, (byte*)ptitle);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ImPlotPlotPtr self, string title)
+		public static void SetTitle(ImPlotPlotPtr self, string title)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1529,7 +1270,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotSetTitleNative(self, pStr0);
+			SetTitleNative(self, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1539,13 +1280,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ref ImPlotPlot self, ref byte title)
+		public static void SetTitle(ref ImPlotPlot self, ref byte title)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
 				fixed (byte* ptitle = &title)
 				{
-					PlotSetTitleNative((ImPlotPlot*)pself, (byte*)ptitle);
+					SetTitleNative((ImPlotPlot*)pself, (byte*)ptitle);
 				}
 			}
 		}
@@ -1553,13 +1294,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ref ImPlotPlot self, ReadOnlySpan<byte> title)
+		public static void SetTitle(ref ImPlotPlot self, ReadOnlySpan<byte> title)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
 				fixed (byte* ptitle = title)
 				{
-					PlotSetTitleNative((ImPlotPlot*)pself, (byte*)ptitle);
+					SetTitleNative((ImPlotPlot*)pself, (byte*)ptitle);
 				}
 			}
 		}
@@ -1567,7 +1308,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetTitle(ref ImPlotPlot self, string title)
+		public static void SetTitle(ref ImPlotPlot self, string title)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
@@ -1588,7 +1329,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotSetTitleNative((ImPlotPlot*)pself, pStr0);
+				SetTitleNative((ImPlotPlot*)pself, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1599,32 +1340,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte PlotHasTitleNative(ImPlotPlot* self)
+		internal static byte HasTitleNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte>)vt[591])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte>)vt[582])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[591])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[582])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool PlotHasTitle(ImPlotPlotPtr self)
+		public static bool HasTitle(ImPlotPlotPtr self)
 		{
-			byte ret = PlotHasTitleNative(self);
+			byte ret = HasTitleNative(self);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool PlotHasTitle(ref ImPlotPlot self)
+		public static bool HasTitle(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				byte ret = PlotHasTitleNative((ImPlotPlot*)pself);
+				byte ret = HasTitleNative((ImPlotPlot*)pself);
 				return ret != 0;
 			}
 		}
@@ -1632,41 +1373,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* PlotGetTitleNative(ImPlotPlot* self)
+		internal static byte* GetTitleNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte*>)vt[592])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, byte*>)vt[583])(self);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[592])((nint)self);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[583])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* PlotGetTitle(ImPlotPlotPtr self)
+		public static byte* GetTitle(ImPlotPlotPtr self)
 		{
-			byte* ret = PlotGetTitleNative(self);
+			byte* ret = GetTitleNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string PlotGetTitleS(ImPlotPlotPtr self)
+		public static string GetTitleS(ImPlotPlotPtr self)
 		{
-			string ret = Utils.DecodeStringUTF8(PlotGetTitleNative(self));
+			string ret = Utils.DecodeStringUTF8(GetTitleNative(self));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* PlotGetTitle(ref ImPlotPlot self)
+		public static byte* GetTitle(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				byte* ret = PlotGetTitleNative((ImPlotPlot*)pself);
+				byte* ret = GetTitleNative((ImPlotPlot*)pself);
 				return ret;
 			}
 		}
@@ -1674,11 +1415,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string PlotGetTitleS(ref ImPlotPlot self)
+		public static string GetTitleS(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(PlotGetTitleNative((ImPlotPlot*)pself));
+				string ret = Utils.DecodeStringUTF8(GetTitleNative((ImPlotPlot*)pself));
 				return ret;
 			}
 		}
@@ -1686,32 +1427,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAxis* PlotXAxisNilNative(ImPlotPlot* self, int i)
+		internal static ImPlotAxis* XAxisNative(ImPlotPlot* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[593])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[584])(self, i);
 			#else
-			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[593])((nint)self, i);
+			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[584])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotXAxisNil(ImPlotPlotPtr self, int i)
+		public static ImPlotAxisPtr XAxis(ImPlotPlotPtr self, int i)
 		{
-			ImPlotAxisPtr ret = PlotXAxisNilNative(self, i);
+			ImPlotAxisPtr ret = XAxisNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotXAxisNil(ref ImPlotPlot self, int i)
+		public static ImPlotAxisPtr XAxis(ref ImPlotPlot self, int i)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				ImPlotAxisPtr ret = PlotXAxisNilNative((ImPlotPlot*)pself, i);
+				ImPlotAxisPtr ret = XAxisNative((ImPlotPlot*)pself, i);
 				return ret;
 			}
 		}
@@ -1719,32 +1460,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAxis* PlotXAxisConstNative(ImPlotPlot* self, int i)
+		internal static ImPlotAxis* ImPlotPlotXAxisConstNative(ImPlotPlot* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[594])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[585])(self, i);
 			#else
-			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[594])((nint)self, i);
+			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[585])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotXAxisConst(ImPlotPlotPtr self, int i)
+		public static ImPlotAxisPtr ImPlotPlotXAxisConst(ImPlotPlotPtr self, int i)
 		{
-			ImPlotAxisPtr ret = PlotXAxisConstNative(self, i);
+			ImPlotAxisPtr ret = ImPlotPlotXAxisConstNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotXAxisConst(ref ImPlotPlot self, int i)
+		public static ImPlotAxisPtr ImPlotPlotXAxisConst(ref ImPlotPlot self, int i)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				ImPlotAxisPtr ret = PlotXAxisConstNative((ImPlotPlot*)pself, i);
+				ImPlotAxisPtr ret = ImPlotPlotXAxisConstNative((ImPlotPlot*)pself, i);
 				return ret;
 			}
 		}
@@ -1752,32 +1493,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAxis* PlotYAxisNilNative(ImPlotPlot* self, int i)
+		internal static ImPlotAxis* YAxisNative(ImPlotPlot* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[595])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[586])(self, i);
 			#else
-			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[595])((nint)self, i);
+			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[586])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotYAxisNil(ImPlotPlotPtr self, int i)
+		public static ImPlotAxisPtr YAxis(ImPlotPlotPtr self, int i)
 		{
-			ImPlotAxisPtr ret = PlotYAxisNilNative(self, i);
+			ImPlotAxisPtr ret = YAxisNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotYAxisNil(ref ImPlotPlot self, int i)
+		public static ImPlotAxisPtr YAxis(ref ImPlotPlot self, int i)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				ImPlotAxisPtr ret = PlotYAxisNilNative((ImPlotPlot*)pself, i);
+				ImPlotAxisPtr ret = YAxisNative((ImPlotPlot*)pself, i);
 				return ret;
 			}
 		}
@@ -1785,32 +1526,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotAxis* PlotYAxisConstNative(ImPlotPlot* self, int i)
+		internal static ImPlotAxis* ImPlotPlotYAxisConstNative(ImPlotPlot* self, int i)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[596])(self, i);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int, ImPlotAxis*>)vt[587])(self, i);
 			#else
-			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[596])((nint)self, i);
+			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[587])((nint)self, i);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotYAxisConst(ImPlotPlotPtr self, int i)
+		public static ImPlotAxisPtr ImPlotPlotYAxisConst(ImPlotPlotPtr self, int i)
 		{
-			ImPlotAxisPtr ret = PlotYAxisConstNative(self, i);
+			ImPlotAxisPtr ret = ImPlotPlotYAxisConstNative(self, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotAxisPtr PlotYAxisConst(ref ImPlotPlot self, int i)
+		public static ImPlotAxisPtr ImPlotPlotYAxisConst(ref ImPlotPlot self, int i)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				ImPlotAxisPtr ret = PlotYAxisConstNative((ImPlotPlot*)pself, i);
+				ImPlotAxisPtr ret = ImPlotPlotYAxisConstNative((ImPlotPlot*)pself, i);
 				return ret;
 			}
 		}
@@ -1818,32 +1559,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int PlotEnabledAxesXNative(ImPlotPlot* self)
+		internal static int EnabledAxesXNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int>)vt[597])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int>)vt[588])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[597])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[588])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int PlotEnabledAxesX(ImPlotPlotPtr self)
+		public static int EnabledAxesX(ImPlotPlotPtr self)
 		{
-			int ret = PlotEnabledAxesXNative(self);
+			int ret = EnabledAxesXNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int PlotEnabledAxesX(ref ImPlotPlot self)
+		public static int EnabledAxesX(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				int ret = PlotEnabledAxesXNative((ImPlotPlot*)pself);
+				int ret = EnabledAxesXNative((ImPlotPlot*)pself);
 				return ret;
 			}
 		}
@@ -1851,32 +1592,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int PlotEnabledAxesYNative(ImPlotPlot* self)
+		internal static int EnabledAxesYNative(ImPlotPlot* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int>)vt[598])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, int>)vt[589])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[598])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[589])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int PlotEnabledAxesY(ImPlotPlotPtr self)
+		public static int EnabledAxesY(ImPlotPlotPtr self)
 		{
-			int ret = PlotEnabledAxesYNative(self);
+			int ret = EnabledAxesYNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int PlotEnabledAxesY(ref ImPlotPlot self)
+		public static int EnabledAxesY(ref ImPlotPlot self)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				int ret = PlotEnabledAxesYNative((ImPlotPlot*)pself);
+				int ret = EnabledAxesYNative((ImPlotPlot*)pself);
 				return ret;
 			}
 		}
@@ -1884,55 +1625,55 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void PlotSetAxisLabelNative(ImPlotPlot* self, ImPlotAxis* axis, byte* label)
+		internal static void SetAxisLabelNative(ImPlotPlot* self, ImPlotAxis* axis, byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPlot*, ImPlotAxis*, byte*, void>)vt[599])(self, axis, label);
+			((delegate* unmanaged[Cdecl]<ImPlotPlot*, ImPlotAxis*, byte*, void>)vt[590])(self, axis, label);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)vt[599])((nint)self, (nint)axis, (nint)label);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)vt[590])((nint)self, (nint)axis, (nint)label);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, byte* label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, byte* label)
 		{
-			PlotSetAxisLabelNative(self, axis, label);
+			SetAxisLabelNative(self, axis, label);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, byte* label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, byte* label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				PlotSetAxisLabelNative((ImPlotPlot*)pself, axis, label);
+				SetAxisLabelNative((ImPlotPlot*)pself, axis, label);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, byte* label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, byte* label)
 		{
 			fixed (ImPlotAxis* paxis = &axis)
 			{
-				PlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, label);
+				SetAxisLabelNative(self, (ImPlotAxis*)paxis, label);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, byte* label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, byte* label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
 				fixed (ImPlotAxis* paxis = &axis)
 				{
-					PlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, label);
+					SetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, label);
 				}
 			}
 		}
@@ -1940,29 +1681,29 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, ref byte label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, ref byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
-				PlotSetAxisLabelNative(self, axis, (byte*)plabel);
+				SetAxisLabelNative(self, axis, (byte*)plabel);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, ReadOnlySpan<byte> label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, ReadOnlySpan<byte> label)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotSetAxisLabelNative(self, axis, (byte*)plabel);
+				SetAxisLabelNative(self, axis, (byte*)plabel);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, string label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, string label)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1981,7 +1722,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotSetAxisLabelNative(self, axis, pStr0);
+			SetAxisLabelNative(self, axis, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1991,13 +1732,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, ref byte label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, ref byte label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
 				fixed (byte* plabel = &label)
 				{
-					PlotSetAxisLabelNative((ImPlotPlot*)pself, axis, (byte*)plabel);
+					SetAxisLabelNative((ImPlotPlot*)pself, axis, (byte*)plabel);
 				}
 			}
 		}
@@ -2005,13 +1746,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, ReadOnlySpan<byte> label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
 				fixed (byte* plabel = label)
 				{
-					PlotSetAxisLabelNative((ImPlotPlot*)pself, axis, (byte*)plabel);
+					SetAxisLabelNative((ImPlotPlot*)pself, axis, (byte*)plabel);
 				}
 			}
 		}
@@ -2019,7 +1760,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, string label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, string label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
@@ -2040,7 +1781,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotSetAxisLabelNative((ImPlotPlot*)pself, axis, pStr0);
+				SetAxisLabelNative((ImPlotPlot*)pself, axis, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2051,13 +1792,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, ref byte label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, ref byte label)
 		{
 			fixed (ImPlotAxis* paxis = &axis)
 			{
 				fixed (byte* plabel = &label)
 				{
-					PlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, (byte*)plabel);
+					SetAxisLabelNative(self, (ImPlotAxis*)paxis, (byte*)plabel);
 				}
 			}
 		}
@@ -2065,13 +1806,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, ReadOnlySpan<byte> label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotAxis* paxis = &axis)
 			{
 				fixed (byte* plabel = label)
 				{
-					PlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, (byte*)plabel);
+					SetAxisLabelNative(self, (ImPlotAxis*)paxis, (byte*)plabel);
 				}
 			}
 		}
@@ -2079,7 +1820,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, string label)
+		public static void SetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, string label)
 		{
 			fixed (ImPlotAxis* paxis = &axis)
 			{
@@ -2100,7 +1841,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, pStr0);
+				SetAxisLabelNative(self, (ImPlotAxis*)paxis, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2111,7 +1852,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, ref byte label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, ref byte label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
@@ -2119,7 +1860,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabel = &label)
 					{
-						PlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, (byte*)plabel);
+						SetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, (byte*)plabel);
 					}
 				}
 			}
@@ -2128,7 +1869,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, ReadOnlySpan<byte> label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
@@ -2136,7 +1877,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabel = label)
 					{
-						PlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, (byte*)plabel);
+						SetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, (byte*)plabel);
 					}
 				}
 			}
@@ -2145,7 +1886,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, string label)
+		public static void SetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, string label)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
@@ -2168,7 +1909,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, pStr0);
+					SetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, pStr0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2180,41 +1921,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* PlotGetAxisLabelNative(ImPlotPlot* self, ImPlotAxis axis)
+		internal static byte* GetAxisLabelNative(ImPlotPlot* self, ImPlotAxis axis)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, ImPlotAxis, byte*>)vt[600])(self, axis);
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*, ImPlotAxis, byte*>)vt[591])(self, axis);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotAxis, nint>)vt[600])((nint)self, axis);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotAxis, nint>)vt[591])((nint)self, axis);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* PlotGetAxisLabel(ImPlotPlotPtr self, ImPlotAxis axis)
+		public static byte* GetAxisLabel(ImPlotPlotPtr self, ImPlotAxis axis)
 		{
-			byte* ret = PlotGetAxisLabelNative(self, axis);
+			byte* ret = GetAxisLabelNative(self, axis);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string PlotGetAxisLabelS(ImPlotPlotPtr self, ImPlotAxis axis)
+		public static string GetAxisLabelS(ImPlotPlotPtr self, ImPlotAxis axis)
 		{
-			string ret = Utils.DecodeStringUTF8(PlotGetAxisLabelNative(self, axis));
+			string ret = Utils.DecodeStringUTF8(GetAxisLabelNative(self, axis));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* PlotGetAxisLabel(ref ImPlotPlot self, ImPlotAxis axis)
+		public static byte* GetAxisLabel(ref ImPlotPlot self, ImPlotAxis axis)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				byte* ret = PlotGetAxisLabelNative((ImPlotPlot*)pself, axis);
+				byte* ret = GetAxisLabelNative((ImPlotPlot*)pself, axis);
 				return ret;
 			}
 		}
@@ -2222,11 +1963,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string PlotGetAxisLabelS(ref ImPlotPlot self, ImPlotAxis axis)
+		public static string GetAxisLabelS(ref ImPlotPlot self, ImPlotAxis axis)
 		{
 			fixed (ImPlotPlot* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(PlotGetAxisLabelNative((ImPlotPlot*)pself, axis));
+				string ret = Utils.DecodeStringUTF8(GetAxisLabelNative((ImPlotPlot*)pself, axis));
 				return ret;
 			}
 		}
@@ -2234,218 +1975,218 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotSubplot* SubplotImPlotSubplotNative()
+		internal static ImPlotSubplot* ImPlotSubplotNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotSubplot*>)vt[601])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotSubplot*>)vt[592])();
 			#else
-			return (ImPlotSubplot*)((delegate* unmanaged[Cdecl]<nint>)vt[601])();
+			return (ImPlotSubplot*)((delegate* unmanaged[Cdecl]<nint>)vt[592])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotSubplotPtr SubplotImPlotSubplot()
+		public static ImPlotSubplotPtr ImPlotSubplot()
 		{
-			ImPlotSubplotPtr ret = SubplotImPlotSubplotNative();
+			ImPlotSubplotPtr ret = ImPlotSubplotNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void SubplotDestroyNative(ImPlotSubplot* self)
+		internal static void DestroyNative(ImPlotSubplot* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotSubplot*, void>)vt[602])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotSubplot*, void>)vt[593])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[602])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[593])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SubplotDestroy(ImPlotSubplotPtr self)
+		public static void Destroy(ImPlotSubplotPtr self)
 		{
-			SubplotDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SubplotDestroy(ref ImPlotSubplot self)
+		public static void Destroy(ref ImPlotSubplot self)
 		{
 			fixed (ImPlotSubplot* pself = &self)
 			{
-				SubplotDestroyNative((ImPlotSubplot*)pself);
+				DestroyNative((ImPlotSubplot*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotNextPlotData* NextPlotDataImPlotNextPlotDataNative()
+		internal static ImPlotNextPlotData* ImPlotNextPlotDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotNextPlotData*>)vt[603])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotNextPlotData*>)vt[594])();
 			#else
-			return (ImPlotNextPlotData*)((delegate* unmanaged[Cdecl]<nint>)vt[603])();
+			return (ImPlotNextPlotData*)((delegate* unmanaged[Cdecl]<nint>)vt[594])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotNextPlotDataPtr NextPlotDataImPlotNextPlotData()
+		public static ImPlotNextPlotDataPtr ImPlotNextPlotData()
 		{
-			ImPlotNextPlotDataPtr ret = NextPlotDataImPlotNextPlotDataNative();
+			ImPlotNextPlotDataPtr ret = ImPlotNextPlotDataNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void NextPlotDataDestroyNative(ImPlotNextPlotData* self)
+		internal static void DestroyNative(ImPlotNextPlotData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotNextPlotData*, void>)vt[604])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotNextPlotData*, void>)vt[595])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[604])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[595])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextPlotDataDestroy(ImPlotNextPlotDataPtr self)
+		public static void Destroy(ImPlotNextPlotDataPtr self)
 		{
-			NextPlotDataDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextPlotDataDestroy(ref ImPlotNextPlotData self)
+		public static void Destroy(ref ImPlotNextPlotData self)
 		{
 			fixed (ImPlotNextPlotData* pself = &self)
 			{
-				NextPlotDataDestroyNative((ImPlotNextPlotData*)pself);
+				DestroyNative((ImPlotNextPlotData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void NextPlotDataResetNative(ImPlotNextPlotData* self)
+		internal static void ResetNative(ImPlotNextPlotData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotNextPlotData*, void>)vt[605])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotNextPlotData*, void>)vt[596])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[605])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[596])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextPlotDataReset(ImPlotNextPlotDataPtr self)
+		public static void Reset(ImPlotNextPlotDataPtr self)
 		{
-			NextPlotDataResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextPlotDataReset(ref ImPlotNextPlotData self)
+		public static void Reset(ref ImPlotNextPlotData self)
 		{
 			fixed (ImPlotNextPlotData* pself = &self)
 			{
-				NextPlotDataResetNative((ImPlotNextPlotData*)pself);
+				ResetNative((ImPlotNextPlotData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImPlotNextItemData* NextItemDataImPlotNextItemDataNative()
+		internal static ImPlotNextItemData* ImPlotNextItemDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotNextItemData*>)vt[606])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotNextItemData*>)vt[597])();
 			#else
-			return (ImPlotNextItemData*)((delegate* unmanaged[Cdecl]<nint>)vt[606])();
+			return (ImPlotNextItemData*)((delegate* unmanaged[Cdecl]<nint>)vt[597])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotNextItemDataPtr NextItemDataImPlotNextItemData()
+		public static ImPlotNextItemDataPtr ImPlotNextItemData()
 		{
-			ImPlotNextItemDataPtr ret = NextItemDataImPlotNextItemDataNative();
+			ImPlotNextItemDataPtr ret = ImPlotNextItemDataNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void NextItemDataDestroyNative(ImPlotNextItemData* self)
+		internal static void DestroyNative(ImPlotNextItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotNextItemData*, void>)vt[607])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotNextItemData*, void>)vt[598])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[607])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[598])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextItemDataDestroy(ImPlotNextItemDataPtr self)
+		public static void Destroy(ImPlotNextItemDataPtr self)
 		{
-			NextItemDataDestroyNative(self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextItemDataDestroy(ref ImPlotNextItemData self)
+		public static void Destroy(ref ImPlotNextItemData self)
 		{
 			fixed (ImPlotNextItemData* pself = &self)
 			{
-				NextItemDataDestroyNative((ImPlotNextItemData*)pself);
+				DestroyNative((ImPlotNextItemData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void NextItemDataResetNative(ImPlotNextItemData* self)
+		internal static void ResetNative(ImPlotNextItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotNextItemData*, void>)vt[608])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotNextItemData*, void>)vt[599])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[608])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[599])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextItemDataReset(ImPlotNextItemDataPtr self)
+		public static void Reset(ImPlotNextItemDataPtr self)
 		{
-			NextItemDataResetNative(self);
+			ResetNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void NextItemDataReset(ref ImPlotNextItemData self)
+		public static void Reset(ref ImPlotNextItemData self)
 		{
 			fixed (ImPlotNextItemData* pself = &self)
 			{
-				NextItemDataResetNative((ImPlotNextItemData*)pself);
+				ResetNative((ImPlotNextItemData*)pself);
 			}
 		}
 
@@ -2455,9 +2196,9 @@ namespace Hexa.NET.ImPlot
 		internal static void InitializeNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[609])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[600])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[609])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[600])((nint)ctx);
 			#endif
 		}
 
@@ -2486,9 +2227,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ResetCtxForNextPlotNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[610])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[601])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[610])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[601])((nint)ctx);
 			#endif
 		}
 
@@ -2517,9 +2258,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ResetCtxForNextAlignedPlotsNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[611])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[602])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[611])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[602])((nint)ctx);
 			#endif
 		}
 
@@ -2548,9 +2289,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ResetCtxForNextSubplotNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[612])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[603])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[612])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[603])((nint)ctx);
 			#endif
 		}
 
@@ -2579,9 +2320,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotPlot* GetPlotNative(byte* title)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotPlot*>)vt[613])(title);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotPlot*>)vt[604])(title);
 			#else
-			return (ImPlotPlot*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[613])((nint)title);
+			return (ImPlotPlot*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[604])((nint)title);
 			#endif
 		}
 
@@ -2654,9 +2395,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotPlot* GetCurrentPlotNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*>)vt[614])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotPlot*>)vt[605])();
 			#else
-			return (ImPlotPlot*)((delegate* unmanaged[Cdecl]<nint>)vt[614])();
+			return (ImPlotPlot*)((delegate* unmanaged[Cdecl]<nint>)vt[605])();
 			#endif
 		}
 
@@ -2675,9 +2416,9 @@ namespace Hexa.NET.ImPlot
 		internal static void BustPlotCacheNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[615])();
+			((delegate* unmanaged[Cdecl]<void>)vt[606])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[615])();
+			((delegate* unmanaged[Cdecl]<void>)vt[606])();
 			#endif
 		}
 
@@ -2695,9 +2436,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ShowPlotContextMenuNative(ImPlotPlot* plot)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPlot*, void>)vt[616])(plot);
+			((delegate* unmanaged[Cdecl]<ImPlotPlot*, void>)vt[607])(plot);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[616])((nint)plot);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[607])((nint)plot);
 			#endif
 		}
 
@@ -2726,9 +2467,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupLockNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[617])();
+			((delegate* unmanaged[Cdecl]<void>)vt[608])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[617])();
+			((delegate* unmanaged[Cdecl]<void>)vt[608])();
 			#endif
 		}
 
@@ -2746,9 +2487,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SubplotNextCellNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[618])();
+			((delegate* unmanaged[Cdecl]<void>)vt[609])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[618])();
+			((delegate* unmanaged[Cdecl]<void>)vt[609])();
 			#endif
 		}
 
@@ -2766,9 +2507,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ShowSubplotsContextMenuNative(ImPlotSubplot* subplot)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotSubplot*, void>)vt[619])(subplot);
+			((delegate* unmanaged[Cdecl]<ImPlotSubplot*, void>)vt[610])(subplot);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[619])((nint)subplot);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[610])((nint)subplot);
 			#endif
 		}
 
@@ -2797,9 +2538,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte BeginItemNative(byte* labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotItemFlags, ImPlotCol, byte>)vt[620])(labelId, flags, recolorFrom);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotItemFlags, ImPlotCol, byte>)vt[611])(labelId, flags, recolorFrom);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotItemFlags, ImPlotCol, byte>)vt[620])((nint)labelId, flags, recolorFrom);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotItemFlags, ImPlotCol, byte>)vt[611])((nint)labelId, flags, recolorFrom);
 			#endif
 		}
 
@@ -2809,6 +2550,33 @@ namespace Hexa.NET.ImPlot
 		public static bool BeginItem(byte* labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom)
 		{
 			byte ret = BeginItemNative(labelId, flags, recolorFrom);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(byte* labelId, ImPlotItemFlags flags)
+		{
+			byte ret = BeginItemNative(labelId, flags, (ImPlotCol)(-1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(byte* labelId)
+		{
+			byte ret = BeginItemNative(labelId, (ImPlotItemFlags)(0), (ImPlotCol)(-1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(byte* labelId, ImPlotCol recolorFrom)
+		{
+			byte ret = BeginItemNative(labelId, (ImPlotItemFlags)(0), recolorFrom);
 			return ret != 0;
 		}
 
@@ -2827,11 +2595,83 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool BeginItem(ref byte labelId, ImPlotItemFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				byte ret = BeginItemNative((byte*)plabelId, flags, (ImPlotCol)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(ref byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				byte ret = BeginItemNative((byte*)plabelId, (ImPlotItemFlags)(0), (ImPlotCol)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(ref byte labelId, ImPlotCol recolorFrom)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				byte ret = BeginItemNative((byte*)plabelId, (ImPlotItemFlags)(0), recolorFrom);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginItem(ReadOnlySpan<byte> labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom)
 		{
 			fixed (byte* plabelId = labelId)
 			{
 				byte ret = BeginItemNative((byte*)plabelId, flags, recolorFrom);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(ReadOnlySpan<byte> labelId, ImPlotItemFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				byte ret = BeginItemNative((byte*)plabelId, flags, (ImPlotCol)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(ReadOnlySpan<byte> labelId)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				byte ret = BeginItemNative((byte*)plabelId, (ImPlotItemFlags)(0), (ImPlotCol)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(ReadOnlySpan<byte> labelId, ImPlotCol recolorFrom)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				byte ret = BeginItemNative((byte*)plabelId, (ImPlotItemFlags)(0), recolorFrom);
 				return ret != 0;
 			}
 		}
@@ -2869,12 +2709,102 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool BeginItem(string labelId, ImPlotItemFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginItemNative(pStr0, flags, (ImPlotCol)(-1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(string labelId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginItemNative(pStr0, (ImPlotItemFlags)(0), (ImPlotCol)(-1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginItem(string labelId, ImPlotCol recolorFrom)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginItemNative(pStr0, (ImPlotItemFlags)(0), recolorFrom);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndItemNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[621])();
+			((delegate* unmanaged[Cdecl]<void>)vt[612])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[621])();
+			((delegate* unmanaged[Cdecl]<void>)vt[612])();
 			#endif
 		}
 
@@ -2892,9 +2822,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotItem* RegisterOrGetItemNative(byte* labelId, ImPlotItemFlags flags, bool* justCreated)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotItemFlags, bool*, ImPlotItem*>)vt[622])(labelId, flags, justCreated);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotItemFlags, bool*, ImPlotItem*>)vt[613])(labelId, flags, justCreated);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, ImPlotItemFlags, nint, nint>)vt[622])((nint)labelId, flags, (nint)justCreated);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, ImPlotItemFlags, nint, nint>)vt[613])((nint)labelId, flags, (nint)justCreated);
 			#endif
 		}
 
@@ -2904,6 +2834,15 @@ namespace Hexa.NET.ImPlot
 		public static ImPlotItemPtr RegisterOrGetItem(byte* labelId, ImPlotItemFlags flags, bool* justCreated)
 		{
 			ImPlotItemPtr ret = RegisterOrGetItemNative(labelId, flags, justCreated);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotItemPtr RegisterOrGetItem(byte* labelId, ImPlotItemFlags flags)
+		{
+			ImPlotItemPtr ret = RegisterOrGetItemNative(labelId, flags, (bool*)(default));
 			return ret;
 		}
 
@@ -2922,11 +2861,35 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static ImPlotItemPtr RegisterOrGetItem(ref byte labelId, ImPlotItemFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				ImPlotItemPtr ret = RegisterOrGetItemNative((byte*)plabelId, flags, (bool*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImPlotItemPtr RegisterOrGetItem(ReadOnlySpan<byte> labelId, ImPlotItemFlags flags, bool* justCreated)
 		{
 			fixed (byte* plabelId = labelId)
 			{
 				ImPlotItemPtr ret = RegisterOrGetItemNative((byte*)plabelId, flags, justCreated);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotItemPtr RegisterOrGetItem(ReadOnlySpan<byte> labelId, ImPlotItemFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				ImPlotItemPtr ret = RegisterOrGetItemNative((byte*)plabelId, flags, (bool*)(default));
 				return ret;
 			}
 		}
@@ -2954,6 +2917,36 @@ namespace Hexa.NET.ImPlot
 				pStr0[pStrOffset0] = 0;
 			}
 			ImPlotItemPtr ret = RegisterOrGetItemNative(pStr0, flags, justCreated);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotItemPtr RegisterOrGetItem(string labelId, ImPlotItemFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotItemPtr ret = RegisterOrGetItemNative(pStr0, flags, (bool*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3042,9 +3035,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotItem* GetItemNative(byte* labelId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotItem*>)vt[623])(labelId);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotItem*>)vt[614])(labelId);
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[623])((nint)labelId);
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[614])((nint)labelId);
 			#endif
 		}
 
@@ -3117,9 +3110,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotItem* GetCurrentItemNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItem*>)vt[624])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotItem*>)vt[615])();
 			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint>)vt[624])();
+			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint>)vt[615])();
 			#endif
 		}
 
@@ -3138,9 +3131,9 @@ namespace Hexa.NET.ImPlot
 		internal static void BustItemCacheNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[625])();
+			((delegate* unmanaged[Cdecl]<void>)vt[616])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[625])();
+			((delegate* unmanaged[Cdecl]<void>)vt[616])();
 			#endif
 		}
 
@@ -3158,9 +3151,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte AnyAxesInputLockedNative(ImPlotAxis* axes, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[626])(axes, count);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[617])(axes, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[626])((nint)axes, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[617])((nint)axes, count);
 			#endif
 		}
 
@@ -3191,9 +3184,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte AllAxesInputLockedNative(ImPlotAxis* axes, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[627])(axes, count);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[618])(axes, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[627])((nint)axes, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[618])((nint)axes, count);
 			#endif
 		}
 
@@ -3224,9 +3217,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte AnyAxesHeldNative(ImPlotAxis* axes, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[628])(axes, count);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[619])(axes, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[628])((nint)axes, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[619])((nint)axes, count);
 			#endif
 		}
 
@@ -3257,9 +3250,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte AnyAxesHoveredNative(ImPlotAxis* axes, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[629])(axes, count);
+			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, int, byte>)vt[620])(axes, count);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[629])((nint)axes, count);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[620])((nint)axes, count);
 			#endif
 		}
 
@@ -3290,9 +3283,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte FitThisFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[630])();
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[621])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[630])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[621])();
 			#endif
 		}
 
@@ -3311,9 +3304,9 @@ namespace Hexa.NET.ImPlot
 		internal static void FitPointXNative(double x)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, void>)vt[631])(x);
+			((delegate* unmanaged[Cdecl]<double, void>)vt[622])(x);
 			#else
-			((delegate* unmanaged[Cdecl]<double, void>)vt[631])(x);
+			((delegate* unmanaged[Cdecl]<double, void>)vt[622])(x);
 			#endif
 		}
 
@@ -3331,9 +3324,9 @@ namespace Hexa.NET.ImPlot
 		internal static void FitPointYNative(double y)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, void>)vt[632])(y);
+			((delegate* unmanaged[Cdecl]<double, void>)vt[623])(y);
 			#else
-			((delegate* unmanaged[Cdecl]<double, void>)vt[632])(y);
+			((delegate* unmanaged[Cdecl]<double, void>)vt[623])(y);
 			#endif
 		}
 
@@ -3351,9 +3344,9 @@ namespace Hexa.NET.ImPlot
 		internal static void FitPointNative(ImPlotPoint p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint, void>)vt[633])(p);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint, void>)vt[624])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotPoint, void>)vt[633])(p);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint, void>)vt[624])(p);
 			#endif
 		}
 
@@ -3371,9 +3364,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte RangesOverlapNative(ImPlotRange r1, ImPlotRange r2)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange, ImPlotRange, byte>)vt[634])(r1, r2);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange, ImPlotRange, byte>)vt[625])(r1, r2);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImPlotRange, ImPlotRange, byte>)vt[634])(r1, r2);
+			return (byte)((delegate* unmanaged[Cdecl]<ImPlotRange, ImPlotRange, byte>)vt[625])(r1, r2);
 			#endif
 		}
 
@@ -3392,9 +3385,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ShowAxisContextMenuNative(ImPlotAxis* axis, ImPlotAxis* equalAxis, byte timeAllowed)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotAxis*, byte, void>)vt[635])(axis, equalAxis, timeAllowed);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotAxis*, byte, void>)vt[626])(axis, equalAxis, timeAllowed);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, byte, void>)vt[635])((nint)axis, (nint)equalAxis, timeAllowed);
+			((delegate* unmanaged[Cdecl]<nint, nint, byte, void>)vt[626])((nint)axis, (nint)equalAxis, timeAllowed);
 			#endif
 		}
 
@@ -3404,6 +3397,14 @@ namespace Hexa.NET.ImPlot
 		public static void ShowAxisContextMenu(ImPlotAxisPtr axis, ImPlotAxisPtr equalAxis, bool timeAllowed)
 		{
 			ShowAxisContextMenuNative(axis, equalAxis, timeAllowed ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAxisContextMenu(ImPlotAxisPtr axis, ImPlotAxisPtr equalAxis)
+		{
+			ShowAxisContextMenuNative(axis, equalAxis, (byte)(0));
 		}
 
 		/// <summary>
@@ -3420,11 +3421,33 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void ShowAxisContextMenu(ref ImPlotAxis axis, ImPlotAxisPtr equalAxis)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				ShowAxisContextMenuNative((ImPlotAxis*)paxis, equalAxis, (byte)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ShowAxisContextMenu(ImPlotAxisPtr axis, ref ImPlotAxis equalAxis, bool timeAllowed)
 		{
 			fixed (ImPlotAxis* pequalAxis = &equalAxis)
 			{
 				ShowAxisContextMenuNative(axis, (ImPlotAxis*)pequalAxis, timeAllowed ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAxisContextMenu(ImPlotAxisPtr axis, ref ImPlotAxis equalAxis)
+		{
+			fixed (ImPlotAxis* pequalAxis = &equalAxis)
+			{
+				ShowAxisContextMenuNative(axis, (ImPlotAxis*)pequalAxis, (byte)(0));
 			}
 		}
 
@@ -3445,13 +3468,37 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void ShowAxisContextMenu(ref ImPlotAxis axis, ref ImPlotAxis equalAxis)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				fixed (ImPlotAxis* pequalAxis = &equalAxis)
+				{
+					ShowAxisContextMenuNative((ImPlotAxis*)paxis, (ImPlotAxis*)pequalAxis, (byte)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void GetLocationPosNative(Vector2* pOut, ImRect outerRect, Vector2 innerSize, ImPlotLocation location, Vector2 pad)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImRect, Vector2, ImPlotLocation, Vector2, void>)vt[636])(pOut, outerRect, innerSize, location, pad);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImRect, Vector2, ImPlotLocation, Vector2, void>)vt[627])(pOut, outerRect, innerSize, location, pad);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, Vector2, ImPlotLocation, Vector2, void>)vt[636])((nint)pOut, outerRect, innerSize, location, pad);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, Vector2, ImPlotLocation, Vector2, void>)vt[627])((nint)pOut, outerRect, innerSize, location, pad);
 			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 GetLocationPos(ImRect outerRect, Vector2 innerSize, ImPlotLocation location)
+		{
+			Vector2 ret;
+			GetLocationPosNative(&ret, outerRect, innerSize, location, (Vector2)(new Vector2(0,0)));
+			return ret;
 		}
 
 		/// <summary>
@@ -3475,6 +3522,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void GetLocationPos(Vector2* pOut, ImRect outerRect, Vector2 innerSize, ImPlotLocation location)
+		{
+			GetLocationPosNative(pOut, outerRect, innerSize, location, (Vector2)(new Vector2(0,0)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void GetLocationPos(ref Vector2 pOut, ImRect outerRect, Vector2 innerSize, ImPlotLocation location, Vector2 pad)
 		{
 			fixed (Vector2* ppOut = &pOut)
@@ -3486,12 +3541,23 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void GetLocationPos(ref Vector2 pOut, ImRect outerRect, Vector2 innerSize, ImPlotLocation location)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				GetLocationPosNative((Vector2*)ppOut, outerRect, innerSize, location, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void CalcLegendSizeNative(Vector2* pOut, ImPlotItemGroup* items, Vector2 pad, Vector2 spacing, byte vertical)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImPlotItemGroup*, Vector2, Vector2, byte, void>)vt[637])(pOut, items, pad, spacing, vertical);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImPlotItemGroup*, Vector2, Vector2, byte, void>)vt[628])(pOut, items, pad, spacing, vertical);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, Vector2, Vector2, byte, void>)vt[637])((nint)pOut, (nint)items, pad, spacing, vertical);
+			((delegate* unmanaged[Cdecl]<nint, nint, Vector2, Vector2, byte, void>)vt[628])((nint)pOut, (nint)items, pad, spacing, vertical);
 			#endif
 		}
 
@@ -3568,9 +3634,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ClampLegendRectNative(ImRect* legendRect, ImRect outerRect, Vector2 pad)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, ImRect, Vector2, byte>)vt[638])(legendRect, outerRect, pad);
+			return ((delegate* unmanaged[Cdecl]<ImRect*, ImRect, Vector2, byte>)vt[629])(legendRect, outerRect, pad);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, Vector2, byte>)vt[638])((nint)legendRect, outerRect, pad);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, Vector2, byte>)vt[629])((nint)legendRect, outerRect, pad);
 			#endif
 		}
 
@@ -3601,9 +3667,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ShowLegendEntriesNative(ImPlotItemGroup* items, ImRect legendBb, byte interactable, Vector2 pad, Vector2 spacing, byte vertical, ImDrawList* drawList)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, ImRect, byte, Vector2, Vector2, byte, ImDrawList*, byte>)vt[639])(items, legendBb, interactable, pad, spacing, vertical, drawList);
+			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, ImRect, byte, Vector2, Vector2, byte, ImDrawList*, byte>)vt[630])(items, legendBb, interactable, pad, spacing, vertical, drawList);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, byte, Vector2, Vector2, byte, nint, byte>)vt[639])((nint)items, legendBb, interactable, pad, spacing, vertical, (nint)drawList);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, byte, Vector2, Vector2, byte, nint, byte>)vt[630])((nint)items, legendBb, interactable, pad, spacing, vertical, (nint)drawList);
 			#endif
 		}
 
@@ -3661,9 +3727,9 @@ namespace Hexa.NET.ImPlot
 		internal static void ShowAltLegendNative(byte* titleId, byte vertical, Vector2 size, byte interactable)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte, Vector2, byte, void>)vt[640])(titleId, vertical, size, interactable);
+			((delegate* unmanaged[Cdecl]<byte*, byte, Vector2, byte, void>)vt[631])(titleId, vertical, size, interactable);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, Vector2, byte, void>)vt[640])((nint)titleId, vertical, size, interactable);
+			((delegate* unmanaged[Cdecl]<nint, byte, Vector2, byte, void>)vt[631])((nint)titleId, vertical, size, interactable);
 			#endif
 		}
 
@@ -3673,6 +3739,54 @@ namespace Hexa.NET.ImPlot
 		public static void ShowAltLegend(byte* titleId, bool vertical, Vector2 size, bool interactable)
 		{
 			ShowAltLegendNative(titleId, vertical ? (byte)1 : (byte)0, size, interactable ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(byte* titleId, bool vertical, Vector2 size)
+		{
+			ShowAltLegendNative(titleId, vertical ? (byte)1 : (byte)0, size, (byte)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(byte* titleId, bool vertical)
+		{
+			ShowAltLegendNative(titleId, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), (byte)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(byte* titleId)
+		{
+			ShowAltLegendNative(titleId, (byte)(1), (Vector2)(new Vector2(0,0)), (byte)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(byte* titleId, Vector2 size)
+		{
+			ShowAltLegendNative(titleId, (byte)(1), size, (byte)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(byte* titleId, bool vertical, bool interactable)
+		{
+			ShowAltLegendNative(titleId, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), interactable ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(byte* titleId, Vector2 size, bool interactable)
+		{
+			ShowAltLegendNative(titleId, (byte)(1), size, interactable ? (byte)1 : (byte)0);
 		}
 
 		/// <summary>
@@ -3689,11 +3803,143 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void ShowAltLegend(ref byte titleId, bool vertical, Vector2 size)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, size, (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ref byte titleId, bool vertical)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ref byte titleId)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, (byte)(1), (Vector2)(new Vector2(0,0)), (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ref byte titleId, Vector2 size)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, (byte)(1), size, (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ref byte titleId, bool vertical, bool interactable)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), interactable ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ref byte titleId, Vector2 size, bool interactable)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, (byte)(1), size, interactable ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ShowAltLegend(ReadOnlySpan<byte> titleId, bool vertical, Vector2 size, bool interactable)
 		{
 			fixed (byte* ptitleId = titleId)
 			{
 				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, size, interactable ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ReadOnlySpan<byte> titleId, bool vertical, Vector2 size)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, size, (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ReadOnlySpan<byte> titleId, bool vertical)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ReadOnlySpan<byte> titleId)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, (byte)(1), (Vector2)(new Vector2(0,0)), (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ReadOnlySpan<byte> titleId, Vector2 size)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, (byte)(1), size, (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ReadOnlySpan<byte> titleId, bool vertical, bool interactable)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), interactable ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(ReadOnlySpan<byte> titleId, Vector2 size, bool interactable)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				ShowAltLegendNative((byte*)ptitleId, (byte)(1), size, interactable ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -3729,12 +3975,186 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void ShowAltLegend(string titleId, bool vertical, Vector2 size)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (titleId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ShowAltLegendNative(pStr0, vertical ? (byte)1 : (byte)0, size, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(string titleId, bool vertical)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (titleId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ShowAltLegendNative(pStr0, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(string titleId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (titleId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ShowAltLegendNative(pStr0, (byte)(1), (Vector2)(new Vector2(0,0)), (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(string titleId, Vector2 size)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (titleId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ShowAltLegendNative(pStr0, (byte)(1), size, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(string titleId, bool vertical, bool interactable)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (titleId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ShowAltLegendNative(pStr0, vertical ? (byte)1 : (byte)0, (Vector2)(new Vector2(0,0)), interactable ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShowAltLegend(string titleId, Vector2 size, bool interactable)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (titleId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ShowAltLegendNative(pStr0, (byte)(1), size, interactable ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte ShowLegendContextMenuNative(ImPlotLegend* legend, byte visible)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotLegend*, byte, byte>)vt[641])(legend, visible);
+			return ((delegate* unmanaged[Cdecl]<ImPlotLegend*, byte, byte>)vt[632])(legend, visible);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[641])((nint)legend, visible);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[632])((nint)legend, visible);
 			#endif
 		}
 
@@ -3765,9 +4185,9 @@ namespace Hexa.NET.ImPlot
 		internal static void LabelAxisValueNative(ImPlotAxis axis, double value, byte* buff, int size, byte round)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis, double, byte*, int, byte, void>)vt[642])(axis, value, buff, size, round);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis, double, byte*, int, byte, void>)vt[633])(axis, value, buff, size, round);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotAxis, double, nint, int, byte, void>)vt[642])(axis, value, (nint)buff, size, round);
+			((delegate* unmanaged[Cdecl]<ImPlotAxis, double, nint, int, byte, void>)vt[633])(axis, value, (nint)buff, size, round);
 			#endif
 		}
 
@@ -3782,11 +4202,30 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void LabelAxisValue(ImPlotAxis axis, double value, byte* buff, int size)
+		{
+			LabelAxisValueNative(axis, value, buff, size, (byte)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LabelAxisValue(ImPlotAxis axis, double value, ref byte buff, int size, bool round)
 		{
 			fixed (byte* pbuff = &buff)
 			{
 				LabelAxisValueNative(axis, value, (byte*)pbuff, size, round ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LabelAxisValue(ImPlotAxis axis, double value, ref byte buff, int size)
+		{
+			fixed (byte* pbuff = &buff)
+			{
+				LabelAxisValueNative(axis, value, (byte*)pbuff, size, (byte)(0));
 			}
 		}
 
@@ -3823,12 +4262,42 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void LabelAxisValue(ImPlotAxis axis, double value, ref string buff, int size)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buff != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buff);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LabelAxisValueNative(axis, value, pStr0, size, (byte)(0));
+			buff = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImPlotNextItemData* GetItemDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotNextItemData*>)vt[643])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotNextItemData*>)vt[634])();
 			#else
-			return (ImPlotNextItemData*)((delegate* unmanaged[Cdecl]<nint>)vt[643])();
+			return (ImPlotNextItemData*)((delegate* unmanaged[Cdecl]<nint>)vt[634])();
 			#endif
 		}
 
@@ -3844,42 +4313,42 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte IsColorAutoVec4Native(Vector4 col)
+		internal static byte IsColorAutoNative(Vector4 col)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, byte>)vt[644])(col);
+			return ((delegate* unmanaged[Cdecl]<Vector4, byte>)vt[635])(col);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector4, byte>)vt[644])(col);
+			return (byte)((delegate* unmanaged[Cdecl]<Vector4, byte>)vt[635])(col);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool IsColorAutoVec4(Vector4 col)
+		public static bool IsColorAuto(Vector4 col)
 		{
-			byte ret = IsColorAutoVec4Native(col);
+			byte ret = IsColorAutoNative(col);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte IsColorAutoPlotColNative(ImPlotCol idx)
+		internal static byte IsColorAutoNative(ImPlotCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotCol, byte>)vt[645])(idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotCol, byte>)vt[636])(idx);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImPlotCol, byte>)vt[645])(idx);
+			return (byte)((delegate* unmanaged[Cdecl]<ImPlotCol, byte>)vt[636])(idx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool IsColorAutoPlotCol(ImPlotCol idx)
+		public static bool IsColorAuto(ImPlotCol idx)
 		{
-			byte ret = IsColorAutoPlotColNative(idx);
+			byte ret = IsColorAutoNative(idx);
 			return ret != 0;
 		}
 
@@ -3889,9 +4358,9 @@ namespace Hexa.NET.ImPlot
 		internal static void GetAutoColorNative(Vector4* pOut, ImPlotCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, ImPlotCol, void>)vt[646])(pOut, idx);
+			((delegate* unmanaged[Cdecl]<Vector4*, ImPlotCol, void>)vt[637])(pOut, idx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotCol, void>)vt[646])((nint)pOut, idx);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotCol, void>)vt[637])((nint)pOut, idx);
 			#endif
 		}
 
@@ -3930,9 +4399,9 @@ namespace Hexa.NET.ImPlot
 		internal static void GetStyleColorVec4Native(Vector4* pOut, ImPlotCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, ImPlotCol, void>)vt[647])(pOut, idx);
+			((delegate* unmanaged[Cdecl]<Vector4*, ImPlotCol, void>)vt[638])(pOut, idx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotCol, void>)vt[647])((nint)pOut, idx);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotCol, void>)vt[638])((nint)pOut, idx);
 			#endif
 		}
 
@@ -3971,9 +4440,9 @@ namespace Hexa.NET.ImPlot
 		internal static uint GetStyleColorU32Native(ImPlotCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotCol, uint>)vt[648])(idx);
+			return ((delegate* unmanaged[Cdecl]<ImPlotCol, uint>)vt[639])(idx);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<ImPlotCol, uint>)vt[648])(idx);
+			return (uint)((delegate* unmanaged[Cdecl]<ImPlotCol, uint>)vt[639])(idx);
 			#endif
 		}
 
@@ -3992,9 +4461,9 @@ namespace Hexa.NET.ImPlot
 		internal static void AddTextVerticalNative(ImDrawList* drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[649])(drawList, pos, col, textBegin, textEnd);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[640])(drawList, pos, col, textBegin, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)vt[649])((nint)drawList, pos, col, (nint)textBegin, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)vt[640])((nint)drawList, pos, col, (nint)textBegin, (nint)textEnd);
 			#endif
 		}
 
@@ -4009,11 +4478,30 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin)
+		{
+			AddTextVerticalNative(drawList, pos, col, textBegin, (byte*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
 				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, textEnd);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, (byte*)(default));
 			}
 		}
 
@@ -4031,11 +4519,33 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, (byte*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
 				AddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, textEnd);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, (byte*)(default));
 			}
 		}
 
@@ -4071,6 +4581,35 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextVerticalNative(drawList, pos, col, pStr0, (byte*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
@@ -4085,6 +4624,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
@@ -4092,6 +4645,20 @@ namespace Hexa.NET.ImPlot
 				fixed (byte* ptextBegin = textBegin)
 				{
 					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)(default));
 				}
 			}
 		}
@@ -4121,6 +4688,38 @@ namespace Hexa.NET.ImPlot
 					pStr0[pStrOffset0] = 0;
 				}
 				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, (byte*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4410,9 +5009,9 @@ namespace Hexa.NET.ImPlot
 		internal static void AddTextCenteredNative(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[650])(drawList, topCenter, col, textBegin, textEnd);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[641])(drawList, topCenter, col, textBegin, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)vt[650])((nint)drawList, topCenter, col, (nint)textBegin, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)vt[641])((nint)drawList, topCenter, col, (nint)textBegin, (nint)textEnd);
 			#endif
 		}
 
@@ -4422,604 +5021,6 @@ namespace Hexa.NET.ImPlot
 		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
 		{
 			AddTextCenteredNative(drawList, topCenter, col, textBegin, textEnd);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, textEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, textEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				AddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, textEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextCenteredNative(drawList, topCenter, col, pStr0, textEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, textEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, textEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, pStr0, textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				AddTextCenteredNative(drawList, topCenter, col, textBegin, (byte*)ptextEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				AddTextCenteredNative(drawList, topCenter, col, textBegin, (byte*)ptextEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextCenteredNative(drawList, topCenter, col, textBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					AddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			AddTextCenteredNative(drawList, topCenter, col, pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, pStr0, pStr1);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void CalcTextSizeVerticalNative(Vector2* pOut, byte* text)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, byte*, void>)vt[651])(pOut, text);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[651])((nint)pOut, (nint)text);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSizeVertical(byte* text)
-		{
-			Vector2 ret;
-			CalcTextSizeVerticalNative(&ret, text);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSizeVertical(Vector2* pOut, byte* text)
-		{
-			CalcTextSizeVerticalNative(pOut, text);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSizeVertical(ref Vector2 pOut, byte* text)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				CalcTextSizeVerticalNative((Vector2*)ppOut, text);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSizeVertical(ref byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret;
-				CalcTextSizeVerticalNative(&ret, (byte*)ptext);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSizeVertical(ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret;
-				CalcTextSizeVerticalNative(&ret, (byte*)ptext);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSizeVertical(string text)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret;
-			CalcTextSizeVerticalNative(&ret, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSizeVertical(ref Vector2 pOut, ref byte text)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					CalcTextSizeVerticalNative((Vector2*)ppOut, (byte*)ptext);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSizeVertical(ref Vector2 pOut, ReadOnlySpan<byte> text)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					CalcTextSizeVerticalNative((Vector2*)ppOut, (byte*)ptext);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSizeVertical(ref Vector2 pOut, string text)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeVerticalNative((Vector2*)ppOut, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static uint CalcTextColorVec4Native(Vector4 bg)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[652])(bg);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[652])(bg);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint CalcTextColorVec4(Vector4 bg)
-		{
-			uint ret = CalcTextColorVec4Native(bg);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static uint CalcTextColorU32Native(uint bg)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint>)vt[653])(bg);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint>)vt[653])(bg);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint CalcTextColorU32(uint bg)
-		{
-			uint ret = CalcTextColorU32Native(bg);
-			return ret;
 		}
 	}
 }

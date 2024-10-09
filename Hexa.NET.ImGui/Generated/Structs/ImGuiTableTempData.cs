@@ -17,7 +17,11 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Transient data that are only needed between BeginTable() and EndTable(), those buffers are shared (1 per level of stacked table).<br/>
+	/// - Accessing those requires chasing an extra pointer so for very frequently used data we leave them in the main table structure.<br/>
+	/// - We also leave out of this structure data that tend to be particularly useful for debuggingmetrics.<br/>
+	/// FIXME-TABLE: more transient data could be stored in a stacked ImGuiTableTempData: e.g. SortSpecs.<br/>
+	/// sizeof() ~ 136 bytes.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableTempData
@@ -114,6 +118,17 @@ namespace Hexa.NET.ImGui
 			HostBackupItemWidthStackSize = hostBackupItemWidthStackSize;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTableTempData* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -214,6 +229,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref int HostBackupItemWidthStackSize => ref Unsafe.AsRef<int>(&Handle->HostBackupItemWidthStackSize);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

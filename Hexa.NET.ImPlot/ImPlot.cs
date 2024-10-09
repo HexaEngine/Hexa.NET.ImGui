@@ -6,5 +6,10 @@ namespace Hexa.NET.ImPlot
         {
             InitApi();
         }
+
+        public static string GetLibarayName()
+        {
+            return "cimplot";
+        }
     }
 }

@@ -256,6 +256,397 @@ namespace Hexa.NET.ImPlot
 				}
 			}
 		}
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ClearTextBuffer()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlot.ClearTextBufferNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int EnabledAxesX()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				int ret = ImPlot.EnabledAxesXNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int EnabledAxesY()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				int ret = ImPlot.EnabledAxesYNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetAxisLabel(ImPlotAxis axis)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				byte* ret = ImPlot.GetAxisLabelNative(@this, axis);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetAxisLabelS(ImPlotAxis axis)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlot.GetAxisLabelNative(@this, axis));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetTitle()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				byte* ret = ImPlot.GetTitleNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetTitleS()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlot.GetTitleNative(@this));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasTitle()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				byte ret = ImPlot.HasTitleNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLocked()
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				byte ret = ImPlot.IsInputLockedNative(@this);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, byte* label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlot.SetAxisLabelNative(@this, axis, label);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, byte* label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, label);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, ref byte label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (byte* plabel = &label)
+				{
+					ImPlot.SetAxisLabelNative(@this, axis, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, ReadOnlySpan<byte> label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (byte* plabel = label)
+				{
+					ImPlot.SetAxisLabelNative(@this, axis, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, string label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlot.SetAxisLabelNative(@this, axis, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ref byte label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					fixed (byte* plabel = &label)
+					{
+						ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ReadOnlySpan<byte> label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					fixed (byte* plabel = label)
+					{
+						ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, string label)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(byte* title)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlot.SetTitleNative(@this, title);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(ref byte title)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (byte* ptitle = &title)
+				{
+					ImPlot.SetTitleNative(@this, (byte*)ptitle);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(ReadOnlySpan<byte> title)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				fixed (byte* ptitle = title)
+				{
+					ImPlot.SetTitleNative(@this, (byte*)ptitle);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(string title)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (title != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(title);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlot.SetTitleNative(@this, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* XAxis(int i)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlotAxis* ret = ImPlot.XAxisNative(@this, i);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* ImPlotPlotXAxisConst(int i)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlotAxis* ret = ImPlot.ImPlotPlotXAxisConstNative(@this, i);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* YAxis(int i)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlotAxis* ret = ImPlot.YAxisNative(@this, i);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* ImPlotPlotYAxisConst(int i)
+		{
+			fixed (ImPlotPlot* @this = &this)
+			{
+				ImPlotAxis* ret = ImPlot.ImPlotPlotYAxisConstNative(@this, i);
+				return ret;
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -410,6 +801,319 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref bool ContextLocked => ref Unsafe.AsRef<bool>(&Handle->ContextLocked);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void ClearTextBuffer()
+		{
+			ImPlot.ClearTextBufferNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int EnabledAxesX()
+		{
+			int ret = ImPlot.EnabledAxesXNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int EnabledAxesY()
+		{
+			int ret = ImPlot.EnabledAxesYNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetAxisLabel(ImPlotAxis axis)
+		{
+			byte* ret = ImPlot.GetAxisLabelNative(Handle, axis);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetAxisLabelS(ImPlotAxis axis)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlot.GetAxisLabelNative(Handle, axis));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetTitle()
+		{
+			byte* ret = ImPlot.GetTitleNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetTitleS()
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlot.GetTitleNative(Handle));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool HasTitle()
+		{
+			byte ret = ImPlot.HasTitleNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsInputLocked()
+		{
+			byte ret = ImPlot.IsInputLockedNative(Handle);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, byte* label)
+		{
+			ImPlot.SetAxisLabelNative(Handle, axis, label);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, byte* label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, label);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				ImPlot.SetAxisLabelNative(Handle, axis, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				ImPlot.SetAxisLabelNative(Handle, axis, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlot.SetAxisLabelNative(Handle, axis, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ref byte label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				fixed (byte* plabel = &label)
+				{
+					ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ReadOnlySpan<byte> label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				fixed (byte* plabel = label)
+				{
+					ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, string label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(byte* title)
+		{
+			ImPlot.SetTitleNative(Handle, title);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(ref byte title)
+		{
+			fixed (byte* ptitle = &title)
+			{
+				ImPlot.SetTitleNative(Handle, (byte*)ptitle);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(ReadOnlySpan<byte> title)
+		{
+			fixed (byte* ptitle = title)
+			{
+				ImPlot.SetTitleNative(Handle, (byte*)ptitle);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetTitle(string title)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (title != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(title);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlot.SetTitleNative(Handle, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* XAxis(int i)
+		{
+			ImPlotAxis* ret = ImPlot.XAxisNative(Handle, i);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* ImPlotPlotXAxisConst(int i)
+		{
+			ImPlotAxis* ret = ImPlot.ImPlotPlotXAxisConstNative(Handle, i);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* YAxis(int i)
+		{
+			ImPlotAxis* ret = ImPlot.YAxisNative(Handle, i);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotAxis* ImPlotPlotYAxisConst(int i)
+		{
+			ImPlotAxis* ret = ImPlot.ImPlotPlotYAxisConstNative(Handle, i);
+			return ret;
+		}
+
 	}
 
 }

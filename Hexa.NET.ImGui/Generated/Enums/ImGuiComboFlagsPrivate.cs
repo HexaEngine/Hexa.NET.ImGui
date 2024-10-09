@@ -20,7 +20,7 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiComboFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// enable BeginComboPreview()<br/>
 		/// </summary>
 		CustomPreview = unchecked(1048576),
 	}

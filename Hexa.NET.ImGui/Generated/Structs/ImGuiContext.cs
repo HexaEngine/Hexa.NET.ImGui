@@ -3174,6 +3174,17 @@ namespace Hexa.NET.ImGui
 				}
 			}
 		}
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiContext* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -4463,6 +4474,14 @@ namespace Hexa.NET.ImGui
 				return new Span<byte>(&Handle->TempKeychordName_0, 64);
 			}
 		}
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

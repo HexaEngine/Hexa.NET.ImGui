@@ -56,6 +56,17 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotPointError* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -115,6 +126,14 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref double Pos => ref Unsafe.AsRef<double>(&Handle->Pos);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
 	}
 
 }

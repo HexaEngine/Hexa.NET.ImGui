@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen" Version="1.1.5" />
+		<PackageReference Include="HexaGen" Version="1.1.6" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
@@ -37,6 +37,9 @@
 		</None>
 		<None Update="cimgui\definitions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimgui\generator.internals.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="cimgui\generator.manual.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>

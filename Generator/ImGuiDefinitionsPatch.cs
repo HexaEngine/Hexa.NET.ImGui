@@ -50,8 +50,24 @@
         }
     }
 
+    public enum InternalsGenerationType
+    {
+        NoInternals,
+        OnlyInternals,
+        BothOrDontCare,
+        SkipInternalsMetadata
+    }
+
     public class ImGuiDefinitionsPatch : PrePatch
     {
+        private readonly InternalsGenerationType generationType;
+        private HashSet<string> names = [];
+
+        public ImGuiDefinitionsPatch(InternalsGenerationType generationType)
+        {
+            this.generationType = generationType;
+        }
+
         protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
         {
             ImguiDefinitions imguiDefinitions = new();
@@ -60,10 +76,41 @@
             for (int i = 0; i < imguiDefinitions.Functions.Length; i++)
             {
                 var functionDefinition = imguiDefinitions.Functions[i];
+
+                if (generationType != InternalsGenerationType.BothOrDontCare)
+                {
+                    bool isInternal = functionDefinition.Overloads.Any(x => x.Internal);
+                    if (isInternal && generationType == InternalsGenerationType.SkipInternalsMetadata)
+                    {
+                        continue;
+                    }
+
+                    if (generationType == InternalsGenerationType.NoInternals && isInternal || generationType == InternalsGenerationType.OnlyInternals && !isInternal)
+                    {
+                        // removes internals.
+                        for (int j = 0; j < functionDefinition.Overloads.Length; j++)
+                        {
+                            var overload = functionDefinition.Overloads[j];
+                            settings.IgnoredFunctions.Add(overload.ExportedName);
+                        }
+
+                        continue;
+                    }
+                }
+
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
                     var overload = functionDefinition.Overloads[j];
-                    settings.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.Comment, overload.DefaultValues, new()));
+
+                    var signature = $"{overload.ReturnType} {overload.FriendlyName} {overload.Args}";
+                    bool useName = false;
+                    if (!names.Contains(signature))
+                    {
+                        useName = true;
+                        names.Add(signature);
+                    }
+
+                    settings.FunctionMappings.Add(new(overload.ExportedName, useName ? overload.FriendlyName : settings.GetCsFunctionName(overload.ExportedName), overload.Comment, overload.DefaultValues, new()));
 
                     if (overload.IsMemberFunction && !overload.IsConstructor)
                     {

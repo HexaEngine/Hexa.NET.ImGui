@@ -114,10 +114,6 @@ namespace Generator
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 string? comment = typesJson["enum_comments"]?[name]?["above"]?.ToString();
-                if (typeLocations?[jp.Name]?.Value<string>().Contains("internal") ?? false)
-                {
-                    return null;
-                }
                 EnumMember[] elements = jp.Values().Select(v =>
                 {
                     return new EnumMember(v["name"].ToString(), v["calc_value"].ToString(), v["comment"]?.ToString());
@@ -130,10 +126,6 @@ namespace Generator
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 string? comment = typesJson["struct_comments"]?[name]?["above"]?.ToString();
-                if (typeLocations?[jp.Name]?.Value<string>().Contains("internal") ?? false)
-                {
-                    return null;
-                }
                 TypeReference[] fields = jp.Values().Select(v =>
                 {
                     if (v["type"].ToString().Contains("static")) { return null; }
@@ -173,7 +165,6 @@ namespace Generator
                         }
                     }
                     if (friendlyName == null) { return null; }
-                    if (val["location"]?.ToString().Contains("internal") ?? false) return null;
 
                     string exportedName = ov_cimguiname;
                     if (exportedName == null)
@@ -223,7 +214,11 @@ namespace Generator
                         structName,
                         comment,
                         isConstructor,
-                        isDestructor);
+                        isDestructor)
+                    {
+                        Internal = val["location"]?.ToString().Contains("internal") ?? false,
+                        Args = val["args"]?.ToString()
+                    };
                 }).Where(od => od != null).ToArray();
                 if (overloads.Length == 0) return null;
                 return new FunctionDefinition(name, overloads, Enums);
@@ -595,6 +590,10 @@ namespace Generator
         public string Comment { get; }
         public bool IsConstructor { get; }
         public bool IsDestructor { get; }
+
+        public bool Internal { get; init; }
+
+        public string Args { get; init; }
 
         public OverloadDefinition(
             string exportedName,

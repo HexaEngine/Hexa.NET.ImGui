@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// This extends ImGuiKeyData but only for named keys (legacy keys don't support the new features)<br/>
+	/// Stored in main context (1 per named key). In the future it might be merged into ImGuiKeyData.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiKeyOwnerData
@@ -54,6 +55,17 @@ namespace Hexa.NET.ImGui
 			LockUntilRelease = lockUntilRelease ? (byte)1 : (byte)0;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiKeyOwnerData* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -114,6 +126,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool LockUntilRelease => ref Unsafe.AsRef<bool>(&Handle->LockUntilRelease);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

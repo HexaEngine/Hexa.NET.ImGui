@@ -190,6 +190,28 @@ namespace Hexa.NET.ImPlot
 				}
 			}
 		}
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotNextItemData* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			fixed (ImPlotNextItemData* @this = &this)
+			{
+				ImPlot.ResetNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -308,6 +330,22 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref ImPlotCond HiddenCond => ref Unsafe.AsRef<ImPlotCond>(&Handle->HiddenCond);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			ImPlot.ResetNative(Handle);
+		}
+
 	}
 
 }

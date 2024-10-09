@@ -61,8 +61,8 @@
 
             if (!ImGui.IsWindowDocked())
             {
-                var node = ImGui.DockBuilderGetCentralNode(ImGuiManager.DockSpaceId);
-                ImGui.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
+                var node = ImGuiP.DockBuilderGetCentralNode(ImGuiManager.DockSpaceId);
+                ImGuiP.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
             }
 
             HandleInput();
@@ -139,8 +139,8 @@
         {
             if (ImGui.IsWindowHovered())
             {
-                bool mouseMiddlePressed = ImGui.IsMouseDown(ImGuiMouseButton.Middle);
-                bool lCtrlPressed = ImGui.IsKeyPressed(ImGuiKey.LeftCtrl);
+                bool mouseMiddlePressed = ImGuiP.IsMouseDown(ImGuiMouseButton.Middle);
+                bool lCtrlPressed = ImGuiP.IsKeyPressed(ImGuiKey.LeftCtrl);
                 if (mouseMiddlePressed || lCtrlPressed || first)
                 {
                     Vector2 delta = Vector2.Zero;

@@ -1,6 +1,7 @@
 ﻿namespace ExampleD3D11
 {
     using ExampleFramework;
+    using Hexa.NET.ImPlot;
 
     internal unsafe class Program
     {
