@@ -19,6 +19,428 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ImDrawListPtr self, uint col, ImDrawFlags flags, float thickness)
+		{
+			PathStrokeNative(self, col, flags, thickness);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ImDrawListPtr self, uint col, ImDrawFlags flags)
+		{
+			PathStrokeNative(self, col, flags, (float)(1.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ImDrawListPtr self, uint col)
+		{
+			PathStrokeNative(self, col, (ImDrawFlags)(0), (float)(1.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ImDrawListPtr self, uint col, float thickness)
+		{
+			PathStrokeNative(self, col, (ImDrawFlags)(0), thickness);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ref ImDrawList self, uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathStrokeNative((ImDrawList*)pself, col, flags, thickness);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ref ImDrawList self, uint col, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathStrokeNative((ImDrawList*)pself, col, flags, (float)(1.0f));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ref ImDrawList self, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathStrokeNative((ImDrawList*)pself, col, (ImDrawFlags)(0), (float)(1.0f));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathStroke(ref ImDrawList self, uint col, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathStrokeNative((ImDrawList*)pself, col, (ImDrawFlags)(0), thickness);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PathArcToNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[546])(self, center, radius, aMin, aMax, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[546])((nint)self, center, radius, aMin, aMax, numSegments);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathArcTo(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			PathArcToNative(self, center, radius, aMin, aMax, numSegments);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathArcTo(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax)
+		{
+			PathArcToNative(self, center, radius, aMin, aMax, (int)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathArcTo(ref ImDrawList self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathArcToNative((ImDrawList*)pself, center, radius, aMin, aMax, numSegments);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathArcTo(ref ImDrawList self, Vector2 center, float radius, float aMin, float aMax)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathArcToNative((ImDrawList*)pself, center, radius, aMin, aMax, (int)(0));
+			}
+		}
+
+		/// <summary>
+		/// Use precomputed angles for a 12 steps circle<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, void>)funcTable[547])(self, center, radius, aMinOf12, aMaxOf12);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, void>)funcTable[547])((nint)self, center, radius, aMinOf12, aMaxOf12);
+			#endif
+		}
+
+		/// <summary>
+		/// Use precomputed angles for a 12 steps circle<br/>
+		/// </summary>
+		public static void PathArcToFast(ImDrawListPtr self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
+		{
+			PathArcToFastNative(self, center, radius, aMinOf12, aMaxOf12);
+		}
+
+		/// <summary>
+		/// Use precomputed angles for a 12 steps circle<br/>
+		/// </summary>
+		public static void PathArcToFast(ref ImDrawList self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathArcToFastNative((ImDrawList*)pself, center, radius, aMinOf12, aMaxOf12);
+			}
+		}
+
+		/// <summary>
+		/// Ellipse<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, float, int, void>)funcTable[548])(self, center, radius, rot, aMin, aMax, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, float, int, void>)funcTable[548])((nint)self, center, radius, rot, aMin, aMax, numSegments);
+			#endif
+		}
+
+		/// <summary>
+		/// Ellipse<br/>
+		/// </summary>
+		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
+		{
+			PathEllipticalArcToNative(self, center, radius, rot, aMin, aMax, numSegments);
+		}
+
+		/// <summary>
+		/// Ellipse<br/>
+		/// </summary>
+		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
+		{
+			PathEllipticalArcToNative(self, center, radius, rot, aMin, aMax, (int)(0));
+		}
+
+		/// <summary>
+		/// Ellipse<br/>
+		/// </summary>
+		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathEllipticalArcToNative((ImDrawList*)pself, center, radius, rot, aMin, aMax, numSegments);
+			}
+		}
+
+		/// <summary>
+		/// Ellipse<br/>
+		/// </summary>
+		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathEllipticalArcToNative((ImDrawList*)pself, center, radius, rot, aMin, aMax, (int)(0));
+			}
+		}
+
+		/// <summary>
+		/// Cubic Bezier (4 control points)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, int, void>)funcTable[549])(self, p2, p3, p4, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, int, void>)funcTable[549])((nint)self, p2, p3, p4, numSegments);
+			#endif
+		}
+
+		/// <summary>
+		/// Cubic Bezier (4 control points)<br/>
+		/// </summary>
+		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
+		{
+			PathBezierCubicCurveToNative(self, p2, p3, p4, numSegments);
+		}
+
+		/// <summary>
+		/// Cubic Bezier (4 control points)<br/>
+		/// </summary>
+		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4)
+		{
+			PathBezierCubicCurveToNative(self, p2, p3, p4, (int)(0));
+		}
+
+		/// <summary>
+		/// Cubic Bezier (4 control points)<br/>
+		/// </summary>
+		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathBezierCubicCurveToNative((ImDrawList*)pself, p2, p3, p4, numSegments);
+			}
+		}
+
+		/// <summary>
+		/// Cubic Bezier (4 control points)<br/>
+		/// </summary>
+		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathBezierCubicCurveToNative((ImDrawList*)pself, p2, p3, p4, (int)(0));
+			}
+		}
+
+		/// <summary>
+		/// Quadratic Bezier (3 control points)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, int, void>)funcTable[550])(self, p2, p3, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, int, void>)funcTable[550])((nint)self, p2, p3, numSegments);
+			#endif
+		}
+
+		/// <summary>
+		/// Quadratic Bezier (3 control points)<br/>
+		/// </summary>
+		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, int numSegments)
+		{
+			PathBezierQuadraticCurveToNative(self, p2, p3, numSegments);
+		}
+
+		/// <summary>
+		/// Quadratic Bezier (3 control points)<br/>
+		/// </summary>
+		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3)
+		{
+			PathBezierQuadraticCurveToNative(self, p2, p3, (int)(0));
+		}
+
+		/// <summary>
+		/// Quadratic Bezier (3 control points)<br/>
+		/// </summary>
+		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathBezierQuadraticCurveToNative((ImDrawList*)pself, p2, p3, numSegments);
+			}
+		}
+
+		/// <summary>
+		/// Quadratic Bezier (3 control points)<br/>
+		/// </summary>
+		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathBezierQuadraticCurveToNative((ImDrawList*)pself, p2, p3, (int)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PathRectNative(ImDrawList* self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[551])(self, rectMin, rectMax, rounding, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[551])((nint)self, rectMin, rectMax, rounding, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
+		{
+			PathRectNative(self, rectMin, rectMax, rounding, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, float rounding)
+		{
+			PathRectNative(self, rectMin, rectMax, rounding, (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax)
+		{
+			PathRectNative(self, rectMin, rectMax, (float)(0.0f), (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, ImDrawFlags flags)
+		{
+			PathRectNative(self, rectMin, rectMax, (float)(0.0f), flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathRectNative((ImDrawList*)pself, rectMin, rectMax, rounding, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax, float rounding)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathRectNative((ImDrawList*)pself, rectMin, rectMax, rounding, (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathRectNative((ImDrawList*)pself, rectMin, rectMax, (float)(0.0f), (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathRectNative((ImDrawList*)pself, rectMin, rectMax, (float)(0.0f), flags);
+			}
+		}
+
+		/// <summary>
+		/// Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddCallbackNative(ImDrawList* self, ImDrawCallback callback, void* callbackData)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, delegate*<ImDrawList*, ImDrawCmd*, void>, void*, void>)funcTable[552])(self, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), callbackData);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[552])((nint)self, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)callbackData);
+			#endif
+		}
+
+		/// <summary>
+		/// Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.<br/>
+		/// </summary>
+		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* callbackData)
+		{
+			AddCallbackNative(self, callback, callbackData);
+		}
+
+		/// <summary>
 		/// Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.<br/>
 		/// </summary>
 		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* callbackData)
@@ -32,12 +454,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddDrawCmdNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[553])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[553])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[553])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[553])((nint)self);
 			#endif
 		}
 
@@ -63,12 +486,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* CloneOutputNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*>)vt[554])(self);
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*>)funcTable[554])(self);
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[554])((nint)self);
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[554])((nint)self);
 			#endif
 		}
 
@@ -96,12 +520,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ChannelsSplitNative(ImDrawList* self, int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)vt[555])(self, count);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[555])(self, count);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[555])((nint)self, count);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[555])((nint)self, count);
 			#endif
 		}
 
@@ -127,12 +552,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ChannelsMergeNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[556])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[556])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[556])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[556])((nint)self);
 			#endif
 		}
 
@@ -158,12 +584,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ChannelsSetCurrentNative(ImDrawList* self, int n)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)vt[557])(self, n);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[557])(self, n);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[557])((nint)self, n);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[557])((nint)self, n);
 			#endif
 		}
 
@@ -189,12 +616,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimReserveNative(ImDrawList* self, int idxCount, int vtxCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)vt[558])(self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[558])(self, idxCount, vtxCount);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)vt[558])((nint)self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[558])((nint)self, idxCount, vtxCount);
 			#endif
 		}
 
@@ -220,12 +648,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimUnreserveNative(ImDrawList* self, int idxCount, int vtxCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)vt[559])(self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[559])(self, idxCount, vtxCount);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)vt[559])((nint)self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[559])((nint)self, idxCount, vtxCount);
 			#endif
 		}
 
@@ -251,12 +680,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Axis aligned rectangle (composed of two triangles)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimRectNative(ImDrawList* self, Vector2 a, Vector2 b, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)vt[560])(self, a, b, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[560])(self, a, b, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)vt[560])((nint)self, a, b, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[560])((nint)self, a, b, col);
 			#endif
 		}
 
@@ -282,12 +712,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimRectUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[561])(self, a, b, uvA, uvB, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[561])(self, a, b, uvA, uvB, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[561])((nint)self, a, b, uvA, uvB, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[561])((nint)self, a, b, uvA, uvB, col);
 			#endif
 		}
 
@@ -313,12 +744,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimQuadUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[562])(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[562])(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[562])((nint)self, a, b, c, d, uvA, uvB, uvC, uvD, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[562])((nint)self, a, b, c, d, uvA, uvB, uvC, uvD, col);
 			#endif
 		}
 
@@ -344,12 +776,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimWriteVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)vt[563])(self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[563])(self, pos, uv, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)vt[563])((nint)self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[563])((nint)self, pos, uv, col);
 			#endif
 		}
 
@@ -375,12 +808,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimWriteIdxNative(ImDrawList* self, ushort idx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ushort, void>)vt[564])(self, idx);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ushort, void>)funcTable[564])(self, idx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ushort, void>)vt[564])((nint)self, idx);
+			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[564])((nint)self, idx);
 			#endif
 		}
 
@@ -406,12 +840,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Write vertex with unique index<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)vt[565])(self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[565])(self, pos, uv, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)vt[565])((nint)self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[565])((nint)self, pos, uv, col);
 			#endif
 		}
 
@@ -437,12 +872,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _ResetForNewFrameNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[566])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[566])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[566])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[566])((nint)self);
 			#endif
 		}
 
@@ -468,12 +904,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _ClearFreeMemoryNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[567])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[567])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[567])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[567])((nint)self);
 			#endif
 		}
 
@@ -499,12 +936,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _PopUnusedDrawCmdNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[568])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[568])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[568])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[568])((nint)self);
 			#endif
 		}
 
@@ -530,12 +968,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _TryMergeDrawCmdsNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[569])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[569])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[569])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[569])((nint)self);
 			#endif
 		}
 
@@ -561,12 +1000,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _OnChangedClipRectNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[570])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[570])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[570])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[570])((nint)self);
 			#endif
 		}
 
@@ -592,12 +1032,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _OnChangedTextureIDNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[571])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[571])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[571])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[571])((nint)self);
 			#endif
 		}
 
@@ -623,12 +1064,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _OnChangedVtxOffsetNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[572])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[572])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[572])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[572])((nint)self);
 			#endif
 		}
 
@@ -654,12 +1096,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _SetTextureIDNative(ImDrawList* self, ImTextureID textureId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, void>)vt[573])(self, textureId);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, void>)funcTable[573])(self, textureId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)vt[573])((nint)self, textureId);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)funcTable[573])((nint)self, textureId);
 			#endif
 		}
 
@@ -685,12 +1128,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int _CalcCircleAutoSegmentCountNative(ImDrawList* self, float radius)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, float, int>)vt[574])(self, radius);
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*, float, int>)funcTable[574])(self, radius);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, float, int>)vt[574])((nint)self, radius);
+			return (int)((delegate* unmanaged[Cdecl]<nint, float, int>)funcTable[574])((nint)self, radius);
 			#endif
 		}
 
@@ -718,12 +1162,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _PathArcToFastExNative(ImDrawList* self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, int, void>)vt[575])(self, center, radius, aMinSample, aMaxSample, aStep);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, int, void>)funcTable[575])(self, center, radius, aMinSample, aMaxSample, aStep);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, int, void>)vt[575])((nint)self, center, radius, aMinSample, aMaxSample, aStep);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, int, void>)funcTable[575])((nint)self, center, radius, aMinSample, aMaxSample, aStep);
 			#endif
 		}
 
@@ -749,12 +1194,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void _PathArcToNNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)vt[576])(self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[576])(self, center, radius, aMin, aMax, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)vt[576])((nint)self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[576])((nint)self, center, radius, aMin, aMax, numSegments);
 			#endif
 		}
 
@@ -780,12 +1226,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawData* ImDrawDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)vt[577])();
+			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)funcTable[577])();
 			#else
-			return (ImDrawData*)((delegate* unmanaged[Cdecl]<nint>)vt[577])();
+			return (ImDrawData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[577])();
 			#endif
 		}
 
@@ -801,12 +1248,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImDrawData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)vt[578])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[578])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[578])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[578])((nint)self);
 			#endif
 		}
 
@@ -832,12 +1280,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearNative(ImDrawData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)vt[579])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[579])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[579])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[579])((nint)self);
 			#endif
 		}
 
@@ -863,12 +1312,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddDrawListNative(ImDrawData* self, ImDrawList* drawList)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ImDrawList*, void>)vt[580])(self, drawList);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ImDrawList*, void>)funcTable[580])(self, drawList);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[580])((nint)self, (nint)drawList);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[580])((nint)self, (nint)drawList);
 			#endif
 		}
 
@@ -919,12 +1369,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DeIndexAllBuffersNative(ImDrawData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)vt[581])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[581])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[581])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[581])((nint)self);
 			#endif
 		}
 
@@ -950,12 +1401,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ScaleClipRectsNative(ImDrawData* self, Vector2 fbScale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, Vector2, void>)vt[582])(self, fbScale);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, Vector2, void>)funcTable[582])(self, fbScale);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)vt[582])((nint)self, fbScale);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[582])((nint)self, fbScale);
 			#endif
 		}
 
@@ -981,12 +1433,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontConfig* ImFontConfigNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontConfig*>)vt[583])();
+			return ((delegate* unmanaged[Cdecl]<ImFontConfig*>)funcTable[583])();
 			#else
-			return (ImFontConfig*)((delegate* unmanaged[Cdecl]<nint>)vt[583])();
+			return (ImFontConfig*)((delegate* unmanaged[Cdecl]<nint>)funcTable[583])();
 			#endif
 		}
 
@@ -1002,12 +1455,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImFontConfig* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontConfig*, void>)vt[584])(self);
+			((delegate* unmanaged[Cdecl]<ImFontConfig*, void>)funcTable[584])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[584])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[584])((nint)self);
 			#endif
 		}
 
@@ -1033,12 +1487,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilderNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*>)vt[585])();
+			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*>)funcTable[585])();
 			#else
-			return (ImFontGlyphRangesBuilder*)((delegate* unmanaged[Cdecl]<nint>)vt[585])();
+			return (ImFontGlyphRangesBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[585])();
 			#endif
 		}
 
@@ -1054,12 +1509,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImFontGlyphRangesBuilder* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)vt[586])(self);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[586])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[586])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[586])((nint)self);
 			#endif
 		}
 
@@ -1085,12 +1541,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearNative(ImFontGlyphRangesBuilder* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)vt[587])(self);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[587])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[587])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[587])((nint)self);
 			#endif
 		}
 
@@ -1116,12 +1573,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Get bit n in the array<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte GetBitNative(ImFontGlyphRangesBuilder* self, ulong n)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, byte>)vt[588])(self, n);
+			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, byte>)funcTable[588])(self, n);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, byte>)vt[588])((nint)self, n);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, byte>)funcTable[588])((nint)self, n);
 			#endif
 		}
 
@@ -1170,12 +1628,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Set bit n in the array<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetBitNative(ImFontGlyphRangesBuilder* self, ulong n)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, void>)vt[589])(self, n);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, void>)funcTable[589])(self, n);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, void>)vt[589])((nint)self, n);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[589])((nint)self, n);
 			#endif
 		}
 
@@ -1220,12 +1679,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add character<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddCharNative(ImFontGlyphRangesBuilder* self, char c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char, void>)vt[590])(self, c);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char, void>)funcTable[590])(self, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, char, void>)vt[590])((nint)self, c);
+			((delegate* unmanaged[Cdecl]<nint, char, void>)funcTable[590])((nint)self, c);
 			#endif
 		}
 
@@ -1251,12 +1711,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddTextNative(ImFontGlyphRangesBuilder* self, byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, byte*, byte*, void>)vt[591])(self, text, textEnd);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, byte*, byte*, void>)funcTable[591])(self, text, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)vt[591])((nint)self, (nint)text, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[591])((nint)self, (nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -1799,12 +2260,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddRangesNative(ImFontGlyphRangesBuilder* self, char* ranges)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char*, void>)vt[592])(self, ranges);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char*, void>)funcTable[592])(self, ranges);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[592])((nint)self, (nint)ranges);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[592])((nint)self, (nint)ranges);
 			#endif
 		}
 
@@ -1855,12 +2317,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVector<char>* outRanges)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVector<char>*, void>)vt[593])(self, outRanges);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVector<char>*, void>)funcTable[593])(self, outRanges);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[593])((nint)self, (nint)outRanges);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[593])((nint)self, (nint)outRanges);
 			#endif
 		}
 
@@ -1911,12 +2374,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontAtlasCustomRect* ImFontAtlasCustomRectNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*>)vt[594])();
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*>)funcTable[594])();
 			#else
-			return (ImFontAtlasCustomRect*)((delegate* unmanaged[Cdecl]<nint>)vt[594])();
+			return (ImFontAtlasCustomRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[594])();
 			#endif
 		}
 
@@ -1932,12 +2396,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImFontAtlasCustomRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, void>)vt[595])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, void>)funcTable[595])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[595])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[595])((nint)self);
 			#endif
 		}
 
@@ -1963,12 +2428,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsPackedNative(ImFontAtlasCustomRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, byte>)vt[596])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, byte>)funcTable[596])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[596])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[596])((nint)self);
 			#endif
 		}
 
@@ -1996,12 +2462,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontAtlas* ImFontAtlasNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*>)vt[597])();
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*>)funcTable[597])();
 			#else
-			return (ImFontAtlas*)((delegate* unmanaged[Cdecl]<nint>)vt[597])();
+			return (ImFontAtlas*)((delegate* unmanaged[Cdecl]<nint>)funcTable[597])();
 			#endif
 		}
 
@@ -2017,12 +2484,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[598])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[598])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[598])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[598])((nint)self);
 			#endif
 		}
 
@@ -2048,12 +2516,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* AddFontNative(ImFontAtlas* self, ImFontConfig* fontCfg)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)vt[599])(self, fontCfg);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)funcTable[599])(self, fontCfg);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[599])((nint)self, (nint)fontCfg);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[599])((nint)self, (nint)fontCfg);
 			#endif
 		}
 
@@ -2108,12 +2577,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* AddFontDefaultNative(ImFontAtlas* self, ImFontConfig* fontCfg)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)vt[600])(self, fontCfg);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)funcTable[600])(self, fontCfg);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[600])((nint)self, (nint)fontCfg);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[600])((nint)self, (nint)fontCfg);
 			#endif
 		}
 
@@ -2189,12 +2659,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* AddFontFromFileTTFNative(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)vt[601])(self, filename, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)funcTable[601])(self, filename, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)vt[601])((nint)self, (nint)filename, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)funcTable[601])((nint)self, (nint)filename, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -3587,12 +4058,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* AddFontFromMemoryTTFNative(ImFontAtlas* self, void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)vt[602])(self, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)funcTable[602])(self, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)vt[602])((nint)self, (nint)fontData, fontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)funcTable[602])((nint)self, (nint)fontData, fontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -3824,12 +4296,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* AddFontFromMemoryCompressedTTFNative(ImFontAtlas* self, void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)vt[603])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)funcTable[603])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)vt[603])((nint)self, (nint)compressedFontData, compressedFontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)funcTable[603])((nint)self, (nint)compressedFontData, compressedFontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -4061,12 +4534,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* AddFontFromMemoryCompressedBase85TTFNative(ImFontAtlas* self, byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)vt[604])(self, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)funcTable[604])(self, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)vt[604])((nint)self, (nint)compressedFontDatabase85, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)funcTable[604])((nint)self, (nint)compressedFontDatabase85, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -4553,480 +5027,6 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDatabase85, float sizePixels)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDatabase85, float sizePixels, char* glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, byte* compressedFontDatabase85, float sizePixels, ImFontConfigPtr fontCfg, ref char glyphRanges)
-		{
-			fixed (char* pglyphRanges = &glyphRanges)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDatabase85, sizePixels, fontCfg, (char*)pglyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, byte* compressedFontDatabase85, float sizePixels, ref char glyphRanges)
-		{
-			fixed (char* pglyphRanges = &glyphRanges)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDatabase85, float sizePixels, ImFontConfigPtr fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDatabase85, sizePixels, fontCfg, (char*)pglyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDatabase85, float sizePixels, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ref byte compressedFontDatabase85, float sizePixels, ImFontConfigPtr fontCfg, ref char glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (char*)pglyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ref byte compressedFontDatabase85, float sizePixels, ref char glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
-					return ret;
-				}
 			}
 		}
 	}

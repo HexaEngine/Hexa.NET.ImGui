@@ -14,7 +14,6 @@ namespace ExampleOpenGL3
     using System.Diagnostics;
     using System.Numerics;
     using System.Runtime.InteropServices;
-    using static System.Runtime.InteropServices.JavaScript.JSType;
     using ImDrawIdx = UInt16;
 
     public static unsafe class ImGuiOpenGL3Renderer

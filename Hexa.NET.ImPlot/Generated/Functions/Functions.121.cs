@@ -22,6 +22,21 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
 			fixed (double* px1 = &x1)
@@ -5011,24 +5026,6 @@ namespace Hexa.NET.ImPlot
 					fixed (bool* pheld = &held)
 					{
 						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py2 = &y2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
 						return ret != 0;
 					}
 				}

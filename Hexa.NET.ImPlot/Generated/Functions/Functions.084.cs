@@ -22,6 +22,165 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (double*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (double*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
 			byte** pStrArray0 = null;
@@ -281,12 +440,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[214])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, byte*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[214])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[214])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[214])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -1013,12 +1173,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, short*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[215])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, short*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[215])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[215])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[215])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -1745,12 +1906,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, ushort*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[216])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, ushort*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[216])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[216])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[216])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -2477,12 +2639,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, int* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, int*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[217])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, int*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[217])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[217])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[217])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -3209,12 +3372,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, uint* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, uint*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[218])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, uint*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[218])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[218])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[218])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -3941,12 +4105,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, long*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[219])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, long*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[219])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[219])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[219])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -4673,12 +4838,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotPieChartNative(byte** labelIds, ulong* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, ulong*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[220])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<byte**, ulong*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[220])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)vt[220])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[220])((nint)labelIds, (nint)values, count, x, y, radius, (nint)Utils.GetFunctionPointerForDelegate(fmt), (nint)fmtData, angle0, flags);
 			#endif
 		}
 
@@ -4879,153 +5045,6 @@ namespace Hexa.NET.ImPlot
 			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ulong* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ulong* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ulong* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ulong* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (ulong*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
 			}
 		}
 	}

@@ -742,12 +742,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ViewManipulateNative(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, float, Vector2, Vector2, uint, void>)vt[14])(view, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<float*, float, Vector2, Vector2, uint, void>)funcTable[14])(view, length, position, size, backgroundColor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, Vector2, Vector2, uint, void>)vt[14])((nint)view, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<nint, float, Vector2, Vector2, uint, void>)funcTable[14])((nint)view, length, position, size, backgroundColor);
 			#endif
 		}
 
@@ -784,12 +785,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ViewManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, float*, ImGuizmoOperation, ImGuizmoMode, float*, float, Vector2, Vector2, uint, void>)vt[15])(view, projection, operation, mode, matrix, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<float*, float*, ImGuizmoOperation, ImGuizmoMode, float*, float, Vector2, Vector2, uint, void>)funcTable[15])(view, projection, operation, mode, matrix, length, position, size, backgroundColor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImGuizmoOperation, ImGuizmoMode, nint, float, Vector2, Vector2, uint, void>)vt[15])((nint)view, (nint)projection, operation, mode, (nint)matrix, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuizmoOperation, ImGuizmoMode, nint, float, Vector2, Vector2, uint, void>)funcTable[15])((nint)view, (nint)projection, operation, mode, (nint)matrix, length, position, size, backgroundColor);
 			#endif
 		}
 
@@ -913,12 +915,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetIDNative(int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[16])(id);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[16])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[16])(id);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[16])(id);
 			#endif
 		}
 
@@ -933,12 +936,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsOverNative(ImGuizmoOperation op)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)vt[17])(op);
+			return ((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)funcTable[17])(op);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)vt[17])(op);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)funcTable[17])(op);
 			#endif
 		}
 
@@ -954,12 +958,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetGizmoSizeClipSpaceNative(float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)vt[18])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[18])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)vt[18])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[18])(value);
 			#endif
 		}
 
@@ -974,12 +979,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AllowAxisFlipNative(byte value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[19])(value);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[19])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[19])(value);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[19])(value);
 			#endif
 		}
 
@@ -994,12 +1000,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetAxisLimitNative(float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)vt[20])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[20])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)vt[20])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[20])(value);
 			#endif
 		}
 
@@ -1014,12 +1021,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetPlaneLimitNative(float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)vt[21])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[21])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)vt[21])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[21])(value);
 			#endif
 		}
 
@@ -1034,12 +1042,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Style* StyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Style*>)vt[22])();
+			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[22])();
 			#else
-			return (Style*)((delegate* unmanaged[Cdecl]<nint>)vt[22])();
+			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[22])();
 			#endif
 		}
 
@@ -1055,12 +1064,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(Style* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Style*, void>)vt[23])(self);
+			((delegate* unmanaged[Cdecl]<Style*, void>)funcTable[23])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[23])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[23])((nint)self);
 			#endif
 		}
 
@@ -1086,12 +1096,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Style* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Style*>)vt[24])();
+			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[24])();
 			#else
-			return (Style*)((delegate* unmanaged[Cdecl]<nint>)vt[24])();
+			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[24])();
 			#endif
 		}
 

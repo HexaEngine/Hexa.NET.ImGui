@@ -6,16 +6,16 @@ namespace Hexa.NET.ImGui
 
     public static unsafe partial class ImGuiP
     {
-        internal static VTable vt;
+        internal static FunctionTable funcTable;
 
         static ImGuiP()
         {
-            if (ImGui.vt == null)
+            if (ImGui.funcTable == null)
             {
                 ImGui.InitApi();
             }
 
-            vt = ImGui.vt;
+            funcTable = ImGui.funcTable;
         }
     }
 }

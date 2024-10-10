@@ -9,7 +9,7 @@ namespace Hexa.NET.ImGui
             InitApi();
         }
 
-        public static string GetLibarayName()
+        public static string GetLibraryName()
         {
             return "cimgui";
         }

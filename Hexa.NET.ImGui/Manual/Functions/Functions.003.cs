@@ -2267,12 +2267,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImFormatStringNative(byte* buf, ulong bufSize, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, int>)vt[1427])(buf, bufSize, fmt);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, int>)funcTable[1425])(buf, bufSize, fmt);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, int>)vt[1427])((nint)buf, bufSize, (nint)fmt);
+			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, int>)funcTable[1425])((nint)buf, bufSize, (nint)fmt);
 			#endif
 		}
 
@@ -2655,12 +2656,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImFormatStringVNative(byte* buf, ulong bufSize, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, nuint, int>)vt[1428])(buf, bufSize, fmt, args);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, nuint, int>)funcTable[1426])(buf, bufSize, fmt, args);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, nuint, int>)vt[1428])((nint)buf, bufSize, (nint)fmt, args);
+			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, nuint, int>)funcTable[1426])((nint)buf, bufSize, (nint)fmt, args);
 			#endif
 		}
 
@@ -3043,12 +3045,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImParseFormatTrimDecorationsNative(byte* format, byte* buf, ulong bufSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)vt[1429])(format, buf, bufSize);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)funcTable[1427])(format, buf, bufSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)vt[1429])((nint)format, (nint)buf, bufSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)funcTable[1427])((nint)format, (nint)buf, bufSize);
 			#endif
 		}
 
@@ -3807,12 +3810,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return output UTF-8 bytes count<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImTextStrToUtf8Native(byte* outBuf, int outBufSize, char* inText, char* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, char*, char*, int>)vt[1430])(outBuf, outBufSize, inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, char*, char*, int>)funcTable[1428])(outBuf, outBufSize, inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)vt[1430])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)funcTable[1428])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -4063,12 +4067,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return input UTF-8 bytes count<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImTextStrFromUtf8Native(char* outBuf, int outBufSize, byte* inText, byte* inTextEnd, byte** inRemaining)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<char*, int, byte*, byte*, byte**, int>)vt[1431])(outBuf, outBufSize, inText, inTextEnd, inRemaining);
+			return ((delegate* unmanaged[Cdecl]<char*, int, byte*, byte*, byte**, int>)funcTable[1429])(outBuf, outBufSize, inText, inTextEnd, inRemaining);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, nint, int>)vt[1431])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd, (nint)inRemaining);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, nint, int>)funcTable[1429])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd, (nint)inRemaining);
 			#endif
 		}
 
@@ -5011,24 +5016,6 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// return input UTF-8 bytes count<br/>
-		/// </summary>
-		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ref byte inText, byte* inTextEnd, ref byte* inRemaining)
-		{
-			fixed (char* poutBuf = &outBuf)
-			{
-				fixed (byte* pinText = &inText)
-				{
-					fixed (byte** pinRemaining = &inRemaining)
-					{
-						int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, (byte*)pinText, inTextEnd, (byte**)pinRemaining);
-						return ret;
-					}
-				}
 			}
 		}
 	}

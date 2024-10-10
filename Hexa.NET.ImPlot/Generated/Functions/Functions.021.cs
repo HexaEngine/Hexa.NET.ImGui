@@ -22,6 +22,125 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotStairs(ref byte labelId, ref short xs, ref short ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ref byte labelId, ref short xs, ref short ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotStairsFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ref byte labelId, ref short xs, ref short ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotStairsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, ref short xs, ref short ys, int count, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, ref short xs, ref short ys, int count, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, ref short xs, ref short ys, int count, ImPlotStairsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, ref short xs, ref short ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotStairs(ReadOnlySpan<byte> labelId, ref short xs, ref short ys, int count, int offset)
 		{
 			fixed (byte* plabelId = labelId)
@@ -266,12 +385,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotStairsNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotStairsFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotStairsFlags, int, int, void>)vt[105])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotStairsFlags, int, int, void>)funcTable[105])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, int, int, void>)vt[105])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, int, int, void>)funcTable[105])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -1982,12 +2102,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotStairsNative(byte* labelId, int* xs, int* ys, int count, ImPlotStairsFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, ImPlotStairsFlags, int, int, void>)vt[106])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, ImPlotStairsFlags, int, int, void>)funcTable[106])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, int, int, void>)vt[106])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, int, int, void>)funcTable[106])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -3698,12 +3819,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotStairsNative(byte* labelId, uint* xs, uint* ys, int count, ImPlotStairsFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, ImPlotStairsFlags, int, int, void>)vt[107])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, ImPlotStairsFlags, int, int, void>)funcTable[107])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, int, int, void>)vt[107])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, int, int, void>)funcTable[107])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4909,124 +5031,6 @@ namespace Hexa.NET.ImPlot
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, ref uint xs, ref uint ys, int count, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					PlotStairsNative(labelId, (uint*)pxs, (uint*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, ref uint xs, ref uint ys, int count, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					PlotStairsNative(labelId, (uint*)pxs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, ref uint xs, ref uint ys, int count, ImPlotStairsFlags flags)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					PlotStairsNative(labelId, (uint*)pxs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, ref uint xs, ref uint ys, int count)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					PlotStairsNative(labelId, (uint*)pxs, (uint*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, ref uint xs, ref uint ys, int count, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					PlotStairsNative(labelId, (uint*)pxs, (uint*)pys, count, (ImPlotStairsFlags)(0), offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, ref uint xs, ref uint ys, int count, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					PlotStairsNative(labelId, (uint*)pxs, (uint*)pys, count, (ImPlotStairsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ref byte labelId, ref uint xs, ref uint ys, int count, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStairsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ref byte labelId, ref uint xs, ref uint ys, int count, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStairsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
-					}
 				}
 			}
 		}

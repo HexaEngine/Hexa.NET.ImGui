@@ -715,12 +715,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double PlotHistogramNative(byte* labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ushort*, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)vt[243])(labelId, values, count, bins, barScale, range, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ushort*, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)funcTable[243])(labelId, values, count, bins, barScale, range, flags);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, nint, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)vt[243])((nint)labelId, (nint)values, count, bins, barScale, range, flags);
+			return (double)((delegate* unmanaged[Cdecl]<nint, nint, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)funcTable[243])((nint)labelId, (nint)values, count, bins, barScale, range, flags);
 			#endif
 		}
 
@@ -2935,12 +2936,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double PlotHistogramNative(byte* labelId, int* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)vt[244])(labelId, values, count, bins, barScale, range, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)funcTable[244])(labelId, values, count, bins, barScale, range, flags);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, nint, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)vt[244])((nint)labelId, (nint)values, count, bins, barScale, range, flags);
+			return (double)((delegate* unmanaged[Cdecl]<nint, nint, int, int, double, ImPlotRange, ImPlotHistogramFlags, double>)funcTable[244])((nint)labelId, (nint)values, count, bins, barScale, range, flags);
 			#endif
 		}
 

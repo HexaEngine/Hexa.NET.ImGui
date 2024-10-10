@@ -21,6 +21,57 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Find a substring in a string range.<br/>
 		/// </summary>
+		public static byte* ImStristr(string haystack, string haystackEnd, byte* needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(haystackEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = ImStristrNative(pStr0, pStr1, needle, needleEnd);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find a substring in a string range.<br/>
+		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, byte* needle, byte* needleEnd)
 		{
 			byte* pStr0 = null;
@@ -2232,12 +2283,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Remove leading and trailing blanks from a buffer.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImStrTrimBlanksNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[749])(str);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[748])(str);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[749])((nint)str);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[748])((nint)str);
 			#endif
 		}
 
@@ -2293,12 +2345,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Find first non-blank character.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrSkipBlankNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)vt[750])(str);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[749])(str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[750])((nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[749])((nint)str);
 			#endif
 		}
 
@@ -2431,12 +2484,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Computer string length (ImWchar string)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImStrlenWNative(char* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<char*, int>)vt[751])(str);
+			return ((delegate* unmanaged[Cdecl]<char*, int>)funcTable[750])(str);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[751])((nint)str);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[750])((nint)str);
 			#endif
 		}
 
@@ -2464,12 +2518,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Find beginning-of-line<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrbolNative(byte* bufMidLine, byte* bufBegin)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)vt[752])(bufMidLine, bufBegin);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[751])(bufMidLine, bufBegin);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[752])((nint)bufMidLine, (nint)bufBegin);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[751])((nint)bufMidLine, (nint)bufBegin);
 			#endif
 		}
 
@@ -2872,12 +2927,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImToUpperNative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)vt[753])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[752])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)vt[753])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[752])(c);
 			#endif
 		}
 
@@ -2893,12 +2949,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImCharIsBlankANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)vt[754])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[753])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)vt[754])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[753])(c);
 			#endif
 		}
 
@@ -2914,12 +2971,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImCharIsBlankWNative(uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, byte>)vt[755])(c);
+			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[754])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)vt[755])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[754])(c);
 			#endif
 		}
 
@@ -2935,12 +2993,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImCharIsXdigitANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)vt[756])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[755])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)vt[756])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[755])(c);
 			#endif
 		}
 
@@ -2956,12 +3015,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImFormatStringToTempBufferNative(byte** outBuf, byte** outBufEnd, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)vt[757])(outBuf, outBufEnd, fmt);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)funcTable[756])(outBuf, outBufEnd, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)vt[757])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[756])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
 			#endif
 		}
 
@@ -3252,12 +3312,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImFormatStringToTempBufferVNative(byte** outBuf, byte** outBufEnd, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)vt[758])(outBuf, outBufEnd, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[757])(outBuf, outBufEnd, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)vt[758])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[757])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
 			#endif
 		}
 
@@ -3548,12 +3609,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImParseFormatFindStartNative(byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)vt[759])(format);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[758])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[759])((nint)format);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[758])((nint)format);
 			#endif
 		}
 
@@ -3686,12 +3748,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImParseFormatFindEndNative(byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)vt[760])(format);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[759])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[760])((nint)format);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[759])((nint)format);
 			#endif
 		}
 
@@ -3824,12 +3887,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImParseFormatSanitizeForPrintingNative(byte* fmtIn, byte* fmtOut, ulong fmtOutSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)vt[761])(fmtIn, fmtOut, fmtOutSize);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)funcTable[760])(fmtIn, fmtOut, fmtOutSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)vt[761])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[760])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
 			#endif
 		}
 
@@ -4194,12 +4258,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImParseFormatSanitizeForScanningNative(byte* fmtIn, byte* fmtOut, ulong fmtOutSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)vt[762])(fmtIn, fmtOut, fmtOutSize);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)funcTable[761])(fmtIn, fmtOut, fmtOutSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)vt[762])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)funcTable[761])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
 			#endif
 		}
 
@@ -4948,81 +5013,6 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr1);
 			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static int ImParseFormatPrecisionNative(byte* format, int defaultValue)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)vt[763])(format, defaultValue);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[763])((nint)format, defaultValue);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImParseFormatPrecision(byte* format, int defaultValue)
-		{
-			int ret = ImParseFormatPrecisionNative(format, defaultValue);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImParseFormatPrecision(ref byte format, int defaultValue)
-		{
-			fixed (byte* pformat = &format)
-			{
-				int ret = ImParseFormatPrecisionNative((byte*)pformat, defaultValue);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImParseFormatPrecision(ReadOnlySpan<byte> format, int defaultValue)
-		{
-			fixed (byte* pformat = format)
-			{
-				int ret = ImParseFormatPrecisionNative((byte*)pformat, defaultValue);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImParseFormatPrecision(string format, int defaultValue)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			int ret = ImParseFormatPrecisionNative(pStr0, defaultValue);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);

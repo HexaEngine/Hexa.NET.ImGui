@@ -7,7 +7,7 @@ namespace Hexa.NET.ImGuizmo
             InitApi();
         }
 
-        public static string GetLibarayName()
+        public static string GetLibraryName()
         {
             return "cimguizmo";
         }

@@ -22,6 +22,206 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotErrorBars(string labelId, ref double xs, double* ys, double* neg, double* pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pxs = &xs)
+			{
+				PlotErrorBarsNative(pStr0, (double*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ref double xs, double* ys, double* neg, double* pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pxs = &xs)
+			{
+				PlotErrorBarsNative(pStr0, (double*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, double* xs, ref double ys, double* neg, double* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (double* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (double*)pys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, double* xs, ref double ys, double* neg, double* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (double* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (double*)pys, neg, pos, count, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, double* xs, ref double ys, double* neg, double* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (double* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (double*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, double* xs, ref double ys, double* neg, double* pos, int count)
+		{
+			fixed (double* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (double*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, double* xs, ref double ys, double* neg, double* pos, int count, int offset)
+		{
+			fixed (double* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (double*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, double* xs, ref double ys, double* neg, double* pos, int count, int offset, int stride)
+		{
+			fixed (double* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (double*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ref byte labelId, double* xs, ref double ys, double* neg, double* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (double*)pys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ref byte labelId, double* xs, ref double ys, double* neg, double* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (double*)pys, neg, pos, count, flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ref byte labelId, double* xs, ref double ys, double* neg, double* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (double*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ref byte labelId, double* xs, ref double ys, double* neg, double* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (double*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ref byte labelId, double* xs, ref double ys, double* neg, double* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (double*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotErrorBars(ref byte labelId, double* xs, ref double ys, double* neg, double* pos, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -4815,215 +5015,6 @@ namespace Hexa.NET.ImPlot
 				fixed (double* ppos = &pos)
 				{
 					PlotErrorBarsNative(labelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (double* pneg = &neg)
-			{
-				fixed (double* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, double* xs, double* ys, ref double neg, ref double pos, int count)
-		{
-			fixed (double* pneg = &neg)
-			{
-				fixed (double* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (double*)pneg, (double*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, double* xs, double* ys, ref double neg, ref double pos, int count, int offset)
-		{
-			fixed (double* pneg = &neg)
-			{
-				fixed (double* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (double*)pneg, (double*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, double* xs, double* ys, ref double neg, ref double pos, int count, int offset, int stride)
-		{
-			fixed (double* pneg = &neg)
-			{
-				fixed (double* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (double*)pneg, (double*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, (int)(0), (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, double* xs, double* ys, ref double neg, ref double pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, double* xs, double* ys, ref double neg, ref double pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, double* xs, double* ys, ref double neg, ref double pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, double* xs, double* ys, ref double neg, ref double pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pneg = &neg)
-				{
-					fixed (double* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (double*)pneg, (double*)ppos, count, flags, (int)(0), (int)(sizeof(double)));
-					}
 				}
 			}
 		}

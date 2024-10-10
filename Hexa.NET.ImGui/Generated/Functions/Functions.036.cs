@@ -21,6 +21,149 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLines(byte* label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
 		{
 			fixed (byte* poverlayText = overlayText)
@@ -4882,142 +5025,6 @@ namespace Hexa.NET.ImGui
 					fixed (byte* poverlayText = overlayText)
 					{
 						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = overlayText)
-					{
-						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
 					}
 				}
 			}

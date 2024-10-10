@@ -22,12 +22,79 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static ImPlotColormap AddColormap(string name, ref Vector4 cols, int size, bool qual)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcols = &cols)
+			{
+				ImPlotColormap ret = AddColormapNative(pStr0, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotColormap AddColormap(string name, ref Vector4 cols, int size)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcols = &cols)
+			{
+				ImPlotColormap ret = AddColormapNative(pStr0, (Vector4*)pcols, size, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotColormap AddColormapNative(byte* name, uint* cols, int size, byte qual)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, int, byte, ImPlotColormap>)vt[333])(name, cols, size, qual);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, int, byte, ImPlotColormap>)funcTable[333])(name, cols, size, qual);
 			#else
-			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, nint, int, byte, ImPlotColormap>)vt[333])((nint)name, (nint)cols, size, qual);
+			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, nint, int, byte, ImPlotColormap>)funcTable[333])((nint)name, (nint)cols, size, qual);
 			#endif
 		}
 
@@ -310,12 +377,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetColormapCountNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[334])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[334])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[334])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[334])();
 			#endif
 		}
 
@@ -331,12 +399,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetColormapNameNative(ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormap, byte*>)vt[335])(cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormap, byte*>)funcTable[335])(cmap);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImPlotColormap, nint>)vt[335])(cmap);
+			return (byte*)((delegate* unmanaged[Cdecl]<ImPlotColormap, nint>)funcTable[335])(cmap);
 			#endif
 		}
 
@@ -361,12 +430,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotColormap GetColormapIndexNative(byte* name)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotColormap>)vt[336])(name);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotColormap>)funcTable[336])(name);
 			#else
-			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap>)vt[336])((nint)name);
+			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap>)funcTable[336])((nint)name);
 			#endif
 		}
 
@@ -436,12 +506,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushColormapNative(ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)vt[337])(cmap);
+			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)funcTable[337])(cmap);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)vt[337])(cmap);
+			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)funcTable[337])(cmap);
 			#endif
 		}
 
@@ -456,12 +527,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushColormapNative(byte* name)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[338])(name);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[338])(name);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[338])((nint)name);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[338])((nint)name);
 			#endif
 		}
 
@@ -527,12 +599,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopColormapNative(int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[339])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[339])(count);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[339])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[339])(count);
 			#endif
 		}
 
@@ -555,12 +628,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void NextColormapColorNative(Vector4* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, void>)vt[340])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector4*, void>)funcTable[340])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[340])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[340])((nint)pOut);
 			#endif
 		}
 
@@ -596,12 +670,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetColormapSizeNative(ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormap, int>)vt[341])(cmap);
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormap, int>)funcTable[341])(cmap);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotColormap, int>)vt[341])(cmap);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotColormap, int>)funcTable[341])(cmap);
 			#endif
 		}
 
@@ -626,12 +701,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetColormapColorNative(Vector4* pOut, int idx, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, int, ImPlotColormap, void>)vt[342])(pOut, idx, cmap);
+			((delegate* unmanaged[Cdecl]<Vector4*, int, ImPlotColormap, void>)funcTable[342])(pOut, idx, cmap);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotColormap, void>)vt[342])((nint)pOut, idx, cmap);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotColormap, void>)funcTable[342])((nint)pOut, idx, cmap);
 			#endif
 		}
 
@@ -696,12 +772,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SampleColormapNative(Vector4* pOut, float t, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, float, ImPlotColormap, void>)vt[343])(pOut, t, cmap);
+			((delegate* unmanaged[Cdecl]<Vector4*, float, ImPlotColormap, void>)funcTable[343])(pOut, t, cmap);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, ImPlotColormap, void>)vt[343])((nint)pOut, t, cmap);
+			((delegate* unmanaged[Cdecl]<nint, float, ImPlotColormap, void>)funcTable[343])((nint)pOut, t, cmap);
 			#endif
 		}
 
@@ -766,12 +843,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ColormapScaleNative(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, byte*, ImPlotColormapScaleFlags, ImPlotColormap, void>)vt[344])(label, scaleMin, scaleMax, size, format, flags, cmap);
+			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, byte*, ImPlotColormapScaleFlags, ImPlotColormap, void>)funcTable[344])(label, scaleMin, scaleMax, size, format, flags, cmap);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, Vector2, nint, ImPlotColormapScaleFlags, ImPlotColormap, void>)vt[344])((nint)label, scaleMin, scaleMax, size, (nint)format, flags, cmap);
+			((delegate* unmanaged[Cdecl]<nint, double, double, Vector2, nint, ImPlotColormapScaleFlags, ImPlotColormap, void>)funcTable[344])((nint)label, scaleMin, scaleMax, size, (nint)format, flags, cmap);
 			#endif
 		}
 
@@ -2754,12 +2832,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColormapSliderNative(byte* label, float* t, Vector4* output, byte* format, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, Vector4*, byte*, ImPlotColormap, byte>)vt[345])(label, t, output, format, cmap);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, Vector4*, byte*, ImPlotColormap, byte>)funcTable[345])(label, t, output, format, cmap);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, ImPlotColormap, byte>)vt[345])((nint)label, (nint)t, (nint)output, (nint)format, cmap);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, ImPlotColormap, byte>)funcTable[345])((nint)label, (nint)t, (nint)output, (nint)format, cmap);
 			#endif
 		}
 
@@ -4942,108 +5021,6 @@ namespace Hexa.NET.ImPlot
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = ColormapSliderNative(pStr0, t, output, pStr1, (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, float* t, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, (Vector4*)(default), pStr1, (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, float* t, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, (Vector4*)(default), pStr1, cmap);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);

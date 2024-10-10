@@ -19,6 +19,99 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
+		/// formatted text<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TextNative(byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[123])(fmt);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[123])((nint)fmt);
+			#endif
+		}
+
+		/// <summary>
+		/// formatted text<br/>
+		/// </summary>
+		public static void Text(byte* fmt)
+		{
+			TextNative(fmt);
+		}
+
+		/// <summary>
+		/// formatted text<br/>
+		/// </summary>
+		public static void Text(ref byte fmt)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				TextNative((byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// formatted text<br/>
+		/// </summary>
+		public static void Text(ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				TextNative((byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// formatted text<br/>
+		/// </summary>
+		public static void Text(string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TextVNative(byte* fmt, nuint args)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[124])(fmt, args);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[124])((nint)fmt, args);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextV(byte* fmt, nuint args)
+		{
+			TextVNative(fmt, args);
+		}
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public static void TextV(ref byte fmt, nuint args)
@@ -72,12 +165,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextColoredNative(Vector4 col, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)vt[125])(col, fmt);
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)funcTable[125])(col, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)vt[125])(col, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)funcTable[125])(col, (nint)fmt);
 			#endif
 		}
 
@@ -143,12 +237,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextColoredVNative(Vector4 col, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)vt[126])(col, fmt, args);
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)funcTable[126])(col, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)vt[126])(col, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)funcTable[126])(col, (nint)fmt, args);
 			#endif
 		}
 
@@ -214,12 +309,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextDisabledNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[127])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[127])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[127])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[127])((nint)fmt);
 			#endif
 		}
 
@@ -285,12 +381,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextDisabledVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[128])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[128])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[128])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[128])((nint)fmt, args);
 			#endif
 		}
 
@@ -356,12 +453,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextWrappedNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[129])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[129])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[129])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[129])((nint)fmt);
 			#endif
 		}
 
@@ -427,12 +525,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextWrappedVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[130])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[130])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[130])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[130])((nint)fmt, args);
 			#endif
 		}
 
@@ -498,12 +597,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LabelTextNative(byte* label, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[131])(label, fmt);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[131])(label, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[131])((nint)label, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[131])((nint)label, (nint)fmt);
 			#endif
 		}
 
@@ -698,12 +798,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LabelTextVNative(byte* label, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)vt[132])(label, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)funcTable[132])(label, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[132])((nint)label, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[132])((nint)label, (nint)fmt, args);
 			#endif
 		}
 
@@ -898,12 +999,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// shortcut for Bullet()+Text()<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletTextNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[133])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[133])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[133])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[133])((nint)fmt);
 			#endif
 		}
 
@@ -969,12 +1071,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletTextVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[134])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[134])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[134])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[134])((nint)fmt, args);
 			#endif
 		}
 
@@ -1040,12 +1143,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// currently: formatted text with an horizontal line<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SeparatorTextNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[135])(label);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[135])(label);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[135])((nint)label);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[135])((nint)label);
 			#endif
 		}
 
@@ -1111,12 +1215,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// button<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ButtonNative(byte* label, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)vt[136])(label, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)funcTable[136])(label, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)vt[136])((nint)label, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)funcTable[136])((nint)label, size);
 			#endif
 		}
 
@@ -1249,12 +1354,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// button with (FramePadding.y == 0) to easily embed within text<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SmallButtonNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[137])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[137])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[137])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[137])((nint)label);
 			#endif
 		}
 
@@ -1324,12 +1430,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InvisibleButtonNative(byte* strId, Vector2 size, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)vt[138])(strId, size, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)funcTable[138])(strId, size, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)vt[138])((nint)strId, size, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)funcTable[138])((nint)strId, size, flags);
 			#endif
 		}
 
@@ -1462,12 +1569,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// square button with an arrow shape<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ArrowButtonNative(byte* strId, ImGuiDir dir)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)vt[139])(strId, dir);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)funcTable[139])(strId, dir);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, byte>)vt[139])((nint)strId, dir);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, byte>)funcTable[139])((nint)strId, dir);
 			#endif
 		}
 
@@ -1537,12 +1645,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CheckboxNative(byte* label, bool* v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)vt[140])(label, v);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)funcTable[140])(label, v);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)vt[140])((nint)label, (nint)v);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[140])((nint)label, (nint)v);
 			#endif
 		}
 
@@ -1687,12 +1796,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte RadioButtonNative(byte* label, byte active)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)vt[141])(label, active);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)funcTable[141])(label, active);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[141])((nint)label, active);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[141])((nint)label, active);
 			#endif
 		}
 
@@ -1762,12 +1872,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte RadioButtonNative(byte* label, int* v, int vButton)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[142])(label, v, vButton);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[142])(label, v, vButton);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)vt[142])((nint)label, (nint)v, vButton);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[142])((nint)label, (nint)v, vButton);
 			#endif
 		}
 
@@ -1912,12 +2023,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ProgressBarNative(float fraction, Vector2 sizeArg, byte* overlay)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)vt[143])(fraction, sizeArg, overlay);
+			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)funcTable[143])(fraction, sizeArg, overlay);
 			#else
-			((delegate* unmanaged[Cdecl]<float, Vector2, nint, void>)vt[143])(fraction, sizeArg, (nint)overlay);
+			((delegate* unmanaged[Cdecl]<float, Vector2, nint, void>)funcTable[143])(fraction, sizeArg, (nint)overlay);
 			#endif
 		}
 
@@ -2058,12 +2170,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[144])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[144])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[144])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[144])();
 			#endif
 		}
 
@@ -2078,12 +2191,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// hyperlink text button, return true when clicked<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TextLinkNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[145])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[145])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[145])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[145])((nint)label);
 			#endif
 		}
 
@@ -2153,12 +2267,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextLinkOpenURLNative(byte* label, byte* url)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[146])(label, url);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[146])(label, url);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[146])((nint)label, (nint)url);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[146])((nint)label, (nint)url);
 			#endif
 		}
 
@@ -2412,12 +2527,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[147])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
+			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[147])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
 			#else
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[147])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
+			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[147])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
 			#endif
 		}
 
@@ -2496,12 +2612,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[148])(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[148])(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[148])((nint)strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[148])((nint)strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 			#endif
 		}
 
@@ -3075,12 +3192,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginComboNative(byte* label, byte* previewValue, ImGuiComboFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiComboFlags, byte>)vt[149])(label, previewValue, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiComboFlags, byte>)funcTable[149])(label, previewValue, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiComboFlags, byte>)vt[149])((nint)label, (nint)previewValue, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiComboFlags, byte>)funcTable[149])((nint)label, (nint)previewValue, flags);
 			#endif
 		}
 
@@ -3483,12 +3601,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// only call EndCombo() if BeginCombo() returns true!<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndComboNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[150])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[150])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[150])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[150])();
 			#endif
 		}
 
@@ -3503,12 +3622,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ComboNative(byte* label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)vt[151])(label, currentItem, items, itemsCount, popupMaxHeightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)funcTable[151])(label, currentItem, items, itemsCount, popupMaxHeightInItems);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, byte>)vt[151])((nint)label, (nint)currentItem, (nint)items, itemsCount, popupMaxHeightInItems);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, byte>)funcTable[151])((nint)label, (nint)currentItem, (nint)items, itemsCount, popupMaxHeightInItems);
 			#endif
 		}
 
@@ -4167,12 +4287,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ComboNative(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte*, int, byte>)vt[152])(label, currentItem, itemsSeparatedByZeros, popupMaxHeightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte*, int, byte>)funcTable[152])(label, currentItem, itemsSeparatedByZeros, popupMaxHeightInItems);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, byte>)vt[152])((nint)label, (nint)currentItem, (nint)itemsSeparatedByZeros, popupMaxHeightInItems);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, byte>)funcTable[152])((nint)label, (nint)currentItem, (nint)itemsSeparatedByZeros, popupMaxHeightInItems);
 			#endif
 		}
 
@@ -4899,132 +5020,6 @@ namespace Hexa.NET.ImGui
 						return ret != 0;
 					}
 				}
-			}
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					fixed (byte* pitemsSeparatedByZeros = itemsSeparatedByZeros)
-					{
-						byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, (byte*)pitemsSeparatedByZeros, (int)(-1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(string label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (itemsSeparatedByZeros != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(itemsSeparatedByZeros);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(itemsSeparatedByZeros, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ComboNative(pStr0, (int*)pcurrentItem, pStr1, popupMaxHeightInItems);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(string label, ref int currentItem, string itemsSeparatedByZeros)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (itemsSeparatedByZeros != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(itemsSeparatedByZeros);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(itemsSeparatedByZeros, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ComboNative(pStr0, (int*)pcurrentItem, pStr1, (int)(-1));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 	}

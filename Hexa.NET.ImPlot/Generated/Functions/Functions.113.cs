@@ -3454,12 +3454,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double PlotHistogram2DNative(byte* labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)vt[254])(labelId, xs, ys, count, xBins, yBins, range, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)funcTable[254])(labelId, xs, ys, count, xBins, yBins, range, flags);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)vt[254])((nint)labelId, (nint)xs, (nint)ys, count, xBins, yBins, range, flags);
+			return (double)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)funcTable[254])((nint)labelId, (nint)xs, (nint)ys, count, xBins, yBins, range, flags);
 			#endif
 		}
 

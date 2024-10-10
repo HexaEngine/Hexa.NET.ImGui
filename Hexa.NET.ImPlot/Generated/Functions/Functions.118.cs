@@ -1250,12 +1250,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotDigitalNative(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, long*, long*, int, ImPlotDigitalFlags, int, int, void>)vt[264])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, long*, long*, int, ImPlotDigitalFlags, int, int, void>)funcTable[264])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)vt[264])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)funcTable[264])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -2966,12 +2967,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotDigitalNative(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, ImPlotDigitalFlags, int, int, void>)vt[265])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, ImPlotDigitalFlags, int, int, void>)funcTable[265])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)vt[265])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)funcTable[265])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4682,12 +4684,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotDigitalGNative(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotDigitalFlags, void>)vt[266])(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotDigitalFlags, void>)funcTable[266])(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, void>)vt[266])((nint)labelId, (nint)Utils.GetFunctionPointerForDelegate(getter), (nint)data, count, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, void>)funcTable[266])((nint)labelId, (nint)Utils.GetFunctionPointerForDelegate(getter), (nint)data, count, flags);
 			#endif
 		}
 
@@ -4812,12 +4815,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotImageNative(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImTextureID, ImPlotPoint, ImPlotPoint, Vector2, Vector2, Vector4, ImPlotImageFlags, void>)vt[267])(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
+			((delegate* unmanaged[Cdecl]<byte*, ImTextureID, ImPlotPoint, ImPlotPoint, Vector2, Vector2, Vector4, ImPlotImageFlags, void>)funcTable[267])(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, ImPlotPoint, ImPlotPoint, Vector2, Vector2, Vector4, ImPlotImageFlags, void>)vt[267])((nint)labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, ImPlotPoint, ImPlotPoint, Vector2, Vector2, Vector4, ImPlotImageFlags, void>)funcTable[267])((nint)labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
 			#endif
 		}
 
@@ -5013,17 +5017,6 @@ namespace Hexa.NET.ImPlot
 			fixed (byte* plabelId = &labelId)
 			{
 				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
 			}
 		}
 	}

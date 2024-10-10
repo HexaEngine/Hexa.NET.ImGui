@@ -21,6 +21,532 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void Destroy(ref ImGuiPlatformMonitor self)
+		{
+			fixed (ImGuiPlatformMonitor* pself = &self)
+			{
+				DestroyNative((ImGuiPlatformMonitor*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiPlatformImeData* ImGuiPlatformImeDataNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiPlatformImeData*>)funcTable[654])();
+			#else
+			return (ImGuiPlatformImeData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[654])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPlatformImeDataPtr ImGuiPlatformImeData()
+		{
+			ImGuiPlatformImeDataPtr ret = ImGuiPlatformImeDataNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiPlatformImeData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformImeData*, void>)funcTable[655])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[655])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiPlatformImeDataPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiPlatformImeData self)
+		{
+			fixed (ImGuiPlatformImeData* pself = &self)
+			{
+				DestroyNative((ImGuiPlatformImeData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImVec1* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImVec1*, void>)funcTable[656])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[656])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImVec1Ptr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImVec1 self)
+		{
+			fixed (ImVec1* pself = &self)
+			{
+				DestroyNative((ImVec1*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImVec2Ih* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImVec2Ih*, void>)funcTable[657])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[657])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImVec2IhPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImVec2Ih self)
+		{
+			fixed (ImVec2Ih* pself = &self)
+			{
+				DestroyNative((ImVec2Ih*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImRect* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImRect*, void>)funcTable[658])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[658])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImRectPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImRect self)
+		{
+			fixed (ImRect* pself = &self)
+			{
+				DestroyNative((ImRect*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImDrawListSharedData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, void>)funcTable[659])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[659])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImDrawListSharedDataPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImDrawListSharedData self)
+		{
+			fixed (ImDrawListSharedData* pself = &self)
+			{
+				DestroyNative((ImDrawListSharedData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImDrawDataBuilder* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawDataBuilder*, void>)funcTable[660])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[660])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImDrawDataBuilderPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImDrawDataBuilder self)
+		{
+			fixed (ImDrawDataBuilder* pself = &self)
+			{
+				DestroyNative((ImDrawDataBuilder*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiStyleMod* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStyleMod*, void>)funcTable[661])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[661])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiStyleModPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiStyleMod self)
+		{
+			fixed (ImGuiStyleMod* pself = &self)
+			{
+				DestroyNative((ImGuiStyleMod*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiComboPreviewData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*, void>)funcTable[662])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[662])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiComboPreviewDataPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiComboPreviewData self)
+		{
+			fixed (ImGuiComboPreviewData* pself = &self)
+			{
+				DestroyNative((ImGuiComboPreviewData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiMenuColumns* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, void>)funcTable[663])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[663])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiMenuColumnsPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiMenuColumns self)
+		{
+			fixed (ImGuiMenuColumns* pself = &self)
+			{
+				DestroyNative((ImGuiMenuColumns*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiInputTextDeactivatedState* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[664])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[664])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiInputTextDeactivatedStatePtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiInputTextDeactivatedState self)
+		{
+			fixed (ImGuiInputTextDeactivatedState* pself = &self)
+			{
+				DestroyNative((ImGuiInputTextDeactivatedState*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiNextWindowData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[665])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[665])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiNextWindowDataPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiNextWindowData self)
+		{
+			fixed (ImGuiNextWindowData* pself = &self)
+			{
+				DestroyNative((ImGuiNextWindowData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiNextItemData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[666])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[666])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiNextItemDataPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiNextItemData self)
+		{
+			fixed (ImGuiNextItemData* pself = &self)
+			{
+				DestroyNative((ImGuiNextItemData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiLastItemData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiLastItemData*, void>)funcTable[667])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[667])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiLastItemDataPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiLastItemData self)
+		{
+			fixed (ImGuiLastItemData* pself = &self)
+			{
+				DestroyNative((ImGuiLastItemData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiStackSizes* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStackSizes*, void>)funcTable[668])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[668])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiStackSizesPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiStackSizes self)
+		{
+			fixed (ImGuiStackSizes* pself = &self)
+			{
+				DestroyNative((ImGuiStackSizes*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiPtrOrIndex* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiPtrOrIndex*, void>)funcTable[669])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[669])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiPtrOrIndexPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiPtrOrIndex self)
+		{
+			fixed (ImGuiPtrOrIndex* pself = &self)
+			{
+				DestroyNative((ImGuiPtrOrIndex*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiPopupData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiPopupData*, void>)funcTable[670])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[670])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ImGuiPopupDataPtr self)
 		{
 			DestroyNative(self);
@@ -40,12 +566,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiInputEvent* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputEvent*, void>)vt[671])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputEvent*, void>)funcTable[671])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[671])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[671])((nint)self);
 			#endif
 		}
 
@@ -71,12 +598,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiKeyRoutingData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*, void>)vt[672])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*, void>)funcTable[672])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[672])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[672])((nint)self);
 			#endif
 		}
 
@@ -102,12 +630,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiKeyRoutingTable* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)vt[673])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[673])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[673])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[673])((nint)self);
 			#endif
 		}
 
@@ -133,12 +662,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiKeyOwnerData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*, void>)vt[674])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*, void>)funcTable[674])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[674])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[674])((nint)self);
 			#endif
 		}
 
@@ -164,12 +694,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiListClipperData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, void>)vt[675])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, void>)funcTable[675])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[675])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[675])((nint)self);
 			#endif
 		}
 
@@ -195,12 +726,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiNavItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)vt[676])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[676])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[676])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[676])((nint)self);
 			#endif
 		}
 
@@ -226,12 +758,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTypingSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)vt[677])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[677])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[677])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[677])((nint)self);
 			#endif
 		}
 
@@ -257,12 +790,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiOldColumnData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*, void>)vt[678])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*, void>)funcTable[678])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[678])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[678])((nint)self);
 			#endif
 		}
 
@@ -288,12 +822,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiOldColumns* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, void>)vt[679])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, void>)funcTable[679])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[679])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[679])((nint)self);
 			#endif
 		}
 
@@ -319,12 +854,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiBoxSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*, void>)vt[680])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*, void>)funcTable[680])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[680])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[680])((nint)self);
 			#endif
 		}
 
@@ -350,12 +886,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiMultiSelectTempData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)vt[681])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[681])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[681])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[681])((nint)self);
 			#endif
 		}
 
@@ -381,12 +918,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiMultiSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*, void>)vt[682])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*, void>)funcTable[682])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[682])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[682])((nint)self);
 			#endif
 		}
 
@@ -412,12 +950,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiDockContext* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDockContext*, void>)vt[683])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDockContext*, void>)funcTable[683])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[683])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[683])((nint)self);
 			#endif
 		}
 
@@ -443,12 +982,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiWindowSettings* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, void>)vt[684])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, void>)funcTable[684])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[684])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[684])((nint)self);
 			#endif
 		}
 
@@ -474,12 +1014,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiSettingsHandler* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSettingsHandler*, void>)vt[685])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiSettingsHandler*, void>)funcTable[685])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[685])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[685])((nint)self);
 			#endif
 		}
 
@@ -505,12 +1046,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiDebugAllocInfo* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*, void>)vt[686])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*, void>)funcTable[686])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[686])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[686])((nint)self);
 			#endif
 		}
 
@@ -536,12 +1078,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiStackLevelInfo* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStackLevelInfo*, void>)vt[687])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiStackLevelInfo*, void>)funcTable[687])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[687])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[687])((nint)self);
 			#endif
 		}
 
@@ -567,12 +1110,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiIDStackTool* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIDStackTool*, void>)vt[688])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiIDStackTool*, void>)funcTable[688])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[688])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[688])((nint)self);
 			#endif
 		}
 
@@ -598,12 +1142,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiContextHook* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContextHook*, void>)vt[689])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiContextHook*, void>)funcTable[689])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[689])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[689])((nint)self);
 			#endif
 		}
 
@@ -629,12 +1174,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiContext* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[690])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[690])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[690])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[690])((nint)self);
 			#endif
 		}
 
@@ -660,12 +1206,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTabItem* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabItem*, void>)vt[691])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTabItem*, void>)funcTable[691])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[691])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[691])((nint)self);
 			#endif
 		}
 
@@ -691,12 +1238,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTabBar* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, void>)vt[692])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, void>)funcTable[692])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[692])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[692])((nint)self);
 			#endif
 		}
 
@@ -722,12 +1270,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTableColumn* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, void>)vt[693])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, void>)funcTable[693])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[693])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[693])((nint)self);
 			#endif
 		}
 
@@ -753,12 +1302,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTableInstanceData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableInstanceData*, void>)vt[694])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableInstanceData*, void>)funcTable[694])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[694])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[694])((nint)self);
 			#endif
 		}
 
@@ -784,12 +1334,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTableTempData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)vt[695])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)funcTable[695])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[695])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[695])((nint)self);
 			#endif
 		}
 
@@ -815,12 +1366,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTableColumnSettings* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSettings*, void>)vt[696])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSettings*, void>)funcTable[696])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[696])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[696])((nint)self);
 			#endif
 		}
 
@@ -846,12 +1398,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImGuiTableSettings* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, void>)vt[697])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, void>)funcTable[697])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[697])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[697])((nint)self);
 			#endif
 		}
 
@@ -877,12 +1430,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// pass text data straight to log (without being displayed)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogTextNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[698])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[698])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[698])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[698])((nint)fmt);
 			#endif
 		}
 
@@ -948,12 +1502,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void appendfNative(ImGuiTextBuffer* buffer, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, void>)vt[699])(buffer, fmt);
+			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, void>)funcTable[699])(buffer, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[699])((nint)buffer, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[699])((nint)buffer, (nint)fmt);
 			#endif
 		}
 
@@ -1090,12 +1645,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// for getting FLT_MAX in bindings<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GETFLTMAXNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)vt[700])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[700])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)vt[700])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[700])();
 			#endif
 		}
 
@@ -1111,12 +1667,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// for getting FLT_MIN in bindings<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GETFLTMINNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)vt[701])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[701])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)vt[701])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[701])();
 			#endif
 		}
 
@@ -1132,12 +1689,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImVector<char>* ImVectorImWcharCreateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImVector<char>*>)vt[702])();
+			return ((delegate* unmanaged[Cdecl]<ImVector<char>*>)funcTable[702])();
 			#else
-			return (ImVector<char>*)((delegate* unmanaged[Cdecl]<nint>)vt[702])();
+			return (ImVector<char>*)((delegate* unmanaged[Cdecl]<nint>)funcTable[702])();
 			#endif
 		}
 
@@ -1153,12 +1711,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImVectorImWcharDestroyNative(ImVector<char>* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)vt[703])(self);
+			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)funcTable[703])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[703])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[703])((nint)self);
 			#endif
 		}
 
@@ -1184,12 +1743,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImVectorImWcharInitNative(ImVector<char>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)vt[704])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)funcTable[704])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[704])((nint)p);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[704])((nint)p);
 			#endif
 		}
 
@@ -1215,12 +1775,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImVectorImWcharUnInitNative(ImVector<char>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)vt[705])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)funcTable[705])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[705])((nint)p);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[705])((nint)p);
 			#endif
 		}
 
@@ -1246,12 +1807,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlatformIOSetPlatformGetWindowPosNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)vt[706])(platformIo, userCallback);
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[706])(platformIo, userCallback);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[706])((nint)platformIo, (nint)userCallback);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[706])((nint)platformIo, (nint)userCallback);
 			#endif
 		}
 
@@ -1277,12 +1839,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlatformIOSetPlatformGetWindowSizeNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)vt[707])(platformIo, userCallback);
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[707])(platformIo, userCallback);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[707])((nint)platformIo, (nint)userCallback);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[707])((nint)platformIo, (nint)userCallback);
 			#endif
 		}
 

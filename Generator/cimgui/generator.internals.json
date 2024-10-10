@@ -2,7 +2,7 @@
   "Namespace": "Hexa.NET.ImGui",
   "ApiName": "ImGuiP",
   "LibName": "cimgui",
-  "ImportType": "VTable",
+  "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,

@@ -22,6 +22,153 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotShaded(byte* labelId, ref short xs, ref short ys, int count, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotShadedNative(labelId, (short*)pxs, (short*)pys, count, (double)(0), (ImPlotShadedFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(byte* labelId, ref short xs, ref short ys, int count, ImPlotShadedFlags flags, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotShadedNative(labelId, (short*)pxs, (short*)pys, count, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, double yref, ImPlotShadedFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, yref, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, double yref, ImPlotShadedFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, yref, flags, offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, double yref, ImPlotShadedFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, yref, flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, double yref)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, yref, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (double)(0), (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, ImPlotShadedFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, double yref, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotShadedNative((byte*)plabelId, (short*)pxs, (short*)pys, count, yref, (ImPlotShadedFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotShaded(ref byte labelId, ref short xs, ref short ys, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -731,12 +878,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotShadedNative(byte* labelId, ushort* xs, ushort* ys, int count, double yref, ImPlotShadedFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, double, ImPlotShadedFlags, int, int, void>)vt[124])(labelId, xs, ys, count, yref, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, double, ImPlotShadedFlags, int, int, void>)funcTable[124])(labelId, xs, ys, count, yref, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, ImPlotShadedFlags, int, int, void>)vt[124])((nint)labelId, (nint)xs, (nint)ys, count, yref, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, ImPlotShadedFlags, int, int, void>)funcTable[124])((nint)labelId, (nint)xs, (nint)ys, count, yref, flags, offset, stride);
 			#endif
 		}
 
@@ -4151,12 +4299,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotShadedNative(byte* labelId, int* xs, int* ys, int count, double yref, ImPlotShadedFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, double, ImPlotShadedFlags, int, int, void>)vt[125])(labelId, xs, ys, count, yref, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, double, ImPlotShadedFlags, int, int, void>)funcTable[125])(labelId, xs, ys, count, yref, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, ImPlotShadedFlags, int, int, void>)vt[125])((nint)labelId, (nint)xs, (nint)ys, count, yref, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, ImPlotShadedFlags, int, int, void>)funcTable[125])((nint)labelId, (nint)xs, (nint)ys, count, yref, flags, offset, stride);
 			#endif
 		}
 
@@ -4876,155 +5025,6 @@ namespace Hexa.NET.ImPlot
 			fixed (int* pxs = &xs)
 			{
 				PlotShadedNative(labelId, (int*)pxs, ys, count, yref, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, double yref, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, yref, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, double yref, ImPlotShadedFlags flags)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, yref, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, double yref)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, yref, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, (double)(0), (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, double yref, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, yref, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, (double)(0), (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, double yref, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, yref, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, (double)(0), (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, ref int xs, int* ys, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ref byte labelId, ref int xs, int* ys, int count, double yref, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys, count, yref, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ref byte labelId, ref int xs, int* ys, int count, double yref, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys, count, yref, flags, offset, (int)(sizeof(int)));
-				}
 			}
 		}
 	}

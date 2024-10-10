@@ -22,6 +22,155 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1710,12 +1859,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotInfLinesNative(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, ImPlotInfLinesFlags, int, int, void>)vt[203])(labelId, values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[203])(labelId, values, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)vt[203])((nint)labelId, (nint)values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[203])((nint)labelId, (nint)values, count, flags, offset, stride);
 			#endif
 		}
 
@@ -2502,12 +2652,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotInfLinesNative(byte* labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, double*, int, ImPlotInfLinesFlags, int, int, void>)vt[204])(labelId, values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, double*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[204])(labelId, values, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)vt[204])((nint)labelId, (nint)values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[204])((nint)labelId, (nint)values, count, flags, offset, stride);
 			#endif
 		}
 
@@ -3294,12 +3445,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotInfLinesNative(byte* labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, int, ImPlotInfLinesFlags, int, int, void>)vt[205])(labelId, values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[205])(labelId, values, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)vt[205])((nint)labelId, (nint)values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[205])((nint)labelId, (nint)values, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4086,12 +4238,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotInfLinesNative(byte* labelId, short* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, int, ImPlotInfLinesFlags, int, int, void>)vt[206])(labelId, values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, short*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[206])(labelId, values, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)vt[206])((nint)labelId, (nint)values, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[206])((nint)labelId, (nint)values, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4872,154 +5025,6 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStr0);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void PlotInfLinesNative(byte* labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, int, ImPlotInfLinesFlags, int, int, void>)vt[207])(labelId, values, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)vt[207])((nint)labelId, (nint)values, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, ushort* values, int count, ImPlotInfLinesFlags flags)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, (int)(0), (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, ushort* values, int count)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, ushort* values, int count, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, ushort* values, int count, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ref byte labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ref byte labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ref byte labelId, ushort* values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ref byte labelId, ushort* values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ref byte labelId, ushort* values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ref byte labelId, ushort* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(ushort)));
 			}
 		}
 	}

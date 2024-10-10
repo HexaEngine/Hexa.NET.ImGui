@@ -22,6 +22,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered)
 		{
 			fixed (bool* poutClicked = &outClicked)
@@ -1282,12 +1294,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DragLineYNative(int id, double* y, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[272])(id, y, col, thickness, flags, outClicked, outHovered, held);
+			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)funcTable[272])(id, y, col, thickness, flags, outClicked, outHovered, held);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)vt[272])(id, (nint)y, col, thickness, flags, (nint)outClicked, (nint)outHovered, (nint)held);
+			return (byte)((delegate* unmanaged[Cdecl]<int, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)funcTable[272])(id, (nint)y, col, thickness, flags, (nint)outClicked, (nint)outHovered, (nint)held);
 			#endif
 		}
 
@@ -2962,12 +2975,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DragRectNative(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, double*, double*, double*, double*, Vector4, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[273])(id, x1, y1, x2, y2, col, flags, outClicked, outHovered, held);
+			return ((delegate* unmanaged[Cdecl]<int, double*, double*, double*, double*, Vector4, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)funcTable[273])(id, x1, y1, x2, y2, col, flags, outClicked, outHovered, held);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, nint, nint, nint, nint, Vector4, ImPlotDragToolFlags, nint, nint, nint, byte>)vt[273])(id, (nint)x1, (nint)y1, (nint)x2, (nint)y2, col, flags, (nint)outClicked, (nint)outHovered, (nint)held);
+			return (byte)((delegate* unmanaged[Cdecl]<int, nint, nint, nint, nint, Vector4, ImPlotDragToolFlags, nint, nint, nint, byte>)funcTable[273])(id, (nint)x1, (nint)y1, (nint)x2, (nint)y2, col, flags, (nint)outClicked, (nint)outHovered, (nint)held);
 			#endif
 		}
 
@@ -5003,21 +5017,6 @@ namespace Hexa.NET.ImPlot
 				fixed (bool* poutClicked = &outClicked)
 				{
 					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
 					return ret != 0;
 				}
 			}

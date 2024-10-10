@@ -22,6 +22,62 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref byte values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1032,12 +1088,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLineNative(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, int, double, double, ImPlotLineFlags, int, int, void>)vt[57])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, short*, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[57])(labelId, values, count, xscale, xstart, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[57])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[57])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
 			#endif
 		}
 
@@ -3384,12 +3441,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLineNative(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, int, double, double, ImPlotLineFlags, int, int, void>)vt[58])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[58])(labelId, values, count, xscale, xstart, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[58])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[58])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
 			#endif
 		}
 
@@ -4957,76 +5015,6 @@ namespace Hexa.NET.ImPlot
 				fixed (ushort* pvalues = &values)
 				{
 					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
 				}
 			}
 		}

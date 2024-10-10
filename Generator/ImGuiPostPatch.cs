@@ -29,11 +29,12 @@
 
             Generate(metadata, CImGuiHeader, CImGuiInternalsConfig, ImGuiInternalsOutputPath, InternalsGenerationType.OnlyInternals, out var internalsMetadata);
             metadata.Merge(internalsMetadata, true);
-            Helper.MergeVTable(ImGuiOutputPath, ImGuiInternalsOutputPath, internalsMetadata.VTableLength);
+            File.Delete(Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Delete base.
+            File.Delete(Path.Combine(ImGuiInternalsOutputPath, "FunctionTable.cs")); // Delete intermediate.
 
             Generate(metadata, CImGuiHeader, CImGuiManualConfig, ImGuiManualOutputPath, InternalsGenerationType.BothOrDontCare, out patchMetadata);
-            Helper.MergeVTable(ImGuiOutputPath, ImGuiManualOutputPath, patchMetadata.VTableLength);
-
+            File.Move(Path.Combine(ImGuiManualOutputPath, "FunctionTable.cs"), Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Move latest to base.
+      
             // Patch Functions
             {
                 Regex regex = new("\\b(.*) = Utils.GetByteCountUTF8\\b\\(buf\\);");
@@ -67,7 +68,7 @@
         {
             var settingsManual = CsCodeGeneratorConfig.Load(config);
 
-            settingsManual.VTableStart = metadata.VTableLength;
+            settingsManual.FunctionTableEntries = metadata.FunctionTable.Entries;
 
             ImGuiCodeGenerator generator = new(settingsManual);
             generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());

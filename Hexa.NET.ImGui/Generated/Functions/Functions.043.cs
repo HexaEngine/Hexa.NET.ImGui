@@ -21,6 +21,223 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void CalcTextSize(Vector2* pOut, string text, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			CalcTextSizeNative(pOut, pStr0, (byte*)(default), (byte)(0), wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, byte* textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, byte* textEnd)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, bool hideTextAfterDoubleHash)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, textEnd, (byte)(0), wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, float wrapWidth)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)(default), (byte)(0), wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ref byte text, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = &text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptext = text)
+				{
+					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
 			fixed (Vector2* ppOut = &pOut)
@@ -2247,12 +2464,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ColorConvertU32ToFloat4Native(Vector4* pOut, uint input)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, uint, void>)vt[344])(pOut, input);
+			((delegate* unmanaged[Cdecl]<Vector4*, uint, void>)funcTable[344])(pOut, input);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)vt[344])((nint)pOut, input);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[344])((nint)pOut, input);
 			#endif
 		}
 
@@ -2288,12 +2506,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint ColorConvertFloat4ToU32Native(Vector4 input)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[345])(input);
+			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[345])(input);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[345])(input);
+			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[345])(input);
 			#endif
 		}
 
@@ -2309,12 +2528,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ColorConvertRGBtoHSVNative(float r, float g, float b, float* outH, float* outS, float* outV)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)vt[346])(r, g, b, outH, outS, outV);
+			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[346])(r, g, b, outH, outS, outV);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)vt[346])(r, g, b, (nint)outH, (nint)outS, (nint)outV);
+			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[346])(r, g, b, (nint)outH, (nint)outS, (nint)outV);
 			#endif
 		}
 
@@ -2421,12 +2641,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ColorConvertHSVtoRGBNative(float h, float s, float v, float* outR, float* outG, float* outB)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)vt[347])(h, s, v, outR, outG, outB);
+			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[347])(h, s, v, outR, outG, outB);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)vt[347])(h, s, v, (nint)outR, (nint)outG, (nint)outB);
+			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[347])(h, s, v, (nint)outR, (nint)outG, (nint)outB);
 			#endif
 		}
 
@@ -2533,12 +2754,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetKeyPressedAmountNative(ImGuiKey key, float repeatDelay, float rate)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)vt[348])(key, repeatDelay, rate);
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[348])(key, repeatDelay, rate);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)vt[348])(key, repeatDelay, rate);
+			return (int)((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[348])(key, repeatDelay, rate);
 			#endif
 		}
 
@@ -2554,12 +2776,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// [DEBUG] returns English name of the key. Those names a provided for debugging purpose and are not meant to be saved persistently not compared.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetKeyNameNative(ImGuiKey key)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte*>)vt[349])(key);
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte*>)funcTable[349])(key);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiKey, nint>)vt[349])(key);
+			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiKey, nint>)funcTable[349])(key);
 			#endif
 		}
 
@@ -2584,12 +2807,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextFrameWantCaptureKeyboardNative(byte wantCaptureKeyboard)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[350])(wantCaptureKeyboard);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[350])(wantCaptureKeyboard);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[350])(wantCaptureKeyboard);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[350])(wantCaptureKeyboard);
 			#endif
 		}
 
@@ -2604,12 +2828,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemShortcutNative(int keyChord, ImGuiInputFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)vt[351])(keyChord, flags);
+			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[351])(keyChord, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)vt[351])(keyChord, flags);
+			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[351])(keyChord, flags);
 			#endif
 		}
 
@@ -2632,12 +2857,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetMouseClickedCountNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)vt[352])(button);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[352])(button);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)vt[352])(button);
+			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[352])(button);
 			#endif
 		}
 
@@ -2653,12 +2879,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)vt[353])(rMin, rMax, clip);
+			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[353])(rMin, rMax, clip);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)vt[353])(rMin, rMax, clip);
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[353])(rMin, rMax, clip);
 			#endif
 		}
 
@@ -2683,12 +2910,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMousePosValidNative(Vector2* mousePos)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)vt[354])(mousePos);
+			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)funcTable[354])(mousePos);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[354])((nint)mousePos);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[354])((nint)mousePos);
 			#endif
 		}
 
@@ -2725,12 +2953,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAnyMouseDownNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[355])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[355])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[355])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[355])();
 			#endif
 		}
 
@@ -2746,12 +2975,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetMousePosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[356])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[356])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[356])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[356])((nint)pOut);
 			#endif
 		}
 
@@ -2787,12 +3017,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetMousePosOnOpeningCurrentPopupNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[357])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[357])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[357])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[357])((nint)pOut);
 			#endif
 		}
 
@@ -2828,12 +3059,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseDraggingNative(ImGuiMouseButton button, float lockThreshold)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)vt[358])(button, lockThreshold);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[358])(button, lockThreshold);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)vt[358])(button, lockThreshold);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[358])(button, lockThreshold);
 			#endif
 		}
 
@@ -2858,12 +3090,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetMouseDragDeltaNative(Vector2* pOut, ImGuiMouseButton button, float lockThreshold)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiMouseButton, float, void>)vt[359])(pOut, button, lockThreshold);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiMouseButton, float, void>)funcTable[359])(pOut, button, lockThreshold);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseButton, float, void>)vt[359])((nint)pOut, button, lockThreshold);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseButton, float, void>)funcTable[359])((nint)pOut, button, lockThreshold);
 			#endif
 		}
 
@@ -2985,12 +3218,13 @@ namespace Hexa.NET.ImGui
 
 		/// <summary>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ResetMouseDragDeltaNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)vt[360])(button);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[360])(button);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)vt[360])(button);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[360])(button);
 			#endif
 		}
 
@@ -3011,12 +3245,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiMouseCursor GetMouseCursorNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)vt[361])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[361])();
 			#else
-			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)vt[361])();
+			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[361])();
 			#endif
 		}
 
@@ -3032,12 +3267,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set desired mouse cursor shape<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetMouseCursorNative(ImGuiMouseCursor cursorType)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)vt[362])(cursorType);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[362])(cursorType);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)vt[362])(cursorType);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[362])(cursorType);
 			#endif
 		}
 
@@ -3052,12 +3288,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instucts your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[363])(wantCaptureMouse);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[363])(wantCaptureMouse);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[363])(wantCaptureMouse);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[363])(wantCaptureMouse);
 			#endif
 		}
 
@@ -3072,12 +3309,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetClipboardTextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*>)vt[364])();
+			return ((delegate* unmanaged[Cdecl]<byte*>)funcTable[364])();
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint>)vt[364])();
+			return (byte*)((delegate* unmanaged[Cdecl]<nint>)funcTable[364])();
 			#endif
 		}
 
@@ -3102,12 +3340,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetClipboardTextNative(byte* text)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[365])(text);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[365])(text);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[365])((nint)text);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[365])((nint)text);
 			#endif
 		}
 
@@ -3173,12 +3412,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadIniSettingsFromDiskNative(byte* iniFilename)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[366])(iniFilename);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[366])(iniFilename);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[366])((nint)iniFilename);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[366])((nint)iniFilename);
 			#endif
 		}
 
@@ -3244,12 +3484,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadIniSettingsFromMemoryNative(byte* iniData, ulong iniSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)vt[367])(iniData, iniSize);
+			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)funcTable[367])(iniData, iniSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, void>)vt[367])((nint)iniData, iniSize);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[367])((nint)iniData, iniSize);
 			#endif
 		}
 
@@ -3433,12 +3674,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SaveIniSettingsToDiskNative(byte* iniFilename)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[368])(iniFilename);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[368])(iniFilename);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[368])((nint)iniFilename);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[368])((nint)iniFilename);
 			#endif
 		}
 
@@ -3504,12 +3746,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* SaveIniSettingsToMemoryNative(ulong* outIniSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)vt[369])(outIniSize);
+			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)funcTable[369])(outIniSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[369])((nint)outIniSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[369])((nint)outIniSize);
 			#endif
 		}
 
@@ -3576,12 +3819,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugTextEncodingNative(byte* text)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[370])(text);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[370])(text);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[370])((nint)text);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[370])((nint)text);
 			#endif
 		}
 
@@ -3647,12 +3891,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugFlashStyleColorNative(ImGuiCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)vt[371])(idx);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[371])(idx);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)vt[371])(idx);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[371])(idx);
 			#endif
 		}
 
@@ -3667,12 +3912,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugStartItemPickerNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[372])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[372])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[372])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[372])();
 			#endif
 		}
 
@@ -3687,12 +3933,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DebugCheckVersionAndDataLayoutNative(byte* versionStr, ulong szIo, ulong szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, ulong szDrawidx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, ulong, ulong, ulong, ulong, ulong, byte>)vt[373])(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, ulong, ulong, ulong, ulong, ulong, byte>)funcTable[373])(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ulong, ulong, ulong, ulong, byte>)vt[373])((nint)versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ulong, ulong, ulong, ulong, byte>)funcTable[373])((nint)versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
 			#endif
 		}
 
@@ -4773,249 +5020,6 @@ namespace Hexa.NET.ImGui
 		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
 		{
 			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = &versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (versionStr != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = &versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (versionStr != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = &versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (versionStr != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = &versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			fixed (byte* pversionStr = versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, ulong szDrawidx)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (versionStr != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
 			return ret != 0;
 		}
 	}

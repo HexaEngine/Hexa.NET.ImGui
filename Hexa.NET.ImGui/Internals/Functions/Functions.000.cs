@@ -20,12 +20,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowPosNative(Vector2 pos, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[709])(pos, cond);
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[708])(pos, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[709])(pos, cond);
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[708])(pos, cond);
 			#endif
 		}
 
@@ -48,12 +49,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowSizeNative(Vector2 size, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[710])(size, cond);
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[709])(size, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[710])(size, cond);
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[709])(size, cond);
 			#endif
 		}
 
@@ -76,12 +78,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[711])(collapsed, cond);
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[710])(collapsed, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[711])(collapsed, cond);
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[710])(collapsed, cond);
 			#endif
 		}
 
@@ -104,12 +107,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)vt[712])(name, pos, cond);
+			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)funcTable[711])(name, pos, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)vt[712])((nint)name, pos, cond);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[711])((nint)name, pos, cond);
 			#endif
 		}
 
@@ -234,12 +238,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)vt[713])(name, size, cond);
+			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)funcTable[712])(name, size, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)vt[713])((nint)name, size, cond);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[712])((nint)name, size, cond);
 			#endif
 		}
 
@@ -364,12 +369,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiCond, void>)vt[714])(name, collapsed, cond);
+			((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiCond, void>)funcTable[713])(name, collapsed, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, ImGuiCond, void>)vt[714])((nint)name, collapsed, cond);
+			((delegate* unmanaged[Cdecl]<nint, byte, ImGuiCond, void>)funcTable[713])((nint)name, collapsed, cond);
 			#endif
 		}
 
@@ -494,12 +500,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollXNative(float scrollX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)vt[715])(scrollX);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[714])(scrollX);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)vt[715])(scrollX);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[714])(scrollX);
 			#endif
 		}
 
@@ -514,12 +521,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollYNative(float scrollY)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)vt[716])(scrollY);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[715])(scrollY);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)vt[716])(scrollY);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[715])(scrollY);
 			#endif
 		}
 
@@ -534,12 +542,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollFromPosXNative(float localX, float centerXRatio)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)vt[717])(localX, centerXRatio);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[716])(localX, centerXRatio);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)vt[717])(localX, centerXRatio);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[716])(localX, centerXRatio);
 			#endif
 		}
 
@@ -562,12 +571,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollFromPosYNative(float localY, float centerYRatio)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)vt[718])(localY, centerYRatio);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[717])(localY, centerYRatio);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)vt[718])(localY, centerYRatio);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[717])(localY, centerYRatio);
 			#endif
 		}
 
@@ -590,12 +600,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CheckboxFlagsNative(byte* label, int* flags, int flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[719])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[718])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)vt[719])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[718])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -740,12 +751,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CheckboxFlagsNative(byte* label, uint* flags, uint flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)vt[720])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)funcTable[719])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)vt[720])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)funcTable[719])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -890,12 +902,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return true if the popup is open.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsPopupOpenNative(byte* strId, ImGuiPopupFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)vt[721])(strId, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[720])(strId, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)vt[721])((nint)strId, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[720])((nint)strId, flags);
 			#endif
 		}
 
@@ -1028,12 +1041,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* TableGetColumnNameNative(int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte*>)vt[722])(columnN);
+			return ((delegate* unmanaged[Cdecl]<int, byte*>)funcTable[721])(columnN);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)vt[722])(columnN);
+			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[721])(columnN);
 			#endif
 		}
 
@@ -1076,12 +1090,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)vt[723])(viewport);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[722])(viewport);
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[723])((nint)viewport);
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[722])((nint)viewport);
 			#endif
 		}
 
@@ -1118,12 +1133,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// is key being held.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyDownNative(ImGuiKey key)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[724])(key);
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[723])(key);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[724])(key);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[723])(key);
 			#endif
 		}
 
@@ -1139,12 +1155,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyPressedNative(ImGuiKey key, byte repeat)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)vt[725])(key, repeat);
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[724])(key, repeat);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)vt[725])(key, repeat);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[724])(key, repeat);
 			#endif
 		}
 
@@ -1169,12 +1186,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// was key released (went from Down to !Down)?<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyReleasedNative(ImGuiKey key)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[726])(key);
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[725])(key);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[726])(key);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[725])(key);
 			#endif
 		}
 
@@ -1190,12 +1208,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyChordPressedNative(int keyChord)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[727])(keyChord);
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[726])(keyChord);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[727])(keyChord);
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[726])(keyChord);
 			#endif
 		}
 
@@ -1211,12 +1230,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ShortcutNative(int keyChord, ImGuiInputFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)vt[728])(keyChord, flags);
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[727])(keyChord, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)vt[728])(keyChord, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[727])(keyChord, flags);
 			#endif
 		}
 
@@ -1241,12 +1261,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemKeyOwnerNative(ImGuiKey key)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)vt[729])(key);
+			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[728])(key);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)vt[729])(key);
+			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[728])(key);
 			#endif
 		}
 
@@ -1261,12 +1282,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// is mouse button held?<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseDownNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)vt[730])(button);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[729])(button);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)vt[730])(button);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[729])(button);
 			#endif
 		}
 
@@ -1282,12 +1304,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)vt[731])(button, repeat);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[730])(button, repeat);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)vt[731])(button, repeat);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[730])(button, repeat);
 			#endif
 		}
 
@@ -1312,12 +1335,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// did mouse button released? (went from Down to !Down)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseReleasedNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)vt[732])(button);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[731])(button);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)vt[732])(button);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[731])(button);
 			#endif
 		}
 
@@ -1333,12 +1357,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseDoubleClickedNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)vt[733])(button);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[732])(button);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)vt[733])(button);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[732])(button);
 			#endif
 		}
 
@@ -1354,12 +1379,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint ImHashDataNative(void* data, ulong dataSize, uint seed)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ulong, uint, uint>)vt[734])(data, dataSize, seed);
+			return ((delegate* unmanaged[Cdecl]<void*, ulong, uint, uint>)funcTable[733])(data, dataSize, seed);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ulong, uint, uint>)vt[734])((nint)data, dataSize, seed);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ulong, uint, uint>)funcTable[733])((nint)data, dataSize, seed);
 			#endif
 		}
 
@@ -1402,12 +1428,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint ImHashStrNative(byte* data, ulong dataSize, uint seed)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, uint, uint>)vt[735])(data, dataSize, seed);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, uint, uint>)funcTable[734])(data, dataSize, seed);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ulong, uint, uint>)vt[735])((nint)data, dataSize, seed);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ulong, uint, uint>)funcTable[734])((nint)data, dataSize, seed);
 			#endif
 		}
 
@@ -1792,12 +1819,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImQsortNative(void* baseValue, ulong count, ulong sizeOfElement, delegate*<void*, ulong, ulong, delegate*<void*, void*, int>, int> compareFunc)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, ulong, ulong, delegate*<void*, ulong, ulong, delegate*<void*, void*, int>, int>, void>)vt[736])(baseValue, count, sizeOfElement, compareFunc);
+			((delegate* unmanaged[Cdecl]<void*, ulong, ulong, delegate*<void*, ulong, ulong, delegate*<void*, void*, int>, int>, void>)funcTable[735])(baseValue, count, sizeOfElement, compareFunc);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, ulong, nint, void>)vt[736])((nint)baseValue, count, sizeOfElement, (nint)compareFunc);
+			((delegate* unmanaged[Cdecl]<nint, ulong, ulong, nint, void>)funcTable[735])((nint)baseValue, count, sizeOfElement, (nint)compareFunc);
 			#endif
 		}
 
@@ -1836,12 +1864,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint ImAlphaBlendColorsNative(uint colA, uint colB)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint>)vt[737])(colA, colB);
+			return ((delegate* unmanaged[Cdecl]<uint, uint, uint>)funcTable[736])(colA, colB);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint>)vt[737])(colA, colB);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint>)funcTable[736])(colA, colB);
 			#endif
 		}
 
@@ -1857,12 +1886,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImIsPowerOfTwoNative(int v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[738])(v);
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[737])(v);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[738])(v);
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[737])(v);
 			#endif
 		}
 
@@ -1878,12 +1908,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImIsPowerOfTwoNative(ulong v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, byte>)vt[739])(v);
+			return ((delegate* unmanaged[Cdecl]<ulong, byte>)funcTable[738])(v);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ulong, byte>)vt[739])(v);
+			return (byte)((delegate* unmanaged[Cdecl]<ulong, byte>)funcTable[738])(v);
 			#endif
 		}
 
@@ -1899,12 +1930,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImUpperPowerOfTwoNative(int v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int>)vt[740])(v);
+			return ((delegate* unmanaged[Cdecl]<int, int>)funcTable[739])(v);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int>)vt[740])(v);
+			return (int)((delegate* unmanaged[Cdecl]<int, int>)funcTable[739])(v);
 			#endif
 		}
 
@@ -1920,12 +1952,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Case insensitive compare.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImStricmpNative(byte* str1, byte* str2)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)vt[741])(str1, str2);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[740])(str1, str2);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)vt[741])((nint)str1, (nint)str2);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[740])((nint)str1, (nint)str2);
 			#endif
 		}
 
@@ -2130,12 +2163,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Case insensitive compare to a certain count.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImStrnicmpNative(byte* str1, byte* str2, ulong count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, int>)vt[742])(str1, str2, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, int>)funcTable[741])(str1, str2, count);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, ulong, int>)vt[742])((nint)str1, (nint)str2, count);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, ulong, int>)funcTable[741])((nint)str1, (nint)str2, count);
 			#endif
 		}
 
@@ -2538,12 +2572,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Copy to a certain count and always zero terminate (strncpy doesn't).<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImStrncpyNative(byte* dst, byte* src, ulong count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)vt[743])(dst, src, count);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)funcTable[742])(dst, src, count);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)vt[743])((nint)dst, (nint)src, count);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[742])((nint)dst, (nint)src, count);
 			#endif
 		}
 
@@ -2908,12 +2943,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Duplicate a string.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrdupNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)vt[744])(str);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[743])(str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[744])((nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[743])((nint)str);
 			#endif
 		}
 
@@ -3046,12 +3082,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Copy in provided buffer, recreate buffer if needed.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrdupcpyNative(byte* dst, ulong* pDstSize, byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, byte*, byte*>)vt[745])(dst, pDstSize, str);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, byte*, byte*>)funcTable[744])(dst, pDstSize, str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint>)vt[745])((nint)dst, (nint)pDstSize, (nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint>)funcTable[744])((nint)dst, (nint)pDstSize, (nint)str);
 			#endif
 		}
 
@@ -3864,12 +3901,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Find first occurrence of 'c' in string range.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrchrRangeNative(byte* strBegin, byte* strEnd, byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte*>)vt[746])(strBegin, strEnd, c);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte*>)funcTable[745])(strBegin, strEnd, c);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, byte, nint>)vt[746])((nint)strBegin, (nint)strEnd, c);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, byte, nint>)funcTable[745])((nint)strBegin, (nint)strEnd, c);
 			#endif
 		}
 
@@ -4272,12 +4310,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// End end-of-line<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStreolRangeNative(byte* str, byte* strEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)vt[747])(str, strEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[746])(str, strEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[747])((nint)str, (nint)strEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[746])((nint)str, (nint)strEnd);
 			#endif
 		}
 
@@ -4680,12 +4719,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Find a substring in a string range.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStristrNative(byte* haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, byte*>)vt[748])(haystack, haystackEnd, needle, needleEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, byte*>)funcTable[747])(haystack, haystackEnd, needle, needleEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)vt[748])((nint)haystack, (nint)haystackEnd, (nint)needle, (nint)needleEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)funcTable[747])((nint)haystack, (nint)haystackEnd, (nint)needle, (nint)needleEnd);
 			#endif
 		}
 
@@ -4981,57 +5021,6 @@ namespace Hexa.NET.ImGui
 					return ret;
 				}
 			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, string haystackEnd, byte* needle, byte* needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (haystackEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(haystackEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(haystackEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* ret = ImStristrNative(pStr0, pStr1, needle, needleEnd);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
 		}
 	}
 }

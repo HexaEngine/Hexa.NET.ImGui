@@ -2,7 +2,7 @@
   "Namespace": "Hexa.NET.ImNodes",
   "ApiName": "ImNodes",
   "LibName": "cimnodes",
-  "ImportType": "VTable",
+  "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,

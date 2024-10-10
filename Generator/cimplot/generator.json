@@ -2,7 +2,7 @@
   "Namespace": "Hexa.NET.ImPlot",
   "ApiName": "ImPlot",
   "LibName": "cimplot",
-  "ImportType": "VTable",
+  "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,

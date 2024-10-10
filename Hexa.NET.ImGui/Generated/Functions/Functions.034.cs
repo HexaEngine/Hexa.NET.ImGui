@@ -21,6 +21,137 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TreeNodeVNative(void* ptrId, byte* fmt, nuint args)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, byte*, nuint, byte>)funcTable[201])(ptrId, fmt, args);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, byte>)funcTable[201])((nint)ptrId, (nint)fmt, args);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeV(void* ptrId, byte* fmt, nuint args)
+		{
+			byte ret = TreeNodeVNative(ptrId, fmt, args);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeV(void* ptrId, ref byte fmt, nuint args)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				byte ret = TreeNodeVNative(ptrId, (byte*)pfmt, args);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeV(void* ptrId, ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				byte ret = TreeNodeVNative(ptrId, (byte*)pfmt, args);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeV(void* ptrId, string fmt, nuint args)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TreeNodeVNative(ptrId, pStr0, args);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TreeNodeExNative(byte* label, ImGuiTreeNodeFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte>)funcTable[202])(label, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, byte>)funcTable[202])((nint)label, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeEx(byte* label, ImGuiTreeNodeFlags flags)
+		{
+			byte ret = TreeNodeExNative(label, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeEx(byte* label)
+		{
+			byte ret = TreeNodeExNative(label, (ImGuiTreeNodeFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeEx(ref byte label, ImGuiTreeNodeFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TreeNodeExNative((byte*)plabel, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeEx(ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TreeNodeExNative((byte*)plabel, (ImGuiTreeNodeFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool TreeNodeEx(ReadOnlySpan<byte> label, ImGuiTreeNodeFlags flags)
 		{
 			fixed (byte* plabel = label)
@@ -105,12 +236,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeExNative(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte*, byte>)vt[203])(strId, flags, fmt);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte*, byte>)funcTable[203])(strId, flags, fmt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, byte>)vt[203])((nint)strId, flags, (nint)fmt);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, byte>)funcTable[203])((nint)strId, flags, (nint)fmt);
 			#endif
 		}
 
@@ -315,12 +447,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeExNative(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ImGuiTreeNodeFlags, byte*, byte>)vt[204])(ptrId, flags, fmt);
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiTreeNodeFlags, byte*, byte>)funcTable[204])(ptrId, flags, fmt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, byte>)vt[204])((nint)ptrId, flags, (nint)fmt);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, byte>)funcTable[204])((nint)ptrId, flags, (nint)fmt);
 			#endif
 		}
 
@@ -390,12 +523,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeExVNative(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte*, nuint, byte>)vt[205])(strId, flags, fmt, args);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte*, nuint, byte>)funcTable[205])(strId, flags, fmt, args);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, nuint, byte>)vt[205])((nint)strId, flags, (nint)fmt, args);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, nuint, byte>)funcTable[205])((nint)strId, flags, (nint)fmt, args);
 			#endif
 		}
 
@@ -600,12 +734,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeExVNative(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ImGuiTreeNodeFlags, byte*, nuint, byte>)vt[206])(ptrId, flags, fmt, args);
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiTreeNodeFlags, byte*, nuint, byte>)funcTable[206])(ptrId, flags, fmt, args);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, nuint, byte>)vt[206])((nint)ptrId, flags, (nint)fmt, args);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, nint, nuint, byte>)funcTable[206])((nint)ptrId, flags, (nint)fmt, args);
 			#endif
 		}
 
@@ -675,12 +810,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TreePushNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[207])(strId);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[207])(strId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[207])((nint)strId);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[207])((nint)strId);
 			#endif
 		}
 
@@ -746,12 +882,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TreePushNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)vt[208])(ptrId);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[208])(ptrId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[208])((nint)ptrId);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[208])((nint)ptrId);
 			#endif
 		}
 
@@ -766,12 +903,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// ~ Unindent()+PopID()<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TreePopNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[209])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[209])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[209])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[209])();
 			#endif
 		}
 
@@ -786,12 +924,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetTreeNodeToLabelSpacingNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)vt[210])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[210])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)vt[210])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[210])();
 			#endif
 		}
 
@@ -807,12 +946,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CollapsingHeaderNative(byte* label, ImGuiTreeNodeFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte>)vt[211])(label, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte>)funcTable[211])(label, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, byte>)vt[211])((nint)label, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, byte>)funcTable[211])((nint)label, flags);
 			#endif
 		}
 
@@ -945,12 +1085,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CollapsingHeaderNative(byte* label, bool* pVisible, ImGuiTreeNodeFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiTreeNodeFlags, byte>)vt[212])(label, pVisible, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiTreeNodeFlags, byte>)funcTable[212])(label, pVisible, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTreeNodeFlags, byte>)vt[212])((nint)label, (nint)pVisible, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTreeNodeFlags, byte>)funcTable[212])((nint)label, (nint)pVisible, flags);
 			#endif
 		}
 
@@ -1233,12 +1374,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set next TreeNodeCollapsingHeader open state.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemOpenNative(byte isOpen, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[213])(isOpen, cond);
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[213])(isOpen, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[213])(isOpen, cond);
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[213])(isOpen, cond);
 			#endif
 		}
 
@@ -1261,12 +1403,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set id to use for openclose storage (default to same as item id).<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemStorageIDNative(uint storageId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)vt[214])(storageId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[214])(storageId);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)vt[214])(storageId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[214])(storageId);
 			#endif
 		}
 
@@ -1281,12 +1424,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SelectableNative(byte* label, byte selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiSelectableFlags, Vector2, byte>)vt[215])(label, selected, flags, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiSelectableFlags, Vector2, byte>)funcTable[215])(label, selected, flags, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, ImGuiSelectableFlags, Vector2, byte>)vt[215])((nint)label, selected, flags, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, ImGuiSelectableFlags, Vector2, byte>)funcTable[215])((nint)label, selected, flags, size);
 			#endif
 		}
 
@@ -1797,12 +1941,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SelectableNative(byte* label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiSelectableFlags, Vector2, byte>)vt[216])(label, pSelected, flags, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiSelectableFlags, Vector2, byte>)funcTable[216])(label, pSelected, flags, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiSelectableFlags, Vector2, byte>)vt[216])((nint)label, (nint)pSelected, flags, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiSelectableFlags, Vector2, byte>)funcTable[216])((nint)label, (nint)pSelected, flags, size);
 			#endif
 		}
 
@@ -2361,12 +2506,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiMultiSelectIO* BeginMultiSelectNative(ImGuiMultiSelectFlags flags, int selectionSize, int itemsCount)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectFlags, int, int, ImGuiMultiSelectIO*>)vt[217])(flags, selectionSize, itemsCount);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectFlags, int, int, ImGuiMultiSelectIO*>)funcTable[217])(flags, selectionSize, itemsCount);
 			#else
-			return (ImGuiMultiSelectIO*)((delegate* unmanaged[Cdecl]<ImGuiMultiSelectFlags, int, int, nint>)vt[217])(flags, selectionSize, itemsCount);
+			return (ImGuiMultiSelectIO*)((delegate* unmanaged[Cdecl]<ImGuiMultiSelectFlags, int, int, nint>)funcTable[217])(flags, selectionSize, itemsCount);
 			#endif
 		}
 
@@ -2400,12 +2546,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiMultiSelectIO* EndMultiSelectNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectIO*>)vt[218])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectIO*>)funcTable[218])();
 			#else
-			return (ImGuiMultiSelectIO*)((delegate* unmanaged[Cdecl]<nint>)vt[218])();
+			return (ImGuiMultiSelectIO*)((delegate* unmanaged[Cdecl]<nint>)funcTable[218])();
 			#endif
 		}
 
@@ -2421,12 +2568,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemSelectionUserDataNative(long selectionUserData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<long, void>)vt[219])(selectionUserData);
+			((delegate* unmanaged[Cdecl]<long, void>)funcTable[219])(selectionUserData);
 			#else
-			((delegate* unmanaged[Cdecl]<long, void>)vt[219])(selectionUserData);
+			((delegate* unmanaged[Cdecl]<long, void>)funcTable[219])(selectionUserData);
 			#endif
 		}
 
@@ -2441,12 +2589,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Was the last item selection state toggled? Useful if you need the per-item information _before_ reaching EndMultiSelect(). We only returns toggle _event_ in order to handle clipping correctly.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemToggledSelectionNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[220])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[220])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[220])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[220])();
 			#endif
 		}
 
@@ -2462,12 +2611,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// open a framed scrolling region<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginListBoxNative(byte* label, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)vt[221])(label, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)funcTable[221])(label, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)vt[221])((nint)label, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)funcTable[221])((nint)label, size);
 			#endif
 		}
 
@@ -2600,12 +2750,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// only call EndListBox() if BeginListBox() returned true!<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndListBoxNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[222])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[222])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[222])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[222])();
 			#endif
 		}
 
@@ -2620,12 +2771,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ListBoxNative(byte* label, int* currentItem, byte** items, int itemsCount, int heightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)vt[223])(label, currentItem, items, itemsCount, heightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)funcTable[223])(label, currentItem, items, itemsCount, heightInItems);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, byte>)vt[223])((nint)label, (nint)currentItem, (nint)items, itemsCount, heightInItems);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, byte>)funcTable[223])((nint)label, (nint)currentItem, (nint)items, itemsCount, heightInItems);
 			#endif
 		}
 
@@ -3284,12 +3436,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ListBoxNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*>, void*, int, int, byte>)vt[224])(label, currentItem, getter, userData, itemsCount, heightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*>, void*, int, int, byte>)funcTable[224])(label, currentItem, getter, userData, itemsCount, heightInItems);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, int, byte>)vt[224])((nint)label, (nint)currentItem, (nint)getter, (nint)userData, itemsCount, heightInItems);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, int, byte>)funcTable[224])((nint)label, (nint)currentItem, (nint)getter, (nint)userData, itemsCount, heightInItems);
 			#endif
 		}
 
@@ -3572,12 +3725,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLinesNative(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, int, byte*, float, float, Vector2, int, void>)vt[225])(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, int, byte*, float, float, Vector2, int, void>)funcTable[225])(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, int, nint, float, float, Vector2, int, void>)vt[225])((nint)label, (nint)values, valuesCount, valuesOffset, (nint)overlayText, scaleMin, scaleMax, graphSize, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, int, nint, float, float, Vector2, int, void>)funcTable[225])((nint)label, (nint)values, valuesCount, valuesOffset, (nint)overlayText, scaleMin, scaleMax, graphSize, stride);
 			#endif
 		}
 
@@ -4867,156 +5021,6 @@ namespace Hexa.NET.ImGui
 			fixed (byte* plabel = label)
 			{
 				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
 			}
 		}
 	}

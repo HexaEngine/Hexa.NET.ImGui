@@ -21,6 +21,24 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return input UTF-8 bytes count<br/>
 		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ref byte inText, byte* inTextEnd, ref byte* inRemaining)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				fixed (byte* pinText = &inText)
+				{
+					fixed (byte** pinRemaining = &inRemaining)
+					{
+						int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, (byte*)pinText, inTextEnd, (byte**)pinRemaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
 		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ReadOnlySpan<byte> inText, byte* inTextEnd, ref byte* inRemaining)
 		{
 			fixed (char* poutBuf = &outBuf)
@@ -399,12 +417,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetKeyChordNameNative(int keyChord)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte*>)vt[1432])(keyChord);
+			return ((delegate* unmanaged[Cdecl]<int, byte*>)funcTable[1430])(keyChord);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)vt[1432])(keyChord);
+			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[1430])(keyChord);
 			#endif
 		}
 
@@ -429,12 +448,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int DataTypeFormatStringNative(byte* buf, int bufSize, ImGuiDataType dataType, void* pData, byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiDataType, void*, byte*, int>)vt[1433])(buf, bufSize, dataType, pData, format);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiDataType, void*, byte*, int>)funcTable[1431])(buf, bufSize, dataType, pData, format);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, ImGuiDataType, nint, nint, int>)vt[1433])((nint)buf, bufSize, dataType, (nint)pData, (nint)format);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, ImGuiDataType, nint, nint, int>)funcTable[1431])((nint)buf, bufSize, dataType, (nint)pData, (nint)format);
 			#endif
 		}
 
@@ -629,12 +649,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InputTextExNative(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, int, Vector2, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)vt[1434])(label, hint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, int, Vector2, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)funcTable[1432])(label, hint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, Vector2, ImGuiInputTextFlags, nint, nint, byte>)vt[1434])((nint)label, (nint)hint, (nint)buf, bufSize, sizeArg, flags, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)userData);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, Vector2, ImGuiInputTextFlags, nint, nint, byte>)funcTable[1432])((nint)label, (nint)hint, (nint)buf, bufSize, sizeArg, flags, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)userData);
 			#endif
 		}
 
@@ -2697,12 +2718,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TempInputTextNative(ImRect bb, uint id, byte* label, byte* buf, int bufSize, ImGuiInputTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte*, byte*, int, ImGuiInputTextFlags, byte>)vt[1435])(bb, id, label, buf, bufSize, flags);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte*, byte*, int, ImGuiInputTextFlags, byte>)funcTable[1433])(bb, id, label, buf, bufSize, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, int, ImGuiInputTextFlags, byte>)vt[1435])(bb, id, (nint)label, (nint)buf, bufSize, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, int, ImGuiInputTextFlags, byte>)funcTable[1433])(bb, id, (nint)label, (nint)buf, bufSize, flags);
 			#endif
 		}
 

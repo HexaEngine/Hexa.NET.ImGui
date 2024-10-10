@@ -670,12 +670,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double PlotHistogram2DNative(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)vt[256])(labelId, xs, ys, count, xBins, yBins, range, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)funcTable[256])(labelId, xs, ys, count, xBins, yBins, range, flags);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)vt[256])((nint)labelId, (nint)xs, (nint)ys, count, xBins, yBins, range, flags);
+			return (double)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)funcTable[256])((nint)labelId, (nint)xs, (nint)ys, count, xBins, yBins, range, flags);
 			#endif
 		}
 
@@ -4282,12 +4283,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotDigitalNative(byte* labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, float*, int, ImPlotDigitalFlags, int, int, void>)vt[257])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, float*, float*, int, ImPlotDigitalFlags, int, int, void>)funcTable[257])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)vt[257])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)funcTable[257])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 

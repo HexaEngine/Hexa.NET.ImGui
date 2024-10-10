@@ -22,6 +22,74 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte xs, ref byte ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pxs = &xs)
+				{
+					fixed (byte* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (byte*)pxs, (byte*)pys, count, flags, (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte xs, ref byte ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pxs = &xs)
+				{
+					fixed (byte* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (byte*)pxs, (byte*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte xs, ref byte ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pxs = &xs)
+				{
+					fixed (byte* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (byte*)pxs, (byte*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte xs, ref byte ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pxs = &xs)
+				{
+					fixed (byte* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (byte*)pxs, (byte*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte xs, ref byte ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -232,12 +300,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLineNative(byte* labelId, short* xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, short*, int, ImPlotLineFlags, int, int, void>)vt[66])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, short*, short*, int, ImPlotLineFlags, int, int, void>)funcTable[66])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)vt[66])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)funcTable[66])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -1948,12 +2017,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLineNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotLineFlags, int, int, void>)vt[67])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotLineFlags, int, int, void>)funcTable[67])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)vt[67])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)funcTable[67])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -3664,12 +3734,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLineNative(byte* labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, ImPlotLineFlags, int, int, void>)vt[68])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, ImPlotLineFlags, int, int, void>)funcTable[68])(labelId, xs, ys, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)vt[68])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)funcTable[68])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4945,88 +5016,6 @@ namespace Hexa.NET.ImPlot
 				fixed (int* pys = &ys)
 				{
 					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, ref int xs, ref int ys, int count, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys = &ys)
-				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, ref int xs, ref int ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, ref int xs, ref int ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, ref int xs, ref int ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, ref int xs, ref int ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
 				}
 			}
 		}

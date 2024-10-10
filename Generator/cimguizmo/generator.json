@@ -2,7 +2,7 @@
   "Namespace": "Hexa.NET.ImGuizmo",
   "ApiName": "ImGuizmo",
   "LibName": "cimguizmo",
-  "ImportType": "VTable",
+  "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,

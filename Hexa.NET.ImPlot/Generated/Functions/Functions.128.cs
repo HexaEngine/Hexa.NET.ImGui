@@ -22,6 +22,438 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		{
+			fixed (byte* pid = id)
+			{
+				fixed (ImPlotTime* pt = &t)
+				{
+					fixed (ImPlotTime* pt1 = &t1)
+					{
+						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1)
+		{
+			fixed (byte* pid = id)
+			{
+				fixed (ImPlotTime* pt = &t)
+				{
+					fixed (ImPlotTime* pt1 = &t1)
+					{
+						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (id != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(id);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImPlotTime* pt = &t)
+			{
+				fixed (ImPlotTime* pt1 = &t1)
+				{
+					byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (id != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(id);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImPlotTime* pt = &t)
+			{
+				fixed (ImPlotTime* pt1 = &t1)
+				{
+					byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		{
+			fixed (int* plevel = &level)
+			{
+				fixed (ImPlotTime* pt = &t)
+				{
+					fixed (ImPlotTime* pt1 = &t1)
+					{
+						byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
+		{
+			fixed (int* plevel = &level)
+			{
+				fixed (ImPlotTime* pt = &t)
+				{
+					fixed (ImPlotTime* pt1 = &t1)
+					{
+						byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		{
+			fixed (byte* pid = &id)
+			{
+				fixed (int* plevel = &level)
+				{
+					fixed (ImPlotTime* pt = &t)
+					{
+						fixed (ImPlotTime* pt1 = &t1)
+						{
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
+		{
+			fixed (byte* pid = &id)
+			{
+				fixed (int* plevel = &level)
+				{
+					fixed (ImPlotTime* pt = &t)
+					{
+						fixed (ImPlotTime* pt1 = &t1)
+						{
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		{
+			fixed (byte* pid = id)
+			{
+				fixed (int* plevel = &level)
+				{
+					fixed (ImPlotTime* pt = &t)
+					{
+						fixed (ImPlotTime* pt1 = &t1)
+						{
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
+		{
+			fixed (byte* pid = id)
+			{
+				fixed (int* plevel = &level)
+				{
+					fixed (ImPlotTime* pt = &t)
+					{
+						fixed (ImPlotTime* pt1 = &t1)
+						{
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (id != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(id);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* plevel = &level)
+			{
+				fixed (ImPlotTime* pt = &t)
+				{
+					fixed (ImPlotTime* pt1 = &t1)
+					{
+						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (id != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(id);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* plevel = &level)
+			{
+				fixed (ImPlotTime* pt = &t)
+				{
+					fixed (ImPlotTime* pt1 = &t1)
+					{
+						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			fixed (ImPlotTime* pt2 = &t2)
+			{
+				byte ret = ShowDatePickerNative(id, level, t, t1, (ImPlotTime*)pt2);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			fixed (byte* pid = &id)
+			{
+				fixed (ImPlotTime* pt2 = &t2)
+				{
+					byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			fixed (byte* pid = id)
+			{
+				fixed (ImPlotTime* pt2 = &t2)
+				{
+					byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (id != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(id);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImPlotTime* pt2 = &t2)
+			{
+				byte ret = ShowDatePickerNative(pStr0, level, t, t1, (ImPlotTime*)pt2);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			fixed (int* plevel = &level)
+			{
+				fixed (ImPlotTime* pt2 = &t2)
+				{
+					byte ret = ShowDatePickerNative(id, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			fixed (byte* pid = &id)
+			{
+				fixed (int* plevel = &level)
+				{
+					fixed (ImPlotTime* pt2 = &t2)
+					{
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		{
+			fixed (byte* pid = id)
+			{
+				fixed (int* plevel = &level)
+				{
+					fixed (ImPlotTime* pt2 = &t2)
+					{
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool ShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
@@ -640,12 +1072,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ShowTimePickerNative(byte* id, ImPlotTime* t)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotTime*, byte>)vt[693])(id, t);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotTime*, byte>)funcTable[693])(id, t);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)vt[693])((nint)id, (nint)t);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[693])((nint)id, (nint)t);
 			#endif
 		}
 
@@ -790,12 +1223,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double TransformForward_Log10Native(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[694])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[694])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)vt[694])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[694])(v, (nint)noname1);
 			#endif
 		}
 
@@ -811,12 +1245,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double TransformInverse_Log10Native(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[695])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[695])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)vt[695])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[695])(v, (nint)noname1);
 			#endif
 		}
 
@@ -832,12 +1267,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double TransformForward_SymLogNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[696])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[696])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)vt[696])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[696])(v, (nint)noname1);
 			#endif
 		}
 
@@ -853,12 +1289,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double TransformInverse_SymLogNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[697])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[697])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)vt[697])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[697])(v, (nint)noname1);
 			#endif
 		}
 
@@ -874,12 +1311,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double TransformForward_LogitNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[698])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[698])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)vt[698])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[698])(v, (nint)noname1);
 			#endif
 		}
 
@@ -895,12 +1333,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double TransformInverse_LogitNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[699])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[699])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)vt[699])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[699])(v, (nint)noname1);
 			#endif
 		}
 
@@ -916,12 +1355,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int Formatter_DefaultNative(double value, byte* buff, int size, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[700])(value, buff, size, data);
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[700])(value, buff, size, data);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)vt[700])(value, (nint)buff, size, (nint)data);
+			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[700])(value, (nint)buff, size, (nint)data);
 			#endif
 		}
 
@@ -980,12 +1420,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int Formatter_LogitNative(double value, byte* buff, int size, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[701])(value, buff, size, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[701])(value, buff, size, noname1);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)vt[701])(value, (nint)buff, size, (nint)noname1);
+			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[701])(value, (nint)buff, size, (nint)noname1);
 			#endif
 		}
 
@@ -1044,12 +1485,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int Formatter_TimeNative(double noname1, byte* buff, int size, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[702])(noname1, buff, size, data);
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[702])(noname1, buff, size, data);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)vt[702])(noname1, (nint)buff, size, (nint)data);
+			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[702])(noname1, (nint)buff, size, (nint)data);
 			#endif
 		}
 
@@ -1108,12 +1550,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void Locator_DefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[703])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[703])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)vt[703])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[703])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 
@@ -1139,12 +1582,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void Locator_TimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[704])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[704])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)vt[704])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[704])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 
@@ -1170,12 +1614,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void Locator_Log10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[705])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[705])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)vt[705])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[705])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 
@@ -1201,12 +1646,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void Locator_SymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[706])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[706])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)vt[706])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[706])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 

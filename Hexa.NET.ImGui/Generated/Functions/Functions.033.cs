@@ -21,6 +21,156 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
@@ -417,12 +567,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InputScalarNNative(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, int, void*, void*, byte*, ImGuiInputTextFlags, byte>)vt[190])(label, dataType, pData, components, pStep, pStepFast, format, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, int, void*, void*, byte*, ImGuiInputTextFlags, byte>)funcTable[190])(label, dataType, pData, components, pStep, pStepFast, format, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, int, nint, nint, nint, ImGuiInputTextFlags, byte>)vt[190])((nint)label, dataType, (nint)pData, components, (nint)pStep, (nint)pStepFast, (nint)format, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, int, nint, nint, nint, ImGuiInputTextFlags, byte>)funcTable[190])((nint)label, dataType, (nint)pData, components, (nint)pStep, (nint)pStepFast, (nint)format, flags);
 			#endif
 		}
 
@@ -1995,12 +2146,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorEdit3Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[191])(label, col, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[191])(label, col, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)vt[191])((nint)label, (nint)col, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[191])((nint)label, (nint)col, flags);
 			#endif
 		}
 
@@ -2331,12 +2483,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorEdit4Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[192])(label, col, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[192])(label, col, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)vt[192])((nint)label, (nint)col, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[192])((nint)label, (nint)col, flags);
 			#endif
 		}
 
@@ -2667,12 +2820,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorPicker3Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[193])(label, col, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[193])(label, col, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)vt[193])((nint)label, (nint)col, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[193])((nint)label, (nint)col, flags);
 			#endif
 		}
 
@@ -3003,12 +3157,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorPicker4Native(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, float*, byte>)vt[194])(label, col, flags, refCol);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, float*, byte>)funcTable[194])(label, col, flags, refCol);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, nint, byte>)vt[194])((nint)label, (nint)col, flags, (nint)refCol);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, nint, byte>)funcTable[194])((nint)label, (nint)col, flags, (nint)refCol);
 			#endif
 		}
 
@@ -4047,12 +4202,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorButtonNative(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector4, ImGuiColorEditFlags, Vector2, byte>)vt[195])(descId, col, flags, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector4, ImGuiColorEditFlags, Vector2, byte>)funcTable[195])(descId, col, flags, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector4, ImGuiColorEditFlags, Vector2, byte>)vt[195])((nint)descId, col, flags, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector4, ImGuiColorEditFlags, Vector2, byte>)funcTable[195])((nint)descId, col, flags, size);
 			#endif
 		}
 
@@ -4311,12 +4467,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// initialize current options (generally on application startup) if you want to select a default format, picker type, etc. User will be able to change many settings, unless you pass the _NoOptions flag to your calls.<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColorEditOptionsNative(ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)vt[196])(flags);
+			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)funcTable[196])(flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)vt[196])(flags);
+			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)funcTable[196])(flags);
 			#endif
 		}
 
@@ -4331,12 +4488,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[197])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[197])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[197])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[197])((nint)label);
 			#endif
 		}
 
@@ -4406,12 +4564,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeNative(byte* strId, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)vt[198])(strId, fmt);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)funcTable[198])(strId, fmt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)vt[198])((nint)strId, (nint)fmt);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[198])((nint)strId, (nint)fmt);
 			#endif
 		}
 
@@ -4616,12 +4775,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeNative(void* ptrId, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte*, byte>)vt[199])(ptrId, fmt);
+			return ((delegate* unmanaged[Cdecl]<void*, byte*, byte>)funcTable[199])(ptrId, fmt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)vt[199])((nint)ptrId, (nint)fmt);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[199])((nint)ptrId, (nint)fmt);
 			#endif
 		}
 
@@ -4691,12 +4851,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeVNative(byte* strId, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte>)vt[200])(strId, fmt, args);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte>)funcTable[200])(strId, fmt, args);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, byte>)vt[200])((nint)strId, (nint)fmt, args);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, byte>)funcTable[200])((nint)strId, (nint)fmt, args);
 			#endif
 		}
 
@@ -4896,135 +5057,6 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte TreeNodeVNative(void* ptrId, byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte*, nuint, byte>)vt[201])(ptrId, fmt, args);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, byte>)vt[201])((nint)ptrId, (nint)fmt, args);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(void* ptrId, byte* fmt, nuint args)
-		{
-			byte ret = TreeNodeVNative(ptrId, fmt, args);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(void* ptrId, ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				byte ret = TreeNodeVNative(ptrId, (byte*)pfmt, args);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(void* ptrId, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				byte ret = TreeNodeVNative(ptrId, (byte*)pfmt, args);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(void* ptrId, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TreeNodeVNative(ptrId, pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte TreeNodeExNative(byte* label, ImGuiTreeNodeFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte>)vt[202])(label, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTreeNodeFlags, byte>)vt[202])((nint)label, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeEx(byte* label, ImGuiTreeNodeFlags flags)
-		{
-			byte ret = TreeNodeExNative(label, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeEx(byte* label)
-		{
-			byte ret = TreeNodeExNative(label, (ImGuiTreeNodeFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeEx(ref byte label, ImGuiTreeNodeFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = TreeNodeExNative((byte*)plabel, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeEx(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = TreeNodeExNative((byte*)plabel, (ImGuiTreeNodeFlags)(0));
-				return ret != 0;
-			}
 		}
 	}
 }

@@ -22,6 +22,17 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -524,12 +535,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotTextNative(byte* text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, ImPlotTextFlags, void>)vt[268])(text, x, y, pixOffset, flags);
+			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, ImPlotTextFlags, void>)funcTable[268])(text, x, y, pixOffset, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, Vector2, ImPlotTextFlags, void>)vt[268])((nint)text, x, y, pixOffset, flags);
+			((delegate* unmanaged[Cdecl]<nint, double, double, Vector2, ImPlotTextFlags, void>)funcTable[268])((nint)text, x, y, pixOffset, flags);
 			#endif
 		}
 
@@ -772,12 +784,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotDummyNative(byte* labelId, ImPlotDummyFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImPlotDummyFlags, void>)vt[269])(labelId, flags);
+			((delegate* unmanaged[Cdecl]<byte*, ImPlotDummyFlags, void>)funcTable[269])(labelId, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotDummyFlags, void>)vt[269])((nint)labelId, flags);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotDummyFlags, void>)funcTable[269])((nint)labelId, flags);
 			#endif
 		}
 
@@ -902,12 +915,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DragPointNative(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, double*, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[270])(id, x, y, col, size, flags, outClicked, outHovered, held);
+			return ((delegate* unmanaged[Cdecl]<int, double*, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)funcTable[270])(id, x, y, col, size, flags, outClicked, outHovered, held);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, nint, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)vt[270])(id, (nint)x, (nint)y, col, size, flags, (nint)outClicked, (nint)outHovered, (nint)held);
+			return (byte)((delegate* unmanaged[Cdecl]<int, nint, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)funcTable[270])(id, (nint)x, (nint)y, col, size, flags, (nint)outClicked, (nint)outHovered, (nint)held);
 			#endif
 		}
 
@@ -4610,12 +4624,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DragLineXNative(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[271])(id, x, col, thickness, flags, outClicked, outHovered, held);
+			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)funcTable[271])(id, x, col, thickness, flags, outClicked, outHovered, held);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)vt[271])(id, (nint)x, col, thickness, flags, (nint)outClicked, (nint)outHovered, (nint)held);
+			return (byte)((delegate* unmanaged[Cdecl]<int, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)funcTable[271])(id, (nint)x, col, thickness, flags, (nint)outClicked, (nint)outHovered, (nint)held);
 			#endif
 		}
 
@@ -5011,18 +5026,6 @@ namespace Hexa.NET.ImPlot
 			fixed (bool* poutClicked = &outClicked)
 			{
 				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
 				return ret != 0;
 			}
 		}

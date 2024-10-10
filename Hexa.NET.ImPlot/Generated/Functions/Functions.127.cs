@@ -22,6 +22,395 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, (byte*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				AddTextVerticalNative(drawList, pos, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				AddTextVerticalNative(drawList, pos, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextVerticalNative(drawList, pos, col, textBegin, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			AddTextVerticalNative(drawList, pos, col, pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddTextCenteredNative(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)funcTable[641])(drawList, topCenter, col, textBegin, textEnd);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)funcTable[641])((nint)drawList, topCenter, col, (nint)textBegin, (nint)textEnd);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			AddTextCenteredNative(drawList, topCenter, col, textBegin, textEnd);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin)
 		{
 			AddTextCenteredNative(drawList, topCenter, col, textBegin, (byte*)(default));
@@ -550,12 +939,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalcTextSizeVerticalNative(Vector2* pOut, byte* text)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, byte*, void>)vt[642])(pOut, text);
+			((delegate* unmanaged[Cdecl]<Vector2*, byte*, void>)funcTable[642])(pOut, text);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[642])((nint)pOut, (nint)text);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[642])((nint)pOut, (nint)text);
 			#endif
 		}
 
@@ -708,12 +1098,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint CalcTextColorNative(Vector4 bg)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[643])(bg);
+			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[643])(bg);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[643])(bg);
+			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[643])(bg);
 			#endif
 		}
 
@@ -729,12 +1120,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint CalcTextColorNative(uint bg)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint>)vt[644])(bg);
+			return ((delegate* unmanaged[Cdecl]<uint, uint>)funcTable[644])(bg);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint>)vt[644])(bg);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint>)funcTable[644])(bg);
 			#endif
 		}
 
@@ -750,12 +1142,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint CalcHoverColorNative(uint col)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint>)vt[645])(col);
+			return ((delegate* unmanaged[Cdecl]<uint, uint>)funcTable[645])(col);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint>)vt[645])(col);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint>)funcTable[645])(col);
 			#endif
 		}
 
@@ -771,12 +1164,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClampLabelPosNative(Vector2* pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)vt[646])(pOut, pos, size, min, max);
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)funcTable[646])(pOut, pos, size, min, max);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, void>)vt[646])((nint)pOut, pos, size, min, max);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, void>)funcTable[646])((nint)pOut, pos, size, min, max);
 			#endif
 		}
 
@@ -812,12 +1206,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetColormapColorU32Native(int idx, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImPlotColormap, uint>)vt[647])(idx, cmap);
+			return ((delegate* unmanaged[Cdecl]<int, ImPlotColormap, uint>)funcTable[647])(idx, cmap);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<int, ImPlotColormap, uint>)vt[647])(idx, cmap);
+			return (uint)((delegate* unmanaged[Cdecl]<int, ImPlotColormap, uint>)funcTable[647])(idx, cmap);
 			#endif
 		}
 
@@ -833,12 +1228,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint NextColormapColorU32Native()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)vt[648])();
+			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[648])();
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)vt[648])();
+			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[648])();
 			#endif
 		}
 
@@ -854,12 +1250,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint SampleColormapU32Native(float t, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, ImPlotColormap, uint>)vt[649])(t, cmap);
+			return ((delegate* unmanaged[Cdecl]<float, ImPlotColormap, uint>)funcTable[649])(t, cmap);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<float, ImPlotColormap, uint>)vt[649])(t, cmap);
+			return (uint)((delegate* unmanaged[Cdecl]<float, ImPlotColormap, uint>)funcTable[649])(t, cmap);
 			#endif
 		}
 
@@ -875,12 +1272,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void RenderColorBarNative(uint* colors, int size, ImDrawList* drawList, ImRect bounds, byte vert, byte reversed, byte continuous)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, ImDrawList*, ImRect, byte, byte, byte, void>)vt[650])(colors, size, drawList, bounds, vert, reversed, continuous);
+			((delegate* unmanaged[Cdecl]<uint*, int, ImDrawList*, ImRect, byte, byte, byte, void>)funcTable[650])(colors, size, drawList, bounds, vert, reversed, continuous);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, ImRect, byte, byte, byte, void>)vt[650])((nint)colors, size, (nint)drawList, bounds, vert, reversed, continuous);
+			((delegate* unmanaged[Cdecl]<nint, int, nint, ImRect, byte, byte, byte, void>)funcTable[650])((nint)colors, size, (nint)drawList, bounds, vert, reversed, continuous);
 			#endif
 		}
 
@@ -931,12 +1329,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double NiceNumNative(double x, byte round)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte, double>)vt[651])(x, round);
+			return ((delegate* unmanaged[Cdecl]<double, byte, double>)funcTable[651])(x, round);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, byte, double>)vt[651])(x, round);
+			return (double)((delegate* unmanaged[Cdecl]<double, byte, double>)funcTable[651])(x, round);
 			#endif
 		}
 
@@ -952,12 +1351,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int OrderOfMagnitudeNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, int>)vt[652])(val);
+			return ((delegate* unmanaged[Cdecl]<double, int>)funcTable[652])(val);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, int>)vt[652])(val);
+			return (int)((delegate* unmanaged[Cdecl]<double, int>)funcTable[652])(val);
 			#endif
 		}
 
@@ -973,12 +1373,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int OrderToPrecisionNative(int order)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int>)vt[653])(order);
+			return ((delegate* unmanaged[Cdecl]<int, int>)funcTable[653])(order);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int>)vt[653])(order);
+			return (int)((delegate* unmanaged[Cdecl]<int, int>)funcTable[653])(order);
 			#endif
 		}
 
@@ -994,12 +1395,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int PrecisionNative(double val)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, int>)vt[654])(val);
+			return ((delegate* unmanaged[Cdecl]<double, int>)funcTable[654])(val);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, int>)vt[654])(val);
+			return (int)((delegate* unmanaged[Cdecl]<double, int>)funcTable[654])(val);
 			#endif
 		}
 
@@ -1015,12 +1417,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double RoundToNative(double val, int prec)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, int, double>)vt[655])(val, prec);
+			return ((delegate* unmanaged[Cdecl]<double, int, double>)funcTable[655])(val, prec);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, int, double>)vt[655])(val, prec);
+			return (double)((delegate* unmanaged[Cdecl]<double, int, double>)funcTable[655])(val, prec);
 			#endif
 		}
 
@@ -1036,12 +1439,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void IntersectionNative(Vector2* pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)vt[656])(pOut, a1, a2, b1, b2);
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)funcTable[656])(pOut, a1, a2, b1, b2);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, void>)vt[656])((nint)pOut, a1, a2, b1, b2);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, void>)funcTable[656])((nint)pOut, a1, a2, b1, b2);
 			#endif
 		}
 
@@ -1077,12 +1481,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<float>* buffer, int n, float vmin, float vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<float>*, int, float, float, void>)vt[657])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<float>*, int, float, float, void>)funcTable[657])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, float, float, void>)vt[657])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, float, float, void>)funcTable[657])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1108,12 +1513,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<double>* buffer, int n, double vmin, double vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<double>*, int, double, double, void>)vt[658])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<double>*, int, double, double, void>)funcTable[658])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, double, double, void>)vt[658])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, double, double, void>)funcTable[658])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1139,12 +1545,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<sbyte>* buffer, int n, byte vmin, byte vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<sbyte>*, int, byte, byte, void>)vt[659])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<sbyte>*, int, byte, byte, void>)funcTable[659])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, byte, byte, void>)vt[659])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, byte, byte, void>)funcTable[659])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1170,12 +1577,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<byte>*, int, byte, byte, void>)vt[660])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<byte>*, int, byte, byte, void>)funcTable[660])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, byte, byte, void>)vt[660])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, byte, byte, void>)funcTable[660])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1201,12 +1609,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<short>* buffer, int n, short vmin, short vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<short>*, int, short, short, void>)vt[661])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<short>*, int, short, short, void>)funcTable[661])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, short, short, void>)vt[661])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, short, short, void>)funcTable[661])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1232,12 +1641,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<ushort>*, int, ushort, ushort, void>)vt[662])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<ushort>*, int, ushort, ushort, void>)funcTable[662])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ushort, ushort, void>)vt[662])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, ushort, ushort, void>)funcTable[662])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1263,12 +1673,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<int>* buffer, int n, int vmin, int vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<int>*, int, int, int, void>)vt[663])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<int>*, int, int, int, void>)funcTable[663])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, void>)vt[663])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, void>)funcTable[663])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1294,12 +1705,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, int, uint, uint, void>)vt[664])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, int, uint, uint, void>)funcTable[664])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, uint, uint, void>)vt[664])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, uint, uint, void>)funcTable[664])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1325,12 +1737,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<long>* buffer, int n, long vmin, long vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<long>*, int, long, long, void>)vt[665])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<long>*, int, long, long, void>)funcTable[665])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, long, long, void>)vt[665])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, long, long, void>)funcTable[665])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1356,12 +1769,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FillRangeNative(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<ulong>*, int, ulong, ulong, void>)vt[666])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<ulong>*, int, ulong, ulong, void>)funcTable[666])(buffer, n, vmin, vmax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ulong, ulong, void>)vt[666])((nint)buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<nint, int, ulong, ulong, void>)funcTable[666])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
@@ -1387,12 +1801,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[667])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<float*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[667])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[667])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[667])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -1499,12 +1914,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[668])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<double*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[668])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[668])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[668])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -1611,12 +2027,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[669])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<byte*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[669])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[669])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[669])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -1723,12 +2140,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<short*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[670])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<short*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[670])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[670])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[670])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -1835,12 +2253,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ushort*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[671])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<ushort*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[671])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[671])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[671])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -1947,12 +2366,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[672])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<int*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[672])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[672])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[672])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -2059,12 +2479,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[673])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<uint*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[673])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[673])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[673])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -2171,12 +2592,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<long*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[674])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<long*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[674])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[674])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[674])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -2283,12 +2705,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CalculateBinsNative(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ulong*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[675])(values, count, meth, range, binsOut, widthOut);
+			((delegate* unmanaged[Cdecl]<ulong*, int, ImPlotBin, ImPlotRange, int*, double*, void>)funcTable[675])(values, count, meth, range, binsOut, widthOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)vt[675])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
+			((delegate* unmanaged[Cdecl]<nint, int, ImPlotBin, ImPlotRange, nint, nint, void>)funcTable[675])((nint)values, count, meth, range, (nint)binsOut, (nint)widthOut);
 			#endif
 		}
 
@@ -2395,12 +2818,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLeapYearNative(int year)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[676])(year);
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[676])(year);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[676])(year);
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[676])(year);
 			#endif
 		}
 
@@ -2416,12 +2840,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetDaysInMonthNative(int year, int month)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int>)vt[677])(year, month);
+			return ((delegate* unmanaged[Cdecl]<int, int, int>)funcTable[677])(year, month);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int>)vt[677])(year, month);
+			return (int)((delegate* unmanaged[Cdecl]<int, int, int>)funcTable[677])(year, month);
 			#endif
 		}
 
@@ -2437,12 +2862,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MkGmtTimeNative(ImPlotTime* pOut, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)vt[678])(pOut, ptm);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)funcTable[678])(pOut, ptm);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[678])((nint)pOut, (nint)ptm);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[678])((nint)pOut, (nint)ptm);
 			#endif
 		}
 
@@ -2516,12 +2942,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Tm* GetGmtTimeNative(ImPlotTime t, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)vt[679])(t, ptm);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)funcTable[679])(t, ptm);
 			#else
-			return (Tm*)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, nint>)vt[679])(t, (nint)ptm);
+			return (Tm*)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, nint>)funcTable[679])(t, (nint)ptm);
 			#endif
 		}
 
@@ -2549,12 +2976,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MkLocTimeNative(ImPlotTime* pOut, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)vt[680])(pOut, ptm);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)funcTable[680])(pOut, ptm);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[680])((nint)pOut, (nint)ptm);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[680])((nint)pOut, (nint)ptm);
 			#endif
 		}
 
@@ -2628,12 +3056,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Tm* GetLocTimeNative(ImPlotTime t, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)vt[681])(t, ptm);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)funcTable[681])(t, ptm);
 			#else
-			return (Tm*)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, nint>)vt[681])(t, (nint)ptm);
+			return (Tm*)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, nint>)funcTable[681])(t, (nint)ptm);
 			#endif
 		}
 
@@ -2661,12 +3090,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MakeTimeNative(ImPlotTime* pOut, int year, int month, int day, int hour, int min, int sec, int us)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, int, int, int, int, int, int, int, void>)vt[682])(pOut, year, month, day, hour, min, sec, us);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, int, int, int, int, int, int, int, void>)funcTable[682])(pOut, year, month, day, hour, min, sec, us);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, int, int, int, void>)vt[682])((nint)pOut, year, month, day, hour, min, sec, us);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, int, int, int, void>)funcTable[682])((nint)pOut, year, month, day, hour, min, sec, us);
 			#endif
 		}
 
@@ -2876,12 +3306,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetYearNative(ImPlotTime t)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)vt[683])(t);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[683])(t);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, int>)vt[683])(t);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[683])(t);
 			#endif
 		}
 
@@ -2897,12 +3328,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, int, void>)vt[684])(pOut, t, unit, count);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, int, void>)funcTable[684])(pOut, t, unit, count);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, int, void>)vt[684])((nint)pOut, t, unit, count);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, int, void>)funcTable[684])((nint)pOut, t, unit, count);
 			#endif
 		}
 
@@ -2938,12 +3370,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void FloorTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[685])(pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[685])(pOut, t, unit);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)vt[685])((nint)pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[685])((nint)pOut, t, unit);
 			#endif
 		}
 
@@ -2979,12 +3412,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CeilTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[686])(pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[686])(pOut, t, unit);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)vt[686])((nint)pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[686])((nint)pOut, t, unit);
 			#endif
 		}
 
@@ -3020,12 +3454,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void RoundTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[687])(pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[687])(pOut, t, unit);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)vt[687])((nint)pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[687])((nint)pOut, t, unit);
 			#endif
 		}
 
@@ -3061,12 +3496,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CombineDateTimeNative(ImPlotTime* pOut, ImPlotTime datePart, ImPlotTime timePart)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTime, void>)vt[688])(pOut, datePart, timePart);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTime, void>)funcTable[688])(pOut, datePart, timePart);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTime, void>)vt[688])((nint)pOut, datePart, timePart);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTime, void>)funcTable[688])((nint)pOut, datePart, timePart);
 			#endif
 		}
 
@@ -3102,12 +3538,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int FormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotTimeFmt, byte, int>)vt[689])(t, buffer, size, fmt, use24HrClk);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotTimeFmt, byte, int>)funcTable[689])(t, buffer, size, fmt, use24HrClk);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotTimeFmt, byte, int>)vt[689])(t, (nint)buffer, size, fmt, use24HrClk);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotTimeFmt, byte, int>)funcTable[689])(t, (nint)buffer, size, fmt, use24HrClk);
 			#endif
 		}
 
@@ -3166,12 +3603,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int FormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateFmt, byte, int>)vt[690])(t, buffer, size, fmt, useIso8601);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateFmt, byte, int>)funcTable[690])(t, buffer, size, fmt, useIso8601);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateFmt, byte, int>)vt[690])(t, (nint)buffer, size, fmt, useIso8601);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateFmt, byte, int>)funcTable[690])(t, (nint)buffer, size, fmt, useIso8601);
 			#endif
 		}
 
@@ -3230,12 +3668,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int FormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateTimeSpec, int>)vt[691])(t, buffer, size, fmt);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateTimeSpec, int>)funcTable[691])(t, buffer, size, fmt);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateTimeSpec, int>)vt[691])(t, (nint)buffer, size, fmt);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateTimeSpec, int>)funcTable[691])(t, (nint)buffer, size, fmt);
 			#endif
 		}
 
@@ -3294,12 +3733,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImPlotTime*, ImPlotTime*, ImPlotTime*, byte>)vt[692])(id, level, t, t1, t2);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImPlotTime*, ImPlotTime*, ImPlotTime*, byte>)funcTable[692])(id, level, t, t1, t2);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)vt[692])((nint)id, (nint)level, (nint)t, (nint)t1, (nint)t2);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)funcTable[692])((nint)id, (nint)level, (nint)t, (nint)t1, (nint)t2);
 			#endif
 		}
 
@@ -4587,438 +5027,6 @@ namespace Hexa.NET.ImPlot
 					fixed (ImPlotTime* pt1 = &t1)
 					{
 						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (byte* pid = id)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1)
-		{
-			fixed (byte* pid = id)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt = &t)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt = &t)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
-		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt = &t)
-					{
-						fixed (ImPlotTime* pt1 = &t1)
-						{
-							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt = &t)
-					{
-						fixed (ImPlotTime* pt1 = &t1)
-						{
-							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (byte* pid = id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt = &t)
-					{
-						fixed (ImPlotTime* pt1 = &t1)
-						{
-							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
-		{
-			fixed (byte* pid = id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt = &t)
-					{
-						fixed (ImPlotTime* pt1 = &t1)
-						{
-							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)(default));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (ImPlotTime* pt2 = &t2)
-			{
-				byte ret = ShowDatePickerNative(id, level, t, t1, (ImPlotTime*)pt2);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (byte* pid = id)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt2 = &t2)
-			{
-				byte ret = ShowDatePickerNative(pStr0, level, t, t1, (ImPlotTime*)pt2);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ShowDatePickerNative(id, (int*)plevel, t, t1, (ImPlotTime*)pt2);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt2 = &t2)
-					{
-						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (byte* pid = id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt2 = &t2)
-					{
-						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
