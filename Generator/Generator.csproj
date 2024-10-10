@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen" Version="1.1.7-r9" />
+		<PackageReference Include="HexaGen" Version="1.1.7" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
