@@ -68,7 +68,7 @@ For a comprehensive example of how to use the library, refer to the [ExampleD3D1
 
 ### Setup Guide
 
-For details on how to set up the library, check the [ImGuiManager.cs]([https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleD3D11/ImGuiDemo/ImGuiManager.cs](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleFramework/ImGuiDemo/ImGuiManager.cs)) file in the ExampleFramework project.
+For details on how to set up the library, check the [ImGuiManager.cs](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleFramework/ImGuiDemo/ImGuiManager.cs) file in the ExampleFramework project.
 
 ### Using the Flexible and Optimized API
 
