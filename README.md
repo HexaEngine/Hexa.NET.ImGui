@@ -16,6 +16,10 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 
+## 🎉 Sponsors
+- A big thank you to **@Doprez** for their generous support!
+
+
 ## Community
 - Discord: [https://discord.gg/VawN5d8HMh](https://discord.gg/VawN5d8HMh)
 
@@ -116,8 +120,10 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 
 ## Credits
 
-[ImGui.NET](https://github.com/ImGuiNET/ImGui.NET/) for the JSON parsing of the cimgui metadata.
+- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET/) for the JSON parsing of the cimgui metadata. 
+- [cimgui](https://github.com/cimgui/cimgui) for the c interface. 
+- [Dear ImGui](https://github.com/ocornut/imgui) 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/LICENSE.txt) file for more details.
