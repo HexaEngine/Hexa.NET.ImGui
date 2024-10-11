@@ -72,12 +72,17 @@ jobs:
     - name: Build cimnodes
       run: cmake --build cimplot/build --config Release
 
+    - name: Move Windows binaries
+      if: matrix.os == 'windows-latest'
+      run: |
+        mv cimplot/build/Release/*.dll cimplot/build/
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
         name: cimplot-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
-          cimplot/build/Release/*.dll
+          cimplot/build/*.dll
           cimplot/build/*.so
           cimplot/build/*.dylib
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
