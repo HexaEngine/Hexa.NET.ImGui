@@ -70,7 +70,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        name: cimgui-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
           cimgui/build/Release/*.dll
           cimgui/build/*.so
