@@ -75,7 +75,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        name: cimguizmo-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
           cimguizmo/build/Release/*.dll
           cimguizmo/build/*.so
