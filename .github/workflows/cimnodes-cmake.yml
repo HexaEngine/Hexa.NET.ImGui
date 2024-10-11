@@ -72,12 +72,17 @@ jobs:
     - name: Build cimnodes
       run: cmake --build cimnodes/build --config Release
 
+    - name: Move Windows binaries
+      if: matrix.os == 'windows-latest'
+      run: |
+        mv cimnodes/build/Release/*.dll cimnodes/build/
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        name: cimnodes-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
-          cimnodes/build/Release/*.dll
+          cimnodes/build/*.dll
           cimnodes/build/*.so
           cimnodes/build/*.dylib
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'

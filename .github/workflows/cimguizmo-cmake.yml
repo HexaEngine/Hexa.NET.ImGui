@@ -72,12 +72,17 @@ jobs:
     - name: Build cimguizmo
       run: cmake --build cimguizmo/build --config Release
 
+    - name: Move Windows binaries
+      if: matrix.os == 'windows-latest'
+      run: |
+        mv cimguizmo/build/Release/*.dll cimguizmo/build/
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        name: cimguizmo-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
-          cimguizmo/build/Release/*.dll
+          cimguizmo/build/*.dll
           cimguizmo/build/*.so
           cimguizmo/build/*.dylib
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
