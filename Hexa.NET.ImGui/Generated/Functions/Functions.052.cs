@@ -471,10 +471,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiStackSizes* self)
+		internal static void DestroyNative(ImGuiErrorRecoveryState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStackSizes*, void>)funcTable[668])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[668])(self);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[668])((nint)self);
 			#endif
@@ -483,7 +483,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImGuiStackSizesPtr self)
+		public static void Destroy(ImGuiErrorRecoveryStatePtr self)
 		{
 			DestroyNative(self);
 		}
@@ -491,11 +491,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ref ImGuiStackSizes self)
+		public static void Destroy(ref ImGuiErrorRecoveryState self)
 		{
-			fixed (ImGuiStackSizes* pself = &self)
+			fixed (ImGuiErrorRecoveryState* pself = &self)
 			{
-				DestroyNative((ImGuiStackSizes*)pself);
+				DestroyNative((ImGuiErrorRecoveryState*)pself);
 			}
 		}
 

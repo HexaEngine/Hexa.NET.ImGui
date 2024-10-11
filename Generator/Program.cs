@@ -38,6 +38,10 @@
             Generate(CImGuizmoHeader, CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(CImPlotHeader, CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
             Generate(CImNodesHeader, CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("All Done!");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private static bool Generate(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)

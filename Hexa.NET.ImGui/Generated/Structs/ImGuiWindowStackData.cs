@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiStackSizes StackSizesOnBegin;
+		public ImGuiErrorRecoveryState StackSizesInBegin;
 
 		/// <summary>
 		/// To be documented.
@@ -46,11 +46,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiWindowStackData(ImGuiWindowPtr window = default, ImGuiLastItemData parentLastItemDataBackup = default, ImGuiStackSizes stackSizesOnBegin = default, bool disabledOverrideReenable = default)
+		public unsafe ImGuiWindowStackData(ImGuiWindowPtr window = default, ImGuiLastItemData parentLastItemDataBackup = default, ImGuiErrorRecoveryState stackSizesInBegin = default, bool disabledOverrideReenable = default)
 		{
 			Window = window;
 			ParentLastItemDataBackup = parentLastItemDataBackup;
-			StackSizesOnBegin = stackSizesOnBegin;
+			StackSizesInBegin = stackSizesInBegin;
 			DisabledOverrideReenable = disabledOverrideReenable ? (byte)1 : (byte)0;
 		}
 
@@ -109,7 +109,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiStackSizes StackSizesOnBegin => ref Unsafe.AsRef<ImGuiStackSizes>(&Handle->StackSizesOnBegin);
+		public ref ImGuiErrorRecoveryState StackSizesInBegin => ref Unsafe.AsRef<ImGuiErrorRecoveryState>(&Handle->StackSizesInBegin);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

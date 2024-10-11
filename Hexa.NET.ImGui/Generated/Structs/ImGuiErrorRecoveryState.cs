@@ -17,15 +17,25 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// sizeof() = 20<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImGuiStackSizes
+	public partial struct ImGuiErrorRecoveryState
 	{
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public short SizeOfWindowStack;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public short SizeOfIDStack;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public short SizeOfTreeStack;
 
 		/// <summary>
 		/// To be documented.
@@ -71,9 +81,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStackSizes(short sizeOfIdStack = default, short sizeOfColorStack = default, short sizeOfStyleVarStack = default, short sizeOfFontStack = default, short sizeOfFocusScopeStack = default, short sizeOfGroupStack = default, short sizeOfItemFlagsStack = default, short sizeOfBeginPopupStack = default, short sizeOfDisabledStack = default)
+		public unsafe ImGuiErrorRecoveryState(short sizeOfWindowStack = default, short sizeOfIdStack = default, short sizeOfTreeStack = default, short sizeOfColorStack = default, short sizeOfStyleVarStack = default, short sizeOfFontStack = default, short sizeOfFocusScopeStack = default, short sizeOfGroupStack = default, short sizeOfItemFlagsStack = default, short sizeOfBeginPopupStack = default, short sizeOfDisabledStack = default)
 		{
+			SizeOfWindowStack = sizeOfWindowStack;
 			SizeOfIDStack = sizeOfIdStack;
+			SizeOfTreeStack = sizeOfTreeStack;
 			SizeOfColorStack = sizeOfColorStack;
 			SizeOfStyleVarStack = sizeOfStyleVarStack;
 			SizeOfFontStack = sizeOfFontStack;
@@ -90,7 +102,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void Destroy()
 		{
-			fixed (ImGuiStackSizes* @this = &this)
+			fixed (ImGuiErrorRecoveryState* @this = &this)
 			{
 				ImGui.DestroyNative(@this);
 			}
@@ -104,45 +116,53 @@ namespace Hexa.NET.ImGui
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif
-	public unsafe struct ImGuiStackSizesPtr : IEquatable<ImGuiStackSizesPtr>
+	public unsafe struct ImGuiErrorRecoveryStatePtr : IEquatable<ImGuiErrorRecoveryStatePtr>
 	{
-		public ImGuiStackSizesPtr(ImGuiStackSizes* handle) { Handle = handle; }
+		public ImGuiErrorRecoveryStatePtr(ImGuiErrorRecoveryState* handle) { Handle = handle; }
 
-		public ImGuiStackSizes* Handle;
+		public ImGuiErrorRecoveryState* Handle;
 
 		public bool IsNull => Handle == null;
 
-		public static ImGuiStackSizesPtr Null => new ImGuiStackSizesPtr(null);
+		public static ImGuiErrorRecoveryStatePtr Null => new ImGuiErrorRecoveryStatePtr(null);
 
-		public ImGuiStackSizes this[int index] { get => Handle[index]; set => Handle[index] = value; }
+		public ImGuiErrorRecoveryState this[int index] { get => Handle[index]; set => Handle[index] = value; }
 
-		public static implicit operator ImGuiStackSizesPtr(ImGuiStackSizes* handle) => new ImGuiStackSizesPtr(handle);
+		public static implicit operator ImGuiErrorRecoveryStatePtr(ImGuiErrorRecoveryState* handle) => new ImGuiErrorRecoveryStatePtr(handle);
 
-		public static implicit operator ImGuiStackSizes*(ImGuiStackSizesPtr handle) => handle.Handle;
+		public static implicit operator ImGuiErrorRecoveryState*(ImGuiErrorRecoveryStatePtr handle) => handle.Handle;
 
-		public static bool operator ==(ImGuiStackSizesPtr left, ImGuiStackSizesPtr right) => left.Handle == right.Handle;
+		public static bool operator ==(ImGuiErrorRecoveryStatePtr left, ImGuiErrorRecoveryStatePtr right) => left.Handle == right.Handle;
 
-		public static bool operator !=(ImGuiStackSizesPtr left, ImGuiStackSizesPtr right) => left.Handle != right.Handle;
+		public static bool operator !=(ImGuiErrorRecoveryStatePtr left, ImGuiErrorRecoveryStatePtr right) => left.Handle != right.Handle;
 
-		public static bool operator ==(ImGuiStackSizesPtr left, ImGuiStackSizes* right) => left.Handle == right;
+		public static bool operator ==(ImGuiErrorRecoveryStatePtr left, ImGuiErrorRecoveryState* right) => left.Handle == right;
 
-		public static bool operator !=(ImGuiStackSizesPtr left, ImGuiStackSizes* right) => left.Handle != right;
+		public static bool operator !=(ImGuiErrorRecoveryStatePtr left, ImGuiErrorRecoveryState* right) => left.Handle != right;
 
-		public bool Equals(ImGuiStackSizesPtr other) => Handle == other.Handle;
+		public bool Equals(ImGuiErrorRecoveryStatePtr other) => Handle == other.Handle;
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiStackSizesPtr handle && Equals(handle);
+		public override bool Equals(object obj) => obj is ImGuiErrorRecoveryStatePtr handle && Equals(handle);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImGuiStackSizesPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		private string DebuggerDisplay => string.Format("ImGuiErrorRecoveryStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref short SizeOfWindowStack => ref Unsafe.AsRef<short>(&Handle->SizeOfWindowStack);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref short SizeOfIDStack => ref Unsafe.AsRef<short>(&Handle->SizeOfIDStack);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref short SizeOfTreeStack => ref Unsafe.AsRef<short>(&Handle->SizeOfTreeStack);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
