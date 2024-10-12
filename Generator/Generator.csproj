@@ -23,9 +23,6 @@
 		<None Update="backends\generator.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="backends\impl_definitions.json">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="cimguizmo\cimgui.h">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

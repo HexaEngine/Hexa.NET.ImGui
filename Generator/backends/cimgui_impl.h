@@ -11,6 +11,43 @@
 #include <stdint.h>
 #include <string.h> // For memset
 
+CIMGUI_API void igSetCurrentContext(ImGuiContext* ctx);
+CIMGUI_API ImGuiContext* igGetCurrentContext(void);
+
+#if CIMGUI_USE_WIN32
+
+// Follow "Getting Started" link and check examples/ folder to learn about using backends!
+CIMGUI_API bool     ImGui_ImplWin32_Init(void* hwnd);
+CIMGUI_API bool     ImGui_ImplWin32_InitForOpenGL(void* hwnd);
+CIMGUI_API void     ImGui_ImplWin32_Shutdown();
+CIMGUI_API void     ImGui_ImplWin32_NewFrame();
+
+// Win32 message handler your application need to call.
+// - Intentionally commented out in a '#if 0' block to avoid dragging dependencies on <windows.h> from this helper.
+// - You should COPY the line below into your .cpp code to forward declare the function and then you can call it.
+// - Call from your application's message handler. Keep calling your message handler unless this function returns TRUE.
+
+#if 0
+extern CIMGUI_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+#endif
+
+// DPI-related helpers (optional)
+// - Use to enable DPI awareness without having to create an application manifest.
+// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.
+// - In theory we could call simple functions from Windows SDK such as SetProcessDPIAware(), SetProcessDpiAwareness(), etc.
+//   but most of the functions provided by Microsoft require Windows 8.1/10+ SDK at compile time and Windows 8/10+ at runtime,
+//   neither we want to require the user to have. So we dynamically select and load those functions to avoid dependencies.
+CIMGUI_API void     ImGui_ImplWin32_EnableDpiAwareness();
+CIMGUI_API float    ImGui_ImplWin32_GetDpiScaleForHwnd(void* hwnd);       // HWND hwnd
+CIMGUI_API float    ImGui_ImplWin32_GetDpiScaleForMonitor(void* monitor); // HMONITOR monitor
+
+// Transparency related helpers (optional) [experimental]
+// - Use to enable alpha compositing transparency with the desktop.
+// - Use together with e.g. clearing your framebuffer with zero-alpha.
+CIMGUI_API void     ImGui_ImplWin32_EnableAlphaCompositing(void* hwnd);   // HWND hwnd
+
+#endif
+
 #ifdef CIMGUI_USE_GLFW
 
 typedef struct GLFWwindow GLFWwindow;
@@ -35,28 +72,7 @@ CIMGUI_API void ImGui_ImplGlfw_MonitorCallback(GLFWmonitor* monitor, int event);
 CIMGUI_API void ImGui_ImplGlfw_Sleep(int milliseconds);
 
 #endif
-#ifdef CIMGUI_USE_OPENGL3
-CIMGUI_API bool ImGui_ImplOpenGL3_Init(const char* glsl_version);
-CIMGUI_API void ImGui_ImplOpenGL3_Shutdown(void);
-CIMGUI_API void ImGui_ImplOpenGL3_NewFrame(void);
-CIMGUI_API void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data);
-CIMGUI_API bool ImGui_ImplOpenGL3_CreateFontsTexture(void);
-CIMGUI_API void ImGui_ImplOpenGL3_DestroyFontsTexture(void);
-CIMGUI_API bool ImGui_ImplOpenGL3_CreateDeviceObjects(void);
-CIMGUI_API void ImGui_ImplOpenGL3_DestroyDeviceObjects(void);
 
-#endif
-#ifdef CIMGUI_USE_OPENGL2
-CIMGUI_API bool ImGui_ImplOpenGL2_Init(void);
-CIMGUI_API void ImGui_ImplOpenGL2_Shutdown(void);
-CIMGUI_API void ImGui_ImplOpenGL2_NewFrame(void);
-CIMGUI_API void ImGui_ImplOpenGL2_RenderDrawData(ImDrawData* draw_data);
-CIMGUI_API bool ImGui_ImplOpenGL2_CreateFontsTexture(void);
-CIMGUI_API void ImGui_ImplOpenGL2_DestroyFontsTexture(void);
-CIMGUI_API bool ImGui_ImplOpenGL2_CreateDeviceObjects(void);
-CIMGUI_API void ImGui_ImplOpenGL2_DestroyDeviceObjects(void);
-
-#endif
 #ifdef CIMGUI_USE_SDL2
 
 typedef struct SDL_Window SDL_Window;
@@ -92,6 +108,29 @@ CIMGUI_API bool     ImGui_ImplSDLRenderer2_CreateDeviceObjects();
 CIMGUI_API void     ImGui_ImplSDLRenderer2_DestroyDeviceObjects();
 
 #endif
+
+#endif
+
+#ifdef CIMGUI_USE_OPENGL3
+CIMGUI_API bool ImGui_ImplOpenGL3_Init(const char* glsl_version);
+CIMGUI_API void ImGui_ImplOpenGL3_Shutdown(void);
+CIMGUI_API void ImGui_ImplOpenGL3_NewFrame(void);
+CIMGUI_API void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data);
+CIMGUI_API bool ImGui_ImplOpenGL3_CreateFontsTexture(void);
+CIMGUI_API void ImGui_ImplOpenGL3_DestroyFontsTexture(void);
+CIMGUI_API bool ImGui_ImplOpenGL3_CreateDeviceObjects(void);
+CIMGUI_API void ImGui_ImplOpenGL3_DestroyDeviceObjects(void);
+
+#endif
+#ifdef CIMGUI_USE_OPENGL2
+CIMGUI_API bool ImGui_ImplOpenGL2_Init(void);
+CIMGUI_API void ImGui_ImplOpenGL2_Shutdown(void);
+CIMGUI_API void ImGui_ImplOpenGL2_NewFrame(void);
+CIMGUI_API void ImGui_ImplOpenGL2_RenderDrawData(ImDrawData* draw_data);
+CIMGUI_API bool ImGui_ImplOpenGL2_CreateFontsTexture(void);
+CIMGUI_API void ImGui_ImplOpenGL2_DestroyFontsTexture(void);
+CIMGUI_API bool ImGui_ImplOpenGL2_CreateDeviceObjects(void);
+CIMGUI_API void ImGui_ImplOpenGL2_DestroyDeviceObjects(void);
 
 #endif
 
@@ -316,40 +355,3 @@ struct ImGui_ImplVulkanH_Window
 };
 
 #endif
-
-#if CIMGUI_USE_WIN32
-
-// Follow "Getting Started" link and check examples/ folder to learn about using backends!
-CIMGUI_API bool     ImGui_ImplWin32_Init(void* hwnd);
-CIMGUI_API bool     ImGui_ImplWin32_InitForOpenGL(void* hwnd);
-CIMGUI_API void     ImGui_ImplWin32_Shutdown();
-CIMGUI_API void     ImGui_ImplWin32_NewFrame();
-
-// Win32 message handler your application need to call.
-// - Intentionally commented out in a '#if 0' block to avoid dragging dependencies on <windows.h> from this helper.
-// - You should COPY the line below into your .cpp code to forward declare the function and then you can call it.
-// - Call from your application's message handler. Keep calling your message handler unless this function returns TRUE.
-
-#if 0
-extern CIMGUI_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-#endif
-
-// DPI-related helpers (optional)
-// - Use to enable DPI awareness without having to create an application manifest.
-// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.
-// - In theory we could call simple functions from Windows SDK such as SetProcessDPIAware(), SetProcessDpiAwareness(), etc.
-//   but most of the functions provided by Microsoft require Windows 8.1/10+ SDK at compile time and Windows 8/10+ at runtime,
-//   neither we want to require the user to have. So we dynamically select and load those functions to avoid dependencies.
-CIMGUI_API void     ImGui_ImplWin32_EnableDpiAwareness();
-CIMGUI_API float    ImGui_ImplWin32_GetDpiScaleForHwnd(void* hwnd);       // HWND hwnd
-CIMGUI_API float    ImGui_ImplWin32_GetDpiScaleForMonitor(void* monitor); // HMONITOR monitor
-
-// Transparency related helpers (optional) [experimental]
-// - Use to enable alpha compositing transparency with the desktop.
-// - Use together with e.g. clearing your framebuffer with zero-alpha.
-CIMGUI_API void     ImGui_ImplWin32_EnableAlphaCompositing(void* hwnd);   // HWND hwnd
-
-#endif
-
-CIMGUI_API void igSetCurrentContext(ImGuiContext* ctx);
-CIMGUI_API ImGuiContext* igGetCurrentContext(void);

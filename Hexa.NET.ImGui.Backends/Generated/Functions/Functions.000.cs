@@ -22,12 +22,252 @@ namespace Hexa.NET.ImGui.Backends
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetCurrentContextNative(ImGuiContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[0])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[0])((nint)ctx);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetCurrentContext(ImGuiContext* ctx)
+		{
+			SetCurrentContextNative(ctx);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetCurrentContext(ref ImGuiContext ctx)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				SetCurrentContextNative((ImGuiContext*)pctx);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiContext* GetCurrentContextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*>)funcTable[1])();
+			#else
+			return (ImGuiContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiContext* GetCurrentContext()
+		{
+			ImGuiContext* ret = GetCurrentContextNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplWin32InitNative(void* hwnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[2])(hwnd);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[2])((nint)hwnd);
+			#endif
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool ImplWin32Init(void* hwnd)
+		{
+			byte ret = ImplWin32InitNative(hwnd);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplWin32InitForOpenGLNative(void* hwnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[3])(hwnd);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[3])((nint)hwnd);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplWin32InitForOpenGL(void* hwnd)
+		{
+			byte ret = ImplWin32InitForOpenGLNative(hwnd);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplWin32ShutdownNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[4])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[4])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplWin32Shutdown()
+		{
+			ImplWin32ShutdownNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplWin32NewFrameNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[5])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[5])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplWin32NewFrame()
+		{
+			ImplWin32NewFrameNative();
+		}
+
+		/// <summary>
+		/// DPI-related helpers (optional)<br/>
+		/// - Use to enable DPI awareness without having to create an application manifest.<br/>
+		/// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.<br/>
+		/// - In theory we could call simple functions from Windows SDK such as SetProcessDPIAware(), SetProcessDpiAwareness(), etc.<br/>
+		/// but most of the functions provided by Microsoft require Windows 8.1/10+ SDK at compile time and Windows 8/10+ at runtime,<br/>
+		/// neither we want to require the user to have. So we dynamically select and load those functions to avoid dependencies.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplWin32EnableDpiAwarenessNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[6])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[6])();
+			#endif
+		}
+
+		/// <summary>
+		/// DPI-related helpers (optional)<br/>
+		/// - Use to enable DPI awareness without having to create an application manifest.<br/>
+		/// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.<br/>
+		/// - In theory we could call simple functions from Windows SDK such as SetProcessDPIAware(), SetProcessDpiAwareness(), etc.<br/>
+		/// but most of the functions provided by Microsoft require Windows 8.1/10+ SDK at compile time and Windows 8/10+ at runtime,<br/>
+		/// neither we want to require the user to have. So we dynamically select and load those functions to avoid dependencies.<br/>
+		/// </summary>
+		public static void ImplWin32EnableDpiAwareness()
+		{
+			ImplWin32EnableDpiAwarenessNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float ImplWin32GetDpiScaleForHwndNative(void* hwnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[7])(hwnd);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[7])((nint)hwnd);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float ImplWin32GetDpiScaleForHwnd(void* hwnd)
+		{
+			float ret = ImplWin32GetDpiScaleForHwndNative(hwnd);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float ImplWin32GetDpiScaleForMonitorNative(void* monitor)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[8])(monitor);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[8])((nint)monitor);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float ImplWin32GetDpiScaleForMonitor(void* monitor)
+		{
+			float ret = ImplWin32GetDpiScaleForMonitorNative(monitor);
+			return ret;
+		}
+
+		/// <summary>
+		/// Transparency related helpers (optional) [experimental]<br/>
+		/// - Use to enable alpha compositing transparency with the desktop.<br/>
+		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplWin32EnableAlphaCompositingNative(void* hwnd)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[9])(hwnd);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[9])((nint)hwnd);
+			#endif
+		}
+
+		/// <summary>
+		/// Transparency related helpers (optional) [experimental]<br/>
+		/// - Use to enable alpha compositing transparency with the desktop.<br/>
+		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
+		/// </summary>
+		public static void ImplWin32EnableAlphaCompositing(void* hwnd)
+		{
+			ImplWin32EnableAlphaCompositingNative(hwnd);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImplGlfwInitForOpenGLNative(GLFWwindow* window, byte installCallbacks)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, byte, byte>)funcTable[0])(window, installCallbacks);
+			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, byte, byte>)funcTable[10])(window, installCallbacks);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[0])((nint)window, installCallbacks);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[10])((nint)window, installCallbacks);
 			#endif
 		}
 
@@ -59,9 +299,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplGlfwInitForVulkanNative(GLFWwindow* window, byte installCallbacks)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, byte, byte>)funcTable[1])(window, installCallbacks);
+			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, byte, byte>)funcTable[11])(window, installCallbacks);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[1])((nint)window, installCallbacks);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[11])((nint)window, installCallbacks);
 			#endif
 		}
 
@@ -93,9 +333,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplGlfwInitForOtherNative(GLFWwindow* window, byte installCallbacks)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, byte, byte>)funcTable[2])(window, installCallbacks);
+			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, byte, byte>)funcTable[12])(window, installCallbacks);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[2])((nint)window, installCallbacks);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[12])((nint)window, installCallbacks);
 			#endif
 		}
 
@@ -127,9 +367,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[3])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[13])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[3])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[13])();
 			#endif
 		}
 
@@ -148,9 +388,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwNewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[4])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[14])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[4])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[14])();
 			#endif
 		}
 
@@ -169,9 +409,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwInstallCallbacksNative(GLFWwindow* window)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, void>)funcTable[5])(window);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, void>)funcTable[15])(window);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[5])((nint)window);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[15])((nint)window);
 			#endif
 		}
 
@@ -201,9 +441,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwRestoreCallbacksNative(GLFWwindow* window)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, void>)funcTable[6])(window);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, void>)funcTable[16])(window);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[6])((nint)window);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[16])((nint)window);
 			#endif
 		}
 
@@ -233,9 +473,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwSetCallbacksChainForAllWindowsNative(byte chainForAllWindows)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[7])(chainForAllWindows);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[17])(chainForAllWindows);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[7])(chainForAllWindows);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[17])(chainForAllWindows);
 			#endif
 		}
 
@@ -254,9 +494,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwWindowFocusCallbackNative(GLFWwindow* window, int focused)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, void>)funcTable[8])(window, focused);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, void>)funcTable[18])(window, focused);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[8])((nint)window, focused);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[18])((nint)window, focused);
 			#endif
 		}
 
@@ -286,9 +526,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwCursorEnterCallbackNative(GLFWwindow* window, int entered)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, void>)funcTable[9])(window, entered);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, void>)funcTable[19])(window, entered);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[9])((nint)window, entered);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[19])((nint)window, entered);
 			#endif
 		}
 
@@ -318,9 +558,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwCursorPosCallbackNative(GLFWwindow* window, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, double, double, void>)funcTable[10])(window, x, y);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, double, double, void>)funcTable[20])(window, x, y);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, void>)funcTable[10])((nint)window, x, y);
+			((delegate* unmanaged[Cdecl]<nint, double, double, void>)funcTable[20])((nint)window, x, y);
 			#endif
 		}
 
@@ -350,9 +590,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwMouseButtonCallbackNative(GLFWwindow* window, int button, int action, int mods)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, int, int, void>)funcTable[11])(window, button, action, mods);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, int, int, void>)funcTable[21])(window, button, action, mods);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, void>)funcTable[11])((nint)window, button, action, mods);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, void>)funcTable[21])((nint)window, button, action, mods);
 			#endif
 		}
 
@@ -382,9 +622,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwScrollCallbackNative(GLFWwindow* window, double xoffset, double yoffset)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, double, double, void>)funcTable[12])(window, xoffset, yoffset);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, double, double, void>)funcTable[22])(window, xoffset, yoffset);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, void>)funcTable[12])((nint)window, xoffset, yoffset);
+			((delegate* unmanaged[Cdecl]<nint, double, double, void>)funcTable[22])((nint)window, xoffset, yoffset);
 			#endif
 		}
 
@@ -414,9 +654,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwKeyCallbackNative(GLFWwindow* window, int key, int scancode, int action, int mods)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, int, int, int, void>)funcTable[13])(window, key, scancode, action, mods);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, int, int, int, int, void>)funcTable[23])(window, key, scancode, action, mods);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, void>)funcTable[13])((nint)window, key, scancode, action, mods);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, void>)funcTable[23])((nint)window, key, scancode, action, mods);
 			#endif
 		}
 
@@ -446,9 +686,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwCharCallbackNative(GLFWwindow* window, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWwindow*, uint, void>)funcTable[14])(window, c);
+			((delegate* unmanaged[Cdecl]<GLFWwindow*, uint, void>)funcTable[24])(window, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[14])((nint)window, c);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[24])((nint)window, c);
 			#endif
 		}
 
@@ -478,9 +718,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwMonitorCallbackNative(GLFWmonitor* monitor, int evnt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<GLFWmonitor*, int, void>)funcTable[15])(monitor, evnt);
+			((delegate* unmanaged[Cdecl]<GLFWmonitor*, int, void>)funcTable[25])(monitor, evnt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[15])((nint)monitor, evnt);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[25])((nint)monitor, evnt);
 			#endif
 		}
 
@@ -510,9 +750,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplGlfwSleepNative(int milliseconds)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[16])(milliseconds);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[26])(milliseconds);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[16])(milliseconds);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[26])(milliseconds);
 			#endif
 		}
 
@@ -528,12 +768,570 @@ namespace Hexa.NET.ImGui.Backends
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2InitForOpenGLNative(SDLWindow* window, void* sdlGlContext)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLWindow*, void*, byte>)funcTable[27])(window, sdlGlContext);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[27])((nint)window, (nint)sdlGlContext);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
+		{
+			byte ret = ImplSDL2InitForOpenGLNative(window, sdlGlContext);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForOpenGL(ref SDLWindow window, void* sdlGlContext)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = ImplSDL2InitForOpenGLNative((SDLWindow*)pwindow, sdlGlContext);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2InitForVulkanNative(SDLWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[28])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[28])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForVulkan(SDLWindowPtr window)
+		{
+			byte ret = ImplSDL2InitForVulkanNative(window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForVulkan(ref SDLWindow window)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = ImplSDL2InitForVulkanNative((SDLWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2InitForD3DNative(SDLWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[29])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[29])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForD3D(SDLWindowPtr window)
+		{
+			byte ret = ImplSDL2InitForD3DNative(window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForD3D(ref SDLWindow window)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = ImplSDL2InitForD3DNative((SDLWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2InitForMetalNative(SDLWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[30])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[30])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForMetal(SDLWindowPtr window)
+		{
+			byte ret = ImplSDL2InitForMetalNative(window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForMetal(ref SDLWindow window)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = ImplSDL2InitForMetalNative((SDLWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2InitForSDLRendererNative(SDLWindow* window, SDLRenderer* renderer)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLWindow*, SDLRenderer*, byte>)funcTable[31])(window, renderer);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[31])((nint)window, (nint)renderer);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForSDLRenderer(SDLWindowPtr window, SDLRendererPtr renderer)
+		{
+			byte ret = ImplSDL2InitForSDLRendererNative(window, renderer);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForSDLRenderer(ref SDLWindow window, SDLRendererPtr renderer)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = ImplSDL2InitForSDLRendererNative((SDLWindow*)pwindow, renderer);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForSDLRenderer(SDLWindowPtr window, ref SDLRenderer renderer)
+		{
+			fixed (SDLRenderer* prenderer = &renderer)
+			{
+				byte ret = ImplSDL2InitForSDLRendererNative(window, (SDLRenderer*)prenderer);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForSDLRenderer(ref SDLWindow window, ref SDLRenderer renderer)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				fixed (SDLRenderer* prenderer = &renderer)
+				{
+					byte ret = ImplSDL2InitForSDLRendererNative((SDLWindow*)pwindow, (SDLRenderer*)prenderer);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2InitForOtherNative(SDLWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[32])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[32])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForOther(SDLWindowPtr window)
+		{
+			byte ret = ImplSDL2InitForOtherNative(window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2InitForOther(ref SDLWindow window)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = ImplSDL2InitForOtherNative((SDLWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDL2ShutdownNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[33])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[33])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDL2Shutdown()
+		{
+			ImplSDL2ShutdownNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDL2NewFrameNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[34])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[34])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDL2NewFrame()
+		{
+			ImplSDL2NewFrameNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDL2ProcessEventNative(SDLEvent* evnt)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLEvent*, byte>)funcTable[35])(evnt);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[35])((nint)evnt);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2ProcessEvent(SDLEventPtr evnt)
+		{
+			byte ret = ImplSDL2ProcessEventNative(evnt);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDL2ProcessEvent(ref SDLEvent evnt)
+		{
+			fixed (SDLEvent* pevnt = &evnt)
+			{
+				byte ret = ImplSDL2ProcessEventNative((SDLEvent*)pevnt);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDL2SetGamepadModeNative(ImGuiImplSDL2GamepadMode mode, SDLGameController** manualGamepadsArray, int manualGamepadsCount)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiImplSDL2GamepadMode, SDLGameController**, int, void>)funcTable[36])(mode, manualGamepadsArray, manualGamepadsCount);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiImplSDL2GamepadMode, nint, int, void>)funcTable[36])(mode, (nint)manualGamepadsArray, manualGamepadsCount);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDL2SetGamepadMode(ImGuiImplSDL2GamepadMode mode, SDLGameControllerPtrPtr manualGamepadsArray, int manualGamepadsCount)
+		{
+			ImplSDL2SetGamepadModeNative(mode, manualGamepadsArray, manualGamepadsCount);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDL2SetGamepadMode(ImGuiImplSDL2GamepadMode mode, ref SDLGameController* manualGamepadsArray, int manualGamepadsCount)
+		{
+			fixed (SDLGameController** pmanualGamepadsArray = &manualGamepadsArray)
+			{
+				ImplSDL2SetGamepadModeNative(mode, (SDLGameController**)pmanualGamepadsArray, manualGamepadsCount);
+			}
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDLRenderer2InitNative(SDLRenderer* renderer)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<SDLRenderer*, byte>)funcTable[37])(renderer);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[37])((nint)renderer);
+			#endif
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool ImplSDLRenderer2Init(SDLRendererPtr renderer)
+		{
+			byte ret = ImplSDLRenderer2InitNative(renderer);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool ImplSDLRenderer2Init(ref SDLRenderer renderer)
+		{
+			fixed (SDLRenderer* prenderer = &renderer)
+			{
+				byte ret = ImplSDLRenderer2InitNative((SDLRenderer*)prenderer);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDLRenderer2ShutdownNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2Shutdown()
+		{
+			ImplSDLRenderer2ShutdownNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDLRenderer2NewFrameNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[39])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[39])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2NewFrame()
+		{
+			ImplSDLRenderer2NewFrameNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDLRenderer2RenderDrawDataNative(ImDrawData* drawData, SDLRenderer* renderer)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawData*, SDLRenderer*, void>)funcTable[40])(drawData, renderer);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[40])((nint)drawData, (nint)renderer);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2RenderDrawData(ImDrawData* drawData, SDLRendererPtr renderer)
+		{
+			ImplSDLRenderer2RenderDrawDataNative(drawData, renderer);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2RenderDrawData(ref ImDrawData drawData, SDLRendererPtr renderer)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				ImplSDLRenderer2RenderDrawDataNative((ImDrawData*)pdrawData, renderer);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2RenderDrawData(ImDrawData* drawData, ref SDLRenderer renderer)
+		{
+			fixed (SDLRenderer* prenderer = &renderer)
+			{
+				ImplSDLRenderer2RenderDrawDataNative(drawData, (SDLRenderer*)prenderer);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2RenderDrawData(ref ImDrawData drawData, ref SDLRenderer renderer)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLRenderer* prenderer = &renderer)
+				{
+					ImplSDLRenderer2RenderDrawDataNative((ImDrawData*)pdrawData, (SDLRenderer*)prenderer);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Called by Init/NewFrame/Shutdown<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDLRenderer2CreateFontsTextureNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[41])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[41])();
+			#endif
+		}
+
+		/// <summary>
+		/// Called by Init/NewFrame/Shutdown<br/>
+		/// </summary>
+		public static bool ImplSDLRenderer2CreateFontsTexture()
+		{
+			byte ret = ImplSDLRenderer2CreateFontsTextureNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDLRenderer2DestroyFontsTextureNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2DestroyFontsTexture()
+		{
+			ImplSDLRenderer2DestroyFontsTextureNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImplSDLRenderer2CreateDeviceObjectsNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[43])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[43])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImplSDLRenderer2CreateDeviceObjects()
+		{
+			byte ret = ImplSDLRenderer2CreateDeviceObjectsNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImplSDLRenderer2DestroyDeviceObjectsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImplSDLRenderer2DestroyDeviceObjects()
+		{
+			ImplSDLRenderer2DestroyDeviceObjectsNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImplOpenGL3InitNative(byte* glslVersion)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[17])(glslVersion);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[45])(glslVersion);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[17])((nint)glslVersion);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[45])((nint)glslVersion);
 			#endif
 		}
 
@@ -607,9 +1405,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL3ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[18])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[46])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[18])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[46])();
 			#endif
 		}
 
@@ -628,9 +1426,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL3NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[19])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[19])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
 			#endif
 		}
 
@@ -649,9 +1447,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL3RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[20])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[48])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[20])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[48])((nint)drawData);
 			#endif
 		}
 
@@ -681,9 +1479,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplOpenGL3CreateFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[21])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[49])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[21])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[49])();
 			#endif
 		}
 
@@ -703,9 +1501,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL3DestroyFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[50])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[50])();
 			#endif
 		}
 
@@ -724,9 +1522,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplOpenGL3CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[23])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[51])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[23])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[51])();
 			#endif
 		}
 
@@ -746,9 +1544,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL3DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[52])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[52])();
 			#endif
 		}
 
@@ -767,9 +1565,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplOpenGL2InitNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[25])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[53])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[25])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[53])();
 			#endif
 		}
 
@@ -789,9 +1587,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL2ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[54])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[54])();
 			#endif
 		}
 
@@ -810,9 +1608,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL2NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[27])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[55])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[27])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[55])();
 			#endif
 		}
 
@@ -831,9 +1629,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL2RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[28])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[56])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[28])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[56])((nint)drawData);
 			#endif
 		}
 
@@ -863,9 +1661,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplOpenGL2CreateFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[29])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[57])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[29])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[57])();
 			#endif
 		}
 
@@ -885,9 +1683,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL2DestroyFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[58])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[58])();
 			#endif
 		}
 
@@ -906,9 +1704,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplOpenGL2CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[31])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[59])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[31])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[59])();
 			#endif
 		}
 
@@ -928,9 +1726,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplOpenGL2DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[60])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[60])();
 			#endif
 		}
 
@@ -943,573 +1741,15 @@ namespace Hexa.NET.ImGui.Backends
 		}
 
 		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2InitForOpenGLNative(SDLWindow* window, void* sdlGlContext)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLWindow*, void*, byte>)funcTable[33])(window, sdlGlContext);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[33])((nint)window, (nint)sdlGlContext);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
-		{
-			byte ret = ImplSDL2InitForOpenGLNative(window, sdlGlContext);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForOpenGL(ref SDLWindow window, void* sdlGlContext)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				byte ret = ImplSDL2InitForOpenGLNative((SDLWindow*)pwindow, sdlGlContext);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2InitForVulkanNative(SDLWindow* window)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[34])(window);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[34])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForVulkan(SDLWindowPtr window)
-		{
-			byte ret = ImplSDL2InitForVulkanNative(window);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForVulkan(ref SDLWindow window)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				byte ret = ImplSDL2InitForVulkanNative((SDLWindow*)pwindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2InitForD3DNative(SDLWindow* window)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[35])(window);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[35])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForD3D(SDLWindowPtr window)
-		{
-			byte ret = ImplSDL2InitForD3DNative(window);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForD3D(ref SDLWindow window)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				byte ret = ImplSDL2InitForD3DNative((SDLWindow*)pwindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2InitForMetalNative(SDLWindow* window)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[36])(window);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[36])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForMetal(SDLWindowPtr window)
-		{
-			byte ret = ImplSDL2InitForMetalNative(window);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForMetal(ref SDLWindow window)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				byte ret = ImplSDL2InitForMetalNative((SDLWindow*)pwindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2InitForSDLRendererNative(SDLWindow* window, SDLRenderer* renderer)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLWindow*, SDLRenderer*, byte>)funcTable[37])(window, renderer);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[37])((nint)window, (nint)renderer);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForSDLRenderer(SDLWindowPtr window, SDLRendererPtr renderer)
-		{
-			byte ret = ImplSDL2InitForSDLRendererNative(window, renderer);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForSDLRenderer(ref SDLWindow window, SDLRendererPtr renderer)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				byte ret = ImplSDL2InitForSDLRendererNative((SDLWindow*)pwindow, renderer);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForSDLRenderer(SDLWindowPtr window, ref SDLRenderer renderer)
-		{
-			fixed (SDLRenderer* prenderer = &renderer)
-			{
-				byte ret = ImplSDL2InitForSDLRendererNative(window, (SDLRenderer*)prenderer);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForSDLRenderer(ref SDLWindow window, ref SDLRenderer renderer)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				fixed (SDLRenderer* prenderer = &renderer)
-				{
-					byte ret = ImplSDL2InitForSDLRendererNative((SDLWindow*)pwindow, (SDLRenderer*)prenderer);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2InitForOtherNative(SDLWindow* window)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[38])(window);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[38])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForOther(SDLWindowPtr window)
-		{
-			byte ret = ImplSDL2InitForOtherNative(window);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2InitForOther(ref SDLWindow window)
-		{
-			fixed (SDLWindow* pwindow = &window)
-			{
-				byte ret = ImplSDL2InitForOtherNative((SDLWindow*)pwindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDL2ShutdownNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[39])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[39])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDL2Shutdown()
-		{
-			ImplSDL2ShutdownNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDL2NewFrameNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDL2NewFrame()
-		{
-			ImplSDL2NewFrameNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDL2ProcessEventNative(SDLEvent* evnt)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLEvent*, byte>)funcTable[41])(evnt);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[41])((nint)evnt);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2ProcessEvent(SDLEventPtr evnt)
-		{
-			byte ret = ImplSDL2ProcessEventNative(evnt);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDL2ProcessEvent(ref SDLEvent evnt)
-		{
-			fixed (SDLEvent* pevnt = &evnt)
-			{
-				byte ret = ImplSDL2ProcessEventNative((SDLEvent*)pevnt);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDL2SetGamepadModeNative(ImGuiImplSDL2GamepadMode mode, SDLGameController** manualGamepadsArray, int manualGamepadsCount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiImplSDL2GamepadMode, SDLGameController**, int, void>)funcTable[42])(mode, manualGamepadsArray, manualGamepadsCount);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiImplSDL2GamepadMode, nint, int, void>)funcTable[42])(mode, (nint)manualGamepadsArray, manualGamepadsCount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDL2SetGamepadMode(ImGuiImplSDL2GamepadMode mode, SDLGameControllerPtrPtr manualGamepadsArray, int manualGamepadsCount)
-		{
-			ImplSDL2SetGamepadModeNative(mode, manualGamepadsArray, manualGamepadsCount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDL2SetGamepadMode(ImGuiImplSDL2GamepadMode mode, ref SDLGameController* manualGamepadsArray, int manualGamepadsCount)
-		{
-			fixed (SDLGameController** pmanualGamepadsArray = &manualGamepadsArray)
-			{
-				ImplSDL2SetGamepadModeNative(mode, (SDLGameController**)pmanualGamepadsArray, manualGamepadsCount);
-			}
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDLRenderer2InitNative(SDLRenderer* renderer)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<SDLRenderer*, byte>)funcTable[43])(renderer);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[43])((nint)renderer);
-			#endif
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		public static bool ImplSDLRenderer2Init(SDLRendererPtr renderer)
-		{
-			byte ret = ImplSDLRenderer2InitNative(renderer);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		public static bool ImplSDLRenderer2Init(ref SDLRenderer renderer)
-		{
-			fixed (SDLRenderer* prenderer = &renderer)
-			{
-				byte ret = ImplSDLRenderer2InitNative((SDLRenderer*)prenderer);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDLRenderer2ShutdownNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2Shutdown()
-		{
-			ImplSDLRenderer2ShutdownNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDLRenderer2NewFrameNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[45])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[45])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2NewFrame()
-		{
-			ImplSDLRenderer2NewFrameNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDLRenderer2RenderDrawDataNative(ImDrawData* drawData, SDLRenderer* renderer)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, SDLRenderer*, void>)funcTable[46])(drawData, renderer);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[46])((nint)drawData, (nint)renderer);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2RenderDrawData(ImDrawData* drawData, SDLRendererPtr renderer)
-		{
-			ImplSDLRenderer2RenderDrawDataNative(drawData, renderer);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2RenderDrawData(ref ImDrawData drawData, SDLRendererPtr renderer)
-		{
-			fixed (ImDrawData* pdrawData = &drawData)
-			{
-				ImplSDLRenderer2RenderDrawDataNative((ImDrawData*)pdrawData, renderer);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2RenderDrawData(ImDrawData* drawData, ref SDLRenderer renderer)
-		{
-			fixed (SDLRenderer* prenderer = &renderer)
-			{
-				ImplSDLRenderer2RenderDrawDataNative(drawData, (SDLRenderer*)prenderer);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2RenderDrawData(ref ImDrawData drawData, ref SDLRenderer renderer)
-		{
-			fixed (ImDrawData* pdrawData = &drawData)
-			{
-				fixed (SDLRenderer* prenderer = &renderer)
-				{
-					ImplSDLRenderer2RenderDrawDataNative((ImDrawData*)pdrawData, (SDLRenderer*)prenderer);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Called by Init/NewFrame/Shutdown<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDLRenderer2CreateFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[47])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[47])();
-			#endif
-		}
-
-		/// <summary>
-		/// Called by Init/NewFrame/Shutdown<br/>
-		/// </summary>
-		public static bool ImplSDLRenderer2CreateFontsTexture()
-		{
-			byte ret = ImplSDLRenderer2CreateFontsTextureNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDLRenderer2DestroyFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2DestroyFontsTexture()
-		{
-			ImplSDLRenderer2DestroyFontsTextureNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplSDLRenderer2CreateDeviceObjectsNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[49])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[49])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplSDLRenderer2CreateDeviceObjects()
-		{
-			byte ret = ImplSDLRenderer2CreateDeviceObjectsNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplSDLRenderer2DestroyDeviceObjectsNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[50])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[50])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplSDLRenderer2DestroyDeviceObjects()
-		{
-			ImplSDLRenderer2DestroyDeviceObjectsNative();
-		}
-
-		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ImplDX11InitNative(ID3D11Device* device, ID3D11DeviceContext* deviceContext)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D11Device*, ID3D11DeviceContext*, byte>)funcTable[51])(device, deviceContext);
+			return ((delegate* unmanaged[Cdecl]<ID3D11Device*, ID3D11DeviceContext*, byte>)funcTable[61])(device, deviceContext);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[51])((nint)device, (nint)deviceContext);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[61])((nint)device, (nint)deviceContext);
 			#endif
 		}
 
@@ -1568,9 +1808,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX11ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[52])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[52])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#endif
 		}
 
@@ -1589,9 +1829,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX11NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[63])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[63])();
 			#endif
 		}
 
@@ -1610,9 +1850,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX11RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[54])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[64])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[54])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[64])((nint)drawData);
 			#endif
 		}
 
@@ -1642,9 +1882,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX11InvalidateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[55])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[55])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
 			#endif
 		}
 
@@ -1663,9 +1903,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplDX11CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[56])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[66])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[56])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[66])();
 			#endif
 		}
 
@@ -1688,9 +1928,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplDX12InitNative(ID3D12Device* device, int numFramesInFlight, uint rtvFormat, ID3D12DescriptorHeap* cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D12Device*, int, uint, ID3D12DescriptorHeap*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[57])(device, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			return ((delegate* unmanaged[Cdecl]<ID3D12Device*, int, uint, ID3D12DescriptorHeap*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[67])(device, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, uint, nint, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[57])((nint)device, numFramesInFlight, rtvFormat, (nint)cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, uint, nint, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[67])((nint)device, numFramesInFlight, rtvFormat, (nint)cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
 			#endif
 		}
 
@@ -1761,9 +2001,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX12ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[58])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[68])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[58])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[68])();
 			#endif
 		}
 
@@ -1782,9 +2022,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX12NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[59])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[69])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[59])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[69])();
 			#endif
 		}
 
@@ -1803,9 +2043,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX12RenderDrawDataNative(ImDrawData* drawData, ID3D12GraphicsCommandList* graphicsCommandList)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ID3D12GraphicsCommandList*, void>)funcTable[60])(drawData, graphicsCommandList);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ID3D12GraphicsCommandList*, void>)funcTable[70])(drawData, graphicsCommandList);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[60])((nint)drawData, (nint)graphicsCommandList);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[70])((nint)drawData, (nint)graphicsCommandList);
 			#endif
 		}
 
@@ -1860,9 +2100,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplDX12InvalidateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[61])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[71])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[61])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[71])();
 			#endif
 		}
 
@@ -1881,9 +2121,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplDX12CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[62])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[72])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[62])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[72])();
 			#endif
 		}
 
@@ -1903,9 +2143,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplVulkanInitNative(ImGuiImplVulkanInitInfo* info)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiImplVulkanInitInfo*, byte>)funcTable[63])(info);
+			return ((delegate* unmanaged[Cdecl]<ImGuiImplVulkanInitInfo*, byte>)funcTable[73])(info);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[63])((nint)info);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[73])((nint)info);
 			#endif
 		}
 
@@ -1937,9 +2177,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[64])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[74])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[64])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[74])();
 			#endif
 		}
 
@@ -1958,9 +2198,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanNewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
 			#endif
 		}
 
@@ -1979,9 +2219,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanRenderDrawDataNative(ImDrawData* drawData, VkCommandBuffer commandBuffer, VkPipeline pipeline)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, VkCommandBuffer, VkPipeline, void>)funcTable[66])(drawData, commandBuffer, pipeline);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, VkCommandBuffer, VkPipeline, void>)funcTable[76])(drawData, commandBuffer, pipeline);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, VkCommandBuffer, VkPipeline, void>)funcTable[66])((nint)drawData, commandBuffer, pipeline);
+			((delegate* unmanaged[Cdecl]<nint, VkCommandBuffer, VkPipeline, void>)funcTable[76])((nint)drawData, commandBuffer, pipeline);
 			#endif
 		}
 
@@ -2011,9 +2251,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplVulkanCreateFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[67])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[77])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[67])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[77])();
 			#endif
 		}
 
@@ -2033,9 +2273,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanDestroyFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[68])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[78])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[68])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[78])();
 			#endif
 		}
 
@@ -2054,9 +2294,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanSetMinImageCountNative(uint minImageCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[69])(minImageCount);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[79])(minImageCount);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[69])(minImageCount);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[79])(minImageCount);
 			#endif
 		}
 
@@ -2077,9 +2317,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static VkDescriptorSet ImplVulkanAddTextureNative(VkSampler sampler, VkImageView imageView, VkImageLayout imageLayout)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[70])(sampler, imageView, imageLayout);
+			return ((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[80])(sampler, imageView, imageLayout);
 			#else
-			return (VkDescriptorSet)((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[70])(sampler, imageView, imageLayout);
+			return (VkDescriptorSet)((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[80])(sampler, imageView, imageLayout);
 			#endif
 		}
 
@@ -2101,9 +2341,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanRemoveTextureNative(VkDescriptorSet descriptorSet)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[71])(descriptorSet);
+			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[81])(descriptorSet);
 			#else
-			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[71])(descriptorSet);
+			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[81])(descriptorSet);
 			#endif
 		}
 
@@ -2123,9 +2363,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static byte ImplVulkanLoadFunctionsNative(PFNVkVoidFunction loaderFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<delegate*<byte*, void*, void*>, void*, byte>)funcTable[72])((delegate*<byte*, void*, void*>)Utils.GetFunctionPointerForDelegate(loaderFunc), userData);
+			return ((delegate* unmanaged[Cdecl]<delegate*<byte*, void*, void*>, void*, byte>)funcTable[82])((delegate*<byte*, void*, void*>)Utils.GetFunctionPointerForDelegate(loaderFunc), userData);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[72])((nint)Utils.GetFunctionPointerForDelegate(loaderFunc), (nint)userData);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[82])((nint)Utils.GetFunctionPointerForDelegate(loaderFunc), (nint)userData);
 			#endif
 		}
 
@@ -2146,9 +2386,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanHCreateOrResizeWindowNative(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindow* wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, void>)funcTable[73])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, void>)funcTable[83])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount);
 			#else
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, void>)funcTable[73])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, void>)funcTable[83])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount);
 			#endif
 		}
 
@@ -2203,9 +2443,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static void ImplVulkanHDestroyWindowNative(VkInstance instance, VkDevice device, ImGuiImplVulkanHWindow* wd, VkAllocationCallbacks* allocator)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, ImGuiImplVulkanHWindow*, VkAllocationCallbacks*, void>)funcTable[74])(instance, device, wd, allocator);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, ImGuiImplVulkanHWindow*, VkAllocationCallbacks*, void>)funcTable[84])(instance, device, wd, allocator);
 			#else
-			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, nint, nint, void>)funcTable[74])(instance, device, (nint)wd, (nint)allocator);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, nint, nint, void>)funcTable[84])(instance, device, (nint)wd, (nint)allocator);
 			#endif
 		}
 
@@ -2260,9 +2500,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static VkSurfaceFormatKHR ImplVulkanHSelectSurfaceFormatNative(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint* requestFormats, int requestFormatsCount, uint requestColorSpace)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, uint*, int, uint, VkSurfaceFormatKHR>)funcTable[75])(physicalDevice, surface, requestFormats, requestFormatsCount, requestColorSpace);
+			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, uint*, int, uint, VkSurfaceFormatKHR>)funcTable[85])(physicalDevice, surface, requestFormats, requestFormatsCount, requestColorSpace);
 			#else
-			return (VkSurfaceFormatKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, uint, VkSurfaceFormatKHR>)funcTable[75])(physicalDevice, surface, (nint)requestFormats, requestFormatsCount, requestColorSpace);
+			return (VkSurfaceFormatKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, uint, VkSurfaceFormatKHR>)funcTable[85])(physicalDevice, surface, (nint)requestFormats, requestFormatsCount, requestColorSpace);
 			#endif
 		}
 
@@ -2294,9 +2534,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static VkPresentModeKHR ImplVulkanHSelectPresentModeNative(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, VkPresentModeKHR* requestModes, int requestModesCount)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, VkPresentModeKHR*, int, VkPresentModeKHR>)funcTable[76])(physicalDevice, surface, requestModes, requestModesCount);
+			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, VkPresentModeKHR*, int, VkPresentModeKHR>)funcTable[86])(physicalDevice, surface, requestModes, requestModesCount);
 			#else
-			return (VkPresentModeKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, VkPresentModeKHR>)funcTable[76])(physicalDevice, surface, (nint)requestModes, requestModesCount);
+			return (VkPresentModeKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, VkPresentModeKHR>)funcTable[86])(physicalDevice, surface, (nint)requestModes, requestModesCount);
 			#endif
 		}
 
@@ -2328,9 +2568,9 @@ namespace Hexa.NET.ImGui.Backends
 		internal static int ImplVulkanHGetMinImageCountFromPresentModeNative(VkPresentModeKHR presentMode)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[77])(presentMode);
+			return ((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[87])(presentMode);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[77])(presentMode);
+			return (int)((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[87])(presentMode);
 			#endif
 		}
 
@@ -2340,246 +2580,6 @@ namespace Hexa.NET.ImGui.Backends
 		public static int ImplVulkanHGetMinImageCountFromPresentMode(VkPresentModeKHR presentMode)
 		{
 			int ret = ImplVulkanHGetMinImageCountFromPresentModeNative(presentMode);
-			return ret;
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplWin32InitNative(void* hwnd)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[78])(hwnd);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[78])((nint)hwnd);
-			#endif
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		public static bool ImplWin32Init(void* hwnd)
-		{
-			byte ret = ImplWin32InitNative(hwnd);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImplWin32InitForOpenGLNative(void* hwnd)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[79])(hwnd);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[79])((nint)hwnd);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImplWin32InitForOpenGL(void* hwnd)
-		{
-			byte ret = ImplWin32InitForOpenGLNative(hwnd);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplWin32ShutdownNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[80])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[80])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplWin32Shutdown()
-		{
-			ImplWin32ShutdownNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplWin32NewFrameNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[81])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[81])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImplWin32NewFrame()
-		{
-			ImplWin32NewFrameNative();
-		}
-
-		/// <summary>
-		/// DPI-related helpers (optional)<br/>
-		/// - Use to enable DPI awareness without having to create an application manifest.<br/>
-		/// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.<br/>
-		/// - In theory we could call simple functions from Windows SDK such as SetProcessDPIAware(), SetProcessDpiAwareness(), etc.<br/>
-		/// but most of the functions provided by Microsoft require Windows 8.1/10+ SDK at compile time and Windows 8/10+ at runtime,<br/>
-		/// neither we want to require the user to have. So we dynamically select and load those functions to avoid dependencies.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplWin32EnableDpiAwarenessNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[82])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[82])();
-			#endif
-		}
-
-		/// <summary>
-		/// DPI-related helpers (optional)<br/>
-		/// - Use to enable DPI awareness without having to create an application manifest.<br/>
-		/// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.<br/>
-		/// - In theory we could call simple functions from Windows SDK such as SetProcessDPIAware(), SetProcessDpiAwareness(), etc.<br/>
-		/// but most of the functions provided by Microsoft require Windows 8.1/10+ SDK at compile time and Windows 8/10+ at runtime,<br/>
-		/// neither we want to require the user to have. So we dynamically select and load those functions to avoid dependencies.<br/>
-		/// </summary>
-		public static void ImplWin32EnableDpiAwareness()
-		{
-			ImplWin32EnableDpiAwarenessNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImplWin32GetDpiScaleForHwndNative(void* hwnd)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[83])(hwnd);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[83])((nint)hwnd);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImplWin32GetDpiScaleForHwnd(void* hwnd)
-		{
-			float ret = ImplWin32GetDpiScaleForHwndNative(hwnd);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImplWin32GetDpiScaleForMonitorNative(void* monitor)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[84])(monitor);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[84])((nint)monitor);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImplWin32GetDpiScaleForMonitor(void* monitor)
-		{
-			float ret = ImplWin32GetDpiScaleForMonitorNative(monitor);
-			return ret;
-		}
-
-		/// <summary>
-		/// Transparency related helpers (optional) [experimental]<br/>
-		/// - Use to enable alpha compositing transparency with the desktop.<br/>
-		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImplWin32EnableAlphaCompositingNative(void* hwnd)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[85])(hwnd);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[85])((nint)hwnd);
-			#endif
-		}
-
-		/// <summary>
-		/// Transparency related helpers (optional) [experimental]<br/>
-		/// - Use to enable alpha compositing transparency with the desktop.<br/>
-		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
-		/// </summary>
-		public static void ImplWin32EnableAlphaCompositing(void* hwnd)
-		{
-			ImplWin32EnableAlphaCompositingNative(hwnd);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCurrentContextNative(ImGuiContext* ctx)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[86])(ctx);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[86])((nint)ctx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCurrentContext(ImGuiContext* ctx)
-		{
-			SetCurrentContextNative(ctx);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCurrentContext(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				SetCurrentContextNative((ImGuiContext*)pctx);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiContext* GetCurrentContextNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*>)funcTable[87])();
-			#else
-			return (ImGuiContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[87])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiContext* GetCurrentContext()
-		{
-			ImGuiContext* ret = GetCurrentContextNative();
 			return ret;
 		}
 
