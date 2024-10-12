@@ -1,6 +1,7 @@
 ﻿namespace ExampleFramework.ImGuiDemo
 {
     using Hexa.NET.ImGui;
+    using Hexa.NET.ImGui.Backends;
     using Hexa.NET.ImGuizmo;
     using Hexa.NET.ImNodes;
     using Hexa.NET.ImPlot;
@@ -20,6 +21,8 @@
 
             // Set ImGui context
             ImGui.SetCurrentContext(guiContext);
+
+            ImGuiBackends.SetCurrentContext(guiContext);
 
             // Set ImGui context for ImGuizmo
             ImGuizmo.SetImGuiContext(guiContext);
@@ -179,7 +182,7 @@
             ImPlot.SetCurrentContext(plotContext);
 
             // Start new frame, call order matters.
-            ImGuiSDL2Platform.NewFrame();
+            ImGuiBackends.ImplSDL2NewFrame();
             ImGui.NewFrame();
             ImGuizmo.BeginFrame(); // mandatory for ImGuizmo
 
@@ -211,7 +214,7 @@
 
         public void Dispose()
         {
-            ImGuiSDL2Platform.Shutdown();
+            ImGuiBackends.ImplSDL2Shutdown();
         }
     }
 }

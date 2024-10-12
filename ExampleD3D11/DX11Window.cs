@@ -6,8 +6,11 @@
     using ExampleFramework.ImNodesDemo;
     using ExampleFramework.ImPlotDemo;
     using Hexa.NET.ImGui;
+    using Hexa.NET.ImGui.Backends;
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D11;
+    using Silk.NET.SDL;
+    using System;
 
     public unsafe class DX11Window : CoreWindow
     {
@@ -29,8 +32,10 @@
             ComPtr<ID3D11Device1> device = d3d11Manager.Device;
             ComPtr<ID3D11DeviceContext1> deviceContext = d3d11Manager.DeviceContext;
 
-            ImGuiSDL2Platform.InitForD3D(SDLWindow);
-            ImGuiD3D11Renderer.Init(*(ComPtr<ID3D11Device>*)&device, *(ComPtr<ID3D11DeviceContext>*)&deviceContext);
+            ImGuiBackends.ImplSDL2InitForD3D((SDLWindow*)SDLWindow);
+
+            ImGuiBackends.ImplDX11Init((Hexa.NET.ImGui.Backends.ID3D11Device*)(void*)device.Handle, (Hexa.NET.ImGui.Backends.ID3D11DeviceContext*)(void*)deviceContext.Handle);
+            ImGuiBackends.ImplDX11NewFrame();
 
             imGuiDemo = new();
             imGuizmoDemo = new();
@@ -40,14 +45,16 @@
 
         private void OnRenderDrawData()
         {
-            ImGuiD3D11Renderer.RenderDrawData(ImGui.GetDrawData());
+            //ImGuiD3D11Renderer.RenderDrawData(ImGui.GetDrawData());
+            ImGuiBackends.ImplDX11NewFrame();
+            ImGuiBackends.ImplDX11RenderDrawData(ImGui.GetDrawData());
         }
 
         public override void Render()
         {
             imGuiManager.NewFrame();
 
-            imGuiDemo.Draw();
+            //imGuiDemo.Draw();
             imGuizmoDemo.Draw();
             imNodesDemo.Draw();
             imPlotDemo.Draw();

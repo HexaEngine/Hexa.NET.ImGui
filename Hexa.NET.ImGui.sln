@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleD3D11", "ExampleD3D1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFrameworkTest", "NetFrameworkTest\NetFrameworkTest.csproj", "{EB050117-B80E-4B06-AE34-CB155DEE50BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleOpenGL3", "ExampleOpenGL3\ExampleOpenGL3.csproj", "{B1901287-072F-4E60-859E-F1CFFB952112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleOpenGL3", "ExampleOpenGL3\ExampleOpenGL3.csproj", "{B1901287-072F-4E60-859E-F1CFFB952112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleFramework", "ExampleFramework\ExampleFramework.csproj", "{F9DA1313-55D8-406E-AE82-09A5C7BA532A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleFramework", "ExampleFramework\ExampleFramework.csproj", "{F9DA1313-55D8-406E-AE82-09A5C7BA532A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexa.NET.ImGui.Backends", "Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj", "{2955B4E2-72D0-42E8-8A6C-CCD91E9027C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{F9DA1313-55D8-406E-AE82-09A5C7BA532A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9DA1313-55D8-406E-AE82-09A5C7BA532A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9DA1313-55D8-406E-AE82-09A5C7BA532A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2955B4E2-72D0-42E8-8A6C-CCD91E9027C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2955B4E2-72D0-42E8-8A6C-CCD91E9027C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2955B4E2-72D0-42E8-8A6C-CCD91E9027C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2955B4E2-72D0-42E8-8A6C-CCD91E9027C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

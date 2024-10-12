@@ -70,6 +70,10 @@
 
         protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
         {
+            if (settings.LibName == "backends")
+            {
+                return;
+            }
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom(settings.LibName);
 

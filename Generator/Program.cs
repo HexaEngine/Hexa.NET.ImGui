@@ -1,4 +1,6 @@
-﻿namespace Generator
+﻿#define BackendsOnly
+
+namespace Generator
 {
     using HexaGen;
     using HexaGen.Core.Logging;
@@ -24,6 +26,10 @@
         private const string ImNodesOutputPath = "../../../../Hexa.NET.ImNodes/Generated";
         private const string ImPlotOutputPath = "../../../../Hexa.NET.ImPlot/Generated";
 
+        private const string ImGuiBackendsOutputPath = "../../../../Hexa.NET.ImGui.Backends/Generated";
+        private const string CImGuiBackendsHeader = "backends/cimgui_impl.h";
+        private const string CImGuiBackendsConfig = "backends/generator.json";
+
         private static void Main(string[] args)
         {
             if (Directory.Exists("patches"))
@@ -32,19 +38,24 @@
             }
 
             Directory.CreateDirectory("./patches");
-            // don't worry about "NoInternals" internals will be generated in a substep (post-patch) when generating. see ImGuiPostPatch.cs
-            Generate(CImGuiHeader, CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 
-            Generate(CImGuizmoHeader, CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-            Generate(CImPlotHeader, CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
-            Generate(CImNodesHeader, CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+#if !BackendsOnly
+            // don't worry about "NoInternals" internals will be generated in a substep (post-patch) when generating. see ImGuiPostPatch.cs
+            Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
+
+            Generate([CImGuizmoHeader], CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+            Generate([CImPlotHeader], CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
+            Generate([CImNodesHeader], CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+#endif
+
+            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsConfig, ImGuiBackendsOutputPath, null, out _, InternalsGenerationType.BothOrDontCare);
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("All Done!");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private static bool Generate(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
+        private static bool Generate(string[] headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
             settings.WrapPointersAsHandle = true;
@@ -63,7 +74,7 @@
                 generator.CopyFrom(lib);
             }
 
-            bool result = generator.Generate(header, output);
+            bool result = generator.Generate([.. headers], output);
             metadata = generator.GetMetadata();
 
             generator.LogEvent -= GeneratorLogEvent;
