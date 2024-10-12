@@ -8,31 +8,23 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
 namespace Hexa.NET.ImGui.Backends
 {
-	public unsafe partial class ImGuiBackends
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct D3D12CpuDescriptorHandle
 	{
-		public const int CIMGUI_USE_GLFW = 1;
 
-		public const int CIMGUI_USE_OPENGL3 = 1;
-
-		public const int CIMGUI_USE_OPENGL2 = 1;
-
-		public const int CIMGUI_USE_SDL2 = 1;
-
-		public const int CIMGUI_USE_SDL2Renderer = 1;
-
-		public const int CIMGUI_USE_D3D11 = 1;
-
-		public const int CIMGUI_USE_D3D12 = 1;
-
-		public const int CIMGUI_USE_VULKAN = 1;
-
-		public const int CIMGUI_USE_WIN32 = 1;
 
 	}
+
 }

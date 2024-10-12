@@ -22,7 +22,7 @@ namespace Hexa.NET.ImGui.Backends
 
 		public static void InitApi()
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 51);
+			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 88);
 			funcTable.Load(0, "ImGui_ImplGlfw_InitForOpenGL");
 			funcTable.Load(1, "ImGui_ImplGlfw_InitForVulkan");
 			funcTable.Load(2, "ImGui_ImplGlfw_InitForOther");
@@ -66,14 +66,51 @@ namespace Hexa.NET.ImGui.Backends
 			funcTable.Load(40, "ImGui_ImplSDL2_NewFrame");
 			funcTable.Load(41, "ImGui_ImplSDL2_ProcessEvent");
 			funcTable.Load(42, "ImGui_ImplSDL2_SetGamepadMode");
-			funcTable.Load(43, "ImGui_ImplDX11_Init");
-			funcTable.Load(44, "ImGui_ImplDX11_Shutdown");
-			funcTable.Load(45, "ImGui_ImplDX11_NewFrame");
-			funcTable.Load(46, "ImGui_ImplDX11_RenderDrawData");
-			funcTable.Load(47, "ImGui_ImplDX11_InvalidateDeviceObjects");
-			funcTable.Load(48, "ImGui_ImplDX11_CreateDeviceObjects");
-			funcTable.Load(49, "igSetCurrentContext");
-			funcTable.Load(50, "igGetCurrentContext");
+			funcTable.Load(43, "ImGui_ImplSDLRenderer2_Init");
+			funcTable.Load(44, "ImGui_ImplSDLRenderer2_Shutdown");
+			funcTable.Load(45, "ImGui_ImplSDLRenderer2_NewFrame");
+			funcTable.Load(46, "ImGui_ImplSDLRenderer2_RenderDrawData");
+			funcTable.Load(47, "ImGui_ImplSDLRenderer2_CreateFontsTexture");
+			funcTable.Load(48, "ImGui_ImplSDLRenderer2_DestroyFontsTexture");
+			funcTable.Load(49, "ImGui_ImplSDLRenderer2_CreateDeviceObjects");
+			funcTable.Load(50, "ImGui_ImplSDLRenderer2_DestroyDeviceObjects");
+			funcTable.Load(51, "ImGui_ImplDX11_Init");
+			funcTable.Load(52, "ImGui_ImplDX11_Shutdown");
+			funcTable.Load(53, "ImGui_ImplDX11_NewFrame");
+			funcTable.Load(54, "ImGui_ImplDX11_RenderDrawData");
+			funcTable.Load(55, "ImGui_ImplDX11_InvalidateDeviceObjects");
+			funcTable.Load(56, "ImGui_ImplDX11_CreateDeviceObjects");
+			funcTable.Load(57, "ImGui_ImplDX12_Init");
+			funcTable.Load(58, "ImGui_ImplDX12_Shutdown");
+			funcTable.Load(59, "ImGui_ImplDX12_NewFrame");
+			funcTable.Load(60, "ImGui_ImplDX12_RenderDrawData");
+			funcTable.Load(61, "ImGui_ImplDX12_InvalidateDeviceObjects");
+			funcTable.Load(62, "ImGui_ImplDX12_CreateDeviceObjects");
+			funcTable.Load(63, "ImGui_ImplVulkan_Init");
+			funcTable.Load(64, "ImGui_ImplVulkan_Shutdown");
+			funcTable.Load(65, "ImGui_ImplVulkan_NewFrame");
+			funcTable.Load(66, "ImGui_ImplVulkan_RenderDrawData");
+			funcTable.Load(67, "ImGui_ImplVulkan_CreateFontsTexture");
+			funcTable.Load(68, "ImGui_ImplVulkan_DestroyFontsTexture");
+			funcTable.Load(69, "ImGui_ImplVulkan_SetMinImageCount");
+			funcTable.Load(70, "ImGui_ImplVulkan_AddTexture");
+			funcTable.Load(71, "ImGui_ImplVulkan_RemoveTexture");
+			funcTable.Load(72, "ImGui_ImplVulkan_LoadFunctions");
+			funcTable.Load(73, "ImGui_ImplVulkanH_CreateOrResizeWindow");
+			funcTable.Load(74, "ImGui_ImplVulkanH_DestroyWindow");
+			funcTable.Load(75, "ImGui_ImplVulkanH_SelectSurfaceFormat");
+			funcTable.Load(76, "ImGui_ImplVulkanH_SelectPresentMode");
+			funcTable.Load(77, "ImGui_ImplVulkanH_GetMinImageCountFromPresentMode");
+			funcTable.Load(78, "ImGui_ImplWin32_Init");
+			funcTable.Load(79, "ImGui_ImplWin32_InitForOpenGL");
+			funcTable.Load(80, "ImGui_ImplWin32_Shutdown");
+			funcTable.Load(81, "ImGui_ImplWin32_NewFrame");
+			funcTable.Load(82, "ImGui_ImplWin32_EnableDpiAwareness");
+			funcTable.Load(83, "ImGui_ImplWin32_GetDpiScaleForHwnd");
+			funcTable.Load(84, "ImGui_ImplWin32_GetDpiScaleForMonitor");
+			funcTable.Load(85, "ImGui_ImplWin32_EnableAlphaCompositing");
+			funcTable.Load(86, "igSetCurrentContext");
+			funcTable.Load(87, "igGetCurrentContext");
 		}
 
 		public static void FreeApi()

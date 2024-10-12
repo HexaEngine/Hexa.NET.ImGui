@@ -17,4 +17,36 @@ using Hexa.NET.ImGui;
 
 namespace Hexa.NET.ImGui.Backends
 {
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void CheckVkResultFn([NativeName(NativeNameType.Param, "err")] [NativeName(NativeNameType.Type, "VkResult")] int err);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void CheckVkResultFn([NativeName(NativeNameType.Param, "err")] [NativeName(NativeNameType.Type, "VkResult")] int err);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void* PFNVkVoidFunction([NativeName(NativeNameType.Param, "function_name")] [NativeName(NativeNameType.Type, "const char*")] byte* functionName, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] void* userData);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate nint PFNVkVoidFunction([NativeName(NativeNameType.Param, "function_name")] [NativeName(NativeNameType.Type, "const char*")] nint functionName, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] nint userData);
+
+	#endif
+
 }

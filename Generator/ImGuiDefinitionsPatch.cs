@@ -5,51 +5,6 @@
     using HexaGen.Core.Mapping;
     using HexaGen.Patching;
 
-    public class ImGuiDefinitionsIgnorePatch : PrePatch
-    {
-        public override void Apply(PatchContext context, CsCodeGeneratorConfig settings, List<string> files, CppCompilation compilation)
-        {
-            if (settings.LibName != "cimgui")
-            {
-                return;
-            }
-
-            ImguiDefinitions imguiDefinitions = new();
-            imguiDefinitions.LoadFrom("cimgui");
-
-            for (int i = 0; i < imguiDefinitions.Functions.Length; i++)
-            {
-                var functionDefinition = imguiDefinitions.Functions[i];
-                for (int j = 0; j < functionDefinition.Overloads.Length; j++)
-                {
-                    settings.IgnoredFunctions.Add(functionDefinition.Overloads[j].ExportedName);
-                }
-            }
-
-            for (int i = 0; i < imguiDefinitions.Enums.Length; i++)
-            {
-                var enumDefinition = imguiDefinitions.Enums[i];
-                settings.IgnoredEnums.Add(enumDefinition.Names[0]);
-            }
-
-            for (int i = 0; i < imguiDefinitions.Types.Length; i++)
-            {
-                var typeDefinition = imguiDefinitions.Types[i];
-                settings.IgnoredTypes.Add(typeDefinition.Name);
-            }
-
-            for (int i = 0; i < imguiDefinitions.Typedefs.Length; i++)
-            {
-                var typedefDefinition = imguiDefinitions.Typedefs[i];
-                settings.IgnoredTypedefs.Add(typedefDefinition.Name);
-                if (typedefDefinition.IsStruct)
-                {
-                    settings.IgnoredTypes.Add(typedefDefinition.Name);
-                }
-            }
-        }
-    }
-
     public enum InternalsGenerationType
     {
         NoInternals,
@@ -70,7 +25,7 @@
 
         protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
         {
-            if (settings.LibName == "backends")
+            if (settings.LibName == "cimgui_impl")
             {
                 return;
             }

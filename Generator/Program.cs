@@ -66,6 +66,7 @@ namespace Generator
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
             generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None));
             generator.PatchEngine.RegisterPostPatch(new ImGuiPostPatch());
+            generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
 
             generator.LogEvent += GeneratorLogEvent;
 
