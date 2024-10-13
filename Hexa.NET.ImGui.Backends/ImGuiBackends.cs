@@ -1,5 +1,7 @@
 ﻿namespace Hexa.NET.ImGui.Backends
 {
+    using System.Runtime.InteropServices;
+
     public static partial class ImGuiBackends
     {
         static ImGuiBackends()
@@ -9,7 +11,11 @@
 
         public static string GetLibraryName()
         {
-            return "cimgui_impl";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return "cimgui_impl";
+            }
+            return "libcimgui_impl";
         }
     }
 }

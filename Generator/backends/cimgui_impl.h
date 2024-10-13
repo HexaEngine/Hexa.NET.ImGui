@@ -122,6 +122,7 @@ CIMGUI_API bool ImGui_ImplOpenGL3_CreateDeviceObjects(void);
 CIMGUI_API void ImGui_ImplOpenGL3_DestroyDeviceObjects(void);
 
 #endif
+
 #ifdef CIMGUI_USE_OPENGL2
 CIMGUI_API bool ImGui_ImplOpenGL2_Init(void);
 CIMGUI_API void ImGui_ImplOpenGL2_Shutdown(void);
