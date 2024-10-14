@@ -7,6 +7,8 @@
     using ExampleFramework.ImPlotDemo;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Backends;
+    using Hexa.NET.ImGui.Backends.D3D11;
+    using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D11;
     using Silk.NET.SDL;
@@ -32,10 +34,11 @@
             ComPtr<ID3D11Device1> device = d3d11Manager.Device;
             ComPtr<ID3D11DeviceContext1> deviceContext = d3d11Manager.DeviceContext;
 
-            ImGuiBackends.ImplSDL2InitForD3D((SDLWindow*)SDLWindow);
+            ImGuiImplSDL2.InitForD3D((SDLWindow*)SDLWindow);
 
-            ImGuiBackends.ImplDX11Init((Hexa.NET.ImGui.Backends.ID3D11Device*)(void*)device.Handle, (Hexa.NET.ImGui.Backends.ID3D11DeviceContext*)(void*)deviceContext.Handle);
-            ImGuiBackends.ImplDX11NewFrame();
+            ImGuiImplD3D11.SetCurrentContext(ImGui.GetCurrentContext());
+            ImGuiImplD3D11.Init((Hexa.NET.ImGui.Backends.D3D11.ID3D11Device*)(void*)device.Handle, (Hexa.NET.ImGui.Backends.D3D11.ID3D11DeviceContext*)(void*)deviceContext.Handle);
+            ImGuiImplD3D11.NewFrame();
 
             imGuiDemo = new();
             imGuizmoDemo = new();
@@ -45,16 +48,15 @@
 
         private void OnRenderDrawData()
         {
-            //ImGuiD3D11Renderer.RenderDrawData(ImGui.GetDrawData());
-            ImGuiBackends.ImplDX11NewFrame();
-            ImGuiBackends.ImplDX11RenderDrawData(ImGui.GetDrawData());
+            ImGuiImplD3D11.NewFrame();
+            ImGuiImplD3D11.RenderDrawData(ImGui.GetDrawData());
         }
 
         public override void Render()
         {
             imGuiManager.NewFrame();
 
-            //imGuiDemo.Draw();
+            ImGui.ShowDemoWindow();
             imGuizmoDemo.Draw();
             imNodesDemo.Draw();
             imPlotDemo.Draw();

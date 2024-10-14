@@ -14,7 +14,6 @@
     "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
     "ImGuiItemFlags_AutoClosePopups": "ImGuiItemFlags.AutoClosePopups"
   },
-
   "KnownEnumPrefixes": {},
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
@@ -35,7 +34,9 @@
     "igGetKeyChordName",
     "igDataTypeFormatString",
     "igInputTextEx",
-    "igTempInputText"
+    "igTempInputText",
+    "igSetCurrentContext",
+    "igGetCurrentContext"
   ],
   "ArrayMappings": [
     {

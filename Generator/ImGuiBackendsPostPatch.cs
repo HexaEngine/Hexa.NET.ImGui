@@ -11,7 +11,7 @@
 
     public partial class ImGuiBackendsPostPatch : PostPatch
     {
-        private const string ImGuiBackendsOutputPath = "../../../../Hexa.NET.ImGui.Backends/Generated";
+        private const string ImGuiBackendsOutputPath = "../../../../Hexa.NET.ImGui.Backends/Generated/Vulkan";
 
         const string pattern = @"VkAllocationCallbacksPtr";
         const string replacement = @"VkAllocationCallbacks";
@@ -20,7 +20,7 @@
 
         public override void Apply(PatchContext context, CsCodeGeneratorMetadata metadata, List<string> files)
         {
-            if (metadata.Settings.LibName != "cimgui_impl")
+            if (metadata.Settings.ApiName != "ImGuiImplVulkan")
             {
                 return;
             }

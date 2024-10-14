@@ -7,6 +7,8 @@
     using ExampleFramework.ImPlotDemo;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Backends;
+    using Hexa.NET.ImGui.Backends.OpenGL3;
+    using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.Core.Contexts;
     using Silk.NET.OpenGL;
 
@@ -33,10 +35,11 @@
             imGuiManager = new();
             imGuiManager.OnRenderDrawData += OnRenderDrawData;
 
-            ImGuiBackends.ImplSDL2InitForOpenGL((SDLWindow*)SDLWindow, glcontext);
+            ImGuiImplSDL2.InitForOpenGL((SDLWindow*)SDLWindow, glcontext);
 
-            ImGuiBackends.ImplOpenGL3Init((string)null!);
-            ImGuiBackends.ImplOpenGL3NewFrame();
+            ImGuiImplOpenGL3.SetCurrentContext(ImGui.GetCurrentContext());
+            ImGuiImplOpenGL3.Init((string)null!);
+            ImGuiImplOpenGL3.NewFrame();
 
             imGuiDemo = new();
             imGuizmoDemo = new();
@@ -46,8 +49,8 @@
 
         private void OnRenderDrawData()
         {
-            ImGuiBackends.ImplOpenGL3NewFrame();
-            ImGuiBackends.ImplOpenGL3RenderDrawData(ImGui.GetDrawData());
+            ImGuiImplOpenGL3.NewFrame();
+            ImGuiImplOpenGL3.RenderDrawData(ImGui.GetDrawData());
         }
 
         public override void Render()

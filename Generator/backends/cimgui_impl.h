@@ -1,12 +1,30 @@
+#ifndef CIMGUI_USE_GLFW
 #define CIMGUI_USE_GLFW 1
+#endif
+#ifndef CIMGUI_USE_OPENGL3
 #define CIMGUI_USE_OPENGL3 1
+#endif
+#ifndef CIMGUI_USE_OPENGL2
 #define CIMGUI_USE_OPENGL2 1
+#endif
+#ifndef CIMGUI_USE_SDL2
 #define CIMGUI_USE_SDL2 1
+#endif
+#ifndef CIMGUI_USE_SDL2Renderer
 #define CIMGUI_USE_SDL2Renderer 1
+#endif
+#ifndef CIMGUI_USE_D3D11
 #define CIMGUI_USE_D3D11 1
+#endif
+#ifndef CIMGUI_USE_D3D12
 #define CIMGUI_USE_D3D12 1
+#endif
+#ifndef CIMGUI_USE_VULKAN
 #define CIMGUI_USE_VULKAN 1
+#endif
+#ifndef CIMGUI_USE_WIN32
 #define CIMGUI_USE_WIN32 1
+#endif
 
 #include <stdint.h>
 #include <string.h> // For memset
@@ -48,7 +66,7 @@ CIMGUI_API void     ImGui_ImplWin32_EnableAlphaCompositing(void* hwnd);   // HWN
 
 #endif
 
-#ifdef CIMGUI_USE_GLFW
+#if CIMGUI_USE_GLFW
 
 typedef struct GLFWwindow GLFWwindow;
 typedef struct GLFWmonitor GLFWmonitor;
@@ -73,7 +91,7 @@ CIMGUI_API void ImGui_ImplGlfw_Sleep(int milliseconds);
 
 #endif
 
-#ifdef CIMGUI_USE_SDL2
+#if CIMGUI_USE_SDL2
 
 typedef struct SDL_Window SDL_Window;
 typedef struct SDL_Renderer SDL_Renderer;
@@ -111,7 +129,7 @@ CIMGUI_API void     ImGui_ImplSDLRenderer2_DestroyDeviceObjects();
 
 #endif
 
-#ifdef CIMGUI_USE_OPENGL3
+#if CIMGUI_USE_OPENGL3
 CIMGUI_API bool ImGui_ImplOpenGL3_Init(const char* glsl_version);
 CIMGUI_API void ImGui_ImplOpenGL3_Shutdown(void);
 CIMGUI_API void ImGui_ImplOpenGL3_NewFrame(void);
@@ -123,7 +141,7 @@ CIMGUI_API void ImGui_ImplOpenGL3_DestroyDeviceObjects(void);
 
 #endif
 
-#ifdef CIMGUI_USE_OPENGL2
+#if CIMGUI_USE_OPENGL2
 CIMGUI_API bool ImGui_ImplOpenGL2_Init(void);
 CIMGUI_API void ImGui_ImplOpenGL2_Shutdown(void);
 CIMGUI_API void ImGui_ImplOpenGL2_NewFrame(void);
@@ -135,7 +153,7 @@ CIMGUI_API void ImGui_ImplOpenGL2_DestroyDeviceObjects(void);
 
 #endif
 
-#ifdef CIMGUI_USE_D3D11
+#if CIMGUI_USE_D3D11
 typedef struct ID3D11Device ID3D11Device;
 typedef struct ID3D11DeviceContext ID3D11DeviceContext;
 
@@ -151,7 +169,7 @@ CIMGUI_API bool     ImGui_ImplDX11_CreateDeviceObjects();
 
 #endif
 
-#ifdef CIMGUI_USE_D3D12
+#if CIMGUI_USE_D3D12
 typedef struct ID3D12Device;
 typedef struct ID3D12DescriptorHeap;
 typedef struct ID3D12GraphicsCommandList;
@@ -175,7 +193,7 @@ CIMGUI_API void     ImGui_ImplDX12_InvalidateDeviceObjects();
 CIMGUI_API bool     ImGui_ImplDX12_CreateDeviceObjects();
 #endif
 
-#ifdef CIMGUI_USE_VULKAN
+#if CIMGUI_USE_VULKAN
 
 // Forward declarations for Vulkan types
 typedef struct VkInstance_T* VkInstance;

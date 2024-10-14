@@ -14,11 +14,11 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<PackageVersion>1.0.0</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui library backends.</Description>
+		<PackageVersion>1.0.1</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12).</Description>
 		<PackageTags>ImGui Backends UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
-		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>
+		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
 		<PackageProjectUrl>https://github.com/HexaEngine/Hexa.NET.ImGui</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/HexaEngine/Hexa.NET.ImGui</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -41,79 +41,43 @@
 
 
 	<ItemGroup>
-		<None Include="native\osx-arm64\libcimgui_impl.dylib">
+		<None Include="native\osx-arm64\libImGuiImpl.dylib">
 			<Link>runtimes\osx-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/osx-arm64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="native\osx-x64\libcimgui_impl.dylib">
+		<None Include="native\osx-x64\libImGuiImpl.dylib">
 			<Link>runtimes\osx-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/osx-x64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="native\linux-arm64\libcimgui_impl.so">
+		<None Include="native\linux-arm64\libImGuiImpl.so">
 			<Link>runtimes\linux-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/linux-arm64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="native\linux-x64\libcimgui_impl.so">
+		<None Include="native\linux-x64\libImGuiImpl.so">
 			<Link>runtimes\linux-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/linux-x64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="native\win-arm64\cimgui_impl.dll">
+		<None Include="native\win-arm64\ImGuiImpl.dll">
 			<Link>runtimes\win-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/win-arm64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="native\win-x64\cimgui_impl.dll">
+		<None Include="native\win-x64\ImGuiImpl.dll">
 			<Link>runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/win-x64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="native\win-x86\cimgui_impl.dll">
-			<Link>runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-x86/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-arm64\glfw3.dll">
-			<Link>runtimes\win-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-arm64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-x64\glfw3.dll">
-			<Link>runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-x64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-x86\glfw3.dll">
-			<Link>runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-x86/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-arm64\SDL2.dll">
-			<Link>runtimes\win-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-arm64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-x64\SDL2.dll">
-			<Link>runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-x64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-x86\SDL2.dll">
+		<None Include="native\win-x86\ImGuiImpl.dll">
 			<Link>runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/win-x86/native</PackagePath>
@@ -125,6 +89,11 @@
 	<ItemGroup>
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="Generated\" />
 	</ItemGroup>
 
 

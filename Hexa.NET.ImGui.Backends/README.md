@@ -1,1 +1,1 @@
-﻿A .NET wrapper for the Dear ImGui library.
+﻿A .NET wrapper for the Dear ImGui library backends.
