@@ -34,7 +34,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetCurrentContext(ImGuiContext* ctx)
+		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
 			SetCurrentContextNative(ctx);
 		}
@@ -66,9 +66,9 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiContext* GetCurrentContext()
+		public static ImGuiContextPtr GetCurrentContext()
 		{
-			ImGuiContext* ret = GetCurrentContextNative();
+			ImGuiContextPtr ret = GetCurrentContextNative();
 			return ret;
 		}
 
@@ -503,7 +503,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SDLRenderer2RenderDrawData(ImDrawData* drawData, SDLRendererPtr renderer)
+		public static void SDLRenderer2RenderDrawData(ImDrawDataPtr drawData, SDLRendererPtr renderer)
 		{
 			SDLRenderer2RenderDrawDataNative(drawData, renderer);
 		}
@@ -522,7 +522,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SDLRenderer2RenderDrawData(ImDrawData* drawData, ref SDLRenderer renderer)
+		public static void SDLRenderer2RenderDrawData(ImDrawDataPtr drawData, ref SDLRenderer renderer)
 		{
 			fixed (SDLRenderer* prenderer = &renderer)
 			{

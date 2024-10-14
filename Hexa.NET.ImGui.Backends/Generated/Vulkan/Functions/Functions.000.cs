@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderDrawData(ImDrawData* drawData, VkCommandBuffer commandBuffer, VkPipeline pipeline)
+		public static void RenderDrawData(ImDrawDataPtr drawData, VkCommandBuffer commandBuffer, VkPipeline pipeline)
 		{
 			RenderDrawDataNative(drawData, commandBuffer, pipeline);
 		}

@@ -36,7 +36,7 @@
         /// <summary>
         /// To be documented.
         /// </summary>
-        public static void SetCurrentContext(ImGuiContext* ctx)
+        public static void SetCurrentContext(ImGuiContextPtr ctx)
         {
             SetCurrentContextNative(ctx);
         }
@@ -68,7 +68,7 @@
         /// <summary>
         /// To be documented.
         /// </summary>
-        public static ImGuiContext* GetCurrentContext()
+        public static ImGuiContextPtr GetCurrentContext()
         {
             ImGuiContext* ret = GetCurrentContextNative();
             return ret;

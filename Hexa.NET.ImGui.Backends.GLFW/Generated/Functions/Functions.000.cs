@@ -34,7 +34,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetCurrentContext(ImGuiContext* ctx)
+		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
 			SetCurrentContextNative(ctx);
 		}
@@ -66,9 +66,9 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiContext* GetCurrentContext()
+		public static ImGuiContextPtr GetCurrentContext()
 		{
-			ImGuiContext* ret = GetCurrentContextNative();
+			ImGuiContextPtr ret = GetCurrentContextNative();
 			return ret;
 		}
 

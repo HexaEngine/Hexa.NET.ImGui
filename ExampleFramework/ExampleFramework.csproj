@@ -20,6 +20,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.SDL2\Hexa.NET.ImGui.Backends.SDL2.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.GLFW\Hexa.NET.ImGui.Backends.GLFW.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGuizmo\Hexa.NET.ImGuizmo.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />

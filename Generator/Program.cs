@@ -6,6 +6,7 @@ namespace Generator
     using HexaGen.Core.Logging;
     using HexaGen.Metadata;
     using HexaGen.Patching;
+    using System.Text.Json.Serialization;
 
     internal unsafe class Program
     {
@@ -51,20 +52,27 @@ namespace Generator
             Generate([CImPlotHeader], CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
             Generate([CImNodesHeader], CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
 #endif
+            Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 
             string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32"];
-            CsCodeGeneratorMetadata? metadataBackend = null;
+
+            metadata.DefinedFunctions.Clear();
+
+            CsCodeGeneratorMetadata? metadataBackend = new()
+            {
+                FunctionTable = new() { Entries = [new(0, "igSetCurrentContext"), new(1, "igGetCurrentContext")] },
+                Settings = new(),
+                WrappedPointers = metadata.WrappedPointers.ToDictionary()
+            };
+
             foreach (string lib in backends)
             {
-                GenerateBackend(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsConfig, ImGuiBackendsOutputPath, metadataBackend, out var metadata, lib);
-                if (metadataBackend == null)
-                {
-                    metadataBackend = metadata;
-                }
+                GenerateBackend(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsConfig, ImGuiBackendsOutputPath, metadataBackend, out var libMetadata, lib);
+                metadataBackend ??= libMetadata;
             }
 
-            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, null, out _, InternalsGenerationType.BothOrDontCare);
-            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, null, out _, InternalsGenerationType.BothOrDontCare);
+            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("All Done!");
@@ -140,12 +148,6 @@ namespace Generator
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
 
             generator.LogEvent += GeneratorLogEvent;
-
-            if (lib == null)
-            {
-                settings.FunctionTableEntries.Add(new(0, "igSetCurrentContext"));
-                settings.FunctionTableEntries.Add(new(1, "igGetCurrentContext"));
-            }
 
             if (lib != null)
             {

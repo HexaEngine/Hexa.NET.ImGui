@@ -152,7 +152,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderDrawData(ImDrawData* drawData, ID3D12GraphicsCommandListPtr graphicsCommandList)
+		public static void RenderDrawData(ImDrawDataPtr drawData, ID3D12GraphicsCommandListPtr graphicsCommandList)
 		{
 			RenderDrawDataNative(drawData, graphicsCommandList);
 		}
@@ -171,7 +171,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderDrawData(ImDrawData* drawData, ref ID3D12GraphicsCommandList graphicsCommandList)
+		public static void RenderDrawData(ImDrawDataPtr drawData, ref ID3D12GraphicsCommandList graphicsCommandList)
 		{
 			fixed (ID3D12GraphicsCommandList* pgraphicsCommandList = &graphicsCommandList)
 			{

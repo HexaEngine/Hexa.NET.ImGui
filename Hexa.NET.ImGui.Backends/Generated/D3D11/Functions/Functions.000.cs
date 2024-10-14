@@ -137,7 +137,7 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderDrawData(ImDrawData* drawData)
+		public static void RenderDrawData(ImDrawDataPtr drawData)
 		{
 			RenderDrawDataNative(drawData);
 		}

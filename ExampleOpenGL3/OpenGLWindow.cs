@@ -7,6 +7,7 @@
     using ExampleFramework.ImPlotDemo;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Backends;
+    using Hexa.NET.ImGui.Backends.GLFW;
     using Hexa.NET.ImGui.Backends.OpenGL3;
     using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.Core.Contexts;
@@ -36,6 +37,8 @@
             imGuiManager.OnRenderDrawData += OnRenderDrawData;
 
             ImGuiImplSDL2.InitForOpenGL((SDLWindow*)SDLWindow, glcontext);
+
+            ImGuiImplGLFW.SetCurrentContext(ImGui.GetCurrentContext());
 
             ImGuiImplOpenGL3.SetCurrentContext(ImGui.GetCurrentContext());
             ImGuiImplOpenGL3.Init((string)null!);
