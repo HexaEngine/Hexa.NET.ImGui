@@ -1,6 +1,7 @@
 ﻿namespace ExampleFramework
 {
     using ExampleFramework.Input;
+    using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.SDL;
     using System;
     using System.Collections.Generic;
@@ -58,9 +59,15 @@
             mainWindow = window;
             mainWindowId = window.Id;
             window.InitGraphics();
+            RegisterHook(ProcessEvent);
             window.Show();
 
             PlatformRun();
+        }
+
+        private static bool ProcessEvent(Event @event)
+        {
+            return ImGuiImplSDL2.ProcessEvent((SDLEvent*)&@event);
         }
 
         private static void PlatformRun()

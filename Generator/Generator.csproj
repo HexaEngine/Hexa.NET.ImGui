@@ -14,6 +14,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="backends\cimgui.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\cimgui_impl.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\generator.glfw.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\generator.sdl2.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\generator.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="cimguizmo\cimgui.h">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
