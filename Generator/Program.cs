@@ -210,6 +210,19 @@ namespace Generator
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     break;
             }
+
+            string type = severity switch
+            {
+                LogSeverity.Trace => "[Trc]",
+                LogSeverity.Debug => "[Dbg]",
+                LogSeverity.Information => "[Inf]",
+                LogSeverity.Warning => "[Wrn]",
+                LogSeverity.Error => "[Err]",
+                LogSeverity.Critical => "[Crt]",
+                _ => "[Unk]",
+            };
+
+            Console.Write(type);
             Console.WriteLine(message);
             Console.ForegroundColor = ConsoleColor.White;
         }

@@ -3,6 +3,9 @@ using Hexa.NET.GLFW;
 using Hexa.NET.ImGui;
 using Hexa.NET.ImGui.Backends.GLFW;
 using Hexa.NET.ImGui.Backends.OpenGL3;
+using Hexa.NET.ImGui.Utilities;
+using Hexa.NET.ImGui.Widgets;
+using Hexa.NET.ImGui.Widgets.Dialogs;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Runtime.CompilerServices;
@@ -40,6 +43,14 @@ io.ConfigFlags |= ImGuiConfigFlags.ViewportsEnable;       // Enable Multi-Viewpo
 io.ConfigViewportsNoAutoMerge = false;
 io.ConfigViewportsNoTaskBarIcon = false;
 
+// OPTIONAL: For custom fonts and icon fonts.
+char[] range = [(char)0xe003, (char)0xF8FF];
+ImGuiFontBuilder builder = new(io.Fonts);
+builder
+    .AddDefaultFont()
+    .SetOption(c => { c.GlyphMinAdvanceX = 18; c.GlyphOffset = new(0, 4); })
+    .AddFontFromFileTTF("MaterialSymbolsRounded.ttf", 14, range);
+
 ImGuiImplGLFW.SetCurrentContext(guiContext);
 
 if (!ImGuiImplGLFW.InitForOpenGL(Unsafe.BitCast<GLFWwindowPtr, Hexa.NET.ImGui.Backends.GLFW.GLFWwindowPtr>(window), true))
@@ -58,6 +69,11 @@ if (!ImGuiImplOpenGL3.Init(glslVersion))
 }
 
 GL.LoadBindings(new BindingsContext());
+
+// OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
+WidgetManager.Init();
+OpenFileDialog dialog = new();
+dialog.Show();
 
 // Main loop
 while (GLFW.WindowShouldClose(window) == 0)
@@ -79,6 +95,9 @@ while (GLFW.WindowShouldClose(window) == 0)
     ImGui.NewFrame();
 
     ImGui.ShowDemoWindow();
+
+    // OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
+    WidgetManager.Draw();
 
     ImGui.Render();
     ImGui.EndFrame();

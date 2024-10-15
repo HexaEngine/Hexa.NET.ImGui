@@ -10,6 +10,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.2" />
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.14" />
 		<PackageReference Include="OpenTK" Version="4.8.2" />
 	</ItemGroup>
 
@@ -17,6 +18,12 @@
 		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.GLFW\Hexa.NET.ImGui.Backends.GLFW.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="MaterialSymbolsRounded.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
