@@ -34,6 +34,11 @@ Hexa.NET.ImGui is divided into four different packages to provide modularity and
 - [Hexa.NET.ImNodes](https://www.nuget.org/packages/Hexa.NET.ImNodes/)
 - [Hexa.NET.ImPlot](https://www.nuget.org/packages/Hexa.NET.ImPlot/)
 
+## Releated Projects
+
+- [Hexa.NET.ImGui.Widgets](https://github.com/HexaEngine/Hexa.NET.ImGui.Widgets)
+  - A small framework making it easier working with ImGui in C# build on top of Hexa.NET.ImGui. It allows to capsulate Widgets in classes and manage them centralized, supporting dialogs that block other windows (incl. OpenFileDialog SaveFileDialog and more)
+
 ## Getting Started
 
 To get started with Hexa.NET.ImGui, follow these steps:
