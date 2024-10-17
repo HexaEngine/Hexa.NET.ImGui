@@ -14,6 +14,7 @@ namespace ExampleD3D11
     using System.Runtime.InteropServices;
     using ImDrawIdx = UInt16;
 
+    [Obsolete("Use ImGuiImplD3D11 instead")]
     public static class ImGuiD3D11Renderer
     {
         private static readonly D3DCompiler D3DCompiler = D3DCompiler.GetApi();

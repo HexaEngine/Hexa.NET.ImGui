@@ -32,6 +32,11 @@
             hooks.Add(hook);
         }
 
+        public static void RemoveHook(Func<Event, bool> hook)
+        {
+            hooks.Remove(hook);
+        }
+
         public static void Init(Backend backend)
         {
             Backend = backend;
@@ -59,15 +64,12 @@
             mainWindow = window;
             mainWindowId = window.Id;
             window.InitGraphics();
-            RegisterHook(ProcessEvent);
+
             window.Show();
 
             PlatformRun();
-        }
 
-        private static bool ProcessEvent(Event @event)
-        {
-            return ImGuiImplSDL2.ProcessEvent((SDLEvent*)&@event);
+            window.Dispose();
         }
 
         private static void PlatformRun()

@@ -35,6 +35,7 @@
             ComPtr<ID3D11DeviceContext1> deviceContext = d3d11Manager.DeviceContext;
 
             ImGuiImplSDL2.InitForD3D((SDLWindow*)SDLWindow);
+            App.RegisterHook(ProcessEvent);
 
             ImGuiImplD3D11.SetCurrentContext(ImGui.GetCurrentContext());
             ImGuiImplD3D11.Init((Hexa.NET.ImGui.Backends.D3D11.ID3D11Device*)(void*)device.Handle, (Hexa.NET.ImGui.Backends.D3D11.ID3D11DeviceContext*)(void*)deviceContext.Handle);
@@ -69,6 +70,21 @@
             d3d11Manager.DeviceContext.ClearState();
 
             d3d11Manager.Present(1, 0);
+        }
+
+        private static bool ProcessEvent(Event @event)
+        {
+            return ImGuiImplSDL2.ProcessEvent((SDLEvent*)&@event);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            App.RemoveHook(ProcessEvent);
+            ImGuiImplD3D11.Shutdown();
+            ImGuiImplSDL2.Shutdown();
+            imGuiManager.Dispose();
+            d3d11Manager.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

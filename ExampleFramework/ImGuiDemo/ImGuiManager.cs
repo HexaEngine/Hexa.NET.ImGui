@@ -214,7 +214,18 @@
 
         public void Dispose()
         {
-            ImGuiImplSDL2.Shutdown();
+            ImPlot.SetCurrentContext(null);
+            ImPlot.SetImGuiContext(null);
+
+            ImNodes.SetCurrentContext(null);
+            ImNodes.SetImGuiContext(null);
+
+            ImGuizmo.SetImGuiContext(null);
+
+            ImPlot.DestroyContext(plotContext);
+            ImNodes.DestroyContext(nodesContext);
+            ImGui.SetCurrentContext(null);
+            ImGui.DestroyContext(guiContext);
         }
     }
 }

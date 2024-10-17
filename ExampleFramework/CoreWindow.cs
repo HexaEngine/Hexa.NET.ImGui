@@ -3,13 +3,23 @@
     using Silk.NET.SDL;
     using System;
 
-    public unsafe class CoreWindow
+    public class ClosingEventArgs : EventArgs
+    {
+        public bool Handled { get; set; }
+    }
+
+    public class ClosedEventArgs : EventArgs
+    {
+    }
+
+    public unsafe class CoreWindow : IDisposable
     {
         protected static readonly Sdl sdl = App.sdl;
-        private Silk.NET.SDL.Window* window;
+        private Window* window;
         private uint id;
         private int width;
         private int height;
+        private bool disposedValue;
 
         public CoreWindow()
         {
@@ -41,9 +51,13 @@
 
         public int Height => height;
 
-        public Silk.NET.SDL.Window* SDLWindow => window;
+        public Window* SDLWindow => window;
 
         public event EventHandler<ResizedEventArgs>? Resized;
+
+        public event EventHandler<ClosingEventArgs>? Closing;
+
+        public event EventHandler<ClosedEventArgs>? Closed;
 
         public void Show()
         {
@@ -75,7 +89,14 @@
                     break;
 
                 case WindowEventID.Close:
-                    Destroy();
+                    ClosingEventArgs eventArgs = new();
+                    Closing?.Invoke(this, eventArgs);
+                    if (eventArgs.Handled)
+                    {
+                        return;
+                    }
+                    Dispose();
+                    Closed?.Invoke(this, new());
                     break;
             }
         }
@@ -86,6 +107,23 @@
 
         public virtual void Render()
         {
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                Destroy();
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

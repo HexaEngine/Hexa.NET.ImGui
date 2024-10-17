@@ -12,6 +12,7 @@
     using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.Core.Contexts;
     using Silk.NET.OpenGL;
+    using Silk.NET.SDL;
 
     public unsafe class OpenGLWindow : CoreWindow, IGLContextSource
     {
@@ -37,6 +38,7 @@
             imGuiManager.OnRenderDrawData += OnRenderDrawData;
 
             ImGuiImplSDL2.InitForOpenGL((SDLWindow*)SDLWindow, glcontext);
+            App.RegisterHook(ProcessEvent);
 
             ImGuiImplGLFW.SetCurrentContext(ImGui.GetCurrentContext());
 
@@ -72,6 +74,22 @@
 
             context.MakeCurrent();
             context.SwapBuffers();
+        }
+
+        private static bool ProcessEvent(Event @event)
+        {
+            return ImGuiImplSDL2.ProcessEvent((SDLEvent*)&@event);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            App.RemoveHook(ProcessEvent);
+            ImGuiImplOpenGL3.Shutdown();
+            ImGuiImplSDL2.Shutdown();
+            imGuiManager.Dispose();
+            context.Dispose();
+            gl.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
