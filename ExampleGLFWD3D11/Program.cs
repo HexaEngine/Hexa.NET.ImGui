@@ -60,7 +60,7 @@ if (!ImGuiImplGLFW.InitForOther(Unsafe.BitCast<GLFWwindowPtr, Hexa.NET.ImGui.Bac
 ImGuiImplD3D11.SetCurrentContext(guiContext);
 if (!ImGuiImplD3D11.Init(Unsafe.BitCast<ComPtr<ID3D11Device1>, ID3D11DevicePtr>(manager.Device), Unsafe.BitCast<ComPtr<ID3D11DeviceContext1>, ID3D11DeviceContextPtr>(manager.DeviceContext)))
 {
-    Console.WriteLine("Failed to init ImGui Impl OpenGL3");
+    Console.WriteLine("Failed to init ImGui Impl D3D11");
     GLFW.Terminate();
     return;
 }
