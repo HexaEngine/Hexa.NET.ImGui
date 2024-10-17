@@ -16,6 +16,7 @@ namespace ExampleOpenGL3
     using System.Runtime.InteropServices;
     using ImDrawIdx = UInt16;
 
+    [Obsolete("Use ImGuiImplOpenGL3 instead")]
     public static unsafe class ImGuiOpenGL3Renderer
     {
         private static GL GL;

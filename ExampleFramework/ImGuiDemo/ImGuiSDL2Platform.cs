@@ -13,6 +13,7 @@
     using System.Runtime.InteropServices;
     using Window = Silk.NET.SDL.Window;
 
+    [Obsolete("Use ImGuiImplSDL2 instead")]
     public static class ImGuiSDL2Platform
     {
         private static readonly Sdl sdl = Sdl.GetApi();
@@ -95,7 +96,7 @@
 
         private static unsafe byte OpenPlatformInShell(ImGuiContext* ctx, byte* path)
         {
-            string url = ToStringFromUTF8(path);
+            string url = ToStringFromUTF8(path)!;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Process.Start(new ProcessStartInfo

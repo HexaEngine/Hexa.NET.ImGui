@@ -8,7 +8,7 @@
     using Hexa.NET.ImPlot;
     using System.Numerics;
 
-    public class ImGuiManager
+    public class ImGuiManager : IDisposable
     {
         private ImGuiContextPtr guiContext;
         private ImNodesContextPtr nodesContext;
@@ -212,20 +212,29 @@
             }
         }
 
+        private bool disposed = false;
+
         public void Dispose()
         {
-            ImPlot.SetCurrentContext(null);
-            ImPlot.SetImGuiContext(null);
+            if (!disposed)
+            {
+                ImPlot.SetCurrentContext(null);
+                ImPlot.SetImGuiContext(null);
 
-            ImNodes.SetCurrentContext(null);
-            ImNodes.SetImGuiContext(null);
+                ImNodes.SetCurrentContext(null);
+                ImNodes.SetImGuiContext(null);
 
-            ImGuizmo.SetImGuiContext(null);
+                ImGuizmo.SetImGuiContext(null);
 
-            ImPlot.DestroyContext(plotContext);
-            ImNodes.DestroyContext(nodesContext);
-            ImGui.SetCurrentContext(null);
-            ImGui.DestroyContext(guiContext);
+                ImPlot.DestroyContext(plotContext);
+                ImNodes.DestroyContext(nodesContext);
+                ImGui.SetCurrentContext(null);
+                ImGui.DestroyContext(guiContext);
+
+                disposed = true;
+
+                GC.SuppressFinalize(this);
+            }
         }
     }
 }

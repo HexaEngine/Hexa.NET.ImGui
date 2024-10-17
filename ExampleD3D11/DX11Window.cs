@@ -77,14 +77,20 @@
             return ImGuiImplSDL2.ProcessEvent((SDLEvent*)&@event);
         }
 
+        private bool disposed = false;
+
         protected override void Dispose(bool disposing)
         {
-            App.RemoveHook(ProcessEvent);
-            ImGuiImplD3D11.Shutdown();
-            ImGuiImplSDL2.Shutdown();
-            imGuiManager.Dispose();
-            d3d11Manager.Dispose();
-            base.Dispose(disposing);
+            if (!disposed)
+            {
+                App.RemoveHook(ProcessEvent);
+                ImGuiImplD3D11.Shutdown();
+                ImGuiImplSDL2.Shutdown();
+                imGuiManager.Dispose();
+                d3d11Manager.Dispose();
+                base.Dispose(disposing);
+                disposed = true;
+            }
         }
     }
 }

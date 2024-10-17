@@ -70,6 +70,8 @@
             PlatformRun();
 
             window.Dispose();
+
+            sdl.Quit();
         }
 
         private static void PlatformRun()
