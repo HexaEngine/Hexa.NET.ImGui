@@ -6,8 +6,8 @@ using Hexa.NET.ImGui.Backends.OpenGL3;
 using Hexa.NET.ImGui.Utilities;
 using Hexa.NET.ImGui.Widgets;
 using Hexa.NET.ImGui.Widgets.Dialogs;
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
+using Hexa.NET.OpenGL;
+using HexaGen.Runtime;
 using System.Runtime.CompilerServices;
 using GLFWwindowPtr = Hexa.NET.GLFW.GLFWwindowPtr;
 
@@ -68,7 +68,7 @@ if (!ImGuiImplOpenGL3.Init(glslVersion))
     return;
 }
 
-GL.LoadBindings(new BindingsContext());
+GL.InitApi(new BindingsContext());
 
 // OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
 WidgetManager.Init();
@@ -81,14 +81,15 @@ while (GLFW.WindowShouldClose(window) == 0)
     // Poll for and process events
     GLFW.PollEvents();
 
-    if (GLFW.GetKey(window, (int)GlfwKey.Escape) == GLFW.GLFW_PRESS)
+    if (GLFW.GetWindowAttrib(window, GLFW.GLFW_ICONIFIED) != 0)
     {
-        GLFW.SetWindowShouldClose(window, 1); // Request to close the window
+        ImGuiImplGLFW.Sleep(10);
+        continue;
     }
 
     GLFW.MakeContextCurrent(window);
     GL.ClearColor(1, 0.8f, 0.75f, 1);
-    GL.Clear(ClearBufferMask.ColorBufferBit);
+    GL.Clear(GLClearBufferMask.ColorBufferBit);
 
     ImGuiImplOpenGL3.NewFrame();
     ImGuiImplGLFW.NewFrame();
@@ -117,14 +118,35 @@ while (GLFW.WindowShouldClose(window) == 0)
     GLFW.SwapBuffers(window);
 }
 
+ImGuiImplOpenGL3.Shutdown();
+ImGuiImplGLFW.Shutdown();
+ImGui.DestroyContext();
+
+GL.FreeApi();
+
 // Clean up and terminate GLFW
 GLFW.DestroyWindow(window);
 GLFW.Terminate();
 
-internal unsafe class BindingsContext : IBindingsContext
+internal unsafe class BindingsContext : INativeContext
 {
+    public void Dispose()
+    {
+    }
+
     public nint GetProcAddress(string procName)
     {
         return (nint)GLFW.GetProcAddress(procName);
+    }
+
+    public bool IsExtensionSupported(string extensionName)
+    {
+        return GLFW.ExtensionSupported(extensionName) != 0;
+    }
+
+    public bool TryGetProcAddress(string procName, out nint procAddress)
+    {
+        procAddress = (nint)GLFW.GetProcAddress(procName);
+        return procAddress != 0;
     }
 }

@@ -120,6 +120,9 @@ while (GLFW.WindowShouldClose(window) == 0)
 
 ImGuiImplD3D11.Shutdown();
 ImGuiImplGLFW.Shutdown();
+ImGui.DestroyContext();
+
+manager.Dispose();
 
 // Clean up and terminate GLFW
 GLFW.DestroyWindow(window);
