@@ -31,7 +31,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen.Runtime" Version="1.1.10" />
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.13" />
 	</ItemGroup>
 
 	<ItemGroup>

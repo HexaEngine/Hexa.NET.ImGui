@@ -1,13 +1,14 @@
 ﻿namespace ExampleD3D11
 {
+    using Hexa.NET.SDL2;
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D.Compilers;
     using Silk.NET.Direct3D11;
     using Silk.NET.DXGI;
-    using Silk.NET.SDL;
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    using ID3D11Device = Silk.NET.Direct3D11.ID3D11Device;
 
     public unsafe class D3D11Manager : IDisposable
     {
@@ -27,7 +28,7 @@
 
         private ComPtr<ID3D11RenderTargetView> swapChainRTV;
 
-        public D3D11Manager(Window* window, bool debug)
+        public D3D11Manager(SDLWindow* window, bool debug)
         {
             DXGI = DXGI.GetApi();
 
@@ -67,19 +68,18 @@
             CreateSwapChain(window);
         }
 
-        private void CreateSwapChain(Window* window)
+        private void CreateSwapChain(SDLWindow* window)
         {
-            Sdl sdl = Program.sdl;
-            SysWMInfo info;
-            sdl.GetVersion(&info.Version);
-            sdl.GetWindowWMInfo(window, &info);
+            SDLSysWMInfo info;
+            SDL.GetVersion(&info.Version);
+            SDL.GetWindowWMInfo(window, &info);
 
             int width = 0;
             int height = 0;
 
-            sdl.GetWindowSize(window, &width, &height);
+            SDL.GetWindowSize(window, &width, &height);
 
-            var Hwnd = info.Info.Win.Hwnd;
+            var Hwnd = info.Info.Win.Window;
 
             SwapChainDesc1 desc = new()
             {

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NetFrameworkTest": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
