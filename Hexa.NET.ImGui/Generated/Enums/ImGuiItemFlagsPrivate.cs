@@ -45,6 +45,16 @@ namespace Hexa.NET.ImGui
 		AllowOverlap = unchecked(16384),
 
 		/// <summary>
+		/// false      Nav keyboardgamepad mode doesn't disable hover highlight (behave as if NavHighlightItemUnderNav==false).<br/>
+		/// </summary>
+		NoNavDisableMouseHover = unchecked(32768),
+
+		/// <summary>
+		/// false      Skip calling MarkItemEdited()<br/>
+		/// </summary>
+		NoMarkEdited = unchecked(65536),
+
+		/// <summary>
 		/// false      [WIP] Auto-activate input mode when tab focused. Currently only used and supported by a few items before it becomes a generic feature.<br/>
 		/// </summary>
 		Inputable = unchecked(1048576),

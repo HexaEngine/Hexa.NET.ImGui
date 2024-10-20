@@ -100,9 +100,9 @@ namespace Hexa.NET.ImGui
 		NoSelect = unchecked(8192),
 
 		/// <summary>
-		/// Do not alter the visible state of keyboard vs mouse nav highlight<br/>
+		/// Do not alter the nav cursor visible state<br/>
 		/// </summary>
-		NoSetNavHighlight = unchecked(16384),
+		NoSetNavCursorVisible = unchecked(16384),
 
 		/// <summary>
 		/// (Experimental) Do not clear active id when applying move result<br/>

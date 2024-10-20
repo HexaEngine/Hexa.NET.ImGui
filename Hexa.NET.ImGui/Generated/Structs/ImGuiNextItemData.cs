@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiNextItemDataFlags Flags;
+		public ImGuiNextItemDataFlags HasFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -81,9 +81,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNextItemData(ImGuiNextItemDataFlags flags = default, ImGuiItemFlags itemFlags = default, uint focusScopeId = default, long selectionUserData = default, float width = default, int shortcut = default, ImGuiInputFlags shortcutFlags = default, bool openVal = default, byte openCond = default, ImGuiDataTypeStorage refVal = default, uint storageId = default)
+		public unsafe ImGuiNextItemData(ImGuiNextItemDataFlags hasFlags = default, ImGuiItemFlags itemFlags = default, uint focusScopeId = default, long selectionUserData = default, float width = default, int shortcut = default, ImGuiInputFlags shortcutFlags = default, bool openVal = default, byte openCond = default, ImGuiDataTypeStorage refVal = default, uint storageId = default)
 		{
-			Flags = flags;
+			HasFlags = hasFlags;
 			ItemFlags = itemFlags;
 			FocusScopeId = focusScopeId;
 			SelectionUserData = selectionUserData;
@@ -154,7 +154,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiNextItemDataFlags Flags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->Flags);
+		public ref ImGuiNextItemDataFlags HasFlags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->HasFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -43,5 +43,10 @@ namespace Hexa.NET.ImGui
 		/// [Internal]<br/>
 		/// </summary>
 		MouseButtonMask = unchecked(7),
+
+		/// <summary>
+		/// InvisibleButton(): do not disable navigationtabbing. Otherwise disabled by default.<br/>
+		/// </summary>
+		EnableNav = unchecked(8),
 	}
 }

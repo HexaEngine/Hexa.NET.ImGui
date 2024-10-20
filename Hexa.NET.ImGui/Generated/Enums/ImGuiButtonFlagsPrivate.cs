@@ -50,11 +50,6 @@ namespace Hexa.NET.ImGui
 		PressedOnDragDropHold = unchecked(512),
 
 		/// <summary>
-		/// hold to repeat<br/>
-		/// </summary>
-		Repeat = unchecked(1024),
-
-		/// <summary>
 		/// allow interactions even if a child window is overlapping<br/>
 		/// </summary>
 		FlattenChildren = unchecked(2048),
@@ -65,11 +60,6 @@ namespace Hexa.NET.ImGui
 		AllowOverlap = unchecked(4096),
 
 		/// <summary>
-		/// disable automatically closing parent popup on press  [UNUSED]<br/>
-		/// </summary>
-		DontClosePopups = unchecked(8192),
-
-		/// <summary>
 		/// vertically align button to match text baseline - ButtonEx() only  FIXME: Should be removed and handled by SmallButton(), not possible currently because of DC.CursorPosPrevLine<br/>
 		/// </summary>
 		AlignTextBaseLine = unchecked(32768),
@@ -77,7 +67,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// disable mouse interaction if a key modifier is held<br/>
 		/// </summary>
-		NoKeyModifiers = unchecked(65536),
+		NoKeyModsAllowed = unchecked(65536),
 
 		/// <summary>
 		/// don't set ActiveId while holding the mouse (ImGuiButtonFlags_PressedOnClick only)<br/>
@@ -85,7 +75,7 @@ namespace Hexa.NET.ImGui
 		NoHoldingActiveId = unchecked(131072),
 
 		/// <summary>
-		/// don't override navigation focus when activated (FIXME: this is essentially used every time an item uses ImGuiItemFlags_NoNav, but because legacy specs don't requires LastItemData to be set ButtonBehavior(), we can't poll g.LastItemData.InFlags)<br/>
+		/// don't override navigation focus when activated (FIXME: this is essentially used every time an item uses ImGuiItemFlags_NoNav, but because legacy specs don't requires LastItemData to be set ButtonBehavior(), we can't poll g.LastItemData.ItemFlags)<br/>
 		/// </summary>
 		NoNavFocus = unchecked(262144),
 

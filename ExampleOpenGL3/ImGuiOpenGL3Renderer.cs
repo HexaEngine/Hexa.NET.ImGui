@@ -597,7 +597,7 @@ namespace ExampleOpenGL3
             GL.TexImage2D(GLTextureTarget.Texture2D, 0, GLInternalFormat.Rgba, width, height, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedByte, pixels);
 
             // Store our identifier
-            io.Fonts.SetTexID((ImTextureID)(nint)bd->FontTexture);
+            io.Fonts.SetTexID((ImTextureID)bd->FontTexture);
 
             // Restore state
             /*GL_CALL*/

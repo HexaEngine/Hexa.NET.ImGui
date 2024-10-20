@@ -1,6 +1,4 @@
-﻿#define BackendsOnly
-
-namespace Generator
+﻿namespace Generator
 {
     using HexaGen;
     using HexaGen.Core.Logging;
@@ -51,8 +49,9 @@ namespace Generator
             Generate([CImGuizmoHeader], CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate([CImPlotHeader], CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
             Generate([CImNodesHeader], CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-#endif
+#else
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
+#endif
 
             string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32"];
 

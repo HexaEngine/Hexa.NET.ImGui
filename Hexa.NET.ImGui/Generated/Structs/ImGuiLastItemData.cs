@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiItemFlags InFlags;
+		public ImGuiItemFlags ItemFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -66,10 +66,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiLastItemData(uint id = default, ImGuiItemFlags inFlags = default, ImGuiItemStatusFlags statusFlags = default, ImRect rect = default, ImRect navRect = default, ImRect displayRect = default, ImRect clipRect = default, int shortcut = default)
+		public unsafe ImGuiLastItemData(uint id = default, ImGuiItemFlags itemFlags = default, ImGuiItemStatusFlags statusFlags = default, ImRect rect = default, ImRect navRect = default, ImRect displayRect = default, ImRect clipRect = default, int shortcut = default)
 		{
 			ID = id;
-			InFlags = inFlags;
+			ItemFlags = itemFlags;
 			StatusFlags = statusFlags;
 			Rect = rect;
 			NavRect = navRect;
@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
+		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -10,7 +10,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.3" />
-		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.14" />
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.15" />
 		<PackageReference Include="Hexa.NET.OpenGL3" Version="1.0.1" />
 	</ItemGroup>
 

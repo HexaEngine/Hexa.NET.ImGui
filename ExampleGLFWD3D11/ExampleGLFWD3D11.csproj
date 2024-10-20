@@ -11,7 +11,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.3" />
-		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.14" />
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.15" />
 		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.21.0" />
 		<PackageReference Include="Silk.NET.Direct3D11" Version="2.21.0" />
 		<PackageReference Include="Silk.NET.DXGI" Version="2.21.0" />

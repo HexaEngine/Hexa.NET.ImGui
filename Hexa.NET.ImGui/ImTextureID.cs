@@ -23,16 +23,19 @@ namespace Hexa.NET.ImGui
 	#endif
 	public readonly partial struct ImTextureID : IEquatable<ImTextureID>
 	{
-		public ImTextureID(nint handle) { Handle = handle; }
-		public nint Handle { get; }
+		public ImTextureID(ulong handle) { Handle = handle; }
+        public ImTextureID(nint handle) { Handle = (ulong)handle; }
+        public ulong Handle { get; }
 		public bool IsNull => Handle == 0;
 		public static ImTextureID Null => new ImTextureID(0);
-		public static implicit operator ImTextureID(nint handle) => new ImTextureID(handle);
-		public static bool operator ==(ImTextureID left, ImTextureID right) => left.Handle == right.Handle;
+        public static implicit operator ImTextureID(ulong handle) => new ImTextureID(handle);
+        public static bool operator ==(ImTextureID left, ImTextureID right) => left.Handle == right.Handle;
 		public static bool operator !=(ImTextureID left, ImTextureID right) => left.Handle != right.Handle;
-		public static bool operator ==(ImTextureID left, nint right) => left.Handle == right;
-		public static bool operator !=(ImTextureID left, nint right) => left.Handle != right;
-		public bool Equals(ImTextureID other) => Handle == other.Handle;
+		public static bool operator ==(ImTextureID left, nint right) => left.Handle == (ulong)right;
+		public static bool operator !=(ImTextureID left, nint right) => left.Handle != (ulong)right;
+        public static bool operator ==(ImTextureID left, ulong right) => left.Handle == right;
+        public static bool operator !=(ImTextureID left, ulong right) => left.Handle != right;
+        public bool Equals(ImTextureID other) => Handle == other.Handle;
 		/// <inheritdoc/>
 		public override bool Equals(object obj) => obj is ImTextureID handle && Equals(handle);
 		/// <inheritdoc/>

@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>0.5.0</AssemblyVersion>
-		<PackageVersion>2.1.7</PackageVersion>
+		<PackageVersion>2.1.8</PackageVersion>
 		<Description>A .NET wrapper for the ImNodes library. (0.5.0)</Description>
 		<PackageTags>ImNodes UI Immidate GUI Nodes Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>

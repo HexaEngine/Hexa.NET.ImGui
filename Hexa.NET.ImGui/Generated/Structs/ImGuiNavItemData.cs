@@ -45,7 +45,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiItemFlags InFlags;
+		public ImGuiItemFlags ItemFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -71,13 +71,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNavItemData(ImGuiWindowPtr window = default, uint id = default, uint focusScopeId = default, ImRect rectRel = default, ImGuiItemFlags inFlags = default, float distBox = default, float distCenter = default, float distAxial = default, long selectionUserData = default)
+		public unsafe ImGuiNavItemData(ImGuiWindowPtr window = default, uint id = default, uint focusScopeId = default, ImRect rectRel = default, ImGuiItemFlags itemFlags = default, float distBox = default, float distCenter = default, float distAxial = default, long selectionUserData = default)
 		{
 			Window = window;
 			ID = id;
 			FocusScopeId = focusScopeId;
 			RectRel = rectRel;
-			InFlags = inFlags;
+			ItemFlags = itemFlags;
 			DistBox = distBox;
 			DistCenter = distCenter;
 			DistAxial = distAxial;
@@ -158,7 +158,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
+		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

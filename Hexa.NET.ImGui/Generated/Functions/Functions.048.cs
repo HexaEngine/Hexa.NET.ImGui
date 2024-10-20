@@ -101,9 +101,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathArcToNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[546])(self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[547])(self, center, radius, aMin, aMax, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[546])((nint)self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[547])((nint)self, center, radius, aMin, aMax, numSegments);
 			#endif
 		}
 
@@ -152,9 +152,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, void>)funcTable[547])(self, center, radius, aMinOf12, aMaxOf12);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, void>)funcTable[548])(self, center, radius, aMinOf12, aMaxOf12);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, void>)funcTable[547])((nint)self, center, radius, aMinOf12, aMaxOf12);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, void>)funcTable[548])((nint)self, center, radius, aMinOf12, aMaxOf12);
 			#endif
 		}
 
@@ -184,9 +184,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, float, int, void>)funcTable[548])(self, center, radius, rot, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, float, int, void>)funcTable[549])(self, center, radius, rot, aMin, aMax, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, float, int, void>)funcTable[548])((nint)self, center, radius, rot, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, float, int, void>)funcTable[549])((nint)self, center, radius, rot, aMin, aMax, numSegments);
 			#endif
 		}
 
@@ -235,9 +235,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, int, void>)funcTable[549])(self, p2, p3, p4, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, int, void>)funcTable[550])(self, p2, p3, p4, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, int, void>)funcTable[549])((nint)self, p2, p3, p4, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, int, void>)funcTable[550])((nint)self, p2, p3, p4, numSegments);
 			#endif
 		}
 
@@ -286,9 +286,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, int, void>)funcTable[550])(self, p2, p3, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, int, void>)funcTable[551])(self, p2, p3, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, int, void>)funcTable[550])((nint)self, p2, p3, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, int, void>)funcTable[551])((nint)self, p2, p3, numSegments);
 			#endif
 		}
 
@@ -337,9 +337,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathRectNative(ImDrawList* self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[551])(self, rectMin, rectMax, rounding, flags);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[552])(self, rectMin, rectMax, rounding, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[551])((nint)self, rectMin, rectMax, rounding, flags);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[552])((nint)self, rectMin, rectMax, rounding, flags);
 			#endif
 		}
 
@@ -420,34 +420,72 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddCallbackNative(ImDrawList* self, ImDrawCallback callback, void* callbackData)
+		internal static void AddCallbackNative(ImDrawList* self, ImDrawCallback callback, void* userdata, ulong userdataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, delegate*<ImDrawList*, ImDrawCmd*, void>, void*, void>)funcTable[552])(self, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), callbackData);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, delegate*<ImDrawList*, ImDrawCmd*, void>, void*, ulong, void>)funcTable[553])(self, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), userdata, userdataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[552])((nint)self, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)callbackData);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, ulong, void>)funcTable[553])((nint)self, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)userdata, userdataSize);
 			#endif
 		}
 
 		/// <summary>
-		/// Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.<br/>
+		/// To be documented.
 		/// </summary>
-		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* callbackData)
+		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* userdata, ulong userdataSize)
 		{
-			AddCallbackNative(self, callback, callbackData);
+			AddCallbackNative(self, callback, userdata, userdataSize);
 		}
 
 		/// <summary>
-		/// Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.<br/>
+		/// To be documented.
 		/// </summary>
-		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* callbackData)
+		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* userdata)
+		{
+			AddCallbackNative(self, callback, userdata, (ulong)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* userdata, ulong userdataSize)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				AddCallbackNative((ImDrawList*)pself, callback, callbackData);
+				AddCallbackNative((ImDrawList*)pself, callback, userdata, userdataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* userdata)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddCallbackNative((ImDrawList*)pself, callback, userdata, (ulong)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* userdata, nuint userdataSize)
+		{
+			AddCallbackNative(self, callback, userdata, userdataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* userdata, nuint userdataSize)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddCallbackNative((ImDrawList*)pself, callback, userdata, userdataSize);
 			}
 		}
 
@@ -458,9 +496,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddDrawCmdNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[553])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[554])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[553])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[554])((nint)self);
 			#endif
 		}
 
@@ -490,9 +528,9 @@ namespace Hexa.NET.ImGui
 		internal static ImDrawList* CloneOutputNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*>)funcTable[554])(self);
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*>)funcTable[555])(self);
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[554])((nint)self);
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[555])((nint)self);
 			#endif
 		}
 
@@ -524,9 +562,9 @@ namespace Hexa.NET.ImGui
 		internal static void ChannelsSplitNative(ImDrawList* self, int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[555])(self, count);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[556])(self, count);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[555])((nint)self, count);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[556])((nint)self, count);
 			#endif
 		}
 
@@ -556,9 +594,9 @@ namespace Hexa.NET.ImGui
 		internal static void ChannelsMergeNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[556])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[557])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[556])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[557])((nint)self);
 			#endif
 		}
 
@@ -588,9 +626,9 @@ namespace Hexa.NET.ImGui
 		internal static void ChannelsSetCurrentNative(ImDrawList* self, int n)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[557])(self, n);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[558])(self, n);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[557])((nint)self, n);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[558])((nint)self, n);
 			#endif
 		}
 
@@ -620,9 +658,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimReserveNative(ImDrawList* self, int idxCount, int vtxCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[558])(self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[559])(self, idxCount, vtxCount);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[558])((nint)self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[559])((nint)self, idxCount, vtxCount);
 			#endif
 		}
 
@@ -652,9 +690,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimUnreserveNative(ImDrawList* self, int idxCount, int vtxCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[559])(self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[560])(self, idxCount, vtxCount);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[559])((nint)self, idxCount, vtxCount);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[560])((nint)self, idxCount, vtxCount);
 			#endif
 		}
 
@@ -684,9 +722,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimRectNative(ImDrawList* self, Vector2 a, Vector2 b, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[560])(self, a, b, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[561])(self, a, b, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[560])((nint)self, a, b, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[561])((nint)self, a, b, col);
 			#endif
 		}
 
@@ -716,9 +754,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimRectUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[561])(self, a, b, uvA, uvB, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[562])(self, a, b, uvA, uvB, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[561])((nint)self, a, b, uvA, uvB, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[562])((nint)self, a, b, uvA, uvB, col);
 			#endif
 		}
 
@@ -748,9 +786,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimQuadUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[562])(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[563])(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[562])((nint)self, a, b, c, d, uvA, uvB, uvC, uvD, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[563])((nint)self, a, b, c, d, uvA, uvB, uvC, uvD, col);
 			#endif
 		}
 
@@ -780,9 +818,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimWriteVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[563])(self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[564])(self, pos, uv, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[563])((nint)self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[564])((nint)self, pos, uv, col);
 			#endif
 		}
 
@@ -812,9 +850,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimWriteIdxNative(ImDrawList* self, ushort idx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ushort, void>)funcTable[564])(self, idx);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ushort, void>)funcTable[565])(self, idx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[564])((nint)self, idx);
+			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[565])((nint)self, idx);
 			#endif
 		}
 
@@ -844,9 +882,9 @@ namespace Hexa.NET.ImGui
 		internal static void PrimVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[565])(self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[566])(self, pos, uv, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[565])((nint)self, pos, uv, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[566])((nint)self, pos, uv, col);
 			#endif
 		}
 
@@ -876,9 +914,9 @@ namespace Hexa.NET.ImGui
 		internal static void _ResetForNewFrameNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[566])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[567])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[566])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[567])((nint)self);
 			#endif
 		}
 
@@ -908,9 +946,9 @@ namespace Hexa.NET.ImGui
 		internal static void _ClearFreeMemoryNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[567])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[568])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[567])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[568])((nint)self);
 			#endif
 		}
 
@@ -940,9 +978,9 @@ namespace Hexa.NET.ImGui
 		internal static void _PopUnusedDrawCmdNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[568])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[569])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[568])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[569])((nint)self);
 			#endif
 		}
 
@@ -972,9 +1010,9 @@ namespace Hexa.NET.ImGui
 		internal static void _TryMergeDrawCmdsNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[569])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[570])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[569])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[570])((nint)self);
 			#endif
 		}
 
@@ -1004,9 +1042,9 @@ namespace Hexa.NET.ImGui
 		internal static void _OnChangedClipRectNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[570])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[571])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[570])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[571])((nint)self);
 			#endif
 		}
 
@@ -1036,9 +1074,9 @@ namespace Hexa.NET.ImGui
 		internal static void _OnChangedTextureIDNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[571])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[572])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[571])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[572])((nint)self);
 			#endif
 		}
 
@@ -1068,9 +1106,9 @@ namespace Hexa.NET.ImGui
 		internal static void _OnChangedVtxOffsetNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[572])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[573])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[572])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[573])((nint)self);
 			#endif
 		}
 
@@ -1100,9 +1138,9 @@ namespace Hexa.NET.ImGui
 		internal static void _SetTextureIDNative(ImDrawList* self, ImTextureID textureId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, void>)funcTable[573])(self, textureId);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, void>)funcTable[574])(self, textureId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)funcTable[573])((nint)self, textureId);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)funcTable[574])((nint)self, textureId);
 			#endif
 		}
 
@@ -1132,9 +1170,9 @@ namespace Hexa.NET.ImGui
 		internal static int _CalcCircleAutoSegmentCountNative(ImDrawList* self, float radius)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, float, int>)funcTable[574])(self, radius);
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*, float, int>)funcTable[575])(self, radius);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, float, int>)funcTable[574])((nint)self, radius);
+			return (int)((delegate* unmanaged[Cdecl]<nint, float, int>)funcTable[575])((nint)self, radius);
 			#endif
 		}
 
@@ -1166,9 +1204,9 @@ namespace Hexa.NET.ImGui
 		internal static void _PathArcToFastExNative(ImDrawList* self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, int, void>)funcTable[575])(self, center, radius, aMinSample, aMaxSample, aStep);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, int, void>)funcTable[576])(self, center, radius, aMinSample, aMaxSample, aStep);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, int, void>)funcTable[575])((nint)self, center, radius, aMinSample, aMaxSample, aStep);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, int, void>)funcTable[576])((nint)self, center, radius, aMinSample, aMaxSample, aStep);
 			#endif
 		}
 
@@ -1198,9 +1236,9 @@ namespace Hexa.NET.ImGui
 		internal static void _PathArcToNNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[576])(self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[577])(self, center, radius, aMin, aMax, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[576])((nint)self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[577])((nint)self, center, radius, aMin, aMax, numSegments);
 			#endif
 		}
 
@@ -1230,9 +1268,9 @@ namespace Hexa.NET.ImGui
 		internal static ImDrawData* ImDrawDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)funcTable[577])();
+			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)funcTable[578])();
 			#else
-			return (ImDrawData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[577])();
+			return (ImDrawData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[578])();
 			#endif
 		}
 
@@ -1252,9 +1290,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImDrawData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[578])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[579])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[578])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[579])((nint)self);
 			#endif
 		}
 
@@ -1284,9 +1322,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImDrawData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[579])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[580])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[579])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[580])((nint)self);
 			#endif
 		}
 
@@ -1316,9 +1354,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddDrawListNative(ImDrawData* self, ImDrawList* drawList)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ImDrawList*, void>)funcTable[580])(self, drawList);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ImDrawList*, void>)funcTable[581])(self, drawList);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[580])((nint)self, (nint)drawList);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[581])((nint)self, (nint)drawList);
 			#endif
 		}
 
@@ -1373,9 +1411,9 @@ namespace Hexa.NET.ImGui
 		internal static void DeIndexAllBuffersNative(ImDrawData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[581])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[582])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[581])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[582])((nint)self);
 			#endif
 		}
 
@@ -1405,9 +1443,9 @@ namespace Hexa.NET.ImGui
 		internal static void ScaleClipRectsNative(ImDrawData* self, Vector2 fbScale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, Vector2, void>)funcTable[582])(self, fbScale);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, Vector2, void>)funcTable[583])(self, fbScale);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[582])((nint)self, fbScale);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[583])((nint)self, fbScale);
 			#endif
 		}
 
@@ -1437,9 +1475,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontConfig* ImFontConfigNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontConfig*>)funcTable[583])();
+			return ((delegate* unmanaged[Cdecl]<ImFontConfig*>)funcTable[584])();
 			#else
-			return (ImFontConfig*)((delegate* unmanaged[Cdecl]<nint>)funcTable[583])();
+			return (ImFontConfig*)((delegate* unmanaged[Cdecl]<nint>)funcTable[584])();
 			#endif
 		}
 
@@ -1459,9 +1497,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImFontConfig* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontConfig*, void>)funcTable[584])(self);
+			((delegate* unmanaged[Cdecl]<ImFontConfig*, void>)funcTable[585])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[584])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[585])((nint)self);
 			#endif
 		}
 
@@ -1491,9 +1529,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilderNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*>)funcTable[585])();
+			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*>)funcTable[586])();
 			#else
-			return (ImFontGlyphRangesBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[585])();
+			return (ImFontGlyphRangesBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[586])();
 			#endif
 		}
 
@@ -1513,9 +1551,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImFontGlyphRangesBuilder* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[586])(self);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[587])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[586])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[587])((nint)self);
 			#endif
 		}
 
@@ -1545,9 +1583,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImFontGlyphRangesBuilder* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[587])(self);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[588])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[587])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[588])((nint)self);
 			#endif
 		}
 
@@ -1577,9 +1615,9 @@ namespace Hexa.NET.ImGui
 		internal static byte GetBitNative(ImFontGlyphRangesBuilder* self, ulong n)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, byte>)funcTable[588])(self, n);
+			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, byte>)funcTable[589])(self, n);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, byte>)funcTable[588])((nint)self, n);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, byte>)funcTable[589])((nint)self, n);
 			#endif
 		}
 
@@ -1632,9 +1670,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetBitNative(ImFontGlyphRangesBuilder* self, ulong n)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, void>)funcTable[589])(self, n);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, void>)funcTable[590])(self, n);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[589])((nint)self, n);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[590])((nint)self, n);
 			#endif
 		}
 
@@ -1683,9 +1721,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddCharNative(ImFontGlyphRangesBuilder* self, char c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char, void>)funcTable[590])(self, c);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char, void>)funcTable[591])(self, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, char, void>)funcTable[590])((nint)self, c);
+			((delegate* unmanaged[Cdecl]<nint, char, void>)funcTable[591])((nint)self, c);
 			#endif
 		}
 
@@ -1715,9 +1753,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddTextNative(ImFontGlyphRangesBuilder* self, byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, byte*, byte*, void>)funcTable[591])(self, text, textEnd);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, byte*, byte*, void>)funcTable[592])(self, text, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[591])((nint)self, (nint)text, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[592])((nint)self, (nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -2264,9 +2302,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddRangesNative(ImFontGlyphRangesBuilder* self, char* ranges)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char*, void>)funcTable[592])(self, ranges);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char*, void>)funcTable[593])(self, ranges);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[592])((nint)self, (nint)ranges);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[593])((nint)self, (nint)ranges);
 			#endif
 		}
 
@@ -2321,9 +2359,9 @@ namespace Hexa.NET.ImGui
 		internal static void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVector<char>* outRanges)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVector<char>*, void>)funcTable[593])(self, outRanges);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVector<char>*, void>)funcTable[594])(self, outRanges);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[593])((nint)self, (nint)outRanges);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[594])((nint)self, (nint)outRanges);
 			#endif
 		}
 
@@ -2378,9 +2416,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontAtlasCustomRect* ImFontAtlasCustomRectNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*>)funcTable[594])();
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*>)funcTable[595])();
 			#else
-			return (ImFontAtlasCustomRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[594])();
+			return (ImFontAtlasCustomRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[595])();
 			#endif
 		}
 
@@ -2400,9 +2438,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImFontAtlasCustomRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, void>)funcTable[595])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, void>)funcTable[596])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[595])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[596])((nint)self);
 			#endif
 		}
 
@@ -2432,9 +2470,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsPackedNative(ImFontAtlasCustomRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, byte>)funcTable[596])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, byte>)funcTable[597])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[596])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[597])((nint)self);
 			#endif
 		}
 
@@ -2466,9 +2504,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontAtlas* ImFontAtlasNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*>)funcTable[597])();
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*>)funcTable[598])();
 			#else
-			return (ImFontAtlas*)((delegate* unmanaged[Cdecl]<nint>)funcTable[597])();
+			return (ImFontAtlas*)((delegate* unmanaged[Cdecl]<nint>)funcTable[598])();
 			#endif
 		}
 
@@ -2488,9 +2526,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[598])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[599])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[598])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[599])((nint)self);
 			#endif
 		}
 
@@ -2520,9 +2558,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontNative(ImFontAtlas* self, ImFontConfig* fontCfg)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)funcTable[599])(self, fontCfg);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)funcTable[600])(self, fontCfg);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[599])((nint)self, (nint)fontCfg);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[600])((nint)self, (nint)fontCfg);
 			#endif
 		}
 
@@ -2581,9 +2619,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontDefaultNative(ImFontAtlas* self, ImFontConfig* fontCfg)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)funcTable[600])(self, fontCfg);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)funcTable[601])(self, fontCfg);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[600])((nint)self, (nint)fontCfg);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[601])((nint)self, (nint)fontCfg);
 			#endif
 		}
 
@@ -2663,9 +2701,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontFromFileTTFNative(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)funcTable[601])(self, filename, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)funcTable[602])(self, filename, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)funcTable[601])((nint)self, (nint)filename, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)funcTable[602])((nint)self, (nint)filename, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -4062,9 +4100,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontFromMemoryTTFNative(ImFontAtlas* self, void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)funcTable[602])(self, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)funcTable[603])(self, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)funcTable[602])((nint)self, (nint)fontData, fontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)funcTable[603])((nint)self, (nint)fontData, fontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -4300,9 +4338,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontFromMemoryCompressedTTFNative(ImFontAtlas* self, void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)funcTable[603])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)funcTable[604])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)funcTable[603])((nint)self, (nint)compressedFontData, compressedFontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)funcTable[604])((nint)self, (nint)compressedFontData, compressedFontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -4538,9 +4576,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontFromMemoryCompressedBase85TTFNative(ImFontAtlas* self, byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)funcTable[604])(self, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)funcTable[605])(self, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)funcTable[604])((nint)self, (nint)compressedFontDatabase85, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)funcTable[605])((nint)self, (nint)compressedFontDatabase85, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -4989,39 +5027,6 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDatabase85, float sizePixels, ImFontConfigPtr fontCfg)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);

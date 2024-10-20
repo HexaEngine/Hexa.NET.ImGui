@@ -25,18 +25,13 @@ namespace Hexa.NET.ImGui
 		Multiline = unchecked(67108864),
 
 		/// <summary>
-		/// For internal use by functions using InputText() before reformatting data<br/>
-		/// </summary>
-		NoMarkEdited = unchecked(134217728),
-
-		/// <summary>
 		/// For internal use by TempInputText(), will skip calling ItemAdd(). Require bounding-box to strictly match.<br/>
 		/// </summary>
-		MergedItem = unchecked(268435456),
+		MergedItem = unchecked(134217728),
 
 		/// <summary>
 		/// For internal use by InputScalar() and TempInputScalar()<br/>
 		/// </summary>
-		LocalizeDecimalPoint = unchecked(536870912),
+		LocalizeDecimalPoint = unchecked(268435456),
 	}
 }

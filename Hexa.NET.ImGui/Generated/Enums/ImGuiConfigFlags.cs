@@ -35,16 +35,6 @@ namespace Hexa.NET.ImGui
 		NavEnableGamepad = unchecked(2),
 
 		/// <summary>
-		/// Instruct navigation to move the mouse cursor. May be useful on TVconsole systems where moving a virtual mouse is awkward. Will update io.MousePos and set io.WantSetMousePos=true. If enabled you MUST honor io.WantSetMousePos requests in your backend, otherwise ImGui will react as if the mouse is jumping around back and forth.<br/>
-		/// </summary>
-		NavEnableSetMousePos = unchecked(4),
-
-		/// <summary>
-		/// Instruct navigation to not set the io.WantCaptureKeyboard flag when io.NavActive is set.<br/>
-		/// </summary>
-		NavNoCaptureKeyboard = unchecked(8),
-
-		/// <summary>
 		/// Instruct dear imgui to disable mouse inputs and interactions.<br/>
 		/// </summary>
 		NoMouse = unchecked(16),

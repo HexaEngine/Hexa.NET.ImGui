@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		ClipLabelForTrailingButton = unchecked(268435456),
 
 		/// <summary>
-		/// FIXME-WIP: Turn Down arrow into an Up arrow, but reversed trees (#6517)<br/>
+		/// FIXME-WIP: Turn Down arrow into an Up arrow, for reversed trees (#6517)<br/>
 		/// </summary>
 		UpsideDownArrow = unchecked(536870912),
 

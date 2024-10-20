@@ -105,12 +105,12 @@ namespace Hexa.NET.ImGui
 		AlwaysHorizontalScrollbar = unchecked(32768),
 
 		/// <summary>
-		/// No gamepadkeyboard navigation within the window<br/>
+		/// No keyboardgamepad navigation within the window<br/>
 		/// </summary>
 		NoNavInputs = unchecked(65536),
 
 		/// <summary>
-		/// No focusing toward this window with gamepadkeyboard navigation (e.g. skipped by CTRL+TAB)<br/>
+		/// No focusing toward this window with keyboardgamepad navigation (e.g. skipped by CTRL+TAB)<br/>
 		/// </summary>
 		NoNavFocus = unchecked(131072),
 

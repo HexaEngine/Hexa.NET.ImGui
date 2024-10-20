@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		AllowTabInput = unchecked(32),
 
 		/// <summary>
-		/// Return 'true' when Enter is pressed (as opposed to every time the value was modified). Consider looking at the IsItemDeactivatedAfterEdit() function.<br/>
+		/// Return 'true' when Enter is pressed (as opposed to every time the value was modified). Consider using IsItemDeactivatedAfterEdit() instead!<br/>
 		/// </summary>
 		EnterReturnsTrue = unchecked(64),
 
