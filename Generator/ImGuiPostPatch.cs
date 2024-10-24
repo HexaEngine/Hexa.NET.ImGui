@@ -1,6 +1,7 @@
 ﻿namespace Generator
 {
     using HexaGen;
+    using HexaGen.FunctionGeneration;
     using HexaGen.Metadata;
     using HexaGen.Patching;
     using System;
@@ -75,6 +76,11 @@
             generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(generationType));
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
             generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None));
+            if (config.Contains("manual"))
+            {
+                generator.FunctionGenerator.OverwriteRule<FunctionGenRuleSpan>(new ManualFunctionGenRuleSpan());
+            }
+
             generator.LogToConsole();
             generator.CopyFrom(metadata);
             generator.Generate(header, output);

@@ -8,6 +8,7 @@
   "GenerateSizeOfStructs": false,
   "AutoSquashTypedef": true,
   "GenerateExtensions": false,
+  "GenerateAdditionalOverloads": true,
   "KnownConstantNames": {},
   "KnownEnumValueNames": { "": "" },
   "KnownDefaultValueNames": {
