@@ -34,7 +34,7 @@
 
             Generate(metadata, CImGuiHeader, CImGuiManualConfig, ImGuiManualOutputPath, InternalsGenerationType.BothOrDontCare, out patchMetadata);
             File.Move(Path.Combine(ImGuiManualOutputPath, "FunctionTable.cs"), Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Move latest to base.
-      
+
             // Patch Functions
             {
                 Regex regex = new("\\b(.*) = Utils.GetByteCountUTF8\\b\\(buf\\);");
@@ -75,6 +75,7 @@
             generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(generationType));
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
             generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None));
+            generator.LogToConsole();
             generator.CopyFrom(metadata);
             generator.Generate(header, output);
             meta = generator.GetMetadata();

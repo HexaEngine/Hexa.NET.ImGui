@@ -21,6 +21,471 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return input UTF-8 bytes count<br/>
 		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, byte* inText, string inTextEnd)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (inTextEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(inTextEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(inTextEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, inText, pStr0, (byte**)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, ref byte inText, ref byte inTextEnd, byte** inRemaining)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				fixed (byte* pinTextEnd = &inTextEnd)
+				{
+					int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, inRemaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, ref byte inText, ref byte inTextEnd)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				fixed (byte* pinTextEnd = &inTextEnd)
+				{
+					int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, (byte**)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, ReadOnlySpan<byte> inText, ReadOnlySpan<byte> inTextEnd, byte** inRemaining)
+		{
+			fixed (byte* pinText = inText)
+			{
+				fixed (byte* pinTextEnd = inTextEnd)
+				{
+					int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, inRemaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, ReadOnlySpan<byte> inText, ReadOnlySpan<byte> inTextEnd)
+		{
+			fixed (byte* pinText = inText)
+			{
+				fixed (byte* pinTextEnd = inTextEnd)
+				{
+					int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, (byte**)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, string inText, string inTextEnd, byte** inRemaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (inTextEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(inTextEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(inTextEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, pStr0, pStr1, inRemaining);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, string inText, string inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (inTextEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(inTextEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(inTextEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, pStr0, pStr1, (byte**)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ref byte inText, ref byte inTextEnd, byte** inRemaining)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				fixed (byte* pinText = &inText)
+				{
+					fixed (byte* pinTextEnd = &inTextEnd)
+					{
+						int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, inRemaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ref byte inText, ref byte inTextEnd)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				fixed (byte* pinText = &inText)
+				{
+					fixed (byte* pinTextEnd = &inTextEnd)
+					{
+						int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, (byte**)(default));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ReadOnlySpan<byte> inText, ReadOnlySpan<byte> inTextEnd, byte** inRemaining)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				fixed (byte* pinText = inText)
+				{
+					fixed (byte* pinTextEnd = inTextEnd)
+					{
+						int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, inRemaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ReadOnlySpan<byte> inText, ReadOnlySpan<byte> inTextEnd)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				fixed (byte* pinText = inText)
+				{
+					fixed (byte* pinTextEnd = inTextEnd)
+					{
+						int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, (byte*)pinText, (byte*)pinTextEnd, (byte**)(default));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, string inText, string inTextEnd, byte** inRemaining)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (inText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(inText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (inTextEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(inTextEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(inTextEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, pStr0, pStr1, inRemaining);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, string inText, string inTextEnd)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (inText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(inText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (inTextEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(inTextEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(inTextEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, pStr0, pStr1, (byte**)(default));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, byte* inText, byte* inTextEnd, ref byte* inRemaining)
+		{
+			fixed (byte** pinRemaining = &inRemaining)
+			{
+				int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, inText, inTextEnd, (byte**)pinRemaining);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, byte* inText, byte* inTextEnd, ref byte* inRemaining)
+		{
+			fixed (char* poutBuf = &outBuf)
+			{
+				fixed (byte** pinRemaining = &inRemaining)
+				{
+					int ret = ImTextStrFromUtf8Native((char*)poutBuf, outBufSize, inText, inTextEnd, (byte**)pinRemaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, ref byte inText, byte* inTextEnd, ref byte* inRemaining)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				fixed (byte** pinRemaining = &inRemaining)
+				{
+					int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, (byte*)pinText, inTextEnd, (byte**)pinRemaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, ReadOnlySpan<byte> inText, byte* inTextEnd, ref byte* inRemaining)
+		{
+			fixed (byte* pinText = inText)
+			{
+				fixed (byte** pinRemaining = &inRemaining)
+				{
+					int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, (byte*)pinText, inTextEnd, (byte**)pinRemaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextStrFromUtf8(char* outBuf, int outBufSize, string inText, byte* inTextEnd, ref byte* inRemaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** pinRemaining = &inRemaining)
+			{
+				int ret = ImTextStrFromUtf8Native(outBuf, outBufSize, pStr0, inTextEnd, (byte**)pinRemaining);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return input UTF-8 bytes count<br/>
+		/// </summary>
 		public static int ImTextStrFromUtf8(ref char outBuf, int outBufSize, ref byte inText, byte* inTextEnd, ref byte* inRemaining)
 		{
 			fixed (char* poutBuf = &outBuf)
@@ -1522,7 +1987,10 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextExNative(label, hint, pStr0, bufSize, sizeArg, flags, callback, userData);
-			buf = Utils.DecodeStringUTF8(pStr0);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1553,7 +2021,10 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextExNative(label, hint, pStr0, bufSize, sizeArg, flags, callback, (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr0);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1584,7 +2055,10 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextExNative(label, hint, pStr0, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr0);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1615,7 +2089,10 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextExNative(label, hint, pStr0, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), userData);
-			buf = Utils.DecodeStringUTF8(pStr0);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1783,7 +2260,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, hint, pStr1, bufSize, sizeArg, flags, callback, userData);
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1835,7 +2315,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, hint, pStr1, bufSize, sizeArg, flags, callback, (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1887,7 +2370,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, hint, pStr1, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1939,7 +2425,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, hint, pStr1, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), userData);
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2111,7 +2600,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(label, pStr0, pStr1, bufSize, sizeArg, flags, callback, userData);
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2163,7 +2655,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(label, pStr0, pStr1, bufSize, sizeArg, flags, callback, (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2215,7 +2710,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(label, pStr0, pStr1, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2267,7 +2765,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextExNative(label, pStr0, pStr1, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), userData);
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2480,7 +2981,10 @@ namespace Hexa.NET.ImGui
 				pStr2[pStrOffset2] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, pStr1, pStr2, bufSize, sizeArg, flags, callback, userData);
-			buf = Utils.DecodeStringUTF8(pStr2);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr2);
+			}
 			if (pStrSize2 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr2);
@@ -2553,7 +3057,10 @@ namespace Hexa.NET.ImGui
 				pStr2[pStrOffset2] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, pStr1, pStr2, bufSize, sizeArg, flags, callback, (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr2);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr2);
+			}
 			if (pStrSize2 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr2);
@@ -2626,7 +3133,10 @@ namespace Hexa.NET.ImGui
 				pStr2[pStrOffset2] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, pStr1, pStr2, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			buf = Utils.DecodeStringUTF8(pStr2);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr2);
+			}
 			if (pStrSize2 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr2);
@@ -2699,7 +3209,10 @@ namespace Hexa.NET.ImGui
 				pStr2[pStrOffset2] = 0;
 			}
 			byte ret = InputTextExNative(pStr0, pStr1, pStr2, bufSize, sizeArg, flags, (ImGuiInputTextCallback)(default), userData);
-			buf = Utils.DecodeStringUTF8(pStr2);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr2);
+			}
 			if (pStrSize2 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr2);
@@ -2826,7 +3339,10 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = TempInputTextNative(bb, id, label, pStr0, bufSize, flags);
-			buf = Utils.DecodeStringUTF8(pStr0);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2904,7 +3420,10 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = TempInputTextNative(bb, id, pStr0, pStr1, bufSize, flags);
-			buf = Utils.DecodeStringUTF8(pStr1);
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);

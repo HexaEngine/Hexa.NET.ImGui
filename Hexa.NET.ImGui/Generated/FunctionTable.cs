@@ -19,6 +19,9 @@ namespace Hexa.NET.ImGui
 	{
 		internal static FunctionTable funcTable;
 
+		/// <summary>
+		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
+		/// </summary>
 		public static void InitApi()
 		{
 			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 1440);

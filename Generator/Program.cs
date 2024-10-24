@@ -1,10 +1,8 @@
 ﻿namespace Generator
 {
     using HexaGen;
-    using HexaGen.Core.Logging;
     using HexaGen.Metadata;
     using HexaGen.Patching;
-    using System.Text.Json.Serialization;
 
     internal unsafe class Program
     {
@@ -55,7 +53,7 @@
 
             string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32"];
 
-            metadata.DefinedFunctions.Clear();
+            metadata.CppDefinedFunctions.Clear();
 
             CsCodeGeneratorMetadata? metadataBackend = new()
             {
@@ -92,7 +90,7 @@
             generator.PatchEngine.RegisterPostPatch(new ImGuiPostPatch());
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
 
-            generator.LogEvent += GeneratorLogEvent;
+            generator.LogToConsole();
 
             if (lib != null)
             {
@@ -101,8 +99,6 @@
 
             bool result = generator.Generate([.. headers], output);
             metadata = generator.GetMetadata();
-
-            generator.LogEvent -= GeneratorLogEvent;
 
             File.WriteAllText(settings.LibName + ".log", string.Join(Environment.NewLine, generator.Messages.Select(x => x.ToString())));
 
@@ -146,7 +142,7 @@
             generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot", ignoreName], NamingPatchOptions.MultiplePrefixes));
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
 
-            generator.LogEvent += GeneratorLogEvent;
+            generator.LogToConsole();
 
             if (lib != null)
             {
@@ -165,8 +161,6 @@
             bool result = generator.Generate([.. headers], output);
             metadata = generator.GetMetadata();
 
-            generator.LogEvent -= GeneratorLogEvent;
-
             File.WriteAllText(settings.LibName + ".log", string.Join(Environment.NewLine, generator.Messages.Select(x => x.ToString())));
 
             lib?.Merge(metadata, true);
@@ -179,51 +173,6 @@
             File.WriteAllText(destPath, text);
 
             return result;
-        }
-
-        private static void GeneratorLogEvent(LogSeverity severity, string message)
-        {
-            switch (severity)
-            {
-                case LogSeverity.Trace:
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    break;
-
-                case LogSeverity.Debug:
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    break;
-
-                case LogSeverity.Information:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-
-                case LogSeverity.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-
-                case LogSeverity.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-
-                case LogSeverity.Critical:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    break;
-            }
-
-            string type = severity switch
-            {
-                LogSeverity.Trace => "[Trc]",
-                LogSeverity.Debug => "[Dbg]",
-                LogSeverity.Information => "[Inf]",
-                LogSeverity.Warning => "[Wrn]",
-                LogSeverity.Error => "[Err]",
-                LogSeverity.Critical => "[Crt]",
-                _ => "[Unk]",
-            };
-
-            Console.Write(type);
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
