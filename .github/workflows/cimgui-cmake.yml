@@ -11,11 +11,11 @@ jobs:
           - os: ubuntu-latest
             arch: x86_64
             cmake-arch: x64
-            vcpkg-triplet: x64-linux-static
+            vcpkg-triplet: x64-linux
           - os: ubuntu-latest
             arch: arm64
             cmake-arch: aarch64
-            vcpkg-triplet: arm64-linux-static
+            vcpkg-triplet: arm64-linux
           - os: windows-latest
             arch: x86_64
             cmake-arch: x64
@@ -31,11 +31,11 @@ jobs:
           - os: macos-latest
             arch: x86_64
             cmake-arch: x86_64
-            vcpkg-triplet: x64-osx-static
+            vcpkg-triplet: x64-osx
           - os: macos-latest
             arch: arm64
             cmake-arch: arm64
-            vcpkg-triplet: arm64-osx-static
+            vcpkg-triplet: arm64-osx
     steps:
     - uses: actions/checkout@v4.1.7
       with:
