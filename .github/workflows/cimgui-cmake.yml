@@ -11,28 +11,35 @@ jobs:
           - os: ubuntu-latest
             arch: x86_64
             cmake-arch: x64
+            vcpkg-triplet: x64-linux
           - os: ubuntu-latest
             arch: arm64
             cmake-arch: aarch64
+            vcpkg-triplet: arm64-linux
           - os: windows-latest
             arch: x86_64
             cmake-arch: x64
+            vcpkg-triplet: x64-windows-static
           - os: windows-latest
             arch: x86
             cmake-arch: win32
+            vcpkg-triplet: x86-windows-static
           - os: windows-latest
             arch: arm64
             cmake-arch: arm64
+            vcpkg-triplet: arm64-windows-static
           - os: macos-latest
             arch: x86_64
             cmake-arch: x86_64
+            vcpkg-triplet: x64-osx
           - os: macos-latest
             arch: arm64
             cmake-arch: arm64
+            vcpkg-triplet: arm64-osx
     steps:
     - uses: actions/checkout@v4.1.7
       with:
-        repository: 'cimgui/cimgui'
+        repository: 'JunaMeinhold/cimgui'
         path: 'cimgui'
         submodules: true
 
@@ -42,27 +49,50 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential cmake
         
-
     - name: Install Cross-Compilation Tools for ARM64
       if: matrix.os == 'ubuntu-latest' && matrix.arch == 'arm64'
       run: |
         sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 
+    - name: Install vcpkg on Linux and macOS
+      if: runner.os != 'Windows'
+      run: |
+        cd cimgui 
+        git clone https://github.com/microsoft/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.sh
+        ./vcpkg/vcpkg install freetype --triplet ${{ matrix.vcpkg-triplet }}
+
+    - name: Install vcpkg on Windows
+      if: runner.os == 'Windows'
+      run: |
+        cd cimgui 
+        git clone https://github.com/microsoft/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.bat
+        ./vcpkg/vcpkg.exe install freetype --triplet ${{ matrix.vcpkg-triplet }}
+
     - name: Configure cimgui with CMake for ARM64 on Linux
       if: matrix.os == 'ubuntu-latest' && matrix.arch == 'arm64'
-      run: cmake -S cimgui -B cimgui/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++
+      run: |
+        cd cimgui
+        cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }} -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
 
     - name: Configure cimgui with CMake on Linux (x86_64)
       if: matrix.os == 'ubuntu-latest' && matrix.arch == 'x86_64'
-      run: cmake -S cimgui -B cimgui/build
+      run: |
+        cd cimgui
+        cmake -S ./ -B ./build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
 
     - name: Configure cimgui with CMake for macOS
       if: matrix.os == 'macos-latest'
-      run: cmake -S cimgui -B cimgui/build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }}
+      run: | 
+        cd cimgui
+        cmake -S ./ -B ./build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
 
     - name: Configure cimgui with CMake for Windows
       if: matrix.os == 'windows-latest'
-      run: cmake -S cimgui -B cimgui/build -A ${{ matrix.cmake-arch }}
+      run: | 
+        cd cimgui
+        cmake -S ./ -B ./build -A ${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }} -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
 
     - name: Build cimgui
       run: cmake --build cimgui/build --config Release
