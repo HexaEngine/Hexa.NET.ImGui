@@ -82,8 +82,16 @@ jobs:
         echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
         echo "PATH=$PATH:$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
 
+    - name: Install vcpkg and FreeType
+      run: |
+        cd ${{ matrix.lib }}
+        git clone https://github.com/microsoft/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.sh
+        ./vcpkg/vcpkg install freetype
+
     - name: Build for arm64-v8a
       run: |
+          cd ${{ matrix.lib }}
           cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
@@ -91,12 +99,14 @@ jobs:
                 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
-                -S ${{ matrix.lib }} \
-                -B ${{ matrix.lib }}/build/arm64-v8a
-          cmake --build ${{ matrix.lib }}/build/arm64-v8a  --config Release
+                -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -S ./ \
+                -B ./build/arm64-v8a
+          cmake --build ./build/arm64-v8a  --config Release
 
     - name: Build for x86_64
       run: |
+          cd ${{ matrix.lib }}
           cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
@@ -104,9 +114,10 @@ jobs:
                 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
-                -S ${{ matrix.lib }} \
-                -B ${{ matrix.lib }}/build/x86_64
-          cmake --build ${{ matrix.lib }}/build/x86_64 --config Release
+                -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -S ./ \
+                -B ./build/x86_64
+          cmake --build ./build/x86_64 --config Release
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
