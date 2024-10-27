@@ -74,25 +74,25 @@ jobs:
       if: matrix.os == 'ubuntu-latest' && matrix.arch == 'arm64'
       run: |
         cd cimgui
-        cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }}
+        cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }} -DIMGUI_WCHAR32=ON
 
     - name: Configure cimgui with CMake on Linux (x86_64)
       if: matrix.os == 'ubuntu-latest' && matrix.arch == 'x86_64'
       run: |
         cd cimgui
-        cmake -S ./ -B ./build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake"
+        cmake -S ./ -B ./build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DIMGUI_WCHAR32=ON
 
     - name: Configure cimgui with CMake for macOS
       if: matrix.os == 'macos-latest'
       run: | 
         cd cimgui
-        cmake -S ./ -B ./build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake"
+        cmake -S ./ -B ./build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DIMGUI_WCHAR32=ON
 
     - name: Configure cimgui with CMake for Windows
       if: matrix.os == 'windows-latest'
       run: | 
         cd cimgui
-        cmake -S ./ -B ./build -A ${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }}
+        cmake -S ./ -B ./build -A ${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }} -DIMGUI_WCHAR32=ON
 
     - name: Build cimgui
       run: cmake --build cimgui/build --config Release
