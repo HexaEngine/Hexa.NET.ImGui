@@ -86,7 +86,7 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: | 
         cd cimgui
-        cmake -S ./ -B cimgui/build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake"
+        cmake -S ./ -B ./build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake"
 
     - name: Configure cimgui with CMake for Windows
       if: matrix.os == 'windows-latest'
