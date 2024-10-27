@@ -92,7 +92,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: | 
         cd cimgui
-        cmake -S ./ -B ./build -A ${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake"
+        cmake -S ./ -B ./build -A ${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }}
 
     - name: Build cimgui
       run: cmake --build cimgui/build --config Release
