@@ -23,8 +23,16 @@ jobs:
             
     steps:
     - uses: actions/checkout@v4.1.7
+      if: matrix.lib != 'cimgui'
       with:
         repository: 'cimgui/cimgui'
+        path: 'cimgui'
+        submodules: true
+
+    - uses: actions/checkout@v4.1.7
+      if: matrix.lib == 'cimgui'
+      with:
+        repository: 'JunaMeinhold/cimgui'
         path: 'cimgui'
         submodules: true
         
@@ -100,6 +108,7 @@ jobs:
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
                 -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -DIMGUI_WCHAR32=ON \
                 -S ./ \
                 -B ./build/arm64-v8a
           cmake --build ./build/arm64-v8a  --config Release
@@ -115,6 +124,7 @@ jobs:
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
                 -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -DIMGUI_WCHAR32=ON \
                 -S ./ \
                 -B ./build/x86_64
           cmake --build ./build/x86_64 --config Release
