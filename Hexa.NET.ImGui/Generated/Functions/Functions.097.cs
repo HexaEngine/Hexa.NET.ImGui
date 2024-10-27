@@ -4952,19 +4952,19 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddGlyphNative(ImFont* self, ImFontConfig* srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		internal static void AddGlyphNative(ImFont* self, ImFontConfig* srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, ImFontConfig*, char, float, float, float, float, float, float, float, float, float, void>)funcTable[643])(self, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+			((delegate* unmanaged[Cdecl]<ImFont*, ImFontConfig*, uint, float, float, float, float, float, float, float, float, float, void>)funcTable[643])(self, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, char, float, float, float, float, float, float, float, float, float, void>)funcTable[643])((nint)self, (nint)srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+			((delegate* unmanaged[Cdecl]<nint, nint, uint, float, float, float, float, float, float, float, float, float, void>)funcTable[643])((nint)self, (nint)srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddGlyph(ImFontPtr self, ImFontConfigPtr srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public static void AddGlyph(ImFontPtr self, ImFontConfigPtr srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			AddGlyphNative(self, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 		}
@@ -4972,7 +4972,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddGlyph(ref ImFont self, ImFontConfigPtr srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public static void AddGlyph(ref ImFont self, ImFontConfigPtr srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -4983,7 +4983,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddGlyph(ImFontPtr self, ref ImFontConfig srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public static void AddGlyph(ImFontPtr self, ref ImFontConfig srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			fixed (ImFontConfig* psrcCfg = &srcCfg)
 			{
@@ -4994,7 +4994,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddGlyph(ref ImFont self, ref ImFontConfig srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public static void AddGlyph(ref ImFont self, ref ImFontConfig srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -5009,12 +5009,12 @@ namespace Hexa.NET.ImGui
 		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddRemapCharNative(ImFont* self, char dst, char src, byte overwriteDst)
+		internal static void AddRemapCharNative(ImFont* self, uint dst, uint src, byte overwriteDst)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, char, char, byte, void>)funcTable[644])(self, dst, src, overwriteDst);
+			((delegate* unmanaged[Cdecl]<ImFont*, uint, uint, byte, void>)funcTable[644])(self, dst, src, overwriteDst);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, char, char, byte, void>)funcTable[644])((nint)self, dst, src, overwriteDst);
+			((delegate* unmanaged[Cdecl]<nint, uint, uint, byte, void>)funcTable[644])((nint)self, dst, src, overwriteDst);
 			#endif
 		}
 	}

@@ -4858,9 +4858,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImStrTrimBlanksNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[749])(str);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[751])(str);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[749])((nint)str);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[751])((nint)str);
 			#endif
 		}
 
@@ -4920,9 +4920,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStrSkipBlankNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[750])(str);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[752])(str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[750])((nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[752])((nint)str);
 			#endif
 		}
 

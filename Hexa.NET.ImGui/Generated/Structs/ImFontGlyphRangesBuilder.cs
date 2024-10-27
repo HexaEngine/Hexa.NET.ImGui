@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add character<br/>
 		/// </summary>
-		public unsafe void AddChar(char c)
+		public unsafe void AddChar(uint c)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -52,7 +52,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(char* ranges)
+		public unsafe void AddRanges(uint* ranges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -63,13 +63,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(ref char ranges)
+		public unsafe void AddRanges(ref uint ranges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				fixed (char* pranges = &ranges)
+				fixed (uint* pranges = &ranges)
 				{
-					ImGui.AddRangesNative(@this, (char*)pranges);
+					ImGui.AddRangesNative(@this, (uint*)pranges);
 				}
 			}
 		}
@@ -540,7 +540,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ImVector<char>* outRanges)
+		public unsafe void BuildRanges(ImVector<uint>* outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -551,13 +551,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ref ImVector<char> outRanges)
+		public unsafe void BuildRanges(ref ImVector<uint> outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				fixed (ImVector<char>* poutRanges = &outRanges)
+				fixed (ImVector<uint>* poutRanges = &outRanges)
 				{
-					ImGui.BuildRangesNative(@this, (ImVector<char>*)poutRanges);
+					ImGui.BuildRangesNative(@this, (ImVector<uint>*)poutRanges);
 				}
 			}
 		}
@@ -680,7 +680,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add character<br/>
 		/// </summary>
-		public unsafe void AddChar(char c)
+		public unsafe void AddChar(uint c)
 		{
 			ImGui.AddCharNative(Handle, c);
 		}
@@ -688,7 +688,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(char* ranges)
+		public unsafe void AddRanges(uint* ranges)
 		{
 			ImGui.AddRangesNative(Handle, ranges);
 		}
@@ -696,11 +696,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(ref char ranges)
+		public unsafe void AddRanges(ref uint ranges)
 		{
-			fixed (char* pranges = &ranges)
+			fixed (uint* pranges = &ranges)
 			{
-				ImGui.AddRangesNative(Handle, (char*)pranges);
+				ImGui.AddRangesNative(Handle, (uint*)pranges);
 			}
 		}
 
@@ -1110,7 +1110,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ImVector<char>* outRanges)
+		public unsafe void BuildRanges(ImVector<uint>* outRanges)
 		{
 			ImGui.BuildRangesNative(Handle, outRanges);
 		}
@@ -1118,11 +1118,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ref ImVector<char> outRanges)
+		public unsafe void BuildRanges(ref ImVector<uint> outRanges)
 		{
-			fixed (ImVector<char>* poutRanges = &outRanges)
+			fixed (ImVector<uint>* poutRanges = &outRanges)
 			{
-				ImGui.BuildRangesNative(Handle, (ImVector<char>*)poutRanges);
+				ImGui.BuildRangesNative(Handle, (ImVector<uint>*)poutRanges);
 			}
 		}
 

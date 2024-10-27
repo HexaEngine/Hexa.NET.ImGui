@@ -265,9 +265,9 @@ namespace Hexa.NET.ImGui
 		internal static void TabItemCalcSizeNative(Vector2* pOut, byte* label, byte hasCloseButtonOrUnsavedMarker)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, byte*, byte, void>)funcTable[1307])(pOut, label, hasCloseButtonOrUnsavedMarker);
+			((delegate* unmanaged[Cdecl]<Vector2*, byte*, byte, void>)funcTable[1309])(pOut, label, hasCloseButtonOrUnsavedMarker);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, byte, void>)funcTable[1307])((nint)pOut, (nint)label, hasCloseButtonOrUnsavedMarker);
+			((delegate* unmanaged[Cdecl]<nint, nint, byte, void>)funcTable[1309])((nint)pOut, (nint)label, hasCloseButtonOrUnsavedMarker);
 			#endif
 		}
 
@@ -475,9 +475,9 @@ namespace Hexa.NET.ImGui
 		internal static void TabItemCalcSizeNative(Vector2* pOut, ImGuiWindow* window)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiWindow*, void>)funcTable[1308])(pOut, window);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiWindow*, void>)funcTable[1310])(pOut, window);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1308])((nint)pOut, (nint)window);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1310])((nint)pOut, (nint)window);
 			#endif
 		}
 
@@ -555,9 +555,9 @@ namespace Hexa.NET.ImGui
 		internal static void TabItemBackgroundNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImGuiTabItemFlags, uint, void>)funcTable[1309])(drawList, bb, flags, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImGuiTabItemFlags, uint, void>)funcTable[1311])(drawList, bb, flags, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, ImGuiTabItemFlags, uint, void>)funcTable[1309])((nint)drawList, bb, flags, col);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, ImGuiTabItemFlags, uint, void>)funcTable[1311])((nint)drawList, bb, flags, col);
 			#endif
 		}
 
@@ -587,9 +587,9 @@ namespace Hexa.NET.ImGui
 		internal static void TabItemLabelAndCloseButtonNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, uint tabId, uint closeButtonId, byte isContentsVisible, bool* outJustClosed, bool* outTextClipped)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImGuiTabItemFlags, Vector2, byte*, uint, uint, byte, bool*, bool*, void>)funcTable[1310])(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImGuiTabItemFlags, Vector2, byte*, uint, uint, byte, bool*, bool*, void>)funcTable[1312])(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, ImGuiTabItemFlags, Vector2, nint, uint, uint, byte, nint, nint, void>)funcTable[1310])((nint)drawList, bb, flags, framePadding, (nint)label, tabId, closeButtonId, isContentsVisible, (nint)outJustClosed, (nint)outTextClipped);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, ImGuiTabItemFlags, Vector2, nint, uint, uint, byte, nint, nint, void>)funcTable[1312])((nint)drawList, bb, flags, framePadding, (nint)label, tabId, closeButtonId, isContentsVisible, (nint)outJustClosed, (nint)outTextClipped);
 			#endif
 		}
 
@@ -1216,9 +1216,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextNative(Vector2 pos, byte* text, byte* textEnd, byte hideTextAfterHash)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, byte, void>)funcTable[1311])(pos, text, textEnd, hideTextAfterHash);
+			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, byte, void>)funcTable[1313])(pos, text, textEnd, hideTextAfterHash);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, byte, void>)funcTable[1311])(pos, (nint)text, (nint)textEnd, hideTextAfterHash);
+			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, byte, void>)funcTable[1313])(pos, (nint)text, (nint)textEnd, hideTextAfterHash);
 			#endif
 		}
 
@@ -2035,9 +2035,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextWrappedNative(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, float, void>)funcTable[1312])(pos, text, textEnd, wrapWidth);
+			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, float, void>)funcTable[1314])(pos, text, textEnd, wrapWidth);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, float, void>)funcTable[1312])(pos, (nint)text, (nint)textEnd, wrapWidth);
+			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, float, void>)funcTable[1314])(pos, (nint)text, (nint)textEnd, wrapWidth);
 			#endif
 		}
 
@@ -2392,9 +2392,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextClippedNative(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)funcTable[1313])(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)funcTable[1315])(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)funcTable[1313])(posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)funcTable[1315])(posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
 			#endif
 		}
 

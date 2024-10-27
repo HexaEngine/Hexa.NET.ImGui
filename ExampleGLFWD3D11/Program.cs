@@ -5,8 +5,6 @@ using Hexa.NET.ImGui;
 using Hexa.NET.ImGui.Backends.D3D11;
 using Hexa.NET.ImGui.Backends.GLFW;
 using Hexa.NET.ImGui.Utilities;
-using Hexa.NET.ImGui.Widgets;
-using Hexa.NET.ImGui.Widgets.Dialogs;
 using Silk.NET.Core.Native;
 using Silk.NET.Direct3D11;
 using System.Runtime.CompilerServices;
@@ -42,12 +40,12 @@ io.ConfigViewportsNoAutoMerge = false;
 io.ConfigViewportsNoTaskBarIcon = false;
 
 // OPTIONAL: For custom fonts and icon fonts.
-char[] range = [(char)0xe003, (char)0xF8FF];
-ImGuiFontBuilder builder = new(io.Fonts);
+ImGuiFontBuilder builder = new();
 builder
     .AddDefaultFont()
-    .SetOption(c => { c.GlyphMinAdvanceX = 18; c.GlyphOffset = new(0, 4); })
-    .AddFontFromFileTTF("MaterialSymbolsRounded.ttf", 14, range);
+    .SetOption(config => config.FontBuilderFlags |= (uint)ImGuiFreeTypeBuilderFlags.LoadColor)
+    .AddFontFromFileTTF("seguiemj.ttf", 16.0f, [0x1, 0x1FFFF])
+    .Build();
 
 ImGuiImplGLFW.SetCurrentContext(guiContext);
 if (!ImGuiImplGLFW.InitForOther(Unsafe.BitCast<GLFWwindowPtr, Hexa.NET.ImGui.Backends.GLFW.GLFWwindowPtr>(window), true))
@@ -64,11 +62,6 @@ if (!ImGuiImplD3D11.Init(Unsafe.BitCast<ComPtr<ID3D11Device1>, ID3D11DevicePtr>(
     GLFW.Terminate();
     return;
 }
-
-// OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
-WidgetManager.Init();
-OpenFileDialog dialog = new();
-dialog.Show();
 
 // Setup resizing.
 unsafe
@@ -100,9 +93,6 @@ while (GLFW.WindowShouldClose(window) == 0)
 
     ImGui.ShowDemoWindow();
 
-    // OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
-    WidgetManager.Draw();
-
     ImGui.Render();
     ImGui.EndFrame();
 
@@ -121,7 +111,7 @@ while (GLFW.WindowShouldClose(window) == 0)
 ImGuiImplD3D11.Shutdown();
 ImGuiImplGLFW.Shutdown();
 ImGui.DestroyContext();
-
+builder.Dispose();
 manager.Dispose();
 
 // Clean up and terminate GLFW

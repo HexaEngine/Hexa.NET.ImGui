@@ -9,8 +9,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		
 		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.3" />
 		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.15" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.8" />
 		<PackageReference Include="Hexa.NET.OpenGL3" Version="1.0.1" />
 	</ItemGroup>
 
@@ -21,7 +23,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="arialuni.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="MaterialSymbolsRounded.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="seguiemj.ttf">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

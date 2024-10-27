@@ -10,8 +10,9 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.3" />
 		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.15" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.8" />
+		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.3" />
 		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.21.0" />
 		<PackageReference Include="Silk.NET.Direct3D11" Version="2.21.0" />
 		<PackageReference Include="Silk.NET.DXGI" Version="2.21.0" />
@@ -28,7 +29,16 @@
 
 
 	<ItemGroup>
+	  <None Update="arialuni.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="MaterialSymbolsRounded.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="NotoColorEmoji-Regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="seguiemj.ttf">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

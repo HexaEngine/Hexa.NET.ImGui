@@ -1785,9 +1785,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextEllipsisNative(ImDrawList* drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, Vector2* textSizeIfKnown)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, byte*, byte*, Vector2*, void>)funcTable[1315])(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, byte*, byte*, Vector2*, void>)funcTable[1317])(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, nint, nint, nint, void>)funcTable[1315])((nint)drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (nint)text, (nint)textEnd, (nint)textSizeIfKnown);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, nint, nint, nint, void>)funcTable[1317])((nint)drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (nint)text, (nint)textEnd, (nint)textSizeIfKnown);
 			#endif
 		}
 
@@ -3366,9 +3366,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, byte borders, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1316])(pMin, pMax, fillCol, borders, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1318])(pMin, pMax, fillCol, borders, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1316])(pMin, pMax, fillCol, borders, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1318])(pMin, pMax, fillCol, borders, rounding);
 			#endif
 		}
 
@@ -3411,9 +3411,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderFrameBorderNative(Vector2 pMin, Vector2 pMax, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1317])(pMin, pMax, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1319])(pMin, pMax, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1317])(pMin, pMax, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1319])(pMin, pMax, rounding);
 			#endif
 		}
 
@@ -3440,9 +3440,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderColorRectWithAlphaCheckerboardNative(ImDrawList* drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1318])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1320])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1318])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1320])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
 			#endif
 		}
 
@@ -3529,9 +3529,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderNavCursorNative(ImRect bb, uint id, ImGuiNavRenderCursorFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1319])(bb, id, flags);
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1321])(bb, id, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1319])(bb, id, flags);
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1321])(bb, id, flags);
 			#endif
 		}
 
@@ -3558,9 +3558,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* FindRenderedTextEndNative(byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[1320])(text, textEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[1322])(text, textEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1320])((nint)text, (nint)textEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1322])((nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -4417,9 +4417,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderMouseCursorNative(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1321])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1323])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1321])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1323])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
 			#endif
 		}
 
@@ -4438,9 +4438,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowNative(ImDrawList* drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)funcTable[1322])(drawList, pos, col, dir, scale);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)funcTable[1324])(drawList, pos, col, dir, scale);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)funcTable[1322])((nint)drawList, pos, col, dir, scale);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)funcTable[1324])((nint)drawList, pos, col, dir, scale);
 			#endif
 		}
 
@@ -4489,9 +4489,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderBulletNative(ImDrawList* drawList, Vector2 pos, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)funcTable[1323])(drawList, pos, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)funcTable[1325])(drawList, pos, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)funcTable[1323])((nint)drawList, pos, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)funcTable[1325])((nint)drawList, pos, col);
 			#endif
 		}
 
@@ -4521,9 +4521,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderCheckMarkNative(ImDrawList* drawList, Vector2 pos, uint col, float sz)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)funcTable[1324])(drawList, pos, col, sz);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)funcTable[1326])(drawList, pos, col, sz);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)funcTable[1324])((nint)drawList, pos, col, sz);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)funcTable[1326])((nint)drawList, pos, col, sz);
 			#endif
 		}
 
@@ -4553,9 +4553,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowPointingAtNative(ImDrawList* drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1325])(drawList, pos, halfSz, direction, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1327])(drawList, pos, halfSz, direction, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1325])((nint)drawList, pos, halfSz, direction, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1327])((nint)drawList, pos, halfSz, direction, col);
 			#endif
 		}
 
@@ -4585,9 +4585,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowDockMenuNative(ImDrawList* drawList, Vector2 pMin, float sz, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)funcTable[1326])(drawList, pMin, sz, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)funcTable[1328])(drawList, pMin, sz, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, void>)funcTable[1326])((nint)drawList, pMin, sz, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, void>)funcTable[1328])((nint)drawList, pMin, sz, col);
 			#endif
 		}
 
@@ -4617,9 +4617,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderRectFilledRangeHNative(ImDrawList* drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)funcTable[1327])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)funcTable[1329])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, uint, float, float, float, void>)funcTable[1327])((nint)drawList, rect, col, xStartNorm, xEndNorm, rounding);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, uint, float, float, float, void>)funcTable[1329])((nint)drawList, rect, col, xStartNorm, xEndNorm, rounding);
 			#endif
 		}
 
@@ -4649,9 +4649,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderRectFilledWithHoleNative(ImDrawList* drawList, ImRect outer, ImRect inner, uint col, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)funcTable[1328])(drawList, outer, inner, col, rounding);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)funcTable[1330])(drawList, outer, inner, col, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect, uint, float, void>)funcTable[1328])((nint)drawList, outer, inner, col, rounding);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect, uint, float, void>)funcTable[1330])((nint)drawList, outer, inner, col, rounding);
 			#endif
 		}
 
@@ -4681,9 +4681,9 @@ namespace Hexa.NET.ImGui
 		internal static ImDrawFlags CalcRoundingFlagsForRectInRectNative(ImRect rIn, ImRect rOuter, float threshold)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1329])(rIn, rOuter, threshold);
+			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1331])(rIn, rOuter, threshold);
 			#else
-			return (ImDrawFlags)((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1329])(rIn, rOuter, threshold);
+			return (ImDrawFlags)((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1331])(rIn, rOuter, threshold);
 			#endif
 		}
 
@@ -4703,9 +4703,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextExNative(byte* text, byte* textEnd, ImGuiTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)funcTable[1330])(text, textEnd, flags);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)funcTable[1332])(text, textEnd, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTextFlags, void>)funcTable[1330])((nint)text, (nint)textEnd, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTextFlags, void>)funcTable[1332])((nint)text, (nint)textEnd, flags);
 			#endif
 		}
 

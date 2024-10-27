@@ -10,6 +10,7 @@
     using ID3D11Device = Silk.NET.Direct3D11.ID3D11Device;
     using Hexa.NET.ImGui.Backends.D3D11;
     using ID3D11DeviceContext = Silk.NET.Direct3D11.ID3D11DeviceContext;
+    using Hexa.NET.ImGui.Utilities;
 
     public class ImGuiManager
     {
@@ -54,26 +55,11 @@
             io.ConfigViewportsNoTaskBarIcon = false;
 
             // setup fonts.
-            var config = ImGui.ImFontConfig();
-            io.Fonts.AddFontDefault(config);
-
-            // load custom font
-            config.FontDataOwnedByAtlas = false; // Set this option to false to avoid ImGui to delete the data, used with fixed statement.
-            config.MergeMode = true;
-            config.GlyphMinAdvanceX = 18;
-            config.GlyphOffset = new(0, 4);
-            var range = new char[] { (char)0xE700, (char)0xF800, (char)0 };
-            fixed (char* buffer = range)
-            {
-                var bytes = File.ReadAllBytes("assets/fonts/SEGMDL2.TTF");
-                fixed (byte* buffer2 = bytes)
-                {
-                    // IMPORTANT: AddFontFromMemoryTTF() by default transfer ownership of the data buffer to the font atlas, which will attempt to free it on destruction.
-                    // This was to avoid an unnecessary copy, and is perhaps not a good API (a future version will redesign it).
-                    // Set config.FontDataOwnedByAtlas to false to keep ownership of the data (so you need to free the data yourself).
-                    io.Fonts.AddFontFromMemoryTTF(buffer2, bytes.Length, 14, config, buffer);
-                }
-            }
+            ImGuiFontBuilder builder = new();
+            builder
+                .AddDefaultFont()
+                .SetOption(config => { config.GlyphMinAdvanceX = 18; config.GlyphOffset = new(0, 4); })
+                .AddFontFromFileTTF("assets/fonts/SEGMDL2.TTF", 14, [(char)0xE700, (char)0xF800]);
 
             // setup ImGui style
             var style = ImGui.GetStyle();

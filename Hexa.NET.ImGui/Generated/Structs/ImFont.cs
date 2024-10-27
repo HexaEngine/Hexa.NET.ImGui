@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<char> IndexLookup;
+		public ImVector<uint> IndexLookup;
 
 		/// <summary>
 		/// To be documented.
@@ -71,12 +71,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public char FallbackChar;
+		public uint FallbackChar;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public char EllipsisChar;
+		public uint EllipsisChar;
 
 		/// <summary>
 		/// To be documented.
@@ -128,7 +128,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<char> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, char fallbackChar = default, char ellipsisChar = default, short ellipsisCharCount = default, float ellipsisWidth = default, float ellipsisCharStep = default, bool dirtyLookupTables = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, byte* used4KPagesMap = default)
+		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<uint> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, uint fallbackChar = default, uint ellipsisChar = default, short ellipsisCharCount = default, float ellipsisWidth = default, float ellipsisCharStep = default, bool dirtyLookupTables = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, byte* used4KPagesMap = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -159,7 +159,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<char> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, char fallbackChar = default, char ellipsisChar = default, short ellipsisCharCount = default, float ellipsisWidth = default, float ellipsisCharStep = default, bool dirtyLookupTables = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, Span<byte> used4KPagesMap = default)
+		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<uint> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, uint fallbackChar = default, uint ellipsisChar = default, short ellipsisCharCount = default, float ellipsisWidth = default, float ellipsisCharStep = default, bool dirtyLookupTables = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, Span<byte> used4KPagesMap = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -191,7 +191,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ImFontConfig* srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe void AddGlyph(ImFontConfig* srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -202,7 +202,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ref ImFontConfig srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe void AddGlyph(ref ImFontConfig srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -216,7 +216,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
 		/// </summary>
-		public unsafe void AddRemapChar(char dst, char src, bool overwriteDst)
+		public unsafe void AddRemapChar(uint dst, uint src, bool overwriteDst)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -227,7 +227,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
 		/// </summary>
-		public unsafe void AddRemapChar(char dst, char src)
+		public unsafe void AddRemapChar(uint dst, uint src)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1087,7 +1087,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph* FindGlyph(char c)
+		public unsafe ImFontGlyph* FindGlyph(uint c)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1099,7 +1099,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph* FindGlyphNoFallback(char c)
+		public unsafe ImFontGlyph* FindGlyphNoFallback(uint c)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1111,7 +1111,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe float GetCharAdvance(char c)
+		public unsafe float GetCharAdvance(uint c)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1182,7 +1182,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, char c)
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1193,7 +1193,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, char c)
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4535,7 +4535,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetGlyphVisible(char c, bool visible)
+		public unsafe void SetGlyphVisible(uint c, bool visible)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4601,7 +4601,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<char> IndexLookup => ref Unsafe.AsRef<ImVector<char>>(&Handle->IndexLookup);
+		public ref ImVector<uint> IndexLookup => ref Unsafe.AsRef<ImVector<uint>>(&Handle->IndexLookup);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4625,11 +4625,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref char FallbackChar => ref Unsafe.AsRef<char>(&Handle->FallbackChar);
+		public ref uint FallbackChar => ref Unsafe.AsRef<uint>(&Handle->FallbackChar);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref char EllipsisChar => ref Unsafe.AsRef<char>(&Handle->EllipsisChar);
+		public ref uint EllipsisChar => ref Unsafe.AsRef<uint>(&Handle->EllipsisChar);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4676,7 +4676,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ImFontConfig* srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe void AddGlyph(ImFontConfig* srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			ImGui.AddGlyphNative(Handle, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 		}
@@ -4684,7 +4684,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ref ImFontConfig srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe void AddGlyph(ref ImFontConfig srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			fixed (ImFontConfig* psrcCfg = &srcCfg)
 			{
@@ -4695,7 +4695,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
 		/// </summary>
-		public unsafe void AddRemapChar(char dst, char src, bool overwriteDst)
+		public unsafe void AddRemapChar(uint dst, uint src, bool overwriteDst)
 		{
 			ImGui.AddRemapCharNative(Handle, dst, src, overwriteDst ? (byte)1 : (byte)0);
 		}
@@ -4703,7 +4703,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
 		/// </summary>
-		public unsafe void AddRemapChar(char dst, char src)
+		public unsafe void AddRemapChar(uint dst, uint src)
 		{
 			ImGui.AddRemapCharNative(Handle, dst, src, (byte)(1));
 		}
@@ -5455,7 +5455,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph* FindGlyph(char c)
+		public unsafe ImFontGlyph* FindGlyph(uint c)
 		{
 			ImFontGlyph* ret = ImGui.FindGlyphNative(Handle, c);
 			return ret;
@@ -5464,7 +5464,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph* FindGlyphNoFallback(char c)
+		public unsafe ImFontGlyph* FindGlyphNoFallback(uint c)
 		{
 			ImFontGlyph* ret = ImGui.FindGlyphNoFallbackNative(Handle, c);
 			return ret;
@@ -5473,7 +5473,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe float GetCharAdvance(char c)
+		public unsafe float GetCharAdvance(uint c)
 		{
 			float ret = ImGui.GetCharAdvanceNative(Handle, c);
 			return ret;
@@ -5526,7 +5526,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, char c)
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			ImGui.RenderCharNative(Handle, drawList, size, pos, col, c);
 		}
@@ -5534,7 +5534,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, char c)
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -8489,7 +8489,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetGlyphVisible(char c, bool visible)
+		public unsafe void SetGlyphVisible(uint c, bool visible)
 		{
 			ImGui.SetGlyphVisibleNative(Handle, c, visible ? (byte)1 : (byte)0);
 		}

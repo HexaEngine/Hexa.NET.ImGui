@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExampleGLFWOpenGL3": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

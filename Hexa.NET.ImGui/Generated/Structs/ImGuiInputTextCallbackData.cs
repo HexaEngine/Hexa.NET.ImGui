@@ -53,7 +53,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public char EventChar;
+		public uint EventChar;
 
 		/// <summary>
 		/// To be documented.
@@ -99,7 +99,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextCallbackData(ImGuiContextPtr ctx = default, ImGuiInputTextFlags eventFlag = default, ImGuiInputTextFlags flags = default, void* userData = default, char eventChar = default, ImGuiKey eventKey = default, byte* buf = default, int bufTextLen = default, int bufSize = default, bool bufDirty = default, int cursorPos = default, int selectionStart = default, int selectionEnd = default)
+		public unsafe ImGuiInputTextCallbackData(ImGuiContextPtr ctx = default, ImGuiInputTextFlags eventFlag = default, ImGuiInputTextFlags flags = default, void* userData = default, uint eventChar = default, ImGuiKey eventKey = default, byte* buf = default, int bufTextLen = default, int bufSize = default, bool bufDirty = default, int cursorPos = default, int selectionStart = default, int selectionEnd = default)
 		{
 			Ctx = ctx;
 			EventFlag = eventFlag;
@@ -698,7 +698,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref char EventChar => ref Unsafe.AsRef<char>(&Handle->EventChar);
+		public ref uint EventChar => ref Unsafe.AsRef<uint>(&Handle->EventChar);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

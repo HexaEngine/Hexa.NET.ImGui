@@ -52,19 +52,19 @@ namespace Hexa.NET.ImGui
 		/// Computer string length (ImWchar string)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImStrlenWNative(char* str)
+		internal static int ImStrlenWNative(uint* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<char*, int>)funcTable[751])(str);
+			return ((delegate* unmanaged[Cdecl]<uint*, int>)funcTable[753])(str);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[751])((nint)str);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[753])((nint)str);
 			#endif
 		}
 
 		/// <summary>
 		/// Computer string length (ImWchar string)<br/>
 		/// </summary>
-		public static int ImStrlenW(char* str)
+		public static int ImStrlenW(uint* str)
 		{
 			int ret = ImStrlenWNative(str);
 			return ret;
@@ -73,11 +73,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Computer string length (ImWchar string)<br/>
 		/// </summary>
-		public static int ImStrlenW(ref char str)
+		public static int ImStrlenW(ref uint str)
 		{
-			fixed (char* pstr = &str)
+			fixed (uint* pstr = &str)
 			{
-				int ret = ImStrlenWNative((char*)pstr);
+				int ret = ImStrlenWNative((uint*)pstr);
 				return ret;
 			}
 		}
@@ -89,9 +89,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStrbolNative(byte* bufMidLine, byte* bufBegin)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[752])(bufMidLine, bufBegin);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[754])(bufMidLine, bufBegin);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[752])((nint)bufMidLine, (nint)bufBegin);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[754])((nint)bufMidLine, (nint)bufBegin);
 			#endif
 		}
 
@@ -822,9 +822,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImToUpperNative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[753])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[755])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[753])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[755])(c);
 			#endif
 		}
 
@@ -844,9 +844,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsBlankANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[754])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[756])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[754])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[756])(c);
 			#endif
 		}
 
@@ -866,9 +866,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsBlankWNative(uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[755])(c);
+			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[757])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[755])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[757])(c);
 			#endif
 		}
 
@@ -888,9 +888,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsXdigitANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[756])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[758])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[756])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[758])(c);
 			#endif
 		}
 
@@ -910,9 +910,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFormatStringToTempBufferNative(byte** outBuf, byte** outBufEnd, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)funcTable[757])(outBuf, outBufEnd, fmt);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)funcTable[759])(outBuf, outBufEnd, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[757])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[759])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
 			#endif
 		}
 
@@ -1207,9 +1207,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFormatStringToTempBufferVNative(byte** outBuf, byte** outBufEnd, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[758])(outBuf, outBufEnd, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[760])(outBuf, outBufEnd, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[758])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[760])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
 			#endif
 		}
 
@@ -1504,9 +1504,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatFindStartNative(byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[759])(format);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[761])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[759])((nint)format);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[761])((nint)format);
 			#endif
 		}
 
@@ -1643,9 +1643,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatFindEndNative(byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[760])(format);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[762])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[760])((nint)format);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[762])((nint)format);
 			#endif
 		}
 
@@ -1782,9 +1782,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImParseFormatSanitizeForPrintingNative(byte* fmtIn, byte* fmtOut, ulong fmtOutSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)funcTable[761])(fmtIn, fmtOut, fmtOutSize);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)funcTable[763])(fmtIn, fmtOut, fmtOutSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[761])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[763])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
 			#endif
 		}
 
@@ -2349,9 +2349,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatSanitizeForScanningNative(byte* fmtIn, byte* fmtOut, ulong fmtOutSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)funcTable[762])(fmtIn, fmtOut, fmtOutSize);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)funcTable[764])(fmtIn, fmtOut, fmtOutSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)funcTable[762])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)funcTable[764])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
 			#endif
 		}
 
@@ -3518,9 +3518,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImParseFormatPrecisionNative(byte* format, int defaultValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[763])(format, defaultValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[765])(format, defaultValue);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[763])((nint)format, defaultValue);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[765])((nint)format, defaultValue);
 			#endif
 		}
 
@@ -3594,9 +3594,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImTextCharToUtf8Native(byte* outBuf, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint, byte*>)funcTable[764])(outBuf, c);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, byte*>)funcTable[766])(outBuf, c);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[764])((nint)outBuf, c);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[766])((nint)outBuf, c);
 			#endif
 		}
 
@@ -3673,9 +3673,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCharFromUtf8Native(uint* outChar, byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[765])(outChar, inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[767])(outChar, inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[765])((nint)outChar, (nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[767])((nint)outChar, (nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -4454,9 +4454,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountCharsFromUtf8Native(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[766])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[768])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[766])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[768])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -4827,9 +4827,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountUtf8BytesFromCharNative(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[767])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[769])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[767])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[769])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 

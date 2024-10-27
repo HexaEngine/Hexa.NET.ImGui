@@ -3515,19 +3515,19 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void RenderCharNative(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, char c)
+		internal static void RenderCharNative(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, ImDrawList*, float, Vector2, uint, char, void>)funcTable[638])(self, drawList, size, pos, col, c);
+			((delegate* unmanaged[Cdecl]<ImFont*, ImDrawList*, float, Vector2, uint, uint, void>)funcTable[638])(self, drawList, size, pos, col, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, char, void>)funcTable[638])((nint)self, (nint)drawList, size, pos, col, c);
+			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, uint, void>)funcTable[638])((nint)self, (nint)drawList, size, pos, col, c);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderChar(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, char c)
+		public static void RenderChar(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			RenderCharNative(self, drawList, size, pos, col, c);
 		}
@@ -3535,7 +3535,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderChar(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, char c)
+		public static void RenderChar(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -3546,7 +3546,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderChar(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, char c)
+		public static void RenderChar(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -3557,7 +3557,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderChar(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, char c)
+		public static void RenderChar(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImFont* pself = &self)
 			{

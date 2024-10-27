@@ -4,10 +4,7 @@ using Hexa.NET.ImGui;
 using Hexa.NET.ImGui.Backends.GLFW;
 using Hexa.NET.ImGui.Backends.OpenGL3;
 using Hexa.NET.ImGui.Utilities;
-using Hexa.NET.ImGui.Widgets;
-using Hexa.NET.ImGui.Widgets.Dialogs;
 using Hexa.NET.OpenGL;
-using HexaGen.Runtime;
 using System.Runtime.CompilerServices;
 using GLFWwindowPtr = Hexa.NET.GLFW.GLFWwindowPtr;
 
@@ -44,12 +41,12 @@ io.ConfigViewportsNoAutoMerge = false;
 io.ConfigViewportsNoTaskBarIcon = false;
 
 // OPTIONAL: For custom fonts and icon fonts.
-char[] range = [(char)0xe003, (char)0xF8FF];
-ImGuiFontBuilder builder = new(io.Fonts);
+ImGuiFontBuilder builder = new();
 builder
     .AddDefaultFont()
-    .SetOption(c => { c.GlyphMinAdvanceX = 18; c.GlyphOffset = new(0, 4); })
-    .AddFontFromFileTTF("MaterialSymbolsRounded.ttf", 14, range);
+    .SetOption(config => { config.FontBuilderFlags |= (uint)ImGuiFreeTypeBuilderFlags.LoadColor; })
+    .AddFontFromFileTTF("seguiemj.ttf", 16.0f, [0x1, 0x1FFFF])
+    .Build();
 
 ImGuiImplGLFW.SetCurrentContext(guiContext);
 
@@ -69,11 +66,6 @@ if (!ImGuiImplOpenGL3.Init(glslVersion))
 }
 
 GL.InitApi(new BindingsContext());
-
-// OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
-WidgetManager.Init();
-OpenFileDialog dialog = new();
-dialog.Show();
 
 // Main loop
 while (GLFW.WindowShouldClose(window) == 0)
@@ -97,9 +89,6 @@ while (GLFW.WindowShouldClose(window) == 0)
 
     ImGui.ShowDemoWindow();
 
-    // OPTIONAL: For the widgets framework which makes using ImGui easier in C# with classes.
-    WidgetManager.Draw();
-
     ImGui.Render();
     ImGui.EndFrame();
 
@@ -121,14 +110,14 @@ while (GLFW.WindowShouldClose(window) == 0)
 ImGuiImplOpenGL3.Shutdown();
 ImGuiImplGLFW.Shutdown();
 ImGui.DestroyContext();
-
+builder.Dispose();
 GL.FreeApi();
 
 // Clean up and terminate GLFW
 GLFW.DestroyWindow(window);
 GLFW.Terminate();
 
-internal unsafe class BindingsContext : INativeContext
+internal unsafe class BindingsContext : HexaGen.Runtime.INativeContext
 {
     public void Dispose()
     {

@@ -745,9 +745,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStreolRangeNative(byte* str, byte* strEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[747])(str, strEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[749])(str, strEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[747])((nint)str, (nint)strEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[749])((nint)str, (nint)strEnd);
 			#endif
 		}
 
@@ -1478,9 +1478,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStristrNative(byte* haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, byte*>)funcTable[748])(haystack, haystackEnd, needle, needleEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, byte*>)funcTable[750])(haystack, haystackEnd, needle, needleEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)funcTable[748])((nint)haystack, (nint)haystackEnd, (nint)needle, (nint)needleEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)funcTable[750])((nint)haystack, (nint)haystackEnd, (nint)needle, (nint)needleEnd);
 			#endif
 		}
 

@@ -1305,32 +1305,32 @@ namespace Hexa.NET.ImGui
 		/// Basic Latin, Extended Latin<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesDefaultNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesDefaultNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[615])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[615])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[615])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[615])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Basic Latin, Extended Latin<br/>
 		/// </summary>
-		public static char* GetGlyphRangesDefault(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesDefault(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesDefaultNative(self);
+			uint* ret = GetGlyphRangesDefaultNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Basic Latin, Extended Latin<br/>
 		/// </summary>
-		public static char* GetGlyphRangesDefault(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesDefault(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesDefaultNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesDefaultNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1339,32 +1339,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Greek and Coptic<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesGreekNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesGreekNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[616])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[616])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[616])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[616])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Greek and Coptic<br/>
 		/// </summary>
-		public static char* GetGlyphRangesGreek(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesGreek(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesGreekNative(self);
+			uint* ret = GetGlyphRangesGreekNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Greek and Coptic<br/>
 		/// </summary>
-		public static char* GetGlyphRangesGreek(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesGreek(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesGreekNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesGreekNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1373,32 +1373,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Korean characters<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesKoreanNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesKoreanNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[617])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[617])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[617])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[617])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Korean characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesKorean(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesKorean(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesKoreanNative(self);
+			uint* ret = GetGlyphRangesKoreanNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Korean characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesKorean(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesKorean(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesKoreanNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesKoreanNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1407,32 +1407,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Hiragana, Katakana, Half-Width, Selection of 2999 Ideographs<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesJapaneseNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesJapaneseNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[618])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[618])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[618])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[618])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Hiragana, Katakana, Half-Width, Selection of 2999 Ideographs<br/>
 		/// </summary>
-		public static char* GetGlyphRangesJapanese(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesJapanese(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesJapaneseNative(self);
+			uint* ret = GetGlyphRangesJapaneseNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Hiragana, Katakana, Half-Width, Selection of 2999 Ideographs<br/>
 		/// </summary>
-		public static char* GetGlyphRangesJapanese(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesJapanese(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesJapaneseNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesJapaneseNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1441,32 +1441,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Half-Width + Japanese HiraganaKatakana + full set of about 21000 CJK Unified Ideographs<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesChineseFullNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesChineseFullNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[619])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[619])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[619])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[619])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Half-Width + Japanese HiraganaKatakana + full set of about 21000 CJK Unified Ideographs<br/>
 		/// </summary>
-		public static char* GetGlyphRangesChineseFull(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesChineseFull(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesChineseFullNative(self);
+			uint* ret = GetGlyphRangesChineseFullNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Half-Width + Japanese HiraganaKatakana + full set of about 21000 CJK Unified Ideographs<br/>
 		/// </summary>
-		public static char* GetGlyphRangesChineseFull(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesChineseFull(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesChineseFullNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesChineseFullNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1475,32 +1475,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Half-Width + Japanese HiraganaKatakana + set of 2500 CJK Unified Ideographs for common simplified Chinese<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesChineseSimplifiedCommonNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesChineseSimplifiedCommonNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[620])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[620])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[620])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[620])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Half-Width + Japanese HiraganaKatakana + set of 2500 CJK Unified Ideographs for common simplified Chinese<br/>
 		/// </summary>
-		public static char* GetGlyphRangesChineseSimplifiedCommon(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesChineseSimplifiedCommon(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesChineseSimplifiedCommonNative(self);
+			uint* ret = GetGlyphRangesChineseSimplifiedCommonNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Half-Width + Japanese HiraganaKatakana + set of 2500 CJK Unified Ideographs for common simplified Chinese<br/>
 		/// </summary>
-		public static char* GetGlyphRangesChineseSimplifiedCommon(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesChineseSimplifiedCommon(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesChineseSimplifiedCommonNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesChineseSimplifiedCommonNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1509,32 +1509,32 @@ namespace Hexa.NET.ImGui
 		/// Default + about 400 Cyrillic characters<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesCyrillicNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesCyrillicNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[621])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[621])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[621])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[621])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + about 400 Cyrillic characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesCyrillic(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesCyrillic(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesCyrillicNative(self);
+			uint* ret = GetGlyphRangesCyrillicNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + about 400 Cyrillic characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesCyrillic(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesCyrillic(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesCyrillicNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesCyrillicNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1543,32 +1543,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Thai characters<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesThaiNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesThaiNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[622])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[622])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[622])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[622])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Thai characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesThai(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesThai(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesThaiNative(self);
+			uint* ret = GetGlyphRangesThaiNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Thai characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesThai(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesThai(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesThaiNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesThaiNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1577,32 +1577,32 @@ namespace Hexa.NET.ImGui
 		/// Default + Vietnamese characters<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static char* GetGlyphRangesVietnameseNative(ImFontAtlas* self)
+		internal static uint* GetGlyphRangesVietnameseNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)funcTable[623])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, uint*>)funcTable[623])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[623])((nint)self);
+			return (uint*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[623])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// Default + Vietnamese characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesVietnamese(ImFontAtlasPtr self)
+		public static uint* GetGlyphRangesVietnamese(ImFontAtlasPtr self)
 		{
-			char* ret = GetGlyphRangesVietnameseNative(self);
+			uint* ret = GetGlyphRangesVietnameseNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// Default + Vietnamese characters<br/>
 		/// </summary>
-		public static char* GetGlyphRangesVietnamese(ref ImFontAtlas self)
+		public static uint* GetGlyphRangesVietnamese(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				char* ret = GetGlyphRangesVietnameseNative((ImFontAtlas*)pself);
+				uint* ret = GetGlyphRangesVietnameseNative((ImFontAtlas*)pself);
 				return ret;
 			}
 		}
@@ -1645,19 +1645,19 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int AddCustomRectFontGlyphNative(ImFontAtlas* self, ImFont* font, char id, int width, int height, float advanceX, Vector2 offset)
+		internal static int AddCustomRectFontGlyphNative(ImFontAtlas* self, ImFont* font, uint id, int width, int height, float advanceX, Vector2 offset)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, char, int, int, float, Vector2, int>)funcTable[625])(self, font, id, width, height, advanceX, offset);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, uint, int, int, float, Vector2, int>)funcTable[625])(self, font, id, width, height, advanceX, offset);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, char, int, int, float, Vector2, int>)funcTable[625])((nint)self, (nint)font, id, width, height, advanceX, offset);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, uint, int, int, float, Vector2, int>)funcTable[625])((nint)self, (nint)font, id, width, height, advanceX, offset);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ImFontPtr font, char id, int width, int height, float advanceX, Vector2 offset)
+		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ImFontPtr font, uint id, int width, int height, float advanceX, Vector2 offset)
 		{
 			int ret = AddCustomRectFontGlyphNative(self, font, id, width, height, advanceX, offset);
 			return ret;
@@ -1666,7 +1666,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ImFontPtr font, char id, int width, int height, float advanceX)
+		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ImFontPtr font, uint id, int width, int height, float advanceX)
 		{
 			int ret = AddCustomRectFontGlyphNative(self, font, id, width, height, advanceX, (Vector2)(new Vector2(0,0)));
 			return ret;
@@ -1675,7 +1675,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ImFontPtr font, char id, int width, int height, float advanceX, Vector2 offset)
+		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ImFontPtr font, uint id, int width, int height, float advanceX, Vector2 offset)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -1687,7 +1687,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ImFontPtr font, char id, int width, int height, float advanceX)
+		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ImFontPtr font, uint id, int width, int height, float advanceX)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -1699,7 +1699,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ref ImFont font, char id, int width, int height, float advanceX, Vector2 offset)
+		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ref ImFont font, uint id, int width, int height, float advanceX, Vector2 offset)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -1711,7 +1711,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ref ImFont font, char id, int width, int height, float advanceX)
+		public static int AddCustomRectFontGlyph(ImFontAtlasPtr self, ref ImFont font, uint id, int width, int height, float advanceX)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -1723,7 +1723,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ref ImFont font, char id, int width, int height, float advanceX, Vector2 offset)
+		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ref ImFont font, uint id, int width, int height, float advanceX, Vector2 offset)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -1738,7 +1738,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ref ImFont font, char id, int width, int height, float advanceX)
+		public static int AddCustomRectFontGlyph(ref ImFontAtlas self, ref ImFont font, uint id, int width, int height, float advanceX)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -3040,19 +3040,19 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontGlyph* FindGlyphNative(ImFont* self, char c)
+		internal static ImFontGlyph* FindGlyphNative(ImFont* self, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, char, ImFontGlyph*>)funcTable[631])(self, c);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, uint, ImFontGlyph*>)funcTable[631])(self, c);
 			#else
-			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, char, nint>)funcTable[631])((nint)self, c);
+			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[631])((nint)self, c);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImFontGlyphPtr FindGlyph(ImFontPtr self, char c)
+		public static ImFontGlyphPtr FindGlyph(ImFontPtr self, uint c)
 		{
 			ImFontGlyphPtr ret = FindGlyphNative(self, c);
 			return ret;
@@ -3061,7 +3061,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImFontGlyphPtr FindGlyph(ref ImFont self, char c)
+		public static ImFontGlyphPtr FindGlyph(ref ImFont self, uint c)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -3074,19 +3074,19 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontGlyph* FindGlyphNoFallbackNative(ImFont* self, char c)
+		internal static ImFontGlyph* FindGlyphNoFallbackNative(ImFont* self, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, char, ImFontGlyph*>)funcTable[632])(self, c);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, uint, ImFontGlyph*>)funcTable[632])(self, c);
 			#else
-			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, char, nint>)funcTable[632])((nint)self, c);
+			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[632])((nint)self, c);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImFontGlyphPtr FindGlyphNoFallback(ImFontPtr self, char c)
+		public static ImFontGlyphPtr FindGlyphNoFallback(ImFontPtr self, uint c)
 		{
 			ImFontGlyphPtr ret = FindGlyphNoFallbackNative(self, c);
 			return ret;
@@ -3095,7 +3095,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImFontGlyphPtr FindGlyphNoFallback(ref ImFont self, char c)
+		public static ImFontGlyphPtr FindGlyphNoFallback(ref ImFont self, uint c)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -3108,19 +3108,19 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetCharAdvanceNative(ImFont* self, char c)
+		internal static float GetCharAdvanceNative(ImFont* self, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, char, float>)funcTable[633])(self, c);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, uint, float>)funcTable[633])(self, c);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, char, float>)funcTable[633])((nint)self, c);
+			return (float)((delegate* unmanaged[Cdecl]<nint, uint, float>)funcTable[633])((nint)self, c);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float GetCharAdvance(ImFontPtr self, char c)
+		public static float GetCharAdvance(ImFontPtr self, uint c)
 		{
 			float ret = GetCharAdvanceNative(self, c);
 			return ret;
@@ -3129,7 +3129,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float GetCharAdvance(ref ImFont self, char c)
+		public static float GetCharAdvance(ref ImFont self, uint c)
 		{
 			fixed (ImFont* pself = &self)
 			{
