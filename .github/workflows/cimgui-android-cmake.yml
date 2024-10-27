@@ -95,7 +95,8 @@ jobs:
         cd ${{ matrix.lib }}
         git clone https://github.com/microsoft/vcpkg.git
         ./vcpkg/bootstrap-vcpkg.sh
-        ./vcpkg/vcpkg install freetype
+        ./vcpkg/vcpkg install freetype --triplet=arm64-android
+        ./vcpkg/vcpkg install freetype --triplet=x64-android
 
     - name: Build for arm64-v8a
       run: |
@@ -108,6 +109,7 @@ jobs:
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
                 -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_TARGET_TRIPLET=arm64-android \
                 -DIMGUI_WCHAR32=ON \
                 -S ./ \
                 -B ./build/arm64-v8a
@@ -124,6 +126,7 @@ jobs:
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
                 -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_TARGET_TRIPLET=x64-android \
                 -DIMGUI_WCHAR32=ON \
                 -S ./ \
                 -B ./build/x86_64
