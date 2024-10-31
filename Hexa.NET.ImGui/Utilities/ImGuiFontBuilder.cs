@@ -257,13 +257,14 @@
         /// <summary>
         /// Adds a font from an embedded resource, using the specified path and font size.
         /// </summary>
+        /// <param name="assembly"></param>
         /// <param name="path">The embedded resource path.</param>
         /// <param name="size">The desired font size.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <exception cref="FileNotFoundException">Thrown if the embedded resource is not found.</exception>
-        public ImGuiFontBuilder AddFontFromEmbeddedResource(string path, float size)
+        public ImGuiFontBuilder AddFontFromEmbeddedResource(Assembly assembly, string path, float size)
         {
-            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path) ?? throw new FileNotFoundException($"Embedded resource not found: {path}");
+            using var stream = assembly.GetManifestResourceStream(path) ?? throw new FileNotFoundException($"Embedded resource not found: {path}");
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, buffer.Length);
 
@@ -275,18 +276,20 @@
         /// <summary>
         /// Adds a font from an embedded resource with specified glyph ranges provided as a read-only span.
         /// </summary>
+        /// <param name="assembly"></param>
         /// <param name="path">The embedded resource path.</param>
         /// <param name="size">The desired font size.</param>
         /// <param name="glyphRanges">The glyph ranges as a read-only span.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
-        public ImGuiFontBuilder AddFontFromEmbeddedResource(string path, float size, ReadOnlySpan<uint> glyphRanges)
+        public ImGuiFontBuilder AddFontFromEmbeddedResource(Assembly assembly, string path, float size, ReadOnlySpan<uint> glyphRanges)
         {
-            return AddFontFromEmbeddedResource(path, size, new GlyphRanges(glyphRanges));
+            return AddFontFromEmbeddedResource(assembly, path, size, new GlyphRanges(glyphRanges));
         }
 
         /// <summary>
         /// Adds a font from an embedded resource with specified glyph ranges.
         /// </summary>
+        /// <param name="assembly"></param>
         /// <param name="path">The embedded resource path.</param>
         /// <param name="size">The desired font size.</param>
         /// <param name="glyphRanges">The glyph ranges to be used.</param>
@@ -297,15 +300,16 @@
         /// The builder takes responsibility for managing and releasing the memory for these glyph ranges, 
         /// and they should not be used or modified externally after this call. 
         /// </remarks>
-        public ImGuiFontBuilder AddFontFromEmbeddedResource(string path, float size, GlyphRanges glyphRanges)
+        public ImGuiFontBuilder AddFontFromEmbeddedResource(Assembly assembly, string path, float size, GlyphRanges glyphRanges)
         {
             ranges.Add(glyphRanges);
-            return AddFontFromEmbeddedResource(path, size, glyphRanges.GetRanges());
+            return AddFontFromEmbeddedResource(assembly, path, size, glyphRanges.GetRanges());
         }
 
         /// <summary>
         /// Adds a font from an embedded resource with specified glyph ranges.
         /// </summary>
+        /// <param name="assembly"></param>
         /// <param name="path">The embedded resource path.</param>
         /// <param name="size">The desired font size.</param>
         /// <param name="pGlyphRanges">Pointer to the glyph ranges.</param>
@@ -316,9 +320,9 @@
         /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior 
         /// when ImGui accesses the font data.
         /// </remarks>
-        public ImGuiFontBuilder AddFontFromEmbeddedResource(string path, float size, uint* pGlyphRanges)
+        public ImGuiFontBuilder AddFontFromEmbeddedResource(Assembly assembly, string path, float size, uint* pGlyphRanges)
         {
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path) ?? throw new FileNotFoundException($"Embedded resource not found: {path}");
+            var stream = assembly.GetManifestResourceStream(path) ?? throw new FileNotFoundException($"Embedded resource not found: {path}");
             byte[] buffer = new byte[stream.Length];
             stream.Read(buffer, 0, buffer.Length);
             FontBlob blob = new(buffer);

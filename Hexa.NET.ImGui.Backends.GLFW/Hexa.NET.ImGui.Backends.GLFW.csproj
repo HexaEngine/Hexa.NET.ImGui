@@ -14,8 +14,8 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<PackageVersion>1.0.5</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui library backend GLFW.</Description>
+		<PackageVersion>1.0.6</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.91.4) library backend GLFW.</Description>
 		<PackageTags>ImGui Backends GLFW UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
