@@ -630,5 +630,379 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 			SDLRenderer2DestroyDeviceObjectsNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte OSXInitNative(void* view)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[20])(view);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[20])((nint)view);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool OSXInit(void* view)
+		{
+			byte ret = OSXInitNative(view);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void OSXShutdownNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[21])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[21])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OSXShutdown()
+		{
+			OSXShutdownNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void OSXNewFrameNative(void* view)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[22])(view);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[22])((nint)view);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OSXNewFrame(void* view)
+		{
+			OSXNewFrameNative(view);
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte MetalInitNative(MTLDevice* device)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[23])(device);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[23])((nint)device);
+			#endif
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool MetalInit(MTLDevicePtr device)
+		{
+			byte ret = MetalInitNative(device);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool MetalInit(ref MTLDevice device)
+		{
+			fixed (MTLDevice* pdevice = &device)
+			{
+				byte ret = MetalInitNative((MTLDevice*)pdevice);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MetalShutdownNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalShutdown()
+		{
+			MetalShutdownNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MetalNewFrameNative(MTLRenderPassDescriptor* renderPassDescriptor)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<MTLRenderPassDescriptor*, void>)funcTable[25])(renderPassDescriptor);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[25])((nint)renderPassDescriptor);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalNewFrame(MTLRenderPassDescriptorPtr renderPassDescriptor)
+		{
+			MetalNewFrameNative(renderPassDescriptor);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalNewFrame(ref MTLRenderPassDescriptor renderPassDescriptor)
+		{
+			fixed (MTLRenderPassDescriptor* prenderPassDescriptor = &renderPassDescriptor)
+			{
+				MetalNewFrameNative((MTLRenderPassDescriptor*)prenderPassDescriptor);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MetalRenderDrawDataNative(ImDrawData* drawData, MTLCommandBuffer* commandBuffer, MTLRenderCommandEncoder* commandEncoder)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawData*, MTLCommandBuffer*, MTLRenderCommandEncoder*, void>)funcTable[26])(drawData, commandBuffer, commandEncoder);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[26])((nint)drawData, (nint)commandBuffer, (nint)commandEncoder);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ImDrawDataPtr drawData, MTLCommandBufferPtr commandBuffer, MTLRenderCommandEncoderPtr commandEncoder)
+		{
+			MetalRenderDrawDataNative(drawData, commandBuffer, commandEncoder);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ref ImDrawData drawData, MTLCommandBufferPtr commandBuffer, MTLRenderCommandEncoderPtr commandEncoder)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				MetalRenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, commandEncoder);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ImDrawDataPtr drawData, ref MTLCommandBuffer commandBuffer, MTLRenderCommandEncoderPtr commandEncoder)
+		{
+			fixed (MTLCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				MetalRenderDrawDataNative(drawData, (MTLCommandBuffer*)pcommandBuffer, commandEncoder);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ref ImDrawData drawData, ref MTLCommandBuffer commandBuffer, MTLRenderCommandEncoderPtr commandEncoder)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (MTLCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					MetalRenderDrawDataNative((ImDrawData*)pdrawData, (MTLCommandBuffer*)pcommandBuffer, commandEncoder);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ImDrawDataPtr drawData, MTLCommandBufferPtr commandBuffer, ref MTLRenderCommandEncoder commandEncoder)
+		{
+			fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
+			{
+				MetalRenderDrawDataNative(drawData, commandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ref ImDrawData drawData, MTLCommandBufferPtr commandBuffer, ref MTLRenderCommandEncoder commandEncoder)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
+				{
+					MetalRenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ImDrawDataPtr drawData, ref MTLCommandBuffer commandBuffer, ref MTLRenderCommandEncoder commandEncoder)
+		{
+			fixed (MTLCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
+				{
+					MetalRenderDrawDataNative(drawData, (MTLCommandBuffer*)pcommandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalRenderDrawData(ref ImDrawData drawData, ref MTLCommandBuffer commandBuffer, ref MTLRenderCommandEncoder commandEncoder)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (MTLCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
+					{
+						MetalRenderDrawDataNative((ImDrawData*)pdrawData, (MTLCommandBuffer*)pcommandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Called by Init/NewFrame/Shutdown<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte MetalCreateFontsTextureNative(MTLDevice* device)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[27])(device);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[27])((nint)device);
+			#endif
+		}
+
+		/// <summary>
+		/// Called by Init/NewFrame/Shutdown<br/>
+		/// </summary>
+		public static bool MetalCreateFontsTexture(MTLDevicePtr device)
+		{
+			byte ret = MetalCreateFontsTextureNative(device);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Called by Init/NewFrame/Shutdown<br/>
+		/// </summary>
+		public static bool MetalCreateFontsTexture(ref MTLDevice device)
+		{
+			fixed (MTLDevice* pdevice = &device)
+			{
+				byte ret = MetalCreateFontsTextureNative((MTLDevice*)pdevice);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MetalDestroyFontsTextureNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[28])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[28])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalDestroyFontsTexture()
+		{
+			MetalDestroyFontsTextureNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte MetalCreateDeviceObjectsNative(MTLDevice* device)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[29])(device);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[29])((nint)device);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool MetalCreateDeviceObjects(MTLDevicePtr device)
+		{
+			byte ret = MetalCreateDeviceObjectsNative(device);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool MetalCreateDeviceObjects(ref MTLDevice device)
+		{
+			fixed (MTLDevice* pdevice = &device)
+			{
+				byte ret = MetalCreateDeviceObjectsNative((MTLDevice*)pdevice);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MetalDestroyDeviceObjectsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MetalDestroyDeviceObjects()
+		{
+			MetalDestroyDeviceObjectsNative();
+		}
+
 	}
 }

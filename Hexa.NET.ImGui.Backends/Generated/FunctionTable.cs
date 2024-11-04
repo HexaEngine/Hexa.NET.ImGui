@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui.Backends
 		/// </summary>
 		public static void InitApi()
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 53);
+			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 64);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
 			funcTable.Load(2, "ImGui_ImplOpenGL3_Init");
@@ -79,6 +79,17 @@ namespace Hexa.NET.ImGui.Backends
 			funcTable.Load(50, "ImGui_ImplWin32_GetDpiScaleForHwnd");
 			funcTable.Load(51, "ImGui_ImplWin32_GetDpiScaleForMonitor");
 			funcTable.Load(52, "ImGui_ImplWin32_EnableAlphaCompositing");
+			funcTable.Load(53, "ImGui_ImplOSX_Init");
+			funcTable.Load(54, "ImGui_ImplOSX_Shutdown");
+			funcTable.Load(55, "ImGui_ImplOSX_NewFrame");
+			funcTable.Load(56, "ImGui_ImplMetal_Init");
+			funcTable.Load(57, "ImGui_ImplMetal_Shutdown");
+			funcTable.Load(58, "ImGui_ImplMetal_NewFrame");
+			funcTable.Load(59, "ImGui_ImplMetal_RenderDrawData");
+			funcTable.Load(60, "ImGui_ImplMetal_CreateFontsTexture");
+			funcTable.Load(61, "ImGui_ImplMetal_DestroyFontsTexture");
+			funcTable.Load(62, "ImGui_ImplMetal_CreateDeviceObjects");
+			funcTable.Load(63, "ImGui_ImplMetal_DestroyDeviceObjects");
 		}
 
 		public static void FreeApi()

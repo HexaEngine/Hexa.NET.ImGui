@@ -19,11 +19,17 @@
 #ifndef CIMGUI_USE_D3D12
 #define CIMGUI_USE_D3D12 1
 #endif
+#ifndef CIMGUI_USE_METAL
+#define CIMGUI_USE_METAL 1
+#endif
 #ifndef CIMGUI_USE_VULKAN
 #define CIMGUI_USE_VULKAN 1
 #endif
 #ifndef CIMGUI_USE_WIN32
 #define CIMGUI_USE_WIN32 1
+#endif
+#ifndef CIMGUI_USE_OSX
+#define CIMGUI_USE_OSX 1
 #endif
 
 #include <stdint.h>
@@ -372,5 +378,34 @@ struct ImGui_ImplVulkanH_Window
 		ClearEnable = true;
 	}
 };
+
+#endif
+
+#if CIMGUI_USE_OSX
+
+CIMGUI_API bool ImGui_ImplOSX_Init(void* view);
+CIMGUI_API void ImGui_ImplOSX_Shutdown();
+CIMGUI_API void ImGui_ImplOSX_NewFrame(void* view);
+
+#endif
+
+#if CIMGUI_USE_METAL
+
+typedef struct MTLDevice MTLDevice;
+typedef struct MTLRenderPassDescriptor MTLRenderPassDescriptor;
+typedef struct MTLCommandBuffer MTLCommandBuffer;
+typedef struct MTLRenderCommandEncoder MTLRenderCommandEncoder;
+
+// Follow "Getting Started" link and check examples/ folder to learn about using backends!
+CIMGUI_API bool ImGui_ImplMetal_Init(MTLDevice* device);
+CIMGUI_API void ImGui_ImplMetal_Shutdown();
+CIMGUI_API void ImGui_ImplMetal_NewFrame(MTLRenderPassDescriptor* renderPassDescriptor);
+CIMGUI_API void ImGui_ImplMetal_RenderDrawData(ImDrawData* draw_data, MTLCommandBuffer* commandBuffer, MTLRenderCommandEncoder* commandEncoder);
+
+// Called by Init/NewFrame/Shutdown
+CIMGUI_API bool ImGui_ImplMetal_CreateFontsTexture(MTLDevice* device);
+CIMGUI_API void ImGui_ImplMetal_DestroyFontsTexture();
+CIMGUI_API bool ImGui_ImplMetal_CreateDeviceObjects(MTLDevice* device);
+CIMGUI_API void ImGui_ImplMetal_DestroyDeviceObjects();
 
 #endif

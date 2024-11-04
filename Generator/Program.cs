@@ -1,4 +1,6 @@
-﻿namespace Generator
+﻿#define BackendsOnly
+
+namespace Generator
 {
     using HexaGen;
     using HexaGen.Metadata;
@@ -51,7 +53,7 @@
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 #endif
 
-            string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32"];
+            string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal"];
 
             metadata.CppDefinedFunctions.Clear();
 
@@ -120,7 +122,9 @@
                 $"CIMGUI_USE_D3D11={(name == "D3D11" ? "1":"0")}",
                 $"CIMGUI_USE_D3D12={(name == "D3D12" ? "1":"0")}",
                 $"CIMGUI_USE_VULKAN={(name == "Vulkan" ? "1":"0")}",
-                $"CIMGUI_USE_WIN32={(name == "Win32" ? "1":"0")}"];
+                $"CIMGUI_USE_WIN32={(name == "Win32" ? "1":"0")}",
+                $"CIMGUI_USE_METAL={(name == "Metal" ? "1":"0")}",
+                $"CIMGUI_USE_OSX={(name == "OSX" ? "1":"0")}"];
 
             var originalNamespace = settings.Namespace;
 
