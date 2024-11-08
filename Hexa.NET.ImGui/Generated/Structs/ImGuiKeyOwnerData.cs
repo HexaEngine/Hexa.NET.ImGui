@@ -56,17 +56,6 @@ namespace Hexa.NET.ImGui
 		}
 
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImGuiKeyOwnerData* @this = &this)
-			{
-				ImGui.DestroyNative(@this);
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -126,14 +115,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool LockUntilRelease => ref Unsafe.AsRef<bool>(&Handle->LockUntilRelease);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImGui.DestroyNative(Handle);
-		}
-
 	}
 
 }

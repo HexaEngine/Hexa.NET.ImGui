@@ -101,17 +101,6 @@ namespace Hexa.NET.ImGui
 				}
 			}
 		}
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImGuiDebugAllocInfo* @this = &this)
-			{
-				ImGui.DestroyNative(@this);
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -178,14 +167,6 @@ namespace Hexa.NET.ImGui
 				return new Span<ImGuiDebugAllocEntry>(&Handle->LastEntriesBuf_0, 6);
 			}
 		}
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImGui.DestroyNative(Handle);
-		}
-
 	}
 
 }

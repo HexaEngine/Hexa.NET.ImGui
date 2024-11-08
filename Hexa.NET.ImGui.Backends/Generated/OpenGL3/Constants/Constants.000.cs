@@ -16,6 +16,10 @@ namespace Hexa.NET.ImGui.Backends.OpenGL3
 {
 	public unsafe partial class ImGuiImplOpenGL3
 	{
+		public const int IMGUI_USE_WCHAR32 = 1;
+
+		public const int IMGUI_ENABLE_FREETYPE = 1;
+
 		public const int CIMGUI_USE_GLFW = 0;
 
 		public const int CIMGUI_USE_SDL2 = 0;

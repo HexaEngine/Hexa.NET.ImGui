@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleGLFWOpenGL3", "Examp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleGLFWD3D11", "ExampleGLFWD3D11\ExampleGLFWD3D11.csproj", "{891DDA5F-ABA9-4F35-AE9D-E7381A4EA870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAuto", "ExampleAuto\ExampleAuto.csproj", "{DEB72890-94BF-453A-B5D7-8E5F324F3658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAuto", "ExampleAuto\ExampleAuto.csproj", "{DEB72890-94BF-453A-B5D7-8E5F324F3658}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAndroid", "ExampleAndroid\ExampleAndroid.csproj", "{65463793-8EC1-4AC0-BA19-7585C44CE501}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,11 @@ Global
 		{DEB72890-94BF-453A-B5D7-8E5F324F3658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEB72890-94BF-453A-B5D7-8E5F324F3658}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEB72890-94BF-453A-B5D7-8E5F324F3658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65463793-8EC1-4AC0-BA19-7585C44CE501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65463793-8EC1-4AC0-BA19-7585C44CE501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65463793-8EC1-4AC0-BA19-7585C44CE501}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{65463793-8EC1-4AC0-BA19-7585C44CE501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65463793-8EC1-4AC0-BA19-7585C44CE501}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

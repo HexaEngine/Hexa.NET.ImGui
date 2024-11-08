@@ -525,17 +525,6 @@ namespace Hexa.NET.ImGui
 		}
 
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImGuiKeyRoutingTable* @this = &this)
-			{
-				ImGui.DestroyNative(@this);
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -598,14 +587,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImVector<ImGuiKeyRoutingData> EntriesNext => ref Unsafe.AsRef<ImVector<ImGuiKeyRoutingData>>(&Handle->EntriesNext);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImGui.DestroyNative(Handle);
-		}
-
 	}
 
 }

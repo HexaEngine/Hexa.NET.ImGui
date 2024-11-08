@@ -68,17 +68,6 @@ namespace Hexa.NET.ImGui
 		}
 
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImGuiTableInstanceData* @this = &this)
-			{
-				ImGui.DestroyNative(@this);
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -146,14 +135,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref int HoveredRowNext => ref Unsafe.AsRef<int>(&Handle->HoveredRowNext);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImGui.DestroyNative(Handle);
-		}
-
 	}
 
 }

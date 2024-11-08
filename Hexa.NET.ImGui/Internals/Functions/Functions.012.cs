@@ -21,6 +21,1417 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, byte clearPersistentDockingRef)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, byte, void>)funcTable[1182])(ctx, window, clearPersistentDockingRef);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, byte, void>)funcTable[1182])((nint)ctx, (nint)window, clearPersistentDockingRef);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
+		{
+			DockContextProcessUndockWindowNative(ctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window)
+		{
+			DockContextProcessUndockWindowNative(ctx, window, (byte)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextProcessUndockWindowNative((ImGuiContext*)pctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ImGuiWindowPtr window)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextProcessUndockWindowNative((ImGuiContext*)pctx, window, (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ref ImGuiWindow window, bool clearPersistentDockingRef)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				DockContextProcessUndockWindowNative(ctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				DockContextProcessUndockWindowNative(ctx, (ImGuiWindow*)pwindow, (byte)(1));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ref ImGuiWindow window, bool clearPersistentDockingRef)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiWindow* pwindow = &window)
+				{
+					DockContextProcessUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ref ImGuiWindow window)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiWindow* pwindow = &window)
+				{
+					DockContextProcessUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow, (byte)(1));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DockContextProcessUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, void>)funcTable[1183])(ctx, node);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1183])((nint)ctx, (nint)node);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
+		{
+			DockContextProcessUndockNodeNative(ctx, node);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockNode(ref ImGuiContext ctx, ImGuiDockNodePtr node)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextProcessUndockNodeNative((ImGuiContext*)pctx, node);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				DockContextProcessUndockNodeNative(ctx, (ImGuiDockNode*)pnode);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockContextProcessUndockNode(ref ImGuiContext ctx, ref ImGuiDockNode node)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiDockNode* pnode = &node)
+				{
+					DockContextProcessUndockNodeNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, byte splitOuter, Vector2* outPos)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiDockNode*, ImGuiWindow*, ImGuiDockNode*, ImGuiDir, byte, Vector2*, byte>)funcTable[1184])(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, ImGuiDir, byte, nint, byte>)funcTable[1184])((nint)target, (nint)targetNode, (nint)payloadWindow, (nint)payloadNode, splitDir, splitOuter, (nint)outPos);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+					{
+						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+						{
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (Vector2* poutPos = &outPos)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+					{
+						fixed (Vector2* poutPos = &outPos)
+						{
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						fixed (Vector2* poutPos = &outPos)
+						{
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						fixed (Vector2* poutPos = &outPos)
+						{
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						fixed (Vector2* poutPos = &outPos)
+						{
+							byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+					{
+						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+						{
+							fixed (Vector2* poutPos = &outPos)
+							{
+								byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiDockNode* DockContextFindNodeByIDNative(ImGuiContext* ctx, uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, uint, ImGuiDockNode*>)funcTable[1185])(ctx, id);
+			#else
+			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1185])((nint)ctx, id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr DockContextFindNodeByID(ImGuiContextPtr ctx, uint id)
+		{
+			ImGuiDockNodePtr ret = DockContextFindNodeByIDNative(ctx, id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr DockContextFindNodeByID(ref ImGuiContext ctx, uint id)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				ImGuiDockNodePtr ret = DockContextFindNodeByIDNative((ImGuiContext*)pctx, id);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DockNodeWindowMenuHandler_DefaultNative(ImGuiContext* ctx, ImGuiDockNode* node, ImGuiTabBar* tabBar)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>)funcTable[1186])(ctx, node, tabBar);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1186])((nint)ctx, (nint)node, (nint)tabBar);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
+		{
+			DockNodeWindowMenuHandler_DefaultNative(ctx, node, tabBar);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, node, tabBar);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ref ImGuiDockNode node, ImGuiTabBarPtr tabBar)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				DockNodeWindowMenuHandler_DefaultNative(ctx, (ImGuiDockNode*)pnode, tabBar);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ref ImGuiDockNode node, ImGuiTabBarPtr tabBar)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiDockNode* pnode = &node)
+				{
+					DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode, tabBar);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ref ImGuiTabBar tabBar)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				DockNodeWindowMenuHandler_DefaultNative(ctx, node, (ImGuiTabBar*)ptabBar);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ImGuiDockNodePtr node, ref ImGuiTabBar tabBar)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiTabBar* ptabBar = &tabBar)
+				{
+					DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, node, (ImGuiTabBar*)ptabBar);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ref ImGuiDockNode node, ref ImGuiTabBar tabBar)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				fixed (ImGuiTabBar* ptabBar = &tabBar)
+				{
+					DockNodeWindowMenuHandler_DefaultNative(ctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)ptabBar);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ref ImGuiDockNode node, ref ImGuiTabBar tabBar)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiDockNode* pnode = &node)
+				{
+					fixed (ImGuiTabBar* ptabBar = &tabBar)
+					{
+						DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)ptabBar);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DockNodeBeginAmendTabBarNative(ImGuiDockNode* node)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[1187])(node);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1187])((nint)node);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockNodeBeginAmendTabBar(ImGuiDockNodePtr node)
+		{
+			byte ret = DockNodeBeginAmendTabBarNative(node);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockNodeBeginAmendTabBar(ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				byte ret = DockNodeBeginAmendTabBarNative((ImGuiDockNode*)pnode);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DockNodeEndAmendTabBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1188])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1188])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockNodeEndAmendTabBar()
+		{
+			DockNodeEndAmendTabBarNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiDockNode* DockNodeGetRootNodeNative(ImGuiDockNode* node)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*>)funcTable[1189])(node);
+			#else
+			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1189])((nint)node);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr DockNodeGetRootNode(ImGuiDockNodePtr node)
+		{
+			ImGuiDockNodePtr ret = DockNodeGetRootNodeNative(node);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr DockNodeGetRootNode(ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				ImGuiDockNodePtr ret = DockNodeGetRootNodeNative((ImGuiDockNode*)pnode);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DockNodeIsInHierarchyOfNative(ImGuiDockNode* node, ImGuiDockNode* parent)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*, byte>)funcTable[1190])(node, parent);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1190])((nint)node, (nint)parent);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ImGuiDockNodePtr parent)
+		{
+			byte ret = DockNodeIsInHierarchyOfNative(node, parent);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockNodeIsInHierarchyOf(ref ImGuiDockNode node, ImGuiDockNodePtr parent)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)pnode, parent);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ref ImGuiDockNode parent)
+		{
+			fixed (ImGuiDockNode* pparent = &parent)
+			{
+				byte ret = DockNodeIsInHierarchyOfNative(node, (ImGuiDockNode*)pparent);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DockNodeIsInHierarchyOf(ref ImGuiDockNode node, ref ImGuiDockNode parent)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				fixed (ImGuiDockNode* pparent = &parent)
+				{
+					byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)pnode, (ImGuiDockNode*)pparent);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int DockNodeGetDepthNative(ImGuiDockNode* node)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, int>)funcTable[1191])(node);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[1191])((nint)node);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int DockNodeGetDepth(ImGuiDockNodePtr node)
+		{
+			int ret = DockNodeGetDepthNative(node);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int DockNodeGetDepth(ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				int ret = DockNodeGetDepthNative((ImGuiDockNode*)pnode);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint DockNodeGetWindowMenuButtonIdNative(ImGuiDockNode* node)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, uint>)funcTable[1192])(node);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[1192])((nint)node);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint DockNodeGetWindowMenuButtonId(ImGuiDockNodePtr node)
+		{
+			uint ret = DockNodeGetWindowMenuButtonIdNative(node);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint DockNodeGetWindowMenuButtonId(ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				uint ret = DockNodeGetWindowMenuButtonIdNative((ImGuiDockNode*)pnode);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiDockNode* GetWindowDockNodeNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*>)funcTable[1193])();
+			#else
+			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1193])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr GetWindowDockNode()
+		{
+			ImGuiDockNodePtr ret = GetWindowDockNodeNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte GetWindowAlwaysWantOwnTabBarNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte>)funcTable[1194])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1194])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool GetWindowAlwaysWantOwnTabBar(ImGuiWindowPtr window)
+		{
+			byte ret = GetWindowAlwaysWantOwnTabBarNative(window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool GetWindowAlwaysWantOwnTabBar(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				byte ret = GetWindowAlwaysWantOwnTabBarNative((ImGuiWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginDockedNative(ImGuiWindow* window, bool* pOpen)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, bool*, void>)funcTable[1195])(window, pOpen);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1195])((nint)window, (nint)pOpen);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDocked(ImGuiWindowPtr window, bool* pOpen)
+		{
+			BeginDockedNative(window, pOpen);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDocked(ref ImGuiWindow window, bool* pOpen)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				BeginDockedNative((ImGuiWindow*)pwindow, pOpen);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDocked(ImGuiWindowPtr window, ref bool pOpen)
+		{
+			fixed (bool* ppOpen = &pOpen)
+			{
+				BeginDockedNative(window, (bool*)ppOpen);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDocked(ref ImGuiWindow window, ref bool pOpen)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					BeginDockedNative((ImGuiWindow*)pwindow, (bool*)ppOpen);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginDockableDragDropSourceNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1196])(window);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1196])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDockableDragDropSource(ImGuiWindowPtr window)
+		{
+			BeginDockableDragDropSourceNative(window);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDockableDragDropSource(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				BeginDockableDragDropSourceNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginDockableDragDropTargetNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1197])(window);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1197])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDockableDragDropTarget(ImGuiWindowPtr window)
+		{
+			BeginDockableDragDropTargetNative(window);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDockableDragDropTarget(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				BeginDockableDragDropTargetNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowDockNative(ImGuiWindow* window, uint dockId, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, uint, ImGuiCond, void>)funcTable[1198])(window, dockId, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, ImGuiCond, void>)funcTable[1198])((nint)window, dockId, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowDock(ImGuiWindowPtr window, uint dockId, ImGuiCond cond)
+		{
+			SetWindowDockNative(window, dockId, cond);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowDock(ref ImGuiWindow window, uint dockId, ImGuiCond cond)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowDockNative((ImGuiWindow*)pwindow, dockId, cond);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DockBuilderDockWindowNative(byte* windowName, uint nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, uint, void>)funcTable[1199])(windowName, nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[1199])((nint)windowName, nodeId);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockBuilderDockWindow(byte* windowName, uint nodeId)
+		{
+			DockBuilderDockWindowNative(windowName, nodeId);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockBuilderDockWindow(ref byte windowName, uint nodeId)
+		{
+			fixed (byte* pwindowName = &windowName)
+			{
+				DockBuilderDockWindowNative((byte*)pwindowName, nodeId);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockBuilderDockWindow(ReadOnlySpan<byte> windowName, uint nodeId)
+		{
+			fixed (byte* pwindowName = windowName)
+			{
+				DockBuilderDockWindowNative((byte*)pwindowName, nodeId);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DockBuilderDockWindow(string windowName, uint nodeId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (windowName != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(windowName);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(windowName, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DockBuilderDockWindowNative(pStr0, nodeId);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiDockNode* DockBuilderGetNodeNative(uint nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[1200])(nodeId);
+			#else
+			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1200])(nodeId);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr DockBuilderGetNode(uint nodeId)
+		{
+			ImGuiDockNodePtr ret = DockBuilderGetNodeNative(nodeId);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiDockNode* DockBuilderGetCentralNodeNative(uint nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[1201])(nodeId);
+			#else
+			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1201])(nodeId);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiDockNodePtr DockBuilderGetCentralNode(uint nodeId)
+		{
+			ImGuiDockNodePtr ret = DockBuilderGetCentralNodeNative(nodeId);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint DockBuilderAddNodeNative(uint nodeId, ImGuiDockNodeFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNodeFlags, uint>)funcTable[1202])(nodeId, flags);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<uint, ImGuiDockNodeFlags, uint>)funcTable[1202])(nodeId, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint DockBuilderAddNode(uint nodeId, ImGuiDockNodeFlags flags)
+		{
+			uint ret = DockBuilderAddNodeNative(nodeId, flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static uint DockBuilderAddNode(uint nodeId)
 		{
 			uint ret = DockBuilderAddNodeNative(nodeId, (ImGuiDockNodeFlags)(0));
@@ -52,9 +1463,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderRemoveNodeNative(uint nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1202])(nodeId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1203])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1202])(nodeId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1203])(nodeId);
 			#endif
 		}
 
@@ -73,9 +1484,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderRemoveNodeDockedWindowsNative(uint nodeId, byte clearSettingsRefs)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1203])(nodeId, clearSettingsRefs);
+			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1204])(nodeId, clearSettingsRefs);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1203])(nodeId, clearSettingsRefs);
+			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1204])(nodeId, clearSettingsRefs);
 			#endif
 		}
 
@@ -102,9 +1513,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderRemoveNodeChildNodesNative(uint nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1204])(nodeId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1205])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1204])(nodeId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1205])(nodeId);
 			#endif
 		}
 
@@ -123,9 +1534,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderSetNodePosNative(uint nodeId, Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1205])(nodeId, pos);
+			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1206])(nodeId, pos);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1205])(nodeId, pos);
+			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1206])(nodeId, pos);
 			#endif
 		}
 
@@ -144,9 +1555,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderSetNodeSizeNative(uint nodeId, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1206])(nodeId, size);
+			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1207])(nodeId, size);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1206])(nodeId, size);
+			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1207])(nodeId, size);
 			#endif
 		}
 
@@ -165,9 +1576,9 @@ namespace Hexa.NET.ImGui
 		internal static uint DockBuilderSplitNodeNative(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, uint* outIdAtDir, uint* outIdAtOppositeDir)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDir, float, uint*, uint*, uint>)funcTable[1207])(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDir, float, uint*, uint*, uint>)funcTable[1208])(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, ImGuiDir, float, nint, nint, uint>)funcTable[1207])(nodeId, splitDir, sizeRatioForNodeAtDir, (nint)outIdAtDir, (nint)outIdAtOppositeDir);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, ImGuiDir, float, nint, nint, uint>)funcTable[1208])(nodeId, splitDir, sizeRatioForNodeAtDir, (nint)outIdAtDir, (nint)outIdAtOppositeDir);
 			#endif
 		}
 
@@ -226,9 +1637,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderCopyDockSpaceNative(uint srcDockspaceId, uint dstDockspaceId, ImVector<ConstPointer<byte>>* inWindowRemapPairs)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, uint, ImVector<ConstPointer<byte>>*, void>)funcTable[1208])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
+			((delegate* unmanaged[Cdecl]<uint, uint, ImVector<ConstPointer<byte>>*, void>)funcTable[1209])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, uint, nint, void>)funcTable[1208])(srcDockspaceId, dstDockspaceId, (nint)inWindowRemapPairs);
+			((delegate* unmanaged[Cdecl]<uint, uint, nint, void>)funcTable[1209])(srcDockspaceId, dstDockspaceId, (nint)inWindowRemapPairs);
 			#endif
 		}
 
@@ -258,9 +1669,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderCopyNodeNative(uint srcNodeId, uint dstNodeId, ImVector<int>* outNodeRemapPairs)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, uint, ImVector<int>*, void>)funcTable[1209])(srcNodeId, dstNodeId, outNodeRemapPairs);
+			((delegate* unmanaged[Cdecl]<uint, uint, ImVector<int>*, void>)funcTable[1210])(srcNodeId, dstNodeId, outNodeRemapPairs);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, uint, nint, void>)funcTable[1209])(srcNodeId, dstNodeId, (nint)outNodeRemapPairs);
+			((delegate* unmanaged[Cdecl]<uint, uint, nint, void>)funcTable[1210])(srcNodeId, dstNodeId, (nint)outNodeRemapPairs);
 			#endif
 		}
 
@@ -290,9 +1701,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderCopyWindowSettingsNative(byte* srcName, byte* dstName)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[1210])(srcName, dstName);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[1211])(srcName, dstName);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1210])((nint)srcName, (nint)dstName);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1211])((nint)srcName, (nint)dstName);
 			#endif
 		}
 
@@ -647,9 +2058,9 @@ namespace Hexa.NET.ImGui
 		internal static void DockBuilderFinishNative(uint nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1211])(nodeId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1212])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1211])(nodeId);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1212])(nodeId);
 			#endif
 		}
 
@@ -668,9 +2079,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushFocusScopeNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1212])(id);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1213])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1212])(id);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1213])(id);
 			#endif
 		}
 
@@ -689,9 +2100,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopFocusScopeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1213])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1214])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1213])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1214])();
 			#endif
 		}
 
@@ -710,9 +2121,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetCurrentFocusScopeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[1214])();
+			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[1215])();
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[1214])();
+			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[1215])();
 			#endif
 		}
 
@@ -732,9 +2143,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsDragDropActiveNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1215])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1216])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1215])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1216])();
 			#endif
 		}
 
@@ -754,9 +2165,9 @@ namespace Hexa.NET.ImGui
 		internal static byte BeginDragDropTargetCustomNative(ImRect bb, uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte>)funcTable[1216])(bb, id);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte>)funcTable[1217])(bb, id);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, byte>)funcTable[1216])(bb, id);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, byte>)funcTable[1217])(bb, id);
 			#endif
 		}
 
@@ -776,9 +2187,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearDragDropNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1217])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1218])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1217])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1218])();
 			#endif
 		}
 
@@ -797,9 +2208,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsDragDropPayloadBeingAcceptedNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1218])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1219])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1218])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1219])();
 			#endif
 		}
 
@@ -819,9 +2230,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderDragDropTargetRectNative(ImRect bb, ImRect itemClipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, ImRect, void>)funcTable[1219])(bb, itemClipRect);
+			((delegate* unmanaged[Cdecl]<ImRect, ImRect, void>)funcTable[1220])(bb, itemClipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<ImRect, ImRect, void>)funcTable[1219])(bb, itemClipRect);
+			((delegate* unmanaged[Cdecl]<ImRect, ImRect, void>)funcTable[1220])(bb, itemClipRect);
 			#endif
 		}
 
@@ -840,9 +2251,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTypingSelectRequest* GetTypingSelectRequestNative(ImGuiTypingSelectFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, ImGuiTypingSelectRequest*>)funcTable[1220])(flags);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, ImGuiTypingSelectRequest*>)funcTable[1221])(flags);
 			#else
-			return (ImGuiTypingSelectRequest*)((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, nint>)funcTable[1220])(flags);
+			return (ImGuiTypingSelectRequest*)((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, nint>)funcTable[1221])(flags);
 			#endif
 		}
 
@@ -871,9 +2282,9 @@ namespace Hexa.NET.ImGui
 		internal static int TypingSelectFindMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, byte*>, void*, int, int>)funcTable[1221])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, byte*>, void*, int, int>)funcTable[1222])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int, int>)funcTable[1221])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData, navItemIdx);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int, int>)funcTable[1222])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData, navItemIdx);
 			#endif
 		}
 
@@ -905,9 +2316,9 @@ namespace Hexa.NET.ImGui
 		internal static int TypingSelectFindNextSingleCharMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, byte*>, void*, int, int>)funcTable[1222])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, byte*>, void*, int, int>)funcTable[1223])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int, int>)funcTable[1222])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData, navItemIdx);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int, int>)funcTable[1223])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData, navItemIdx);
 			#endif
 		}
 
@@ -939,9 +2350,9 @@ namespace Hexa.NET.ImGui
 		internal static int TypingSelectFindBestLeadingMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, byte*> getItemNameFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, byte*>, void*, int>)funcTable[1223])(req, itemsCount, getItemNameFunc, userData);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, byte*>, void*, int>)funcTable[1224])(req, itemsCount, getItemNameFunc, userData);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)funcTable[1223])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)funcTable[1224])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData);
 			#endif
 		}
 
@@ -973,9 +2384,9 @@ namespace Hexa.NET.ImGui
 		internal static byte BeginBoxSelectNative(ImRect scopeRect, ImGuiWindow* window, uint boxSelectId, ImGuiMultiSelectFlags msFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImGuiWindow*, uint, ImGuiMultiSelectFlags, byte>)funcTable[1224])(scopeRect, window, boxSelectId, msFlags);
+			return ((delegate* unmanaged[Cdecl]<ImRect, ImGuiWindow*, uint, ImGuiMultiSelectFlags, byte>)funcTable[1225])(scopeRect, window, boxSelectId, msFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, nint, uint, ImGuiMultiSelectFlags, byte>)funcTable[1224])(scopeRect, (nint)window, boxSelectId, msFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, nint, uint, ImGuiMultiSelectFlags, byte>)funcTable[1225])(scopeRect, (nint)window, boxSelectId, msFlags);
 			#endif
 		}
 
@@ -1007,9 +2418,9 @@ namespace Hexa.NET.ImGui
 		internal static void EndBoxSelectNative(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)funcTable[1225])(scopeRect, msFlags);
+			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)funcTable[1226])(scopeRect, msFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)funcTable[1225])(scopeRect, msFlags);
+			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)funcTable[1226])(scopeRect, msFlags);
 			#endif
 		}
 
@@ -1028,9 +2439,9 @@ namespace Hexa.NET.ImGui
 		internal static void MultiSelectItemHeaderNative(uint id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, bool*, ImGuiButtonFlags*, void>)funcTable[1226])(id, pSelected, pButtonFlags);
+			((delegate* unmanaged[Cdecl]<uint, bool*, ImGuiButtonFlags*, void>)funcTable[1227])(id, pSelected, pButtonFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, nint, nint, void>)funcTable[1226])(id, (nint)pSelected, (nint)pButtonFlags);
+			((delegate* unmanaged[Cdecl]<uint, nint, nint, void>)funcTable[1227])(id, (nint)pSelected, (nint)pButtonFlags);
 			#endif
 		}
 
@@ -1060,9 +2471,9 @@ namespace Hexa.NET.ImGui
 		internal static void MultiSelectItemFooterNative(uint id, bool* pSelected, bool* pPressed)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, bool*, bool*, void>)funcTable[1227])(id, pSelected, pPressed);
+			((delegate* unmanaged[Cdecl]<uint, bool*, bool*, void>)funcTable[1228])(id, pSelected, pPressed);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, nint, nint, void>)funcTable[1227])(id, (nint)pSelected, (nint)pPressed);
+			((delegate* unmanaged[Cdecl]<uint, nint, nint, void>)funcTable[1228])(id, (nint)pSelected, (nint)pPressed);
 			#endif
 		}
 
@@ -1117,9 +2528,9 @@ namespace Hexa.NET.ImGui
 		internal static void MultiSelectAddSetAllNative(ImGuiMultiSelectTempData* ms, byte selected)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, void>)funcTable[1228])(ms, selected);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, void>)funcTable[1229])(ms, selected);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[1228])((nint)ms, selected);
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[1229])((nint)ms, selected);
 			#endif
 		}
 
@@ -1149,9 +2560,9 @@ namespace Hexa.NET.ImGui
 		internal static void MultiSelectAddSetRangeNative(ImGuiMultiSelectTempData* ms, byte selected, int rangeDir, long firstItem, long lastItem)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, int, long, long, void>)funcTable[1229])(ms, selected, rangeDir, firstItem, lastItem);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, int, long, long, void>)funcTable[1230])(ms, selected, rangeDir, firstItem, lastItem);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, int, long, long, void>)funcTable[1229])((nint)ms, selected, rangeDir, firstItem, lastItem);
+			((delegate* unmanaged[Cdecl]<nint, byte, int, long, long, void>)funcTable[1230])((nint)ms, selected, rangeDir, firstItem, lastItem);
 			#endif
 		}
 
@@ -1181,9 +2592,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiBoxSelectState* GetBoxSelectStateNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiBoxSelectState*>)funcTable[1230])(id);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiBoxSelectState*>)funcTable[1231])(id);
 			#else
-			return (ImGuiBoxSelectState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1230])(id);
+			return (ImGuiBoxSelectState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1231])(id);
 			#endif
 		}
 
@@ -1203,9 +2614,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiMultiSelectState* GetMultiSelectStateNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiMultiSelectState*>)funcTable[1231])(id);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiMultiSelectState*>)funcTable[1232])(id);
 			#else
-			return (ImGuiMultiSelectState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1231])(id);
+			return (ImGuiMultiSelectState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1232])(id);
 			#endif
 		}
 
@@ -1225,9 +2636,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetWindowClipRectBeforeSetChannelNative(ImGuiWindow* window, ImRect clipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, void>)funcTable[1232])(window, clipRect);
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, void>)funcTable[1233])(window, clipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[1232])((nint)window, clipRect);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[1233])((nint)window, clipRect);
 			#endif
 		}
 
@@ -1257,9 +2668,9 @@ namespace Hexa.NET.ImGui
 		internal static void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, ImGuiOldColumnFlags, void>)funcTable[1233])(strId, count, flags);
+			((delegate* unmanaged[Cdecl]<byte*, int, ImGuiOldColumnFlags, void>)funcTable[1234])(strId, count, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImGuiOldColumnFlags, void>)funcTable[1233])((nint)strId, count, flags);
+			((delegate* unmanaged[Cdecl]<nint, int, ImGuiOldColumnFlags, void>)funcTable[1234])((nint)strId, count, flags);
 			#endif
 		}
 
@@ -1388,9 +2799,9 @@ namespace Hexa.NET.ImGui
 		internal static void EndColumnsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1234])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1235])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1234])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1235])();
 			#endif
 		}
 
@@ -1409,9 +2820,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushColumnClipRectNative(int columnIndex)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1235])(columnIndex);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1236])(columnIndex);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1235])(columnIndex);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1236])(columnIndex);
 			#endif
 		}
 
@@ -1430,9 +2841,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushColumnsBackgroundNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1236])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1237])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1236])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1237])();
 			#endif
 		}
 
@@ -1451,9 +2862,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopColumnsBackgroundNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1237])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1238])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1237])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1238])();
 			#endif
 		}
 
@@ -1472,9 +2883,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetColumnsIDNative(byte* strId, int count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, uint>)funcTable[1238])(strId, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, uint>)funcTable[1239])(strId, count);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1238])((nint)strId, count);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1239])((nint)strId, count);
 			#endif
 		}
 
@@ -1548,9 +2959,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, uint, ImGuiOldColumns*>)funcTable[1239])(window, id);
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, uint, ImGuiOldColumns*>)funcTable[1240])(window, id);
 			#else
-			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1239])((nint)window, id);
+			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1240])((nint)window, id);
 			#endif
 		}
 
@@ -1582,9 +2993,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetColumnOffsetFromNormNative(ImGuiOldColumns* columns, float offsetNorm)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1240])(columns, offsetNorm);
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1241])(columns, offsetNorm);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1240])((nint)columns, offsetNorm);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1241])((nint)columns, offsetNorm);
 			#endif
 		}
 
@@ -1616,9 +3027,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetColumnNormFromOffsetNative(ImGuiOldColumns* columns, float offset)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1241])(columns, offset);
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1242])(columns, offset);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1241])((nint)columns, offset);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1242])((nint)columns, offset);
 			#endif
 		}
 
@@ -1650,9 +3061,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableOpenContextMenuNative(int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1242])(columnN);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1243])(columnN);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1242])(columnN);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1243])(columnN);
 			#endif
 		}
 
@@ -1679,9 +3090,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSetColumnWidthNative(int columnN, float width)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1243])(columnN, width);
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1244])(columnN, width);
 			#else
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1243])(columnN, width);
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1244])(columnN, width);
 			#endif
 		}
 
@@ -1700,9 +3111,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1244])(columnN, sortDirection, appendToSortSpecs);
+			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1245])(columnN, sortDirection, appendToSortSpecs);
 			#else
-			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1244])(columnN, sortDirection, appendToSortSpecs);
+			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1245])(columnN, sortDirection, appendToSortSpecs);
 			#endif
 		}
 
@@ -1721,9 +3132,9 @@ namespace Hexa.NET.ImGui
 		internal static int TableGetHoveredRowNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[1245])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[1246])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[1245])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[1246])();
 			#endif
 		}
 
@@ -1743,9 +3154,9 @@ namespace Hexa.NET.ImGui
 		internal static float TableGetHeaderRowHeightNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1246])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1247])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1246])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1247])();
 			#endif
 		}
 
@@ -1765,9 +3176,9 @@ namespace Hexa.NET.ImGui
 		internal static float TableGetHeaderAngledMaxLabelWidthNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1247])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1248])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1247])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1248])();
 			#endif
 		}
 
@@ -1787,9 +3198,9 @@ namespace Hexa.NET.ImGui
 		internal static void TablePushBackgroundChannelNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1248])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1249])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1248])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1249])();
 			#endif
 		}
 
@@ -1808,9 +3219,9 @@ namespace Hexa.NET.ImGui
 		internal static void TablePopBackgroundChannelNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1249])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1250])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1249])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1250])();
 			#endif
 		}
 
@@ -1829,9 +3240,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableAngledHeadersRowExNative(uint rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, float, float, ImGuiTableHeaderData*, int, void>)funcTable[1250])(rowId, angle, maxLabelWidth, data, dataCount);
+			((delegate* unmanaged[Cdecl]<uint, float, float, ImGuiTableHeaderData*, int, void>)funcTable[1251])(rowId, angle, maxLabelWidth, data, dataCount);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, float, float, nint, int, void>)funcTable[1250])(rowId, angle, maxLabelWidth, (nint)data, dataCount);
+			((delegate* unmanaged[Cdecl]<uint, float, float, nint, int, void>)funcTable[1251])(rowId, angle, maxLabelWidth, (nint)data, dataCount);
 			#endif
 		}
 
@@ -1861,9 +3272,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTable* GetCurrentTableNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)funcTable[1251])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)funcTable[1252])();
 			#else
-			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1251])();
+			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1252])();
 			#endif
 		}
 
@@ -1883,9 +3294,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTable* TableFindByIDNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTable*>)funcTable[1252])(id);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTable*>)funcTable[1253])(id);
 			#else
-			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1252])(id);
+			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1253])(id);
 			#endif
 		}
 
@@ -1905,9 +3316,9 @@ namespace Hexa.NET.ImGui
 		internal static byte BeginTableExNative(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1253])(name, id, columnsCount, flags, outerSize, innerWidth);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1254])(name, id, columnsCount, flags, outerSize, innerWidth);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1253])((nint)name, id, columnsCount, flags, outerSize, innerWidth);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1254])((nint)name, id, columnsCount, flags, outerSize, innerWidth);
 			#endif
 		}
 
@@ -2422,9 +3833,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableBeginInitMemoryNative(ImGuiTable* table, int columnsCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1254])(table, columnsCount);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1255])(table, columnsCount);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1254])((nint)table, columnsCount);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1255])((nint)table, columnsCount);
 			#endif
 		}
 
@@ -2454,9 +3865,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableBeginApplyRequestsNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1255])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1256])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1255])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1256])((nint)table);
 			#endif
 		}
 
@@ -2486,9 +3897,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSetupDrawChannelsNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1256])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1257])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1256])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1257])((nint)table);
 			#endif
 		}
 
@@ -2518,9 +3929,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableUpdateLayoutNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1257])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1258])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1257])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1258])((nint)table);
 			#endif
 		}
 
@@ -2550,9 +3961,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableUpdateBordersNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1258])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1259])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1258])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1259])((nint)table);
 			#endif
 		}
 
@@ -2582,9 +3993,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableUpdateColumnsWeightFromWidthNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1259])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1260])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1259])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1260])((nint)table);
 			#endif
 		}
 
@@ -2614,9 +4025,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableDrawBordersNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1260])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1261])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1260])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1261])((nint)table);
 			#endif
 		}
 
@@ -2646,9 +4057,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableDrawDefaultContextMenuNative(ImGuiTable* table, ImGuiTableFlags flagsForSectionToDisplay)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableFlags, void>)funcTable[1261])(table, flagsForSectionToDisplay);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableFlags, void>)funcTable[1262])(table, flagsForSectionToDisplay);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiTableFlags, void>)funcTable[1261])((nint)table, flagsForSectionToDisplay);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiTableFlags, void>)funcTable[1262])((nint)table, flagsForSectionToDisplay);
 			#endif
 		}
 
@@ -2678,9 +4089,9 @@ namespace Hexa.NET.ImGui
 		internal static byte TableBeginContextMenuPopupNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, byte>)funcTable[1262])(table);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, byte>)funcTable[1263])(table);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1262])((nint)table);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1263])((nint)table);
 			#endif
 		}
 
@@ -2712,9 +4123,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableMergeDrawChannelsNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1263])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1264])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1263])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1264])((nint)table);
 			#endif
 		}
 
@@ -2744,9 +4155,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImGuiTableInstanceData*>)funcTable[1264])(table, instanceNo);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImGuiTableInstanceData*>)funcTable[1265])(table, instanceNo);
 			#else
-			return (ImGuiTableInstanceData*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1264])((nint)table, instanceNo);
+			return (ImGuiTableInstanceData*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1265])((nint)table, instanceNo);
 			#endif
 		}
 
@@ -2778,9 +4189,9 @@ namespace Hexa.NET.ImGui
 		internal static uint TableGetInstanceIDNative(ImGuiTable* table, int instanceNo)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, uint>)funcTable[1265])(table, instanceNo);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, uint>)funcTable[1266])(table, instanceNo);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1265])((nint)table, instanceNo);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1266])((nint)table, instanceNo);
 			#endif
 		}
 
@@ -2812,9 +4223,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSortSpecsSanitizeNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1266])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1267])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1266])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1267])((nint)table);
 			#endif
 		}
 
@@ -2844,9 +4255,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSortSpecsBuildNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1267])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1268])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1267])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1268])((nint)table);
 			#endif
 		}
 
@@ -2876,9 +4287,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiSortDirection TableGetColumnNextSortDirectionNative(ImGuiTableColumn* column)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiSortDirection>)funcTable[1268])(column);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiSortDirection>)funcTable[1269])(column);
 			#else
-			return (ImGuiSortDirection)((delegate* unmanaged[Cdecl]<nint, ImGuiSortDirection>)funcTable[1268])((nint)column);
+			return (ImGuiSortDirection)((delegate* unmanaged[Cdecl]<nint, ImGuiSortDirection>)funcTable[1269])((nint)column);
 			#endif
 		}
 
@@ -2910,9 +4321,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableFixColumnSortDirectionNative(ImGuiTable* table, ImGuiTableColumn* column)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, void>)funcTable[1269])(table, column);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, void>)funcTable[1270])(table, column);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1269])((nint)table, (nint)column);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1270])((nint)table, (nint)column);
 			#endif
 		}
 
@@ -2967,9 +4378,9 @@ namespace Hexa.NET.ImGui
 		internal static float TableGetColumnWidthAutoNative(ImGuiTable* table, ImGuiTableColumn* column)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, float>)funcTable[1270])(table, column);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, float>)funcTable[1271])(table, column);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, nint, float>)funcTable[1270])((nint)table, (nint)column);
+			return (float)((delegate* unmanaged[Cdecl]<nint, nint, float>)funcTable[1271])((nint)table, (nint)column);
 			#endif
 		}
 
@@ -3028,9 +4439,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableBeginRowNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1271])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1272])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1271])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1272])((nint)table);
 			#endif
 		}
 
@@ -3060,9 +4471,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableEndRowNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1272])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1273])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1272])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1273])((nint)table);
 			#endif
 		}
 
@@ -3092,9 +4503,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableBeginCellNative(ImGuiTable* table, int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1273])(table, columnN);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1274])(table, columnN);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1273])((nint)table, columnN);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1274])((nint)table, columnN);
 			#endif
 		}
 
@@ -3124,9 +4535,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableEndCellNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1274])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1275])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1274])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1275])((nint)table);
 			#endif
 		}
 
@@ -3156,9 +4567,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableGetCellBgRectNative(ImRect* pOut, ImGuiTable* table, int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiTable*, int, void>)funcTable[1275])(pOut, table, columnN);
+			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiTable*, int, void>)funcTable[1276])(pOut, table, columnN);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1275])((nint)pOut, (nint)table, columnN);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1276])((nint)pOut, (nint)table, columnN);
 			#endif
 		}
 
@@ -3236,9 +4647,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* TableGetColumnNameNative(ImGuiTable* table, int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, byte*>)funcTable[1276])(table, columnN);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, byte*>)funcTable[1277])(table, columnN);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1276])((nint)table, columnN);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1277])((nint)table, columnN);
 			#endif
 		}
 
@@ -3291,9 +4702,9 @@ namespace Hexa.NET.ImGui
 		internal static uint TableGetColumnResizeIDNative(ImGuiTable* table, int columnN, int instanceNo)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, uint>)funcTable[1277])(table, columnN, instanceNo);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, uint>)funcTable[1278])(table, columnN, instanceNo);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, int, uint>)funcTable[1277])((nint)table, columnN, instanceNo);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, int, uint>)funcTable[1278])((nint)table, columnN, instanceNo);
 			#endif
 		}
 
@@ -3346,9 +4757,9 @@ namespace Hexa.NET.ImGui
 		internal static float TableCalcMaxColumnWidthNative(ImGuiTable* table, int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, float>)funcTable[1278])(table, columnN);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, float>)funcTable[1279])(table, columnN);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[1278])((nint)table, columnN);
+			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[1279])((nint)table, columnN);
 			#endif
 		}
 
@@ -3380,9 +4791,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSetColumnWidthAutoSingleNative(ImGuiTable* table, int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1279])(table, columnN);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1280])(table, columnN);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1279])((nint)table, columnN);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1280])((nint)table, columnN);
 			#endif
 		}
 
@@ -3412,9 +4823,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSetColumnWidthAutoAllNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1280])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1281])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1280])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1281])((nint)table);
 			#endif
 		}
 
@@ -3444,9 +4855,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableRemoveNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1281])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1282])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1281])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1282])((nint)table);
 			#endif
 		}
 
@@ -3476,9 +4887,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableGcCompactTransientBuffersNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1282])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1283])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1282])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1283])((nint)table);
 			#endif
 		}
 
@@ -3508,9 +4919,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableGcCompactTransientBuffersNative(ImGuiTableTempData* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)funcTable[1283])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)funcTable[1284])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1283])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1284])((nint)table);
 			#endif
 		}
 
@@ -3540,9 +4951,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableGcCompactSettingsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1284])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1285])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1284])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1285])();
 			#endif
 		}
 
@@ -3561,9 +4972,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableLoadSettingsNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1285])(table);
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1286])(table);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1285])((nint)table);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1286])((nint)table);
 			#endif
 		}
 
@@ -3593,38 +5004,6 @@ namespace Hexa.NET.ImGui
 		internal static void TableSaveSettingsNative(ImGuiTable* table)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1286])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1286])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSaveSettings(ImGuiTablePtr table)
-		{
-			TableSaveSettingsNative(table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSaveSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSaveSettingsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableResetSettingsNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1287])(table);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1287])((nint)table);
@@ -3634,1396 +5013,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TableResetSettings(ImGuiTablePtr table)
+		public static void TableSaveSettings(ImGuiTablePtr table)
 		{
-			TableResetSettingsNative(table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableResetSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableResetSettingsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableSettings*>)funcTable[1288])(table);
-			#else
-			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1288])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSettingsPtr TableGetBoundSettings(ImGuiTablePtr table)
-		{
-			ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative(table);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSettingsPtr TableGetBoundSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)ptable);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSettingsAddSettingsHandlerNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1289])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1289])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSettingsAddSettingsHandler()
-		{
-			TableSettingsAddSettingsHandlerNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSettings* TableSettingsCreateNative(uint id, int columnsCount)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, int, ImGuiTableSettings*>)funcTable[1290])(id, columnsCount);
-			#else
-			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<uint, int, nint>)funcTable[1290])(id, columnsCount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSettingsPtr TableSettingsCreate(uint id, int columnsCount)
-		{
-			ImGuiTableSettingsPtr ret = TableSettingsCreateNative(id, columnsCount);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSettings* TableSettingsFindByIDNative(uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTableSettings*>)funcTable[1291])(id);
-			#else
-			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1291])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSettingsPtr TableSettingsFindByID(uint id)
-		{
-			ImGuiTableSettingsPtr ret = TableSettingsFindByIDNative(id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTabBar* GetCurrentTabBarNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*>)funcTable[1292])();
-			#else
-			return (ImGuiTabBar*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1292])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabBarPtr GetCurrentTabBar()
-		{
-			ImGuiTabBarPtr ret = GetCurrentTabBarNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginTabBarExNative(ImGuiTabBar* tabBar, ImRect bb, ImGuiTabBarFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImRect, ImGuiTabBarFlags, byte>)funcTable[1293])(tabBar, bb, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, ImGuiTabBarFlags, byte>)funcTable[1293])((nint)tabBar, bb, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTabBarEx(ImGuiTabBarPtr tabBar, ImRect bb, ImGuiTabBarFlags flags)
-		{
-			byte ret = BeginTabBarExNative(tabBar, bb, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTabBarEx(ref ImGuiTabBar tabBar, ImRect bb, ImGuiTabBarFlags flags)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = BeginTabBarExNative((ImGuiTabBar*)ptabBar, bb, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTabItem* TabBarFindTabByIDNative(ImGuiTabBar* tabBar, uint tabId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, uint, ImGuiTabItem*>)funcTable[1294])(tabBar, tabId);
-			#else
-			return (ImGuiTabItem*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1294])((nint)tabBar, tabId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarFindTabByID(ImGuiTabBarPtr tabBar, uint tabId)
-		{
-			ImGuiTabItemPtr ret = TabBarFindTabByIDNative(tabBar, tabId);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarFindTabByID(ref ImGuiTabBar tabBar, uint tabId)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarFindTabByIDNative((ImGuiTabBar*)ptabBar, tabId);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTabItem* TabBarFindTabByOrderNative(ImGuiTabBar* tabBar, int order)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, ImGuiTabItem*>)funcTable[1295])(tabBar, order);
-			#else
-			return (ImGuiTabItem*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1295])((nint)tabBar, order);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarFindTabByOrder(ImGuiTabBarPtr tabBar, int order)
-		{
-			ImGuiTabItemPtr ret = TabBarFindTabByOrderNative(tabBar, order);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarFindTabByOrder(ref ImGuiTabBar tabBar, int order)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarFindTabByOrderNative((ImGuiTabBar*)ptabBar, order);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindowNative(ImGuiTabBar* tabBar)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*>)funcTable[1296])(tabBar);
-			#else
-			return (ImGuiTabItem*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1296])((nint)tabBar);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ImGuiTabBarPtr tabBar)
-		{
-			ImGuiTabItemPtr ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative(tabBar);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative((ImGuiTabBar*)ptabBar);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTabItem* TabBarGetCurrentTabNative(ImGuiTabBar* tabBar)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*>)funcTable[1297])(tabBar);
-			#else
-			return (ImGuiTabItem*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1297])((nint)tabBar);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarGetCurrentTab(ImGuiTabBarPtr tabBar)
-		{
-			ImGuiTabItemPtr ret = TabBarGetCurrentTabNative(tabBar);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTabItemPtr TabBarGetCurrentTab(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarGetCurrentTabNative((ImGuiTabBar*)ptabBar);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int TabBarGetTabOrderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, int>)funcTable[1298])(tabBar, tab);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[1298])((nint)tabBar, (nint)tab);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TabBarGetTabOrder(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			int ret = TabBarGetTabOrderNative(tabBar, tab);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TabBarGetTabOrder(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				int ret = TabBarGetTabOrderNative((ImGuiTabBar*)ptabBar, tab);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TabBarGetTabOrder(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				int ret = TabBarGetTabOrderNative(tabBar, (ImGuiTabItem*)ptab);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TabBarGetTabOrder(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					int ret = TabBarGetTabOrderNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* TabBarGetTabNameNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, byte*>)funcTable[1299])(tabBar, tab);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1299])((nint)tabBar, (nint)tab);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* TabBarGetTabName(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			byte* ret = TabBarGetTabNameNative(tabBar, tab);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string TabBarGetTabNameS(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative(tabBar, tab));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* TabBarGetTabName(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* ret = TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, tab);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string TabBarGetTabNameS(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, tab));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* TabBarGetTabName(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				byte* ret = TabBarGetTabNameNative(tabBar, (ImGuiTabItem*)ptab);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string TabBarGetTabNameS(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative(tabBar, (ImGuiTabItem*)ptab));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* TabBarGetTabName(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					byte* ret = TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string TabBarGetTabNameS(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarAddTabNative(ImGuiTabBar* tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindow* window)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItemFlags, ImGuiWindow*, void>)funcTable[1300])(tabBar, tabFlags, window);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiTabItemFlags, nint, void>)funcTable[1300])((nint)tabBar, tabFlags, (nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarAddTab(ImGuiTabBarPtr tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindowPtr window)
-		{
-			TabBarAddTabNative(tabBar, tabFlags, window);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarAddTab(ref ImGuiTabBar tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindowPtr window)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarAddTabNative((ImGuiTabBar*)ptabBar, tabFlags, window);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarAddTab(ImGuiTabBarPtr tabBar, ImGuiTabItemFlags tabFlags, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				TabBarAddTabNative(tabBar, tabFlags, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarAddTab(ref ImGuiTabBar tabBar, ImGuiTabItemFlags tabFlags, ref ImGuiWindow window)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
-				{
-					TabBarAddTabNative((ImGuiTabBar*)ptabBar, tabFlags, (ImGuiWindow*)pwindow);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarRemoveTabNative(ImGuiTabBar* tabBar, uint tabId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, uint, void>)funcTable[1301])(tabBar, tabId);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[1301])((nint)tabBar, tabId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarRemoveTab(ImGuiTabBarPtr tabBar, uint tabId)
-		{
-			TabBarRemoveTabNative(tabBar, tabId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarRemoveTab(ref ImGuiTabBar tabBar, uint tabId)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarRemoveTabNative((ImGuiTabBar*)ptabBar, tabId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarCloseTabNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, void>)funcTable[1302])(tabBar, tab);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1302])((nint)tabBar, (nint)tab);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarCloseTab(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			TabBarCloseTabNative(tabBar, tab);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarCloseTab(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarCloseTabNative((ImGuiTabBar*)ptabBar, tab);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarCloseTab(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarCloseTabNative(tabBar, (ImGuiTabItem*)ptab);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarCloseTab(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarCloseTabNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarQueueFocusNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, void>)funcTable[1303])(tabBar, tab);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1303])((nint)tabBar, (nint)tab);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			TabBarQueueFocusNative(tabBar, tab);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, tab);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueFocusNative(tabBar, (ImGuiTabItem*)ptab);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarQueueFocusNative(ImGuiTabBar* tabBar, byte* tabName)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, byte*, void>)funcTable[1304])(tabBar, tabName);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1304])((nint)tabBar, (nint)tabName);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, byte* tabName)
-		{
-			TabBarQueueFocusNative(tabBar, tabName);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, byte* tabName)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, tabName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ref byte tabName)
-		{
-			fixed (byte* ptabName = &tabName)
-			{
-				TabBarQueueFocusNative(tabBar, (byte*)ptabName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ReadOnlySpan<byte> tabName)
-		{
-			fixed (byte* ptabName = tabName)
-			{
-				TabBarQueueFocusNative(tabBar, (byte*)ptabName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, string tabName)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (tabName != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(tabName);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(tabName, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TabBarQueueFocusNative(tabBar, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ref byte tabName)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* ptabName = &tabName)
-				{
-					TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, (byte*)ptabName);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ReadOnlySpan<byte> tabName)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* ptabName = tabName)
-				{
-					TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, (byte*)ptabName);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, string tabName)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (tabName != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(tabName);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(tabName, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarQueueReorderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab, int offset)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, int, void>)funcTable[1305])(tabBar, tab, offset);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1305])((nint)tabBar, (nint)tab, offset);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorder(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab, int offset)
-		{
-			TabBarQueueReorderNative(tabBar, tab, offset);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorder(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab, int offset)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueReorderNative((ImGuiTabBar*)ptabBar, tab, offset);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorder(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab, int offset)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueReorderNative(tabBar, (ImGuiTabItem*)ptab, offset);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorder(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab, int offset)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueReorderNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab, offset);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TabBarQueueReorderFromMousePosNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab, Vector2 mousePos)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, Vector2, void>)funcTable[1306])(tabBar, tab, mousePos);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, Vector2, void>)funcTable[1306])((nint)tabBar, (nint)tab, mousePos);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorderFromMousePos(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab, Vector2 mousePos)
-		{
-			TabBarQueueReorderFromMousePosNative(tabBar, tab, mousePos);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorderFromMousePos(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueReorderFromMousePosNative((ImGuiTabBar*)ptabBar, tab, mousePos);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorderFromMousePos(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueReorderFromMousePosNative(tabBar, (ImGuiTabItem*)ptab, mousePos);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabBarQueueReorderFromMousePos(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueReorderFromMousePosNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab, mousePos);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte TabBarProcessReorderNative(ImGuiTabBar* tabBar)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, byte>)funcTable[1307])(tabBar);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1307])((nint)tabBar);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabBarProcessReorder(ImGuiTabBarPtr tabBar)
-		{
-			byte ret = TabBarProcessReorderNative(tabBar);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabBarProcessReorder(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = TabBarProcessReorderNative((ImGuiTabBar*)ptabBar);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte TabItemExNative(ImGuiTabBar* tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindow* dockedWindow)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, byte*, bool*, ImGuiTabItemFlags, ImGuiWindow*, byte>)funcTable[1308])(tabBar, label, pOpen, flags, dockedWindow);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, ImGuiTabItemFlags, nint, byte>)funcTable[1308])((nint)tabBar, (nint)label, (nint)pOpen, flags, (nint)dockedWindow);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte ret = TabItemExNative(tabBar, label, pOpen, flags, dockedWindow);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ReadOnlySpan<byte> label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TabItemExNative(tabBar, pStr0, pOpen, flags, dockedWindow);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ReadOnlySpan<byte> label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = label)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, pOpen, flags, dockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = TabItemExNative(tabBar, label, (bool*)ppOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ReadOnlySpan<byte> label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = TabItemExNative(tabBar, pStr0, (bool*)ppOpen, flags, dockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* ppOpen = &pOpen)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ReadOnlySpan<byte> label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = label)
-				{
-					fixed (bool* ppOpen = &pOpen)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, (bool*)ppOpen, flags, dockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-			{
-				byte ret = TabItemExNative(tabBar, label, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ReadOnlySpan<byte> label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-			{
-				byte ret = TabItemExNative(tabBar, pStr0, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
+			TableSaveSettingsNative(table);
 		}
 	}
 }

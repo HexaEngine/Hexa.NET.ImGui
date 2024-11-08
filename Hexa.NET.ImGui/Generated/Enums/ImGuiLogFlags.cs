@@ -17,7 +17,7 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[Flags]
-	public enum ImGuiLogType : int
+	public enum ImGuiLogFlags : int
 	{
 		/// <summary>
 		/// To be documented.
@@ -27,21 +27,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Tty = unchecked(1),
+		OutputTty = unchecked(1),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		File = unchecked(2),
+		OutputFile = unchecked(2),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Buffer = unchecked(3),
+		OutputBuffer = unchecked(4),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Clipboard = unchecked(4),
+		OutputClipboard = unchecked(8),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		OutputMask = unchecked(15),
 	}
 }

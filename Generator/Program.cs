@@ -1,4 +1,4 @@
-﻿#define BackendsOnly
+﻿//#define BackendsOnly
 
 namespace Generator
 {
@@ -81,6 +81,8 @@ namespace Generator
         private static bool Generate(string[] headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
+            settings.Defines.Add("IMGUI_USE_WCHAR32");
+            settings.Defines.Add("IMGUI_ENABLE_FREETYPE");
             settings.WrapPointersAsHandle = true;
 
             ImGuiCodeGenerator generator = new(settings);
@@ -110,6 +112,8 @@ namespace Generator
         private static bool GenerateBackend(string[] headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, string name)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
+            settings.Defines.Add("IMGUI_USE_WCHAR32");
+            settings.Defines.Add("IMGUI_ENABLE_FREETYPE");
             settings.WrapPointersAsHandle = true;
 
             string[] strings =

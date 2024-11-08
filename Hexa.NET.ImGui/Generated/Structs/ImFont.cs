@@ -123,6 +123,38 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte Used4kPagesMap_0;
 		public byte Used4kPagesMap_1;
+		public byte Used4kPagesMap_2;
+		public byte Used4kPagesMap_3;
+		public byte Used4kPagesMap_4;
+		public byte Used4kPagesMap_5;
+		public byte Used4kPagesMap_6;
+		public byte Used4kPagesMap_7;
+		public byte Used4kPagesMap_8;
+		public byte Used4kPagesMap_9;
+		public byte Used4kPagesMap_10;
+		public byte Used4kPagesMap_11;
+		public byte Used4kPagesMap_12;
+		public byte Used4kPagesMap_13;
+		public byte Used4kPagesMap_14;
+		public byte Used4kPagesMap_15;
+		public byte Used4kPagesMap_16;
+		public byte Used4kPagesMap_17;
+		public byte Used4kPagesMap_18;
+		public byte Used4kPagesMap_19;
+		public byte Used4kPagesMap_20;
+		public byte Used4kPagesMap_21;
+		public byte Used4kPagesMap_22;
+		public byte Used4kPagesMap_23;
+		public byte Used4kPagesMap_24;
+		public byte Used4kPagesMap_25;
+		public byte Used4kPagesMap_26;
+		public byte Used4kPagesMap_27;
+		public byte Used4kPagesMap_28;
+		public byte Used4kPagesMap_29;
+		public byte Used4kPagesMap_30;
+		public byte Used4kPagesMap_31;
+		public byte Used4kPagesMap_32;
+		public byte Used4kPagesMap_33;
 
 
 		/// <summary>
@@ -153,6 +185,38 @@ namespace Hexa.NET.ImGui
 			{
 				Used4kPagesMap_0 = used4KPagesMap[0];
 				Used4kPagesMap_1 = used4KPagesMap[1];
+				Used4kPagesMap_2 = used4KPagesMap[2];
+				Used4kPagesMap_3 = used4KPagesMap[3];
+				Used4kPagesMap_4 = used4KPagesMap[4];
+				Used4kPagesMap_5 = used4KPagesMap[5];
+				Used4kPagesMap_6 = used4KPagesMap[6];
+				Used4kPagesMap_7 = used4KPagesMap[7];
+				Used4kPagesMap_8 = used4KPagesMap[8];
+				Used4kPagesMap_9 = used4KPagesMap[9];
+				Used4kPagesMap_10 = used4KPagesMap[10];
+				Used4kPagesMap_11 = used4KPagesMap[11];
+				Used4kPagesMap_12 = used4KPagesMap[12];
+				Used4kPagesMap_13 = used4KPagesMap[13];
+				Used4kPagesMap_14 = used4KPagesMap[14];
+				Used4kPagesMap_15 = used4KPagesMap[15];
+				Used4kPagesMap_16 = used4KPagesMap[16];
+				Used4kPagesMap_17 = used4KPagesMap[17];
+				Used4kPagesMap_18 = used4KPagesMap[18];
+				Used4kPagesMap_19 = used4KPagesMap[19];
+				Used4kPagesMap_20 = used4KPagesMap[20];
+				Used4kPagesMap_21 = used4KPagesMap[21];
+				Used4kPagesMap_22 = used4KPagesMap[22];
+				Used4kPagesMap_23 = used4KPagesMap[23];
+				Used4kPagesMap_24 = used4KPagesMap[24];
+				Used4kPagesMap_25 = used4KPagesMap[25];
+				Used4kPagesMap_26 = used4KPagesMap[26];
+				Used4kPagesMap_27 = used4KPagesMap[27];
+				Used4kPagesMap_28 = used4KPagesMap[28];
+				Used4kPagesMap_29 = used4KPagesMap[29];
+				Used4kPagesMap_30 = used4KPagesMap[30];
+				Used4kPagesMap_31 = used4KPagesMap[31];
+				Used4kPagesMap_32 = used4KPagesMap[32];
+				Used4kPagesMap_33 = used4KPagesMap[33];
 			}
 		}
 
@@ -184,6 +248,38 @@ namespace Hexa.NET.ImGui
 			{
 				Used4kPagesMap_0 = used4KPagesMap[0];
 				Used4kPagesMap_1 = used4KPagesMap[1];
+				Used4kPagesMap_2 = used4KPagesMap[2];
+				Used4kPagesMap_3 = used4KPagesMap[3];
+				Used4kPagesMap_4 = used4KPagesMap[4];
+				Used4kPagesMap_5 = used4KPagesMap[5];
+				Used4kPagesMap_6 = used4KPagesMap[6];
+				Used4kPagesMap_7 = used4KPagesMap[7];
+				Used4kPagesMap_8 = used4KPagesMap[8];
+				Used4kPagesMap_9 = used4KPagesMap[9];
+				Used4kPagesMap_10 = used4KPagesMap[10];
+				Used4kPagesMap_11 = used4KPagesMap[11];
+				Used4kPagesMap_12 = used4KPagesMap[12];
+				Used4kPagesMap_13 = used4KPagesMap[13];
+				Used4kPagesMap_14 = used4KPagesMap[14];
+				Used4kPagesMap_15 = used4KPagesMap[15];
+				Used4kPagesMap_16 = used4KPagesMap[16];
+				Used4kPagesMap_17 = used4KPagesMap[17];
+				Used4kPagesMap_18 = used4KPagesMap[18];
+				Used4kPagesMap_19 = used4KPagesMap[19];
+				Used4kPagesMap_20 = used4KPagesMap[20];
+				Used4kPagesMap_21 = used4KPagesMap[21];
+				Used4kPagesMap_22 = used4KPagesMap[22];
+				Used4kPagesMap_23 = used4KPagesMap[23];
+				Used4kPagesMap_24 = used4KPagesMap[24];
+				Used4kPagesMap_25 = used4KPagesMap[25];
+				Used4kPagesMap_26 = used4KPagesMap[26];
+				Used4kPagesMap_27 = used4KPagesMap[27];
+				Used4kPagesMap_28 = used4KPagesMap[28];
+				Used4kPagesMap_29 = used4KPagesMap[29];
+				Used4kPagesMap_30 = used4KPagesMap[30];
+				Used4kPagesMap_31 = used4KPagesMap[31];
+				Used4kPagesMap_32 = used4KPagesMap[32];
+				Used4kPagesMap_33 = used4KPagesMap[33];
 			}
 		}
 
@@ -4670,7 +4766,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<byte>(&Handle->Used4kPagesMap_0, 2);
+				return new Span<byte>(&Handle->Used4kPagesMap_0, 34);
 			}
 		}
 		/// <summary>

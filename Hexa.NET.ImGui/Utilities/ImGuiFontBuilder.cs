@@ -114,7 +114,7 @@
     /// ImGuiFontBuilder is a utility for easily loading custom fonts.
     /// </summary>
     /// <remarks>
-    /// ⚠️ <c>Warning</c>: If you use glyph ranges, do not dispose of this builder until after ImGui shutdown. 
+    /// ⚠️ <c>Warning</c>: If you use glyph ranges, do not dispose of this builder until after ImGui shutdown.
     /// Disposing prematurely can cause dangling pointers, as ImGui may continue to reference glyph ranges during its lifetime.
     /// </remarks>
     public unsafe class ImGuiFontBuilder : IDisposable
@@ -173,7 +173,7 @@
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         public ImGuiFontBuilder AddDefaultFont()
         {
-            font = fontAtlas.AddFontDefault();
+            font = fontAtlas.AddFontDefault(config);
             config.MergeMode = true;
             return this;
         }
@@ -198,9 +198,9 @@
         /// <param name="glyphRanges">The glyph ranges to be used.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <remarks>
-        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it. 
-        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges, 
-        /// and they should not be used or modified externally after this call. 
+        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it.
+        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges,
+        /// and they should not be used or modified externally after this call.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromFileTTF(string path, float size, GlyphRanges glyphRanges)
         {
@@ -216,8 +216,8 @@
         /// <param name="pGlyphRanges">A pointer to the glyph ranges.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <remarks>
-        /// ⚠️ <c>Important</c>: The <paramref name="pGlyphRanges"/> pointer must remain valid for the entire application or ImGui lifecycle. 
-        /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior 
+        /// ⚠️ <c>Important</c>: The <paramref name="pGlyphRanges"/> pointer must remain valid for the entire application or ImGui lifecycle.
+        /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior
         /// when ImGui accesses the font data.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromFileTTF(string path, float size, uint* pGlyphRanges)
@@ -296,9 +296,9 @@
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <exception cref="FileNotFoundException">Thrown if the embedded resource is not found.</exception>
         /// <remarks>
-        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it. 
-        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges, 
-        /// and they should not be used or modified externally after this call. 
+        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it.
+        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges,
+        /// and they should not be used or modified externally after this call.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromEmbeddedResource(Assembly assembly, string path, float size, GlyphRanges glyphRanges)
         {
@@ -316,8 +316,8 @@
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <exception cref="FileNotFoundException">Thrown if the embedded resource is not found.</exception>
         /// <remarks>
-        /// ⚠️ <c>Important</c>: The <paramref name="pGlyphRanges"/> pointer must remain valid for the entire application or ImGui lifecycle. 
-        /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior 
+        /// ⚠️ <c>Important</c>: The <paramref name="pGlyphRanges"/> pointer must remain valid for the entire application or ImGui lifecycle.
+        /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior
         /// when ImGui accesses the font data.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromEmbeddedResource(Assembly assembly, string path, float size, uint* pGlyphRanges)
@@ -378,9 +378,9 @@
         /// <param name="glyphRanges">The glyph ranges to be used.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <remarks>
-        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it. 
-        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges, 
-        /// and they should not be used or modified externally after this call. 
+        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it.
+        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges,
+        /// and they should not be used or modified externally after this call.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromMemoryTTF(ReadOnlySpan<byte> fontData, float size, GlyphRanges glyphRanges)
         {
@@ -399,9 +399,9 @@
         /// <param name="glyphRanges">The glyph ranges to be used.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <remarks>
-        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it. 
-        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges, 
-        /// and they should not be used or modified externally after this call. 
+        /// ⚠️ <c>Note</c>: The provided <paramref name="glyphRanges"/> become associated with this builder, transferring ownership to it.
+        /// The builder takes responsibility for managing and releasing the memory for these glyph ranges,
+        /// and they should not be used or modified externally after this call.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromMemoryTTF(byte* fontData, int fontDataSize, float size, GlyphRanges glyphRanges)
         {
@@ -418,8 +418,8 @@
         /// <param name="pGlyphRanges">Pointer to the glyph ranges.</param>
         /// <returns>The current <see cref="ImGuiFontBuilder"/> instance for method chaining.</returns>
         /// <remarks>
-        /// ⚠️ <c>Important</c>: The <paramref name="pGlyphRanges"/> pointer must remain valid for the entire application or ImGui lifecycle. 
-        /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior 
+        /// ⚠️ <c>Important</c>: The <paramref name="pGlyphRanges"/> pointer must remain valid for the entire application or ImGui lifecycle.
+        /// Disposing or altering the memory before ImGui shutdown can lead to dangling pointers and undefined behavior
         /// when ImGui accesses the font data.
         /// </remarks>
         public ImGuiFontBuilder AddFontFromMemoryTTF(void* fontData, int fontDataSize, float size, uint* pGlyphRanges)
@@ -467,7 +467,7 @@
         /// Disposes the font builder, freeing resources and preventing further use.
         /// </summary>
         /// <remarks>
-        /// ⚠️ <c>Warning</c>: Ensure that this method is called only after ImGui has completed its usage of any glyph ranges. 
+        /// ⚠️ <c>Warning</c>: Ensure that this method is called only after ImGui has completed its usage of any glyph ranges.
         /// Disposing prematurely may cause dangling pointers and undefined behavior, as ImGui may continue referencing the glyph ranges.
         /// </remarks>
         public void Dispose()
