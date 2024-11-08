@@ -18,6 +18,7 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 - **Wide range .NET support**: Supported versions net8.0, net7.0, netstandard2.1, netstandard2.0
+- **Android Support**
 
 ## 🎉 Sponsors
 - A big thank you to **@Doprez** for their generous support!
@@ -121,6 +122,9 @@ ImGui.Text("A C# string"u8);
 
 ### Multi Viewport Support
 ![Screenshot 2023-07-07 153108](https://github.com/JunaMeinhold/HexaEngine.ImGui/assets/46632782/efb715f8-2dee-4bd2-8fa5-d1bc2195129a)
+
+## Android Support
+![Screenshot 2024-11-08 192114](https://github.com/user-attachments/assets/a9651ced-5dfe-4eaf-9788-07c15e8003e6)
 
 ## Contributing
 
