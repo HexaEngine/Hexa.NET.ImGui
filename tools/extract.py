@@ -7,7 +7,7 @@ import re
 base_folders = {
     'osx': 'osx-{arch}',          # macOS (now osx)
     'windows': 'win-{arch}',      # Windows
-    'ubuntu': 'linux-{arch}',     # Ubuntu
+    'linux': 'linux-{arch}',     # Ubuntu
     'android': 'android-{arch}',   # Android folders
 }
 
@@ -19,13 +19,15 @@ def extract_zip_files():
     for zip_file in zip_files:
         try:
             # Determine the OS and architecture from the filename
-            match = re.match(r'(\w*)-(\w*)-latest-(\w*)-artifacts\.zip', zip_file)
+            match = re.match(r'(\w*)-(\w*)(?:-(latest|\d+))?-(\w*)-artifacts\.zip', zip_file)
             if match:
-                lib_name, os_name, arch = match.groups()
+                lib_name, os_name, version, arch = match.groups()
 
                 # Map OS names and architecture formats
                 if os_name == 'macos':
                     os_name = 'osx'
+                if os_name == 'ubuntu':
+                    os_name = 'linux'
                 if arch == 'x86_64':
                     arch = 'x64'
 

@@ -14,7 +14,20 @@
     "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
     "ImGuiItemFlags_AutoClosePopups": "ImGuiItemFlags.AutoClosePopups"
   },
-  "Defines": [ "CIMGUI_USE_GLFW=1", "CIMGUI_USE_SDL2=0", "CIMGUI_USE_SDL2Renderer=0", "CIMGUI_USE_OPENGL3=0", "CIMGUI_USE_OPENGL2=0", "CIMGUI_USE_D3D11=0", "CIMGUI_USE_D3D12=0", "CIMGUI_USE_VULKAN=0", "CIMGUI_USE_WIN32=0" ],
+  "Defines": [
+    "CIMGUI_USE_GLFW=1",
+    "CIMGUI_USE_SDL2=0",
+    "CIMGUI_USE_SDL2Renderer=0",
+    "CIMGUI_USE_OPENGL3=0",
+    "CIMGUI_USE_OPENGL2=0",
+    "CIMGUI_USE_D3D11=0",
+    "CIMGUI_USE_D3D12=0",
+    "CIMGUI_USE_VULKAN=0",
+    "CIMGUI_USE_WIN32=0",
+    "CIMGUI_USE_OSX=0",
+    "CIMGUI_USE_ANDROID=0",
+    "CIMGUI_USE_METAL=0"
+  ],
   "KnownEnumPrefixes": {},
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},

@@ -38,5 +38,7 @@ namespace Hexa.NET.ImGui.Backends.OpenGL3
 
 		public const int CIMGUI_USE_OSX = 0;
 
+		public const int CIMGUI_USE_ANDROID = 0;
+
 	}
 }
