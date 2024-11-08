@@ -13,9 +13,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<PackageVersion>1.0.7</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.91.4) library backend SDL2.</Description>
+		<AssemblyVersion>1.0.8</AssemblyVersion>
+		<PackageVersion>1.0.8</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.91.5) library backend SDL2.</Description>
 		<PackageTags>ImGui Backends SDL2 UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
@@ -77,26 +77,6 @@
 			<Pack>true</Pack>
 		</None>
 		<None Include="native\win-x86\ImGuiImplSDL2.dll">
-			<Link>runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-x86/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-	
-	
-		<None Include="native\win-arm64\sdl2.dll">
-			<Link>runtimes\win-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-arm64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-x64\sdl2.dll">
-			<Link>runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/win-x64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="native\win-x86\sdl2.dll">
 			<Link>runtimes\win-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/win-x86/native</PackagePath>
