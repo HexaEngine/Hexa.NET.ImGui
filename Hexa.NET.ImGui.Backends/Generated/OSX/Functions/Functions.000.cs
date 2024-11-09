@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		internal static byte InitNative(void* view)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[53])(view);
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[65])(view);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[53])((nint)view);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[65])((nint)view);
 			#endif
 		}
 
@@ -47,9 +47,9 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[54])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[66])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[54])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[66])();
 			#endif
 		}
 
@@ -68,9 +68,9 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		internal static void NewFrameNative(void* view)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[55])(view);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[67])(view);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[55])((nint)view);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[67])((nint)view);
 			#endif
 		}
 

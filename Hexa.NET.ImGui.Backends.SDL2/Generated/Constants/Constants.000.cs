@@ -26,6 +26,10 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 
 		public const int CIMGUI_USE_OPENGL2 = 0;
 
+		public const int CIMGUI_USE_D3D9 = 0;
+
+		public const int CIMGUI_USE_D3D10 = 0;
+
 		public const int CIMGUI_USE_D3D11 = 0;
 
 		public const int CIMGUI_USE_D3D12 = 0;

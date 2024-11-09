@@ -53,7 +53,7 @@ namespace Generator
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 #endif
 
-            string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal", "Android"];
+            string[] backends = ["OpenGL3", "OpenGL2", "D3D9", "D3D10", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal", "Android"];
 
             metadata.CppDefinedFunctions.Clear();
 
@@ -123,6 +123,8 @@ namespace Generator
                 $"CIMGUI_USE_SDL2Renderer={(name == "SDL2" ? "1":"0")}",
                 $"CIMGUI_USE_OPENGL3={(name == "OpenGL3" ? "1":"0")}",
                 $"CIMGUI_USE_OPENGL2={(name == "OpenGL2" ? "1":"0")}",
+                $"CIMGUI_USE_D3D9={(name == "D3D9" ? "1":"0")}",
+                $"CIMGUI_USE_D3D10={(name == "D3D10" ? "1":"0")}",
                 $"CIMGUI_USE_D3D11={(name == "D3D11" ? "1":"0")}",
                 $"CIMGUI_USE_D3D12={(name == "D3D12" ? "1":"0")}",
                 $"CIMGUI_USE_VULKAN={(name == "Vulkan" ? "1":"0")}",
@@ -141,6 +143,8 @@ namespace Generator
             {
                 "SDL2" => "ImplSDL2",
                 "GLFW" => "ImplGlfw",
+                "D3D9" => "ImplDX9",
+                "D3D10" => "ImplDX10",
                 "D3D11" => "ImplDX11",
                 "D3D12" => "ImplDX12",
                 _ => $"Impl{name}"

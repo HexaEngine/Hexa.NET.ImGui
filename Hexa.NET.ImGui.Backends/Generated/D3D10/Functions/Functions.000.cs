@@ -14,68 +14,41 @@ using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
-namespace Hexa.NET.ImGui.Backends.D3D11
+namespace Hexa.NET.ImGui.Backends.D3D10
 {
-	public unsafe partial class ImGuiImplD3D11
+	public unsafe partial class ImGuiImplD3D10
 	{
 		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InitNative(ID3D11Device* device, ID3D11DeviceContext* deviceContext)
+		internal static byte InitNative(ID3D10Device* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D11Device*, ID3D11DeviceContext*, byte>)funcTable[30])(device, deviceContext);
+			return ((delegate* unmanaged[Cdecl]<ID3D10Device*, byte>)funcTable[24])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[30])((nint)device, (nint)deviceContext);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[24])((nint)device);
 			#endif
 		}
 
 		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
-		public static bool Init(ID3D11DevicePtr device, ID3D11DeviceContextPtr deviceContext)
+		public static bool Init(ID3D10DevicePtr device)
 		{
-			byte ret = InitNative(device, deviceContext);
+			byte ret = InitNative(device);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
-		public static bool Init(ref ID3D11Device device, ID3D11DeviceContextPtr deviceContext)
+		public static bool Init(ref ID3D10Device device)
 		{
-			fixed (ID3D11Device* pdevice = &device)
+			fixed (ID3D10Device* pdevice = &device)
 			{
-				byte ret = InitNative((ID3D11Device*)pdevice, deviceContext);
+				byte ret = InitNative((ID3D10Device*)pdevice);
 				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		public static bool Init(ID3D11DevicePtr device, ref ID3D11DeviceContext deviceContext)
-		{
-			fixed (ID3D11DeviceContext* pdeviceContext = &deviceContext)
-			{
-				byte ret = InitNative(device, (ID3D11DeviceContext*)pdeviceContext);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
-		/// </summary>
-		public static bool Init(ref ID3D11Device device, ref ID3D11DeviceContext deviceContext)
-		{
-			fixed (ID3D11Device* pdevice = &device)
-			{
-				fixed (ID3D11DeviceContext* pdeviceContext = &deviceContext)
-				{
-					byte ret = InitNative((ID3D11Device*)pdevice, (ID3D11DeviceContext*)pdeviceContext);
-					return ret != 0;
-				}
 			}
 		}
 
@@ -86,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[31])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[31])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
 			#endif
 		}
 
@@ -107,9 +80,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
 			#endif
 		}
 
@@ -128,9 +101,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[33])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[27])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[33])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[27])((nint)drawData);
 			#endif
 		}
 
@@ -157,43 +130,43 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		/// Use if you want to reset your rendering device without losing Dear ImGui state.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void InvalidateDeviceObjectsNative()
+		internal static byte CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[34])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[28])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[34])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[28])();
 			#endif
 		}
 
 		/// <summary>
 		/// Use if you want to reset your rendering device without losing Dear ImGui state.<br/>
 		/// </summary>
-		public static void InvalidateDeviceObjects()
+		public static bool CreateDeviceObjects()
 		{
-			InvalidateDeviceObjectsNative();
+			byte ret = CreateDeviceObjectsNative();
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte CreateDeviceObjectsNative()
+		internal static void InvalidateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[35])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[29])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[35])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[29])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool CreateDeviceObjects()
+		public static void InvalidateDeviceObjects()
 		{
-			byte ret = CreateDeviceObjectsNative();
-			return ret != 0;
+			InvalidateDeviceObjectsNative();
 		}
 
 	}

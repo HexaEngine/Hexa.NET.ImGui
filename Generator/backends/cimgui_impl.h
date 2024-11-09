@@ -13,6 +13,12 @@
 #ifndef CIMGUI_USE_SDL2Renderer
 #define CIMGUI_USE_SDL2Renderer 1
 #endif
+#ifndef CIMGUI_USE_D3D9
+#define CIMGUI_USE_D3D9 1
+#endif
+#ifndef CIMGUI_USE_D3D10
+#define CIMGUI_USE_D3D10 1
+#endif
 #ifndef CIMGUI_USE_D3D11
 #define CIMGUI_USE_D3D11 1
 #endif
@@ -161,6 +167,36 @@ CIMGUI_API bool CImGui_ImplOpenGL2_CreateFontsTexture(void);
 CIMGUI_API void CImGui_ImplOpenGL2_DestroyFontsTexture(void);
 CIMGUI_API bool CImGui_ImplOpenGL2_CreateDeviceObjects(void);
 CIMGUI_API void CImGui_ImplOpenGL2_DestroyDeviceObjects(void);
+
+#endif
+
+#if CIMGUI_USE_D3D9
+typedef struct IDirect3DDevice9 IDirect3DDevice9;
+
+// Follow "Getting Started" link and check examples/ folder to learn about using backends!
+CIMGUI_API bool CImGui_ImplDX9_Init(IDirect3DDevice9* device);
+CIMGUI_API void CImGui_ImplDX9_Shutdown();
+CIMGUI_API void CImGui_ImplDX9_NewFrame();
+CIMGUI_API void CImGui_ImplDX9_RenderDrawData(ImDrawData* draw_data);
+
+// Use if you want to reset your rendering device without losing Dear ImGui state.
+CIMGUI_API bool CImGui_ImplDX9_CreateDeviceObjects();
+CIMGUI_API void CImGui_ImplDX9_InvalidateDeviceObjects();
+
+#endif
+
+#if CIMGUI_USE_D3D10
+typedef struct ID3D10Device ID3D10Device;
+
+// Follow "Getting Started" link and check examples/ folder to learn about using backends!
+CIMGUI_API bool CImGui_ImplDX10_Init(ID3D10Device* device);
+CIMGUI_API void CImGui_ImplDX10_Shutdown();
+CIMGUI_API void CImGui_ImplDX10_NewFrame();
+CIMGUI_API void CImGui_ImplDX10_RenderDrawData(ImDrawData* draw_data);
+
+// Use if you want to reset your rendering device without losing Dear ImGui state.
+CIMGUI_API bool CImGui_ImplDX10_CreateDeviceObjects();
+CIMGUI_API void CImGui_ImplDX10_InvalidateDeviceObjects();
 
 #endif
 

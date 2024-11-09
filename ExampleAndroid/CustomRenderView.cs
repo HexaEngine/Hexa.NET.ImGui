@@ -6,7 +6,6 @@
     using Android.Views;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Backends.Android;
-    using static Java.Interop.JniEnvironment;
 
     public unsafe class CustomGLSurfaceView : GLSurfaceView
     {

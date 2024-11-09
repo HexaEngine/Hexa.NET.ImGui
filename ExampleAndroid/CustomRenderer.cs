@@ -1,12 +1,11 @@
 ﻿namespace ExampleAndroid
 {
     using Android.Opengl;
-    using Android.Views.InputMethods;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Backends.Android;
     using Hexa.NET.ImGui.Backends.OpenGL3;
+    using Hexa.NET.ImGui.Widgets;
     using Javax.Microedition.Khronos.Opengles;
-    using System;
 
     public class CustomRenderer : Java.Lang.Object, GLSurfaceView.IRenderer
     {
@@ -27,7 +26,7 @@
             ImGuiImplAndroid.NewFrame();
             ImGui.NewFrame();
 
-            ImGui.ShowDemoWindow();
+            WidgetManager.Draw();
 
             ImGui.Render();
             ImGui.EndFrame();

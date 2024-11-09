@@ -1,10 +1,11 @@
 ﻿namespace ExampleAndroid
 {
     using Android.OS;
-    using Android.Views;
     using Android.Views.InputMethods;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Utilities;
+    using Hexa.NET.ImGui.Widgets;
+    using Hexa.NET.ImGui.Widgets.Dialogs;
 
     [Activity(Label = "ExampleAndroid", MainLauncher = true, Icon = "@mipmap/ic_launcher", Theme = "@style/AppTheme")]
     public unsafe class MainActivity : Activity
@@ -16,13 +17,27 @@
 
             var guiContext = ImGui.CreateContext();
             ImGui.SetCurrentContext(guiContext);
+
+            var io = ImGui.GetIO();
+            io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;         // Enable Docking
+            io.ConfigViewportsNoAutoMerge = false;
+            io.ConfigViewportsNoTaskBarIcon = false;
+
+            float density = Resources.DisplayMetrics.Density;
+
             ImGuiFontBuilder builder = new();
             builder
-                .SetOption(conf => conf.SizePixels = 33)
+                .SetOption(conf => conf.SizePixels = 18 * density)
                 .AddDefaultFont()
                 .Build();
 
-            ImGui.GetStyle().ScaleAllSizes(4.0f);
+            ImGui.GetStyle().ScaleAllSizes(density);
+
+            WidgetManager.Init();
+
+            WidgetManager.Register<MainWindow>(true, true);
+            OpenFileDialog dialog = new();
+            dialog.Show();
 
             CustomGLSurfaceView renderView = new(this);
             SetContentView(renderView);
@@ -34,8 +49,22 @@
 
         public void ShowSoftKeyboardInput()
         {
-            InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService);
-            imm.ToggleSoftInput(ShowFlags.Forced, 0);
+            InputMethodManager imm = (InputMethodManager)GetSystemService(InputMethodService)!;
+            imm.ShowSoftInput(null, ShowFlags.Forced, null);
+        }
+    }
+
+    public class MainWindow : ImWindow
+    {
+        private string s = "";
+
+        protected override string Name { get; } = "Main";
+
+        public override void DrawContent()
+        {
+            ImGui.Text("Hello World!");
+
+            ImGui.InputText("TextInput", ref s, 1024);
         }
     }
 }
