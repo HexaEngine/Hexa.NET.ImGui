@@ -7,7 +7,7 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 ## Features
 
 - **Comprehensive Wrapper**: Integrates the core Dear ImGui library along with essential addons such as ImGuizmo, ImNodes, and ImPlot.
-- **Backends**: Includes a collection of native backends in the Hexa.NET.ImGui.Backends package. (incl. Win32, OSX, D3D11, D3D12, Metal, OpenGL2, OpenGL3, Vulkan and extra packages for SDL2 and GLFW)
+- **Backends**: Includes a collection of native backends in the Hexa.NET.ImGui.Backends package. (incl. Android, Win32, OSX, D3D9, D3D10, D3D11, D3D12, Metal, OpenGL2, OpenGL3, Vulkan and extra packages for SDL2 and GLFW)
 - **FreeType Fonts**: Allows better text rendering and colored fonts to be loaded.
 - **Multi Viewport Support**: Enables seamless multi-viewport rendering for advanced UI scenarios.
 - **Active Development**: Regular updates and improvements to ensure compatibility with the latest Dear ImGui features and .NET advancements.
@@ -19,9 +19,15 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 - **Wide range .NET support**: Supported versions net8.0, net7.0, netstandard2.1, netstandard2.0
 
-## 🎉 Sponsors
-- A big thank you to **@Doprez** for their generous support!
+## 🎉 Acknowledgment to Our Sponsors
+We extend our heartfelt gratitude to all our sponsors for their generous support!
 
+ - @Doprez
+ - @qian-o
+ - @NotNite
+ - Mr Villa
+
+Your contributions help keep this project thriving—thank you!
 
 ## Community
 - Discord: [https://discord.gg/VawN5d8HMh](https://discord.gg/VawN5d8HMh)

@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0-android</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="lib\arm64-v8a\libc++_shared.so" />
+		<None Remove="lib\x86_64\libImGuiImpl.so" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.0.3" />
+		<PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.17" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<AndroidNativeLibrary Include="lib\x86_64\cimgui.so">
+			<Abi>x86_64</Abi>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</AndroidNativeLibrary>
+	</ItemGroup>
+
+	<ItemGroup>
+		<AndroidNativeLibrary Include="lib\x86_64\libc++_shared.so">
+			<Abi>x86_64</Abi>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</AndroidNativeLibrary>
+	</ItemGroup>
+
+	<ItemGroup>
+		<AndroidNativeLibrary Include="lib\x86_64\libImGuiImpl.so">
+			<Abi>x86_64</Abi>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</AndroidNativeLibrary>
+	</ItemGroup>
+</Project>

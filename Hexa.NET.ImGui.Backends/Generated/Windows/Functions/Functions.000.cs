@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static byte InitNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[45])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[57])(hwnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[45])((nint)hwnd);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])((nint)hwnd);
 			#endif
 		}
 
@@ -47,9 +47,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static byte InitForOpenGLNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[46])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[58])(hwnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[46])((nint)hwnd);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])((nint)hwnd);
 			#endif
 		}
 
@@ -69,9 +69,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[59])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[59])();
 			#endif
 		}
 
@@ -90,9 +90,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[60])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[60])();
 			#endif
 		}
 
@@ -116,9 +116,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void EnableDpiAwarenessNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[49])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[61])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[49])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[61])();
 			#endif
 		}
 
@@ -142,9 +142,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static float GetDpiScaleForHwndNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[50])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[62])(hwnd);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[50])((nint)hwnd);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[62])((nint)hwnd);
 			#endif
 		}
 
@@ -164,9 +164,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static float GetDpiScaleForMonitorNative(void* monitor)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[51])(monitor);
+			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[63])(monitor);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[51])((nint)monitor);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[63])((nint)monitor);
 			#endif
 		}
 
@@ -188,9 +188,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void EnableAlphaCompositingNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[52])(hwnd);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[64])(hwnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[52])((nint)hwnd);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[64])((nint)hwnd);
 			#endif
 		}
 

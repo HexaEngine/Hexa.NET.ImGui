@@ -50,6 +50,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public uint GlyphColored;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float GlyphAdvanceX;
 
 		/// <summary>
@@ -66,13 +71,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlasCustomRect(ushort width = default, ushort height = default, ushort x = default, ushort y = default, uint glyphId = default, float glyphAdvanceX = default, Vector2 glyphOffset = default, ImFontPtr font = default)
+		public unsafe ImFontAtlasCustomRect(ushort width = default, ushort height = default, ushort x = default, ushort y = default, uint glyphId = default, uint glyphColored = default, float glyphAdvanceX = default, Vector2 glyphOffset = default, ImFontPtr font = default)
 		{
 			Width = width;
 			Height = height;
 			X = x;
 			Y = y;
 			GlyphID = glyphId;
+			GlyphColored = glyphColored;
 			GlyphAdvanceX = glyphAdvanceX;
 			GlyphOffset = glyphOffset;
 			Font = font;
@@ -165,6 +171,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint GlyphID => ref Unsafe.AsRef<uint>(&Handle->GlyphID);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint GlyphColored => ref Unsafe.AsRef<uint>(&Handle->GlyphColored);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

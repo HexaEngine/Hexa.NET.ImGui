@@ -28,9 +28,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static byte InitNative(ID3D12Device* device, int numFramesInFlight, uint rtvFormat, ID3D12DescriptorHeap* cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D12Device*, int, uint, ID3D12DescriptorHeap*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[24])(device, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			return ((delegate* unmanaged[Cdecl]<ID3D12Device*, int, uint, ID3D12DescriptorHeap*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[36])(device, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, uint, nint, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[24])((nint)device, numFramesInFlight, rtvFormat, (nint)cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, uint, nint, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[36])((nint)device, numFramesInFlight, rtvFormat, (nint)cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
 			#endif
 		}
 
@@ -101,9 +101,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
 			#endif
 		}
 
@@ -122,9 +122,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
 			#endif
 		}
 
@@ -143,9 +143,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void RenderDrawDataNative(ImDrawData* drawData, ID3D12GraphicsCommandList* graphicsCommandList)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ID3D12GraphicsCommandList*, void>)funcTable[27])(drawData, graphicsCommandList);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ID3D12GraphicsCommandList*, void>)funcTable[39])(drawData, graphicsCommandList);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[27])((nint)drawData, (nint)graphicsCommandList);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[39])((nint)drawData, (nint)graphicsCommandList);
 			#endif
 		}
 
@@ -200,9 +200,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void InvalidateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[28])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[28])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
 			#endif
 		}
 
@@ -221,9 +221,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static byte CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[29])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[41])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[29])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[41])();
 			#endif
 		}
 

@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CurLenA;
+		public int TextLen;
 
 		/// <summary>
 		/// To be documented.
@@ -51,7 +51,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<byte> InitialTextA;
+		public ImVector<byte> TextToRevertTo;
 
 		/// <summary>
 		/// To be documented.
@@ -61,7 +61,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int BufCapacityA;
+		public int BufCapacity;
 
 		/// <summary>
 		/// To be documented.
@@ -112,16 +112,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, uint id = default, int curLenA = default, ImVector<byte> textA = default, ImVector<byte> initialTextA = default, ImVector<byte> callbackTextBackup = default, int bufCapacityA = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, uint id = default, int textLen = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
 			Stb = stb;
 			ID = id;
-			CurLenA = curLenA;
+			TextLen = textLen;
 			TextA = textA;
-			InitialTextA = initialTextA;
+			TextToRevertTo = textToRevertTo;
 			CallbackTextBackup = callbackTextBackup;
-			BufCapacityA = bufCapacityA;
+			BufCapacity = bufCapacity;
 			Scroll = scroll;
 			CursorAnim = cursorAnim;
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
@@ -192,7 +192,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CurLenA => ref Unsafe.AsRef<int>(&Handle->CurLenA);
+		public ref int TextLen => ref Unsafe.AsRef<int>(&Handle->TextLen);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -200,7 +200,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<byte> InitialTextA => ref Unsafe.AsRef<ImVector<byte>>(&Handle->InitialTextA);
+		public ref ImVector<byte> TextToRevertTo => ref Unsafe.AsRef<ImVector<byte>>(&Handle->TextToRevertTo);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -208,7 +208,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int BufCapacityA => ref Unsafe.AsRef<int>(&Handle->BufCapacityA);
+		public ref int BufCapacity => ref Unsafe.AsRef<int>(&Handle->BufCapacity);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

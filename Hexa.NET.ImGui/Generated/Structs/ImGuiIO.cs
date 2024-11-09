@@ -205,6 +205,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public byte ConfigWindowsCopyContentsWithCtrlC;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public byte ConfigScrollbarScrollByPage;
 
 		/// <summary>
@@ -754,16 +759,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte BackendUsingLegacyKeyArrays;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte BackendUsingLegacyNavInputArray;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ushort InputQueueSurrogate;
 
 		/// <summary>
@@ -775,7 +770,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiIO(ImGuiConfigFlags configFlags = default, ImGuiBackendFlags backendFlags = default, Vector2 displaySize = default, float deltaTime = default, float iniSavingRate = default, byte* iniFilename = default, byte* logFilename = default, void* userData = default, ImFontAtlasPtr fonts = default, float fontGlobalScale = default, bool fontAllowUserScaling = default, ImFontPtr fontDefault = default, Vector2 displayFramebufferScale = default, bool configNavSwapGamepadButtons = default, bool configNavMoveSetMousePos = default, bool configNavCaptureKeyboard = default, bool configNavEscapeClearFocusItem = default, bool configNavEscapeClearFocusWindow = default, bool configNavCursorVisibleAuto = default, bool configNavCursorVisibleAlways = default, bool configDockingNoSplit = default, bool configDockingWithShift = default, bool configDockingAlwaysTabBar = default, bool configDockingTransparentPayload = default, bool configViewportsNoAutoMerge = default, bool configViewportsNoTaskBarIcon = default, bool configViewportsNoDecoration = default, bool configViewportsNoDefaultParent = default, bool mouseDrawCursor = default, bool configMacOsxBehaviors = default, bool configInputTrickleEventQueue = default, bool configInputTextCursorBlink = default, bool configInputTextEnterKeepActive = default, bool configDragClickToInputText = default, bool configWindowsResizeFromEdges = default, bool configWindowsMoveFromTitleBarOnly = default, bool configScrollbarScrollByPage = default, float configMemoryCompactTimer = default, float mouseDoubleClickTime = default, float mouseDoubleClickMaxDist = default, float mouseDragThreshold = default, float keyRepeatDelay = default, float keyRepeatRate = default, bool configErrorRecovery = default, bool configErrorRecoveryEnableAssert = default, bool configErrorRecoveryEnableDebugLog = default, bool configErrorRecoveryEnableTooltip = default, bool configDebugIsDebuggerPresent = default, bool configDebugHighlightIdConflicts = default, bool configDebugBeginReturnValueOnce = default, bool configDebugBeginReturnValueLoop = default, bool configDebugIgnoreFocusLoss = default, bool configDebugIniSettings = default, byte* backendPlatformName = default, byte* backendRendererName = default, void* backendPlatformUserData = default, void* backendRendererUserData = default, void* backendLanguageUserData = default, bool wantCaptureMouse = default, bool wantCaptureKeyboard = default, bool wantTextInput = default, bool wantSetMousePos = default, bool wantSaveIniSettings = default, bool navActive = default, bool navVisible = default, float framerate = default, int metricsRenderVertices = default, int metricsRenderIndices = default, int metricsRenderWindows = default, int metricsActiveWindows = default, Vector2 mouseDelta = default, ImGuiContextPtr ctx = default, Vector2 mousePos = default, bool* mouseDown = default, float mouseWheel = default, float mouseWheelH = default, ImGuiMouseSource mouseSource = default, uint mouseHoveredViewport = default, bool keyCtrl = default, bool keyShift = default, bool keyAlt = default, bool keySuper = default, int keyMods = default, ImGuiKeyData* keysData = default, bool wantCaptureMouseUnlessPopupClose = default, Vector2 mousePosPrev = default, Vector2* mouseClickedPos = default, double* mouseClickedTime = default, bool* mouseClicked = default, bool* mouseDoubleClicked = default, ushort* mouseClickedCount = default, ushort* mouseClickedLastCount = default, bool* mouseReleased = default, bool* mouseDownOwned = default, bool* mouseDownOwnedUnlessPopupClose = default, bool mouseWheelRequestAxisSwap = default, bool mouseCtrlLeftAsRightClick = default, float* mouseDownDuration = default, float* mouseDownDurationPrev = default, Vector2* mouseDragMaxDistanceAbs = default, float* mouseDragMaxDistanceSqr = default, float penPressure = default, bool appFocusLost = default, bool appAcceptingEvents = default, byte backendUsingLegacyKeyArrays = default, bool backendUsingLegacyNavInputArray = default, ushort inputQueueSurrogate = default, ImVector<uint> inputQueueCharacters = default)
+		public unsafe ImGuiIO(ImGuiConfigFlags configFlags = default, ImGuiBackendFlags backendFlags = default, Vector2 displaySize = default, float deltaTime = default, float iniSavingRate = default, byte* iniFilename = default, byte* logFilename = default, void* userData = default, ImFontAtlasPtr fonts = default, float fontGlobalScale = default, bool fontAllowUserScaling = default, ImFontPtr fontDefault = default, Vector2 displayFramebufferScale = default, bool configNavSwapGamepadButtons = default, bool configNavMoveSetMousePos = default, bool configNavCaptureKeyboard = default, bool configNavEscapeClearFocusItem = default, bool configNavEscapeClearFocusWindow = default, bool configNavCursorVisibleAuto = default, bool configNavCursorVisibleAlways = default, bool configDockingNoSplit = default, bool configDockingWithShift = default, bool configDockingAlwaysTabBar = default, bool configDockingTransparentPayload = default, bool configViewportsNoAutoMerge = default, bool configViewportsNoTaskBarIcon = default, bool configViewportsNoDecoration = default, bool configViewportsNoDefaultParent = default, bool mouseDrawCursor = default, bool configMacOsxBehaviors = default, bool configInputTrickleEventQueue = default, bool configInputTextCursorBlink = default, bool configInputTextEnterKeepActive = default, bool configDragClickToInputText = default, bool configWindowsResizeFromEdges = default, bool configWindowsMoveFromTitleBarOnly = default, bool configWindowsCopyContentsWithCtrlC = default, bool configScrollbarScrollByPage = default, float configMemoryCompactTimer = default, float mouseDoubleClickTime = default, float mouseDoubleClickMaxDist = default, float mouseDragThreshold = default, float keyRepeatDelay = default, float keyRepeatRate = default, bool configErrorRecovery = default, bool configErrorRecoveryEnableAssert = default, bool configErrorRecoveryEnableDebugLog = default, bool configErrorRecoveryEnableTooltip = default, bool configDebugIsDebuggerPresent = default, bool configDebugHighlightIdConflicts = default, bool configDebugBeginReturnValueOnce = default, bool configDebugBeginReturnValueLoop = default, bool configDebugIgnoreFocusLoss = default, bool configDebugIniSettings = default, byte* backendPlatformName = default, byte* backendRendererName = default, void* backendPlatformUserData = default, void* backendRendererUserData = default, void* backendLanguageUserData = default, bool wantCaptureMouse = default, bool wantCaptureKeyboard = default, bool wantTextInput = default, bool wantSetMousePos = default, bool wantSaveIniSettings = default, bool navActive = default, bool navVisible = default, float framerate = default, int metricsRenderVertices = default, int metricsRenderIndices = default, int metricsRenderWindows = default, int metricsActiveWindows = default, Vector2 mouseDelta = default, ImGuiContextPtr ctx = default, Vector2 mousePos = default, bool* mouseDown = default, float mouseWheel = default, float mouseWheelH = default, ImGuiMouseSource mouseSource = default, uint mouseHoveredViewport = default, bool keyCtrl = default, bool keyShift = default, bool keyAlt = default, bool keySuper = default, int keyMods = default, ImGuiKeyData* keysData = default, bool wantCaptureMouseUnlessPopupClose = default, Vector2 mousePosPrev = default, Vector2* mouseClickedPos = default, double* mouseClickedTime = default, bool* mouseClicked = default, bool* mouseDoubleClicked = default, ushort* mouseClickedCount = default, ushort* mouseClickedLastCount = default, bool* mouseReleased = default, bool* mouseDownOwned = default, bool* mouseDownOwnedUnlessPopupClose = default, bool mouseWheelRequestAxisSwap = default, bool mouseCtrlLeftAsRightClick = default, float* mouseDownDuration = default, float* mouseDownDurationPrev = default, Vector2* mouseDragMaxDistanceAbs = default, float* mouseDragMaxDistanceSqr = default, float penPressure = default, bool appFocusLost = default, bool appAcceptingEvents = default, ushort inputQueueSurrogate = default, ImVector<uint> inputQueueCharacters = default)
 		{
 			ConfigFlags = configFlags;
 			BackendFlags = backendFlags;
@@ -813,6 +808,7 @@ namespace Hexa.NET.ImGui
 			ConfigDragClickToInputText = configDragClickToInputText ? (byte)1 : (byte)0;
 			ConfigWindowsResizeFromEdges = configWindowsResizeFromEdges ? (byte)1 : (byte)0;
 			ConfigWindowsMoveFromTitleBarOnly = configWindowsMoveFromTitleBarOnly ? (byte)1 : (byte)0;
+			ConfigWindowsCopyContentsWithCtrlC = configWindowsCopyContentsWithCtrlC ? (byte)1 : (byte)0;
 			ConfigScrollbarScrollByPage = configScrollbarScrollByPage ? (byte)1 : (byte)0;
 			ConfigMemoryCompactTimer = configMemoryCompactTimer;
 			MouseDoubleClickTime = mouseDoubleClickTime;
@@ -1135,8 +1131,6 @@ namespace Hexa.NET.ImGui
 			PenPressure = penPressure;
 			AppFocusLost = appFocusLost ? (byte)1 : (byte)0;
 			AppAcceptingEvents = appAcceptingEvents ? (byte)1 : (byte)0;
-			BackendUsingLegacyKeyArrays = backendUsingLegacyKeyArrays;
-			BackendUsingLegacyNavInputArray = backendUsingLegacyNavInputArray ? (byte)1 : (byte)0;
 			InputQueueSurrogate = inputQueueSurrogate;
 			InputQueueCharacters = inputQueueCharacters;
 		}
@@ -1144,7 +1138,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiIO(ImGuiConfigFlags configFlags = default, ImGuiBackendFlags backendFlags = default, Vector2 displaySize = default, float deltaTime = default, float iniSavingRate = default, byte* iniFilename = default, byte* logFilename = default, void* userData = default, ImFontAtlasPtr fonts = default, float fontGlobalScale = default, bool fontAllowUserScaling = default, ImFontPtr fontDefault = default, Vector2 displayFramebufferScale = default, bool configNavSwapGamepadButtons = default, bool configNavMoveSetMousePos = default, bool configNavCaptureKeyboard = default, bool configNavEscapeClearFocusItem = default, bool configNavEscapeClearFocusWindow = default, bool configNavCursorVisibleAuto = default, bool configNavCursorVisibleAlways = default, bool configDockingNoSplit = default, bool configDockingWithShift = default, bool configDockingAlwaysTabBar = default, bool configDockingTransparentPayload = default, bool configViewportsNoAutoMerge = default, bool configViewportsNoTaskBarIcon = default, bool configViewportsNoDecoration = default, bool configViewportsNoDefaultParent = default, bool mouseDrawCursor = default, bool configMacOsxBehaviors = default, bool configInputTrickleEventQueue = default, bool configInputTextCursorBlink = default, bool configInputTextEnterKeepActive = default, bool configDragClickToInputText = default, bool configWindowsResizeFromEdges = default, bool configWindowsMoveFromTitleBarOnly = default, bool configScrollbarScrollByPage = default, float configMemoryCompactTimer = default, float mouseDoubleClickTime = default, float mouseDoubleClickMaxDist = default, float mouseDragThreshold = default, float keyRepeatDelay = default, float keyRepeatRate = default, bool configErrorRecovery = default, bool configErrorRecoveryEnableAssert = default, bool configErrorRecoveryEnableDebugLog = default, bool configErrorRecoveryEnableTooltip = default, bool configDebugIsDebuggerPresent = default, bool configDebugHighlightIdConflicts = default, bool configDebugBeginReturnValueOnce = default, bool configDebugBeginReturnValueLoop = default, bool configDebugIgnoreFocusLoss = default, bool configDebugIniSettings = default, byte* backendPlatformName = default, byte* backendRendererName = default, void* backendPlatformUserData = default, void* backendRendererUserData = default, void* backendLanguageUserData = default, bool wantCaptureMouse = default, bool wantCaptureKeyboard = default, bool wantTextInput = default, bool wantSetMousePos = default, bool wantSaveIniSettings = default, bool navActive = default, bool navVisible = default, float framerate = default, int metricsRenderVertices = default, int metricsRenderIndices = default, int metricsRenderWindows = default, int metricsActiveWindows = default, Vector2 mouseDelta = default, ImGuiContextPtr ctx = default, Vector2 mousePos = default, Span<bool> mouseDown = default, float mouseWheel = default, float mouseWheelH = default, ImGuiMouseSource mouseSource = default, uint mouseHoveredViewport = default, bool keyCtrl = default, bool keyShift = default, bool keyAlt = default, bool keySuper = default, int keyMods = default, Span<ImGuiKeyData> keysData = default, bool wantCaptureMouseUnlessPopupClose = default, Vector2 mousePosPrev = default, Span<Vector2> mouseClickedPos = default, Span<double> mouseClickedTime = default, Span<bool> mouseClicked = default, Span<bool> mouseDoubleClicked = default, Span<ushort> mouseClickedCount = default, Span<ushort> mouseClickedLastCount = default, Span<bool> mouseReleased = default, Span<bool> mouseDownOwned = default, Span<bool> mouseDownOwnedUnlessPopupClose = default, bool mouseWheelRequestAxisSwap = default, bool mouseCtrlLeftAsRightClick = default, Span<float> mouseDownDuration = default, Span<float> mouseDownDurationPrev = default, Span<Vector2> mouseDragMaxDistanceAbs = default, Span<float> mouseDragMaxDistanceSqr = default, float penPressure = default, bool appFocusLost = default, bool appAcceptingEvents = default, byte backendUsingLegacyKeyArrays = default, bool backendUsingLegacyNavInputArray = default, ushort inputQueueSurrogate = default, ImVector<uint> inputQueueCharacters = default)
+		public unsafe ImGuiIO(ImGuiConfigFlags configFlags = default, ImGuiBackendFlags backendFlags = default, Vector2 displaySize = default, float deltaTime = default, float iniSavingRate = default, byte* iniFilename = default, byte* logFilename = default, void* userData = default, ImFontAtlasPtr fonts = default, float fontGlobalScale = default, bool fontAllowUserScaling = default, ImFontPtr fontDefault = default, Vector2 displayFramebufferScale = default, bool configNavSwapGamepadButtons = default, bool configNavMoveSetMousePos = default, bool configNavCaptureKeyboard = default, bool configNavEscapeClearFocusItem = default, bool configNavEscapeClearFocusWindow = default, bool configNavCursorVisibleAuto = default, bool configNavCursorVisibleAlways = default, bool configDockingNoSplit = default, bool configDockingWithShift = default, bool configDockingAlwaysTabBar = default, bool configDockingTransparentPayload = default, bool configViewportsNoAutoMerge = default, bool configViewportsNoTaskBarIcon = default, bool configViewportsNoDecoration = default, bool configViewportsNoDefaultParent = default, bool mouseDrawCursor = default, bool configMacOsxBehaviors = default, bool configInputTrickleEventQueue = default, bool configInputTextCursorBlink = default, bool configInputTextEnterKeepActive = default, bool configDragClickToInputText = default, bool configWindowsResizeFromEdges = default, bool configWindowsMoveFromTitleBarOnly = default, bool configWindowsCopyContentsWithCtrlC = default, bool configScrollbarScrollByPage = default, float configMemoryCompactTimer = default, float mouseDoubleClickTime = default, float mouseDoubleClickMaxDist = default, float mouseDragThreshold = default, float keyRepeatDelay = default, float keyRepeatRate = default, bool configErrorRecovery = default, bool configErrorRecoveryEnableAssert = default, bool configErrorRecoveryEnableDebugLog = default, bool configErrorRecoveryEnableTooltip = default, bool configDebugIsDebuggerPresent = default, bool configDebugHighlightIdConflicts = default, bool configDebugBeginReturnValueOnce = default, bool configDebugBeginReturnValueLoop = default, bool configDebugIgnoreFocusLoss = default, bool configDebugIniSettings = default, byte* backendPlatformName = default, byte* backendRendererName = default, void* backendPlatformUserData = default, void* backendRendererUserData = default, void* backendLanguageUserData = default, bool wantCaptureMouse = default, bool wantCaptureKeyboard = default, bool wantTextInput = default, bool wantSetMousePos = default, bool wantSaveIniSettings = default, bool navActive = default, bool navVisible = default, float framerate = default, int metricsRenderVertices = default, int metricsRenderIndices = default, int metricsRenderWindows = default, int metricsActiveWindows = default, Vector2 mouseDelta = default, ImGuiContextPtr ctx = default, Vector2 mousePos = default, Span<bool> mouseDown = default, float mouseWheel = default, float mouseWheelH = default, ImGuiMouseSource mouseSource = default, uint mouseHoveredViewport = default, bool keyCtrl = default, bool keyShift = default, bool keyAlt = default, bool keySuper = default, int keyMods = default, Span<ImGuiKeyData> keysData = default, bool wantCaptureMouseUnlessPopupClose = default, Vector2 mousePosPrev = default, Span<Vector2> mouseClickedPos = default, Span<double> mouseClickedTime = default, Span<bool> mouseClicked = default, Span<bool> mouseDoubleClicked = default, Span<ushort> mouseClickedCount = default, Span<ushort> mouseClickedLastCount = default, Span<bool> mouseReleased = default, Span<bool> mouseDownOwned = default, Span<bool> mouseDownOwnedUnlessPopupClose = default, bool mouseWheelRequestAxisSwap = default, bool mouseCtrlLeftAsRightClick = default, Span<float> mouseDownDuration = default, Span<float> mouseDownDurationPrev = default, Span<Vector2> mouseDragMaxDistanceAbs = default, Span<float> mouseDragMaxDistanceSqr = default, float penPressure = default, bool appFocusLost = default, bool appAcceptingEvents = default, ushort inputQueueSurrogate = default, ImVector<uint> inputQueueCharacters = default)
 		{
 			ConfigFlags = configFlags;
 			BackendFlags = backendFlags;
@@ -1182,6 +1176,7 @@ namespace Hexa.NET.ImGui
 			ConfigDragClickToInputText = configDragClickToInputText ? (byte)1 : (byte)0;
 			ConfigWindowsResizeFromEdges = configWindowsResizeFromEdges ? (byte)1 : (byte)0;
 			ConfigWindowsMoveFromTitleBarOnly = configWindowsMoveFromTitleBarOnly ? (byte)1 : (byte)0;
+			ConfigWindowsCopyContentsWithCtrlC = configWindowsCopyContentsWithCtrlC ? (byte)1 : (byte)0;
 			ConfigScrollbarScrollByPage = configScrollbarScrollByPage ? (byte)1 : (byte)0;
 			ConfigMemoryCompactTimer = configMemoryCompactTimer;
 			MouseDoubleClickTime = mouseDoubleClickTime;
@@ -1504,8 +1499,6 @@ namespace Hexa.NET.ImGui
 			PenPressure = penPressure;
 			AppFocusLost = appFocusLost ? (byte)1 : (byte)0;
 			AppAcceptingEvents = appAcceptingEvents ? (byte)1 : (byte)0;
-			BackendUsingLegacyKeyArrays = backendUsingLegacyKeyArrays;
-			BackendUsingLegacyNavInputArray = backendUsingLegacyNavInputArray ? (byte)1 : (byte)0;
 			InputQueueSurrogate = inputQueueSurrogate;
 			InputQueueCharacters = inputQueueCharacters;
 		}
@@ -2001,6 +1994,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref bool ConfigWindowsCopyContentsWithCtrlC => ref Unsafe.AsRef<bool>(&Handle->ConfigWindowsCopyContentsWithCtrlC);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref bool ConfigScrollbarScrollByPage => ref Unsafe.AsRef<bool>(&Handle->ConfigScrollbarScrollByPage);
 		/// <summary>
 		/// To be documented.
@@ -2375,14 +2372,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool AppAcceptingEvents => ref Unsafe.AsRef<bool>(&Handle->AppAcceptingEvents);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref byte BackendUsingLegacyKeyArrays => ref Unsafe.AsRef<byte>(&Handle->BackendUsingLegacyKeyArrays);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref bool BackendUsingLegacyNavInputArray => ref Unsafe.AsRef<bool>(&Handle->BackendUsingLegacyNavInputArray);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

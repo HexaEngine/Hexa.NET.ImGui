@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static byte InitNative(ID3D11Device* device, ID3D11DeviceContext* deviceContext)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D11Device*, ID3D11DeviceContext*, byte>)funcTable[18])(device, deviceContext);
+			return ((delegate* unmanaged[Cdecl]<ID3D11Device*, ID3D11DeviceContext*, byte>)funcTable[30])(device, deviceContext);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[18])((nint)device, (nint)deviceContext);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[30])((nint)device, (nint)deviceContext);
 			#endif
 		}
 
@@ -86,9 +86,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[19])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[31])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[19])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[31])();
 			#endif
 		}
 
@@ -107,9 +107,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[20])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[20])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
 			#endif
 		}
 
@@ -128,9 +128,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[21])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[33])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[21])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[33])((nint)drawData);
 			#endif
 		}
 
@@ -160,9 +160,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static void InvalidateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[34])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[34])();
 			#endif
 		}
 
@@ -181,9 +181,9 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		internal static byte CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[23])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[35])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[23])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[35])();
 			#endif
 		}
 

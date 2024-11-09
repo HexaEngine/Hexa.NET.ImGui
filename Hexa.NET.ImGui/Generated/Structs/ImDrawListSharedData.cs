@@ -486,17 +486,6 @@ namespace Hexa.NET.ImGui
 				}
 			}
 		}
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImDrawListSharedData* @this = &this)
-			{
-				ImGui.DestroyNative(@this);
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -606,14 +595,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public Vector4* TexUvLines { get => Handle->TexUvLines; set => Handle->TexUvLines = value; }
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImGui.DestroyNative(Handle);
-		}
-
 	}
 
 }

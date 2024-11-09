@@ -25,37 +25,26 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void InitApi()
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 30);
+			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 19);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
-			funcTable.Load(2, "ImGui_ImplGlfw_InitForOpenGL");
-			funcTable.Load(3, "ImGui_ImplGlfw_InitForVulkan");
-			funcTable.Load(4, "ImGui_ImplGlfw_InitForOther");
-			funcTable.Load(5, "ImGui_ImplGlfw_Shutdown");
-			funcTable.Load(6, "ImGui_ImplGlfw_NewFrame");
-			funcTable.Load(7, "ImGui_ImplGlfw_InstallCallbacks");
-			funcTable.Load(8, "ImGui_ImplGlfw_RestoreCallbacks");
-			funcTable.Load(9, "ImGui_ImplGlfw_SetCallbacksChainForAllWindows");
-			funcTable.Load(10, "ImGui_ImplGlfw_WindowFocusCallback");
-			funcTable.Load(11, "ImGui_ImplGlfw_CursorEnterCallback");
-			funcTable.Load(12, "ImGui_ImplGlfw_CursorPosCallback");
-			funcTable.Load(13, "ImGui_ImplGlfw_MouseButtonCallback");
-			funcTable.Load(14, "ImGui_ImplGlfw_ScrollCallback");
-			funcTable.Load(15, "ImGui_ImplGlfw_KeyCallback");
-			funcTable.Load(16, "ImGui_ImplGlfw_CharCallback");
-			funcTable.Load(17, "ImGui_ImplGlfw_MonitorCallback");
-			funcTable.Load(18, "ImGui_ImplGlfw_Sleep");
-			funcTable.Load(19, "ImGui_ImplOSX_Init");
-			funcTable.Load(20, "ImGui_ImplOSX_Shutdown");
-			funcTable.Load(21, "ImGui_ImplOSX_NewFrame");
-			funcTable.Load(22, "ImGui_ImplMetal_Init");
-			funcTable.Load(23, "ImGui_ImplMetal_Shutdown");
-			funcTable.Load(24, "ImGui_ImplMetal_NewFrame");
-			funcTable.Load(25, "ImGui_ImplMetal_RenderDrawData");
-			funcTable.Load(26, "ImGui_ImplMetal_CreateFontsTexture");
-			funcTable.Load(27, "ImGui_ImplMetal_DestroyFontsTexture");
-			funcTable.Load(28, "ImGui_ImplMetal_CreateDeviceObjects");
-			funcTable.Load(29, "ImGui_ImplMetal_DestroyDeviceObjects");
+			funcTable.Load(2, "CImGui_ImplGlfw_InitForOpenGL");
+			funcTable.Load(3, "CImGui_ImplGlfw_InitForVulkan");
+			funcTable.Load(4, "CImGui_ImplGlfw_InitForOther");
+			funcTable.Load(5, "CImGui_ImplGlfw_Shutdown");
+			funcTable.Load(6, "CImGui_ImplGlfw_NewFrame");
+			funcTable.Load(7, "CImGui_ImplGlfw_InstallCallbacks");
+			funcTable.Load(8, "CImGui_ImplGlfw_RestoreCallbacks");
+			funcTable.Load(9, "CImGui_ImplGlfw_SetCallbacksChainForAllWindows");
+			funcTable.Load(10, "CImGui_ImplGlfw_WindowFocusCallback");
+			funcTable.Load(11, "CImGui_ImplGlfw_CursorEnterCallback");
+			funcTable.Load(12, "CImGui_ImplGlfw_CursorPosCallback");
+			funcTable.Load(13, "CImGui_ImplGlfw_MouseButtonCallback");
+			funcTable.Load(14, "CImGui_ImplGlfw_ScrollCallback");
+			funcTable.Load(15, "CImGui_ImplGlfw_KeyCallback");
+			funcTable.Load(16, "CImGui_ImplGlfw_CharCallback");
+			funcTable.Load(17, "CImGui_ImplGlfw_MonitorCallback");
+			funcTable.Load(18, "CImGui_ImplGlfw_Sleep");
 		}
 
 		public static void FreeApi()

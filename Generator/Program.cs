@@ -1,4 +1,4 @@
-﻿#define BackendsOnly
+﻿//#define BackendsOnly
 
 namespace Generator
 {
@@ -53,7 +53,7 @@ namespace Generator
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 #endif
 
-            string[] backends = ["OpenGL3", "OpenGL2", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal"];
+            string[] backends = ["OpenGL3", "OpenGL2", "D3D9", "D3D10", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal", "Android"];
 
             metadata.CppDefinedFunctions.Clear();
 
@@ -81,6 +81,8 @@ namespace Generator
         private static bool Generate(string[] headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
+            settings.Defines.Add("IMGUI_USE_WCHAR32");
+            settings.Defines.Add("IMGUI_ENABLE_FREETYPE");
             settings.WrapPointersAsHandle = true;
 
             ImGuiCodeGenerator generator = new(settings);
@@ -88,7 +90,7 @@ namespace Generator
             generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(type));
             generator.PatchEngine.RegisterPrePatch(new ImGuizmoPrePatch());
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
-            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot", "ImplSDL2", "ImplGlfw", "Impl"], NamingPatchOptions.MultiplePrefixes));
+            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["CImGui", "ImGui", "ImGuizmo", "ImNodes", "ImPlot", "ImplSDL2", "ImplGlfw", "Impl"], NamingPatchOptions.MultiplePrefixes));
             generator.PatchEngine.RegisterPostPatch(new ImGuiPostPatch());
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
 
@@ -110,6 +112,8 @@ namespace Generator
         private static bool GenerateBackend(string[] headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, string name)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
+            settings.Defines.Add("IMGUI_USE_WCHAR32");
+            settings.Defines.Add("IMGUI_ENABLE_FREETYPE");
             settings.WrapPointersAsHandle = true;
 
             string[] strings =
@@ -119,12 +123,15 @@ namespace Generator
                 $"CIMGUI_USE_SDL2Renderer={(name == "SDL2" ? "1":"0")}",
                 $"CIMGUI_USE_OPENGL3={(name == "OpenGL3" ? "1":"0")}",
                 $"CIMGUI_USE_OPENGL2={(name == "OpenGL2" ? "1":"0")}",
+                $"CIMGUI_USE_D3D9={(name == "D3D9" ? "1":"0")}",
+                $"CIMGUI_USE_D3D10={(name == "D3D10" ? "1":"0")}",
                 $"CIMGUI_USE_D3D11={(name == "D3D11" ? "1":"0")}",
                 $"CIMGUI_USE_D3D12={(name == "D3D12" ? "1":"0")}",
                 $"CIMGUI_USE_VULKAN={(name == "Vulkan" ? "1":"0")}",
                 $"CIMGUI_USE_WIN32={(name == "Win32" ? "1":"0")}",
                 $"CIMGUI_USE_METAL={(name == "Metal" ? "1":"0")}",
-                $"CIMGUI_USE_OSX={(name == "OSX" ? "1":"0")}"];
+                $"CIMGUI_USE_OSX={(name == "OSX" ? "1":"0")}",
+                $"CIMGUI_USE_ANDROID={(name == "Android" ? "1":"0")}"];
 
             var originalNamespace = settings.Namespace;
 
@@ -136,6 +143,8 @@ namespace Generator
             {
                 "SDL2" => "ImplSDL2",
                 "GLFW" => "ImplGlfw",
+                "D3D9" => "ImplDX9",
+                "D3D10" => "ImplDX10",
                 "D3D11" => "ImplDX11",
                 "D3D12" => "ImplDX12",
                 _ => $"Impl{name}"
@@ -143,7 +152,7 @@ namespace Generator
 
             ImGuiCodeGenerator generator = new(settings);
             generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
-            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot", ignoreName], NamingPatchOptions.MultiplePrefixes));
+            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["CImGui", "ImGui", "ImGuizmo", "ImNodes", "ImPlot", ignoreName], NamingPatchOptions.MultiplePrefixes));
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
 
             generator.LogToConsole();
