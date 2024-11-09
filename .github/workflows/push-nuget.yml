@@ -16,13 +16,34 @@ jobs:
           dotnet-version: '8.0.x'  # Change this to your required .NET version
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore Hexa.NET.ImGui/Hexa.NET.ImGui.csproj
+          dotnet restore Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj
+          dotnet restore Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj
+          dotnet restore Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj
+          dotnet restore Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj
+          dotnet restore Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj
+          dotnet restore Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj
 
       - name: Build the project
-        run: dotnet build --configuration Release
+        run: |
+          dotnet build Hexa.NET.ImGui/Hexa.NET.ImGui.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj --configuration Release
+          dotnet build Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release
+          dotnet build Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release
+          dotnet build Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release
 
       - name: Pack the project
-        run: dotnet pack --configuration Release --output ./nupkgs
+        run: |
+          dotnet pack Hexa.NET.ImGui/Hexa.NET.ImGui.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release --output ./nupkgs
 
       - name: Exclude unwanted packages
         run: |
