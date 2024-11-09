@@ -9,6 +9,7 @@
   "GenerateSizeOfStructs": false,
   "AutoSquashTypedef": true,
   "GenerateExtensions": false,
+  "GenerateConstants": false,
   "KnownConstantNames": {},
   "KnownEnumValueNames": {
     "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
