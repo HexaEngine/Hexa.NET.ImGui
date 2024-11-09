@@ -1,0 +1,42 @@
+name: Publish NuGet Package
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'  # Change this to your required .NET version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build --configuration Release
+
+      - name: Pack the project
+        run: dotnet pack --configuration Release --output ./nupkgs
+
+      - name: Exclude unwanted packages
+        run: |
+          # Exclude packages that don't start with "Hexa.NET."
+          for package in ./nupkgs/*.nupkg; do
+              package_name=$(basename "$package")
+              if [[ ! $package_name == Hexa.NET* ]]; then
+                  echo "Removing $package_name as it does not start with Hexa.NET."
+                  rm -f "$package"
+              fi
+          done
+          
+      - name: List packages
+        run: ls ./nupkgs/
+
+      - name: Publish the package
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
