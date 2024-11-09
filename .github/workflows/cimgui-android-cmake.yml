@@ -23,16 +23,8 @@ jobs:
             
     steps:
     - uses: actions/checkout@v4.1.7
-      if: matrix.lib != 'cimgui'
       with:
         repository: 'cimgui/cimgui'
-        path: 'cimgui'
-        submodules: true
-
-    - uses: actions/checkout@v4.1.7
-      if: matrix.lib == 'cimgui'
-      with:
-        repository: 'JunaMeinhold/cimgui'
         path: 'cimgui'
         submodules: true
         
