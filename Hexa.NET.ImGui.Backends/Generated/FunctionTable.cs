@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui.Backends
 		/// </summary>
 		public static void InitApi()
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 80);
+			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 81);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
 			funcTable.Load(2, "CImGui_ImplOpenGL3_Init");
@@ -87,25 +87,26 @@ namespace Hexa.NET.ImGui.Backends
 			funcTable.Load(58, "CImGui_ImplWin32_InitForOpenGL");
 			funcTable.Load(59, "CImGui_ImplWin32_Shutdown");
 			funcTable.Load(60, "CImGui_ImplWin32_NewFrame");
-			funcTable.Load(61, "CImGui_ImplWin32_EnableDpiAwareness");
-			funcTable.Load(62, "CImGui_ImplWin32_GetDpiScaleForHwnd");
-			funcTable.Load(63, "CImGui_ImplWin32_GetDpiScaleForMonitor");
-			funcTable.Load(64, "CImGui_ImplWin32_EnableAlphaCompositing");
-			funcTable.Load(65, "CImGui_ImplOSX_Init");
-			funcTable.Load(66, "CImGui_ImplOSX_Shutdown");
-			funcTable.Load(67, "CImGui_ImplOSX_NewFrame");
-			funcTable.Load(68, "CImGui_ImplMetal_Init");
-			funcTable.Load(69, "CImGui_ImplMetal_Shutdown");
-			funcTable.Load(70, "CImGui_ImplMetal_NewFrame");
-			funcTable.Load(71, "CImGui_ImplMetal_RenderDrawData");
-			funcTable.Load(72, "CImGui_ImplMetal_CreateFontsTexture");
-			funcTable.Load(73, "CImGui_ImplMetal_DestroyFontsTexture");
-			funcTable.Load(74, "CImGui_ImplMetal_CreateDeviceObjects");
-			funcTable.Load(75, "CImGui_ImplMetal_DestroyDeviceObjects");
-			funcTable.Load(76, "CImGui_ImplAndroid_Init");
-			funcTable.Load(77, "CImGui_ImplAndroid_HandleInputEvent");
-			funcTable.Load(78, "CImGui_ImplAndroid_Shutdown");
-			funcTable.Load(79, "CImGui_ImplAndroid_NewFrame");
+			funcTable.Load(61, "CImGui_ImplWin32_WndProcHandler");
+			funcTable.Load(62, "CImGui_ImplWin32_EnableDpiAwareness");
+			funcTable.Load(63, "CImGui_ImplWin32_GetDpiScaleForHwnd");
+			funcTable.Load(64, "CImGui_ImplWin32_GetDpiScaleForMonitor");
+			funcTable.Load(65, "CImGui_ImplWin32_EnableAlphaCompositing");
+			funcTable.Load(66, "CImGui_ImplOSX_Init");
+			funcTable.Load(67, "CImGui_ImplOSX_Shutdown");
+			funcTable.Load(68, "CImGui_ImplOSX_NewFrame");
+			funcTable.Load(69, "CImGui_ImplMetal_Init");
+			funcTable.Load(70, "CImGui_ImplMetal_Shutdown");
+			funcTable.Load(71, "CImGui_ImplMetal_NewFrame");
+			funcTable.Load(72, "CImGui_ImplMetal_RenderDrawData");
+			funcTable.Load(73, "CImGui_ImplMetal_CreateFontsTexture");
+			funcTable.Load(74, "CImGui_ImplMetal_DestroyFontsTexture");
+			funcTable.Load(75, "CImGui_ImplMetal_CreateDeviceObjects");
+			funcTable.Load(76, "CImGui_ImplMetal_DestroyDeviceObjects");
+			funcTable.Load(77, "CImGui_ImplAndroid_Init");
+			funcTable.Load(78, "CImGui_ImplAndroid_HandleInputEvent");
+			funcTable.Load(79, "CImGui_ImplAndroid_Shutdown");
+			funcTable.Load(80, "CImGui_ImplAndroid_NewFrame");
 		}
 
 		public static void FreeApi()

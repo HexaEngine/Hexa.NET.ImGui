@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.91.5</AssemblyVersion>
-		<PackageVersion>2.2.0</PackageVersion>
+		<PackageVersion>2.2.1</PackageVersion>
 		<Description>A .NET wrapper for the Dear ImGui library. (1.91.5)</Description>
 		<PackageTags>ImGui UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -29,9 +29,13 @@
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<PackageReference Include="HexaGen.Runtime" Version="1.1.13" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="buildTransitive\Hexa.NET.ImGui.targets" Pack="true" PackagePath="buildTransitive/" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,6 +46,18 @@
 			<Pack>true</Pack>
 		</None>
 		<None Include="..\native\android-arm64\cimgui.so">
+			<Link>runtimes\android-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<PackagePath>runtimes/android-arm64/native</PackagePath>
+			<Pack>true</Pack>
+		</None>
+		<None Include="..\native\android-x64\libc++_shared.so">
+			<Link>runtimes\android-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<PackagePath>runtimes/android-x64/native</PackagePath>
+			<Pack>true</Pack>
+		</None>
+		<None Include="..\native\android-arm64\libc++_shared.so">
 			<Link>runtimes\android-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/android-arm64/native</PackagePath>

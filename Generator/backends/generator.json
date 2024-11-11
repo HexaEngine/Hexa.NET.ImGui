@@ -94,7 +94,9 @@
     "ImGuiSelectionUserData": "long",
     "ImBitArrayForNamedKeys": "nuint",
     "ImStbTexteditState": "STBTexteditState",
-    "va_list": "nuint"
+    "va_list": "nuint",
+    "LRESULT": "nint",
+    "HMONITOR": "nint"
   },
   "AllowedFunctions": [],
   "AllowedTypes": [],

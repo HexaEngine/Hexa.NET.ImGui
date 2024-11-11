@@ -22,19 +22,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InitNative(void* hwnd)
+		internal static byte InitNative(nint hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[57])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])(hwnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])((nint)hwnd);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])(hwnd);
 			#endif
 		}
 
 		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
-		public static bool Init(void* hwnd)
+		public static bool Init(nint hwnd)
 		{
 			byte ret = InitNative(hwnd);
 			return ret != 0;
@@ -44,19 +44,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InitForOpenGLNative(void* hwnd)
+		internal static byte InitForOpenGLNative(nint hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[58])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])(hwnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])((nint)hwnd);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])(hwnd);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InitForOpenGL(void* hwnd)
+		public static bool InitForOpenGL(nint hwnd)
 		{
 			byte ret = InitForOpenGLNative(hwnd);
 			return ret != 0;
@@ -105,6 +105,28 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		}
 
 		/// <summary>
+		/// Win32 message handler your application need to call.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static nint WndProcHandlerNative(nint hWnd, uint msg, nuint wParam, nint lParam)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<nint, uint, nuint, nint, nint>)funcTable[61])(hWnd, msg, wParam, lParam);
+			#else
+			return (nint)((delegate* unmanaged[Cdecl]<nint, uint, nuint, nint, nint>)funcTable[61])(hWnd, msg, wParam, lParam);
+			#endif
+		}
+
+		/// <summary>
+		/// Win32 message handler your application need to call.<br/>
+		/// </summary>
+		public static nint WndProcHandler(nint hWnd, uint msg, nuint wParam, nint lParam)
+		{
+			nint ret = WndProcHandlerNative(hWnd, msg, wParam, lParam);
+			return ret;
+		}
+
+		/// <summary>
 		/// DPI-related helpers (optional)<br/>
 		/// - Use to enable DPI awareness without having to create an application manifest.<br/>
 		/// - Your own app may already do this via a manifest or explicit calls. This is mostly useful for our examples/ apps.<br/>
@@ -116,9 +138,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void EnableDpiAwarenessNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[61])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[61])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#endif
 		}
 
@@ -139,19 +161,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetDpiScaleForHwndNative(void* hwnd)
+		internal static float GetDpiScaleForHwndNative(nint hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[62])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<nint, float>)funcTable[63])(hwnd);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[62])((nint)hwnd);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[63])(hwnd);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float GetDpiScaleForHwnd(void* hwnd)
+		public static float GetDpiScaleForHwnd(nint hwnd)
 		{
 			float ret = GetDpiScaleForHwndNative(hwnd);
 			return ret;
@@ -161,19 +183,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetDpiScaleForMonitorNative(void* monitor)
+		internal static float GetDpiScaleForMonitorNative(nint monitor)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[63])(monitor);
+			return ((delegate* unmanaged[Cdecl]<nint, float>)funcTable[64])(monitor);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[63])((nint)monitor);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[64])(monitor);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float GetDpiScaleForMonitor(void* monitor)
+		public static float GetDpiScaleForMonitor(nint monitor)
 		{
 			float ret = GetDpiScaleForMonitorNative(monitor);
 			return ret;
@@ -185,12 +207,12 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EnableAlphaCompositingNative(void* hwnd)
+		internal static void EnableAlphaCompositingNative(nint hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[64])(hwnd);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[65])(hwnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[64])((nint)hwnd);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[65])(hwnd);
 			#endif
 		}
 
@@ -199,7 +221,7 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// - Use to enable alpha compositing transparency with the desktop.<br/>
 		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
 		/// </summary>
-		public static void EnableAlphaCompositing(void* hwnd)
+		public static void EnableAlphaCompositing(nint hwnd)
 		{
 			EnableAlphaCompositingNative(hwnd);
 		}

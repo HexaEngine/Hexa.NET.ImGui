@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static byte InitNative(MTLDevice* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[68])(device);
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[69])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[68])((nint)device);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[69])((nint)device);
 			#endif
 		}
 
@@ -59,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[69])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[70])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[69])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[70])();
 			#endif
 		}
 
@@ -80,9 +80,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void NewFrameNative(MTLRenderPassDescriptor* renderPassDescriptor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<MTLRenderPassDescriptor*, void>)funcTable[70])(renderPassDescriptor);
+			((delegate* unmanaged[Cdecl]<MTLRenderPassDescriptor*, void>)funcTable[71])(renderPassDescriptor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[70])((nint)renderPassDescriptor);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[71])((nint)renderPassDescriptor);
 			#endif
 		}
 
@@ -112,9 +112,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void RenderDrawDataNative(ImDrawData* drawData, MTLCommandBuffer* commandBuffer, MTLRenderCommandEncoder* commandEncoder)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, MTLCommandBuffer*, MTLRenderCommandEncoder*, void>)funcTable[71])(drawData, commandBuffer, commandEncoder);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, MTLCommandBuffer*, MTLRenderCommandEncoder*, void>)funcTable[72])(drawData, commandBuffer, commandEncoder);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[71])((nint)drawData, (nint)commandBuffer, (nint)commandEncoder);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[72])((nint)drawData, (nint)commandBuffer, (nint)commandEncoder);
 			#endif
 		}
 
@@ -225,9 +225,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static byte CreateFontsTextureNative(MTLDevice* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[72])(device);
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[73])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[72])((nint)device);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[73])((nint)device);
 			#endif
 		}
 
@@ -259,9 +259,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void DestroyFontsTextureNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[73])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[74])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[73])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[74])();
 			#endif
 		}
 
@@ -280,9 +280,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static byte CreateDeviceObjectsNative(MTLDevice* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[74])(device);
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[75])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[74])((nint)device);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[75])((nint)device);
 			#endif
 		}
 
@@ -314,9 +314,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[76])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[76])();
 			#endif
 		}
 
