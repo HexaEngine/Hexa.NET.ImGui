@@ -61,7 +61,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImDrawListFlags InitialFlags;
+		public int InitialFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -202,7 +202,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, ImDrawListFlags initialFlags = default, ImVector<Vector2> tempBuffer = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default, Vector4* texUvLines = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, int initialFlags = default, ImVector<Vector2> tempBuffer = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default, Vector4* texUvLines = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
 			Font = font;
@@ -338,7 +338,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, ImDrawListFlags initialFlags = default, ImVector<Vector2> tempBuffer = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default, Vector4* texUvLines = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, int initialFlags = default, ImVector<Vector2> tempBuffer = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default, Vector4* texUvLines = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
 			Font = font;
@@ -560,7 +560,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImDrawListFlags InitialFlags => ref Unsafe.AsRef<ImDrawListFlags>(&Handle->InitialFlags);
+		public ref int InitialFlags => ref Unsafe.AsRef<int>(&Handle->InitialFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

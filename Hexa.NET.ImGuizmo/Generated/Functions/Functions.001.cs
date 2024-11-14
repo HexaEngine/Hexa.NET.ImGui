@@ -1467,32 +1467,32 @@ namespace Hexa.NET.ImGuizmo
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(byte* strId)
+		internal static int GetIDNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint>)funcTable[23])(strId);
+			return ((delegate* unmanaged[Cdecl]<byte*, int>)funcTable[23])(strId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[23])((nint)strId);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[23])((nint)strId);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(byte* strId)
+		public static int GetID(byte* strId)
 		{
-			uint ret = GetIDNative(strId);
+			int ret = GetIDNative(strId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ref byte strId)
+		public static int GetID(ref byte strId)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				uint ret = GetIDNative((byte*)pstrId);
+				int ret = GetIDNative((byte*)pstrId);
 				return ret;
 			}
 		}
@@ -1500,11 +1500,11 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strId)
+		public static int GetID(ReadOnlySpan<byte> strId)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				uint ret = GetIDNative((byte*)pstrId);
+				int ret = GetIDNative((byte*)pstrId);
 				return ret;
 			}
 		}
@@ -1512,7 +1512,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(string strId)
+		public static int GetID(string strId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1531,7 +1531,7 @@ namespace Hexa.NET.ImGuizmo
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			uint ret = GetIDNative(pStr0);
+			int ret = GetIDNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1543,32 +1543,32 @@ namespace Hexa.NET.ImGuizmo
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
+		internal static int GetIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)funcTable[24])(strIdBegin, strIdEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[24])(strIdBegin, strIdEnd);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[24])((nint)strIdBegin, (nint)strIdEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[24])((nint)strIdBegin, (nint)strIdEnd);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
+		public static int GetID(byte* strIdBegin, byte* strIdEnd)
 		{
-			uint ret = GetIDNative(strIdBegin, strIdEnd);
+			int ret = GetIDNative(strIdBegin, strIdEnd);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ref byte strIdBegin, byte* strIdEnd)
+		public static int GetID(ref byte strIdBegin, byte* strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
 			{
-				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
+				int ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
 				return ret;
 			}
 		}
@@ -1576,11 +1576,11 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
+		public static int GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = strIdBegin)
 			{
-				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
+				int ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
 				return ret;
 			}
 		}
@@ -1588,7 +1588,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(string strIdBegin, byte* strIdEnd)
+		public static int GetID(string strIdBegin, byte* strIdEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1607,7 +1607,7 @@ namespace Hexa.NET.ImGuizmo
 				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			uint ret = GetIDNative(pStr0, strIdEnd);
+			int ret = GetIDNative(pStr0, strIdEnd);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1618,11 +1618,11 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
+		public static int GetID(byte* strIdBegin, ref byte strIdEnd)
 		{
 			fixed (byte* pstrIdEnd = &strIdEnd)
 			{
-				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
+				int ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
 				return ret;
 			}
 		}
@@ -1630,11 +1630,11 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		public static int GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
 			fixed (byte* pstrIdEnd = strIdEnd)
 			{
-				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
+				int ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
 				return ret;
 			}
 		}
@@ -1642,7 +1642,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(byte* strIdBegin, string strIdEnd)
+		public static int GetID(byte* strIdBegin, string strIdEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1661,7 +1661,7 @@ namespace Hexa.NET.ImGuizmo
 				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			uint ret = GetIDNative(strIdBegin, pStr0);
+			int ret = GetIDNative(strIdBegin, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1672,13 +1672,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ref byte strIdBegin, ref byte strIdEnd)
+		public static int GetID(ref byte strIdBegin, ref byte strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
 			{
 				fixed (byte* pstrIdEnd = &strIdEnd)
 				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+					int ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
 					return ret;
 				}
 			}
@@ -1687,13 +1687,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		public static int GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = strIdBegin)
 			{
 				fixed (byte* pstrIdEnd = strIdEnd)
 				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+					int ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
 					return ret;
 				}
 			}
@@ -1702,7 +1702,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(string strIdBegin, string strIdEnd)
+		public static int GetID(string strIdBegin, string strIdEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1738,7 +1738,7 @@ namespace Hexa.NET.ImGuizmo
 				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			uint ret = GetIDNative(pStr0, pStr1);
+			int ret = GetIDNative(pStr0, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1753,13 +1753,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		public static int GetID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
 			{
 				fixed (byte* pstrIdEnd = strIdEnd)
 				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+					int ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
 					return ret;
 				}
 			}
@@ -1768,7 +1768,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ref byte strIdBegin, string strIdEnd)
+		public static int GetID(ref byte strIdBegin, string strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
 			{
@@ -1789,7 +1789,7 @@ namespace Hexa.NET.ImGuizmo
 					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				uint ret = GetIDNative((byte*)pstrIdBegin, pStr0);
+				int ret = GetIDNative((byte*)pstrIdBegin, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1801,13 +1801,13 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
+		public static int GetID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = strIdBegin)
 			{
 				fixed (byte* pstrIdEnd = &strIdEnd)
 				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+					int ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
 					return ret;
 				}
 			}
@@ -1816,7 +1816,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
+		public static int GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = strIdBegin)
 			{
@@ -1837,7 +1837,7 @@ namespace Hexa.NET.ImGuizmo
 					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				uint ret = GetIDNative((byte*)pstrIdBegin, pStr0);
+				int ret = GetIDNative((byte*)pstrIdBegin, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1849,7 +1849,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(string strIdBegin, ref byte strIdEnd)
+		public static int GetID(string strIdBegin, ref byte strIdEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1870,7 +1870,7 @@ namespace Hexa.NET.ImGuizmo
 			}
 			fixed (byte* pstrIdEnd = &strIdEnd)
 			{
-				uint ret = GetIDNative(pStr0, (byte*)pstrIdEnd);
+				int ret = GetIDNative(pStr0, (byte*)pstrIdEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1882,7 +1882,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		public static int GetID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1903,7 +1903,7 @@ namespace Hexa.NET.ImGuizmo
 			}
 			fixed (byte* pstrIdEnd = strIdEnd)
 			{
-				uint ret = GetIDNative(pStr0, (byte*)pstrIdEnd);
+				int ret = GetIDNative(pStr0, (byte*)pstrIdEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1916,21 +1916,21 @@ namespace Hexa.NET.ImGuizmo
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(void* ptrId)
+		internal static int GetIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, uint>)funcTable[25])(ptrId);
+			return ((delegate* unmanaged[Cdecl]<void*, int>)funcTable[25])(ptrId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[25])((nint)ptrId);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[25])((nint)ptrId);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetID(void* ptrId)
+		public static int GetID(void* ptrId)
 		{
-			uint ret = GetIDNative(ptrId);
+			int ret = GetIDNative(ptrId);
 			return ret;
 		}
 

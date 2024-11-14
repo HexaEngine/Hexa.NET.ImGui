@@ -34,7 +34,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImTextureID TextureId;
+		public ulong TextureId;
 
 		/// <summary>
 		/// To be documented.
@@ -55,6 +55,7 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public unsafe void* UserCallback;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -74,14 +75,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureID textureId = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, ImDrawCallback userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
+		public unsafe ImDrawCmd(Vector4 clipRect = default, ulong textureId = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, delegate*<void> userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
 		{
 			ClipRect = clipRect;
 			TextureId = textureId;
 			VtxOffset = vtxOffset;
 			IdxOffset = idxOffset;
 			ElemCount = elemCount;
-			UserCallback = (void*)Marshal.GetFunctionPointerForDelegate(userCallback);
+			UserCallback = (delegate*<void>*)userCallback;
 			UserCallbackData = userCallbackData;
 			UserCallbackDataSize = userCallbackDataSize;
 			UserCallbackDataOffset = userCallbackDataOffset;
@@ -161,7 +162,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImTextureID TextureId => ref Unsafe.AsRef<ImTextureID>(&Handle->TextureId);
+		public ref ulong TextureId => ref Unsafe.AsRef<ulong>(&Handle->TextureId);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

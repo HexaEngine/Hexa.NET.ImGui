@@ -40,7 +40,7 @@ namespace Hexa.NET.ImGui
 		public unsafe ImGuiSelectionExternalStorage(void* userData = default, delegate*<ImGuiSelectionExternalStorage*, int, byte, void> adapterSetItemSelected = default)
 		{
 			UserData = userData;
-			AdapterSetItemSelected = (void*)adapterSetItemSelected;
+			AdapterSetItemSelected = (delegate*<ImGuiSelectionExternalStorage*, int, byte, void>*)adapterSetItemSelected;
 		}
 
 

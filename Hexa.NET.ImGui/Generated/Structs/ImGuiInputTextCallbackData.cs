@@ -38,12 +38,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputTextFlags EventFlag;
+		public int EventFlag;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputTextFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -99,7 +99,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextCallbackData(ImGuiContextPtr ctx = default, ImGuiInputTextFlags eventFlag = default, ImGuiInputTextFlags flags = default, void* userData = default, uint eventChar = default, ImGuiKey eventKey = default, byte* buf = default, int bufTextLen = default, int bufSize = default, bool bufDirty = default, int cursorPos = default, int selectionStart = default, int selectionEnd = default)
+		public unsafe ImGuiInputTextCallbackData(ImGuiContextPtr ctx = default, int eventFlag = default, int flags = default, void* userData = default, uint eventChar = default, ImGuiKey eventKey = default, byte* buf = default, int bufTextLen = default, int bufSize = default, bool bufDirty = default, int cursorPos = default, int selectionStart = default, int selectionEnd = default)
 		{
 			Ctx = ctx;
 			EventFlag = eventFlag;
@@ -686,11 +686,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputTextFlags EventFlag => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->EventFlag);
+		public ref int EventFlag => ref Unsafe.AsRef<int>(&Handle->EventFlag);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

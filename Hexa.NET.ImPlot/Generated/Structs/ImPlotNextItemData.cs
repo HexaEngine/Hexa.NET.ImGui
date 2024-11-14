@@ -40,7 +40,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotMarker Marker;
+		public int Marker;
 
 		/// <summary>
 		/// To be documented.
@@ -110,13 +110,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotCond HiddenCond;
+		public int HiddenCond;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextItemData(Vector4* colors = default, float lineWeight = default, ImPlotMarker marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, bool renderLine = default, bool renderFill = default, bool renderMarkerLine = default, bool renderMarkerFill = default, bool hasHidden = default, bool hidden = default, ImPlotCond hiddenCond = default)
+		public unsafe ImPlotNextItemData(Vector4* colors = default, float lineWeight = default, int marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, bool renderLine = default, bool renderFill = default, bool renderMarkerLine = default, bool renderMarkerFill = default, bool hasHidden = default, bool hidden = default, int hiddenCond = default)
 		{
 			if (colors != default(Vector4*))
 			{
@@ -147,7 +147,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextItemData(Span<Vector4> colors = default, float lineWeight = default, ImPlotMarker marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, bool renderLine = default, bool renderFill = default, bool renderMarkerLine = default, bool renderMarkerFill = default, bool hasHidden = default, bool hidden = default, ImPlotCond hiddenCond = default)
+		public unsafe ImPlotNextItemData(Span<Vector4> colors = default, float lineWeight = default, int marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, bool renderLine = default, bool renderFill = default, bool renderMarkerLine = default, bool renderMarkerFill = default, bool hasHidden = default, bool hidden = default, int hiddenCond = default)
 		{
 			if (colors != default(Span<Vector4>))
 			{
@@ -273,7 +273,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotMarker Marker => ref Unsafe.AsRef<ImPlotMarker>(&Handle->Marker);
+		public ref int Marker => ref Unsafe.AsRef<int>(&Handle->Marker);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -329,7 +329,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotCond HiddenCond => ref Unsafe.AsRef<ImPlotCond>(&Handle->HiddenCond);
+		public ref int HiddenCond => ref Unsafe.AsRef<int>(&Handle->HiddenCond);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

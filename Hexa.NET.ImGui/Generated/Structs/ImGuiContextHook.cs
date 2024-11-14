@@ -41,6 +41,7 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public unsafe void* Callback;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -50,12 +51,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiContextHook(uint hookId = default, ImGuiContextHookType type = default, uint owner = default, ImGuiContextHookCallback callback = default, void* userData = default)
+		public unsafe ImGuiContextHook(uint hookId = default, ImGuiContextHookType type = default, uint owner = default, delegate*<void> callback = default, void* userData = default)
 		{
 			HookId = hookId;
 			Type = type;
 			Owner = owner;
-			Callback = (void*)Marshal.GetFunctionPointerForDelegate(callback);
+			Callback = (delegate*<void>*)callback;
 			UserData = userData;
 		}
 

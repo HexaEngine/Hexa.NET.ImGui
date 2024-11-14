@@ -587,35 +587,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Get bit n in the array<br/>
 		/// </summary>
-		public unsafe bool GetBit(ulong n)
-		{
-			fixed (ImFontGlyphRangesBuilder* @this = &this)
-			{
-				byte ret = ImGui.GetBitNative(@this, n);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
 		public unsafe bool GetBit(nuint n)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
 				byte ret = ImGui.GetBitNative(@this, n);
 				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public unsafe void SetBit(ulong n)
-		{
-			fixed (ImFontGlyphRangesBuilder* @this = &this)
-			{
-				ImGui.SetBitNative(@this, n);
 			}
 		}
 
@@ -1145,27 +1122,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Get bit n in the array<br/>
 		/// </summary>
-		public unsafe bool GetBit(ulong n)
-		{
-			byte ret = ImGui.GetBitNative(Handle, n);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
 		public unsafe bool GetBit(nuint n)
 		{
 			byte ret = ImGui.GetBitNative(Handle, n);
 			return ret != 0;
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public unsafe void SetBit(ulong n)
-		{
-			ImGui.SetBitNative(Handle, n);
 		}
 
 		/// <summary>

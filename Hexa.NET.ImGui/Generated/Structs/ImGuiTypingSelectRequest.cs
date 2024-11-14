@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiTypingSelectFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -56,7 +56,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTypingSelectRequest(ImGuiTypingSelectFlags flags = default, int searchBufferLen = default, byte* searchBuffer = default, bool selectRequest = default, bool singleCharMode = default, byte singleCharSize = default)
+		public unsafe ImGuiTypingSelectRequest(int flags = default, int searchBufferLen = default, byte* searchBuffer = default, bool selectRequest = default, bool singleCharMode = default, byte singleCharSize = default)
 		{
 			Flags = flags;
 			SearchBufferLen = searchBufferLen;
@@ -113,7 +113,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiTypingSelectFlags Flags => ref Unsafe.AsRef<ImGuiTypingSelectFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

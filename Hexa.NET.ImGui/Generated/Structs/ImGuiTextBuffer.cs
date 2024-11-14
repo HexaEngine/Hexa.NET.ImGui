@@ -41,49 +41,35 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, byte* strEnd)
+		public unsafe void Append(byte* str, byte* strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.appendNative(@this, str, strEnd);
+				ImGui.AppendNative(@this, str, strEnd);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str)
+		public unsafe void Append(byte* str)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.appendNative(@this, str, (byte*)(default));
+				ImGui.AppendNative(@this, str, (byte*)(default));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, byte* strEnd)
-		{
-			fixed (ImGuiTextBuffer* @this = &this)
-			{
-				fixed (byte* pstr = &str)
-				{
-					ImGui.appendNative(@this, (byte*)pstr, strEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void append(ref byte str)
+		public unsafe void Append(ref byte str, byte* strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pstr = &str)
 				{
-					ImGui.appendNative(@this, (byte*)pstr, (byte*)(default));
+					ImGui.AppendNative(@this, (byte*)pstr, strEnd);
 				}
 			}
 		}
@@ -91,13 +77,27 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, byte* strEnd)
+		public unsafe void Append(ref byte str)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstr = &str)
+				{
+					ImGui.AppendNative(@this, (byte*)pstr, (byte*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Append(ReadOnlySpan<byte> str, byte* strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pstr = str)
 				{
-					ImGui.appendNative(@this, (byte*)pstr, strEnd);
+					ImGui.AppendNative(@this, (byte*)pstr, strEnd);
 				}
 			}
 		}
@@ -105,13 +105,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str)
+		public unsafe void Append(ReadOnlySpan<byte> str)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pstr = str)
 				{
-					ImGui.appendNative(@this, (byte*)pstr, (byte*)(default));
+					ImGui.AppendNative(@this, (byte*)pstr, (byte*)(default));
 				}
 			}
 		}
@@ -119,7 +119,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, byte* strEnd)
+		public unsafe void Append(string str, byte* strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendNative(@this, pStr0, strEnd);
+				ImGui.AppendNative(@this, pStr0, strEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -151,7 +151,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str)
+		public unsafe void Append(string str)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -172,7 +172,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendNative(@this, pStr0, (byte*)(default));
+				ImGui.AppendNative(@this, pStr0, (byte*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -183,13 +183,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, ref byte strEnd)
+		public unsafe void Append(byte* str, ref byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pstrEnd = &strEnd)
 				{
-					ImGui.appendNative(@this, str, (byte*)pstrEnd);
+					ImGui.AppendNative(@this, str, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -197,13 +197,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(byte* str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pstrEnd = strEnd)
 				{
-					ImGui.appendNative(@this, str, (byte*)pstrEnd);
+					ImGui.AppendNative(@this, str, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -211,7 +211,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, string strEnd)
+		public unsafe void Append(byte* str, string strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -232,7 +232,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendNative(@this, str, pStr0);
+				ImGui.AppendNative(@this, str, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -243,7 +243,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ref byte strEnd)
+		public unsafe void Append(ref byte str, ref byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -251,7 +251,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* pstrEnd = &strEnd)
 					{
-						ImGui.appendNative(@this, (byte*)pstr, (byte*)pstrEnd);
+						ImGui.AppendNative(@this, (byte*)pstr, (byte*)pstrEnd);
 					}
 				}
 			}
@@ -260,7 +260,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -268,7 +268,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* pstrEnd = strEnd)
 					{
-						ImGui.appendNative(@this, (byte*)pstr, (byte*)pstrEnd);
+						ImGui.AppendNative(@this, (byte*)pstr, (byte*)pstrEnd);
 					}
 				}
 			}
@@ -277,7 +277,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, string strEnd)
+		public unsafe void Append(string str, string strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -315,7 +315,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.appendNative(@this, pStr0, pStr1);
+				ImGui.AppendNative(@this, pStr0, pStr1);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -330,7 +330,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(ref byte str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -338,7 +338,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* pstrEnd = strEnd)
 					{
-						ImGui.appendNative(@this, (byte*)pstr, (byte*)pstrEnd);
+						ImGui.AppendNative(@this, (byte*)pstr, (byte*)pstrEnd);
 					}
 				}
 			}
@@ -347,7 +347,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, string strEnd)
+		public unsafe void Append(ref byte str, string strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -370,7 +370,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.appendNative(@this, (byte*)pstr, pStr0);
+					ImGui.AppendNative(@this, (byte*)pstr, pStr0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -382,7 +382,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, ref byte strEnd)
+		public unsafe void Append(ReadOnlySpan<byte> str, ref byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -390,7 +390,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* pstrEnd = &strEnd)
 					{
-						ImGui.appendNative(@this, (byte*)pstr, (byte*)pstrEnd);
+						ImGui.AppendNative(@this, (byte*)pstr, (byte*)pstrEnd);
 					}
 				}
 			}
@@ -399,7 +399,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, string strEnd)
+		public unsafe void Append(ReadOnlySpan<byte> str, string strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -422,7 +422,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.appendNative(@this, (byte*)pstr, pStr0);
+					ImGui.AppendNative(@this, (byte*)pstr, pStr0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -434,7 +434,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, ref byte strEnd)
+		public unsafe void Append(string str, ref byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -457,7 +457,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* pstrEnd = &strEnd)
 				{
-					ImGui.appendNative(@this, pStr0, (byte*)pstrEnd);
+					ImGui.AppendNative(@this, pStr0, (byte*)pstrEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -469,7 +469,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(string str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -492,7 +492,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* pstrEnd = strEnd)
 				{
-					ImGui.appendNative(@this, pStr0, (byte*)pstrEnd);
+					ImGui.AppendNative(@this, pStr0, (byte*)pstrEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -504,24 +504,24 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(byte* fmt)
+		public unsafe void Appendf(byte* fmt)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.appendfNative(@this, fmt);
+				ImGui.AppendfNative(@this, fmt);
 			}
 		}
 
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(ref byte fmt)
+		public unsafe void Appendf(ref byte fmt)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					ImGui.appendfNative(@this, (byte*)pfmt);
+					ImGui.AppendfNative(@this, (byte*)pfmt);
 				}
 			}
 		}
@@ -529,13 +529,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(ReadOnlySpan<byte> fmt)
+		public unsafe void Appendf(ReadOnlySpan<byte> fmt)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pfmt = fmt)
 				{
-					ImGui.appendfNative(@this, (byte*)pfmt);
+					ImGui.AppendfNative(@this, (byte*)pfmt);
 				}
 			}
 		}
@@ -543,7 +543,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(string fmt)
+		public unsafe void Appendf(string fmt)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -564,7 +564,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendfNative(@this, pStr0);
+				ImGui.AppendfNative(@this, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -575,24 +575,24 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(byte* fmt, nuint args)
+		public unsafe void Appendfv(byte* fmt, nuint args)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.appendfvNative(@this, fmt, args);
+				ImGui.AppendfvNative(@this, fmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(ref byte fmt, nuint args)
+		public unsafe void Appendfv(ref byte fmt, nuint args)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					ImGui.appendfvNative(@this, (byte*)pfmt, args);
+					ImGui.AppendfvNative(@this, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -600,13 +600,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(ReadOnlySpan<byte> fmt, nuint args)
+		public unsafe void Appendfv(ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				fixed (byte* pfmt = fmt)
 				{
-					ImGui.appendfvNative(@this, (byte*)pfmt, args);
+					ImGui.AppendfvNative(@this, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -614,7 +614,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(string fmt, nuint args)
+		public unsafe void Appendfv(string fmt, nuint args)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -635,7 +635,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendfvNative(@this, pStr0, args);
+				ImGui.AppendfvNative(@this, pStr0, args);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -646,11 +646,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* begin()
+		public unsafe byte* Begin()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte* ret = ImGui.beginNative(@this);
+				byte* ret = ImGui.BeginNative(@this);
 				return ret;
 			}
 		}
@@ -658,11 +658,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string beginS()
+		public unsafe string BeginS()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.beginNative(@this));
+				string ret = Utils.DecodeStringUTF8(ImGui.BeginNative(@this));
 				return ret;
 			}
 		}
@@ -670,11 +670,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* c_str()
+		public unsafe byte* C_str()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte* ret = ImGui.c_strNative(@this);
+				byte* ret = ImGui.C_strNative(@this);
 				return ret;
 			}
 		}
@@ -682,11 +682,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string c_strS()
+		public unsafe string C_strS()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.c_strNative(@this));
+				string ret = Utils.DecodeStringUTF8(ImGui.C_strNative(@this));
 				return ret;
 			}
 		}
@@ -694,11 +694,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void clear()
+		public unsafe void Clear()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.clearNative(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -716,11 +716,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool empty()
+		public unsafe bool Empty()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte ret = ImGui.emptyNative(@this);
+				byte ret = ImGui.EmptyNative(@this);
 				return ret != 0;
 			}
 		}
@@ -728,11 +728,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
-		public unsafe byte* end()
+		public unsafe byte* End()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte* ret = ImGui.endNative(@this);
+				byte* ret = ImGui.EndNative(@this);
 				return ret;
 			}
 		}
@@ -740,11 +740,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
-		public unsafe string endS()
+		public unsafe string EndS()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.endNative(@this));
+				string ret = Utils.DecodeStringUTF8(ImGui.EndNative(@this));
 				return ret;
 			}
 		}
@@ -752,22 +752,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void reserve(int capacity)
+		public unsafe void Reserve(int capacity)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.reserveNative(@this, capacity);
+				ImGui.ReserveNative(@this, capacity);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int size()
+		public unsafe int Size()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				int ret = ImGui.sizeNative(@this);
+				int ret = ImGui.SizeNative(@this);
 				return ret;
 			}
 		}
@@ -822,67 +822,67 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, byte* strEnd)
+		public unsafe void Append(byte* str, byte* strEnd)
 		{
-			ImGui.appendNative(Handle, str, strEnd);
+			ImGui.AppendNative(Handle, str, strEnd);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str)
+		public unsafe void Append(byte* str)
 		{
-			ImGui.appendNative(Handle, str, (byte*)(default));
+			ImGui.AppendNative(Handle, str, (byte*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, byte* strEnd)
-		{
-			fixed (byte* pstr = &str)
-			{
-				ImGui.appendNative(Handle, (byte*)pstr, strEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void append(ref byte str)
+		public unsafe void Append(ref byte str, byte* strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
-				ImGui.appendNative(Handle, (byte*)pstr, (byte*)(default));
+				ImGui.AppendNative(Handle, (byte*)pstr, strEnd);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, byte* strEnd)
+		public unsafe void Append(ref byte str)
+		{
+			fixed (byte* pstr = &str)
+			{
+				ImGui.AppendNative(Handle, (byte*)pstr, (byte*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Append(ReadOnlySpan<byte> str, byte* strEnd)
 		{
 			fixed (byte* pstr = str)
 			{
-				ImGui.appendNative(Handle, (byte*)pstr, strEnd);
+				ImGui.AppendNative(Handle, (byte*)pstr, strEnd);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str)
+		public unsafe void Append(ReadOnlySpan<byte> str)
 		{
 			fixed (byte* pstr = str)
 			{
-				ImGui.appendNative(Handle, (byte*)pstr, (byte*)(default));
+				ImGui.AppendNative(Handle, (byte*)pstr, (byte*)(default));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, byte* strEnd)
+		public unsafe void Append(string str, byte* strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -901,7 +901,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.appendNative(Handle, pStr0, strEnd);
+			ImGui.AppendNative(Handle, pStr0, strEnd);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -911,7 +911,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str)
+		public unsafe void Append(string str)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -930,7 +930,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.appendNative(Handle, pStr0, (byte*)(default));
+			ImGui.AppendNative(Handle, pStr0, (byte*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -940,29 +940,29 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, ref byte strEnd)
+		public unsafe void Append(byte* str, ref byte strEnd)
 		{
 			fixed (byte* pstrEnd = &strEnd)
 			{
-				ImGui.appendNative(Handle, str, (byte*)pstrEnd);
+				ImGui.AppendNative(Handle, str, (byte*)pstrEnd);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(byte* str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (byte* pstrEnd = strEnd)
 			{
-				ImGui.appendNative(Handle, str, (byte*)pstrEnd);
+				ImGui.AppendNative(Handle, str, (byte*)pstrEnd);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, string strEnd)
+		public unsafe void Append(byte* str, string strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -981,7 +981,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.appendNative(Handle, str, pStr0);
+			ImGui.AppendNative(Handle, str, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -991,13 +991,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ref byte strEnd)
+		public unsafe void Append(ref byte str, ref byte strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
 				fixed (byte* pstrEnd = &strEnd)
 				{
-					ImGui.appendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
+					ImGui.AppendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -1005,13 +1005,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (byte* pstr = str)
 			{
 				fixed (byte* pstrEnd = strEnd)
 				{
-					ImGui.appendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
+					ImGui.AppendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -1019,7 +1019,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, string strEnd)
+		public unsafe void Append(string str, string strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1055,7 +1055,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.appendNative(Handle, pStr0, pStr1);
+			ImGui.AppendNative(Handle, pStr0, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1069,13 +1069,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(ref byte str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
 				fixed (byte* pstrEnd = strEnd)
 				{
-					ImGui.appendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
+					ImGui.AppendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -1083,7 +1083,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, string strEnd)
+		public unsafe void Append(ref byte str, string strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
@@ -1104,7 +1104,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendNative(Handle, (byte*)pstr, pStr0);
+				ImGui.AppendNative(Handle, (byte*)pstr, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1115,13 +1115,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, ref byte strEnd)
+		public unsafe void Append(ReadOnlySpan<byte> str, ref byte strEnd)
 		{
 			fixed (byte* pstr = str)
 			{
 				fixed (byte* pstrEnd = &strEnd)
 				{
-					ImGui.appendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
+					ImGui.AppendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -1129,7 +1129,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, string strEnd)
+		public unsafe void Append(ReadOnlySpan<byte> str, string strEnd)
 		{
 			fixed (byte* pstr = str)
 			{
@@ -1150,7 +1150,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendNative(Handle, (byte*)pstr, pStr0);
+				ImGui.AppendNative(Handle, (byte*)pstr, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1161,7 +1161,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, ref byte strEnd)
+		public unsafe void Append(string str, ref byte strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1182,7 +1182,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pstrEnd = &strEnd)
 			{
-				ImGui.appendNative(Handle, pStr0, (byte*)pstrEnd);
+				ImGui.AppendNative(Handle, pStr0, (byte*)pstrEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1193,7 +1193,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, ReadOnlySpan<byte> strEnd)
+		public unsafe void Append(string str, ReadOnlySpan<byte> strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1214,7 +1214,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pstrEnd = strEnd)
 			{
-				ImGui.appendNative(Handle, pStr0, (byte*)pstrEnd);
+				ImGui.AppendNative(Handle, pStr0, (byte*)pstrEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1225,37 +1225,37 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(byte* fmt)
+		public unsafe void Appendf(byte* fmt)
 		{
-			ImGui.appendfNative(Handle, fmt);
+			ImGui.AppendfNative(Handle, fmt);
 		}
 
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(ref byte fmt)
+		public unsafe void Appendf(ref byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				ImGui.appendfNative(Handle, (byte*)pfmt);
+				ImGui.AppendfNative(Handle, (byte*)pfmt);
 			}
 		}
 
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(ReadOnlySpan<byte> fmt)
+		public unsafe void Appendf(ReadOnlySpan<byte> fmt)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				ImGui.appendfNative(Handle, (byte*)pfmt);
+				ImGui.AppendfNative(Handle, (byte*)pfmt);
 			}
 		}
 
 		/// <summary>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(string fmt)
+		public unsafe void Appendf(string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1274,7 +1274,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.appendfNative(Handle, pStr0);
+			ImGui.AppendfNative(Handle, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1284,37 +1284,37 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(byte* fmt, nuint args)
+		public unsafe void Appendfv(byte* fmt, nuint args)
 		{
-			ImGui.appendfvNative(Handle, fmt, args);
+			ImGui.AppendfvNative(Handle, fmt, args);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(ref byte fmt, nuint args)
+		public unsafe void Appendfv(ref byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				ImGui.appendfvNative(Handle, (byte*)pfmt, args);
+				ImGui.AppendfvNative(Handle, (byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(ReadOnlySpan<byte> fmt, nuint args)
+		public unsafe void Appendfv(ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				ImGui.appendfvNative(Handle, (byte*)pfmt, args);
+				ImGui.AppendfvNative(Handle, (byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(string fmt, nuint args)
+		public unsafe void Appendfv(string fmt, nuint args)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1333,7 +1333,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.appendfvNative(Handle, pStr0, args);
+			ImGui.AppendfvNative(Handle, pStr0, args);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1343,45 +1343,45 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* begin()
+		public unsafe byte* Begin()
 		{
-			byte* ret = ImGui.beginNative(Handle);
+			byte* ret = ImGui.BeginNative(Handle);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string beginS()
+		public unsafe string BeginS()
 		{
-			string ret = Utils.DecodeStringUTF8(ImGui.beginNative(Handle));
+			string ret = Utils.DecodeStringUTF8(ImGui.BeginNative(Handle));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* c_str()
+		public unsafe byte* C_str()
 		{
-			byte* ret = ImGui.c_strNative(Handle);
+			byte* ret = ImGui.C_strNative(Handle);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string c_strS()
+		public unsafe string C_strS()
 		{
-			string ret = Utils.DecodeStringUTF8(ImGui.c_strNative(Handle));
+			string ret = Utils.DecodeStringUTF8(ImGui.C_strNative(Handle));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void clear()
+		public unsafe void Clear()
 		{
-			ImGui.clearNative(Handle);
+			ImGui.ClearNative(Handle);
 		}
 
 		/// <summary>
@@ -1395,44 +1395,44 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool empty()
+		public unsafe bool Empty()
 		{
-			byte ret = ImGui.emptyNative(Handle);
+			byte ret = ImGui.EmptyNative(Handle);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
-		public unsafe byte* end()
+		public unsafe byte* End()
 		{
-			byte* ret = ImGui.endNative(Handle);
+			byte* ret = ImGui.EndNative(Handle);
 			return ret;
 		}
 
 		/// <summary>
 		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
-		public unsafe string endS()
+		public unsafe string EndS()
 		{
-			string ret = Utils.DecodeStringUTF8(ImGui.endNative(Handle));
+			string ret = Utils.DecodeStringUTF8(ImGui.EndNative(Handle));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void reserve(int capacity)
+		public unsafe void Reserve(int capacity)
 		{
-			ImGui.reserveNative(Handle, capacity);
+			ImGui.ReserveNative(Handle, capacity);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int size()
+		public unsafe int Size()
 		{
-			int ret = ImGui.sizeNative(Handle);
+			int ret = ImGui.SizeNative(Handle);
 			return ret;
 		}
 

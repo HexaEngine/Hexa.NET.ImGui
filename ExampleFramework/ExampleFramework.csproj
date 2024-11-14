@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,9 +13,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Silk.NET.SDL" Version="2.20.0" />
-		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.1" />
-		<PackageReference Include="Hexa.NET.Math" Version="2.0.1" />
+		<PackageReference Include="Silk.NET.SDL" Version="2.22.0" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.14" />
+		<PackageReference Include="Hexa.NET.Math" Version="2.0.3" />
+		<PackageReference Include="System.Text.Json" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

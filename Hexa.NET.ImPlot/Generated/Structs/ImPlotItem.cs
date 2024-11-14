@@ -26,7 +26,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint ID;
+		public int ID;
 
 		/// <summary>
 		/// To be documented.
@@ -62,7 +62,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem(uint id = default, uint color = default, ImRect legendHoverRect = default, int nameOffset = default, bool show = default, bool legendHovered = default, bool seenThisFrame = default)
+		public unsafe ImPlotItem(int id = default, uint color = default, ImRect legendHoverRect = default, int nameOffset = default, bool show = default, bool legendHovered = default, bool seenThisFrame = default)
 		{
 			ID = id;
 			Color = color;
@@ -131,7 +131,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

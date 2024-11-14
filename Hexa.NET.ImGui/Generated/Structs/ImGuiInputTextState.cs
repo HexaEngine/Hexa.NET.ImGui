@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputTextFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -112,7 +112,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, uint id = default, int textLen = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, uint id = default, int textLen = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, int flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
 			Stb = stb;
@@ -232,7 +232,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

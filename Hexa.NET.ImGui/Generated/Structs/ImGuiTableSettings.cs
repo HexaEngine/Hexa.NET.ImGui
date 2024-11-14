@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiTableFlags SaveFlags;
+		public int SaveFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -40,12 +40,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte ColumnsCount;
+		public short ColumnsCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte ColumnsCountMax;
+		public short ColumnsCountMax;
 
 		/// <summary>
 		/// To be documented.
@@ -56,7 +56,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableSettings(uint id = default, ImGuiTableFlags saveFlags = default, float refScale = default, sbyte columnsCount = default, sbyte columnsCountMax = default, bool wantApply = default)
+		public unsafe ImGuiTableSettings(uint id = default, int saveFlags = default, float refScale = default, short columnsCount = default, short columnsCountMax = default, bool wantApply = default)
 		{
 			ID = id;
 			SaveFlags = saveFlags;
@@ -117,7 +117,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiTableFlags SaveFlags => ref Unsafe.AsRef<ImGuiTableFlags>(&Handle->SaveFlags);
+		public ref int SaveFlags => ref Unsafe.AsRef<int>(&Handle->SaveFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -125,11 +125,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte ColumnsCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsCount);
+		public ref short ColumnsCount => ref Unsafe.AsRef<short>(&Handle->ColumnsCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte ColumnsCountMax => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsCountMax);
+		public ref short ColumnsCountMax => ref Unsafe.AsRef<short>(&Handle->ColumnsCountMax);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

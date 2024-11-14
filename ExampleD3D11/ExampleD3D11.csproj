@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -14,11 +14,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.20.0" />
-		<PackageReference Include="Silk.NET.Direct3D11" Version="2.20.0" />
-		<PackageReference Include="Silk.NET.Direct3D11.Extensions.D3D11On12" Version="2.20.0" />
-		<PackageReference Include="Silk.NET.Direct3D12" Version="2.20.0" />
-		<PackageReference Include="Silk.NET.DXGI" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.Direct3D11" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.Direct3D11.Extensions.D3D11On12" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.Direct3D12" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.DXGI" Version="2.22.0" />
+		<PackageReference Include="System.Text.Json" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

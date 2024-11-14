@@ -30,22 +30,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDockNodeFlags SharedFlags;
+		public int SharedFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDockNodeFlags LocalFlags;
+		public int LocalFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDockNodeFlags LocalFlagsInWindows;
+		public int LocalFlagsInWindows;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDockNodeFlags MergedFlags;
+		public int MergedFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -166,17 +166,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDataAuthority AuthorityForPos;
+		public int AuthorityForPos;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDataAuthority AuthorityForSize;
+		public int AuthorityForSize;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDataAuthority AuthorityForViewport;
+		public int AuthorityForViewport;
 
 		/// <summary>
 		/// To be documented.
@@ -237,7 +237,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiDockNode(uint id = default, ImGuiDockNodeFlags sharedFlags = default, ImGuiDockNodeFlags localFlags = default, ImGuiDockNodeFlags localFlagsInWindows = default, ImGuiDockNodeFlags mergedFlags = default, ImGuiDockNodeState state = default, ImGuiDockNode* parentNode = default, ImGuiDockNode** childNodes = default, ImVector<ImGuiWindowPtr> windows = default, ImGuiTabBar* tabBar = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeRef = default, ImGuiAxis splitAxis = default, ImGuiWindowClass windowClass = default, uint lastBgColor = default, ImGuiWindowPtr hostWindow = default, ImGuiWindowPtr visibleWindow = default, ImGuiDockNode* centralNode = default, ImGuiDockNode* onlyNodeWithWindows = default, int countNodeWithWindows = default, int lastFrameAlive = default, int lastFrameActive = default, int lastFrameFocused = default, uint lastFocusedNodeId = default, uint selectedTabId = default, uint wantCloseTabId = default, uint refViewportId = default, ImGuiDataAuthority authorityForPos = default, ImGuiDataAuthority authorityForSize = default, ImGuiDataAuthority authorityForViewport = default, bool isVisible = default, bool isFocused = default, bool isBgDrawnThisFrame = default, bool hasCloseButton = default, bool hasWindowMenuButton = default, bool hasCentralNodeChild = default, bool wantCloseAll = default, bool wantLockSizeOnce = default, bool wantMouseMove = default, bool wantHiddenTabBarUpdate = default, bool wantHiddenTabBarToggle = default)
+		public unsafe ImGuiDockNode(uint id = default, int sharedFlags = default, int localFlags = default, int localFlagsInWindows = default, int mergedFlags = default, ImGuiDockNodeState state = default, ImGuiDockNode* parentNode = default, ImGuiDockNode** childNodes = default, ImVector<ImGuiWindowPtr> windows = default, ImGuiTabBar* tabBar = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeRef = default, ImGuiAxis splitAxis = default, ImGuiWindowClass windowClass = default, uint lastBgColor = default, ImGuiWindowPtr hostWindow = default, ImGuiWindowPtr visibleWindow = default, ImGuiDockNode* centralNode = default, ImGuiDockNode* onlyNodeWithWindows = default, int countNodeWithWindows = default, int lastFrameAlive = default, int lastFrameActive = default, int lastFrameFocused = default, uint lastFocusedNodeId = default, uint selectedTabId = default, uint wantCloseTabId = default, uint refViewportId = default, int authorityForPos = default, int authorityForSize = default, int authorityForViewport = default, bool isVisible = default, bool isFocused = default, bool isBgDrawnThisFrame = default, bool hasCloseButton = default, bool hasWindowMenuButton = default, bool hasCentralNodeChild = default, bool wantCloseAll = default, bool wantLockSizeOnce = default, bool wantMouseMove = default, bool wantHiddenTabBarUpdate = default, bool wantHiddenTabBarToggle = default)
 		{
 			ID = id;
 			SharedFlags = sharedFlags;
@@ -290,7 +290,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiDockNode(uint id = default, ImGuiDockNodeFlags sharedFlags = default, ImGuiDockNodeFlags localFlags = default, ImGuiDockNodeFlags localFlagsInWindows = default, ImGuiDockNodeFlags mergedFlags = default, ImGuiDockNodeState state = default, ImGuiDockNode* parentNode = default, Span<Pointer<ImGuiDockNode>> childNodes = default, ImVector<ImGuiWindowPtr> windows = default, ImGuiTabBar* tabBar = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeRef = default, ImGuiAxis splitAxis = default, ImGuiWindowClass windowClass = default, uint lastBgColor = default, ImGuiWindowPtr hostWindow = default, ImGuiWindowPtr visibleWindow = default, ImGuiDockNode* centralNode = default, ImGuiDockNode* onlyNodeWithWindows = default, int countNodeWithWindows = default, int lastFrameAlive = default, int lastFrameActive = default, int lastFrameFocused = default, uint lastFocusedNodeId = default, uint selectedTabId = default, uint wantCloseTabId = default, uint refViewportId = default, ImGuiDataAuthority authorityForPos = default, ImGuiDataAuthority authorityForSize = default, ImGuiDataAuthority authorityForViewport = default, bool isVisible = default, bool isFocused = default, bool isBgDrawnThisFrame = default, bool hasCloseButton = default, bool hasWindowMenuButton = default, bool hasCentralNodeChild = default, bool wantCloseAll = default, bool wantLockSizeOnce = default, bool wantMouseMove = default, bool wantHiddenTabBarUpdate = default, bool wantHiddenTabBarToggle = default)
+		public unsafe ImGuiDockNode(uint id = default, int sharedFlags = default, int localFlags = default, int localFlagsInWindows = default, int mergedFlags = default, ImGuiDockNodeState state = default, ImGuiDockNode* parentNode = default, Span<Pointer<ImGuiDockNode>> childNodes = default, ImVector<ImGuiWindowPtr> windows = default, ImGuiTabBar* tabBar = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeRef = default, ImGuiAxis splitAxis = default, ImGuiWindowClass windowClass = default, uint lastBgColor = default, ImGuiWindowPtr hostWindow = default, ImGuiWindowPtr visibleWindow = default, ImGuiDockNode* centralNode = default, ImGuiDockNode* onlyNodeWithWindows = default, int countNodeWithWindows = default, int lastFrameAlive = default, int lastFrameActive = default, int lastFrameFocused = default, uint lastFocusedNodeId = default, uint selectedTabId = default, uint wantCloseTabId = default, uint refViewportId = default, int authorityForPos = default, int authorityForSize = default, int authorityForViewport = default, bool isVisible = default, bool isFocused = default, bool isBgDrawnThisFrame = default, bool hasCloseButton = default, bool hasWindowMenuButton = default, bool hasCentralNodeChild = default, bool wantCloseAll = default, bool wantLockSizeOnce = default, bool wantMouseMove = default, bool wantHiddenTabBarUpdate = default, bool wantHiddenTabBarToggle = default)
 		{
 			ID = id;
 			SharedFlags = sharedFlags;
@@ -405,19 +405,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDockNodeFlags SharedFlags => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->SharedFlags);
+		public ref int SharedFlags => ref Unsafe.AsRef<int>(&Handle->SharedFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDockNodeFlags LocalFlags => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->LocalFlags);
+		public ref int LocalFlags => ref Unsafe.AsRef<int>(&Handle->LocalFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDockNodeFlags LocalFlagsInWindows => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->LocalFlagsInWindows);
+		public ref int LocalFlagsInWindows => ref Unsafe.AsRef<int>(&Handle->LocalFlagsInWindows);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDockNodeFlags MergedFlags => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->MergedFlags);
+		public ref int MergedFlags => ref Unsafe.AsRef<int>(&Handle->MergedFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -512,15 +512,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDataAuthority AuthorityForPos => ref Unsafe.AsRef<ImGuiDataAuthority>(&Handle->AuthorityForPos);
+		public ref int AuthorityForPos => ref Unsafe.AsRef<int>(&Handle->AuthorityForPos);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDataAuthority AuthorityForSize => ref Unsafe.AsRef<ImGuiDataAuthority>(&Handle->AuthorityForSize);
+		public ref int AuthorityForSize => ref Unsafe.AsRef<int>(&Handle->AuthorityForSize);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDataAuthority AuthorityForViewport => ref Unsafe.AsRef<ImGuiDataAuthority>(&Handle->AuthorityForViewport);
+		public ref int AuthorityForViewport => ref Unsafe.AsRef<int>(&Handle->AuthorityForViewport);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

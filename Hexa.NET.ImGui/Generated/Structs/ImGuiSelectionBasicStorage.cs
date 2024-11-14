@@ -76,7 +76,7 @@ namespace Hexa.NET.ImGui
 			Size = size;
 			PreserveOrder = preserveOrder ? (byte)1 : (byte)0;
 			UserData = userData;
-			AdapterIndexToStorageId = (void*)adapterIndexToStorageId;
+			AdapterIndexToStorageId = (delegate*<ImGuiSelectionBasicStorage*, int, uint>*)adapterIndexToStorageId;
 			SelectionOrder = selectionOrder;
 			Storage = storage;
 		}

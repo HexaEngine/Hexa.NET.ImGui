@@ -14,9 +14,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.0.3" />
-		<PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
-		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.17" />
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.0.4" />
+		<PackageReference Include="Xamarin.AndroidX.Core" Version="1.15.0.1" />
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.18" />
 	</ItemGroup>
 
 	<ItemGroup>

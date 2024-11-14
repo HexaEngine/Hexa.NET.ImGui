@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ulong Size;
+		public nuint Size;
 
 		/// <summary>
 		/// To be documented.
@@ -46,7 +46,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiDataTypeInfo(ulong size = default, byte* name = default, byte* printFmt = default, byte* scanFmt = default)
+		public unsafe ImGuiDataTypeInfo(nuint size = default, byte* name = default, byte* printFmt = default, byte* scanFmt = default)
 		{
 			Size = size;
 			Name = name;
@@ -101,7 +101,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ulong Size => ref Unsafe.AsRef<ulong>(&Handle->Size);
+		public ref nuint Size => ref Unsafe.AsRef<nuint>(&Handle->Size);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

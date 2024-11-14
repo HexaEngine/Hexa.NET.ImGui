@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiNextItemDataFlags HasFlags;
+		public int HasFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiItemFlags ItemFlags;
+		public int ItemFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputFlags ShortcutFlags;
+		public int ShortcutFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -81,7 +81,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNextItemData(ImGuiNextItemDataFlags hasFlags = default, ImGuiItemFlags itemFlags = default, uint focusScopeId = default, long selectionUserData = default, float width = default, int shortcut = default, ImGuiInputFlags shortcutFlags = default, bool openVal = default, byte openCond = default, ImGuiDataTypeStorage refVal = default, uint storageId = default)
+		public unsafe ImGuiNextItemData(int hasFlags = default, int itemFlags = default, uint focusScopeId = default, long selectionUserData = default, float width = default, int shortcut = default, int shortcutFlags = default, bool openVal = default, byte openCond = default, ImGuiDataTypeStorage refVal = default, uint storageId = default)
 		{
 			HasFlags = hasFlags;
 			ItemFlags = itemFlags;
@@ -143,11 +143,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiNextItemDataFlags HasFlags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->HasFlags);
+		public ref int HasFlags => ref Unsafe.AsRef<int>(&Handle->HasFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
+		public ref int ItemFlags => ref Unsafe.AsRef<int>(&Handle->ItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -167,7 +167,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputFlags ShortcutFlags => ref Unsafe.AsRef<ImGuiInputFlags>(&Handle->ShortcutFlags);
+		public ref int ShortcutFlags => ref Unsafe.AsRef<int>(&Handle->ShortcutFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

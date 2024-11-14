@@ -186,7 +186,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotColormap Colormap;
+		public int Colormap;
 
 		/// <summary>
 		/// To be documented.
@@ -207,7 +207,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotStyle(float lineWeight = default, int marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, float plotBorderSize = default, float minorAlpha = default, Vector2 majorTickLen = default, Vector2 minorTickLen = default, Vector2 majorTickSize = default, Vector2 minorTickSize = default, Vector2 majorGridSize = default, Vector2 minorGridSize = default, Vector2 plotPadding = default, Vector2 labelPadding = default, Vector2 legendPadding = default, Vector2 legendInnerPadding = default, Vector2 legendSpacing = default, Vector2 mousePosPadding = default, Vector2 annotationPadding = default, Vector2 fitPadding = default, Vector2 plotDefaultSize = default, Vector2 plotMinSize = default, Vector4* colors = default, ImPlotColormap colormap = default, bool useLocalTime = default, bool useIso8601 = default, bool use24HourClock = default)
+		public unsafe ImPlotStyle(float lineWeight = default, int marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, float plotBorderSize = default, float minorAlpha = default, Vector2 majorTickLen = default, Vector2 minorTickLen = default, Vector2 majorTickSize = default, Vector2 minorTickSize = default, Vector2 majorGridSize = default, Vector2 minorGridSize = default, Vector2 plotPadding = default, Vector2 labelPadding = default, Vector2 legendPadding = default, Vector2 legendInnerPadding = default, Vector2 legendSpacing = default, Vector2 mousePosPadding = default, Vector2 annotationPadding = default, Vector2 fitPadding = default, Vector2 plotDefaultSize = default, Vector2 plotMinSize = default, Vector4* colors = default, int colormap = default, bool useLocalTime = default, bool useIso8601 = default, bool use24HourClock = default)
 		{
 			LineWeight = lineWeight;
 			Marker = marker;
@@ -269,7 +269,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotStyle(float lineWeight = default, int marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, float plotBorderSize = default, float minorAlpha = default, Vector2 majorTickLen = default, Vector2 minorTickLen = default, Vector2 majorTickSize = default, Vector2 minorTickSize = default, Vector2 majorGridSize = default, Vector2 minorGridSize = default, Vector2 plotPadding = default, Vector2 labelPadding = default, Vector2 legendPadding = default, Vector2 legendInnerPadding = default, Vector2 legendSpacing = default, Vector2 mousePosPadding = default, Vector2 annotationPadding = default, Vector2 fitPadding = default, Vector2 plotDefaultSize = default, Vector2 plotMinSize = default, Span<Vector4> colors = default, ImPlotColormap colormap = default, bool useLocalTime = default, bool useIso8601 = default, bool use24HourClock = default)
+		public unsafe ImPlotStyle(float lineWeight = default, int marker = default, float markerSize = default, float markerWeight = default, float fillAlpha = default, float errorBarSize = default, float errorBarWeight = default, float digitalBitHeight = default, float digitalBitGap = default, float plotBorderSize = default, float minorAlpha = default, Vector2 majorTickLen = default, Vector2 minorTickLen = default, Vector2 majorTickSize = default, Vector2 minorTickSize = default, Vector2 majorGridSize = default, Vector2 minorGridSize = default, Vector2 plotPadding = default, Vector2 labelPadding = default, Vector2 legendPadding = default, Vector2 legendInnerPadding = default, Vector2 legendSpacing = default, Vector2 mousePosPadding = default, Vector2 annotationPadding = default, Vector2 fitPadding = default, Vector2 plotDefaultSize = default, Vector2 plotMinSize = default, Span<Vector4> colors = default, int colormap = default, bool useLocalTime = default, bool useIso8601 = default, bool use24HourClock = default)
 		{
 			LineWeight = lineWeight;
 			Marker = marker;
@@ -519,7 +519,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotColormap Colormap => ref Unsafe.AsRef<ImPlotColormap>(&Handle->Colormap);
+		public ref int Colormap => ref Unsafe.AsRef<int>(&Handle->Colormap);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

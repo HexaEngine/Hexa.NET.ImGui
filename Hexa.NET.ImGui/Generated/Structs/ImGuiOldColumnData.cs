@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiOldColumnFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -46,7 +46,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiOldColumnData(float offsetNorm = default, float offsetNormBeforeResize = default, ImGuiOldColumnFlags flags = default, ImRect clipRect = default)
+		public unsafe ImGuiOldColumnData(float offsetNorm = default, float offsetNormBeforeResize = default, int flags = default, ImRect clipRect = default)
 		{
 			OffsetNorm = offsetNorm;
 			OffsetNormBeforeResize = offsetNormBeforeResize;
@@ -109,7 +109,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiOldColumnFlags Flags => ref Unsafe.AsRef<ImGuiOldColumnFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

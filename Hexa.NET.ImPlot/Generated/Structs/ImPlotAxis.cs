@@ -26,17 +26,17 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint ID;
+		public int ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotAxisFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotAxisFlags PreviousFlags;
+		public int PreviousFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -46,12 +46,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotCond RangeCond;
+		public int RangeCond;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotScale Scale;
+		public int Scale;
 
 		/// <summary>
 		/// To be documented.
@@ -82,6 +82,7 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public unsafe void* Formatter;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -111,6 +112,7 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public unsafe void* Locator;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -140,10 +142,12 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public unsafe void* TransformForward;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public unsafe void* TransformInverse;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -278,7 +282,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxis(uint id = default, ImPlotAxisFlags flags = default, ImPlotAxisFlags previousFlags = default, ImPlotRange range = default, ImPlotCond rangeCond = default, ImPlotScale scale = default, ImPlotRange fitExtents = default, ImPlotAxis* orthoAxis = default, ImPlotRange constraintRange = default, ImPlotRange constraintZoom = default, ImPlotTicker ticker = default, ImPlotFormatter formatter = default, void* formatterData = default, byte* formatSpec = default, ImPlotLocator locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTime pickerTimeMin = default, ImPlotTime pickerTimeMax = default, ImPlotTransform transformForward = default, ImPlotTransform transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
+		public unsafe ImPlotAxis(int id = default, int flags = default, int previousFlags = default, ImPlotRange range = default, int rangeCond = default, int scale = default, ImPlotRange fitExtents = default, ImPlotAxis* orthoAxis = default, ImPlotRange constraintRange = default, ImPlotRange constraintZoom = default, ImPlotTicker ticker = default, delegate*<int> formatter = default, void* formatterData = default, byte* formatSpec = default, delegate*<void> locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTime pickerTimeMin = default, ImPlotTime pickerTimeMax = default, delegate*<double> transformForward = default, delegate*<double> transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -291,7 +295,7 @@ namespace Hexa.NET.ImPlot
 			ConstraintRange = constraintRange;
 			ConstraintZoom = constraintZoom;
 			Ticker = ticker;
-			Formatter = (void*)Marshal.GetFunctionPointerForDelegate(formatter);
+			Formatter = (delegate*<int>*)formatter;
 			FormatterData = formatterData;
 			if (formatSpec != default(byte*))
 			{
@@ -312,14 +316,14 @@ namespace Hexa.NET.ImPlot
 				FormatSpec_14 = formatSpec[14];
 				FormatSpec_15 = formatSpec[15];
 			}
-			Locator = (void*)Marshal.GetFunctionPointerForDelegate(locator);
+			Locator = (delegate*<void>*)locator;
 			LinkedMin = linkedMin;
 			LinkedMax = linkedMax;
 			PickerLevel = pickerLevel;
 			PickerTimeMin = pickerTimeMin;
 			PickerTimeMax = pickerTimeMax;
-			TransformForward = (void*)Marshal.GetFunctionPointerForDelegate(transformForward);
-			TransformInverse = (void*)Marshal.GetFunctionPointerForDelegate(transformInverse);
+			TransformForward = (delegate*<double>*)transformForward;
+			TransformInverse = (delegate*<double>*)transformInverse;
 			TransformData = transformData;
 			PixelMin = pixelMin;
 			PixelMax = pixelMax;
@@ -351,7 +355,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxis(uint id = default, ImPlotAxisFlags flags = default, ImPlotAxisFlags previousFlags = default, ImPlotRange range = default, ImPlotCond rangeCond = default, ImPlotScale scale = default, ImPlotRange fitExtents = default, ImPlotAxis* orthoAxis = default, ImPlotRange constraintRange = default, ImPlotRange constraintZoom = default, ImPlotTicker ticker = default, ImPlotFormatter formatter = default, void* formatterData = default, Span<byte> formatSpec = default, ImPlotLocator locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTime pickerTimeMin = default, ImPlotTime pickerTimeMax = default, ImPlotTransform transformForward = default, ImPlotTransform transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
+		public unsafe ImPlotAxis(int id = default, int flags = default, int previousFlags = default, ImPlotRange range = default, int rangeCond = default, int scale = default, ImPlotRange fitExtents = default, ImPlotAxis* orthoAxis = default, ImPlotRange constraintRange = default, ImPlotRange constraintZoom = default, ImPlotTicker ticker = default, delegate*<int> formatter = default, void* formatterData = default, Span<byte> formatSpec = default, delegate*<void> locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTime pickerTimeMin = default, ImPlotTime pickerTimeMax = default, delegate*<double> transformForward = default, delegate*<double> transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -364,7 +368,7 @@ namespace Hexa.NET.ImPlot
 			ConstraintRange = constraintRange;
 			ConstraintZoom = constraintZoom;
 			Ticker = ticker;
-			Formatter = (void*)Marshal.GetFunctionPointerForDelegate(formatter);
+			Formatter = (delegate*<int>*)formatter;
 			FormatterData = formatterData;
 			if (formatSpec != default(Span<byte>))
 			{
@@ -385,14 +389,14 @@ namespace Hexa.NET.ImPlot
 				FormatSpec_14 = formatSpec[14];
 				FormatSpec_15 = formatSpec[15];
 			}
-			Locator = (void*)Marshal.GetFunctionPointerForDelegate(locator);
+			Locator = (delegate*<void>*)locator;
 			LinkedMin = linkedMin;
 			LinkedMax = linkedMax;
 			PickerLevel = pickerLevel;
 			PickerTimeMin = pickerTimeMin;
 			PickerTimeMax = pickerTimeMax;
-			TransformForward = (void*)Marshal.GetFunctionPointerForDelegate(transformForward);
-			TransformInverse = (void*)Marshal.GetFunctionPointerForDelegate(transformInverse);
+			TransformForward = (delegate*<double>*)transformForward;
+			TransformInverse = (delegate*<double>*)transformInverse;
 			TransformData = transformData;
 			PixelMin = pixelMin;
 			PixelMax = pixelMax;
@@ -938,15 +942,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotAxisFlags Flags => ref Unsafe.AsRef<ImPlotAxisFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotAxisFlags PreviousFlags => ref Unsafe.AsRef<ImPlotAxisFlags>(&Handle->PreviousFlags);
+		public ref int PreviousFlags => ref Unsafe.AsRef<int>(&Handle->PreviousFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -954,11 +958,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotCond RangeCond => ref Unsafe.AsRef<ImPlotCond>(&Handle->RangeCond);
+		public ref int RangeCond => ref Unsafe.AsRef<int>(&Handle->RangeCond);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotScale Scale => ref Unsafe.AsRef<ImPlotScale>(&Handle->Scale);
+		public ref int Scale => ref Unsafe.AsRef<int>(&Handle->Scale);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

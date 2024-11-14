@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -10,10 +10,10 @@
 
 	<ItemGroup>
 		
-		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.3" />
-		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.15" />
-		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.8" />
-		<PackageReference Include="Hexa.NET.OpenGL3" Version="1.0.1" />
+		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.4" />
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.18" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.14" />
+		<PackageReference Include="Hexa.NET.OpenGL3" Version="1.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>

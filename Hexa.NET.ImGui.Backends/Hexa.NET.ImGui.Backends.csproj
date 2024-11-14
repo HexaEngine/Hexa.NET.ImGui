@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,8 +12,8 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.0.9</AssemblyVersion>
-		<PackageVersion>1.0.9</PackageVersion>
+		<AssemblyVersion>1.0.10</AssemblyVersion>
+		<PackageVersion>1.0.10</PackageVersion>
 		<Description>A .NET wrapper for the Dear ImGui (1.91.5) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
 		<PackageTags>ImGui Backends UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -32,7 +31,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen.Runtime" Version="1.1.13" />
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.16" />
 	</ItemGroup>
 
 	<ItemGroup>

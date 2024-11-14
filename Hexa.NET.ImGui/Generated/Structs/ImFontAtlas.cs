@@ -41,12 +41,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImFontAtlasFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImTextureID TexID;
+		public ulong TexID;
 
 		/// <summary>
 		/// To be documented.
@@ -215,7 +215,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureID texId = default, int texDesiredWidth = default, int texGlyphPadding = default, bool locked = default, void* userData = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Vector4* texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
+		public unsafe ImFontAtlas(int flags = default, ulong texId = default, int texDesiredWidth = default, int texGlyphPadding = default, bool locked = default, void* userData = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Vector4* texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
 		{
 			Flags = flags;
 			TexID = texId;
@@ -310,7 +310,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureID texId = default, int texDesiredWidth = default, int texGlyphPadding = default, bool locked = default, void* userData = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Span<Vector4> texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
+		public unsafe ImFontAtlas(int flags = default, ulong texId = default, int texDesiredWidth = default, int texGlyphPadding = default, bool locked = default, void* userData = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Span<Vector4> texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
 		{
 			Flags = flags;
 			TexID = texId;
@@ -3983,11 +3983,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImFontAtlasFlags Flags => ref Unsafe.AsRef<ImFontAtlasFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImTextureID TexID => ref Unsafe.AsRef<ImTextureID>(&Handle->TexID);
+		public ref ulong TexID => ref Unsafe.AsRef<ulong>(&Handle->TexID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

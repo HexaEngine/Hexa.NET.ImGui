@@ -31,13 +31,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte Column;
+		public short Column;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableCellData(uint bgColor = default, sbyte column = default)
+		public unsafe ImGuiTableCellData(uint bgColor = default, short column = default)
 		{
 			BgColor = bgColor;
 			Column = column;
@@ -94,7 +94,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte Column => ref Unsafe.AsRef<sbyte>(&Handle->Column);
+		public ref short Column => ref Unsafe.AsRef<short>(&Handle->Column);
 	}
 
 }

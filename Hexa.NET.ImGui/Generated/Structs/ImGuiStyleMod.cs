@@ -85,7 +85,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiStyleVar VarIdx;
+		public int VarIdx;
 
 		/// <summary>
 		/// To be documented.
@@ -96,7 +96,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStyleMod(ImGuiStyleVar varIdx = default, ImGuiStyleModUnion union = default)
+		public unsafe ImGuiStyleMod(int varIdx = default, ImGuiStyleModUnion union = default)
 		{
 			VarIdx = varIdx;
 			Union = union;
@@ -149,7 +149,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiStyleVar VarIdx => ref Unsafe.AsRef<ImGuiStyleVar>(&Handle->VarIdx);
+		public ref int VarIdx => ref Unsafe.AsRef<int>(&Handle->VarIdx);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

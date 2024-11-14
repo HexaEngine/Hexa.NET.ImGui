@@ -46,22 +46,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiViewportFlags ViewportFlagsOverrideSet;
+		public int ViewportFlagsOverrideSet;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiViewportFlags ViewportFlagsOverrideClear;
+		public int ViewportFlagsOverrideClear;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiTabItemFlags TabItemFlagsOverrideSet;
+		public int TabItemFlagsOverrideSet;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiDockNodeFlags DockNodeFlagsOverrideSet;
+		public int DockNodeFlagsOverrideSet;
 
 		/// <summary>
 		/// To be documented.
@@ -77,7 +77,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiWindowClass(uint classId = default, uint parentViewportId = default, uint focusRouteParentWindowId = default, ImGuiViewportFlags viewportFlagsOverrideSet = default, ImGuiViewportFlags viewportFlagsOverrideClear = default, ImGuiTabItemFlags tabItemFlagsOverrideSet = default, ImGuiDockNodeFlags dockNodeFlagsOverrideSet = default, bool dockingAlwaysTabBar = default, bool dockingAllowUnclassed = default)
+		public unsafe ImGuiWindowClass(uint classId = default, uint parentViewportId = default, uint focusRouteParentWindowId = default, int viewportFlagsOverrideSet = default, int viewportFlagsOverrideClear = default, int tabItemFlagsOverrideSet = default, int dockNodeFlagsOverrideSet = default, bool dockingAlwaysTabBar = default, bool dockingAllowUnclassed = default)
 		{
 			ClassId = classId;
 			ParentViewportId = parentViewportId;
@@ -160,19 +160,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiViewportFlags ViewportFlagsOverrideSet => ref Unsafe.AsRef<ImGuiViewportFlags>(&Handle->ViewportFlagsOverrideSet);
+		public ref int ViewportFlagsOverrideSet => ref Unsafe.AsRef<int>(&Handle->ViewportFlagsOverrideSet);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiViewportFlags ViewportFlagsOverrideClear => ref Unsafe.AsRef<ImGuiViewportFlags>(&Handle->ViewportFlagsOverrideClear);
+		public ref int ViewportFlagsOverrideClear => ref Unsafe.AsRef<int>(&Handle->ViewportFlagsOverrideClear);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiTabItemFlags TabItemFlagsOverrideSet => ref Unsafe.AsRef<ImGuiTabItemFlags>(&Handle->TabItemFlagsOverrideSet);
+		public ref int TabItemFlagsOverrideSet => ref Unsafe.AsRef<int>(&Handle->TabItemFlagsOverrideSet);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDockNodeFlags DockNodeFlagsOverrideSet => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->DockNodeFlagsOverrideSet);
+		public ref int DockNodeFlagsOverrideSet => ref Unsafe.AsRef<int>(&Handle->DockNodeFlagsOverrideSet);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

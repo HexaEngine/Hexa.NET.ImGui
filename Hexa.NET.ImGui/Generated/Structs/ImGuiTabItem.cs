@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiTabItemFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTabItem(uint id = default, ImGuiTabItemFlags flags = default, ImGuiWindowPtr window = default, int lastFrameVisible = default, int lastFrameSelected = default, float offset = default, float width = default, float contentWidth = default, float requestedWidth = default, int nameOffset = default, short beginOrder = default, short indexDuringLayout = default, bool wantClose = default)
+		public unsafe ImGuiTabItem(uint id = default, int flags = default, ImGuiWindowPtr window = default, int lastFrameVisible = default, int lastFrameSelected = default, float offset = default, float width = default, float contentWidth = default, float requestedWidth = default, int nameOffset = default, short beginOrder = default, short indexDuringLayout = default, bool wantClose = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -159,7 +159,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiTabItemFlags Flags => ref Unsafe.AsRef<ImGuiTabItemFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

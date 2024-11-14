@@ -26,27 +26,27 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint ID;
+		public int ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotFlags Flags;
+		public int Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotFlags PreviousFlags;
+		public int PreviousFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotLocation MouseTextLocation;
+		public int MouseTextLocation;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotMouseTextFlags MouseTextFlags;
+		public int MouseTextFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -71,12 +71,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImAxis CurrentX;
+		public int CurrentX;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImAxis CurrentY;
+		public int CurrentY;
 
 		/// <summary>
 		/// To be documented.
@@ -162,7 +162,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotPlot(uint id = default, ImPlotFlags flags = default, ImPlotFlags previousFlags = default, ImPlotLocation mouseTextLocation = default, ImPlotMouseTextFlags mouseTextFlags = default, ImPlotAxis* axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, ImAxis currentX = default, ImAxis currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
+		public unsafe ImPlotPlot(int id = default, int flags = default, int previousFlags = default, int mouseTextLocation = default, int mouseTextFlags = default, ImPlotAxis* axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, int currentX = default, int currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -203,7 +203,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotPlot(uint id = default, ImPlotFlags flags = default, ImPlotFlags previousFlags = default, ImPlotLocation mouseTextLocation = default, ImPlotMouseTextFlags mouseTextFlags = default, Span<ImPlotAxis> axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, ImAxis currentX = default, ImAxis currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
+		public unsafe ImPlotPlot(int id = default, int flags = default, int previousFlags = default, int mouseTextLocation = default, int mouseTextFlags = default, Span<ImPlotAxis> axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, int currentX = default, int currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -693,23 +693,23 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotFlags Flags => ref Unsafe.AsRef<ImPlotFlags>(&Handle->Flags);
+		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotFlags PreviousFlags => ref Unsafe.AsRef<ImPlotFlags>(&Handle->PreviousFlags);
+		public ref int PreviousFlags => ref Unsafe.AsRef<int>(&Handle->PreviousFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotLocation MouseTextLocation => ref Unsafe.AsRef<ImPlotLocation>(&Handle->MouseTextLocation);
+		public ref int MouseTextLocation => ref Unsafe.AsRef<int>(&Handle->MouseTextLocation);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotMouseTextFlags MouseTextFlags => ref Unsafe.AsRef<ImPlotMouseTextFlags>(&Handle->MouseTextFlags);
+		public ref int MouseTextFlags => ref Unsafe.AsRef<int>(&Handle->MouseTextFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -732,11 +732,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImAxis CurrentX => ref Unsafe.AsRef<ImAxis>(&Handle->CurrentX);
+		public ref int CurrentX => ref Unsafe.AsRef<int>(&Handle->CurrentX);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImAxis CurrentY => ref Unsafe.AsRef<ImAxis>(&Handle->CurrentY);
+		public ref int CurrentY => ref Unsafe.AsRef<int>(&Handle->CurrentY);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
