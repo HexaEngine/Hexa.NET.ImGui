@@ -33,12 +33,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int TreeFlags;
+		public ImGuiTreeNodeFlags TreeFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ItemFlags;
+		public ImGuiItemFlags ItemFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -49,7 +49,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTreeNodeStackData(uint id = default, int treeFlags = default, int itemFlags = default, ImRect navRect = default)
+		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags itemFlags = default, ImRect navRect = default)
 		{
 			ID = id;
 			TreeFlags = treeFlags;
@@ -108,11 +108,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int TreeFlags => ref Unsafe.AsRef<int>(&Handle->TreeFlags);
+		public ref ImGuiTreeNodeFlags TreeFlags => ref Unsafe.AsRef<ImGuiTreeNodeFlags>(&Handle->TreeFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ItemFlags => ref Unsafe.AsRef<int>(&Handle->ItemFlags);
+		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

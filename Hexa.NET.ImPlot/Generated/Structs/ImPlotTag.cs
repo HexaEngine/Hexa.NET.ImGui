@@ -26,7 +26,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Axis;
+		public ImAxis Axis;
 
 		/// <summary>
 		/// To be documented.
@@ -52,7 +52,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTag(int axis = default, double value = default, uint colorBg = default, uint colorFg = default, int textOffset = default)
+		public unsafe ImPlotTag(ImAxis axis = default, double value = default, uint colorBg = default, uint colorFg = default, int textOffset = default)
 		{
 			Axis = axis;
 			Value = value;
@@ -108,7 +108,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Axis => ref Unsafe.AsRef<int>(&Handle->Axis);
+		public ref ImAxis Axis => ref Unsafe.AsRef<ImAxis>(&Handle->Axis);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ulong TextureId;
+		public ImTextureID TextureId;
 
 		/// <summary>
 		/// To be documented.
@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawCmdHeader(Vector4 clipRect = default, ulong textureId = default, uint vtxOffset = default)
+		public unsafe ImDrawCmdHeader(Vector4 clipRect = default, ImTextureID textureId = default, uint vtxOffset = default)
 		{
 			ClipRect = clipRect;
 			TextureId = textureId;

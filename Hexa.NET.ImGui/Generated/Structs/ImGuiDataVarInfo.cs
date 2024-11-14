@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Type;
+		public ImGuiDataType Type;
 
 		/// <summary>
 		/// To be documented.
@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiDataVarInfo(int type = default, uint count = default, uint offset = default)
+		public unsafe ImGuiDataVarInfo(ImGuiDataType type = default, uint count = default, uint offset = default)
 		{
 			Type = type;
 			Count = count;
@@ -95,7 +95,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Type => ref Unsafe.AsRef<int>(&Handle->Type);
+		public ref ImGuiDataType Type => ref Unsafe.AsRef<ImGuiDataType>(&Handle->Type);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

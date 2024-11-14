@@ -25,18 +25,18 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe short* Data;
+		public unsafe sbyte* Data;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe short* DataEnd;
+		public unsafe sbyte* DataEnd;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImSpanImGuiTableColumnIdx(short* data = default, short* dataEnd = default)
+		public unsafe ImSpanImGuiTableColumnIdx(sbyte* data = default, sbyte* dataEnd = default)
 		{
 			Data = data;
 			DataEnd = dataEnd;

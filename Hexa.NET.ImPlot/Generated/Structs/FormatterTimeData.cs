@@ -50,7 +50,7 @@ namespace Hexa.NET.ImPlot
 		{
 			Time = time;
 			Spec = spec;
-			UserFormatter = (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(userFormatter);
+			UserFormatter = (void*)Marshal.GetFunctionPointerForDelegate(userFormatter);
 			UserFormatterData = userFormatterData;
 		}
 

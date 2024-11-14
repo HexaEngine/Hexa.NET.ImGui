@@ -26,47 +26,4 @@ namespace Hexa.NET.ImGui
 
 	}
 
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct STBTexteditStatePtr : IEquatable<STBTexteditStatePtr>
-	{
-		public STBTexteditStatePtr(STBTexteditState* handle) { Handle = handle; }
-
-		public STBTexteditState* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static STBTexteditStatePtr Null => new STBTexteditStatePtr(null);
-
-		public STBTexteditState this[int index] { get => Handle[index]; set => Handle[index] = value; }
-
-		public static implicit operator STBTexteditStatePtr(STBTexteditState* handle) => new STBTexteditStatePtr(handle);
-
-		public static implicit operator STBTexteditState*(STBTexteditStatePtr handle) => handle.Handle;
-
-		public static bool operator ==(STBTexteditStatePtr left, STBTexteditStatePtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(STBTexteditStatePtr left, STBTexteditStatePtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(STBTexteditStatePtr left, STBTexteditState* right) => left.Handle == right;
-
-		public static bool operator !=(STBTexteditStatePtr left, STBTexteditState* right) => left.Handle != right;
-
-		public bool Equals(STBTexteditStatePtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is STBTexteditStatePtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("STBTexteditStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-	}
-
 }

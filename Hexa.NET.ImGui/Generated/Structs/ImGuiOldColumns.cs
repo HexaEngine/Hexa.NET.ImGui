@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImGuiOldColumnFlags Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -111,7 +111,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiOldColumns(uint id = default, int flags = default, bool isFirstFrame = default, bool isBeingResized = default, int current = default, int count = default, float offMinX = default, float offMaxX = default, float lineMinY = default, float lineMaxY = default, float hostCursorPosY = default, float hostCursorMaxPosX = default, ImRect hostInitialClipRect = default, ImRect hostBackupClipRect = default, ImRect hostBackupParentWorkRect = default, ImVector<ImGuiOldColumnData> columns = default, ImDrawListSplitter splitter = default)
+		public unsafe ImGuiOldColumns(uint id = default, ImGuiOldColumnFlags flags = default, bool isFirstFrame = default, bool isBeingResized = default, int current = default, int count = default, float offMinX = default, float offMaxX = default, float lineMinY = default, float lineMaxY = default, float hostCursorPosY = default, float hostCursorMaxPosX = default, ImRect hostInitialClipRect = default, ImRect hostBackupClipRect = default, ImRect hostBackupParentWorkRect = default, ImVector<ImGuiOldColumnData> columns = default, ImDrawListSplitter splitter = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -183,7 +183,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImGuiOldColumnFlags Flags => ref Unsafe.AsRef<ImGuiOldColumnFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

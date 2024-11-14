@@ -3190,10 +3190,10 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize)
+		internal static byte* SaveCurrentEditorStateToIniStringNative(ulong* dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nuint*, byte*>)funcTable[79])(dataSize);
+			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)funcTable[79])(dataSize);
 			#else
 			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[79])((nint)dataSize);
 			#endif
@@ -3202,7 +3202,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
+		public static byte* SaveCurrentEditorStateToIniString(ulong* dataSize)
 		{
 			byte* ret = SaveCurrentEditorStateToIniStringNative(dataSize);
 			return ret;
@@ -3213,7 +3213,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static byte* SaveCurrentEditorStateToIniString()
 		{
-			byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)(default));
+			byte* ret = SaveCurrentEditorStateToIniStringNative((ulong*)(default));
 			return ret;
 		}
 
@@ -3222,14 +3222,14 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static string SaveCurrentEditorStateToIniStringS()
 		{
-			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)(default)));
+			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((ulong*)(default)));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string SaveCurrentEditorStateToIniStringS(nuint* dataSize)
+		public static string SaveCurrentEditorStateToIniStringS(ulong* dataSize)
 		{
 			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative(dataSize));
 			return ret;
@@ -3242,7 +3242,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize);
+				byte* ret = SaveCurrentEditorStateToIniStringNative((ulong*)pdataSize);
 				return ret;
 			}
 		}
@@ -3254,7 +3254,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize));
+				string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((ulong*)pdataSize));
 				return ret;
 			}
 		}
@@ -3263,10 +3263,10 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize)
+		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, ulong* dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, nuint*, byte*>)funcTable[80])(editor, dataSize);
+			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, ulong*, byte*>)funcTable[80])(editor, dataSize);
 			#else
 			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[80])((nint)editor, (nint)dataSize);
 			#endif
@@ -3275,7 +3275,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, nuint* dataSize)
+		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, ulong* dataSize)
 		{
 			byte* ret = SaveEditorStateToIniStringNative(editor, dataSize);
 			return ret;
@@ -3286,7 +3286,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor)
 		{
-			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
+			byte* ret = SaveEditorStateToIniStringNative(editor, (ulong*)(default));
 			return ret;
 		}
 
@@ -3295,14 +3295,14 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor)
 		{
-			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
+			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (ulong*)(default)));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, nuint* dataSize)
+		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, ulong* dataSize)
 		{
 			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, dataSize));
 			return ret;
@@ -3311,7 +3311,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, nuint* dataSize)
+		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, ulong* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3327,7 +3327,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default));
+				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)(default));
 				return ret;
 			}
 		}
@@ -3339,7 +3339,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default)));
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)(default)));
 				return ret;
 			}
 		}
@@ -3347,7 +3347,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, nuint* dataSize)
+		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, ulong* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3363,7 +3363,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize);
+				byte* ret = SaveEditorStateToIniStringNative(editor, (ulong*)pdataSize);
 				return ret;
 			}
 		}
@@ -3375,7 +3375,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize));
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (ulong*)pdataSize));
 				return ret;
 			}
 		}
@@ -3389,7 +3389,7 @@ namespace Hexa.NET.ImNodes
 			{
 				fixed (nuint* pdataSize = &dataSize)
 				{
-					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize);
+					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)pdataSize);
 					return ret;
 				}
 			}
@@ -3404,7 +3404,7 @@ namespace Hexa.NET.ImNodes
 			{
 				fixed (nuint* pdataSize = &dataSize)
 				{
-					string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
+					string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)pdataSize));
 					return ret;
 				}
 			}
@@ -3414,13 +3414,72 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize)
+		internal static void LoadCurrentEditorStateFromIniStringNative(byte* data, ulong dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[81])(data, dataSize);
+			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)funcTable[81])(data, dataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[81])((nint)data, dataSize);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[81])((nint)data, dataSize);
 			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(byte* data, ulong dataSize)
+		{
+			LoadCurrentEditorStateFromIniStringNative(data, dataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(ref byte data, ulong dataSize)
+		{
+			fixed (byte* pdata = &data)
+			{
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(ReadOnlySpan<byte> data, ulong dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(string data, ulong dataSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (data != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(data);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadCurrentEditorStateFromIniStringNative(pStr0, dataSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
 		}
 
 		/// <summary>
@@ -3486,13 +3545,143 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize)
+		internal static void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, ulong dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, nuint, void>)funcTable[82])(editor, data, dataSize);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, ulong, void>)funcTable[82])(editor, data, dataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[82])((nint)editor, (nint)data, dataSize);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[82])((nint)editor, (nint)data, dataSize);
 			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, byte* data, ulong dataSize)
+		{
+			LoadEditorStateFromIniStringNative(editor, data, dataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, byte* data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, data, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ref byte data, ulong dataSize)
+		{
+			fixed (byte* pdata = &data)
+			{
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> data, ulong dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, string data, ulong dataSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (data != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(data);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadEditorStateFromIniStringNative(editor, pStr0, dataSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ref byte data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pdata = &data)
+				{
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ReadOnlySpan<byte> data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pdata = data)
+				{
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, string data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (data != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(data);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, pStr0, dataSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
 		}
 
 		/// <summary>

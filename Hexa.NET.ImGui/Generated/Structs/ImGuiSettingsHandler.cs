@@ -75,12 +75,12 @@ namespace Hexa.NET.ImGui
 		{
 			TypeName = typeName;
 			TypeHash = typeHash;
-			ClearAllFn = (delegate*<ImGuiContext*, ImGuiSettingsHandler*, void>*)clearAllFn;
-			ReadInitFn = (delegate*<ImGuiContext*, ImGuiSettingsHandler*, void>*)readInitFn;
-			ReadOpenFn = (delegate*<ImGuiContext*, ImGuiSettingsHandler*, byte*, void*>*)readOpenFn;
-			ReadLineFn = (delegate*<ImGuiContext*, ImGuiSettingsHandler*, void*, byte*, void>*)readLineFn;
-			ApplyAllFn = (delegate*<ImGuiContext*, ImGuiSettingsHandler*, void>*)applyAllFn;
-			WriteAllFn = (delegate*<ImGuiContext*, ImGuiSettingsHandler*, ImGuiTextBuffer*, void>*)writeAllFn;
+			ClearAllFn = (void*)clearAllFn;
+			ReadInitFn = (void*)readInitFn;
+			ReadOpenFn = (void*)readOpenFn;
+			ReadLineFn = (void*)readLineFn;
+			ApplyAllFn = (void*)applyAllFn;
+			WriteAllFn = (void*)writeAllFn;
 			UserData = userData;
 		}
 

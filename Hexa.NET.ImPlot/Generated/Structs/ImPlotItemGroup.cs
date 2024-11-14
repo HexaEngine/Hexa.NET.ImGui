@@ -26,7 +26,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ID;
+		public uint ID;
 
 		/// <summary>
 		/// To be documented.
@@ -47,7 +47,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItemGroup(int id = default, ImPlotLegend legend = default, ImPoolImPlotItem itemPool = default, int colormapIdx = default)
+		public unsafe ImPlotItemGroup(uint id = default, ImPlotLegend legend = default, ImPoolImPlotItem itemPool = default, int colormapIdx = default)
 		{
 			ID = id;
 			Legend = legend;
@@ -70,7 +70,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(int id)
+		public unsafe ImPlotItem* GetItem(uint id)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -181,11 +181,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(byte* labelId)
+		public unsafe uint GetItemID(byte* labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				int ret = ImPlot.GetItemIDNative(@this, labelId);
+				uint ret = ImPlot.GetItemIDNative(@this, labelId);
 				return ret;
 			}
 		}
@@ -193,13 +193,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(ref byte labelId)
+		public unsafe uint GetItemID(ref byte labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
 				fixed (byte* plabelId = &labelId)
 				{
-					int ret = ImPlot.GetItemIDNative(@this, (byte*)plabelId);
+					uint ret = ImPlot.GetItemIDNative(@this, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -208,13 +208,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(ReadOnlySpan<byte> labelId)
+		public unsafe uint GetItemID(ReadOnlySpan<byte> labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
 				fixed (byte* plabelId = labelId)
 				{
-					int ret = ImPlot.GetItemIDNative(@this, (byte*)plabelId);
+					uint ret = ImPlot.GetItemIDNative(@this, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -223,7 +223,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(string labelId)
+		public unsafe uint GetItemID(string labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -244,7 +244,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				int ret = ImPlot.GetItemIDNative(@this, pStr0);
+				uint ret = ImPlot.GetItemIDNative(@this, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -331,7 +331,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetOrAddItem(int id)
+		public unsafe ImPlotItem* GetOrAddItem(uint id)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -397,7 +397,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -421,7 +421,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(int id)
+		public unsafe ImPlotItem* GetItem(uint id)
 		{
 			ImPlotItem* ret = ImPlot.GetItemNative(Handle, id);
 			return ret;
@@ -511,20 +511,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(byte* labelId)
+		public unsafe uint GetItemID(byte* labelId)
 		{
-			int ret = ImPlot.GetItemIDNative(Handle, labelId);
+			uint ret = ImPlot.GetItemIDNative(Handle, labelId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(ref byte labelId)
+		public unsafe uint GetItemID(ref byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				int ret = ImPlot.GetItemIDNative(Handle, (byte*)plabelId);
+				uint ret = ImPlot.GetItemIDNative(Handle, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -532,11 +532,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(ReadOnlySpan<byte> labelId)
+		public unsafe uint GetItemID(ReadOnlySpan<byte> labelId)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				int ret = ImPlot.GetItemIDNative(Handle, (byte*)plabelId);
+				uint ret = ImPlot.GetItemIDNative(Handle, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -544,7 +544,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemID(string labelId)
+		public unsafe uint GetItemID(string labelId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -563,7 +563,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlot.GetItemIDNative(Handle, pStr0);
+			uint ret = ImPlot.GetItemIDNative(Handle, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -631,7 +631,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetOrAddItem(int id)
+		public unsafe ImPlotItem* GetOrAddItem(uint id)
 		{
 			ImPlotItem* ret = ImPlot.GetOrAddItemNative(Handle, id);
 			return ret;

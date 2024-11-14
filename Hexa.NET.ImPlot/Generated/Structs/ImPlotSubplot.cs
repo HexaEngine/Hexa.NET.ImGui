@@ -26,17 +26,17 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ID;
+		public uint ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImPlotSubplotFlags Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int PreviousFlags;
+		public ImPlotSubplotFlags PreviousFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -123,7 +123,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotSubplot(int id = default, int flags = default, int previousFlags = default, ImPlotItemGroup items = default, int rows = default, int cols = default, int currentIdx = default, ImRect frameRect = default, ImRect gridRect = default, Vector2 cellSize = default, ImVector<ImPlotAlignmentData> rowAlignmentData = default, ImVector<ImPlotAlignmentData> colAlignmentData = default, ImVector<float> rowRatios = default, ImVector<float> colRatios = default, ImVector<ImPlotRange> rowLinkData = default, ImVector<ImPlotRange> colLinkData = default, float* tempSizes = default, bool frameHovered = default, bool hasTitle = default)
+		public unsafe ImPlotSubplot(uint id = default, ImPlotSubplotFlags flags = default, ImPlotSubplotFlags previousFlags = default, ImPlotItemGroup items = default, int rows = default, int cols = default, int currentIdx = default, ImRect frameRect = default, ImRect gridRect = default, Vector2 cellSize = default, ImVector<ImPlotAlignmentData> rowAlignmentData = default, ImVector<ImPlotAlignmentData> colAlignmentData = default, ImVector<float> rowRatios = default, ImVector<float> colRatios = default, ImVector<ImPlotRange> rowLinkData = default, ImVector<ImPlotRange> colLinkData = default, float* tempSizes = default, bool frameHovered = default, bool hasTitle = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -153,7 +153,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotSubplot(int id = default, int flags = default, int previousFlags = default, ImPlotItemGroup items = default, int rows = default, int cols = default, int currentIdx = default, ImRect frameRect = default, ImRect gridRect = default, Vector2 cellSize = default, ImVector<ImPlotAlignmentData> rowAlignmentData = default, ImVector<ImPlotAlignmentData> colAlignmentData = default, ImVector<float> rowRatios = default, ImVector<float> colRatios = default, ImVector<ImPlotRange> rowLinkData = default, ImVector<ImPlotRange> colLinkData = default, Span<float> tempSizes = default, bool frameHovered = default, bool hasTitle = default)
+		public unsafe ImPlotSubplot(uint id = default, ImPlotSubplotFlags flags = default, ImPlotSubplotFlags previousFlags = default, ImPlotItemGroup items = default, int rows = default, int cols = default, int currentIdx = default, ImRect frameRect = default, ImRect gridRect = default, Vector2 cellSize = default, ImVector<ImPlotAlignmentData> rowAlignmentData = default, ImVector<ImPlotAlignmentData> colAlignmentData = default, ImVector<float> rowRatios = default, ImVector<float> colRatios = default, ImVector<ImPlotRange> rowLinkData = default, ImVector<ImPlotRange> colLinkData = default, Span<float> tempSizes = default, bool frameHovered = default, bool hasTitle = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -238,15 +238,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImPlotSubplotFlags Flags => ref Unsafe.AsRef<ImPlotSubplotFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int PreviousFlags => ref Unsafe.AsRef<int>(&Handle->PreviousFlags);
+		public ref ImPlotSubplotFlags PreviousFlags => ref Unsafe.AsRef<ImPlotSubplotFlags>(&Handle->PreviousFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

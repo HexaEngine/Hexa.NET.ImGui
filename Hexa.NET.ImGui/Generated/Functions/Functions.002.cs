@@ -2097,10 +2097,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ComboNative(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		internal static byte ComboNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte>)funcTable[153])(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*>, void*, int, int, byte>)funcTable[153])(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 			#else
 			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, int, byte>)funcTable[153])((nint)label, (nint)currentItem, (nint)getter, (nint)userData, itemsCount, popupMaxHeightInItems);
 			#endif
@@ -2109,7 +2109,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte ret = ComboNative(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 			return ret != 0;
@@ -2118,7 +2118,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			byte ret = ComboNative(label, currentItem, getter, userData, itemsCount, (int)(-1));
 			return ret != 0;
@@ -2127,7 +2127,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2139,7 +2139,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2151,7 +2151,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2163,7 +2163,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2175,7 +2175,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2205,7 +2205,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2235,7 +2235,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
@@ -2247,7 +2247,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
@@ -2259,7 +2259,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2274,7 +2274,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2289,7 +2289,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2304,7 +2304,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2319,7 +2319,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2352,7 +2352,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;

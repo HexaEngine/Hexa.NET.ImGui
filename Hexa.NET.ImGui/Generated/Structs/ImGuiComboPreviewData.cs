@@ -50,13 +50,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int BackupLayout;
+		public ImGuiLayoutType BackupLayout;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiComboPreviewData(ImRect previewRect = default, Vector2 backupCursorPos = default, Vector2 backupCursorMaxPos = default, Vector2 backupCursorPosPrevLine = default, float backupPrevLineTextBaseOffset = default, int backupLayout = default)
+		public unsafe ImGuiComboPreviewData(ImRect previewRect = default, Vector2 backupCursorPos = default, Vector2 backupCursorMaxPos = default, Vector2 backupCursorPosPrevLine = default, float backupPrevLineTextBaseOffset = default, ImGuiLayoutType backupLayout = default)
 		{
 			PreviewRect = previewRect;
 			BackupCursorPos = backupCursorPos;
@@ -133,7 +133,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int BackupLayout => ref Unsafe.AsRef<int>(&Handle->BackupLayout);
+		public ref ImGuiLayoutType BackupLayout => ref Unsafe.AsRef<ImGuiLayoutType>(&Handle->BackupLayout);
 	}
 
 }

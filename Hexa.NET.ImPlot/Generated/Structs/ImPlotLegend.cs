@@ -26,22 +26,22 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImPlotLegendFlags Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int PreviousFlags;
+		public ImPlotLegendFlags PreviousFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Location;
+		public ImPlotLocation Location;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int PreviousLocation;
+		public ImPlotLocation PreviousLocation;
 
 		/// <summary>
 		/// To be documented.
@@ -87,7 +87,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotLegend(int flags = default, int previousFlags = default, int location = default, int previousLocation = default, Vector2 scroll = default, ImVector<int> indices = default, ImGuiTextBuffer labels = default, ImRect rect = default, ImRect rectClamped = default, bool hovered = default, bool held = default, bool canGoInside = default)
+		public unsafe ImPlotLegend(ImPlotLegendFlags flags = default, ImPlotLegendFlags previousFlags = default, ImPlotLocation location = default, ImPlotLocation previousLocation = default, Vector2 scroll = default, ImVector<int> indices = default, ImGuiTextBuffer labels = default, ImRect rect = default, ImRect rectClamped = default, bool hovered = default, bool held = default, bool canGoInside = default)
 		{
 			Flags = flags;
 			PreviousFlags = previousFlags;
@@ -172,19 +172,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImPlotLegendFlags Flags => ref Unsafe.AsRef<ImPlotLegendFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int PreviousFlags => ref Unsafe.AsRef<int>(&Handle->PreviousFlags);
+		public ref ImPlotLegendFlags PreviousFlags => ref Unsafe.AsRef<ImPlotLegendFlags>(&Handle->PreviousFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Location => ref Unsafe.AsRef<int>(&Handle->Location);
+		public ref ImPlotLocation Location => ref Unsafe.AsRef<ImPlotLocation>(&Handle->Location);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int PreviousLocation => ref Unsafe.AsRef<int>(&Handle->PreviousLocation);
+		public ref ImPlotLocation PreviousLocation => ref Unsafe.AsRef<ImPlotLocation>(&Handle->PreviousLocation);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

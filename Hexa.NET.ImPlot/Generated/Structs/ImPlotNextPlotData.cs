@@ -26,12 +26,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int RangeCond_0;
-		public int RangeCond_1;
-		public int RangeCond_2;
-		public int RangeCond_3;
-		public int RangeCond_4;
-		public int RangeCond_5;
+		public ImPlotCond RangeCond_0;
+		public ImPlotCond RangeCond_1;
+		public ImPlotCond RangeCond_2;
+		public ImPlotCond RangeCond_3;
+		public ImPlotCond RangeCond_4;
+		public ImPlotCond RangeCond_5;
 
 		/// <summary>
 		/// To be documented.
@@ -87,9 +87,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextPlotData(int* rangeCond = default, ImPlotRangePtr range = default, bool* hasRange = default, bool* fit = default, double** linkedMin = default, double** linkedMax = default)
+		public unsafe ImPlotNextPlotData(ImPlotCond* rangeCond = default, ImPlotRangePtr range = default, bool* hasRange = default, bool* fit = default, double** linkedMin = default, double** linkedMax = default)
 		{
-			if (rangeCond != default(int*))
+			if (rangeCond != default(ImPlotCond*))
 			{
 				RangeCond_0 = rangeCond[0];
 				RangeCond_1 = rangeCond[1];
@@ -148,9 +148,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextPlotData(Span<int> rangeCond = default, Span<ImPlotRange> range = default, Span<bool> hasRange = default, Span<bool> fit = default, Span<Pointer<double>> linkedMin = default, Span<Pointer<double>> linkedMax = default)
+		public unsafe ImPlotNextPlotData(Span<ImPlotCond> rangeCond = default, Span<ImPlotRange> range = default, Span<bool> hasRange = default, Span<bool> fit = default, Span<Pointer<double>> linkedMin = default, Span<Pointer<double>> linkedMax = default)
 		{
-			if (rangeCond != default(Span<int>))
+			if (rangeCond != default(Span<ImPlotCond>))
 			{
 				RangeCond_0 = rangeCond[0];
 				RangeCond_1 = rangeCond[1];

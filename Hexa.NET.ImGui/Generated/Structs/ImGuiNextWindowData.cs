@@ -25,27 +25,27 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImGuiNextWindowDataFlags Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int PosCond;
+		public ImGuiCond PosCond;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int SizeCond;
+		public ImGuiCond SizeCond;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CollapsedCond;
+		public ImGuiCond CollapsedCond;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int DockCond;
+		public ImGuiCond DockCond;
 
 		/// <summary>
 		/// To be documented.
@@ -75,7 +75,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ChildFlags;
+		public ImGuiChildFlags ChildFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -96,7 +96,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public unsafe void* SizeCallback;
-
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -130,13 +129,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int RefreshFlagsVal;
+		public ImGuiWindowRefreshFlags RefreshFlagsVal;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNextWindowData(int flags = default, int posCond = default, int sizeCond = default, int collapsedCond = default, int dockCond = default, Vector2 posVal = default, Vector2 posPivotVal = default, Vector2 sizeVal = default, Vector2 contentSizeVal = default, Vector2 scrollVal = default, int childFlags = default, bool posUndock = default, bool collapsedVal = default, ImRect sizeConstraintRect = default, delegate*<void> sizeCallback = default, void* sizeCallbackUserData = default, float bgAlphaVal = default, uint viewportId = default, uint dockId = default, ImGuiWindowClass windowClass = default, Vector2 menuBarOffsetMinVal = default, int refreshFlagsVal = default)
+		public unsafe ImGuiNextWindowData(ImGuiNextWindowDataFlags flags = default, ImGuiCond posCond = default, ImGuiCond sizeCond = default, ImGuiCond collapsedCond = default, ImGuiCond dockCond = default, Vector2 posVal = default, Vector2 posPivotVal = default, Vector2 sizeVal = default, Vector2 contentSizeVal = default, Vector2 scrollVal = default, ImGuiChildFlags childFlags = default, bool posUndock = default, bool collapsedVal = default, ImRect sizeConstraintRect = default, ImGuiSizeCallback sizeCallback = default, void* sizeCallbackUserData = default, float bgAlphaVal = default, uint viewportId = default, uint dockId = default, ImGuiWindowClass windowClass = default, Vector2 menuBarOffsetMinVal = default, ImGuiWindowRefreshFlags refreshFlagsVal = default)
 		{
 			Flags = flags;
 			PosCond = posCond;
@@ -152,7 +151,7 @@ namespace Hexa.NET.ImGui
 			PosUndock = posUndock ? (byte)1 : (byte)0;
 			CollapsedVal = collapsedVal ? (byte)1 : (byte)0;
 			SizeConstraintRect = sizeConstraintRect;
-			SizeCallback = (delegate*<void>*)sizeCallback;
+			SizeCallback = (void*)Marshal.GetFunctionPointerForDelegate(sizeCallback);
 			SizeCallbackUserData = sizeCallbackUserData;
 			BgAlphaVal = bgAlphaVal;
 			ViewportId = viewportId;
@@ -209,23 +208,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImGuiNextWindowDataFlags Flags => ref Unsafe.AsRef<ImGuiNextWindowDataFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int PosCond => ref Unsafe.AsRef<int>(&Handle->PosCond);
+		public ref ImGuiCond PosCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->PosCond);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int SizeCond => ref Unsafe.AsRef<int>(&Handle->SizeCond);
+		public ref ImGuiCond SizeCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->SizeCond);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CollapsedCond => ref Unsafe.AsRef<int>(&Handle->CollapsedCond);
+		public ref ImGuiCond CollapsedCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->CollapsedCond);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int DockCond => ref Unsafe.AsRef<int>(&Handle->DockCond);
+		public ref ImGuiCond DockCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->DockCond);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -249,7 +248,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ChildFlags => ref Unsafe.AsRef<int>(&Handle->ChildFlags);
+		public ref ImGuiChildFlags ChildFlags => ref Unsafe.AsRef<ImGuiChildFlags>(&Handle->ChildFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -293,7 +292,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int RefreshFlagsVal => ref Unsafe.AsRef<int>(&Handle->RefreshFlagsVal);
+		public ref ImGuiWindowRefreshFlags RefreshFlagsVal => ref Unsafe.AsRef<ImGuiWindowRefreshFlags>(&Handle->RefreshFlagsVal);
 	}
 
 }

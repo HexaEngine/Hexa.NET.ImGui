@@ -57,11 +57,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool Empty()
+		public unsafe bool empty()
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				byte ret = ImGui.EmptyNative(@this);
+				byte ret = ImGui.emptyNative(@this);
 				return ret != 0;
 			}
 		}
@@ -69,24 +69,24 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Split(byte separator, ImVector<ImGuiTextRange>* output)
+		public unsafe void split(byte separator, ImVector<ImGuiTextRange>* output)
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				ImGui.SplitNative(@this, separator, output);
+				ImGui.splitNative(@this, separator, output);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Split(byte separator, ref ImVector<ImGuiTextRange> output)
+		public unsafe void split(byte separator, ref ImVector<ImGuiTextRange> output)
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
 				fixed (ImVector<ImGuiTextRange>* poutput = &output)
 				{
-					ImGui.SplitNative(@this, separator, (ImVector<ImGuiTextRange>*)poutput);
+					ImGui.splitNative(@this, separator, (ImVector<ImGuiTextRange>*)poutput);
 				}
 			}
 		}
@@ -153,28 +153,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool Empty()
+		public unsafe bool empty()
 		{
-			byte ret = ImGui.EmptyNative(Handle);
+			byte ret = ImGui.emptyNative(Handle);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Split(byte separator, ImVector<ImGuiTextRange>* output)
+		public unsafe void split(byte separator, ImVector<ImGuiTextRange>* output)
 		{
-			ImGui.SplitNative(Handle, separator, output);
+			ImGui.splitNative(Handle, separator, output);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Split(byte separator, ref ImVector<ImGuiTextRange> output)
+		public unsafe void split(byte separator, ref ImVector<ImGuiTextRange> output)
 		{
 			fixed (ImVector<ImGuiTextRange>* poutput = &output)
 			{
-				ImGui.SplitNative(Handle, separator, (ImVector<ImGuiTextRange>*)poutput);
+				ImGui.splitNative(Handle, separator, (ImVector<ImGuiTextRange>*)poutput);
 			}
 		}
 

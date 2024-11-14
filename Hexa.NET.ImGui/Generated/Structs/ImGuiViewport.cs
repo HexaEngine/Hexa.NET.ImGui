@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImGuiViewportFlags Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -117,7 +117,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewport(uint id = default, int flags = default, Vector2 pos = default, Vector2 size = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImDrawDataPtr drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
+		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImDrawDataPtr drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -200,7 +200,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImGuiViewportFlags Flags => ref Unsafe.AsRef<ImGuiViewportFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -50,12 +50,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ConfigFlagsCurrFrame;
+		public ImGuiConfigFlags ConfigFlagsCurrFrame;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ConfigFlagsLastFrame;
+		public ImGuiConfigFlags ConfigFlagsLastFrame;
 
 		/// <summary>
 		/// To be documented.
@@ -450,7 +450,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN KeysMayBeCharInput;
+		public nuint KeysMayBeCharInput;
 
 		/// <summary>
 		/// To be documented.
@@ -638,7 +638,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CurrentItemFlags;
+		public ImGuiItemFlags CurrentItemFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -668,7 +668,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int DebugFlashStyleColorIdx;
+		public ImGuiCol DebugFlashStyleColorIdx;
 
 		/// <summary>
 		/// To be documented.
@@ -823,7 +823,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int NavActivateFlags;
+		public ImGuiActivateFlags NavActivateFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -848,7 +848,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int NavNextActivateFlags;
+		public ImGuiActivateFlags NavNextActivateFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -903,12 +903,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int NavMoveFlags;
+		public ImGuiNavMoveFlags NavMoveFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int NavMoveScrollFlags;
+		public ImGuiScrollFlags NavMoveScrollFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -1083,7 +1083,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int DragDropSourceFlags;
+		public ImGuiDragDropFlags DragDropSourceFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -1118,7 +1118,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int DragDropAcceptFlags;
+		public ImGuiDragDropFlags DragDropAcceptFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -1293,7 +1293,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int MouseCursor;
+		public ImGuiMouseCursor MouseCursor;
 
 		/// <summary>
 		/// To be documented.
@@ -1343,7 +1343,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ColorEditOptions;
+		public ImGuiColorEditFlags ColorEditOptions;
 
 		/// <summary>
 		/// To be documented.
@@ -1458,7 +1458,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<ImGuiID> MenusIdSubmittedThisFrame;
+		public ImVector<int> MenusIdSubmittedThisFrame;
 
 		/// <summary>
 		/// To be documented.
@@ -1555,7 +1555,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int LogFlags;
+		public ImGuiLogFlags LogFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -1565,7 +1565,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Iobuf* LogFile;
+		public ImFileHandle LogFile;
 
 		/// <summary>
 		/// To be documented.
@@ -1611,7 +1611,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public unsafe void* ErrorCallback;
-
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -1650,7 +1649,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int DebugLogFlags;
+		public ImGuiDebugLogFlags DebugLogFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -1670,7 +1669,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int DebugLogAutoDisableFlags;
+		public ImGuiDebugLogFlags DebugLogAutoDisableFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -1913,7 +1912,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiContext(bool initialized = default, bool fontAtlasOwnedByContext = default, ImGuiIO io = default, ImGuiPlatformIO platformIo = default, ImGuiStyle style = default, int configFlagsCurrFrame = default, int configFlagsLastFrame = default, ImFontPtr font = default, float fontSize = default, float fontBaseSize = default, float fontScale = default, float currentDpiScale = default, ImDrawListSharedData drawListSharedData = default, double time = default, int frameCount = default, int frameCountEnded = default, int frameCountPlatformEnded = default, int frameCountRendered = default, bool withinFrameScope = default, bool withinFrameScopeWithImplicitWindow = default, bool withinEndChild = default, bool gcCompactAll = default, bool testEngineHookItems = default, void* testEngine = default, byte* contextName = default, ImVector<ImGuiInputEvent> inputEventsQueue = default, ImVector<ImGuiInputEvent> inputEventsTrail = default, ImGuiMouseSource inputEventsNextMouseSource = default, uint inputEventsNextEventId = default, ImVector<ImGuiWindowPtr> windows = default, ImVector<ImGuiWindowPtr> windowsFocusOrder = default, ImVector<ImGuiWindowPtr> windowsTempSortBuffer = default, ImVector<ImGuiWindowStackData> currentWindowStack = default, ImGuiStorage windowsById = default, int windowsActiveCount = default, Vector2 windowsHoverPadding = default, uint debugBreakInWindow = default, ImGuiWindow* currentWindow = default, ImGuiWindow* hoveredWindow = default, ImGuiWindow* hoveredWindowUnderMovingWindow = default, ImGuiWindow* hoveredWindowBeforeClear = default, ImGuiWindow* movingWindow = default, ImGuiWindow* wheelingWindow = default, Vector2 wheelingWindowRefMousePos = default, int wheelingWindowStartFrame = default, int wheelingWindowScrolledFrame = default, float wheelingWindowReleaseTimer = default, Vector2 wheelingWindowWheelRemainder = default, Vector2 wheelingAxisAvg = default, uint debugDrawIdConflicts = default, uint debugHookIdInfo = default, uint hoveredId = default, uint hoveredIdPreviousFrame = default, int hoveredIdPreviousFrameItemCount = default, float hoveredIdTimer = default, float hoveredIdNotActiveTimer = default, bool hoveredIdAllowOverlap = default, bool hoveredIdIsDisabled = default, bool itemUnclipByLog = default, uint activeId = default, uint activeIdIsAlive = default, float activeIdTimer = default, bool activeIdIsJustActivated = default, bool activeIdAllowOverlap = default, bool activeIdNoClearOnFocusLoss = default, bool activeIdHasBeenPressedBefore = default, bool activeIdHasBeenEditedBefore = default, bool activeIdHasBeenEditedThisFrame = default, bool activeIdFromShortcut = default, int activeIdMouseButton = default, Vector2 activeIdClickOffset = default, ImGuiWindow* activeIdWindow = default, ImGuiInputSource activeIdSource = default, uint activeIdPreviousFrame = default, bool activeIdPreviousFrameIsAlive = default, bool activeIdPreviousFrameHasBeenEditedBefore = default, ImGuiWindow* activeIdPreviousFrameWindow = default, uint lastActiveId = default, float lastActiveIdTimer = default, double lastKeyModsChangeTime = default, double lastKeyModsChangeFromNoneTime = default, double lastKeyboardKeyPressTime = default, ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN keysMayBeCharInput = default, ImGuiKeyOwnerData* keysOwnerData = default, ImGuiKeyRoutingTable keysRoutingTable = default, uint activeIdUsingNavDirMask = default, bool activeIdUsingAllKeyboardKeys = default, int debugBreakInShortcutRouting = default, uint currentFocusScopeId = default, int currentItemFlags = default, uint debugLocateId = default, ImGuiNextItemData nextItemData = default, ImGuiLastItemData lastItemData = default, ImGuiNextWindowData nextWindowData = default, bool debugShowGroupRects = default, int debugFlashStyleColorIdx = default, ImVector<ImGuiColorMod> colorStack = default, ImVector<ImGuiStyleMod> styleVarStack = default, ImVector<ImFontPtr> fontStack = default, ImVector<ImGuiFocusScopeData> focusScopeStack = default, ImVector<ImGuiItemFlags> itemFlagsStack = default, ImVector<ImGuiGroupData> groupStack = default, ImVector<ImGuiPopupData> openPopupStack = default, ImVector<ImGuiPopupData> beginPopupStack = default, ImVector<ImGuiTreeNodeStackData> treeNodeStack = default, ImVector<ImGuiViewportPPtr> viewports = default, ImGuiViewportP* currentViewport = default, ImGuiViewportP* mouseViewport = default, ImGuiViewportP* mouseLastHoveredViewport = default, uint platformLastFocusedViewportId = default, ImGuiPlatformMonitor fallbackMonitor = default, ImRect platformMonitorsFullWorkRect = default, int viewportCreatedCount = default, int platformWindowsCreatedCount = default, int viewportFocusedStampCount = default, bool navCursorVisible = default, bool navHighlightItemUnderNav = default, bool navMousePosDirty = default, bool navIdIsAlive = default, uint navId = default, ImGuiWindow* navWindow = default, uint navFocusScopeId = default, ImGuiNavLayer navLayer = default, uint navActivateId = default, uint navActivateDownId = default, uint navActivatePressedId = default, int navActivateFlags = default, ImVector<ImGuiFocusScopeData> navFocusRoute = default, uint navHighlightActivatedId = default, float navHighlightActivatedTimer = default, uint navNextActivateId = default, int navNextActivateFlags = default, ImGuiInputSource navInputSource = default, long navLastValidSelectionUserData = default, byte navCursorHideFrames = default, bool navAnyRequest = default, bool navInitRequest = default, bool navInitRequestFromMove = default, ImGuiNavItemData navInitResult = default, bool navMoveSubmitted = default, bool navMoveScoringItems = default, bool navMoveForwardToNextFrame = default, int navMoveFlags = default, int navMoveScrollFlags = default, int navMoveKeyMods = default, ImGuiDir navMoveDir = default, ImGuiDir navMoveDirForDebug = default, ImGuiDir navMoveClipDir = default, ImRect navScoringRect = default, ImRect navScoringNoClipRect = default, int navScoringDebugCount = default, int navTabbingDir = default, int navTabbingCounter = default, ImGuiNavItemData navMoveResultLocal = default, ImGuiNavItemData navMoveResultLocalVisible = default, ImGuiNavItemData navMoveResultOther = default, ImGuiNavItemData navTabbingResultFirst = default, uint navJustMovedFromFocusScopeId = default, uint navJustMovedToId = default, uint navJustMovedToFocusScopeId = default, int navJustMovedToKeyMods = default, bool navJustMovedToIsTabbing = default, bool navJustMovedToHasSelectionData = default, int configNavWindowingKeyNext = default, int configNavWindowingKeyPrev = default, ImGuiWindow* navWindowingTarget = default, ImGuiWindow* navWindowingTargetAnim = default, ImGuiWindow* navWindowingListWindow = default, float navWindowingTimer = default, float navWindowingHighlightAlpha = default, bool navWindowingToggleLayer = default, ImGuiKey navWindowingToggleKey = default, Vector2 navWindowingAccumDeltaPos = default, Vector2 navWindowingAccumDeltaSize = default, float dimBgRatio = default, bool dragDropActive = default, bool dragDropWithinSource = default, bool dragDropWithinTarget = default, int dragDropSourceFlags = default, int dragDropSourceFrameCount = default, int dragDropMouseButton = default, ImGuiPayload dragDropPayload = default, ImRect dragDropTargetRect = default, ImRect dragDropTargetClipRect = default, uint dragDropTargetId = default, int dragDropAcceptFlags = default, float dragDropAcceptIdCurrRectSurface = default, uint dragDropAcceptIdCurr = default, uint dragDropAcceptIdPrev = default, int dragDropAcceptFrameCount = default, uint dragDropHoldJustPressedId = default, ImVector<byte> dragDropPayloadBufHeap = default, byte* dragDropPayloadBufLocal = default, int clipperTempDataStacked = default, ImVector<ImGuiListClipperData> clipperTempData = default, ImGuiTable* currentTable = default, uint debugBreakInTable = default, int tablesTempDataStacked = default, ImVector<ImGuiTableTempData> tablesTempData = default, ImPoolImGuiTable tables = default, ImVector<float> tablesLastTimeActive = default, ImVector<ImDrawChannel> drawChannelsTempMergeBuffer = default, ImGuiTabBar* currentTabBar = default, ImPoolImGuiTabBar tabBars = default, ImVector<ImGuiPtrOrIndex> currentTabBarStack = default, ImVector<ImGuiShrinkWidthItem> shrinkWidthBuffer = default, ImGuiBoxSelectState boxSelectState = default, ImGuiMultiSelectTempData* currentMultiSelect = default, int multiSelectTempDataStacked = default, ImVector<ImGuiMultiSelectTempData> multiSelectTempData = default, ImPoolImGuiMultiSelectState multiSelectStorage = default, uint hoverItemDelayId = default, uint hoverItemDelayIdPreviousFrame = default, float hoverItemDelayTimer = default, float hoverItemDelayClearTimer = default, uint hoverItemUnlockedStationaryId = default, uint hoverWindowUnlockedStationaryId = default, int mouseCursor = default, float mouseStationaryTimer = default, Vector2 mouseLastValidPos = default, ImGuiInputTextState inputTextState = default, ImGuiInputTextDeactivatedState inputTextDeactivatedState = default, ImFont inputTextPasswordFont = default, uint tempInputId = default, ImGuiDataTypeStorage dataTypeZeroValue = default, int beginMenuDepth = default, int beginComboDepth = default, int colorEditOptions = default, uint colorEditCurrentId = default, uint colorEditSavedId = default, float colorEditSavedHue = default, float colorEditSavedSat = default, uint colorEditSavedColor = default, Vector4 colorPickerRef = default, ImGuiComboPreviewData comboPreviewData = default, ImRect windowResizeBorderExpectedRect = default, bool windowResizeRelativeMode = default, short scrollbarSeekMode = default, float scrollbarClickDeltaToGrabCenter = default, float sliderGrabClickOffset = default, float sliderCurrentAccum = default, bool sliderCurrentAccumDirty = default, bool dragCurrentAccumDirty = default, float dragCurrentAccum = default, float dragSpeedDefaultRatio = default, float disabledAlphaBackup = default, short disabledStackSize = default, short tooltipOverrideCount = default, ImGuiWindow* tooltipPreviousWindow = default, ImVector<byte> clipboardHandlerData = default, ImVector<ImGuiID> menusIdSubmittedThisFrame = default, ImGuiTypingSelectState typingSelectState = default, ImGuiPlatformImeData platformImeData = default, ImGuiPlatformImeData platformImeDataPrev = default, uint platformImeViewport = default, ImGuiDockContext dockContext = default, delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void> dockNodeWindowMenuHandler = default, bool settingsLoaded = default, float settingsDirtyTimer = default, ImGuiTextBuffer settingsIniData = default, ImVector<ImGuiSettingsHandler> settingsHandlers = default, ImChunkStreamImGuiWindowSettings settingsWindows = default, ImChunkStreamImGuiTableSettings settingsTables = default, ImVector<ImGuiContextHook> hooks = default, uint hookIdNext = default, byte** localizationTable = default, bool logEnabled = default, int logFlags = default, ImGuiWindow* logWindow = default, Iobuf* logFile = default, ImGuiTextBuffer logBuffer = default, byte* logNextPrefix = default, byte* logNextSuffix = default, float logLinePosY = default, bool logLineFirstItem = default, int logDepthRef = default, int logDepthToExpand = default, int logDepthToExpandDefault = default, delegate*<void> errorCallback = default, void* errorCallbackUserData = default, Vector2 errorTooltipLockedPos = default, bool errorFirst = default, int errorCountCurrentFrame = default, ImGuiErrorRecoveryState stackSizesInNewFrame = default, ImGuiErrorRecoveryState* stackSizesInBeginForCurrentWindow = default, int debugDrawIdConflictsCount = default, int debugLogFlags = default, ImGuiTextBuffer debugLogBuf = default, ImGuiTextIndex debugLogIndex = default, int debugLogSkippedErrors = default, int debugLogAutoDisableFlags = default, byte debugLogAutoDisableFrames = default, byte debugLocateFrames = default, bool debugBreakInLocateId = default, int debugBreakKeyChord = default, byte debugBeginReturnValueCullDepth = default, bool debugItemPickerActive = default, byte debugItemPickerMouseButton = default, uint debugItemPickerBreakId = default, float debugFlashStyleColorTime = default, Vector4 debugFlashStyleColorBackup = default, ImGuiMetricsConfig debugMetricsConfig = default, ImGuiIDStackTool debugIdStackTool = default, ImGuiDebugAllocInfo debugAllocInfo = default, ImGuiDockNode* debugHoveredDockNode = default, float* framerateSecPerFrame = default, int framerateSecPerFrameIdx = default, int framerateSecPerFrameCount = default, float framerateSecPerFrameAccum = default, int wantCaptureMouseNextFrame = default, int wantCaptureKeyboardNextFrame = default, int wantTextInputNextFrame = default, ImVector<byte> tempBuffer = default, byte* tempKeychordName = default)
+		public unsafe ImGuiContext(bool initialized = default, bool fontAtlasOwnedByContext = default, ImGuiIO io = default, ImGuiPlatformIO platformIo = default, ImGuiStyle style = default, ImGuiConfigFlags configFlagsCurrFrame = default, ImGuiConfigFlags configFlagsLastFrame = default, ImFontPtr font = default, float fontSize = default, float fontBaseSize = default, float fontScale = default, float currentDpiScale = default, ImDrawListSharedData drawListSharedData = default, double time = default, int frameCount = default, int frameCountEnded = default, int frameCountPlatformEnded = default, int frameCountRendered = default, bool withinFrameScope = default, bool withinFrameScopeWithImplicitWindow = default, bool withinEndChild = default, bool gcCompactAll = default, bool testEngineHookItems = default, void* testEngine = default, byte* contextName = default, ImVector<ImGuiInputEvent> inputEventsQueue = default, ImVector<ImGuiInputEvent> inputEventsTrail = default, ImGuiMouseSource inputEventsNextMouseSource = default, uint inputEventsNextEventId = default, ImVector<ImGuiWindowPtr> windows = default, ImVector<ImGuiWindowPtr> windowsFocusOrder = default, ImVector<ImGuiWindowPtr> windowsTempSortBuffer = default, ImVector<ImGuiWindowStackData> currentWindowStack = default, ImGuiStorage windowsById = default, int windowsActiveCount = default, Vector2 windowsHoverPadding = default, uint debugBreakInWindow = default, ImGuiWindow* currentWindow = default, ImGuiWindow* hoveredWindow = default, ImGuiWindow* hoveredWindowUnderMovingWindow = default, ImGuiWindow* hoveredWindowBeforeClear = default, ImGuiWindow* movingWindow = default, ImGuiWindow* wheelingWindow = default, Vector2 wheelingWindowRefMousePos = default, int wheelingWindowStartFrame = default, int wheelingWindowScrolledFrame = default, float wheelingWindowReleaseTimer = default, Vector2 wheelingWindowWheelRemainder = default, Vector2 wheelingAxisAvg = default, uint debugDrawIdConflicts = default, uint debugHookIdInfo = default, uint hoveredId = default, uint hoveredIdPreviousFrame = default, int hoveredIdPreviousFrameItemCount = default, float hoveredIdTimer = default, float hoveredIdNotActiveTimer = default, bool hoveredIdAllowOverlap = default, bool hoveredIdIsDisabled = default, bool itemUnclipByLog = default, uint activeId = default, uint activeIdIsAlive = default, float activeIdTimer = default, bool activeIdIsJustActivated = default, bool activeIdAllowOverlap = default, bool activeIdNoClearOnFocusLoss = default, bool activeIdHasBeenPressedBefore = default, bool activeIdHasBeenEditedBefore = default, bool activeIdHasBeenEditedThisFrame = default, bool activeIdFromShortcut = default, int activeIdMouseButton = default, Vector2 activeIdClickOffset = default, ImGuiWindow* activeIdWindow = default, ImGuiInputSource activeIdSource = default, uint activeIdPreviousFrame = default, bool activeIdPreviousFrameIsAlive = default, bool activeIdPreviousFrameHasBeenEditedBefore = default, ImGuiWindow* activeIdPreviousFrameWindow = default, uint lastActiveId = default, float lastActiveIdTimer = default, double lastKeyModsChangeTime = default, double lastKeyModsChangeFromNoneTime = default, double lastKeyboardKeyPressTime = default, nuint keysMayBeCharInput = default, ImGuiKeyOwnerData* keysOwnerData = default, ImGuiKeyRoutingTable keysRoutingTable = default, uint activeIdUsingNavDirMask = default, bool activeIdUsingAllKeyboardKeys = default, int debugBreakInShortcutRouting = default, uint currentFocusScopeId = default, ImGuiItemFlags currentItemFlags = default, uint debugLocateId = default, ImGuiNextItemData nextItemData = default, ImGuiLastItemData lastItemData = default, ImGuiNextWindowData nextWindowData = default, bool debugShowGroupRects = default, ImGuiCol debugFlashStyleColorIdx = default, ImVector<ImGuiColorMod> colorStack = default, ImVector<ImGuiStyleMod> styleVarStack = default, ImVector<ImFontPtr> fontStack = default, ImVector<ImGuiFocusScopeData> focusScopeStack = default, ImVector<ImGuiItemFlags> itemFlagsStack = default, ImVector<ImGuiGroupData> groupStack = default, ImVector<ImGuiPopupData> openPopupStack = default, ImVector<ImGuiPopupData> beginPopupStack = default, ImVector<ImGuiTreeNodeStackData> treeNodeStack = default, ImVector<ImGuiViewportPPtr> viewports = default, ImGuiViewportP* currentViewport = default, ImGuiViewportP* mouseViewport = default, ImGuiViewportP* mouseLastHoveredViewport = default, uint platformLastFocusedViewportId = default, ImGuiPlatformMonitor fallbackMonitor = default, ImRect platformMonitorsFullWorkRect = default, int viewportCreatedCount = default, int platformWindowsCreatedCount = default, int viewportFocusedStampCount = default, bool navCursorVisible = default, bool navHighlightItemUnderNav = default, bool navMousePosDirty = default, bool navIdIsAlive = default, uint navId = default, ImGuiWindow* navWindow = default, uint navFocusScopeId = default, ImGuiNavLayer navLayer = default, uint navActivateId = default, uint navActivateDownId = default, uint navActivatePressedId = default, ImGuiActivateFlags navActivateFlags = default, ImVector<ImGuiFocusScopeData> navFocusRoute = default, uint navHighlightActivatedId = default, float navHighlightActivatedTimer = default, uint navNextActivateId = default, ImGuiActivateFlags navNextActivateFlags = default, ImGuiInputSource navInputSource = default, long navLastValidSelectionUserData = default, byte navCursorHideFrames = default, bool navAnyRequest = default, bool navInitRequest = default, bool navInitRequestFromMove = default, ImGuiNavItemData navInitResult = default, bool navMoveSubmitted = default, bool navMoveScoringItems = default, bool navMoveForwardToNextFrame = default, ImGuiNavMoveFlags navMoveFlags = default, ImGuiScrollFlags navMoveScrollFlags = default, int navMoveKeyMods = default, ImGuiDir navMoveDir = default, ImGuiDir navMoveDirForDebug = default, ImGuiDir navMoveClipDir = default, ImRect navScoringRect = default, ImRect navScoringNoClipRect = default, int navScoringDebugCount = default, int navTabbingDir = default, int navTabbingCounter = default, ImGuiNavItemData navMoveResultLocal = default, ImGuiNavItemData navMoveResultLocalVisible = default, ImGuiNavItemData navMoveResultOther = default, ImGuiNavItemData navTabbingResultFirst = default, uint navJustMovedFromFocusScopeId = default, uint navJustMovedToId = default, uint navJustMovedToFocusScopeId = default, int navJustMovedToKeyMods = default, bool navJustMovedToIsTabbing = default, bool navJustMovedToHasSelectionData = default, int configNavWindowingKeyNext = default, int configNavWindowingKeyPrev = default, ImGuiWindow* navWindowingTarget = default, ImGuiWindow* navWindowingTargetAnim = default, ImGuiWindow* navWindowingListWindow = default, float navWindowingTimer = default, float navWindowingHighlightAlpha = default, bool navWindowingToggleLayer = default, ImGuiKey navWindowingToggleKey = default, Vector2 navWindowingAccumDeltaPos = default, Vector2 navWindowingAccumDeltaSize = default, float dimBgRatio = default, bool dragDropActive = default, bool dragDropWithinSource = default, bool dragDropWithinTarget = default, ImGuiDragDropFlags dragDropSourceFlags = default, int dragDropSourceFrameCount = default, int dragDropMouseButton = default, ImGuiPayload dragDropPayload = default, ImRect dragDropTargetRect = default, ImRect dragDropTargetClipRect = default, uint dragDropTargetId = default, ImGuiDragDropFlags dragDropAcceptFlags = default, float dragDropAcceptIdCurrRectSurface = default, uint dragDropAcceptIdCurr = default, uint dragDropAcceptIdPrev = default, int dragDropAcceptFrameCount = default, uint dragDropHoldJustPressedId = default, ImVector<byte> dragDropPayloadBufHeap = default, byte* dragDropPayloadBufLocal = default, int clipperTempDataStacked = default, ImVector<ImGuiListClipperData> clipperTempData = default, ImGuiTable* currentTable = default, uint debugBreakInTable = default, int tablesTempDataStacked = default, ImVector<ImGuiTableTempData> tablesTempData = default, ImPoolImGuiTable tables = default, ImVector<float> tablesLastTimeActive = default, ImVector<ImDrawChannel> drawChannelsTempMergeBuffer = default, ImGuiTabBar* currentTabBar = default, ImPoolImGuiTabBar tabBars = default, ImVector<ImGuiPtrOrIndex> currentTabBarStack = default, ImVector<ImGuiShrinkWidthItem> shrinkWidthBuffer = default, ImGuiBoxSelectState boxSelectState = default, ImGuiMultiSelectTempData* currentMultiSelect = default, int multiSelectTempDataStacked = default, ImVector<ImGuiMultiSelectTempData> multiSelectTempData = default, ImPoolImGuiMultiSelectState multiSelectStorage = default, uint hoverItemDelayId = default, uint hoverItemDelayIdPreviousFrame = default, float hoverItemDelayTimer = default, float hoverItemDelayClearTimer = default, uint hoverItemUnlockedStationaryId = default, uint hoverWindowUnlockedStationaryId = default, ImGuiMouseCursor mouseCursor = default, float mouseStationaryTimer = default, Vector2 mouseLastValidPos = default, ImGuiInputTextState inputTextState = default, ImGuiInputTextDeactivatedState inputTextDeactivatedState = default, ImFont inputTextPasswordFont = default, uint tempInputId = default, ImGuiDataTypeStorage dataTypeZeroValue = default, int beginMenuDepth = default, int beginComboDepth = default, ImGuiColorEditFlags colorEditOptions = default, uint colorEditCurrentId = default, uint colorEditSavedId = default, float colorEditSavedHue = default, float colorEditSavedSat = default, uint colorEditSavedColor = default, Vector4 colorPickerRef = default, ImGuiComboPreviewData comboPreviewData = default, ImRect windowResizeBorderExpectedRect = default, bool windowResizeRelativeMode = default, short scrollbarSeekMode = default, float scrollbarClickDeltaToGrabCenter = default, float sliderGrabClickOffset = default, float sliderCurrentAccum = default, bool sliderCurrentAccumDirty = default, bool dragCurrentAccumDirty = default, float dragCurrentAccum = default, float dragSpeedDefaultRatio = default, float disabledAlphaBackup = default, short disabledStackSize = default, short tooltipOverrideCount = default, ImGuiWindow* tooltipPreviousWindow = default, ImVector<byte> clipboardHandlerData = default, ImVector<int> menusIdSubmittedThisFrame = default, ImGuiTypingSelectState typingSelectState = default, ImGuiPlatformImeData platformImeData = default, ImGuiPlatformImeData platformImeDataPrev = default, uint platformImeViewport = default, ImGuiDockContext dockContext = default, delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void> dockNodeWindowMenuHandler = default, bool settingsLoaded = default, float settingsDirtyTimer = default, ImGuiTextBuffer settingsIniData = default, ImVector<ImGuiSettingsHandler> settingsHandlers = default, ImChunkStreamImGuiWindowSettings settingsWindows = default, ImChunkStreamImGuiTableSettings settingsTables = default, ImVector<ImGuiContextHook> hooks = default, uint hookIdNext = default, byte** localizationTable = default, bool logEnabled = default, ImGuiLogFlags logFlags = default, ImGuiWindow* logWindow = default, ImFileHandle logFile = default, ImGuiTextBuffer logBuffer = default, byte* logNextPrefix = default, byte* logNextSuffix = default, float logLinePosY = default, bool logLineFirstItem = default, int logDepthRef = default, int logDepthToExpand = default, int logDepthToExpandDefault = default, ImGuiErrorCallback errorCallback = default, void* errorCallbackUserData = default, Vector2 errorTooltipLockedPos = default, bool errorFirst = default, int errorCountCurrentFrame = default, ImGuiErrorRecoveryState stackSizesInNewFrame = default, ImGuiErrorRecoveryState* stackSizesInBeginForCurrentWindow = default, int debugDrawIdConflictsCount = default, ImGuiDebugLogFlags debugLogFlags = default, ImGuiTextBuffer debugLogBuf = default, ImGuiTextIndex debugLogIndex = default, int debugLogSkippedErrors = default, ImGuiDebugLogFlags debugLogAutoDisableFlags = default, byte debugLogAutoDisableFrames = default, byte debugLocateFrames = default, bool debugBreakInLocateId = default, int debugBreakKeyChord = default, byte debugBeginReturnValueCullDepth = default, bool debugItemPickerActive = default, byte debugItemPickerMouseButton = default, uint debugItemPickerBreakId = default, float debugFlashStyleColorTime = default, Vector4 debugFlashStyleColorBackup = default, ImGuiMetricsConfig debugMetricsConfig = default, ImGuiIDStackTool debugIdStackTool = default, ImGuiDebugAllocInfo debugAllocInfo = default, ImGuiDockNode* debugHoveredDockNode = default, float* framerateSecPerFrame = default, int framerateSecPerFrameIdx = default, int framerateSecPerFrameCount = default, float framerateSecPerFrameAccum = default, int wantCaptureMouseNextFrame = default, int wantCaptureKeyboardNextFrame = default, int wantTextInputNextFrame = default, ImVector<byte> tempBuffer = default, byte* tempKeychordName = default)
 		{
 			Initialized = initialized ? (byte)1 : (byte)0;
 			FontAtlasOwnedByContext = fontAtlasOwnedByContext ? (byte)1 : (byte)0;
@@ -2363,7 +2362,7 @@ namespace Hexa.NET.ImGui
 			PlatformImeDataPrev = platformImeDataPrev;
 			PlatformImeViewport = platformImeViewport;
 			DockContext = dockContext;
-			DockNodeWindowMenuHandler = (delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>*)dockNodeWindowMenuHandler;
+			DockNodeWindowMenuHandler = (void*)dockNodeWindowMenuHandler;
 			SettingsLoaded = settingsLoaded ? (byte)1 : (byte)0;
 			SettingsDirtyTimer = settingsDirtyTimer;
 			SettingsIniData = settingsIniData;
@@ -2400,7 +2399,7 @@ namespace Hexa.NET.ImGui
 			LogDepthRef = logDepthRef;
 			LogDepthToExpand = logDepthToExpand;
 			LogDepthToExpandDefault = logDepthToExpandDefault;
-			ErrorCallback = (delegate*<void>*)errorCallback;
+			ErrorCallback = (void*)Marshal.GetFunctionPointerForDelegate(errorCallback);
 			ErrorCallbackUserData = errorCallbackUserData;
 			ErrorTooltipLockedPos = errorTooltipLockedPos;
 			ErrorFirst = errorFirst ? (byte)1 : (byte)0;
@@ -2569,7 +2568,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiContext(bool initialized = default, bool fontAtlasOwnedByContext = default, ImGuiIO io = default, ImGuiPlatformIO platformIo = default, ImGuiStyle style = default, int configFlagsCurrFrame = default, int configFlagsLastFrame = default, ImFontPtr font = default, float fontSize = default, float fontBaseSize = default, float fontScale = default, float currentDpiScale = default, ImDrawListSharedData drawListSharedData = default, double time = default, int frameCount = default, int frameCountEnded = default, int frameCountPlatformEnded = default, int frameCountRendered = default, bool withinFrameScope = default, bool withinFrameScopeWithImplicitWindow = default, bool withinEndChild = default, bool gcCompactAll = default, bool testEngineHookItems = default, void* testEngine = default, Span<byte> contextName = default, ImVector<ImGuiInputEvent> inputEventsQueue = default, ImVector<ImGuiInputEvent> inputEventsTrail = default, ImGuiMouseSource inputEventsNextMouseSource = default, uint inputEventsNextEventId = default, ImVector<ImGuiWindowPtr> windows = default, ImVector<ImGuiWindowPtr> windowsFocusOrder = default, ImVector<ImGuiWindowPtr> windowsTempSortBuffer = default, ImVector<ImGuiWindowStackData> currentWindowStack = default, ImGuiStorage windowsById = default, int windowsActiveCount = default, Vector2 windowsHoverPadding = default, uint debugBreakInWindow = default, ImGuiWindow* currentWindow = default, ImGuiWindow* hoveredWindow = default, ImGuiWindow* hoveredWindowUnderMovingWindow = default, ImGuiWindow* hoveredWindowBeforeClear = default, ImGuiWindow* movingWindow = default, ImGuiWindow* wheelingWindow = default, Vector2 wheelingWindowRefMousePos = default, int wheelingWindowStartFrame = default, int wheelingWindowScrolledFrame = default, float wheelingWindowReleaseTimer = default, Vector2 wheelingWindowWheelRemainder = default, Vector2 wheelingAxisAvg = default, uint debugDrawIdConflicts = default, uint debugHookIdInfo = default, uint hoveredId = default, uint hoveredIdPreviousFrame = default, int hoveredIdPreviousFrameItemCount = default, float hoveredIdTimer = default, float hoveredIdNotActiveTimer = default, bool hoveredIdAllowOverlap = default, bool hoveredIdIsDisabled = default, bool itemUnclipByLog = default, uint activeId = default, uint activeIdIsAlive = default, float activeIdTimer = default, bool activeIdIsJustActivated = default, bool activeIdAllowOverlap = default, bool activeIdNoClearOnFocusLoss = default, bool activeIdHasBeenPressedBefore = default, bool activeIdHasBeenEditedBefore = default, bool activeIdHasBeenEditedThisFrame = default, bool activeIdFromShortcut = default, int activeIdMouseButton = default, Vector2 activeIdClickOffset = default, ImGuiWindow* activeIdWindow = default, ImGuiInputSource activeIdSource = default, uint activeIdPreviousFrame = default, bool activeIdPreviousFrameIsAlive = default, bool activeIdPreviousFrameHasBeenEditedBefore = default, ImGuiWindow* activeIdPreviousFrameWindow = default, uint lastActiveId = default, float lastActiveIdTimer = default, double lastKeyModsChangeTime = default, double lastKeyModsChangeFromNoneTime = default, double lastKeyboardKeyPressTime = default, ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN keysMayBeCharInput = default, Span<ImGuiKeyOwnerData> keysOwnerData = default, ImGuiKeyRoutingTable keysRoutingTable = default, uint activeIdUsingNavDirMask = default, bool activeIdUsingAllKeyboardKeys = default, int debugBreakInShortcutRouting = default, uint currentFocusScopeId = default, int currentItemFlags = default, uint debugLocateId = default, ImGuiNextItemData nextItemData = default, ImGuiLastItemData lastItemData = default, ImGuiNextWindowData nextWindowData = default, bool debugShowGroupRects = default, int debugFlashStyleColorIdx = default, ImVector<ImGuiColorMod> colorStack = default, ImVector<ImGuiStyleMod> styleVarStack = default, ImVector<ImFontPtr> fontStack = default, ImVector<ImGuiFocusScopeData> focusScopeStack = default, ImVector<ImGuiItemFlags> itemFlagsStack = default, ImVector<ImGuiGroupData> groupStack = default, ImVector<ImGuiPopupData> openPopupStack = default, ImVector<ImGuiPopupData> beginPopupStack = default, ImVector<ImGuiTreeNodeStackData> treeNodeStack = default, ImVector<ImGuiViewportPPtr> viewports = default, ImGuiViewportP* currentViewport = default, ImGuiViewportP* mouseViewport = default, ImGuiViewportP* mouseLastHoveredViewport = default, uint platformLastFocusedViewportId = default, ImGuiPlatformMonitor fallbackMonitor = default, ImRect platformMonitorsFullWorkRect = default, int viewportCreatedCount = default, int platformWindowsCreatedCount = default, int viewportFocusedStampCount = default, bool navCursorVisible = default, bool navHighlightItemUnderNav = default, bool navMousePosDirty = default, bool navIdIsAlive = default, uint navId = default, ImGuiWindow* navWindow = default, uint navFocusScopeId = default, ImGuiNavLayer navLayer = default, uint navActivateId = default, uint navActivateDownId = default, uint navActivatePressedId = default, int navActivateFlags = default, ImVector<ImGuiFocusScopeData> navFocusRoute = default, uint navHighlightActivatedId = default, float navHighlightActivatedTimer = default, uint navNextActivateId = default, int navNextActivateFlags = default, ImGuiInputSource navInputSource = default, long navLastValidSelectionUserData = default, byte navCursorHideFrames = default, bool navAnyRequest = default, bool navInitRequest = default, bool navInitRequestFromMove = default, ImGuiNavItemData navInitResult = default, bool navMoveSubmitted = default, bool navMoveScoringItems = default, bool navMoveForwardToNextFrame = default, int navMoveFlags = default, int navMoveScrollFlags = default, int navMoveKeyMods = default, ImGuiDir navMoveDir = default, ImGuiDir navMoveDirForDebug = default, ImGuiDir navMoveClipDir = default, ImRect navScoringRect = default, ImRect navScoringNoClipRect = default, int navScoringDebugCount = default, int navTabbingDir = default, int navTabbingCounter = default, ImGuiNavItemData navMoveResultLocal = default, ImGuiNavItemData navMoveResultLocalVisible = default, ImGuiNavItemData navMoveResultOther = default, ImGuiNavItemData navTabbingResultFirst = default, uint navJustMovedFromFocusScopeId = default, uint navJustMovedToId = default, uint navJustMovedToFocusScopeId = default, int navJustMovedToKeyMods = default, bool navJustMovedToIsTabbing = default, bool navJustMovedToHasSelectionData = default, int configNavWindowingKeyNext = default, int configNavWindowingKeyPrev = default, ImGuiWindow* navWindowingTarget = default, ImGuiWindow* navWindowingTargetAnim = default, ImGuiWindow* navWindowingListWindow = default, float navWindowingTimer = default, float navWindowingHighlightAlpha = default, bool navWindowingToggleLayer = default, ImGuiKey navWindowingToggleKey = default, Vector2 navWindowingAccumDeltaPos = default, Vector2 navWindowingAccumDeltaSize = default, float dimBgRatio = default, bool dragDropActive = default, bool dragDropWithinSource = default, bool dragDropWithinTarget = default, int dragDropSourceFlags = default, int dragDropSourceFrameCount = default, int dragDropMouseButton = default, ImGuiPayload dragDropPayload = default, ImRect dragDropTargetRect = default, ImRect dragDropTargetClipRect = default, uint dragDropTargetId = default, int dragDropAcceptFlags = default, float dragDropAcceptIdCurrRectSurface = default, uint dragDropAcceptIdCurr = default, uint dragDropAcceptIdPrev = default, int dragDropAcceptFrameCount = default, uint dragDropHoldJustPressedId = default, ImVector<byte> dragDropPayloadBufHeap = default, Span<byte> dragDropPayloadBufLocal = default, int clipperTempDataStacked = default, ImVector<ImGuiListClipperData> clipperTempData = default, ImGuiTable* currentTable = default, uint debugBreakInTable = default, int tablesTempDataStacked = default, ImVector<ImGuiTableTempData> tablesTempData = default, ImPoolImGuiTable tables = default, ImVector<float> tablesLastTimeActive = default, ImVector<ImDrawChannel> drawChannelsTempMergeBuffer = default, ImGuiTabBar* currentTabBar = default, ImPoolImGuiTabBar tabBars = default, ImVector<ImGuiPtrOrIndex> currentTabBarStack = default, ImVector<ImGuiShrinkWidthItem> shrinkWidthBuffer = default, ImGuiBoxSelectState boxSelectState = default, ImGuiMultiSelectTempData* currentMultiSelect = default, int multiSelectTempDataStacked = default, ImVector<ImGuiMultiSelectTempData> multiSelectTempData = default, ImPoolImGuiMultiSelectState multiSelectStorage = default, uint hoverItemDelayId = default, uint hoverItemDelayIdPreviousFrame = default, float hoverItemDelayTimer = default, float hoverItemDelayClearTimer = default, uint hoverItemUnlockedStationaryId = default, uint hoverWindowUnlockedStationaryId = default, int mouseCursor = default, float mouseStationaryTimer = default, Vector2 mouseLastValidPos = default, ImGuiInputTextState inputTextState = default, ImGuiInputTextDeactivatedState inputTextDeactivatedState = default, ImFont inputTextPasswordFont = default, uint tempInputId = default, ImGuiDataTypeStorage dataTypeZeroValue = default, int beginMenuDepth = default, int beginComboDepth = default, int colorEditOptions = default, uint colorEditCurrentId = default, uint colorEditSavedId = default, float colorEditSavedHue = default, float colorEditSavedSat = default, uint colorEditSavedColor = default, Vector4 colorPickerRef = default, ImGuiComboPreviewData comboPreviewData = default, ImRect windowResizeBorderExpectedRect = default, bool windowResizeRelativeMode = default, short scrollbarSeekMode = default, float scrollbarClickDeltaToGrabCenter = default, float sliderGrabClickOffset = default, float sliderCurrentAccum = default, bool sliderCurrentAccumDirty = default, bool dragCurrentAccumDirty = default, float dragCurrentAccum = default, float dragSpeedDefaultRatio = default, float disabledAlphaBackup = default, short disabledStackSize = default, short tooltipOverrideCount = default, ImGuiWindow* tooltipPreviousWindow = default, ImVector<byte> clipboardHandlerData = default, ImVector<ImGuiID> menusIdSubmittedThisFrame = default, ImGuiTypingSelectState typingSelectState = default, ImGuiPlatformImeData platformImeData = default, ImGuiPlatformImeData platformImeDataPrev = default, uint platformImeViewport = default, ImGuiDockContext dockContext = default, delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void> dockNodeWindowMenuHandler = default, bool settingsLoaded = default, float settingsDirtyTimer = default, ImGuiTextBuffer settingsIniData = default, ImVector<ImGuiSettingsHandler> settingsHandlers = default, ImChunkStreamImGuiWindowSettings settingsWindows = default, ImChunkStreamImGuiTableSettings settingsTables = default, ImVector<ImGuiContextHook> hooks = default, uint hookIdNext = default, Span<Pointer<byte>> localizationTable = default, bool logEnabled = default, int logFlags = default, ImGuiWindow* logWindow = default, Iobuf* logFile = default, ImGuiTextBuffer logBuffer = default, byte* logNextPrefix = default, byte* logNextSuffix = default, float logLinePosY = default, bool logLineFirstItem = default, int logDepthRef = default, int logDepthToExpand = default, int logDepthToExpandDefault = default, delegate*<void> errorCallback = default, void* errorCallbackUserData = default, Vector2 errorTooltipLockedPos = default, bool errorFirst = default, int errorCountCurrentFrame = default, ImGuiErrorRecoveryState stackSizesInNewFrame = default, ImGuiErrorRecoveryState* stackSizesInBeginForCurrentWindow = default, int debugDrawIdConflictsCount = default, int debugLogFlags = default, ImGuiTextBuffer debugLogBuf = default, ImGuiTextIndex debugLogIndex = default, int debugLogSkippedErrors = default, int debugLogAutoDisableFlags = default, byte debugLogAutoDisableFrames = default, byte debugLocateFrames = default, bool debugBreakInLocateId = default, int debugBreakKeyChord = default, byte debugBeginReturnValueCullDepth = default, bool debugItemPickerActive = default, byte debugItemPickerMouseButton = default, uint debugItemPickerBreakId = default, float debugFlashStyleColorTime = default, Vector4 debugFlashStyleColorBackup = default, ImGuiMetricsConfig debugMetricsConfig = default, ImGuiIDStackTool debugIdStackTool = default, ImGuiDebugAllocInfo debugAllocInfo = default, ImGuiDockNode* debugHoveredDockNode = default, Span<float> framerateSecPerFrame = default, int framerateSecPerFrameIdx = default, int framerateSecPerFrameCount = default, float framerateSecPerFrameAccum = default, int wantCaptureMouseNextFrame = default, int wantCaptureKeyboardNextFrame = default, int wantTextInputNextFrame = default, ImVector<byte> tempBuffer = default, Span<byte> tempKeychordName = default)
+		public unsafe ImGuiContext(bool initialized = default, bool fontAtlasOwnedByContext = default, ImGuiIO io = default, ImGuiPlatformIO platformIo = default, ImGuiStyle style = default, ImGuiConfigFlags configFlagsCurrFrame = default, ImGuiConfigFlags configFlagsLastFrame = default, ImFontPtr font = default, float fontSize = default, float fontBaseSize = default, float fontScale = default, float currentDpiScale = default, ImDrawListSharedData drawListSharedData = default, double time = default, int frameCount = default, int frameCountEnded = default, int frameCountPlatformEnded = default, int frameCountRendered = default, bool withinFrameScope = default, bool withinFrameScopeWithImplicitWindow = default, bool withinEndChild = default, bool gcCompactAll = default, bool testEngineHookItems = default, void* testEngine = default, Span<byte> contextName = default, ImVector<ImGuiInputEvent> inputEventsQueue = default, ImVector<ImGuiInputEvent> inputEventsTrail = default, ImGuiMouseSource inputEventsNextMouseSource = default, uint inputEventsNextEventId = default, ImVector<ImGuiWindowPtr> windows = default, ImVector<ImGuiWindowPtr> windowsFocusOrder = default, ImVector<ImGuiWindowPtr> windowsTempSortBuffer = default, ImVector<ImGuiWindowStackData> currentWindowStack = default, ImGuiStorage windowsById = default, int windowsActiveCount = default, Vector2 windowsHoverPadding = default, uint debugBreakInWindow = default, ImGuiWindow* currentWindow = default, ImGuiWindow* hoveredWindow = default, ImGuiWindow* hoveredWindowUnderMovingWindow = default, ImGuiWindow* hoveredWindowBeforeClear = default, ImGuiWindow* movingWindow = default, ImGuiWindow* wheelingWindow = default, Vector2 wheelingWindowRefMousePos = default, int wheelingWindowStartFrame = default, int wheelingWindowScrolledFrame = default, float wheelingWindowReleaseTimer = default, Vector2 wheelingWindowWheelRemainder = default, Vector2 wheelingAxisAvg = default, uint debugDrawIdConflicts = default, uint debugHookIdInfo = default, uint hoveredId = default, uint hoveredIdPreviousFrame = default, int hoveredIdPreviousFrameItemCount = default, float hoveredIdTimer = default, float hoveredIdNotActiveTimer = default, bool hoveredIdAllowOverlap = default, bool hoveredIdIsDisabled = default, bool itemUnclipByLog = default, uint activeId = default, uint activeIdIsAlive = default, float activeIdTimer = default, bool activeIdIsJustActivated = default, bool activeIdAllowOverlap = default, bool activeIdNoClearOnFocusLoss = default, bool activeIdHasBeenPressedBefore = default, bool activeIdHasBeenEditedBefore = default, bool activeIdHasBeenEditedThisFrame = default, bool activeIdFromShortcut = default, int activeIdMouseButton = default, Vector2 activeIdClickOffset = default, ImGuiWindow* activeIdWindow = default, ImGuiInputSource activeIdSource = default, uint activeIdPreviousFrame = default, bool activeIdPreviousFrameIsAlive = default, bool activeIdPreviousFrameHasBeenEditedBefore = default, ImGuiWindow* activeIdPreviousFrameWindow = default, uint lastActiveId = default, float lastActiveIdTimer = default, double lastKeyModsChangeTime = default, double lastKeyModsChangeFromNoneTime = default, double lastKeyboardKeyPressTime = default, nuint keysMayBeCharInput = default, Span<ImGuiKeyOwnerData> keysOwnerData = default, ImGuiKeyRoutingTable keysRoutingTable = default, uint activeIdUsingNavDirMask = default, bool activeIdUsingAllKeyboardKeys = default, int debugBreakInShortcutRouting = default, uint currentFocusScopeId = default, ImGuiItemFlags currentItemFlags = default, uint debugLocateId = default, ImGuiNextItemData nextItemData = default, ImGuiLastItemData lastItemData = default, ImGuiNextWindowData nextWindowData = default, bool debugShowGroupRects = default, ImGuiCol debugFlashStyleColorIdx = default, ImVector<ImGuiColorMod> colorStack = default, ImVector<ImGuiStyleMod> styleVarStack = default, ImVector<ImFontPtr> fontStack = default, ImVector<ImGuiFocusScopeData> focusScopeStack = default, ImVector<ImGuiItemFlags> itemFlagsStack = default, ImVector<ImGuiGroupData> groupStack = default, ImVector<ImGuiPopupData> openPopupStack = default, ImVector<ImGuiPopupData> beginPopupStack = default, ImVector<ImGuiTreeNodeStackData> treeNodeStack = default, ImVector<ImGuiViewportPPtr> viewports = default, ImGuiViewportP* currentViewport = default, ImGuiViewportP* mouseViewport = default, ImGuiViewportP* mouseLastHoveredViewport = default, uint platformLastFocusedViewportId = default, ImGuiPlatformMonitor fallbackMonitor = default, ImRect platformMonitorsFullWorkRect = default, int viewportCreatedCount = default, int platformWindowsCreatedCount = default, int viewportFocusedStampCount = default, bool navCursorVisible = default, bool navHighlightItemUnderNav = default, bool navMousePosDirty = default, bool navIdIsAlive = default, uint navId = default, ImGuiWindow* navWindow = default, uint navFocusScopeId = default, ImGuiNavLayer navLayer = default, uint navActivateId = default, uint navActivateDownId = default, uint navActivatePressedId = default, ImGuiActivateFlags navActivateFlags = default, ImVector<ImGuiFocusScopeData> navFocusRoute = default, uint navHighlightActivatedId = default, float navHighlightActivatedTimer = default, uint navNextActivateId = default, ImGuiActivateFlags navNextActivateFlags = default, ImGuiInputSource navInputSource = default, long navLastValidSelectionUserData = default, byte navCursorHideFrames = default, bool navAnyRequest = default, bool navInitRequest = default, bool navInitRequestFromMove = default, ImGuiNavItemData navInitResult = default, bool navMoveSubmitted = default, bool navMoveScoringItems = default, bool navMoveForwardToNextFrame = default, ImGuiNavMoveFlags navMoveFlags = default, ImGuiScrollFlags navMoveScrollFlags = default, int navMoveKeyMods = default, ImGuiDir navMoveDir = default, ImGuiDir navMoveDirForDebug = default, ImGuiDir navMoveClipDir = default, ImRect navScoringRect = default, ImRect navScoringNoClipRect = default, int navScoringDebugCount = default, int navTabbingDir = default, int navTabbingCounter = default, ImGuiNavItemData navMoveResultLocal = default, ImGuiNavItemData navMoveResultLocalVisible = default, ImGuiNavItemData navMoveResultOther = default, ImGuiNavItemData navTabbingResultFirst = default, uint navJustMovedFromFocusScopeId = default, uint navJustMovedToId = default, uint navJustMovedToFocusScopeId = default, int navJustMovedToKeyMods = default, bool navJustMovedToIsTabbing = default, bool navJustMovedToHasSelectionData = default, int configNavWindowingKeyNext = default, int configNavWindowingKeyPrev = default, ImGuiWindow* navWindowingTarget = default, ImGuiWindow* navWindowingTargetAnim = default, ImGuiWindow* navWindowingListWindow = default, float navWindowingTimer = default, float navWindowingHighlightAlpha = default, bool navWindowingToggleLayer = default, ImGuiKey navWindowingToggleKey = default, Vector2 navWindowingAccumDeltaPos = default, Vector2 navWindowingAccumDeltaSize = default, float dimBgRatio = default, bool dragDropActive = default, bool dragDropWithinSource = default, bool dragDropWithinTarget = default, ImGuiDragDropFlags dragDropSourceFlags = default, int dragDropSourceFrameCount = default, int dragDropMouseButton = default, ImGuiPayload dragDropPayload = default, ImRect dragDropTargetRect = default, ImRect dragDropTargetClipRect = default, uint dragDropTargetId = default, ImGuiDragDropFlags dragDropAcceptFlags = default, float dragDropAcceptIdCurrRectSurface = default, uint dragDropAcceptIdCurr = default, uint dragDropAcceptIdPrev = default, int dragDropAcceptFrameCount = default, uint dragDropHoldJustPressedId = default, ImVector<byte> dragDropPayloadBufHeap = default, Span<byte> dragDropPayloadBufLocal = default, int clipperTempDataStacked = default, ImVector<ImGuiListClipperData> clipperTempData = default, ImGuiTable* currentTable = default, uint debugBreakInTable = default, int tablesTempDataStacked = default, ImVector<ImGuiTableTempData> tablesTempData = default, ImPoolImGuiTable tables = default, ImVector<float> tablesLastTimeActive = default, ImVector<ImDrawChannel> drawChannelsTempMergeBuffer = default, ImGuiTabBar* currentTabBar = default, ImPoolImGuiTabBar tabBars = default, ImVector<ImGuiPtrOrIndex> currentTabBarStack = default, ImVector<ImGuiShrinkWidthItem> shrinkWidthBuffer = default, ImGuiBoxSelectState boxSelectState = default, ImGuiMultiSelectTempData* currentMultiSelect = default, int multiSelectTempDataStacked = default, ImVector<ImGuiMultiSelectTempData> multiSelectTempData = default, ImPoolImGuiMultiSelectState multiSelectStorage = default, uint hoverItemDelayId = default, uint hoverItemDelayIdPreviousFrame = default, float hoverItemDelayTimer = default, float hoverItemDelayClearTimer = default, uint hoverItemUnlockedStationaryId = default, uint hoverWindowUnlockedStationaryId = default, ImGuiMouseCursor mouseCursor = default, float mouseStationaryTimer = default, Vector2 mouseLastValidPos = default, ImGuiInputTextState inputTextState = default, ImGuiInputTextDeactivatedState inputTextDeactivatedState = default, ImFont inputTextPasswordFont = default, uint tempInputId = default, ImGuiDataTypeStorage dataTypeZeroValue = default, int beginMenuDepth = default, int beginComboDepth = default, ImGuiColorEditFlags colorEditOptions = default, uint colorEditCurrentId = default, uint colorEditSavedId = default, float colorEditSavedHue = default, float colorEditSavedSat = default, uint colorEditSavedColor = default, Vector4 colorPickerRef = default, ImGuiComboPreviewData comboPreviewData = default, ImRect windowResizeBorderExpectedRect = default, bool windowResizeRelativeMode = default, short scrollbarSeekMode = default, float scrollbarClickDeltaToGrabCenter = default, float sliderGrabClickOffset = default, float sliderCurrentAccum = default, bool sliderCurrentAccumDirty = default, bool dragCurrentAccumDirty = default, float dragCurrentAccum = default, float dragSpeedDefaultRatio = default, float disabledAlphaBackup = default, short disabledStackSize = default, short tooltipOverrideCount = default, ImGuiWindow* tooltipPreviousWindow = default, ImVector<byte> clipboardHandlerData = default, ImVector<int> menusIdSubmittedThisFrame = default, ImGuiTypingSelectState typingSelectState = default, ImGuiPlatformImeData platformImeData = default, ImGuiPlatformImeData platformImeDataPrev = default, uint platformImeViewport = default, ImGuiDockContext dockContext = default, delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void> dockNodeWindowMenuHandler = default, bool settingsLoaded = default, float settingsDirtyTimer = default, ImGuiTextBuffer settingsIniData = default, ImVector<ImGuiSettingsHandler> settingsHandlers = default, ImChunkStreamImGuiWindowSettings settingsWindows = default, ImChunkStreamImGuiTableSettings settingsTables = default, ImVector<ImGuiContextHook> hooks = default, uint hookIdNext = default, Span<Pointer<byte>> localizationTable = default, bool logEnabled = default, ImGuiLogFlags logFlags = default, ImGuiWindow* logWindow = default, ImFileHandle logFile = default, ImGuiTextBuffer logBuffer = default, byte* logNextPrefix = default, byte* logNextSuffix = default, float logLinePosY = default, bool logLineFirstItem = default, int logDepthRef = default, int logDepthToExpand = default, int logDepthToExpandDefault = default, ImGuiErrorCallback errorCallback = default, void* errorCallbackUserData = default, Vector2 errorTooltipLockedPos = default, bool errorFirst = default, int errorCountCurrentFrame = default, ImGuiErrorRecoveryState stackSizesInNewFrame = default, ImGuiErrorRecoveryState* stackSizesInBeginForCurrentWindow = default, int debugDrawIdConflictsCount = default, ImGuiDebugLogFlags debugLogFlags = default, ImGuiTextBuffer debugLogBuf = default, ImGuiTextIndex debugLogIndex = default, int debugLogSkippedErrors = default, ImGuiDebugLogFlags debugLogAutoDisableFlags = default, byte debugLogAutoDisableFrames = default, byte debugLocateFrames = default, bool debugBreakInLocateId = default, int debugBreakKeyChord = default, byte debugBeginReturnValueCullDepth = default, bool debugItemPickerActive = default, byte debugItemPickerMouseButton = default, uint debugItemPickerBreakId = default, float debugFlashStyleColorTime = default, Vector4 debugFlashStyleColorBackup = default, ImGuiMetricsConfig debugMetricsConfig = default, ImGuiIDStackTool debugIdStackTool = default, ImGuiDebugAllocInfo debugAllocInfo = default, ImGuiDockNode* debugHoveredDockNode = default, Span<float> framerateSecPerFrame = default, int framerateSecPerFrameIdx = default, int framerateSecPerFrameCount = default, float framerateSecPerFrameAccum = default, int wantCaptureMouseNextFrame = default, int wantCaptureKeyboardNextFrame = default, int wantTextInputNextFrame = default, ImVector<byte> tempBuffer = default, Span<byte> tempKeychordName = default)
 		{
 			Initialized = initialized ? (byte)1 : (byte)0;
 			FontAtlasOwnedByContext = fontAtlasOwnedByContext ? (byte)1 : (byte)0;
@@ -3019,7 +3018,7 @@ namespace Hexa.NET.ImGui
 			PlatformImeDataPrev = platformImeDataPrev;
 			PlatformImeViewport = platformImeViewport;
 			DockContext = dockContext;
-			DockNodeWindowMenuHandler = (delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>*)dockNodeWindowMenuHandler;
+			DockNodeWindowMenuHandler = (void*)dockNodeWindowMenuHandler;
 			SettingsLoaded = settingsLoaded ? (byte)1 : (byte)0;
 			SettingsDirtyTimer = settingsDirtyTimer;
 			SettingsIniData = settingsIniData;
@@ -3056,7 +3055,7 @@ namespace Hexa.NET.ImGui
 			LogDepthRef = logDepthRef;
 			LogDepthToExpand = logDepthToExpand;
 			LogDepthToExpandDefault = logDepthToExpandDefault;
-			ErrorCallback = (delegate*<void>*)errorCallback;
+			ErrorCallback = (void*)Marshal.GetFunctionPointerForDelegate(errorCallback);
 			ErrorCallbackUserData = errorCallbackUserData;
 			ErrorTooltipLockedPos = errorTooltipLockedPos;
 			ErrorFirst = errorFirst ? (byte)1 : (byte)0;
@@ -3317,11 +3316,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ConfigFlagsCurrFrame => ref Unsafe.AsRef<int>(&Handle->ConfigFlagsCurrFrame);
+		public ref ImGuiConfigFlags ConfigFlagsCurrFrame => ref Unsafe.AsRef<ImGuiConfigFlags>(&Handle->ConfigFlagsCurrFrame);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ConfigFlagsLastFrame => ref Unsafe.AsRef<int>(&Handle->ConfigFlagsLastFrame);
+		public ref ImGuiConfigFlags ConfigFlagsLastFrame => ref Unsafe.AsRef<ImGuiConfigFlags>(&Handle->ConfigFlagsLastFrame);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3632,7 +3631,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN KeysMayBeCharInput => ref Unsafe.AsRef<ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN>(&Handle->KeysMayBeCharInput);
+		public ref nuint KeysMayBeCharInput => ref Unsafe.AsRef<nuint>(&Handle->KeysMayBeCharInput);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3667,7 +3666,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CurrentItemFlags => ref Unsafe.AsRef<int>(&Handle->CurrentItemFlags);
+		public ref ImGuiItemFlags CurrentItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->CurrentItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3691,7 +3690,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int DebugFlashStyleColorIdx => ref Unsafe.AsRef<int>(&Handle->DebugFlashStyleColorIdx);
+		public ref ImGuiCol DebugFlashStyleColorIdx => ref Unsafe.AsRef<ImGuiCol>(&Handle->DebugFlashStyleColorIdx);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3815,7 +3814,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int NavActivateFlags => ref Unsafe.AsRef<int>(&Handle->NavActivateFlags);
+		public ref ImGuiActivateFlags NavActivateFlags => ref Unsafe.AsRef<ImGuiActivateFlags>(&Handle->NavActivateFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3835,7 +3834,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int NavNextActivateFlags => ref Unsafe.AsRef<int>(&Handle->NavNextActivateFlags);
+		public ref ImGuiActivateFlags NavNextActivateFlags => ref Unsafe.AsRef<ImGuiActivateFlags>(&Handle->NavNextActivateFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3879,11 +3878,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int NavMoveFlags => ref Unsafe.AsRef<int>(&Handle->NavMoveFlags);
+		public ref ImGuiNavMoveFlags NavMoveFlags => ref Unsafe.AsRef<ImGuiNavMoveFlags>(&Handle->NavMoveFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int NavMoveScrollFlags => ref Unsafe.AsRef<int>(&Handle->NavMoveScrollFlags);
+		public ref ImGuiScrollFlags NavMoveScrollFlags => ref Unsafe.AsRef<ImGuiScrollFlags>(&Handle->NavMoveScrollFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4023,7 +4022,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int DragDropSourceFlags => ref Unsafe.AsRef<int>(&Handle->DragDropSourceFlags);
+		public ref ImGuiDragDropFlags DragDropSourceFlags => ref Unsafe.AsRef<ImGuiDragDropFlags>(&Handle->DragDropSourceFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4051,7 +4050,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int DragDropAcceptFlags => ref Unsafe.AsRef<int>(&Handle->DragDropAcceptFlags);
+		public ref ImGuiDragDropFlags DragDropAcceptFlags => ref Unsafe.AsRef<ImGuiDragDropFlags>(&Handle->DragDropAcceptFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4186,7 +4185,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int MouseCursor => ref Unsafe.AsRef<int>(&Handle->MouseCursor);
+		public ref ImGuiMouseCursor MouseCursor => ref Unsafe.AsRef<ImGuiMouseCursor>(&Handle->MouseCursor);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4226,7 +4225,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ColorEditOptions => ref Unsafe.AsRef<int>(&Handle->ColorEditOptions);
+		public ref ImGuiColorEditFlags ColorEditOptions => ref Unsafe.AsRef<ImGuiColorEditFlags>(&Handle->ColorEditOptions);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4318,7 +4317,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<ImGuiID> MenusIdSubmittedThisFrame => ref Unsafe.AsRef<ImVector<ImGuiID>>(&Handle->MenusIdSubmittedThisFrame);
+		public ref ImVector<int> MenusIdSubmittedThisFrame => ref Unsafe.AsRef<ImVector<int>>(&Handle->MenusIdSubmittedThisFrame);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4385,7 +4384,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int LogFlags => ref Unsafe.AsRef<int>(&Handle->LogFlags);
+		public ref ImGuiLogFlags LogFlags => ref Unsafe.AsRef<ImGuiLogFlags>(&Handle->LogFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4393,7 +4392,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref IobufPtr LogFile => ref Unsafe.AsRef<IobufPtr>(&Handle->LogFile);
+		public ref ImFileHandle LogFile => ref Unsafe.AsRef<ImFileHandle>(&Handle->LogFile);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4461,7 +4460,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int DebugLogFlags => ref Unsafe.AsRef<int>(&Handle->DebugLogFlags);
+		public ref ImGuiDebugLogFlags DebugLogFlags => ref Unsafe.AsRef<ImGuiDebugLogFlags>(&Handle->DebugLogFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4477,7 +4476,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int DebugLogAutoDisableFlags => ref Unsafe.AsRef<int>(&Handle->DebugLogAutoDisableFlags);
+		public ref ImGuiDebugLogFlags DebugLogAutoDisableFlags => ref Unsafe.AsRef<ImGuiDebugLogFlags>(&Handle->DebugLogAutoDisableFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

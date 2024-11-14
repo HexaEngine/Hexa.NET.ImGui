@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImGuiTabBarFlags Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -196,7 +196,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTabBar(ImGuiWindowPtr window = default, ImVector<ImGuiTabItem> tabs = default, int flags = default, uint id = default, uint selectedTabId = default, uint nextSelectedTabId = default, uint visibleTabId = default, int currFrameVisible = default, int prevFrameVisible = default, ImRect barRect = default, float currTabsContentsHeight = default, float prevTabsContentsHeight = default, float widthAllTabs = default, float widthAllTabsIdeal = default, float scrollingAnim = default, float scrollingTarget = default, float scrollingTargetDistToVisibility = default, float scrollingSpeed = default, float scrollingRectMinX = default, float scrollingRectMaxX = default, float separatorMinX = default, float separatorMaxX = default, uint reorderRequestTabId = default, short reorderRequestOffset = default, byte beginCount = default, bool wantLayout = default, bool visibleTabWasSubmitted = default, bool tabsAddedNew = default, short tabsActiveCount = default, short lastTabItemIdx = default, float itemSpacingY = default, Vector2 framePadding = default, Vector2 backupCursorPos = default, ImGuiTextBuffer tabsNames = default)
+		public unsafe ImGuiTabBar(ImGuiWindowPtr window = default, ImVector<ImGuiTabItem> tabs = default, ImGuiTabBarFlags flags = default, uint id = default, uint selectedTabId = default, uint nextSelectedTabId = default, uint visibleTabId = default, int currFrameVisible = default, int prevFrameVisible = default, ImRect barRect = default, float currTabsContentsHeight = default, float prevTabsContentsHeight = default, float widthAllTabs = default, float widthAllTabsIdeal = default, float scrollingAnim = default, float scrollingTarget = default, float scrollingTargetDistToVisibility = default, float scrollingSpeed = default, float scrollingRectMinX = default, float scrollingRectMaxX = default, float separatorMinX = default, float separatorMaxX = default, uint reorderRequestTabId = default, short reorderRequestOffset = default, byte beginCount = default, bool wantLayout = default, bool visibleTabWasSubmitted = default, bool tabsAddedNew = default, short tabsActiveCount = default, short lastTabItemIdx = default, float itemSpacingY = default, Vector2 framePadding = default, Vector2 backupCursorPos = default, ImGuiTextBuffer tabsNames = default)
 		{
 			Window = window;
 			Tabs = tabs;
@@ -289,7 +289,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImGuiTabBarFlags Flags => ref Unsafe.AsRef<ImGuiTabBarFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

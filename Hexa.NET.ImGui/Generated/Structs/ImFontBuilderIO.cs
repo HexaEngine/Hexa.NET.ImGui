@@ -33,7 +33,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe ImFontBuilderIO(delegate*<ImFontAtlas*, bool> fontbuilderBuild = default)
 		{
-			FontBuilderBuild = (delegate*<ImFontAtlas*, bool>*)fontbuilderBuild;
+			FontBuilderBuild = (void*)fontbuilderBuild;
 		}
 
 

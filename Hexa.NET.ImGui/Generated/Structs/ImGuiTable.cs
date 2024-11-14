@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImGuiTableFlags Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -60,22 +60,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint* EnabledMaskByDisplayOrder;
+		public ImBitArrayPtr EnabledMaskByDisplayOrder;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint* EnabledMaskByIndex;
+		public ImBitArrayPtr EnabledMaskByIndex;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint* VisibleMaskByIndex;
+		public ImBitArrayPtr VisibleMaskByIndex;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int SettingsLoadedFlags;
+		public ImGuiTableFlags SettingsLoadedFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -145,12 +145,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int RowFlags;
+		public ImGuiTableRowFlags RowFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int LastRowFlags;
+		public ImGuiTableRowFlags LastRowFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -351,137 +351,137 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short SortSpecsCount;
+		public sbyte SortSpecsCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ColumnsEnabledCount;
+		public sbyte ColumnsEnabledCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ColumnsEnabledFixedCount;
+		public sbyte ColumnsEnabledFixedCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short DeclColumnsCount;
+		public sbyte DeclColumnsCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short AngledHeadersCount;
+		public sbyte AngledHeadersCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short HoveredColumnBody;
+		public sbyte HoveredColumnBody;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short HoveredColumnBorder;
+		public sbyte HoveredColumnBorder;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short HighlightColumnHeader;
+		public sbyte HighlightColumnHeader;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short AutoFitSingleColumn;
+		public sbyte AutoFitSingleColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ResizedColumn;
+		public sbyte ResizedColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short LastResizedColumn;
+		public sbyte LastResizedColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short HeldHeaderColumn;
+		public sbyte HeldHeaderColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ReorderColumn;
+		public sbyte ReorderColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ReorderColumnDir;
+		public sbyte ReorderColumnDir;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short LeftMostEnabledColumn;
+		public sbyte LeftMostEnabledColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short RightMostEnabledColumn;
+		public sbyte RightMostEnabledColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short LeftMostStretchedColumn;
+		public sbyte LeftMostStretchedColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short RightMostStretchedColumn;
+		public sbyte RightMostStretchedColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ContextPopupColumn;
+		public sbyte ContextPopupColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short FreezeRowsRequest;
+		public sbyte FreezeRowsRequest;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short FreezeRowsCount;
+		public sbyte FreezeRowsCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short FreezeColumnsRequest;
+		public sbyte FreezeColumnsRequest;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short FreezeColumnsCount;
+		public sbyte FreezeColumnsCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short RowCellDataCurrent;
+		public sbyte RowCellDataCurrent;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort DummyDrawChannel;
+		public byte DummyDrawChannel;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort Bg2DrawChannelCurrent;
+		public byte Bg2DrawChannelCurrent;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort Bg2DrawChannelUnfrozen;
+		public byte Bg2DrawChannelUnfrozen;
 
 		/// <summary>
 		/// To be documented.
@@ -587,7 +587,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTable(uint id = default, int flags = default, void* rawData = default, ImGuiTableTempData* tempData = default, ImSpanImGuiTableColumn columns = default, ImSpanImGuiTableColumnIdx displayOrderToIndex = default, ImSpanImGuiTableCellData rowCellData = default, uint* enabledMaskByDisplayOrder = default, uint* enabledMaskByIndex = default, uint* visibleMaskByIndex = default, int settingsLoadedFlags = default, int settingsOffset = default, int lastFrameActive = default, int columnsCount = default, int currentRow = default, int currentColumn = default, short instanceCurrent = default, short instanceInteracted = default, float rowPosY1 = default, float rowPosY2 = default, float rowMinHeight = default, float rowCellPaddingY = default, float rowTextBaseline = default, float rowIndentOffsetX = default, int rowFlags = default, int lastRowFlags = default, int rowBgColorCounter = default, uint* rowBgColor = default, uint borderColorStrong = default, uint borderColorLight = default, float borderX1 = default, float borderX2 = default, float hostIndentX = default, float minColumnWidth = default, float outerPaddingX = default, float cellPaddingX = default, float cellSpacingX1 = default, float cellSpacingX2 = default, float innerWidth = default, float columnsGivenWidth = default, float columnsAutoFitWidth = default, float columnsStretchSumWeights = default, float resizedColumnNextWidth = default, float resizeLockMinContentsX2 = default, float refScale = default, float angledHeadersHeight = default, float angledHeadersSlope = default, ImRect outerRect = default, ImRect innerRect = default, ImRect workRect = default, ImRect innerClipRect = default, ImRect bgClipRect = default, ImRect bg0ClipRectForDrawCmd = default, ImRect bg2ClipRectForDrawCmd = default, ImRect hostClipRect = default, ImRect hostBackupInnerClipRect = default, ImGuiWindowPtr outerWindow = default, ImGuiWindowPtr innerWindow = default, ImGuiTextBuffer columnsNames = default, ImDrawListSplitterPtr drawSplitter = default, ImGuiTableInstanceData instanceDataFirst = default, ImVector<ImGuiTableInstanceData> instanceDataExtra = default, ImGuiTableColumnSortSpecs sortSpecsSingle = default, ImVector<ImGuiTableColumnSortSpecs> sortSpecsMulti = default, ImGuiTableSortSpecs sortSpecs = default, short sortSpecsCount = default, short columnsEnabledCount = default, short columnsEnabledFixedCount = default, short declColumnsCount = default, short angledHeadersCount = default, short hoveredColumnBody = default, short hoveredColumnBorder = default, short highlightColumnHeader = default, short autoFitSingleColumn = default, short resizedColumn = default, short lastResizedColumn = default, short heldHeaderColumn = default, short reorderColumn = default, short reorderColumnDir = default, short leftMostEnabledColumn = default, short rightMostEnabledColumn = default, short leftMostStretchedColumn = default, short rightMostStretchedColumn = default, short contextPopupColumn = default, short freezeRowsRequest = default, short freezeRowsCount = default, short freezeColumnsRequest = default, short freezeColumnsCount = default, short rowCellDataCurrent = default, ushort dummyDrawChannel = default, ushort bg2DrawChannelCurrent = default, ushort bg2DrawChannelUnfrozen = default, bool isLayoutLocked = default, bool isInsideRow = default, bool isInitializing = default, bool isSortSpecsDirty = default, bool isUsingHeaders = default, bool isContextPopupOpen = default, bool disableDefaultContextMenu = default, bool isSettingsRequestLoad = default, bool isSettingsDirty = default, bool isDefaultDisplayOrder = default, bool isResetAllRequest = default, bool isResetDisplayOrderRequest = default, bool isUnfrozenRows = default, bool isDefaultSizingPolicy = default, bool isActiveIdAliveBeforeTable = default, bool isActiveIdInTable = default, bool hasScrollbarYCurr = default, bool hasScrollbarYPrev = default, bool memoryCompacted = default, bool hostSkipItems = default)
+		public unsafe ImGuiTable(uint id = default, ImGuiTableFlags flags = default, void* rawData = default, ImGuiTableTempData* tempData = default, ImSpanImGuiTableColumn columns = default, ImSpanImGuiTableColumnIdx displayOrderToIndex = default, ImSpanImGuiTableCellData rowCellData = default, ImBitArrayPtr enabledMaskByDisplayOrder = default, ImBitArrayPtr enabledMaskByIndex = default, ImBitArrayPtr visibleMaskByIndex = default, ImGuiTableFlags settingsLoadedFlags = default, int settingsOffset = default, int lastFrameActive = default, int columnsCount = default, int currentRow = default, int currentColumn = default, short instanceCurrent = default, short instanceInteracted = default, float rowPosY1 = default, float rowPosY2 = default, float rowMinHeight = default, float rowCellPaddingY = default, float rowTextBaseline = default, float rowIndentOffsetX = default, ImGuiTableRowFlags rowFlags = default, ImGuiTableRowFlags lastRowFlags = default, int rowBgColorCounter = default, uint* rowBgColor = default, uint borderColorStrong = default, uint borderColorLight = default, float borderX1 = default, float borderX2 = default, float hostIndentX = default, float minColumnWidth = default, float outerPaddingX = default, float cellPaddingX = default, float cellSpacingX1 = default, float cellSpacingX2 = default, float innerWidth = default, float columnsGivenWidth = default, float columnsAutoFitWidth = default, float columnsStretchSumWeights = default, float resizedColumnNextWidth = default, float resizeLockMinContentsX2 = default, float refScale = default, float angledHeadersHeight = default, float angledHeadersSlope = default, ImRect outerRect = default, ImRect innerRect = default, ImRect workRect = default, ImRect innerClipRect = default, ImRect bgClipRect = default, ImRect bg0ClipRectForDrawCmd = default, ImRect bg2ClipRectForDrawCmd = default, ImRect hostClipRect = default, ImRect hostBackupInnerClipRect = default, ImGuiWindowPtr outerWindow = default, ImGuiWindowPtr innerWindow = default, ImGuiTextBuffer columnsNames = default, ImDrawListSplitterPtr drawSplitter = default, ImGuiTableInstanceData instanceDataFirst = default, ImVector<ImGuiTableInstanceData> instanceDataExtra = default, ImGuiTableColumnSortSpecs sortSpecsSingle = default, ImVector<ImGuiTableColumnSortSpecs> sortSpecsMulti = default, ImGuiTableSortSpecs sortSpecs = default, sbyte sortSpecsCount = default, sbyte columnsEnabledCount = default, sbyte columnsEnabledFixedCount = default, sbyte declColumnsCount = default, sbyte angledHeadersCount = default, sbyte hoveredColumnBody = default, sbyte hoveredColumnBorder = default, sbyte highlightColumnHeader = default, sbyte autoFitSingleColumn = default, sbyte resizedColumn = default, sbyte lastResizedColumn = default, sbyte heldHeaderColumn = default, sbyte reorderColumn = default, sbyte reorderColumnDir = default, sbyte leftMostEnabledColumn = default, sbyte rightMostEnabledColumn = default, sbyte leftMostStretchedColumn = default, sbyte rightMostStretchedColumn = default, sbyte contextPopupColumn = default, sbyte freezeRowsRequest = default, sbyte freezeRowsCount = default, sbyte freezeColumnsRequest = default, sbyte freezeColumnsCount = default, sbyte rowCellDataCurrent = default, byte dummyDrawChannel = default, byte bg2DrawChannelCurrent = default, byte bg2DrawChannelUnfrozen = default, bool isLayoutLocked = default, bool isInsideRow = default, bool isInitializing = default, bool isSortSpecsDirty = default, bool isUsingHeaders = default, bool isContextPopupOpen = default, bool disableDefaultContextMenu = default, bool isSettingsRequestLoad = default, bool isSettingsDirty = default, bool isDefaultDisplayOrder = default, bool isResetAllRequest = default, bool isResetDisplayOrderRequest = default, bool isUnfrozenRows = default, bool isDefaultSizingPolicy = default, bool isActiveIdAliveBeforeTable = default, bool isActiveIdInTable = default, bool hasScrollbarYCurr = default, bool hasScrollbarYPrev = default, bool memoryCompacted = default, bool hostSkipItems = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -710,7 +710,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTable(uint id = default, int flags = default, void* rawData = default, ImGuiTableTempData* tempData = default, ImSpanImGuiTableColumn columns = default, ImSpanImGuiTableColumnIdx displayOrderToIndex = default, ImSpanImGuiTableCellData rowCellData = default, uint* enabledMaskByDisplayOrder = default, uint* enabledMaskByIndex = default, uint* visibleMaskByIndex = default, int settingsLoadedFlags = default, int settingsOffset = default, int lastFrameActive = default, int columnsCount = default, int currentRow = default, int currentColumn = default, short instanceCurrent = default, short instanceInteracted = default, float rowPosY1 = default, float rowPosY2 = default, float rowMinHeight = default, float rowCellPaddingY = default, float rowTextBaseline = default, float rowIndentOffsetX = default, int rowFlags = default, int lastRowFlags = default, int rowBgColorCounter = default, Span<uint> rowBgColor = default, uint borderColorStrong = default, uint borderColorLight = default, float borderX1 = default, float borderX2 = default, float hostIndentX = default, float minColumnWidth = default, float outerPaddingX = default, float cellPaddingX = default, float cellSpacingX1 = default, float cellSpacingX2 = default, float innerWidth = default, float columnsGivenWidth = default, float columnsAutoFitWidth = default, float columnsStretchSumWeights = default, float resizedColumnNextWidth = default, float resizeLockMinContentsX2 = default, float refScale = default, float angledHeadersHeight = default, float angledHeadersSlope = default, ImRect outerRect = default, ImRect innerRect = default, ImRect workRect = default, ImRect innerClipRect = default, ImRect bgClipRect = default, ImRect bg0ClipRectForDrawCmd = default, ImRect bg2ClipRectForDrawCmd = default, ImRect hostClipRect = default, ImRect hostBackupInnerClipRect = default, ImGuiWindowPtr outerWindow = default, ImGuiWindowPtr innerWindow = default, ImGuiTextBuffer columnsNames = default, ImDrawListSplitterPtr drawSplitter = default, ImGuiTableInstanceData instanceDataFirst = default, ImVector<ImGuiTableInstanceData> instanceDataExtra = default, ImGuiTableColumnSortSpecs sortSpecsSingle = default, ImVector<ImGuiTableColumnSortSpecs> sortSpecsMulti = default, ImGuiTableSortSpecs sortSpecs = default, short sortSpecsCount = default, short columnsEnabledCount = default, short columnsEnabledFixedCount = default, short declColumnsCount = default, short angledHeadersCount = default, short hoveredColumnBody = default, short hoveredColumnBorder = default, short highlightColumnHeader = default, short autoFitSingleColumn = default, short resizedColumn = default, short lastResizedColumn = default, short heldHeaderColumn = default, short reorderColumn = default, short reorderColumnDir = default, short leftMostEnabledColumn = default, short rightMostEnabledColumn = default, short leftMostStretchedColumn = default, short rightMostStretchedColumn = default, short contextPopupColumn = default, short freezeRowsRequest = default, short freezeRowsCount = default, short freezeColumnsRequest = default, short freezeColumnsCount = default, short rowCellDataCurrent = default, ushort dummyDrawChannel = default, ushort bg2DrawChannelCurrent = default, ushort bg2DrawChannelUnfrozen = default, bool isLayoutLocked = default, bool isInsideRow = default, bool isInitializing = default, bool isSortSpecsDirty = default, bool isUsingHeaders = default, bool isContextPopupOpen = default, bool disableDefaultContextMenu = default, bool isSettingsRequestLoad = default, bool isSettingsDirty = default, bool isDefaultDisplayOrder = default, bool isResetAllRequest = default, bool isResetDisplayOrderRequest = default, bool isUnfrozenRows = default, bool isDefaultSizingPolicy = default, bool isActiveIdAliveBeforeTable = default, bool isActiveIdInTable = default, bool hasScrollbarYCurr = default, bool hasScrollbarYPrev = default, bool memoryCompacted = default, bool hostSkipItems = default)
+		public unsafe ImGuiTable(uint id = default, ImGuiTableFlags flags = default, void* rawData = default, ImGuiTableTempData* tempData = default, ImSpanImGuiTableColumn columns = default, ImSpanImGuiTableColumnIdx displayOrderToIndex = default, ImSpanImGuiTableCellData rowCellData = default, ImBitArrayPtr enabledMaskByDisplayOrder = default, ImBitArrayPtr enabledMaskByIndex = default, ImBitArrayPtr visibleMaskByIndex = default, ImGuiTableFlags settingsLoadedFlags = default, int settingsOffset = default, int lastFrameActive = default, int columnsCount = default, int currentRow = default, int currentColumn = default, short instanceCurrent = default, short instanceInteracted = default, float rowPosY1 = default, float rowPosY2 = default, float rowMinHeight = default, float rowCellPaddingY = default, float rowTextBaseline = default, float rowIndentOffsetX = default, ImGuiTableRowFlags rowFlags = default, ImGuiTableRowFlags lastRowFlags = default, int rowBgColorCounter = default, Span<uint> rowBgColor = default, uint borderColorStrong = default, uint borderColorLight = default, float borderX1 = default, float borderX2 = default, float hostIndentX = default, float minColumnWidth = default, float outerPaddingX = default, float cellPaddingX = default, float cellSpacingX1 = default, float cellSpacingX2 = default, float innerWidth = default, float columnsGivenWidth = default, float columnsAutoFitWidth = default, float columnsStretchSumWeights = default, float resizedColumnNextWidth = default, float resizeLockMinContentsX2 = default, float refScale = default, float angledHeadersHeight = default, float angledHeadersSlope = default, ImRect outerRect = default, ImRect innerRect = default, ImRect workRect = default, ImRect innerClipRect = default, ImRect bgClipRect = default, ImRect bg0ClipRectForDrawCmd = default, ImRect bg2ClipRectForDrawCmd = default, ImRect hostClipRect = default, ImRect hostBackupInnerClipRect = default, ImGuiWindowPtr outerWindow = default, ImGuiWindowPtr innerWindow = default, ImGuiTextBuffer columnsNames = default, ImDrawListSplitterPtr drawSplitter = default, ImGuiTableInstanceData instanceDataFirst = default, ImVector<ImGuiTableInstanceData> instanceDataExtra = default, ImGuiTableColumnSortSpecs sortSpecsSingle = default, ImVector<ImGuiTableColumnSortSpecs> sortSpecsMulti = default, ImGuiTableSortSpecs sortSpecs = default, sbyte sortSpecsCount = default, sbyte columnsEnabledCount = default, sbyte columnsEnabledFixedCount = default, sbyte declColumnsCount = default, sbyte angledHeadersCount = default, sbyte hoveredColumnBody = default, sbyte hoveredColumnBorder = default, sbyte highlightColumnHeader = default, sbyte autoFitSingleColumn = default, sbyte resizedColumn = default, sbyte lastResizedColumn = default, sbyte heldHeaderColumn = default, sbyte reorderColumn = default, sbyte reorderColumnDir = default, sbyte leftMostEnabledColumn = default, sbyte rightMostEnabledColumn = default, sbyte leftMostStretchedColumn = default, sbyte rightMostStretchedColumn = default, sbyte contextPopupColumn = default, sbyte freezeRowsRequest = default, sbyte freezeRowsCount = default, sbyte freezeColumnsRequest = default, sbyte freezeColumnsCount = default, sbyte rowCellDataCurrent = default, byte dummyDrawChannel = default, byte bg2DrawChannelCurrent = default, byte bg2DrawChannelUnfrozen = default, bool isLayoutLocked = default, bool isInsideRow = default, bool isInitializing = default, bool isSortSpecsDirty = default, bool isUsingHeaders = default, bool isContextPopupOpen = default, bool disableDefaultContextMenu = default, bool isSettingsRequestLoad = default, bool isSettingsDirty = default, bool isDefaultDisplayOrder = default, bool isResetAllRequest = default, bool isResetDisplayOrderRequest = default, bool isUnfrozenRows = default, bool isDefaultSizingPolicy = default, bool isActiveIdAliveBeforeTable = default, bool isActiveIdInTable = default, bool hasScrollbarYCurr = default, bool hasScrollbarYPrev = default, bool memoryCompacted = default, bool hostSkipItems = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -881,7 +881,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImGuiTableFlags Flags => ref Unsafe.AsRef<ImGuiTableFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -905,19 +905,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint* EnabledMaskByDisplayOrder { get => Handle->EnabledMaskByDisplayOrder; set => Handle->EnabledMaskByDisplayOrder = value; }
+		public ref ImBitArrayPtr EnabledMaskByDisplayOrder => ref Unsafe.AsRef<ImBitArrayPtr>(&Handle->EnabledMaskByDisplayOrder);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint* EnabledMaskByIndex { get => Handle->EnabledMaskByIndex; set => Handle->EnabledMaskByIndex = value; }
+		public ref ImBitArrayPtr EnabledMaskByIndex => ref Unsafe.AsRef<ImBitArrayPtr>(&Handle->EnabledMaskByIndex);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint* VisibleMaskByIndex { get => Handle->VisibleMaskByIndex; set => Handle->VisibleMaskByIndex = value; }
+		public ref ImBitArrayPtr VisibleMaskByIndex => ref Unsafe.AsRef<ImBitArrayPtr>(&Handle->VisibleMaskByIndex);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int SettingsLoadedFlags => ref Unsafe.AsRef<int>(&Handle->SettingsLoadedFlags);
+		public ref ImGuiTableFlags SettingsLoadedFlags => ref Unsafe.AsRef<ImGuiTableFlags>(&Handle->SettingsLoadedFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -973,11 +973,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int RowFlags => ref Unsafe.AsRef<int>(&Handle->RowFlags);
+		public ref ImGuiTableRowFlags RowFlags => ref Unsafe.AsRef<ImGuiTableRowFlags>(&Handle->RowFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int LastRowFlags => ref Unsafe.AsRef<int>(&Handle->LastRowFlags);
+		public ref ImGuiTableRowFlags LastRowFlags => ref Unsafe.AsRef<ImGuiTableRowFlags>(&Handle->LastRowFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -1144,111 +1144,111 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short SortSpecsCount => ref Unsafe.AsRef<short>(&Handle->SortSpecsCount);
+		public ref sbyte SortSpecsCount => ref Unsafe.AsRef<sbyte>(&Handle->SortSpecsCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ColumnsEnabledCount => ref Unsafe.AsRef<short>(&Handle->ColumnsEnabledCount);
+		public ref sbyte ColumnsEnabledCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsEnabledCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ColumnsEnabledFixedCount => ref Unsafe.AsRef<short>(&Handle->ColumnsEnabledFixedCount);
+		public ref sbyte ColumnsEnabledFixedCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsEnabledFixedCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short DeclColumnsCount => ref Unsafe.AsRef<short>(&Handle->DeclColumnsCount);
+		public ref sbyte DeclColumnsCount => ref Unsafe.AsRef<sbyte>(&Handle->DeclColumnsCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short AngledHeadersCount => ref Unsafe.AsRef<short>(&Handle->AngledHeadersCount);
+		public ref sbyte AngledHeadersCount => ref Unsafe.AsRef<sbyte>(&Handle->AngledHeadersCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short HoveredColumnBody => ref Unsafe.AsRef<short>(&Handle->HoveredColumnBody);
+		public ref sbyte HoveredColumnBody => ref Unsafe.AsRef<sbyte>(&Handle->HoveredColumnBody);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short HoveredColumnBorder => ref Unsafe.AsRef<short>(&Handle->HoveredColumnBorder);
+		public ref sbyte HoveredColumnBorder => ref Unsafe.AsRef<sbyte>(&Handle->HoveredColumnBorder);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short HighlightColumnHeader => ref Unsafe.AsRef<short>(&Handle->HighlightColumnHeader);
+		public ref sbyte HighlightColumnHeader => ref Unsafe.AsRef<sbyte>(&Handle->HighlightColumnHeader);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short AutoFitSingleColumn => ref Unsafe.AsRef<short>(&Handle->AutoFitSingleColumn);
+		public ref sbyte AutoFitSingleColumn => ref Unsafe.AsRef<sbyte>(&Handle->AutoFitSingleColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ResizedColumn => ref Unsafe.AsRef<short>(&Handle->ResizedColumn);
+		public ref sbyte ResizedColumn => ref Unsafe.AsRef<sbyte>(&Handle->ResizedColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short LastResizedColumn => ref Unsafe.AsRef<short>(&Handle->LastResizedColumn);
+		public ref sbyte LastResizedColumn => ref Unsafe.AsRef<sbyte>(&Handle->LastResizedColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short HeldHeaderColumn => ref Unsafe.AsRef<short>(&Handle->HeldHeaderColumn);
+		public ref sbyte HeldHeaderColumn => ref Unsafe.AsRef<sbyte>(&Handle->HeldHeaderColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ReorderColumn => ref Unsafe.AsRef<short>(&Handle->ReorderColumn);
+		public ref sbyte ReorderColumn => ref Unsafe.AsRef<sbyte>(&Handle->ReorderColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ReorderColumnDir => ref Unsafe.AsRef<short>(&Handle->ReorderColumnDir);
+		public ref sbyte ReorderColumnDir => ref Unsafe.AsRef<sbyte>(&Handle->ReorderColumnDir);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short LeftMostEnabledColumn => ref Unsafe.AsRef<short>(&Handle->LeftMostEnabledColumn);
+		public ref sbyte LeftMostEnabledColumn => ref Unsafe.AsRef<sbyte>(&Handle->LeftMostEnabledColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short RightMostEnabledColumn => ref Unsafe.AsRef<short>(&Handle->RightMostEnabledColumn);
+		public ref sbyte RightMostEnabledColumn => ref Unsafe.AsRef<sbyte>(&Handle->RightMostEnabledColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short LeftMostStretchedColumn => ref Unsafe.AsRef<short>(&Handle->LeftMostStretchedColumn);
+		public ref sbyte LeftMostStretchedColumn => ref Unsafe.AsRef<sbyte>(&Handle->LeftMostStretchedColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short RightMostStretchedColumn => ref Unsafe.AsRef<short>(&Handle->RightMostStretchedColumn);
+		public ref sbyte RightMostStretchedColumn => ref Unsafe.AsRef<sbyte>(&Handle->RightMostStretchedColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ContextPopupColumn => ref Unsafe.AsRef<short>(&Handle->ContextPopupColumn);
+		public ref sbyte ContextPopupColumn => ref Unsafe.AsRef<sbyte>(&Handle->ContextPopupColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short FreezeRowsRequest => ref Unsafe.AsRef<short>(&Handle->FreezeRowsRequest);
+		public ref sbyte FreezeRowsRequest => ref Unsafe.AsRef<sbyte>(&Handle->FreezeRowsRequest);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short FreezeRowsCount => ref Unsafe.AsRef<short>(&Handle->FreezeRowsCount);
+		public ref sbyte FreezeRowsCount => ref Unsafe.AsRef<sbyte>(&Handle->FreezeRowsCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short FreezeColumnsRequest => ref Unsafe.AsRef<short>(&Handle->FreezeColumnsRequest);
+		public ref sbyte FreezeColumnsRequest => ref Unsafe.AsRef<sbyte>(&Handle->FreezeColumnsRequest);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short FreezeColumnsCount => ref Unsafe.AsRef<short>(&Handle->FreezeColumnsCount);
+		public ref sbyte FreezeColumnsCount => ref Unsafe.AsRef<sbyte>(&Handle->FreezeColumnsCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short RowCellDataCurrent => ref Unsafe.AsRef<short>(&Handle->RowCellDataCurrent);
+		public ref sbyte RowCellDataCurrent => ref Unsafe.AsRef<sbyte>(&Handle->RowCellDataCurrent);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort DummyDrawChannel => ref Unsafe.AsRef<ushort>(&Handle->DummyDrawChannel);
+		public ref byte DummyDrawChannel => ref Unsafe.AsRef<byte>(&Handle->DummyDrawChannel);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort Bg2DrawChannelCurrent => ref Unsafe.AsRef<ushort>(&Handle->Bg2DrawChannelCurrent);
+		public ref byte Bg2DrawChannelCurrent => ref Unsafe.AsRef<byte>(&Handle->Bg2DrawChannelCurrent);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort Bg2DrawChannelUnfrozen => ref Unsafe.AsRef<ushort>(&Handle->Bg2DrawChannelUnfrozen);
+		public ref byte Bg2DrawChannelUnfrozen => ref Unsafe.AsRef<byte>(&Handle->Bg2DrawChannelUnfrozen);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

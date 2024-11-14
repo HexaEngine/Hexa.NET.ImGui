@@ -28,7 +28,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImGuiTableColumnFlags Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -123,42 +123,42 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short DisplayOrder;
+		public sbyte DisplayOrder;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short IndexWithinEnabledSet;
+		public sbyte IndexWithinEnabledSet;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short PrevEnabledColumn;
+		public sbyte PrevEnabledColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short NextEnabledColumn;
+		public sbyte NextEnabledColumn;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short SortOrder;
+		public sbyte SortOrder;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort DrawChannelCurrent;
+		public byte DrawChannelCurrent;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort DrawChannelFrozen;
+		public byte DrawChannelFrozen;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort DrawChannelUnfrozen;
+		public byte DrawChannelUnfrozen;
 
 		/// <summary>
 		/// To be documented.
@@ -239,7 +239,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableColumn(int flags = default, float widthGiven = default, float minX = default, float maxX = default, float widthRequest = default, float widthAuto = default, float widthMax = default, float stretchWeight = default, float initStretchWeightOrWidth = default, ImRect clipRect = default, uint userId = default, float workMinX = default, float workMaxX = default, float itemWidth = default, float contentMaxXFrozen = default, float contentMaxXUnfrozen = default, float contentMaxXHeadersUsed = default, float contentMaxXHeadersIdeal = default, short nameOffset = default, short displayOrder = default, short indexWithinEnabledSet = default, short prevEnabledColumn = default, short nextEnabledColumn = default, short sortOrder = default, ushort drawChannelCurrent = default, ushort drawChannelFrozen = default, ushort drawChannelUnfrozen = default, bool isEnabled = default, bool isUserEnabled = default, bool isUserEnabledNextFrame = default, bool isVisibleX = default, bool isVisibleY = default, bool isRequestOutput = default, bool isSkipItems = default, bool isPreserveWidthAuto = default, byte navLayerCurrent = default, byte autoFitQueue = default, byte cannotSkipItemsQueue = default, byte sortDirection = default, byte sortDirectionsAvailCount = default, byte sortDirectionsAvailMask = default, byte sortDirectionsAvailList = default)
+		public unsafe ImGuiTableColumn(ImGuiTableColumnFlags flags = default, float widthGiven = default, float minX = default, float maxX = default, float widthRequest = default, float widthAuto = default, float widthMax = default, float stretchWeight = default, float initStretchWeightOrWidth = default, ImRect clipRect = default, uint userId = default, float workMinX = default, float workMaxX = default, float itemWidth = default, float contentMaxXFrozen = default, float contentMaxXUnfrozen = default, float contentMaxXHeadersUsed = default, float contentMaxXHeadersIdeal = default, short nameOffset = default, sbyte displayOrder = default, sbyte indexWithinEnabledSet = default, sbyte prevEnabledColumn = default, sbyte nextEnabledColumn = default, sbyte sortOrder = default, byte drawChannelCurrent = default, byte drawChannelFrozen = default, byte drawChannelUnfrozen = default, bool isEnabled = default, bool isUserEnabled = default, bool isUserEnabledNextFrame = default, bool isVisibleX = default, bool isVisibleY = default, bool isRequestOutput = default, bool isSkipItems = default, bool isPreserveWidthAuto = default, byte navLayerCurrent = default, byte autoFitQueue = default, byte cannotSkipItemsQueue = default, byte sortDirection = default, byte sortDirectionsAvailCount = default, byte sortDirectionsAvailMask = default, byte sortDirectionsAvailList = default)
 		{
 			Flags = flags;
 			WidthGiven = widthGiven;
@@ -332,7 +332,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImGuiTableColumnFlags Flags => ref Unsafe.AsRef<ImGuiTableColumnFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -408,35 +408,35 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short DisplayOrder => ref Unsafe.AsRef<short>(&Handle->DisplayOrder);
+		public ref sbyte DisplayOrder => ref Unsafe.AsRef<sbyte>(&Handle->DisplayOrder);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short IndexWithinEnabledSet => ref Unsafe.AsRef<short>(&Handle->IndexWithinEnabledSet);
+		public ref sbyte IndexWithinEnabledSet => ref Unsafe.AsRef<sbyte>(&Handle->IndexWithinEnabledSet);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short PrevEnabledColumn => ref Unsafe.AsRef<short>(&Handle->PrevEnabledColumn);
+		public ref sbyte PrevEnabledColumn => ref Unsafe.AsRef<sbyte>(&Handle->PrevEnabledColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short NextEnabledColumn => ref Unsafe.AsRef<short>(&Handle->NextEnabledColumn);
+		public ref sbyte NextEnabledColumn => ref Unsafe.AsRef<sbyte>(&Handle->NextEnabledColumn);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short SortOrder => ref Unsafe.AsRef<short>(&Handle->SortOrder);
+		public ref sbyte SortOrder => ref Unsafe.AsRef<sbyte>(&Handle->SortOrder);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort DrawChannelCurrent => ref Unsafe.AsRef<ushort>(&Handle->DrawChannelCurrent);
+		public ref byte DrawChannelCurrent => ref Unsafe.AsRef<byte>(&Handle->DrawChannelCurrent);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort DrawChannelFrozen => ref Unsafe.AsRef<ushort>(&Handle->DrawChannelFrozen);
+		public ref byte DrawChannelFrozen => ref Unsafe.AsRef<byte>(&Handle->DrawChannelFrozen);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort DrawChannelUnfrozen => ref Unsafe.AsRef<ushort>(&Handle->DrawChannelUnfrozen);
+		public ref byte DrawChannelUnfrozen => ref Unsafe.AsRef<byte>(&Handle->DrawChannelUnfrozen);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

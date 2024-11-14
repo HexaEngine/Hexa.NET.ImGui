@@ -48,7 +48,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Flags;
+		public ImDrawListFlags Flags;
 
 		/// <summary>
 		/// To be documented.
@@ -114,7 +114,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawList(ImVector<ImDrawCmd> cmdBuffer = default, ImVector<ushort> idxBuffer = default, ImVector<ImDrawVert> vtxBuffer = default, int flags = default, uint vtxCurrentIdx = default, ImDrawListSharedData* data = default, ImDrawVert* vtxWritePtr = default, ushort* idxWritePtr = default, ImVector<Vector2> path = default, ImDrawCmdHeader cmdHeader = default, ImDrawListSplitter splitter = default, ImVector<Vector4> clipRectStack = default, ImVector<ImTextureID> textureIdStack = default, ImVector<byte> callbacksDataBuf = default, float fringeScale = default, byte* ownerName = default)
+		public unsafe ImDrawList(ImVector<ImDrawCmd> cmdBuffer = default, ImVector<ushort> idxBuffer = default, ImVector<ImDrawVert> vtxBuffer = default, ImDrawListFlags flags = default, uint vtxCurrentIdx = default, ImDrawListSharedData* data = default, ImDrawVert* vtxWritePtr = default, ushort* idxWritePtr = default, ImVector<Vector2> path = default, ImDrawCmdHeader cmdHeader = default, ImDrawListSplitter splitter = default, ImVector<Vector4> clipRectStack = default, ImVector<ImTextureID> textureIdStack = default, ImVector<byte> callbacksDataBuf = default, float fringeScale = default, byte* ownerName = default)
 		{
 			CmdBuffer = cmdBuffer;
 			IdxBuffer = idxBuffer;
@@ -304,7 +304,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, ulong userdataSize)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -319,7 +319,18 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddCallbackNative(@this, callback, userdata, (nuint)(0));
+				ImGui.AddCallbackNative(@this, callback, userdata, (ulong)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, callback, userdata, userdataSize);
 			}
 		}
 
@@ -8176,7 +8187,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Flags => ref Unsafe.AsRef<int>(&Handle->Flags);
+		public ref ImDrawListFlags Flags => ref Unsafe.AsRef<ImDrawListFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -8349,7 +8360,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, ulong userdataSize)
 		{
 			ImGui.AddCallbackNative(Handle, callback, userdata, userdataSize);
 		}
@@ -8359,7 +8370,15 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
 		{
-			ImGui.AddCallbackNative(Handle, callback, userdata, (nuint)(0));
+			ImGui.AddCallbackNative(Handle, callback, userdata, (ulong)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		{
+			ImGui.AddCallbackNative(Handle, callback, userdata, userdataSize);
 		}
 
 		/// <summary>

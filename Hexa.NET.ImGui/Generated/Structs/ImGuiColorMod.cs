@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Col;
+		public ImGuiCol Col;
 
 		/// <summary>
 		/// To be documented.
@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiColorMod(int col = default, Vector4 backupValue = default)
+		public unsafe ImGuiColorMod(ImGuiCol col = default, Vector4 backupValue = default)
 		{
 			Col = col;
 			BackupValue = backupValue;
@@ -89,7 +89,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Col => ref Unsafe.AsRef<int>(&Handle->Col);
+		public ref ImGuiCol Col => ref Unsafe.AsRef<ImGuiCol>(&Handle->Col);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

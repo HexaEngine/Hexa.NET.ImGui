@@ -90,7 +90,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
-		public unsafe void AddDrawList(ImDrawList* drawList)
+		public unsafe void AddDrawList(ImDrawListPtr drawList)
 		{
 			fixed (ImDrawData* @this = &this)
 			{
@@ -238,7 +238,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
-		public unsafe void AddDrawList(ImDrawList* drawList)
+		public unsafe void AddDrawList(ImDrawListPtr drawList)
 		{
 			ImGui.AddDrawListNative(Handle, drawList);
 		}

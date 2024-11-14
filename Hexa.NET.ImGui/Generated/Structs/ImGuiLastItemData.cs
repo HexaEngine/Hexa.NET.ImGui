@@ -30,12 +30,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int ItemFlags;
+		public ImGuiItemFlags ItemFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int StatusFlags;
+		public ImGuiItemStatusFlags StatusFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -66,7 +66,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiLastItemData(uint id = default, int itemFlags = default, int statusFlags = default, ImRect rect = default, ImRect navRect = default, ImRect displayRect = default, ImRect clipRect = default, int shortcut = default)
+		public unsafe ImGuiLastItemData(uint id = default, ImGuiItemFlags itemFlags = default, ImGuiItemStatusFlags statusFlags = default, ImRect rect = default, ImRect navRect = default, ImRect displayRect = default, ImRect clipRect = default, int shortcut = default)
 		{
 			ID = id;
 			ItemFlags = itemFlags;
@@ -129,11 +129,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ItemFlags => ref Unsafe.AsRef<int>(&Handle->ItemFlags);
+		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int StatusFlags => ref Unsafe.AsRef<int>(&Handle->StatusFlags);
+		public ref ImGuiItemStatusFlags StatusFlags => ref Unsafe.AsRef<ImGuiItemStatusFlags>(&Handle->StatusFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
