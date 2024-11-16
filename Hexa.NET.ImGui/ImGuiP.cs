@@ -10,11 +10,6 @@ namespace Hexa.NET.ImGui
 
         static ImGuiP()
         {
-            if (ImGui.funcTable == null)
-            {
-                ImGui.InitApi();
-            }
-
             funcTable = ImGui.funcTable;
         }
     }

@@ -23,9 +23,9 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// <summary>
 		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
 		/// </summary>
-		public static void InitApi()
+		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 20);
+			funcTable = new FunctionTable(context, 20);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
 			funcTable.Load(2, "CImGui_ImplSDL2_InitForOpenGL");

@@ -22,9 +22,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
 		/// </summary>
-		public static void InitApi()
+		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 1443);
+			funcTable = new FunctionTable(context, 1443);
 			funcTable.Load(0, "ImVec2_ImVec2_Nil");
 			funcTable.Load(1, "ImVec2_destroy");
 			funcTable.Load(2, "ImVec2_ImVec2_Float");

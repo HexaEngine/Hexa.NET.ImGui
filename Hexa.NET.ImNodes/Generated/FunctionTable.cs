@@ -23,9 +23,9 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
 		/// </summary>
-		public static void InitApi()
+		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 88);
+			funcTable = new FunctionTable(context, 88);
 			funcTable.Load(0, "EmulateThreeButtonMouse_EmulateThreeButtonMouse");
 			funcTable.Load(1, "EmulateThreeButtonMouse_destroy");
 			funcTable.Load(2, "LinkDetachWithModifierClick_LinkDetachWithModifierClick");

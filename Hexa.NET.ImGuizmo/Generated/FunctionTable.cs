@@ -23,9 +23,9 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
 		/// </summary>
-		public static void InitApi()
+		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 36);
+			funcTable = new FunctionTable(context, 36);
 			funcTable.Load(0, "ImGuizmo_SetDrawlist");
 			funcTable.Load(1, "ImGuizmo_BeginFrame");
 			funcTable.Load(2, "ImGuizmo_SetImGuiContext");

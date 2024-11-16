@@ -10,6 +10,7 @@
   "AutoSquashTypedef": true,
   "GenerateExtensions": false,
   "GenerateConstants": false,
+  "UseCustomContext": true,
   "KnownConstantNames": {},
   "KnownEnumValueNames": {
     "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",

@@ -9,6 +9,7 @@
   "AutoSquashTypedef": true,
   "GenerateExtensions": false,
   "GenerateAdditionalOverloads": true,
+  "UseCustomContext": true,
   "KnownConstantNames": {},
   "KnownEnumValueNames": {
     "": "",

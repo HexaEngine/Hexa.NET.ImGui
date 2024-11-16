@@ -9,11 +9,6 @@
 
         static ImGuiImplOpenGL3()
         {
-            if (ImGuiImpl.funcTable == null)
-            {
-                ImGuiImpl.InitApi();
-            }
-
             funcTable = ImGuiImpl.funcTable!;
         }
 

@@ -1,14 +1,27 @@
 ﻿namespace Hexa.NET.ImGui.Backends
 {
     using HexaGen.Runtime;
+    using System.Diagnostics;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+
+    public static class ImGuiImplConfig
+    {
+        public static bool AotStaticLink;
+    }
 
     public static unsafe partial class ImGuiImpl
     {
         static ImGuiImpl()
         {
-            InitApi();
+            if (ImGuiImplConfig.AotStaticLink)
+            {
+                InitApi(new NativeLibraryContext(Process.GetCurrentProcess().MainModule!.BaseAddress));
+            }
+            else
+            {
+                InitApi(new NativeLibraryContext(LibraryLoader.LoadLibrary(GetLibraryName, null)));
+            }
         }
 
         public static string GetLibraryName()

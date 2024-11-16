@@ -9,11 +9,6 @@
 
         static ImGuiImplWin32()
         {
-            if (ImGuiImpl.funcTable == null)
-            {
-                ImGuiImpl.InitApi();
-            }
-
             funcTable = ImGuiImpl.funcTable!;
         }
 

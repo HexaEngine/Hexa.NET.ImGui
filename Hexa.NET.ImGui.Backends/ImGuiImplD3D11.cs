@@ -9,11 +9,6 @@
 
         static ImGuiImplD3D11()
         {
-            if (ImGuiImpl.funcTable == null)
-            {
-                ImGuiImpl.InitApi();
-            }
-
             funcTable = ImGuiImpl.funcTable!;
         }
 

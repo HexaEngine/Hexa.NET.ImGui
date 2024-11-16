@@ -23,9 +23,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// Initializes the function table, automatically called. Do not call manually, only after <see cref="FreeApi"/>.
 		/// </summary>
-		public static void InitApi()
+		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(LibraryLoader.LoadLibrary(GetLibraryName, null), 707);
+			funcTable = new FunctionTable(context, 707);
 			funcTable.Load(0, "ImPlotPoint_ImPlotPoint_Nil");
 			funcTable.Load(1, "ImPlotPoint_destroy");
 			funcTable.Load(2, "ImPlotPoint_ImPlotPoint_double");
