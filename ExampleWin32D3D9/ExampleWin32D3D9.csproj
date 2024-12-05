@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <PackageReference Include="Silk.NET.Direct3D9" Version="2.22.0" />
-    <PackageReference Include="System.Text.Json" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

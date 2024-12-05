@@ -15,7 +15,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Hexa.NET.OpenGL3" Version="1.1.0" />
-		<PackageReference Include="System.Text.Json" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

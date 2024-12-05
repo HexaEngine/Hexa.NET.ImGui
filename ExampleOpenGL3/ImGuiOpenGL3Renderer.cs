@@ -19,6 +19,8 @@ namespace ExampleOpenGL3
     [Obsolete("Use ImGuiImplOpenGL3 instead")]
     public static unsafe class ImGuiOpenGL3Renderer
     {
+        private static GL GL = null!;
+
         private struct RenderData
         {
             public uint GlVersion;               // Extracted at runtime using GL_MAJOR_VERSION, GL_MINOR_VERSION queries (e.g. 320 for GL 3.2)
@@ -78,8 +80,9 @@ namespace ExampleOpenGL3
             }
         };
 
-        public static bool Init(string? glsl_version_str)
+        public static bool Init(GL gl,string? glsl_version_str)
         {
+            GL = gl;
             ImGuiIOPtr io = ImGui.GetIO();
             Debug.Assert(io.BackendRendererUserData == null, "Already initialized a renderer backend!");
 
@@ -159,7 +162,7 @@ namespace ExampleOpenGL3
             // Make an arbitrary GL call (we don't actually need the result)
             // IF YOU GET A CRASH HERE: it probably means the OpenGL function loader didn't do its job. Let us know!
             int currentTexture = 0;
-            GL.GetIntegerv(GLGetPName.TextureBinding2D, ref currentTexture);
+            GL.GetIntegerv(GLGetPName.TextureBinding2D, out currentTexture);
 
             // Detect extensions we support
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_POLYGON_MODE
@@ -168,7 +171,7 @@ namespace ExampleOpenGL3
             bd->HasClipOrigin = bd->GlVersion >= 450;
 #if IMGUI_IMPL_OPENGL_HAS_EXTENSIONS
             int numExtensions = 0;
-            GL.GetIntegerv(GLGetPName.NumExtensions, ref numExtensions);
+            GL.GetIntegerv(GLGetPName.NumExtensions, out numExtensions);
             for (int i = 0; i < numExtensions; i++)
             {
                 string extension = ToStringFromUTF8(GL.GetStringi(GLStringName.Extensions, (uint)i))!;
@@ -633,7 +636,7 @@ namespace ExampleOpenGL3
             if (log_length > 1)
             {
                 UnsafeList<byte> buf = default;
-                buf.Resize((uint)log_length + 1);
+                buf.Resize((int)log_length + 1);
                 GL.GetShaderInfoLog(handle, log_length, (int*)null, buf.Data);
                 Debug.WriteLine(ToStringFromUTF8(buf.Data));
                 buf.Release();
@@ -656,7 +659,7 @@ namespace ExampleOpenGL3
             if (log_length > 1)
             {
                 UnsafeList<byte> buf = default;
-                buf.Resize((uint)log_length + 1);
+                buf.Resize((int)log_length + 1);
                 GL.GetShaderInfoLog(handle, log_length, (int*)null, buf.Data);
                 Debug.WriteLine(ToStringFromUTF8(buf.Data));
                 buf.Release();

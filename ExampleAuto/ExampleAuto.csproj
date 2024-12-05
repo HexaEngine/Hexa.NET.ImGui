@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ExampleD3D11\ExampleD3D11.csproj" />
     <ProjectReference Include="..\ExampleOpenGL3\ExampleOpenGL3.csproj" />
   </ItemGroup>

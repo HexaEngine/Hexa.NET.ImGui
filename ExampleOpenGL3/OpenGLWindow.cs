@@ -13,17 +13,30 @@
     using HexaGen.Runtime;
     using Silk.NET.SDL;
 
-    internal unsafe class BindingsContext : INativeContext
+    internal unsafe class BindingsContext : IGLContext
     {
         private Sdl sdl;
+        private readonly Window* window;
+        private  void* glContext;
 
-        public BindingsContext(Sdl sdl)
+        public BindingsContext(Sdl sdl, Window* window)
         {
             this.sdl = sdl;
+            this.window = window;
+            glContext = sdl.GLCreateContext(window);
         }
+
+        public nint Handle => (nint)glContext;
+
+        public bool IsCurrent => sdl.GLGetCurrentContext() == glContext;
 
         public void Dispose()
         {
+            if (glContext != null)
+            {
+                sdl.GLDeleteContext(glContext);
+                glContext = null;
+            }
         }
 
         public nint GetProcAddress(string procName)
@@ -36,6 +49,21 @@
             return sdl.GLExtensionSupported(extensionName) != 0;
         }
 
+        public void MakeCurrent()
+        {
+            sdl.GLMakeCurrent(window, glContext);
+        }
+
+        public void SwapBuffers()
+        {
+            sdl.GLSwapWindow(window);
+        }
+
+        public void SwapInterval(int interval)
+        {
+            sdl.GLSetSwapInterval(interval);
+        }
+
         public bool TryGetProcAddress(string procName, out nint procAddress)
         {
             procAddress = (nint)sdl.GLGetProcAddress(procName);
@@ -45,9 +73,8 @@
 
     public unsafe class OpenGLWindow : CoreWindow
     {
-        private void* glcontext;
-        private SDLGLContext context;
-
+        private BindingsContext context;
+        private GL gl;
         private ImGuiManager imGuiManager;
         private ImGuiDemo imGuiDemo;
         private ImGuizmoDemo imGuizmoDemo;
@@ -56,14 +83,13 @@
 
         public override void InitGraphics()
         {
-            glcontext = sdl.GLCreateContext(SDLWindow);
-            context = new(SDLWindow, glcontext, null);
-            GL.InitApi(new BindingsContext(App.sdl));
+            context = new BindingsContext(App.sdl, SDLWindow);
+            gl = new GL(context);
 
             imGuiManager = new();
             imGuiManager.OnRenderDrawData += OnRenderDrawData;
 
-            ImGuiImplSDL2.InitForOpenGL((SDLWindow*)SDLWindow, glcontext);
+            ImGuiImplSDL2.InitForOpenGL((SDLWindow*)SDLWindow, (void*)context.Handle);
             App.RegisterHook(ProcessEvent);
 
             ImGuiImplGLFW.SetCurrentContext(ImGui.GetCurrentContext());
@@ -93,8 +119,8 @@
             imPlotDemo.Draw();
 
             context.MakeCurrent();
-            GL.BindFramebuffer(GLFramebufferTarget.Framebuffer, 0);
-            GL.Clear(GLClearBufferMask.ColorBufferBit | GLClearBufferMask.DepthBufferBit);
+            gl.BindFramebuffer(GLFramebufferTarget.Framebuffer, 0);
+            gl.Clear(GLClearBufferMask.ColorBufferBit | GLClearBufferMask.DepthBufferBit);
 
             imGuiManager.EndFrame();
 
@@ -118,7 +144,7 @@
                 ImGuiImplSDL2.Shutdown();
                 imGuiManager.Dispose();
                 context.Dispose();
-                GL.FreeApi();
+                gl.Dispose();
                 base.Dispose(disposing);
                 disposed = true;
             }

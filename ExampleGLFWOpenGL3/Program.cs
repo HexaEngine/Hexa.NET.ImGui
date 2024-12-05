@@ -65,7 +65,7 @@ if (!ImGuiImplOpenGL3.Init(glslVersion))
     return;
 }
 
-GL.InitApi(new BindingsContext());
+GL GL = new(new BindingsContext(window));
 
 // Main loop
 while (GLFW.WindowShouldClose(window) == 0)
@@ -111,14 +111,26 @@ ImGuiImplOpenGL3.Shutdown();
 ImGuiImplGLFW.Shutdown();
 ImGui.DestroyContext();
 builder.Dispose();
-GL.FreeApi();
+GL.Dispose();
 
 // Clean up and terminate GLFW
 GLFW.DestroyWindow(window);
 GLFW.Terminate();
 
-internal unsafe class BindingsContext : HexaGen.Runtime.INativeContext
+internal unsafe class BindingsContext : HexaGen.Runtime.IGLContext
 {
+    private GLFWwindowPtr window;
+
+    public BindingsContext(GLFWwindowPtr window)
+    {
+        this.window = window;
+  
+    }
+
+    public nint Handle => (nint)window.Handle;
+
+    public bool IsCurrent => GLFW.GetCurrentContext() == window;
+
     public void Dispose()
     {
     }
@@ -131,6 +143,21 @@ internal unsafe class BindingsContext : HexaGen.Runtime.INativeContext
     public bool IsExtensionSupported(string extensionName)
     {
         return GLFW.ExtensionSupported(extensionName) != 0;
+    }
+
+    public void MakeCurrent()
+    {
+        GLFW.MakeContextCurrent(window);
+    }
+
+    public void SwapBuffers()
+    {
+        GLFW.SwapBuffers(window);
+    }
+
+    public void SwapInterval(int interval)
+    {
+        GLFW.SwapInterval(interval);
     }
 
     public bool TryGetProcAddress(string procName, out nint procAddress)

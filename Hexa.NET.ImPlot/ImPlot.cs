@@ -1,5 +1,8 @@
 namespace Hexa.NET.ImPlot
 {
+    using HexaGen.Runtime;
+    using System.Diagnostics;
+
     public static class ImPlotConfig
     {
         public static bool AotStaticLink;
