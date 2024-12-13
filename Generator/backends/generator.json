@@ -40,6 +40,7 @@
     "igSetCurrentContext",
     "igGetCurrentContext"
   ],
+  "IgnoredEnums": [ "VkStructureType" ],
   "ArrayMappings": [
     {
       "Primitive": 11,
@@ -58,6 +59,8 @@
     }
   ],
   "TypeMappings": {
+    "VkPipelineRenderingCreateInfoKHR": "VkPipelineRenderingCreateInfo",
+    "VkStructureType": "uint",
     "ImVector_ImDrawCmd": "ImVector<ImDrawCmd>",
     "uint8_t": "byte",
     "uint16_t": "ushort",

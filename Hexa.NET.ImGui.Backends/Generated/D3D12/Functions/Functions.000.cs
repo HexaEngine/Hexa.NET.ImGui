@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InitNative(ID3D12Device* device, int numFramesInFlight, uint rtvFormat, ID3D12DescriptorHeap* cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
+		internal static byte InitNative(ImGuiImplDX12InitInfo* info)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D12Device*, int, uint, ID3D12DescriptorHeap*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[36])(device, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			return ((delegate* unmanaged[Cdecl]<ImGuiImplDX12InitInfo*, byte>)funcTable[36])(info);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, uint, nint, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, byte>)funcTable[36])((nint)device, numFramesInFlight, rtvFormat, (nint)cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[36])((nint)info);
 			#endif
 		}
 
@@ -40,9 +40,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
 		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
 		/// </summary>
-		public static bool Init(ID3D12DevicePtr device, int numFramesInFlight, uint rtvFormat, ID3D12DescriptorHeapPtr cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
+		public static bool Init(ImGuiImplDX12InitInfoPtr info)
 		{
-			byte ret = InitNative(device, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+			byte ret = InitNative(info);
 			return ret != 0;
 		}
 
@@ -52,45 +52,12 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
 		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
 		/// </summary>
-		public static bool Init(ref ID3D12Device device, int numFramesInFlight, uint rtvFormat, ID3D12DescriptorHeapPtr cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
+		public static bool Init(ref ImGuiImplDX12InitInfo info)
 		{
-			fixed (ID3D12Device* pdevice = &device)
+			fixed (ImGuiImplDX12InitInfo* pinfo = &info)
 			{
-				byte ret = InitNative((ID3D12Device*)pdevice, numFramesInFlight, rtvFormat, cbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
+				byte ret = InitNative((ImGuiImplDX12InitInfo*)pinfo);
 				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// cmd_list is the command list that the implementation will use to render imgui draw lists.<br/>
-		/// Before calling the render function, caller must prepare cmd_list by resetting it and setting the appropriate<br/>
-		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
-		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
-		/// </summary>
-		public static bool Init(ID3D12DevicePtr device, int numFramesInFlight, uint rtvFormat, ref ID3D12DescriptorHeap cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
-		{
-			fixed (ID3D12DescriptorHeap* pcbvSrvHeap = &cbvSrvHeap)
-			{
-				byte ret = InitNative(device, numFramesInFlight, rtvFormat, (ID3D12DescriptorHeap*)pcbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// cmd_list is the command list that the implementation will use to render imgui draw lists.<br/>
-		/// Before calling the render function, caller must prepare cmd_list by resetting it and setting the appropriate<br/>
-		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
-		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
-		/// </summary>
-		public static bool Init(ref ID3D12Device device, int numFramesInFlight, uint rtvFormat, ref ID3D12DescriptorHeap cbvSrvHeap, D3D12CpuDescriptorHandle fontSrvCpuDescHandle, D3D12GpuDescriptorHandle fontSrvGpuDescHandle)
-		{
-			fixed (ID3D12Device* pdevice = &device)
-			{
-				fixed (ID3D12DescriptorHeap* pcbvSrvHeap = &cbvSrvHeap)
-				{
-					byte ret = InitNative((ID3D12Device*)pdevice, numFramesInFlight, rtvFormat, (ID3D12DescriptorHeap*)pcbvSrvHeap, fontSrvCpuDescHandle, fontSrvGpuDescHandle);
-					return ret != 0;
-				}
 			}
 		}
 

@@ -67,22 +67,27 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventInputRouting = unchecked(256),
+		EventFont = unchecked(256),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventDocking = unchecked(512),
+		EventInputRouting = unchecked(512),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventViewport = unchecked(1024),
+		EventDocking = unchecked(1024),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventMask = unchecked(2047),
+		EventViewport = unchecked(2048),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		EventMask = unchecked(4095),
 
 		/// <summary>
 		/// Also send output to TTY<br/>

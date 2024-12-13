@@ -124,7 +124,6 @@ internal unsafe class BindingsContext : HexaGen.Runtime.IGLContext
     public BindingsContext(GLFWwindowPtr window)
     {
         this.window = window;
-  
     }
 
     public nint Handle => (nint)window.Handle;

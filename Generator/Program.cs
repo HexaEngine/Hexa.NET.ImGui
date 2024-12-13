@@ -1,4 +1,4 @@
-﻿//#define BackendsOnly
+﻿#define BackendsOnly
 
 namespace Generator
 {

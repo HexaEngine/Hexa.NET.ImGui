@@ -23,6 +23,19 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct D3D12GpuDescriptorHandle
 	{
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ulong Ptr;
+
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe D3D12GpuDescriptorHandle(ulong ptr = default)
+		{
+			Ptr = ptr;
+		}
 
 
 	}

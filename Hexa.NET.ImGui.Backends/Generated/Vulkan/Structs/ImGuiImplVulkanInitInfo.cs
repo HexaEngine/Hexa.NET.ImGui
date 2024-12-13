@@ -94,6 +94,11 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		public byte UseDynamicRendering;
 
 		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public VkPipelineRenderingCreateInfo PipelineRenderingCreateInfo;
+
+		/// <summary>
 		/// (Optional) Allocation, Debugging<br/>
 		/// </summary>
 		public unsafe VkAllocationCallbacks* Allocator;
@@ -112,7 +117,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiImplVulkanInitInfo(VkInstance instance = default, VkPhysicalDevice physicalDevice = default, VkDevice device = default, uint queueFamily = default, VkQueue queue = default, VkDescriptorPool descriptorPool = default, VkRenderPass renderPass = default, uint minImageCount = default, uint imageCount = default, uint msaaSamples = default, VkPipelineCache pipelineCache = default, uint subpass = default, bool useDynamicRendering = default, VkAllocationCallbacks* allocator = default, delegate*<int, void> checkVkResultFn = default, ulong minAllocationSize = default)
+		public unsafe ImGuiImplVulkanInitInfo(VkInstance instance = default, VkPhysicalDevice physicalDevice = default, VkDevice device = default, uint queueFamily = default, VkQueue queue = default, VkDescriptorPool descriptorPool = default, VkRenderPass renderPass = default, uint minImageCount = default, uint imageCount = default, uint msaaSamples = default, VkPipelineCache pipelineCache = default, uint subpass = default, bool useDynamicRendering = default, VkPipelineRenderingCreateInfo pipelineRenderingCreateInfo = default, VkAllocationCallbacks* allocator = default, delegate*<int, void> checkVkResultFn = default, ulong minAllocationSize = default)
 		{
 			Instance = instance;
 			PhysicalDevice = physicalDevice;
@@ -127,6 +132,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 			PipelineCache = pipelineCache;
 			Subpass = subpass;
 			UseDynamicRendering = useDynamicRendering ? (byte)1 : (byte)0;
+			PipelineRenderingCreateInfo = pipelineRenderingCreateInfo;
 			Allocator = allocator;
 			CheckVkResultFn = (void*)checkVkResultFn;
 			MinAllocationSize = minAllocationSize;
@@ -233,6 +239,10 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// Need to explicitly enable VK_KHR_dynamic_rendering extension to use this, even for Vulkan 1.3.<br/>
 		/// </summary>
 		public ref bool UseDynamicRendering => ref Unsafe.AsRef<bool>(&Handle->UseDynamicRendering);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref VkPipelineRenderingCreateInfo PipelineRenderingCreateInfo => ref Unsafe.AsRef<VkPipelineRenderingCreateInfo>(&Handle->PipelineRenderingCreateInfo);
 		/// <summary>
 		/// (Optional) Allocation, Debugging<br/>
 		/// </summary>

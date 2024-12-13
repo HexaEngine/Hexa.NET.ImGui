@@ -25,22 +25,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ushort Width;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ushort Height;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ushort X;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ushort Y;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ushort Width;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ushort Height;
 
 		/// <summary>
 		/// To be documented.
@@ -71,12 +71,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlasCustomRect(ushort width = default, ushort height = default, ushort x = default, ushort y = default, uint glyphId = default, uint glyphColored = default, float glyphAdvanceX = default, Vector2 glyphOffset = default, ImFontPtr font = default)
+		public unsafe ImFontAtlasCustomRect(ushort x = default, ushort y = default, ushort width = default, ushort height = default, uint glyphId = default, uint glyphColored = default, float glyphAdvanceX = default, Vector2 glyphOffset = default, ImFontPtr font = default)
 		{
-			Width = width;
-			Height = height;
 			X = x;
 			Y = y;
+			Width = width;
+			Height = height;
 			GlyphID = glyphId;
 			GlyphColored = glyphColored;
 			GlyphAdvanceX = glyphAdvanceX;
@@ -154,19 +154,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ushort Width => ref Unsafe.AsRef<ushort>(&Handle->Width);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ushort Height => ref Unsafe.AsRef<ushort>(&Handle->Height);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref ushort X => ref Unsafe.AsRef<ushort>(&Handle->X);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref ushort Y => ref Unsafe.AsRef<ushort>(&Handle->Y);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ushort Width => ref Unsafe.AsRef<ushort>(&Handle->Width);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ushort Height => ref Unsafe.AsRef<ushort>(&Handle->Height);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -40,6 +40,9 @@
 #ifndef CIMGUI_USE_ANDROID
 #define CIMGUI_USE_ANDROID 1
 #endif
+#ifndef IMGUI_IMPL_VULKAN_HAS_DYNAMIC_RENDERING
+#define IMGUI_IMPL_VULKAN_HAS_DYNAMIC_RENDERING 1
+#endif
 
 #include <stdint.h>
 #include <string.h> // For memset
@@ -214,11 +217,38 @@ CIMGUI_API bool     CImGui_ImplDX11_CreateDeviceObjects();
 
 #if CIMGUI_USE_D3D12
 typedef struct ID3D12Device;
+typedef struct ID3D12CommandQueue;
 typedef struct ID3D12DescriptorHeap;
 typedef struct ID3D12GraphicsCommandList;
-typedef struct D3D12_CPU_DESCRIPTOR_HANDLE;
-typedef struct D3D12_GPU_DESCRIPTOR_HANDLE;
+typedef struct D3D12_CPU_DESCRIPTOR_HANDLE {
+	size_t ptr;
+} D3D12_CPU_DESCRIPTOR_HANDLE;
+typedef struct D3D12_GPU_DESCRIPTOR_HANDLE {
+	uint64_t ptr;
+} D3D12_GPU_DESCRIPTOR_HANDLE;
 typedef unsigned int DXGI_FORMAT;
+
+struct ImGui_ImplDX12_InitInfo
+{
+	ID3D12Device* Device;
+	ID3D12CommandQueue* CommandQueue;
+	int                         NumFramesInFlight;
+	DXGI_FORMAT                 RTVFormat;          // RenderTarget format.
+	DXGI_FORMAT                 DSVFormat;          // DepthStencilView format.
+	void* UserData;
+
+	// Allocating SRV descriptors for textures is up to the application, so we provide callbacks.
+	// (current version of the backend will only allocate one descriptor, future versions will need to allocate more)
+	ID3D12DescriptorHeap* SrvDescriptorHeap;
+	void                        (*SrvDescriptorAllocFn)(ImGui_ImplDX12_InitInfo* info, D3D12_CPU_DESCRIPTOR_HANDLE* out_cpu_desc_handle, D3D12_GPU_DESCRIPTOR_HANDLE* out_gpu_desc_handle);
+	void                        (*SrvDescriptorFreeFn)(ImGui_ImplDX12_InitInfo* info, D3D12_CPU_DESCRIPTOR_HANDLE cpu_desc_handle, D3D12_GPU_DESCRIPTOR_HANDLE gpu_desc_handle);
+#ifndef IMGUI_DISABLE_OBSOLETE_FUNCTIONS
+	D3D12_CPU_DESCRIPTOR_HANDLE LegacySingleSrvCpuDescriptor; // To facilitate transition from single descriptor to allocator callback, you may use those.
+	D3D12_GPU_DESCRIPTOR_HANDLE LegacySingleSrvGpuDescriptor;
+#endif
+
+	ImGui_ImplDX12_InitInfo() { memset(this, 0, sizeof(*this)); }
+};
 
 // Follow "Getting Started" link and check examples/ folder to learn about using backends!
 
@@ -226,7 +256,7 @@ typedef unsigned int DXGI_FORMAT;
 // Before calling the render function, caller must prepare cmd_list by resetting it and setting the appropriate
 // render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.
 // font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.
-CIMGUI_API bool     CImGui_ImplDX12_Init(ID3D12Device* device, int num_frames_in_flight, DXGI_FORMAT rtv_format, ID3D12DescriptorHeap* cbv_srv_heap, D3D12_CPU_DESCRIPTOR_HANDLE font_srv_cpu_desc_handle, D3D12_GPU_DESCRIPTOR_HANDLE font_srv_gpu_desc_handle);
+CIMGUI_API bool		CImGui_ImplDX12_Init(ImGui_ImplDX12_InitInfo* info);
 CIMGUI_API void     CImGui_ImplDX12_Shutdown();
 CIMGUI_API void     CImGui_ImplDX12_NewFrame();
 CIMGUI_API void     CImGui_ImplDX12_RenderDrawData(ImDrawData* draw_data, ID3D12GraphicsCommandList* graphics_command_list);
@@ -266,6 +296,8 @@ typedef int VkResult;
 typedef unsigned int VkSampleCountFlagBits;
 typedef unsigned long long VkDeviceSize;
 
+typedef enum VkStructureType;
+
 // Vulkan constants
 #define VK_NULL_HANDLE nullptr
 
@@ -285,6 +317,18 @@ typedef struct VkClearValue {
 		unsigned int stencil; // Stencil value
 	} depthStencil; // For depth/stencil attachments
 } VkClearValue;
+
+typedef struct VkPipelineRenderingCreateInfo {
+	VkStructureType    sType;
+	const void* pNext;
+	uint32_t           viewMask;
+	uint32_t           colorAttachmentCount;
+	const VkFormat* pColorAttachmentFormats;
+	VkFormat           depthAttachmentFormat;
+	VkFormat           stencilAttachmentFormat;
+} VkPipelineRenderingCreateInfo;
+
+typedef VkPipelineRenderingCreateInfo VkPipelineRenderingCreateInfoKHR;
 
 // Initialization data, for ImGui_ImplVulkan_Init()
 // - VkDescriptorPool should be created with VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,

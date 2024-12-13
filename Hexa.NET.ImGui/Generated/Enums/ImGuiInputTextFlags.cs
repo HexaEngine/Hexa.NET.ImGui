@@ -110,33 +110,38 @@ namespace Hexa.NET.ImGui
 		NoUndoRedo = unchecked(65536),
 
 		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ElideLeft = unchecked(131072),
+
+		/// <summary>
 		/// Callback on pressing TAB (for completion handling)<br/>
 		/// </summary>
-		CallbackCompletion = unchecked(131072),
+		CallbackCompletion = unchecked(262144),
 
 		/// <summary>
 		/// Callback on pressing UpDown arrows (for history handling)<br/>
 		/// </summary>
-		CallbackHistory = unchecked(262144),
+		CallbackHistory = unchecked(524288),
 
 		/// <summary>
 		/// Callback on each iteration. User code may query cursor position, modify text buffer.<br/>
 		/// </summary>
-		CallbackAlways = unchecked(524288),
+		CallbackAlways = unchecked(1048576),
 
 		/// <summary>
 		/// Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard.<br/>
 		/// </summary>
-		CallbackCharFilter = unchecked(1048576),
+		CallbackCharFilter = unchecked(2097152),
 
 		/// <summary>
 		/// Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow. Notify when the string wants to be resized (for string types which hold a cache of their Size). You will be provided a new BufSize in the callback and NEED to honor it. (see misccppimgui_stdlib.h for an example of using this)<br/>
 		/// </summary>
-		CallbackResize = unchecked(2097152),
+		CallbackResize = unchecked(4194304),
 
 		/// <summary>
 		/// Callback on any edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active)<br/>
 		/// </summary>
-		CallbackEdit = unchecked(4194304),
+		CallbackEdit = unchecked(8388608),
 	}
 }
