@@ -15,7 +15,7 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **Open Source**: The source code for the native libraries is public and can be reviewed by anyone.
 - **Access to Internals**: Allows users to access Dear ImGui internals for advanced customization and functionality.
 - **Drop in replacement for ImGuiNET** Adapt to the library with minimal effort by simply changing the namespace.
-- **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
+- **High performance** Using a static function table, all API calls are faster and startup time is reduced.
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 - **Wide range .NET support**: Supported versions net8.0, net7.0, netstandard2.1, netstandard2.0
 
@@ -26,6 +26,7 @@ We extend our heartfelt gratitude to all our sponsors for their generous support
  - @qian-o
  - @NotNite
  - Mr Villa
+ - @TheSameCat2
 
 Your contributions help keep this project thriving—thank you!
 
