@@ -53,6 +53,11 @@
             ImGuiImplD3D11.RenderDrawData(ImGui.GetDrawData());
         }
 
+        protected override void OnResized(ResizedEventArgs resizedEventArgs)
+        {
+            d3d11Manager.Resize(resizedEventArgs.Width, resizedEventArgs.Height);
+        }
+
         public override void Render()
         {
             imGuiManager.NewFrame();

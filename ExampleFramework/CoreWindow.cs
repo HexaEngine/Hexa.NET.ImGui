@@ -76,16 +76,28 @@
 
         internal void ProcessWindowEvent(WindowEvent windowEvent)
         {
-            switch ((WindowEventID)windowEvent.Type)
+            switch ((WindowEventID)windowEvent.Event)
             {
                 case WindowEventID.Resized:
                     var oldWidth = this.width;
                     var oldHeight = this.height;
                     int width = windowEvent.Data1;
                     int height = windowEvent.Data2;
-                    Resized?.Invoke(this, new ResizedEventArgs(width, height, oldWidth, oldHeight));
+                    var resizedEventArgs = new ResizedEventArgs(width, height, oldWidth, oldHeight);
                     this.width = width;
                     this.height = height;
+                    OnResized(resizedEventArgs);
+                    if (!resizedEventArgs.Handled)
+                    {
+                        Resized?.Invoke(this, resizedEventArgs);
+                    }
+                    else
+                    {
+                        sdl.SetWindowSize(window, oldWidth, oldHeight);
+                        this.width = oldWidth;
+                        this.height = oldHeight;
+                    }
+
                     break;
 
                 case WindowEventID.Close:
@@ -99,6 +111,10 @@
                     Closed?.Invoke(this, new());
                     break;
             }
+        }
+
+        protected virtual void OnResized(ResizedEventArgs resizedEventArgs)
+        {
         }
 
         public virtual void InitGraphics()

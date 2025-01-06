@@ -19,5 +19,7 @@
         public int OldWidth { get; }
 
         public int OldHeight { get; }
+
+        public bool Handled { get; set; }
     }
 }

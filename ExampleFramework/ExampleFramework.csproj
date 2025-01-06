@@ -13,9 +13,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Hexa.NET.DebugDraw" Version="2.3.2" />
 		<PackageReference Include="Silk.NET.SDL" Version="2.22.0" />
-		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.14" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.2.1" />
 		<PackageReference Include="Hexa.NET.Math" Version="2.0.3" />
+		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
