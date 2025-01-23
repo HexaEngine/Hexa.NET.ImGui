@@ -6,6 +6,7 @@
     using Hexa.NET.ImGui.Utilities;
     using Hexa.NET.ImGui.Widgets;
     using Hexa.NET.ImGui.Widgets.Dialogs;
+    using Hexa.NET.ImNodes;
 
     [Activity(Label = "ExampleAndroid", MainLauncher = true, Icon = "@mipmap/ic_launcher", Theme = "@style/AppTheme")]
     public unsafe class MainActivity : Activity
@@ -17,6 +18,11 @@
 
             var guiContext = ImGui.CreateContext();
             ImGui.SetCurrentContext(guiContext);
+
+            ImNodes.SetImGuiContext(guiContext);
+            var nodesContext = ImNodes.CreateContext();
+            ImNodes.SetCurrentContext(nodesContext);
+            ImNodes.StyleColorsDark(ImNodes.GetStyle());
 
             var io = ImGui.GetIO();
             io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;         // Enable Docking
@@ -65,6 +71,9 @@
             ImGui.Text("Hello World!");
 
             ImGui.InputText("TextInput", ref s, 1024);
+
+            ImNodes.BeginNodeEditor();
+            ImNodes.EndNodeEditor();
         }
     }
 }

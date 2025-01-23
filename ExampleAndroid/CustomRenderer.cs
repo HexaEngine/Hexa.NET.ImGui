@@ -5,11 +5,12 @@
     using Hexa.NET.ImGui.Backends.Android;
     using Hexa.NET.ImGui.Backends.OpenGL3;
     using Hexa.NET.ImGui.Widgets;
+    using Hexa.NET.ImNodes;
     using Javax.Microedition.Khronos.Opengles;
 
     public class CustomRenderer : Java.Lang.Object, GLSurfaceView.IRenderer
     {
-        static bool WantTextInputLast = false;
+        private static bool WantTextInputLast = false;
 
         public void OnDrawFrame(IGL10? gl)
         {

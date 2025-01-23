@@ -22,6 +22,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImNodes\Hexa.NET.ImNodes.csproj" />
 	</ItemGroup>
 
 
