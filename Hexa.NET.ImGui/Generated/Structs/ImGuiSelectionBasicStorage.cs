@@ -142,7 +142,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiId id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		public unsafe bool GetNextSelectedItem(void** opaqueIt, uint* outId)
 		{
@@ -154,7 +154,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiId id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref uint outId)
 		{
@@ -328,7 +328,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiId id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		public unsafe bool GetNextSelectedItem(void** opaqueIt, uint* outId)
 		{
@@ -337,7 +337,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiId id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref uint outId)
 		{

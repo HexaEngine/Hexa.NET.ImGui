@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui
 		NoUndoRedo = unchecked(65536),
 
 		/// <summary>
-		/// To be documented.
+		/// When text doesn't fit, elide left side to ensure right side stays visible. Useful for pathfilenames. Single-line only!<br/>
 		/// </summary>
 		ElideLeft = unchecked(131072),
 
@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 		CallbackResize = unchecked(4194304),
 
 		/// <summary>
-		/// Callback on any edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active)<br/>
+		/// Callback on any edit. Note that InputText() already returns true on edit + you can always use IsItemEdited(). The callback is useful to manipulate the underlying buffer while focus is active.<br/>
 		/// </summary>
 		CallbackEdit = unchecked(8388608),
 	}

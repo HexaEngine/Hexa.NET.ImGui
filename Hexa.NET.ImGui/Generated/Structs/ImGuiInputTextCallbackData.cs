@@ -20,7 +20,7 @@ namespace Hexa.NET.ImGui
 	/// Shared state of InputText(), passed as an argument to your callback when a ImGuiInputTextFlags_Callback* flag is used.<br/>
 	/// The callback function should return 0 by default.<br/>
 	/// Callbacks (follow a flag name and see comments in ImGuiInputTextFlags_ declarations for more details)<br/>
-	/// - ImGuiInputTextFlags_CallbackEdit:        Callback on buffer edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active)<br/>
+	/// - ImGuiInputTextFlags_CallbackEdit:        Callback on buffer edit. Note that InputText() already returns true on edit + you can always use IsItemEdited(). The callback is useful to manipulate the underlying buffer while focus is active.<br/>
 	/// - ImGuiInputTextFlags_CallbackAlways:      Callback on each iteration<br/>
 	/// - ImGuiInputTextFlags_CallbackCompletion:  Callback on pressing TAB<br/>
 	/// - ImGuiInputTextFlags_CallbackHistory:     Callback on pressing UpDown arrows<br/>

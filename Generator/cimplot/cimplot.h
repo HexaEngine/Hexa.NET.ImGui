@@ -201,7 +201,8 @@ typedef enum {
 typedef enum {
 	ImPlotPieChartFlags_None = 0,
 	ImPlotPieChartFlags_Normalize = 1 << 10,
-	ImPlotPieChartFlags_IgnoreHidden = 1 << 11
+	ImPlotPieChartFlags_IgnoreHidden = 1 << 11,
+	ImPlotPieChartFlags_Exploding = 1 << 12
 }ImPlotPieChartFlags_;
 typedef enum {
 	ImPlotHeatmapFlags_None = 0,
@@ -1525,13 +1526,18 @@ CIMGUI_API void ImPlot_MkGmtTime(ImPlotTime* pOut, struct tm* ptm);
 CIMGUI_API tm* ImPlot_GetGmtTime(const ImPlotTime t, tm* ptm);
 CIMGUI_API void ImPlot_MkLocTime(ImPlotTime* pOut, struct tm* ptm);
 CIMGUI_API tm* ImPlot_GetLocTime(const ImPlotTime t, tm* ptm);
+CIMGUI_API void ImPlot_MkTime(ImPlotTime* pOut, struct tm* ptm);
+CIMGUI_API tm* ImPlot_GetTime(const ImPlotTime t, tm* ptm);
 CIMGUI_API void ImPlot_MakeTime(ImPlotTime* pOut, int year, int month, int day, int hour, int min, int sec, int us);
 CIMGUI_API int ImPlot_GetYear(const ImPlotTime t);
+CIMGUI_API int ImPlot_GetMonth(const ImPlotTime t);
 CIMGUI_API void ImPlot_AddTime(ImPlotTime* pOut, const ImPlotTime t, ImPlotTimeUnit unit, int count);
 CIMGUI_API void ImPlot_FloorTime(ImPlotTime* pOut, const ImPlotTime t, ImPlotTimeUnit unit);
 CIMGUI_API void ImPlot_CeilTime(ImPlotTime* pOut, const ImPlotTime t, ImPlotTimeUnit unit);
 CIMGUI_API void ImPlot_RoundTime(ImPlotTime* pOut, const ImPlotTime t, ImPlotTimeUnit unit);
 CIMGUI_API void ImPlot_CombineDateTime(ImPlotTime* pOut, const ImPlotTime date_part, const ImPlotTime time_part);
+CIMGUI_API void ImPlot_Now(ImPlotTime* pOut);
+CIMGUI_API void ImPlot_Today(ImPlotTime* pOut);
 CIMGUI_API int ImPlot_FormatTime(const ImPlotTime t, char* buffer, int size, ImPlotTimeFmt fmt, bool use_24_hr_clk);
 CIMGUI_API int ImPlot_FormatDate(const ImPlotTime t, char* buffer, int size, ImPlotDateFmt fmt, bool use_iso_8601);
 CIMGUI_API int ImPlot_FormatDateTime(const ImPlotTime t, char* buffer, int size, ImPlotDateTimeSpec fmt);

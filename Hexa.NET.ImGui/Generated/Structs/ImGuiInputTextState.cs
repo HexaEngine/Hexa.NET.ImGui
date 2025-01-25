@@ -36,12 +36,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ImGuiInputTextFlags Flags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public uint ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public int TextLen;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* TextSrc;
 
 		/// <summary>
 		/// To be documented.
@@ -91,12 +101,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputTextFlags Flags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte ReloadUserBuf;
+		public byte WantReloadUserBuf;
 
 		/// <summary>
 		/// To be documented.
@@ -112,12 +117,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, uint id = default, int textLen = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, ImGuiInputTextFlags flags = default, uint id = default, int textLen = default, byte* textSrc = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, bool wantReloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
 			Stb = stb;
+			Flags = flags;
 			ID = id;
 			TextLen = textLen;
+			TextSrc = textSrc;
 			TextA = textA;
 			TextToRevertTo = textToRevertTo;
 			CallbackTextBackup = callbackTextBackup;
@@ -127,8 +134,7 @@ namespace Hexa.NET.ImGui
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
 			SelectedAllMouseLock = selectedAllMouseLock ? (byte)1 : (byte)0;
 			Edited = edited ? (byte)1 : (byte)0;
-			Flags = flags;
-			ReloadUserBuf = reloadUserBuf ? (byte)1 : (byte)0;
+			WantReloadUserBuf = wantReloadUserBuf ? (byte)1 : (byte)0;
 			ReloadSelectionStart = reloadSelectionStart;
 			ReloadSelectionEnd = reloadSelectionEnd;
 		}
@@ -188,11 +194,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref int TextLen => ref Unsafe.AsRef<int>(&Handle->TextLen);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte* TextSrc { get => Handle->TextSrc; set => Handle->TextSrc = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -232,11 +246,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref bool ReloadUserBuf => ref Unsafe.AsRef<bool>(&Handle->ReloadUserBuf);
+		public ref bool WantReloadUserBuf => ref Unsafe.AsRef<bool>(&Handle->WantReloadUserBuf);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

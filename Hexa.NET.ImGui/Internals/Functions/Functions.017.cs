@@ -21,6 +21,45 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
+		public static byte* FindRenderedTextEnd(byte* text)
+		{
+			byte* ret = FindRenderedTextEndNative(text, (byte*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text)
+		{
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)(default)));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text, byte* textEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, textEnd));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(ref byte text, byte* textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, textEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
 		public static byte* FindRenderedTextEnd(ref byte text)
 		{
 			fixed (byte* ptext = &text)
@@ -3146,11 +3185,32 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, long* pScrollV, long availV, long contentsV)
+		{
+			byte ret = ScrollbarExNative(bb, id, axis, pScrollV, availV, contentsV, (ImDrawFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, ref long pScrollV, long availV, long contentsV, ImDrawFlags drawRoundingFlags)
 		{
 			fixed (long* ppScrollV = &pScrollV)
 			{
 				byte ret = ScrollbarExNative(bb, id, axis, (long*)ppScrollV, availV, contentsV, drawRoundingFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, ref long pScrollV, long availV, long contentsV)
+		{
+			fixed (long* ppScrollV = &pScrollV)
+			{
+				byte ret = ScrollbarExNative(bb, id, axis, (long*)ppScrollV, availV, contentsV, (ImDrawFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -4960,87 +5020,6 @@ namespace Hexa.NET.ImGui
 					byte ret = DataTypeApplyFromTextNative((byte*)pbuf, dataType, pData, (byte*)pformat, pDataWhenEmpty);
 					return ret != 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DataTypeApplyFromText(ref byte buf, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pbuf = &buf)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = DataTypeApplyFromTextNative((byte*)pbuf, dataType, pData, (byte*)pformat, (void*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DataTypeApplyFromText(ref byte buf, ImGuiDataType dataType, void* pData, string format, void* pDataWhenEmpty)
-		{
-			fixed (byte* pbuf = &buf)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = DataTypeApplyFromTextNative((byte*)pbuf, dataType, pData, pStr0, pDataWhenEmpty);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DataTypeApplyFromText(ref byte buf, ImGuiDataType dataType, void* pData, string format)
-		{
-			fixed (byte* pbuf = &buf)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = DataTypeApplyFromTextNative((byte*)pbuf, dataType, pData, pStr0, (void*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 	}

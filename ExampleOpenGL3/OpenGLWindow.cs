@@ -17,7 +17,7 @@
     {
         private Sdl sdl;
         private readonly Window* window;
-        private  void* glContext;
+        private void* glContext;
 
         public BindingsContext(Sdl sdl, Window* window)
         {
@@ -112,6 +112,7 @@
 
         public override void Render()
         {
+            if (disposed) return;
             imGuiManager.NewFrame();
             ImGui.ShowDemoWindow();
             imGuizmoDemo.Draw();

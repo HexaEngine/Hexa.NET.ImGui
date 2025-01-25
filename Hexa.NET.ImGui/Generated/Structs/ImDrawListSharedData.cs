@@ -18,7 +18,9 @@ namespace Hexa.NET.ImGui
 {
 	/// <summary>
 	/// Data shared between all ImDrawList instances<br/>
-	/// You may want to create your own instance of this if you want to use ImDrawList completely without ImGui. In that case, watch out for future changes to this structure.<br/>
+	/// Conceptually this could have been called e.g. ImDrawListSharedContext<br/>
+	/// Typically one ImGui context would create and maintain one of this.<br/>
+	/// You may want to create your own instance of you try to ImDrawList completely without ImGui. In that case, watch out for future changes to this structure.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawListSharedData

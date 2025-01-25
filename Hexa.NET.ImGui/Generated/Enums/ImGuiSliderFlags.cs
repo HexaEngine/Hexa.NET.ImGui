@@ -55,6 +55,11 @@ namespace Hexa.NET.ImGui
 		ClampZeroRange = unchecked(1024),
 
 		/// <summary>
+		/// Disable keyboard modifiers altering tweak speed. Useful if you want to alter tweak speed yourself based on your own logic.<br/>
+		/// </summary>
+		NoSpeedTweaks = unchecked(2048),
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		AlwaysClamp = unchecked(1536),

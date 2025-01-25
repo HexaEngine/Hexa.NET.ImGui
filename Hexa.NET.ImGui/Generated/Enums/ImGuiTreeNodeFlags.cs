@@ -92,17 +92,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Narrow hit box + narrow hovering highlight, will only cover the label text.<br/>
 		/// </summary>
-		SpanTextWidth = unchecked(8192),
+		SpanLabelWidth = unchecked(8192),
 
 		/// <summary>
-		/// Frame will span all columns of its container table (text will still fit in current column)<br/>
+		/// Frame will span all columns of its container table (label will still fit in current column)<br/>
 		/// </summary>
 		SpanAllColumns = unchecked(16384),
 
 		/// <summary>
+		/// Label will span all columns of its container table<br/>
+		/// </summary>
+		LabelSpanAllColumns = unchecked(32768),
+
+		/// <summary>
 		/// (WIP) Nav: left direction may move to this TreeNode() from any of its child (items submitted between TreeNode and TreePop)<br/>
 		/// </summary>
-		NavLeftJumpsBackHere = unchecked(32768),
+		NavLeftJumpsBackHere = unchecked(131072),
 
 		/// <summary>
 		/// To be documented.

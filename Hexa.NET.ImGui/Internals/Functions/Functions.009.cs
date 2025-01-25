@@ -21,6 +21,48 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void WindowPosAbsToRelNative(Vector2* pOut, ImGuiWindow* window, Vector2 p)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiWindow*, Vector2, void>)funcTable[1007])(pOut, window, p);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, Vector2, void>)funcTable[1007])((nint)pOut, (nint)window, p);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 WindowPosAbsToRel(ImGuiWindowPtr window, Vector2 p)
+		{
+			Vector2 ret;
+			WindowPosAbsToRelNative(&ret, window, p);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void WindowPosAbsToRel(Vector2* pOut, ImGuiWindowPtr window, Vector2 p)
+		{
+			WindowPosAbsToRelNative(pOut, window, p);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void WindowPosAbsToRel(ref Vector2 pOut, ImGuiWindowPtr window, Vector2 p)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				WindowPosAbsToRelNative((Vector2*)ppOut, window, p);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2 WindowPosAbsToRel(ref ImGuiWindow window, Vector2 p)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
@@ -4982,44 +5024,6 @@ namespace Hexa.NET.ImGui
 				GetPopupAllowedExtentRectNative(&ret, (ImGuiWindow*)pwindow);
 				return ret;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetPopupAllowedExtentRect(ImRectPtr pOut, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				GetPopupAllowedExtentRectNative(pOut, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetPopupAllowedExtentRect(ref ImRect pOut, ref ImGuiWindow window)
-		{
-			fixed (ImRect* ppOut = &pOut)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
-				{
-					GetPopupAllowedExtentRectNative((ImRect*)ppOut, (ImGuiWindow*)pwindow);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiWindow* GetTopMostPopupModalNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)funcTable[1101])();
-			#else
-			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1101])();
-			#endif
 		}
 	}
 }

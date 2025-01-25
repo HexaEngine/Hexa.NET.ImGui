@@ -51,6 +51,9 @@
     "ImGuiDataType_": {
       "above": "// A primary data type"
     },
+    "ImGuiDebugLogFlags_": {
+      "above": "// See IMGUI_DEBUG_LOG() and IMGUI_DEBUG_LOG_XXX() macros."
+    },
     "ImGuiDir": {
       "above": "// A cardinal direction"
     },
@@ -1369,19 +1372,14 @@
     ],
     "ImGuiDataTypePrivate_": [
       {
-        "calc_value": 12,
-        "name": "ImGuiDataType_String",
-        "value": "ImGuiDataType_COUNT + 1"
-      },
-      {
         "calc_value": 13,
         "name": "ImGuiDataType_Pointer",
-        "value": "ImGuiDataType_COUNT + 1+1"
+        "value": "ImGuiDataType_COUNT + 1"
       },
       {
         "calc_value": 14,
         "name": "ImGuiDataType_ID",
-        "value": "ImGuiDataType_COUNT + 1+1+1"
+        "value": "ImGuiDataType_COUNT + 1+1"
       }
     ],
     "ImGuiDataType_": [
@@ -1453,8 +1451,14 @@
       },
       {
         "calc_value": 11,
-        "name": "ImGuiDataType_COUNT",
+        "comment": "// char* (provided for user convenience, not supported by scalar widgets)",
+        "name": "ImGuiDataType_String",
         "value": "11"
+      },
+      {
+        "calc_value": 12,
+        "name": "ImGuiDataType_COUNT",
+        "value": "12"
       }
     ],
     "ImGuiDebugLogFlags_": [
@@ -1506,23 +1510,28 @@
       },
       {
         "calc_value": 256,
-        "name": "ImGuiDebugLogFlags_EventInputRouting",
+        "name": "ImGuiDebugLogFlags_EventFont",
         "value": "1 << 8"
       },
       {
         "calc_value": 512,
-        "name": "ImGuiDebugLogFlags_EventDocking",
+        "name": "ImGuiDebugLogFlags_EventInputRouting",
         "value": "1 << 9"
       },
       {
         "calc_value": 1024,
-        "name": "ImGuiDebugLogFlags_EventViewport",
+        "name": "ImGuiDebugLogFlags_EventDocking",
         "value": "1 << 10"
       },
       {
-        "calc_value": 2047,
+        "calc_value": 2048,
+        "name": "ImGuiDebugLogFlags_EventViewport",
+        "value": "1 << 11"
+      },
+      {
+        "calc_value": 4095,
         "name": "ImGuiDebugLogFlags_EventMask_",
-        "value": "ImGuiDebugLogFlags_EventError | ImGuiDebugLogFlags_EventActiveId | ImGuiDebugLogFlags_EventFocus | ImGuiDebugLogFlags_EventPopup | ImGuiDebugLogFlags_EventNav | ImGuiDebugLogFlags_EventClipper | ImGuiDebugLogFlags_EventSelection | ImGuiDebugLogFlags_EventIO | ImGuiDebugLogFlags_EventInputRouting | ImGuiDebugLogFlags_EventDocking | ImGuiDebugLogFlags_EventViewport"
+        "value": "ImGuiDebugLogFlags_EventError | ImGuiDebugLogFlags_EventActiveId | ImGuiDebugLogFlags_EventFocus | ImGuiDebugLogFlags_EventPopup | ImGuiDebugLogFlags_EventNav | ImGuiDebugLogFlags_EventClipper | ImGuiDebugLogFlags_EventSelection | ImGuiDebugLogFlags_EventIO | ImGuiDebugLogFlags_EventFont | ImGuiDebugLogFlags_EventInputRouting | ImGuiDebugLogFlags_EventDocking | ImGuiDebugLogFlags_EventViewport"
       },
       {
         "calc_value": 1048576,
@@ -2494,39 +2503,45 @@
       },
       {
         "calc_value": 131072,
-        "comment": "// Callback on pressing TAB (for completion handling)",
-        "name": "ImGuiInputTextFlags_CallbackCompletion",
+        "comment": "// When text doesn't fit, elide left side to ensure right side stays visible. Useful for path/filenames. Single-line only!",
+        "name": "ImGuiInputTextFlags_ElideLeft",
         "value": "1 << 17"
       },
       {
         "calc_value": 262144,
-        "comment": "// Callback on pressing Up/Down arrows (for history handling)",
-        "name": "ImGuiInputTextFlags_CallbackHistory",
+        "comment": "// Callback on pressing TAB (for completion handling)",
+        "name": "ImGuiInputTextFlags_CallbackCompletion",
         "value": "1 << 18"
       },
       {
         "calc_value": 524288,
-        "comment": "// Callback on each iteration. User code may query cursor position, modify text buffer.",
-        "name": "ImGuiInputTextFlags_CallbackAlways",
+        "comment": "// Callback on pressing Up/Down arrows (for history handling)",
+        "name": "ImGuiInputTextFlags_CallbackHistory",
         "value": "1 << 19"
       },
       {
         "calc_value": 1048576,
-        "comment": "// Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard.",
-        "name": "ImGuiInputTextFlags_CallbackCharFilter",
+        "comment": "// Callback on each iteration. User code may query cursor position, modify text buffer.",
+        "name": "ImGuiInputTextFlags_CallbackAlways",
         "value": "1 << 20"
       },
       {
         "calc_value": 2097152,
-        "comment": "// Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow. Notify when the string wants to be resized (for string types which hold a cache of their Size). You will be provided a new BufSize in the callback and NEED to honor it. (see misc/cpp/imgui_stdlib.h for an example of using this)",
-        "name": "ImGuiInputTextFlags_CallbackResize",
+        "comment": "// Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard.",
+        "name": "ImGuiInputTextFlags_CallbackCharFilter",
         "value": "1 << 21"
       },
       {
         "calc_value": 4194304,
-        "comment": "// Callback on any edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active)",
-        "name": "ImGuiInputTextFlags_CallbackEdit",
+        "comment": "// Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow. Notify when the string wants to be resized (for string types which hold a cache of their Size). You will be provided a new BufSize in the callback and NEED to honor it. (see misc/cpp/imgui_stdlib.h for an example of using this)",
+        "name": "ImGuiInputTextFlags_CallbackResize",
         "value": "1 << 22"
+      },
+      {
+        "calc_value": 8388608,
+        "comment": "// Callback on any edit. Note that InputText() already returns true on edit + you can always use IsItemEdited(). The callback is useful to manipulate the underlying buffer while focus is active.",
+        "name": "ImGuiInputTextFlags_CallbackEdit",
+        "value": "1 << 23"
       }
     ],
     "ImGuiItemFlagsPrivate_": [
@@ -4550,6 +4565,12 @@
         "value": "1 << 10"
       },
       {
+        "calc_value": 2048,
+        "comment": "// Disable keyboard modifiers altering tweak speed. Useful if you want to alter tweak speed yourself based on your own logic.",
+        "name": "ImGuiSliderFlags_NoSpeedTweaks",
+        "value": "1 << 11"
+      },
+      {
         "calc_value": 1536,
         "name": "ImGuiSliderFlags_AlwaysClamp",
         "value": "ImGuiSliderFlags_ClampOnInput | ImGuiSliderFlags_ClampZeroRange"
@@ -5524,20 +5545,26 @@
       {
         "calc_value": 8192,
         "comment": "// Narrow hit box + narrow hovering highlight, will only cover the label text.",
-        "name": "ImGuiTreeNodeFlags_SpanTextWidth",
+        "name": "ImGuiTreeNodeFlags_SpanLabelWidth",
         "value": "1 << 13"
       },
       {
         "calc_value": 16384,
-        "comment": "// Frame will span all columns of its container table (text will still fit in current column)",
+        "comment": "// Frame will span all columns of its container table (label will still fit in current column)",
         "name": "ImGuiTreeNodeFlags_SpanAllColumns",
         "value": "1 << 14"
       },
       {
         "calc_value": 32768,
+        "comment": "// Label will span all columns of its container table",
+        "name": "ImGuiTreeNodeFlags_LabelSpanAllColumns",
+        "value": "1 << 15"
+      },
+      {
+        "calc_value": 131072,
         "comment": "// (WIP) Nav: left direction may move to this TreeNode() from any of its child (items submitted between TreeNode and TreePop)",
         "name": "ImGuiTreeNodeFlags_NavLeftJumpsBackHere",
-        "value": "1 << 15"
+        "value": "1 << 17"
       },
       {
         "calc_value": 26,
@@ -5914,210 +5941,296 @@
     "ImGuiSortDirection": "ImU8"
   },
   "locations": {
-    "ImBitVector": "imgui_internal:610",
-    "ImColor": "imgui:2856",
-    "ImDrawChannel": "imgui:3096",
-    "ImDrawCmd": "imgui:3053",
-    "ImDrawCmdHeader": "imgui:3088",
-    "ImDrawData": "imgui:3312",
-    "ImDrawDataBuilder": "imgui_internal:799",
-    "ImDrawFlags_": "imgui:3122",
-    "ImDrawList": "imgui:3160",
-    "ImDrawListFlags_": "imgui:3142",
-    "ImDrawListSharedData": "imgui_internal:775",
-    "ImDrawListSplitter": "imgui:3105",
-    "ImDrawVert": "imgui:3073",
-    "ImFont": "imgui:3536",
-    "ImFontAtlas": "imgui:3432",
-    "ImFontAtlasCustomRect": "imgui:3393",
-    "ImFontAtlasFlags_": "imgui:3407",
-    "ImFontBuilderIO": "imgui_internal:3829",
-    "ImFontConfig": "imgui:3336",
-    "ImFontGlyph": "imgui:3366",
-    "ImFontGlyphRangesBuilder": "imgui:3378",
-    "ImGuiActivateFlags_": "imgui_internal:1558",
-    "ImGuiAxis": "imgui_internal:1025",
-    "ImGuiBackendFlags_": "imgui:1663",
-    "ImGuiBoxSelectState": "imgui_internal:1747",
-    "ImGuiButtonFlagsPrivate_": "imgui_internal:915",
-    "ImGuiButtonFlags_": "imgui:1797",
-    "ImGuiChildFlags_": "imgui:1152",
-    "ImGuiCol_": "imgui:1678",
-    "ImGuiColorEditFlags_": "imgui:1808",
-    "ImGuiColorMod": "imgui_internal:1039",
-    "ImGuiComboFlagsPrivate_": "imgui_internal:940",
-    "ImGuiComboFlags_": "imgui:1295",
-    "ImGuiComboPreviewData": "imgui_internal:1056",
-    "ImGuiCond_": "imgui:1909",
-    "ImGuiConfigFlags_": "imgui:1634",
-    "ImGuiContext": "imgui_internal:2214",
-    "ImGuiContextHook": "imgui_internal:2199",
-    "ImGuiContextHookType": "imgui_internal:2197",
-    "ImGuiDataAuthority_": "imgui_internal:1858",
-    "ImGuiDataTypeInfo": "imgui_internal:825",
-    "ImGuiDataTypePrivate_": "imgui_internal:834",
-    "ImGuiDataTypeStorage": "imgui_internal:819",
-    "ImGuiDataType_": "imgui:1443",
-    "ImGuiDataVarInfo": "imgui_internal:811",
-    "ImGuiDebugAllocEntry": "imgui_internal:2133",
-    "ImGuiDebugAllocInfo": "imgui_internal:2140",
-    "ImGuiDebugLogFlags_": "imgui_internal:2112",
-    "ImGuiDir": "imgui:1460",
-    "ImGuiDockContext": "imgui_internal:1960",
-    "ImGuiDockNode": "imgui_internal:1874",
-    "ImGuiDockNodeFlagsPrivate_": "imgui_internal:1828",
-    "ImGuiDockNodeFlags_": "imgui:1396",
-    "ImGuiDockNodeState": "imgui_internal:1865",
-    "ImGuiDragDropFlags_": "imgui:1415",
-    "ImGuiErrorRecoveryState": "imgui_internal:1289",
-    "ImGuiFocusRequestFlags_": "imgui_internal:985",
-    "ImGuiFocusScopeData": "imgui_internal:1644",
-    "ImGuiFocusedFlags_": "imgui:1342",
+    "ImBitVector": "imgui_internal:616",
+    "ImColor": "imgui:2869",
+    "ImDrawChannel": "imgui:3109",
+    "ImDrawCmd": "imgui:3066",
+    "ImDrawCmdHeader": "imgui:3101",
+    "ImDrawData": "imgui:3326",
+    "ImDrawDataBuilder": "imgui_internal:805",
+    "ImDrawFlags_": "imgui:3135",
+    "ImDrawList": "imgui:3173",
+    "ImDrawListFlags_": "imgui:3155",
+    "ImDrawListSharedData": "imgui_internal:783",
+    "ImDrawListSplitter": "imgui:3118",
+    "ImDrawVert": "imgui:3086",
+    "ImFont": "imgui:3552",
+    "ImFontAtlas": "imgui:3448",
+    "ImFontAtlasCustomRect": "imgui:3407",
+    "ImFontAtlasFlags_": "imgui:3423",
+    "ImFontBuilderIO": "imgui_internal:3849",
+    "ImFontConfig": "imgui:3350",
+    "ImFontGlyph": "imgui:3380",
+    "ImFontGlyphRangesBuilder": "imgui:3392",
+    "ImGuiActivateFlags_": "imgui_internal:1573",
+    "ImGuiAxis": "imgui_internal:1030",
+    "ImGuiBackendFlags_": "imgui:1672",
+    "ImGuiBoxSelectState": "imgui_internal:1762",
+    "ImGuiButtonFlagsPrivate_": "imgui_internal:920",
+    "ImGuiButtonFlags_": "imgui:1806",
+    "ImGuiChildFlags_": "imgui:1155",
+    "ImGuiCol_": "imgui:1687",
+    "ImGuiColorEditFlags_": "imgui:1817",
+    "ImGuiColorMod": "imgui_internal:1044",
+    "ImGuiComboFlagsPrivate_": "imgui_internal:945",
+    "ImGuiComboFlags_": "imgui:1303",
+    "ImGuiComboPreviewData": "imgui_internal:1061",
+    "ImGuiCond_": "imgui:1919",
+    "ImGuiConfigFlags_": "imgui:1643",
+    "ImGuiContext": "imgui_internal:2233",
+    "ImGuiContextHook": "imgui_internal:2218",
+    "ImGuiContextHookType": "imgui_internal:2216",
+    "ImGuiDataAuthority_": "imgui_internal:1875",
+    "ImGuiDataTypeInfo": "imgui_internal:831",
+    "ImGuiDataTypePrivate_": "imgui_internal:840",
+    "ImGuiDataTypeStorage": "imgui_internal:825",
+    "ImGuiDataType_": "imgui:1451",
+    "ImGuiDataVarInfo": "imgui_internal:817",
+    "ImGuiDeactivatedItemData": "imgui_internal:1338",
+    "ImGuiDebugAllocEntry": "imgui_internal:2152",
+    "ImGuiDebugAllocInfo": "imgui_internal:2159",
+    "ImGuiDebugLogFlags_": "imgui_internal:2130",
+    "ImGuiDir": "imgui:1469",
+    "ImGuiDockContext": "imgui_internal:1977",
+    "ImGuiDockNode": "imgui_internal:1891",
+    "ImGuiDockNodeFlagsPrivate_": "imgui_internal:1843",
+    "ImGuiDockNodeFlags_": "imgui:1404",
+    "ImGuiDockNodeState": "imgui_internal:1882",
+    "ImGuiDragDropFlags_": "imgui:1423",
+    "ImGuiErrorRecoveryState": "imgui_internal:1295",
+    "ImGuiFocusRequestFlags_": "imgui_internal:990",
+    "ImGuiFocusScopeData": "imgui_internal:1659",
+    "ImGuiFocusedFlags_": "imgui:1350",
     "ImGuiFreeTypeBuilderFlags": "imgui_freetype:26",
-    "ImGuiGroupData": "imgui_internal:1069",
-    "ImGuiHoveredFlagsPrivate_": "imgui_internal:898",
-    "ImGuiHoveredFlags_": "imgui:1356",
-    "ImGuiIDStackTool": "imgui_internal:2180",
-    "ImGuiIO": "imgui:2282",
-    "ImGuiInputEvent": "imgui_internal:1418",
-    "ImGuiInputEventAppFocused": "imgui_internal:1416",
-    "ImGuiInputEventKey": "imgui_internal:1414",
-    "ImGuiInputEventMouseButton": "imgui_internal:1412",
-    "ImGuiInputEventMousePos": "imgui_internal:1410",
-    "ImGuiInputEventMouseViewport": "imgui_internal:1413",
-    "ImGuiInputEventMouseWheel": "imgui_internal:1411",
-    "ImGuiInputEventText": "imgui_internal:1415",
-    "ImGuiInputEventType": "imgui_internal:1386",
-    "ImGuiInputFlagsPrivate_": "imgui_internal:1485",
-    "ImGuiInputFlags_": "imgui:1611",
-    "ImGuiInputSource": "imgui_internal:1399",
-    "ImGuiInputTextCallbackData": "imgui:2535",
-    "ImGuiInputTextDeactivatedState": "imgui_internal:1105",
-    "ImGuiInputTextFlagsPrivate_": "imgui_internal:906",
-    "ImGuiInputTextFlags_": "imgui:1186",
-    "ImGuiInputTextState": "imgui_internal:1127",
-    "ImGuiItemFlagsPrivate_": "imgui_internal:848",
-    "ImGuiItemFlags_": "imgui:1173",
-    "ImGuiItemStatusFlags_": "imgui_internal:872",
-    "ImGuiKey": "imgui:1484",
-    "ImGuiKeyData": "imgui:2274",
-    "ImGuiKeyOwnerData": "imgui_internal:1472",
-    "ImGuiKeyRoutingData": "imgui_internal:1446",
-    "ImGuiKeyRoutingTable": "imgui_internal:1460",
-    "ImGuiLastItemData": "imgui_internal:1261",
-    "ImGuiLayoutType_": "imgui_internal:1006",
-    "ImGuiListClipper": "imgui:2764",
-    "ImGuiListClipperData": "imgui_internal:1542",
-    "ImGuiListClipperRange": "imgui_internal:1529",
-    "ImGuiLocEntry": "imgui_internal:2086",
-    "ImGuiLocKey": "imgui_internal:2068",
-    "ImGuiLogFlags_": "imgui_internal:1013",
-    "ImGuiMenuColumns": "imgui_internal:1087",
-    "ImGuiMetricsConfig": "imgui_internal:2150",
-    "ImGuiMouseButton_": "imgui:1869",
-    "ImGuiMouseCursor_": "imgui:1879",
-    "ImGuiMouseSource": "imgui:1898",
-    "ImGuiMultiSelectFlags_": "imgui:2914",
-    "ImGuiMultiSelectIO": "imgui:2941",
-    "ImGuiMultiSelectState": "imgui_internal:1804",
-    "ImGuiMultiSelectTempData": "imgui_internal:1779",
-    "ImGuiNavItemData": "imgui_internal:1627",
-    "ImGuiNavLayer": "imgui_internal:1619",
-    "ImGuiNavMoveFlags_": "imgui_internal:1597",
-    "ImGuiNavRenderCursorFlags_": "imgui_internal:1583",
-    "ImGuiNextItemData": "imgui_internal:1241",
-    "ImGuiNextItemDataFlags_": "imgui_internal:1231",
-    "ImGuiNextWindowData": "imgui_internal:1202",
-    "ImGuiNextWindowDataFlags_": "imgui_internal:1183",
-    "ImGuiOldColumnData": "imgui_internal:1712",
-    "ImGuiOldColumnFlags_": "imgui_internal:1692",
-    "ImGuiOldColumns": "imgui_internal:1722",
-    "ImGuiOnceUponAFrame": "imgui:2635",
-    "ImGuiPayload": "imgui:2600",
-    "ImGuiPlatformIO": "imgui:3707",
-    "ImGuiPlatformImeData": "imgui:3813",
-    "ImGuiPlatformMonitor": "imgui:3803",
-    "ImGuiPlotType": "imgui_internal:1032",
-    "ImGuiPopupData": "imgui_internal:1343",
-    "ImGuiPopupFlags_": "imgui:1260",
-    "ImGuiPopupPositionPolicy": "imgui_internal:1335",
-    "ImGuiPtrOrIndex": "imgui_internal:1322",
-    "ImGuiScrollFlags_": "imgui_internal:1569",
-    "ImGuiSelectableFlagsPrivate_": "imgui_internal:953",
-    "ImGuiSelectableFlags_": "imgui:1278",
-    "ImGuiSelectionBasicStorage": "imgui:2987",
-    "ImGuiSelectionExternalStorage": "imgui:3010",
-    "ImGuiSelectionRequest": "imgui:2961",
-    "ImGuiSelectionRequestType": "imgui:2953",
-    "ImGuiSeparatorFlags_": "imgui_internal:974",
-    "ImGuiSettingsHandler": "imgui_internal:2048",
-    "ImGuiShrinkWidthItem": "imgui_internal:1315",
-    "ImGuiSizeCallbackData": "imgui:2569",
-    "ImGuiSliderFlagsPrivate_": "imgui_internal:946",
-    "ImGuiSliderFlags_": "imgui:1854",
-    "ImGuiSortDirection": "imgui:1471",
-    "ImGuiStackLevelInfo": "imgui_internal:2168",
-    "ImGuiStorage": "imgui:2707",
-    "ImGuiStoragePair": "imgui:2690",
-    "ImGuiStyle": "imgui:2196",
-    "ImGuiStyleMod": "imgui_internal:1046",
-    "ImGuiStyleVar_": "imgui:1756",
-    "ImGuiTabBar": "imgui_internal:2844",
-    "ImGuiTabBarFlagsPrivate_": "imgui_internal:2807",
-    "ImGuiTabBarFlags_": "imgui:1310",
-    "ImGuiTabItem": "imgui_internal:2824",
-    "ImGuiTabItemFlagsPrivate_": "imgui_internal:2815",
-    "ImGuiTabItemFlags_": "imgui:1327",
-    "ImGuiTable": "imgui_internal:2991",
-    "ImGuiTableBgTarget_": "imgui:2050",
-    "ImGuiTableCellData": "imgui_internal:2959",
-    "ImGuiTableColumn": "imgui_internal:2899",
-    "ImGuiTableColumnFlags_": "imgui:1997",
-    "ImGuiTableColumnSettings": "imgui_internal:3138",
-    "ImGuiTableColumnSortSpecs": "imgui:2072",
-    "ImGuiTableFlags_": "imgui:1944",
-    "ImGuiTableHeaderData": "imgui_internal:2968",
-    "ImGuiTableInstanceData": "imgui_internal:2978",
-    "ImGuiTableRowFlags_": "imgui:2035",
-    "ImGuiTableSettings": "imgui_internal:3162",
-    "ImGuiTableSortSpecs": "imgui:2062",
-    "ImGuiTableTempData": "imgui_internal:3115",
-    "ImGuiTextBuffer": "imgui:2670",
-    "ImGuiTextFilter": "imgui:2643",
-    "ImGuiTextFlags_": "imgui_internal:992",
-    "ImGuiTextIndex": "imgui_internal:730",
-    "ImGuiTextRange": "imgui:2653",
-    "ImGuiTooltipFlags_": "imgui_internal:998",
-    "ImGuiTreeNodeFlagsPrivate_": "imgui_internal:967",
-    "ImGuiTreeNodeFlags_": "imgui:1225",
-    "ImGuiTreeNodeStackData": "imgui_internal:1280",
-    "ImGuiTypingSelectFlags_": "imgui_internal:1655",
-    "ImGuiTypingSelectRequest": "imgui_internal:1663",
-    "ImGuiTypingSelectState": "imgui_internal:1674",
-    "ImGuiViewport": "imgui:3622",
-    "ImGuiViewportFlags_": "imgui:3594",
-    "ImGuiViewportP": "imgui_internal:1977",
-    "ImGuiWindow": "imgui_internal:2655",
-    "ImGuiWindowClass": "imgui:2584",
-    "ImGuiWindowDockStyle": "imgui_internal:1955",
-    "ImGuiWindowDockStyleCol": "imgui_internal:1941",
-    "ImGuiWindowFlags_": "imgui:1101",
-    "ImGuiWindowRefreshFlags_": "imgui_internal:1174",
-    "ImGuiWindowSettings": "imgui_internal:2029",
-    "ImGuiWindowStackData": "imgui_internal:1307",
-    "ImGuiWindowTempData": "imgui_internal:2605",
-    "ImRect": "imgui_internal:532",
-    "ImVec1": "imgui_internal:514",
-    "ImVec2": "imgui:296",
-    "ImVec2ih": "imgui_internal:522",
-    "ImVec4": "imgui:309"
+    "ImGuiGroupData": "imgui_internal:1074",
+    "ImGuiHoveredFlagsPrivate_": "imgui_internal:903",
+    "ImGuiHoveredFlags_": "imgui:1364",
+    "ImGuiIDStackTool": "imgui_internal:2199",
+    "ImGuiIO": "imgui:2292",
+    "ImGuiInputEvent": "imgui_internal:1433",
+    "ImGuiInputEventAppFocused": "imgui_internal:1431",
+    "ImGuiInputEventKey": "imgui_internal:1429",
+    "ImGuiInputEventMouseButton": "imgui_internal:1427",
+    "ImGuiInputEventMousePos": "imgui_internal:1425",
+    "ImGuiInputEventMouseViewport": "imgui_internal:1428",
+    "ImGuiInputEventMouseWheel": "imgui_internal:1426",
+    "ImGuiInputEventText": "imgui_internal:1430",
+    "ImGuiInputEventType": "imgui_internal:1401",
+    "ImGuiInputFlagsPrivate_": "imgui_internal:1500",
+    "ImGuiInputFlags_": "imgui:1620",
+    "ImGuiInputSource": "imgui_internal:1414",
+    "ImGuiInputTextCallbackData": "imgui:2546",
+    "ImGuiInputTextDeactivatedState": "imgui_internal:1110",
+    "ImGuiInputTextFlagsPrivate_": "imgui_internal:911",
+    "ImGuiInputTextFlags_": "imgui:1189",
+    "ImGuiInputTextState": "imgui_internal:1132",
+    "ImGuiItemFlagsPrivate_": "imgui_internal:853",
+    "ImGuiItemFlags_": "imgui:1176",
+    "ImGuiItemStatusFlags_": "imgui_internal:877",
+    "ImGuiKey": "imgui:1493",
+    "ImGuiKeyData": "imgui:2284",
+    "ImGuiKeyOwnerData": "imgui_internal:1487",
+    "ImGuiKeyRoutingData": "imgui_internal:1461",
+    "ImGuiKeyRoutingTable": "imgui_internal:1475",
+    "ImGuiLastItemData": "imgui_internal:1267",
+    "ImGuiLayoutType_": "imgui_internal:1011",
+    "ImGuiListClipper": "imgui:2775",
+    "ImGuiListClipperData": "imgui_internal:1557",
+    "ImGuiListClipperRange": "imgui_internal:1544",
+    "ImGuiLocEntry": "imgui_internal:2103",
+    "ImGuiLocKey": "imgui_internal:2085",
+    "ImGuiLogFlags_": "imgui_internal:1018",
+    "ImGuiMenuColumns": "imgui_internal:1092",
+    "ImGuiMetricsConfig": "imgui_internal:2169",
+    "ImGuiMouseButton_": "imgui:1879",
+    "ImGuiMouseCursor_": "imgui:1889",
+    "ImGuiMouseSource": "imgui:1908",
+    "ImGuiMultiSelectFlags_": "imgui:2927",
+    "ImGuiMultiSelectIO": "imgui:2954",
+    "ImGuiMultiSelectState": "imgui_internal:1819",
+    "ImGuiMultiSelectTempData": "imgui_internal:1794",
+    "ImGuiNavItemData": "imgui_internal:1642",
+    "ImGuiNavLayer": "imgui_internal:1634",
+    "ImGuiNavMoveFlags_": "imgui_internal:1612",
+    "ImGuiNavRenderCursorFlags_": "imgui_internal:1598",
+    "ImGuiNextItemData": "imgui_internal:1247",
+    "ImGuiNextItemDataFlags_": "imgui_internal:1237",
+    "ImGuiNextWindowData": "imgui_internal:1208",
+    "ImGuiNextWindowDataFlags_": "imgui_internal:1189",
+    "ImGuiOldColumnData": "imgui_internal:1727",
+    "ImGuiOldColumnFlags_": "imgui_internal:1707",
+    "ImGuiOldColumns": "imgui_internal:1737",
+    "ImGuiOnceUponAFrame": "imgui:2646",
+    "ImGuiPayload": "imgui:2611",
+    "ImGuiPlatformIO": "imgui:3724",
+    "ImGuiPlatformImeData": "imgui:3830",
+    "ImGuiPlatformMonitor": "imgui:3820",
+    "ImGuiPlotType": "imgui_internal:1037",
+    "ImGuiPopupData": "imgui_internal:1358",
+    "ImGuiPopupFlags_": "imgui:1268",
+    "ImGuiPopupPositionPolicy": "imgui_internal:1350",
+    "ImGuiPtrOrIndex": "imgui_internal:1328",
+    "ImGuiScrollFlags_": "imgui_internal:1584",
+    "ImGuiSelectableFlagsPrivate_": "imgui_internal:958",
+    "ImGuiSelectableFlags_": "imgui:1286",
+    "ImGuiSelectionBasicStorage": "imgui:3000",
+    "ImGuiSelectionExternalStorage": "imgui:3023",
+    "ImGuiSelectionRequest": "imgui:2974",
+    "ImGuiSelectionRequestType": "imgui:2966",
+    "ImGuiSeparatorFlags_": "imgui_internal:979",
+    "ImGuiSettingsHandler": "imgui_internal:2065",
+    "ImGuiShrinkWidthItem": "imgui_internal:1321",
+    "ImGuiSizeCallbackData": "imgui:2580",
+    "ImGuiSliderFlagsPrivate_": "imgui_internal:951",
+    "ImGuiSliderFlags_": "imgui:1863",
+    "ImGuiSortDirection": "imgui:1480",
+    "ImGuiStackLevelInfo": "imgui_internal:2187",
+    "ImGuiStorage": "imgui:2718",
+    "ImGuiStoragePair": "imgui:2701",
+    "ImGuiStyle": "imgui:2206",
+    "ImGuiStyleMod": "imgui_internal:1051",
+    "ImGuiStyleVar_": "imgui:1765",
+    "ImGuiTabBar": "imgui_internal:2862",
+    "ImGuiTabBarFlagsPrivate_": "imgui_internal:2825",
+    "ImGuiTabBarFlags_": "imgui:1318",
+    "ImGuiTabItem": "imgui_internal:2842",
+    "ImGuiTabItemFlagsPrivate_": "imgui_internal:2833",
+    "ImGuiTabItemFlags_": "imgui:1335",
+    "ImGuiTable": "imgui_internal:3009",
+    "ImGuiTableBgTarget_": "imgui:2060",
+    "ImGuiTableCellData": "imgui_internal:2977",
+    "ImGuiTableColumn": "imgui_internal:2917",
+    "ImGuiTableColumnFlags_": "imgui:2007",
+    "ImGuiTableColumnSettings": "imgui_internal:3156",
+    "ImGuiTableColumnSortSpecs": "imgui:2082",
+    "ImGuiTableFlags_": "imgui:1954",
+    "ImGuiTableHeaderData": "imgui_internal:2986",
+    "ImGuiTableInstanceData": "imgui_internal:2996",
+    "ImGuiTableRowFlags_": "imgui:2045",
+    "ImGuiTableSettings": "imgui_internal:3180",
+    "ImGuiTableSortSpecs": "imgui:2072",
+    "ImGuiTableTempData": "imgui_internal:3133",
+    "ImGuiTextBuffer": "imgui:2681",
+    "ImGuiTextFilter": "imgui:2654",
+    "ImGuiTextFlags_": "imgui_internal:997",
+    "ImGuiTextIndex": "imgui_internal:736",
+    "ImGuiTextRange": "imgui:2664",
+    "ImGuiTooltipFlags_": "imgui_internal:1003",
+    "ImGuiTreeNodeFlagsPrivate_": "imgui_internal:972",
+    "ImGuiTreeNodeFlags_": "imgui:1231",
+    "ImGuiTreeNodeStackData": "imgui_internal:1286",
+    "ImGuiTypingSelectFlags_": "imgui_internal:1670",
+    "ImGuiTypingSelectRequest": "imgui_internal:1678",
+    "ImGuiTypingSelectState": "imgui_internal:1689",
+    "ImGuiViewport": "imgui:3639",
+    "ImGuiViewportFlags_": "imgui:3611",
+    "ImGuiViewportP": "imgui_internal:1994",
+    "ImGuiWindow": "imgui_internal:2673",
+    "ImGuiWindowClass": "imgui:2595",
+    "ImGuiWindowDockStyle": "imgui_internal:1972",
+    "ImGuiWindowDockStyleCol": "imgui_internal:1958",
+    "ImGuiWindowFlags_": "imgui:1104",
+    "ImGuiWindowRefreshFlags_": "imgui_internal:1180",
+    "ImGuiWindowSettings": "imgui_internal:2046",
+    "ImGuiWindowStackData": "imgui_internal:1313",
+    "ImGuiWindowTempData": "imgui_internal:2623",
+    "ImRect": "imgui_internal:538",
+    "ImVec1": "imgui_internal:520",
+    "ImVec2": "imgui:297",
+    "ImVec2ih": "imgui_internal:528",
+    "ImVec4": "imgui:310"
+  },
+  "nonPOD": {
+    "ImBitArray": true,
+    "ImColor": true,
+    "ImDrawCmd": true,
+    "ImDrawData": true,
+    "ImDrawDataBuilder": true,
+    "ImDrawList": true,
+    "ImDrawListSharedData": true,
+    "ImDrawListSplitter": true,
+    "ImFont": true,
+    "ImFontAtlas": true,
+    "ImFontAtlasCustomRect": true,
+    "ImFontConfig": true,
+    "ImFontGlyphRangesBuilder": true,
+    "ImGuiBoxSelectState": true,
+    "ImGuiComboPreviewData": true,
+    "ImGuiContext": true,
+    "ImGuiContextHook": true,
+    "ImGuiDebugAllocInfo": true,
+    "ImGuiDockContext": true,
+    "ImGuiDockNode": true,
+    "ImGuiErrorRecoveryState": true,
+    "ImGuiIDStackTool": true,
+    "ImGuiIO": true,
+    "ImGuiInputEvent": true,
+    "ImGuiInputTextCallbackData": true,
+    "ImGuiInputTextDeactivatedState": true,
+    "ImGuiInputTextState": true,
+    "ImGuiKeyOwnerData": true,
+    "ImGuiKeyRoutingData": true,
+    "ImGuiKeyRoutingTable": true,
+    "ImGuiLastItemData": true,
+    "ImGuiListClipper": true,
+    "ImGuiListClipperData": true,
+    "ImGuiMenuColumns": true,
+    "ImGuiMultiSelectState": true,
+    "ImGuiMultiSelectTempData": true,
+    "ImGuiNavItemData": true,
+    "ImGuiNextItemData": true,
+    "ImGuiNextWindowData": true,
+    "ImGuiOldColumnData": true,
+    "ImGuiOldColumns": true,
+    "ImGuiOnceUponAFrame": true,
+    "ImGuiPayload": true,
+    "ImGuiPlatformIO": true,
+    "ImGuiPlatformImeData": true,
+    "ImGuiPlatformMonitor": true,
+    "ImGuiPopupData": true,
+    "ImGuiPtrOrIndex": true,
+    "ImGuiSelectionBasicStorage": true,
+    "ImGuiSelectionExternalStorage": true,
+    "ImGuiSettingsHandler": true,
+    "ImGuiStackLevelInfo": true,
+    "ImGuiStoragePair": true,
+    "ImGuiStyle": true,
+    "ImGuiStyleMod": true,
+    "ImGuiTabBar": true,
+    "ImGuiTabItem": true,
+    "ImGuiTable": true,
+    "ImGuiTableColumn": true,
+    "ImGuiTableColumnSettings": true,
+    "ImGuiTableColumnSortSpecs": true,
+    "ImGuiTableInstanceData": true,
+    "ImGuiTableSettings": true,
+    "ImGuiTableSortSpecs": true,
+    "ImGuiTableTempData": true,
+    "ImGuiTextBuffer": true,
+    "ImGuiTextFilter": true,
+    "ImGuiTextRange": true,
+    "ImGuiTypingSelectState": true,
+    "ImGuiViewport": true,
+    "ImGuiViewportP": true,
+    "ImGuiWindow": true,
+    "ImGuiWindowClass": true,
+    "ImGuiWindowSettings": true,
+    "ImPool": true,
+    "ImRect": true,
+    "ImSpan": true,
+    "ImSpanAllocator": true,
+    "ImVec1": true,
+    "ImVec2": true,
+    "ImVec2ih": true,
+    "ImVec4": true,
+    "ImVector": true
   },
   "struct_comments": {
     "ImBitVector": {
       "above": "// Helper: ImBitVector\n// Store 1-bit per value."
     },
     "ImColor": {
-      "above": "// Helpers: ImVec2/ImVec4 operators\n// - It is important that we are keeping those disabled by default so they don't leak in user space.\n// - This is in order to allow user enabling implicit cast operators between ImVec2/ImVec4 and their own types (using IM_VEC2_CLASS_EXTRA in imconfig.h)\n// - Add '#define IMGUI_DEFINE_MATH_OPERATORS' before including this file (or in imconfig.h) to access courtesy maths operators for ImVec2 and ImVec4.\n// Helpers macros to generate 32-bit encoded colors\n// User can declare their own format by #defining the 5 _SHIFT/_MASK macros in their imconfig file.\n// Helper: ImColor() implicitly converts colors to either ImU32 (packed 4x1 byte) or ImVec4 (4x1 float)\n// Prefer using IM_COL32() macros if you want a guaranteed compile-time ImU32 for usage with ImDrawList API.\n// **Avoid storing ImColor! Store either u32 of ImVec4. This is not a full-featured color class. MAY OBSOLETE.\n// **None of the ImGui API are using ImColor directly but you can use it as a convenience to pass colors in either ImU32 or ImVec4 formats. Explicitly cast to ImU32 or ImVec4 if needed."
+      "above": "// Helpers: ImVec2/ImVec4 operators\n// - It is important that we are keeping those disabled by default so they don't leak in user space.\n// - This is in order to allow user enabling implicit cast operators between ImVec2/ImVec4 and their own types (using IM_VEC2_CLASS_EXTRA in imconfig.h)\n// - Add '#define IMGUI_DEFINE_MATH_OPERATORS' before including this file (or in imconfig.h) to access courtesy maths operators for ImVec2 and ImVec4.\n// - We intentionally provide ImVec2*float but not float*ImVec2: this is rare enough and we want to reduce the surface for possible user mistake.\n// Helpers macros to generate 32-bit encoded colors\n// - User can declare their own format by #defining the 5 _SHIFT/_MASK macros in their imconfig file.\n// - Any setting other than the default will need custom backend support. The only standard backend that supports anything else than the default is DirectX9.\n// Helper: ImColor() implicitly converts colors to either ImU32 (packed 4x1 byte) or ImVec4 (4x1 float)\n// Prefer using IM_COL32() macros if you want a guaranteed compile-time ImU32 for usage with ImDrawList API.\n// **Avoid storing ImColor! Store either u32 of ImVec4. This is not a full-featured color class. MAY OBSOLETE.\n// **None of the ImGui API are using ImColor directly but you can use it as a convenience to pass colors in either ImU32 or ImVec4 formats. Explicitly cast to ImU32 or ImVec4 if needed."
     },
     "ImDrawChannel": {
       "above": "// [Internal] For use by ImDrawListSplitter"
@@ -6135,7 +6248,7 @@
       "above": "// Draw command list\n// This is the low-level list of polygons that ImGui:: functions are filling. At the end of the frame,\n// all command lists are passed to your ImGuiIO::RenderDrawListFn function for rendering.\n// Each dear imgui window contains its own ImDrawList. You can use ImGui::GetWindowDrawList() to\n// access the current window draw list and draw custom primitives.\n// You can interleave normal ImGui:: calls and adding primitives to the current draw list.\n// In single viewport mode, top-left is == GetMainViewport()->Pos (generally 0,0), bottom-right is == GetMainViewport()->Pos+Size (generally io.DisplaySize).\n// You are totally free to apply whatever transformation matrix you want to the data (depending on the use of the transformation you may want to apply it to ClipRect as well!)\n// Important: Primitives are always added to the list and not culled (culling is done at higher-level by ImGui:: functions), if you use this API a lot consider coarse culling your drawn objects."
     },
     "ImDrawListSharedData": {
-      "above": "// Data shared between all ImDrawList instances\n// You may want to create your own instance of this if you want to use ImDrawList completely without ImGui. In that case, watch out for future changes to this structure."
+      "above": "// Data shared between all ImDrawList instances\n// Conceptually this could have been called e.g. ImDrawListSharedContext\n// Typically one ImGui context would create and maintain one of this.\n// You may want to create your own instance of you try to ImDrawList completely without ImGui. In that case, watch out for future changes to this structure."
     },
     "ImDrawListSplitter": {
       "above": "// Split/Merge functions are used to split the draw list into different layers which can be drawn into out of order.\n// This is used by the Columns/Tables API, so items of each column can be batched together in a same draw call."
@@ -6150,7 +6263,7 @@
       "above": "// See ImFontAtlas::AddCustomRectXXX functions."
     },
     "ImFontBuilderIO": {
-      "above": "// This structure is likely to evolve as we add support for incremental atlas updates"
+      "above": "// This structure is likely to evolve as we add support for incremental atlas updates.\n// Conceptually this could be in ImGuiPlatformIO, but we are far from ready to make this public."
     },
     "ImFontGlyph": {
       "above": "// Hold rendering data for one glyph.\n// (Note: some language parsers may fail to convert the 31+1 bitfield members, in this case maybe drop store a single u32 or we can rework this)"
@@ -6166,6 +6279,9 @@
     },
     "ImGuiDataTypeInfo": {
       "above": "// Type information associated to one ImGuiDataType. Retrieve with DataTypeGetInfo()."
+    },
+    "ImGuiDeactivatedItemData": {
+      "above": "// Data used by IsItemDeactivated()/IsItemDeactivatedAfterEdit() functions"
     },
     "ImGuiDockNode": {
       "above": "// sizeof() 156~192"
@@ -6186,7 +6302,7 @@
       "above": "// FIXME: Structures in the union below need to be declared as anonymous unions appears to be an extension?\n// Using ImVec2() would fail on Clang 'union member 'MousePos' has a non-trivial default constructor'"
     },
     "ImGuiInputTextCallbackData": {
-      "above": "// Shared state of InputText(), passed as an argument to your callback when a ImGuiInputTextFlags_Callback* flag is used.\n// The callback function should return 0 by default.\n// Callbacks (follow a flag name and see comments in ImGuiInputTextFlags_ declarations for more details)\n// - ImGuiInputTextFlags_CallbackEdit:        Callback on buffer edit (note that InputText() already returns true on edit, the callback is useful mainly to manipulate the underlying buffer while focus is active)\n// - ImGuiInputTextFlags_CallbackAlways:      Callback on each iteration\n// - ImGuiInputTextFlags_CallbackCompletion:  Callback on pressing TAB\n// - ImGuiInputTextFlags_CallbackHistory:     Callback on pressing Up/Down arrows\n// - ImGuiInputTextFlags_CallbackCharFilter:  Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard.\n// - ImGuiInputTextFlags_CallbackResize:      Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow."
+      "above": "// Shared state of InputText(), passed as an argument to your callback when a ImGuiInputTextFlags_Callback* flag is used.\n// The callback function should return 0 by default.\n// Callbacks (follow a flag name and see comments in ImGuiInputTextFlags_ declarations for more details)\n// - ImGuiInputTextFlags_CallbackEdit:        Callback on buffer edit. Note that InputText() already returns true on edit + you can always use IsItemEdited(). The callback is useful to manipulate the underlying buffer while focus is active.\n// - ImGuiInputTextFlags_CallbackAlways:      Callback on each iteration\n// - ImGuiInputTextFlags_CallbackCompletion:  Callback on pressing TAB\n// - ImGuiInputTextFlags_CallbackHistory:     Callback on pressing Up/Down arrows\n// - ImGuiInputTextFlags_CallbackCharFilter:  Callback on character inputs to replace or discard them. Modify 'EventChar' to replace or discard, or return 1 in callback to discard.\n// - ImGuiInputTextFlags_CallbackResize:      Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow."
     },
     "ImGuiInputTextDeactivatedState": {
       "above": "// Internal temporary state for deactivating InputText() instances."
@@ -6686,6 +6802,13 @@
       },
       {
         "comment": {
+          "sameline": "// UV of anti-aliased lines in the atlas"
+        },
+        "name": "TexUvLines",
+        "type": "const ImVec4*"
+      },
+      {
+        "comment": {
           "sameline": "// Current/default font (optional, for simplified AddText overload)"
         },
         "name": "Font",
@@ -6735,7 +6858,7 @@
       },
       {
         "comment": {
-          "above": "    // [Internal] Temp write buffer"
+          "sameline": "// Temporary write buffer"
         },
         "name": "TempBuffer",
         "template_type": "ImVec2",
@@ -6743,7 +6866,7 @@
       },
       {
         "comment": {
-          "above": "    // [Internal] Lookup tables",
+          "above": "    // Lookup tables",
           "sameline": "// Sample points on the quarter of the circle."
         },
         "name": "ArcFastVtx[48]",
@@ -6764,13 +6887,6 @@
         "name": "CircleSegmentCounts[64]",
         "size": 64,
         "type": "ImU8"
-      },
-      {
-        "comment": {
-          "sameline": "// UV of anti-aliased lines in the atlas"
-        },
-        "name": "TexUvLines",
-        "type": "const ImVec4*"
       }
     ],
     "ImDrawListSplitter": [
@@ -6814,7 +6930,7 @@
     "ImFont": [
       {
         "comment": {
-          "above": "\n    // Members: Hot ~20/24 bytes (for CalcTextSize)",
+          "above": "\n    // [Internal] Members: Hot ~20/24 bytes (for CalcTextSize)",
           "sameline": "// 12-16 // out //            // Sparse. Glyphs->AdvanceX in a directly indexable way (cache-friendly for CalcTextSize functions which only this info, and are often bottleneck in large UI)."
         },
         "name": "IndexAdvanceX",
@@ -6837,7 +6953,7 @@
       },
       {
         "comment": {
-          "above": "    // Members: Hot ~28/40 bytes (for CalcTextSize + render loop)",
+          "above": "    // [Internal] Members: Hot ~28/40 bytes (for RenderText loop)",
           "sameline": "// 12-16 // out //            // Sparse. Index glyphs by Unicode code-point."
         },
         "name": "IndexLookup",
@@ -6861,7 +6977,7 @@
       },
       {
         "comment": {
-          "above": "    // Members: Cold ~32/40 bytes",
+          "above": "    // [Internal] Members: Cold ~32/40 bytes\n    // Conceptually ConfigData[] is the list of font sources merged to create this font.",
           "sameline": "// 4-8   // out //            // What we has been loaded into"
         },
         "name": "ContainerAtlas",
@@ -6869,7 +6985,7 @@
       },
       {
         "comment": {
-          "sameline": "// 4-8   // in  //            // Pointer within ContainerAtlas->ConfigData"
+          "sameline": "// 4-8   // in  //            // Pointer within ContainerAtlas->ConfigData to ConfigDataCount instances"
         },
         "name": "ConfigData",
         "type": "const ImFontConfig*"
@@ -6883,24 +6999,24 @@
       },
       {
         "comment": {
-          "sameline": "// 2     // out // = FFFD/'?' // Character used if a glyph isn't found."
+          "sameline": "// 1     // out // 1 or 3"
         },
-        "name": "FallbackChar",
-        "type": "ImWchar"
+        "name": "EllipsisCharCount",
+        "type": "short"
       },
       {
         "comment": {
-          "sameline": "// 2     // out // = '...'/'.'// Character used for ellipsis rendering."
+          "sameline": "// 2-4   // out // = '...'/'.'// Character used for ellipsis rendering."
         },
         "name": "EllipsisChar",
         "type": "ImWchar"
       },
       {
         "comment": {
-          "sameline": "// 1     // out // 1 or 3"
+          "sameline": "// 2-4   // out // = FFFD/'?' // Character used if a glyph isn't found."
         },
-        "name": "EllipsisCharCount",
-        "type": "short"
+        "name": "FallbackChar",
+        "type": "ImWchar"
       },
       {
         "comment": {
@@ -6984,7 +7100,7 @@
       },
       {
         "comment": {
-          "sameline": "// Padding between glyphs within texture in pixels. Defaults to 1. If your rendering method doesn't rely on bilinear filtering you may set this to 0 (will also need to set AntiAliasedLinesUseTex = false)."
+          "sameline": "// FIXME: Should be called \"TexPackPadding\". Padding between glyphs within texture in pixels. Defaults to 1. If your rendering method doesn't rely on bilinear filtering you may set this to 0 (will also need to set AntiAliasedLinesUseTex = false)."
         },
         "name": "TexGlyphPadding",
         "type": "int"
@@ -7126,20 +7242,6 @@
     "ImFontAtlasCustomRect": [
       {
         "comment": {
-          "sameline": "// Input    // Desired rectangle dimension"
-        },
-        "name": "Width",
-        "type": "unsigned short"
-      },
-      {
-        "comment": {
-          "sameline": "// Input    // Desired rectangle dimension"
-        },
-        "name": "Height",
-        "type": "unsigned short"
-      },
-      {
-        "comment": {
           "sameline": "// Output   // Packed position in Atlas"
         },
         "name": "X",
@@ -7150,6 +7252,22 @@
           "sameline": "// Output   // Packed position in Atlas"
         },
         "name": "Y",
+        "type": "unsigned short"
+      },
+      {
+        "comment": {
+          "above": "    // [Internal]",
+          "sameline": "// Input    // Desired rectangle dimension"
+        },
+        "name": "Width",
+        "type": "unsigned short"
+      },
+      {
+        "comment": {
+          "above": "    // [Internal]",
+          "sameline": "// Input    // Desired rectangle dimension"
+        },
+        "name": "Height",
         "type": "unsigned short"
       },
       {
@@ -7248,14 +7366,14 @@
       },
       {
         "comment": {
-          "sameline": "// false    // Align every glyph to pixel boundary. Useful e.g. if you are merging a non-pixel aligned font with the default font. If enabled, you can set OversampleH/V to 1."
+          "sameline": "// false    // Align every glyph AdvanceX to pixel boundaries. Useful e.g. if you are merging a non-pixel aligned font with the default font. If enabled, you can set OversampleH/V to 1."
         },
         "name": "PixelSnapH",
         "type": "bool"
       },
       {
         "comment": {
-          "sameline": "// 0, 0     // Extra spacing (in pixels) between glyphs. Only X axis is supported for now."
+          "sameline": "// 0, 0     // Extra spacing (in pixels) between glyphs when rendered: essentially add to glyph->AdvanceX. Only X axis is supported for now."
         },
         "name": "GlyphExtraSpacing",
         "type": "ImVec2"
@@ -7318,7 +7436,7 @@
       },
       {
         "comment": {
-          "sameline": "// -1       // Explicitly specify unicode codepoint of ellipsis character. When fonts are being merged first specified ellipsis will be used."
+          "sameline": "// 0        // Explicitly specify unicode codepoint of ellipsis character. When fonts are being merged first specified ellipsis will be used."
         },
         "name": "EllipsisChar",
         "type": "ImWchar"
@@ -7659,6 +7777,13 @@
       },
       {
         "comment": {
+          "sameline": "// Set within EndChild()"
+        },
+        "name": "WithinEndChildID",
+        "type": "ImGuiID"
+      },
+      {
+        "comment": {
           "sameline": "// Set by NewFrame(), cleared by EndFrame()"
         },
         "name": "WithinFrameScope",
@@ -7669,13 +7794,6 @@
           "sameline": "// Set by NewFrame(), cleared by EndFrame() when the implicit debug window has been pushed"
         },
         "name": "WithinFrameScopeWithImplicitWindow",
-        "type": "bool"
-      },
-      {
-        "comment": {
-          "sameline": "// Set within EndChild()"
-        },
-        "name": "WithinEndChild",
         "type": "bool"
       },
       {
@@ -8013,16 +8131,15 @@
         "type": "ImGuiID"
       },
       {
-        "name": "ActiveIdPreviousFrameIsAlive",
-        "type": "bool"
+        "name": "DeactivatedItemData",
+        "type": "ImGuiDeactivatedItemData"
       },
       {
-        "name": "ActiveIdPreviousFrameHasBeenEditedBefore",
-        "type": "bool"
-      },
-      {
-        "name": "ActiveIdPreviousFrameWindow",
-        "type": "ImGuiWindow*"
+        "comment": {
+          "sameline": "// Backup of initial value at the time of activation. ONLY SET BY SPECIFIC WIDGETS: DragXXX and SliderXXX."
+        },
+        "name": "ActiveIdValueOnActivation",
+        "type": "ImGuiDataTypeStorage"
       },
       {
         "comment": {
@@ -9587,6 +9704,24 @@
         "type": "ImU32"
       }
     ],
+    "ImGuiDeactivatedItemData": [
+      {
+        "name": "ID",
+        "type": "ImGuiID"
+      },
+      {
+        "name": "ElapseFrame",
+        "type": "int"
+      },
+      {
+        "name": "HasBeenEditedBefore",
+        "type": "bool"
+      },
+      {
+        "name": "IsAlive",
+        "type": "bool"
+      }
+    ],
     "ImGuiDebugAllocEntry": [
       {
         "name": "FrameCount",
@@ -10010,7 +10145,7 @@
         "type": "ImGuiID"
       },
       {
-        "name": "BackupActiveIdPreviousFrameIsAlive",
+        "name": "BackupDeactivatedIdIsAlive",
         "type": "bool"
       },
       {
@@ -10452,7 +10587,7 @@
       },
       {
         "comment": {
-          "above": "    // Optional: Platform/Renderer backend name (informational only! will be displayed in About Window) + User data for backend/wrappers to store their own stuff.",
+          "above": "    // Nowadays those would be stored in ImGuiPlatformIO but we are leaving them here for legacy reasons.\n    // Optional: Platform/Renderer backend name (informational only! will be displayed in About Window) + User data for backend/wrappers to store their own stuff.",
           "sameline": "// = NULL"
         },
         "name": "BackendPlatformName",
@@ -11071,6 +11206,13 @@
       },
       {
         "comment": {
+          "sameline": "// copy of InputText() flags. may be used to check if e.g. ImGuiInputTextFlags_Password is set."
+        },
+        "name": "Flags",
+        "type": "ImGuiInputTextFlags"
+      },
+      {
+        "comment": {
           "sameline": "// widget id owning the text state"
         },
         "name": "ID",
@@ -11082,6 +11224,13 @@
         },
         "name": "TextLen",
         "type": "int"
+      },
+      {
+        "comment": {
+          "sameline": "// == TextA.Data unless read-only, in which case == buf passed to InputText(). Field only set and valid _inside_ the call InputText() call."
+        },
+        "name": "TextSrc",
+        "type": "const char*"
       },
       {
         "comment": {
@@ -11151,22 +11300,12 @@
       },
       {
         "comment": {
-          "sameline": "// copy of InputText() flags. may be used to check if e.g. ImGuiInputTextFlags_Password is set."
-        },
-        "name": "Flags",
-        "type": "ImGuiInputTextFlags"
-      },
-      {
-        "comment": {
           "sameline": "// force a reload of user buf so it may be modified externally. may be automatic in future version."
         },
-        "name": "ReloadUserBuf",
+        "name": "WantReloadUserBuf",
         "type": "bool"
       },
       {
-        "comment": {
-          "sameline": "// POSITIONS ARE IN IMWCHAR units *NOT* UTF-8 this is why this is not exposed yet."
-        },
         "name": "ReloadSelectionStart",
         "type": "int"
       },
@@ -11294,7 +11433,7 @@
       },
       {
         "comment": {
-          "sameline": "// See ImGuiItemFlags_"
+          "sameline": "// See ImGuiItemFlags_ (called 'InFlags' before v1.91.4)."
         },
         "name": "ItemFlags",
         "type": "ImGuiItemFlags"
@@ -11322,7 +11461,7 @@
       },
       {
         "comment": {
-          "above": "\n    // Rarely used fields are not explicitly cleared, only valid when the corresponding ImGuiItemStatusFlags ar set.",
+          "above": "\n    // Rarely used fields are not explicitly cleared, only valid when the corresponding ImGuiItemStatusFlags are set.",
           "sameline": "// Display rectangle. ONLY VALID IF (StatusFlags & ImGuiItemStatusFlags_HasDisplayRect) is set."
         },
         "name": "DisplayRect",

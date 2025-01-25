@@ -60,6 +60,7 @@
 
         public override void Render()
         {
+            if (disposed) return;
             imGuiManager.NewFrame();
 
             ImGui.ShowDemoWindow();

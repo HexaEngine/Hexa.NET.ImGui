@@ -21,6 +21,48 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, ref ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, ref ImRect clipRect)
 		{
 			fixed (byte* ptextEnd = textEnd)
@@ -4981,45 +5023,6 @@ namespace Hexa.NET.ImGui
 		{
 			byte* ret = FindRenderedTextEndNative(text, textEnd);
 			return ret;
-		}
-
-		/// <summary>
-		/// Find the optional ## from which we stop displaying text.<br/>
-		/// </summary>
-		public static byte* FindRenderedTextEnd(byte* text)
-		{
-			byte* ret = FindRenderedTextEndNative(text, (byte*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// Find the optional ## from which we stop displaying text.<br/>
-		/// </summary>
-		public static string FindRenderedTextEndS(byte* text)
-		{
-			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)(default)));
-			return ret;
-		}
-
-		/// <summary>
-		/// Find the optional ## from which we stop displaying text.<br/>
-		/// </summary>
-		public static string FindRenderedTextEndS(byte* text, byte* textEnd)
-		{
-			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, textEnd));
-			return ret;
-		}
-
-		/// <summary>
-		/// Find the optional ## from which we stop displaying text.<br/>
-		/// </summary>
-		public static byte* FindRenderedTextEnd(ref byte text, byte* textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* ret = FindRenderedTextEndNative((byte*)ptext, textEnd);
-				return ret;
-			}
 		}
 	}
 }
