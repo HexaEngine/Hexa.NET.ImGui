@@ -192,6 +192,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ImGuiItemStatusFlags WindowItemStatusFlags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImGuiItemStatusFlags ChildItemStatusFlags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImGuiItemStatusFlags DockTabItemStatusFlags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImRect DockTabItemRect;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float ItemWidth;
 
 		/// <summary>
@@ -213,7 +233,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiWindowTempData(Vector2 cursorPos = default, Vector2 cursorPosPrevLine = default, Vector2 cursorStartPos = default, Vector2 cursorMaxPos = default, Vector2 idealMaxPos = default, Vector2 currLineSize = default, Vector2 prevLineSize = default, float currLineTextBaseOffset = default, float prevLineTextBaseOffset = default, bool isSameLine = default, bool isSetPos = default, ImVec1 indent = default, ImVec1 columnsOffset = default, ImVec1 groupOffset = default, Vector2 cursorStartPosLossyness = default, ImGuiNavLayer navLayerCurrent = default, short navLayersActiveMask = default, short navLayersActiveMaskNext = default, bool navIsScrollPushableX = default, bool navHideHighlightOneFrame = default, bool navWindowHasScrollY = default, bool menuBarAppending = default, Vector2 menuBarOffset = default, ImGuiMenuColumns menuColumns = default, int treeDepth = default, uint treeHasStackDataDepthMask = default, ImVector<ImGuiWindowPtr> childWindows = default, ImGuiStorage* stateStorage = default, ImGuiOldColumns* currentColumns = default, int currentTableIdx = default, ImGuiLayoutType layoutType = default, ImGuiLayoutType parentLayoutType = default, uint modalDimBgColor = default, float itemWidth = default, float textWrapPos = default, ImVector<float> itemWidthStack = default, ImVector<float> textWrapPosStack = default)
+		public unsafe ImGuiWindowTempData(Vector2 cursorPos = default, Vector2 cursorPosPrevLine = default, Vector2 cursorStartPos = default, Vector2 cursorMaxPos = default, Vector2 idealMaxPos = default, Vector2 currLineSize = default, Vector2 prevLineSize = default, float currLineTextBaseOffset = default, float prevLineTextBaseOffset = default, bool isSameLine = default, bool isSetPos = default, ImVec1 indent = default, ImVec1 columnsOffset = default, ImVec1 groupOffset = default, Vector2 cursorStartPosLossyness = default, ImGuiNavLayer navLayerCurrent = default, short navLayersActiveMask = default, short navLayersActiveMaskNext = default, bool navIsScrollPushableX = default, bool navHideHighlightOneFrame = default, bool navWindowHasScrollY = default, bool menuBarAppending = default, Vector2 menuBarOffset = default, ImGuiMenuColumns menuColumns = default, int treeDepth = default, uint treeHasStackDataDepthMask = default, ImVector<ImGuiWindowPtr> childWindows = default, ImGuiStorage* stateStorage = default, ImGuiOldColumns* currentColumns = default, int currentTableIdx = default, ImGuiLayoutType layoutType = default, ImGuiLayoutType parentLayoutType = default, uint modalDimBgColor = default, ImGuiItemStatusFlags windowItemStatusFlags = default, ImGuiItemStatusFlags childItemStatusFlags = default, ImGuiItemStatusFlags dockTabItemStatusFlags = default, ImRect dockTabItemRect = default, float itemWidth = default, float textWrapPos = default, ImVector<float> itemWidthStack = default, ImVector<float> textWrapPosStack = default)
 		{
 			CursorPos = cursorPos;
 			CursorPosPrevLine = cursorPosPrevLine;
@@ -248,6 +268,10 @@ namespace Hexa.NET.ImGui
 			LayoutType = layoutType;
 			ParentLayoutType = parentLayoutType;
 			ModalDimBgColor = modalDimBgColor;
+			WindowItemStatusFlags = windowItemStatusFlags;
+			ChildItemStatusFlags = childItemStatusFlags;
+			DockTabItemStatusFlags = dockTabItemStatusFlags;
+			DockTabItemRect = dockTabItemRect;
 			ItemWidth = itemWidth;
 			TextWrapPos = textWrapPos;
 			ItemWidthStack = itemWidthStack;

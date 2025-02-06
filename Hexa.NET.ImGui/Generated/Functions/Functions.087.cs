@@ -389,15 +389,37 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseReleasedWithDelayNative(ImGuiMouseButton button, float delay)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[353])(button, delay);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[353])(button, delay);
+			#endif
+		}
+
+		/// <summary>
+		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
+		/// </summary>
+		public static bool IsMouseReleasedWithDelay(ImGuiMouseButton button, float delay)
+		{
+			byte ret = IsMouseReleasedWithDelayNative(button, delay);
+			return ret != 0;
+		}
+
+		/// <summary>
 		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetMouseClickedCountNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[353])(button);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[354])(button);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[353])(button);
+			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[354])(button);
 			#endif
 		}
 
@@ -417,9 +439,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[354])(rMin, rMax, clip);
+			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[355])(rMin, rMax, clip);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[354])(rMin, rMax, clip);
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[355])(rMin, rMax, clip);
 			#endif
 		}
 
@@ -448,9 +470,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsMousePosValidNative(Vector2* mousePos)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)funcTable[355])(mousePos);
+			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)funcTable[356])(mousePos);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[355])((nint)mousePos);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[356])((nint)mousePos);
 			#endif
 		}
 
@@ -491,9 +513,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsAnyMouseDownNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[356])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[357])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[356])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[357])();
 			#endif
 		}
 
@@ -513,9 +535,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetMousePosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[357])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[358])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[357])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[358])((nint)pOut);
 			#endif
 		}
 
@@ -555,9 +577,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetMousePosOnOpeningCurrentPopupNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[358])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[359])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[358])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[359])((nint)pOut);
 			#endif
 		}
 
@@ -597,9 +619,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsMouseDraggingNative(ImGuiMouseButton button, float lockThreshold)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[359])(button, lockThreshold);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[360])(button, lockThreshold);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[359])(button, lockThreshold);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[360])(button, lockThreshold);
 			#endif
 		}
 
@@ -628,9 +650,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetMouseDragDeltaNative(Vector2* pOut, ImGuiMouseButton button, float lockThreshold)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiMouseButton, float, void>)funcTable[360])(pOut, button, lockThreshold);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiMouseButton, float, void>)funcTable[361])(pOut, button, lockThreshold);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseButton, float, void>)funcTable[360])((nint)pOut, button, lockThreshold);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseButton, float, void>)funcTable[361])((nint)pOut, button, lockThreshold);
 			#endif
 		}
 
@@ -756,9 +778,9 @@ namespace Hexa.NET.ImGui
 		internal static void ResetMouseDragDeltaNative(ImGuiMouseButton button)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[361])(button);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[362])(button);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[361])(button);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[362])(button);
 			#endif
 		}
 
@@ -783,9 +805,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiMouseCursor GetMouseCursorNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[362])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[363])();
 			#else
-			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[362])();
+			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[363])();
 			#endif
 		}
 
@@ -805,9 +827,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetMouseCursorNative(ImGuiMouseCursor cursorType)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[363])(cursorType);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[364])(cursorType);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[363])(cursorType);
+			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[364])(cursorType);
 			#endif
 		}
 
@@ -826,9 +848,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[364])(wantCaptureMouse);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[365])(wantCaptureMouse);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[364])(wantCaptureMouse);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[365])(wantCaptureMouse);
 			#endif
 		}
 
@@ -847,9 +869,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* GetClipboardTextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*>)funcTable[365])();
+			return ((delegate* unmanaged[Cdecl]<byte*>)funcTable[366])();
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint>)funcTable[365])();
+			return (byte*)((delegate* unmanaged[Cdecl]<nint>)funcTable[366])();
 			#endif
 		}
 
@@ -878,9 +900,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetClipboardTextNative(byte* text)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[366])(text);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[367])(text);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[366])((nint)text);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[367])((nint)text);
 			#endif
 		}
 
@@ -950,9 +972,9 @@ namespace Hexa.NET.ImGui
 		internal static void LoadIniSettingsFromDiskNative(byte* iniFilename)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[367])(iniFilename);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[368])(iniFilename);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[367])((nint)iniFilename);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[368])((nint)iniFilename);
 			#endif
 		}
 
@@ -1022,9 +1044,9 @@ namespace Hexa.NET.ImGui
 		internal static void LoadIniSettingsFromMemoryNative(byte* iniData, ulong iniSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)funcTable[368])(iniData, iniSize);
+			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)funcTable[369])(iniData, iniSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[368])((nint)iniData, iniSize);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[369])((nint)iniData, iniSize);
 			#endif
 		}
 
@@ -1212,9 +1234,9 @@ namespace Hexa.NET.ImGui
 		internal static void SaveIniSettingsToDiskNative(byte* iniFilename)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[369])(iniFilename);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[370])(iniFilename);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[369])((nint)iniFilename);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[370])((nint)iniFilename);
 			#endif
 		}
 
@@ -1284,9 +1306,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* SaveIniSettingsToMemoryNative(ulong* outIniSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)funcTable[370])(outIniSize);
+			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)funcTable[371])(outIniSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[370])((nint)outIniSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[371])((nint)outIniSize);
 			#endif
 		}
 
@@ -1357,9 +1379,9 @@ namespace Hexa.NET.ImGui
 		internal static void DebugTextEncodingNative(byte* text)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[371])(text);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[372])(text);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[371])((nint)text);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[372])((nint)text);
 			#endif
 		}
 
@@ -1429,9 +1451,9 @@ namespace Hexa.NET.ImGui
 		internal static void DebugFlashStyleColorNative(ImGuiCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[372])(idx);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[373])(idx);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[372])(idx);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[373])(idx);
 			#endif
 		}
 
@@ -1450,9 +1472,9 @@ namespace Hexa.NET.ImGui
 		internal static void DebugStartItemPickerNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[373])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[374])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[373])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[374])();
 			#endif
 		}
 
@@ -1471,9 +1493,9 @@ namespace Hexa.NET.ImGui
 		internal static byte DebugCheckVersionAndDataLayoutNative(byte* versionStr, ulong szIo, ulong szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, ulong szDrawidx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, ulong, ulong, ulong, ulong, ulong, byte>)funcTable[374])(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, ulong, ulong, ulong, ulong, ulong, byte>)funcTable[375])(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ulong, ulong, ulong, ulong, byte>)funcTable[374])((nint)versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ulong, ulong, ulong, ulong, byte>)funcTable[375])((nint)versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
 			#endif
 		}
 
@@ -5003,27 +5025,6 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
-		{
-			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
-		{
-			fixed (byte* pversionStr = &versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-				return ret != 0;
-			}
 		}
 	}
 }

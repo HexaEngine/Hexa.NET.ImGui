@@ -61,12 +61,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte Locked;
+		public unsafe void* UserData;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void* UserData;
+		public byte Locked;
 
 		/// <summary>
 		/// To be documented.
@@ -159,37 +159,6 @@ namespace Hexa.NET.ImGui
 		public Vector4 TexUvLines_30;
 		public Vector4 TexUvLines_31;
 		public Vector4 TexUvLines_32;
-		public Vector4 TexUvLines_33;
-		public Vector4 TexUvLines_34;
-		public Vector4 TexUvLines_35;
-		public Vector4 TexUvLines_36;
-		public Vector4 TexUvLines_37;
-		public Vector4 TexUvLines_38;
-		public Vector4 TexUvLines_39;
-		public Vector4 TexUvLines_40;
-		public Vector4 TexUvLines_41;
-		public Vector4 TexUvLines_42;
-		public Vector4 TexUvLines_43;
-		public Vector4 TexUvLines_44;
-		public Vector4 TexUvLines_45;
-		public Vector4 TexUvLines_46;
-		public Vector4 TexUvLines_47;
-		public Vector4 TexUvLines_48;
-		public Vector4 TexUvLines_49;
-		public Vector4 TexUvLines_50;
-		public Vector4 TexUvLines_51;
-		public Vector4 TexUvLines_52;
-		public Vector4 TexUvLines_53;
-		public Vector4 TexUvLines_54;
-		public Vector4 TexUvLines_55;
-		public Vector4 TexUvLines_56;
-		public Vector4 TexUvLines_57;
-		public Vector4 TexUvLines_58;
-		public Vector4 TexUvLines_59;
-		public Vector4 TexUvLines_60;
-		public Vector4 TexUvLines_61;
-		public Vector4 TexUvLines_62;
-		public Vector4 TexUvLines_63;
 
 		/// <summary>
 		/// To be documented.
@@ -215,14 +184,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureID texId = default, int texDesiredWidth = default, int texGlyphPadding = default, bool locked = default, void* userData = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Vector4* texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
+		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureID texId = default, int texDesiredWidth = default, int texGlyphPadding = default, void* userData = default, bool locked = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Vector4* texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
 		{
 			Flags = flags;
 			TexID = texId;
 			TexDesiredWidth = texDesiredWidth;
 			TexGlyphPadding = texGlyphPadding;
-			Locked = locked ? (byte)1 : (byte)0;
 			UserData = userData;
+			Locked = locked ? (byte)1 : (byte)0;
 			TexReady = texReady ? (byte)1 : (byte)0;
 			TexPixelsUseColors = texPixelsUseColors ? (byte)1 : (byte)0;
 			TexPixelsAlpha8 = texPixelsAlpha8;
@@ -269,37 +238,6 @@ namespace Hexa.NET.ImGui
 				TexUvLines_30 = texUvLines[30];
 				TexUvLines_31 = texUvLines[31];
 				TexUvLines_32 = texUvLines[32];
-				TexUvLines_33 = texUvLines[33];
-				TexUvLines_34 = texUvLines[34];
-				TexUvLines_35 = texUvLines[35];
-				TexUvLines_36 = texUvLines[36];
-				TexUvLines_37 = texUvLines[37];
-				TexUvLines_38 = texUvLines[38];
-				TexUvLines_39 = texUvLines[39];
-				TexUvLines_40 = texUvLines[40];
-				TexUvLines_41 = texUvLines[41];
-				TexUvLines_42 = texUvLines[42];
-				TexUvLines_43 = texUvLines[43];
-				TexUvLines_44 = texUvLines[44];
-				TexUvLines_45 = texUvLines[45];
-				TexUvLines_46 = texUvLines[46];
-				TexUvLines_47 = texUvLines[47];
-				TexUvLines_48 = texUvLines[48];
-				TexUvLines_49 = texUvLines[49];
-				TexUvLines_50 = texUvLines[50];
-				TexUvLines_51 = texUvLines[51];
-				TexUvLines_52 = texUvLines[52];
-				TexUvLines_53 = texUvLines[53];
-				TexUvLines_54 = texUvLines[54];
-				TexUvLines_55 = texUvLines[55];
-				TexUvLines_56 = texUvLines[56];
-				TexUvLines_57 = texUvLines[57];
-				TexUvLines_58 = texUvLines[58];
-				TexUvLines_59 = texUvLines[59];
-				TexUvLines_60 = texUvLines[60];
-				TexUvLines_61 = texUvLines[61];
-				TexUvLines_62 = texUvLines[62];
-				TexUvLines_63 = texUvLines[63];
 			}
 			FontBuilderIO = fontBuilderIo;
 			FontBuilderFlags = fontBuilderFlags;
@@ -310,14 +248,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureID texId = default, int texDesiredWidth = default, int texGlyphPadding = default, bool locked = default, void* userData = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Span<Vector4> texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
+		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureID texId = default, int texDesiredWidth = default, int texGlyphPadding = default, void* userData = default, bool locked = default, bool texReady = default, bool texPixelsUseColors = default, byte* texPixelsAlpha8 = default, uint* texPixelsRgba32 = default, int texWidth = default, int texHeight = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontAtlasCustomRect> customRects = default, ImVector<ImFontConfig> configData = default, Span<Vector4> texUvLines = default, ImFontBuilderIO* fontBuilderIo = default, uint fontBuilderFlags = default, int packIdMouseCursors = default, int packIdLines = default)
 		{
 			Flags = flags;
 			TexID = texId;
 			TexDesiredWidth = texDesiredWidth;
 			TexGlyphPadding = texGlyphPadding;
-			Locked = locked ? (byte)1 : (byte)0;
 			UserData = userData;
+			Locked = locked ? (byte)1 : (byte)0;
 			TexReady = texReady ? (byte)1 : (byte)0;
 			TexPixelsUseColors = texPixelsUseColors ? (byte)1 : (byte)0;
 			TexPixelsAlpha8 = texPixelsAlpha8;
@@ -364,37 +302,6 @@ namespace Hexa.NET.ImGui
 				TexUvLines_30 = texUvLines[30];
 				TexUvLines_31 = texUvLines[31];
 				TexUvLines_32 = texUvLines[32];
-				TexUvLines_33 = texUvLines[33];
-				TexUvLines_34 = texUvLines[34];
-				TexUvLines_35 = texUvLines[35];
-				TexUvLines_36 = texUvLines[36];
-				TexUvLines_37 = texUvLines[37];
-				TexUvLines_38 = texUvLines[38];
-				TexUvLines_39 = texUvLines[39];
-				TexUvLines_40 = texUvLines[40];
-				TexUvLines_41 = texUvLines[41];
-				TexUvLines_42 = texUvLines[42];
-				TexUvLines_43 = texUvLines[43];
-				TexUvLines_44 = texUvLines[44];
-				TexUvLines_45 = texUvLines[45];
-				TexUvLines_46 = texUvLines[46];
-				TexUvLines_47 = texUvLines[47];
-				TexUvLines_48 = texUvLines[48];
-				TexUvLines_49 = texUvLines[49];
-				TexUvLines_50 = texUvLines[50];
-				TexUvLines_51 = texUvLines[51];
-				TexUvLines_52 = texUvLines[52];
-				TexUvLines_53 = texUvLines[53];
-				TexUvLines_54 = texUvLines[54];
-				TexUvLines_55 = texUvLines[55];
-				TexUvLines_56 = texUvLines[56];
-				TexUvLines_57 = texUvLines[57];
-				TexUvLines_58 = texUvLines[58];
-				TexUvLines_59 = texUvLines[59];
-				TexUvLines_60 = texUvLines[60];
-				TexUvLines_61 = texUvLines[61];
-				TexUvLines_62 = texUvLines[62];
-				TexUvLines_63 = texUvLines[63];
 			}
 			FontBuilderIO = fontBuilderIo;
 			FontBuilderFlags = fontBuilderFlags;
@@ -413,7 +320,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (Vector4* p = &this.TexUvLines_0)
 				{
-					return new Span<Vector4>(p, 64);
+					return new Span<Vector4>(p, 33);
 				}
 			}
 		}
@@ -2443,7 +2350,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Clear output font data (glyphs storage, UV coordinates).<br/>
+		/// Clear input+output font data (same as ClearInputData() + glyphs storage, UV coordinates).<br/>
 		/// </summary>
 		public unsafe void ClearFonts()
 		{
@@ -3999,11 +3906,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool Locked => ref Unsafe.AsRef<bool>(&Handle->Locked);
+		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
+		public ref bool Locked => ref Unsafe.AsRef<bool>(&Handle->Locked);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4056,7 +3963,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<Vector4>(&Handle->TexUvLines_0, 64);
+				return new Span<Vector4>(&Handle->TexUvLines_0, 33);
 			}
 		}
 		/// <summary>
@@ -5771,7 +5678,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Clear output font data (glyphs storage, UV coordinates).<br/>
+		/// Clear input+output font data (same as ClearInputData() + glyphs storage, UV coordinates).<br/>
 		/// </summary>
 		public unsafe void ClearFonts()
 		{

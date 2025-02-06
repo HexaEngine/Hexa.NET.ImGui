@@ -35,8 +35,13 @@ namespace Hexa.NET.ImGui
 		Button = unchecked(2097152),
 
 		/// <summary>
+		/// To reserve space e.g. with ImGuiTabItemFlags_Leading<br/>
+		/// </summary>
+		Invisible = unchecked(4194304),
+
+		/// <summary>
 		/// [Docking] Trailing tabs with the _Unsorted flag will be sorted based on the DockOrder of their Window.<br/>
 		/// </summary>
-		Unsorted = unchecked(4194304),
+		Unsorted = unchecked(8388608),
 	}
 }

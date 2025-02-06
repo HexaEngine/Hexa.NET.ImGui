@@ -21,6 +21,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
+		{
+			AddEllipseFilledNative(self, center, radius, col, (float)(0.0f), (int)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
+		{
+			AddEllipseFilledNative(self, center, radius, col, (float)(0.0f), numSegments);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
 		{
 			fixed (ImDrawList* pself = &self)
@@ -69,9 +85,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddTextNative(ImDrawList* self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)funcTable[531])(self, pos, col, textBegin, textEnd);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)funcTable[532])(self, pos, col, textBegin, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)funcTable[531])((nint)self, pos, col, (nint)textBegin, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)funcTable[532])((nint)self, pos, col, (nint)textBegin, (nint)textEnd);
 			#endif
 		}
 
@@ -948,9 +964,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddTextNative(ImDrawList* self, ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImFont*, float, Vector2, uint, byte*, byte*, float, Vector4*, void>)funcTable[532])(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImFont*, float, Vector2, uint, byte*, byte*, float, Vector4*, void>)funcTable[533])(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, nint, nint, float, nint, void>)funcTable[532])((nint)self, (nint)font, fontSize, pos, col, (nint)textBegin, (nint)textEnd, wrapWidth, (nint)cpuFineClipRect);
+			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, nint, nint, float, nint, void>)funcTable[533])((nint)self, (nint)font, fontSize, pos, col, (nint)textBegin, (nint)textEnd, wrapWidth, (nint)cpuFineClipRect);
 			#endif
 		}
 

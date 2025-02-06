@@ -490,7 +490,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public float FontWindowScaleParents;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float FontDpiScale;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float FontRefSize;
 
 		/// <summary>
 		/// To be documented.
@@ -635,21 +645,11 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public uint DockId;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiItemStatusFlags DockTabItemStatusFlags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImRect DockTabItemRect;
-
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe ImGuiWindow(ImGuiContextPtr ctx = default, byte* name = default, uint id = default, ImGuiWindowFlags flags = default, ImGuiWindowFlags flagsPreviousFrame = default, ImGuiChildFlags childFlags = default, ImGuiWindowClass windowClass = default, ImGuiViewportP* viewport = default, uint viewportId = default, Vector2 viewportPos = default, int viewportAllowPlatformMonitorExtend = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeFull = default, Vector2 contentSize = default, Vector2 contentSizeIdeal = default, Vector2 contentSizeExplicit = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float titleBarHeight = default, float menuBarHeight = default, float decoOuterSizeX1 = default, float decoOuterSizeY1 = default, float decoOuterSizeX2 = default, float decoOuterSizeY2 = default, float decoInnerSizeX1 = default, float decoInnerSizeY1 = default, int nameBufLen = default, uint moveId = default, uint tabId = default, uint childId = default, uint popupId = default, Vector2 scroll = default, Vector2 scrollMax = default, Vector2 scrollTarget = default, Vector2 scrollTargetCenterRatio = default, Vector2 scrollTargetEdgeSnapDist = default, Vector2 scrollbarSizes = default, bool scrollbarX = default, bool scrollbarY = default, bool viewportOwned = default, bool active = default, bool wasActive = default, bool writeAccessed = default, bool collapsed = default, bool wantCollapseToggle = default, bool skipItems = default, bool skipRefresh = default, bool appearing = default, bool hidden = default, bool isFallbackWindow = default, bool isExplicitChild = default, bool hasCloseButton = default, byte resizeBorderHovered = default, byte resizeBorderHeld = default, short beginCount = default, short beginCountPreviousFrame = default, short beginOrderWithinParent = default, short beginOrderWithinContext = default, short focusOrder = default, byte autoFitFramesX = default, byte autoFitFramesY = default, bool autoFitOnlyGrows = default, ImGuiDir autoPosLastDirection = default, byte hiddenFramesCanSkipItems = default, byte hiddenFramesCannotSkipItems = default, byte hiddenFramesForRenderOnly = default, byte disableInputsFrames = default, ImGuiCond setWindowPosAllowFlags = default, ImGuiCond setWindowSizeAllowFlags = default, ImGuiCond setWindowCollapsedAllowFlags = default, ImGuiCond setWindowDockAllowFlags = default, Vector2 setWindowPosVal = default, Vector2 setWindowPosPivot = default, ImVector<int> idStack = default, ImGuiWindowTempData dc = default, ImRect outerRectClipped = default, ImRect innerRect = default, ImRect innerClipRect = default, ImRect workRect = default, ImRect parentWorkRect = default, ImRect clipRect = default, ImRect contentRegionRect = default, ImVec2Ih hitTestHoleSize = default, ImVec2Ih hitTestHoleOffset = default, int lastFrameActive = default, int lastFrameJustFocused = default, float lastTimeActive = default, float itemWidthDefault = default, ImGuiStorage stateStorage = default, ImVector<ImGuiOldColumns> columnsStorage = default, float fontWindowScale = default, float fontDpiScale = default, int settingsOffset = default, ImDrawListPtr drawList = default, ImDrawList drawListInst = default, ImGuiWindow* parentWindow = default, ImGuiWindow* parentWindowInBeginStack = default, ImGuiWindow* rootWindow = default, ImGuiWindow* rootWindowPopupTree = default, ImGuiWindow* rootWindowDockTree = default, ImGuiWindow* rootWindowForTitleBarHighlight = default, ImGuiWindow* rootWindowForNav = default, ImGuiWindow* parentWindowForFocusRoute = default, ImGuiWindow* navLastChildNavWindow = default, uint* navLastIds = default, ImRect* navRectRel = default, Vector2* navPreferredScoringPosRel = default, uint navRootFocusScopeId = default, int memoryDrawListIdxCapacity = default, int memoryDrawListVtxCapacity = default, bool memoryCompacted = default, bool dockIsActive = default, bool dockNodeIsVisible = default, bool dockTabIsVisible = default, bool dockTabWantClose = default, short dockOrder = default, ImGuiWindowDockStyle dockStyle = default, ImGuiDockNode* dockNode = default, ImGuiDockNode* dockNodeAsHost = default, uint dockId = default, ImGuiItemStatusFlags dockTabItemStatusFlags = default, ImRect dockTabItemRect = default)
+		public unsafe ImGuiWindow(ImGuiContextPtr ctx = default, byte* name = default, uint id = default, ImGuiWindowFlags flags = default, ImGuiWindowFlags flagsPreviousFrame = default, ImGuiChildFlags childFlags = default, ImGuiWindowClass windowClass = default, ImGuiViewportP* viewport = default, uint viewportId = default, Vector2 viewportPos = default, int viewportAllowPlatformMonitorExtend = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeFull = default, Vector2 contentSize = default, Vector2 contentSizeIdeal = default, Vector2 contentSizeExplicit = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float titleBarHeight = default, float menuBarHeight = default, float decoOuterSizeX1 = default, float decoOuterSizeY1 = default, float decoOuterSizeX2 = default, float decoOuterSizeY2 = default, float decoInnerSizeX1 = default, float decoInnerSizeY1 = default, int nameBufLen = default, uint moveId = default, uint tabId = default, uint childId = default, uint popupId = default, Vector2 scroll = default, Vector2 scrollMax = default, Vector2 scrollTarget = default, Vector2 scrollTargetCenterRatio = default, Vector2 scrollTargetEdgeSnapDist = default, Vector2 scrollbarSizes = default, bool scrollbarX = default, bool scrollbarY = default, bool viewportOwned = default, bool active = default, bool wasActive = default, bool writeAccessed = default, bool collapsed = default, bool wantCollapseToggle = default, bool skipItems = default, bool skipRefresh = default, bool appearing = default, bool hidden = default, bool isFallbackWindow = default, bool isExplicitChild = default, bool hasCloseButton = default, byte resizeBorderHovered = default, byte resizeBorderHeld = default, short beginCount = default, short beginCountPreviousFrame = default, short beginOrderWithinParent = default, short beginOrderWithinContext = default, short focusOrder = default, byte autoFitFramesX = default, byte autoFitFramesY = default, bool autoFitOnlyGrows = default, ImGuiDir autoPosLastDirection = default, byte hiddenFramesCanSkipItems = default, byte hiddenFramesCannotSkipItems = default, byte hiddenFramesForRenderOnly = default, byte disableInputsFrames = default, ImGuiCond setWindowPosAllowFlags = default, ImGuiCond setWindowSizeAllowFlags = default, ImGuiCond setWindowCollapsedAllowFlags = default, ImGuiCond setWindowDockAllowFlags = default, Vector2 setWindowPosVal = default, Vector2 setWindowPosPivot = default, ImVector<int> idStack = default, ImGuiWindowTempData dc = default, ImRect outerRectClipped = default, ImRect innerRect = default, ImRect innerClipRect = default, ImRect workRect = default, ImRect parentWorkRect = default, ImRect clipRect = default, ImRect contentRegionRect = default, ImVec2Ih hitTestHoleSize = default, ImVec2Ih hitTestHoleOffset = default, int lastFrameActive = default, int lastFrameJustFocused = default, float lastTimeActive = default, float itemWidthDefault = default, ImGuiStorage stateStorage = default, ImVector<ImGuiOldColumns> columnsStorage = default, float fontWindowScale = default, float fontWindowScaleParents = default, float fontDpiScale = default, float fontRefSize = default, int settingsOffset = default, ImDrawListPtr drawList = default, ImDrawList drawListInst = default, ImGuiWindow* parentWindow = default, ImGuiWindow* parentWindowInBeginStack = default, ImGuiWindow* rootWindow = default, ImGuiWindow* rootWindowPopupTree = default, ImGuiWindow* rootWindowDockTree = default, ImGuiWindow* rootWindowForTitleBarHighlight = default, ImGuiWindow* rootWindowForNav = default, ImGuiWindow* parentWindowForFocusRoute = default, ImGuiWindow* navLastChildNavWindow = default, uint* navLastIds = default, ImRect* navRectRel = default, Vector2* navPreferredScoringPosRel = default, uint navRootFocusScopeId = default, int memoryDrawListIdxCapacity = default, int memoryDrawListVtxCapacity = default, bool memoryCompacted = default, bool dockIsActive = default, bool dockNodeIsVisible = default, bool dockTabIsVisible = default, bool dockTabWantClose = default, short dockOrder = default, ImGuiWindowDockStyle dockStyle = default, ImGuiDockNode* dockNode = default, ImGuiDockNode* dockNodeAsHost = default, uint dockId = default)
 		{
 			Ctx = ctx;
 			Name = name;
@@ -744,7 +744,9 @@ namespace Hexa.NET.ImGui
 			StateStorage = stateStorage;
 			ColumnsStorage = columnsStorage;
 			FontWindowScale = fontWindowScale;
+			FontWindowScaleParents = fontWindowScaleParents;
 			FontDpiScale = fontDpiScale;
+			FontRefSize = fontRefSize;
 			SettingsOffset = settingsOffset;
 			DrawList = drawList;
 			DrawListInst = drawListInst;
@@ -785,14 +787,12 @@ namespace Hexa.NET.ImGui
 			DockNode = dockNode;
 			DockNodeAsHost = dockNodeAsHost;
 			DockId = dockId;
-			DockTabItemStatusFlags = dockTabItemStatusFlags;
-			DockTabItemRect = dockTabItemRect;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiWindow(ImGuiContextPtr ctx = default, byte* name = default, uint id = default, ImGuiWindowFlags flags = default, ImGuiWindowFlags flagsPreviousFrame = default, ImGuiChildFlags childFlags = default, ImGuiWindowClass windowClass = default, ImGuiViewportP* viewport = default, uint viewportId = default, Vector2 viewportPos = default, int viewportAllowPlatformMonitorExtend = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeFull = default, Vector2 contentSize = default, Vector2 contentSizeIdeal = default, Vector2 contentSizeExplicit = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float titleBarHeight = default, float menuBarHeight = default, float decoOuterSizeX1 = default, float decoOuterSizeY1 = default, float decoOuterSizeX2 = default, float decoOuterSizeY2 = default, float decoInnerSizeX1 = default, float decoInnerSizeY1 = default, int nameBufLen = default, uint moveId = default, uint tabId = default, uint childId = default, uint popupId = default, Vector2 scroll = default, Vector2 scrollMax = default, Vector2 scrollTarget = default, Vector2 scrollTargetCenterRatio = default, Vector2 scrollTargetEdgeSnapDist = default, Vector2 scrollbarSizes = default, bool scrollbarX = default, bool scrollbarY = default, bool viewportOwned = default, bool active = default, bool wasActive = default, bool writeAccessed = default, bool collapsed = default, bool wantCollapseToggle = default, bool skipItems = default, bool skipRefresh = default, bool appearing = default, bool hidden = default, bool isFallbackWindow = default, bool isExplicitChild = default, bool hasCloseButton = default, byte resizeBorderHovered = default, byte resizeBorderHeld = default, short beginCount = default, short beginCountPreviousFrame = default, short beginOrderWithinParent = default, short beginOrderWithinContext = default, short focusOrder = default, byte autoFitFramesX = default, byte autoFitFramesY = default, bool autoFitOnlyGrows = default, ImGuiDir autoPosLastDirection = default, byte hiddenFramesCanSkipItems = default, byte hiddenFramesCannotSkipItems = default, byte hiddenFramesForRenderOnly = default, byte disableInputsFrames = default, ImGuiCond setWindowPosAllowFlags = default, ImGuiCond setWindowSizeAllowFlags = default, ImGuiCond setWindowCollapsedAllowFlags = default, ImGuiCond setWindowDockAllowFlags = default, Vector2 setWindowPosVal = default, Vector2 setWindowPosPivot = default, ImVector<int> idStack = default, ImGuiWindowTempData dc = default, ImRect outerRectClipped = default, ImRect innerRect = default, ImRect innerClipRect = default, ImRect workRect = default, ImRect parentWorkRect = default, ImRect clipRect = default, ImRect contentRegionRect = default, ImVec2Ih hitTestHoleSize = default, ImVec2Ih hitTestHoleOffset = default, int lastFrameActive = default, int lastFrameJustFocused = default, float lastTimeActive = default, float itemWidthDefault = default, ImGuiStorage stateStorage = default, ImVector<ImGuiOldColumns> columnsStorage = default, float fontWindowScale = default, float fontDpiScale = default, int settingsOffset = default, ImDrawListPtr drawList = default, ImDrawList drawListInst = default, ImGuiWindow* parentWindow = default, ImGuiWindow* parentWindowInBeginStack = default, ImGuiWindow* rootWindow = default, ImGuiWindow* rootWindowPopupTree = default, ImGuiWindow* rootWindowDockTree = default, ImGuiWindow* rootWindowForTitleBarHighlight = default, ImGuiWindow* rootWindowForNav = default, ImGuiWindow* parentWindowForFocusRoute = default, ImGuiWindow* navLastChildNavWindow = default, Span<uint> navLastIds = default, Span<ImRect> navRectRel = default, Span<Vector2> navPreferredScoringPosRel = default, uint navRootFocusScopeId = default, int memoryDrawListIdxCapacity = default, int memoryDrawListVtxCapacity = default, bool memoryCompacted = default, bool dockIsActive = default, bool dockNodeIsVisible = default, bool dockTabIsVisible = default, bool dockTabWantClose = default, short dockOrder = default, ImGuiWindowDockStyle dockStyle = default, ImGuiDockNode* dockNode = default, ImGuiDockNode* dockNodeAsHost = default, uint dockId = default, ImGuiItemStatusFlags dockTabItemStatusFlags = default, ImRect dockTabItemRect = default)
+		public unsafe ImGuiWindow(ImGuiContextPtr ctx = default, byte* name = default, uint id = default, ImGuiWindowFlags flags = default, ImGuiWindowFlags flagsPreviousFrame = default, ImGuiChildFlags childFlags = default, ImGuiWindowClass windowClass = default, ImGuiViewportP* viewport = default, uint viewportId = default, Vector2 viewportPos = default, int viewportAllowPlatformMonitorExtend = default, Vector2 pos = default, Vector2 size = default, Vector2 sizeFull = default, Vector2 contentSize = default, Vector2 contentSizeIdeal = default, Vector2 contentSizeExplicit = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float titleBarHeight = default, float menuBarHeight = default, float decoOuterSizeX1 = default, float decoOuterSizeY1 = default, float decoOuterSizeX2 = default, float decoOuterSizeY2 = default, float decoInnerSizeX1 = default, float decoInnerSizeY1 = default, int nameBufLen = default, uint moveId = default, uint tabId = default, uint childId = default, uint popupId = default, Vector2 scroll = default, Vector2 scrollMax = default, Vector2 scrollTarget = default, Vector2 scrollTargetCenterRatio = default, Vector2 scrollTargetEdgeSnapDist = default, Vector2 scrollbarSizes = default, bool scrollbarX = default, bool scrollbarY = default, bool viewportOwned = default, bool active = default, bool wasActive = default, bool writeAccessed = default, bool collapsed = default, bool wantCollapseToggle = default, bool skipItems = default, bool skipRefresh = default, bool appearing = default, bool hidden = default, bool isFallbackWindow = default, bool isExplicitChild = default, bool hasCloseButton = default, byte resizeBorderHovered = default, byte resizeBorderHeld = default, short beginCount = default, short beginCountPreviousFrame = default, short beginOrderWithinParent = default, short beginOrderWithinContext = default, short focusOrder = default, byte autoFitFramesX = default, byte autoFitFramesY = default, bool autoFitOnlyGrows = default, ImGuiDir autoPosLastDirection = default, byte hiddenFramesCanSkipItems = default, byte hiddenFramesCannotSkipItems = default, byte hiddenFramesForRenderOnly = default, byte disableInputsFrames = default, ImGuiCond setWindowPosAllowFlags = default, ImGuiCond setWindowSizeAllowFlags = default, ImGuiCond setWindowCollapsedAllowFlags = default, ImGuiCond setWindowDockAllowFlags = default, Vector2 setWindowPosVal = default, Vector2 setWindowPosPivot = default, ImVector<int> idStack = default, ImGuiWindowTempData dc = default, ImRect outerRectClipped = default, ImRect innerRect = default, ImRect innerClipRect = default, ImRect workRect = default, ImRect parentWorkRect = default, ImRect clipRect = default, ImRect contentRegionRect = default, ImVec2Ih hitTestHoleSize = default, ImVec2Ih hitTestHoleOffset = default, int lastFrameActive = default, int lastFrameJustFocused = default, float lastTimeActive = default, float itemWidthDefault = default, ImGuiStorage stateStorage = default, ImVector<ImGuiOldColumns> columnsStorage = default, float fontWindowScale = default, float fontWindowScaleParents = default, float fontDpiScale = default, float fontRefSize = default, int settingsOffset = default, ImDrawListPtr drawList = default, ImDrawList drawListInst = default, ImGuiWindow* parentWindow = default, ImGuiWindow* parentWindowInBeginStack = default, ImGuiWindow* rootWindow = default, ImGuiWindow* rootWindowPopupTree = default, ImGuiWindow* rootWindowDockTree = default, ImGuiWindow* rootWindowForTitleBarHighlight = default, ImGuiWindow* rootWindowForNav = default, ImGuiWindow* parentWindowForFocusRoute = default, ImGuiWindow* navLastChildNavWindow = default, Span<uint> navLastIds = default, Span<ImRect> navRectRel = default, Span<Vector2> navPreferredScoringPosRel = default, uint navRootFocusScopeId = default, int memoryDrawListIdxCapacity = default, int memoryDrawListVtxCapacity = default, bool memoryCompacted = default, bool dockIsActive = default, bool dockNodeIsVisible = default, bool dockTabIsVisible = default, bool dockTabWantClose = default, short dockOrder = default, ImGuiWindowDockStyle dockStyle = default, ImGuiDockNode* dockNode = default, ImGuiDockNode* dockNodeAsHost = default, uint dockId = default)
 		{
 			Ctx = ctx;
 			Name = name;
@@ -887,7 +887,9 @@ namespace Hexa.NET.ImGui
 			StateStorage = stateStorage;
 			ColumnsStorage = columnsStorage;
 			FontWindowScale = fontWindowScale;
+			FontWindowScaleParents = fontWindowScaleParents;
 			FontDpiScale = fontDpiScale;
+			FontRefSize = fontRefSize;
 			SettingsOffset = settingsOffset;
 			DrawList = drawList;
 			DrawListInst = drawListInst;
@@ -928,8 +930,6 @@ namespace Hexa.NET.ImGui
 			DockNode = dockNode;
 			DockNodeAsHost = dockNodeAsHost;
 			DockId = dockId;
-			DockTabItemStatusFlags = dockTabItemStatusFlags;
-			DockTabItemRect = dockTabItemRect;
 		}
 
 
@@ -1379,7 +1379,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref float FontWindowScaleParents => ref Unsafe.AsRef<float>(&Handle->FontWindowScaleParents);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref float FontDpiScale => ref Unsafe.AsRef<float>(&Handle->FontDpiScale);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float FontRefSize => ref Unsafe.AsRef<float>(&Handle->FontRefSize);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -1513,14 +1521,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint DockId => ref Unsafe.AsRef<uint>(&Handle->DockId);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImGuiItemStatusFlags DockTabItemStatusFlags => ref Unsafe.AsRef<ImGuiItemStatusFlags>(&Handle->DockTabItemStatusFlags);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImRect DockTabItemRect => ref Unsafe.AsRef<ImRect>(&Handle->DockTabItemRect);
 	}
 
 	/// <summary>

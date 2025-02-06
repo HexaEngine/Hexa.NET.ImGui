@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<uint> IndexLookup;
+		public ImVector<ushort> IndexLookup;
 
 		/// <summary>
 		/// To be documented.
@@ -96,11 +96,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte DirtyLookupTables;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public float Scale;
 
 		/// <summary>
@@ -121,46 +116,34 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte Used4kPagesMap_0;
-		public byte Used4kPagesMap_1;
-		public byte Used4kPagesMap_2;
-		public byte Used4kPagesMap_3;
-		public byte Used4kPagesMap_4;
-		public byte Used4kPagesMap_5;
-		public byte Used4kPagesMap_6;
-		public byte Used4kPagesMap_7;
-		public byte Used4kPagesMap_8;
-		public byte Used4kPagesMap_9;
-		public byte Used4kPagesMap_10;
-		public byte Used4kPagesMap_11;
-		public byte Used4kPagesMap_12;
-		public byte Used4kPagesMap_13;
-		public byte Used4kPagesMap_14;
-		public byte Used4kPagesMap_15;
-		public byte Used4kPagesMap_16;
-		public byte Used4kPagesMap_17;
-		public byte Used4kPagesMap_18;
-		public byte Used4kPagesMap_19;
-		public byte Used4kPagesMap_20;
-		public byte Used4kPagesMap_21;
-		public byte Used4kPagesMap_22;
-		public byte Used4kPagesMap_23;
-		public byte Used4kPagesMap_24;
-		public byte Used4kPagesMap_25;
-		public byte Used4kPagesMap_26;
-		public byte Used4kPagesMap_27;
-		public byte Used4kPagesMap_28;
-		public byte Used4kPagesMap_29;
-		public byte Used4kPagesMap_30;
-		public byte Used4kPagesMap_31;
-		public byte Used4kPagesMap_32;
-		public byte Used4kPagesMap_33;
+		public byte DirtyLookupTables;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte Used8kPagesMap_0;
+		public byte Used8kPagesMap_1;
+		public byte Used8kPagesMap_2;
+		public byte Used8kPagesMap_3;
+		public byte Used8kPagesMap_4;
+		public byte Used8kPagesMap_5;
+		public byte Used8kPagesMap_6;
+		public byte Used8kPagesMap_7;
+		public byte Used8kPagesMap_8;
+		public byte Used8kPagesMap_9;
+		public byte Used8kPagesMap_10;
+		public byte Used8kPagesMap_11;
+		public byte Used8kPagesMap_12;
+		public byte Used8kPagesMap_13;
+		public byte Used8kPagesMap_14;
+		public byte Used8kPagesMap_15;
+		public byte Used8kPagesMap_16;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<uint> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, bool dirtyLookupTables = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, byte* used4KPagesMap = default)
+		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, byte* used8KPagesMap = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -176,54 +159,37 @@ namespace Hexa.NET.ImGui
 			FallbackChar = fallbackChar;
 			EllipsisWidth = ellipsisWidth;
 			EllipsisCharStep = ellipsisCharStep;
-			DirtyLookupTables = dirtyLookupTables ? (byte)1 : (byte)0;
 			Scale = scale;
 			Ascent = ascent;
 			Descent = descent;
 			MetricsTotalSurface = metricsTotalSurface;
-			if (used4KPagesMap != default(byte*))
+			DirtyLookupTables = dirtyLookupTables ? (byte)1 : (byte)0;
+			if (used8KPagesMap != default(byte*))
 			{
-				Used4kPagesMap_0 = used4KPagesMap[0];
-				Used4kPagesMap_1 = used4KPagesMap[1];
-				Used4kPagesMap_2 = used4KPagesMap[2];
-				Used4kPagesMap_3 = used4KPagesMap[3];
-				Used4kPagesMap_4 = used4KPagesMap[4];
-				Used4kPagesMap_5 = used4KPagesMap[5];
-				Used4kPagesMap_6 = used4KPagesMap[6];
-				Used4kPagesMap_7 = used4KPagesMap[7];
-				Used4kPagesMap_8 = used4KPagesMap[8];
-				Used4kPagesMap_9 = used4KPagesMap[9];
-				Used4kPagesMap_10 = used4KPagesMap[10];
-				Used4kPagesMap_11 = used4KPagesMap[11];
-				Used4kPagesMap_12 = used4KPagesMap[12];
-				Used4kPagesMap_13 = used4KPagesMap[13];
-				Used4kPagesMap_14 = used4KPagesMap[14];
-				Used4kPagesMap_15 = used4KPagesMap[15];
-				Used4kPagesMap_16 = used4KPagesMap[16];
-				Used4kPagesMap_17 = used4KPagesMap[17];
-				Used4kPagesMap_18 = used4KPagesMap[18];
-				Used4kPagesMap_19 = used4KPagesMap[19];
-				Used4kPagesMap_20 = used4KPagesMap[20];
-				Used4kPagesMap_21 = used4KPagesMap[21];
-				Used4kPagesMap_22 = used4KPagesMap[22];
-				Used4kPagesMap_23 = used4KPagesMap[23];
-				Used4kPagesMap_24 = used4KPagesMap[24];
-				Used4kPagesMap_25 = used4KPagesMap[25];
-				Used4kPagesMap_26 = used4KPagesMap[26];
-				Used4kPagesMap_27 = used4KPagesMap[27];
-				Used4kPagesMap_28 = used4KPagesMap[28];
-				Used4kPagesMap_29 = used4KPagesMap[29];
-				Used4kPagesMap_30 = used4KPagesMap[30];
-				Used4kPagesMap_31 = used4KPagesMap[31];
-				Used4kPagesMap_32 = used4KPagesMap[32];
-				Used4kPagesMap_33 = used4KPagesMap[33];
+				Used8kPagesMap_0 = used8KPagesMap[0];
+				Used8kPagesMap_1 = used8KPagesMap[1];
+				Used8kPagesMap_2 = used8KPagesMap[2];
+				Used8kPagesMap_3 = used8KPagesMap[3];
+				Used8kPagesMap_4 = used8KPagesMap[4];
+				Used8kPagesMap_5 = used8KPagesMap[5];
+				Used8kPagesMap_6 = used8KPagesMap[6];
+				Used8kPagesMap_7 = used8KPagesMap[7];
+				Used8kPagesMap_8 = used8KPagesMap[8];
+				Used8kPagesMap_9 = used8KPagesMap[9];
+				Used8kPagesMap_10 = used8KPagesMap[10];
+				Used8kPagesMap_11 = used8KPagesMap[11];
+				Used8kPagesMap_12 = used8KPagesMap[12];
+				Used8kPagesMap_13 = used8KPagesMap[13];
+				Used8kPagesMap_14 = used8KPagesMap[14];
+				Used8kPagesMap_15 = used8KPagesMap[15];
+				Used8kPagesMap_16 = used8KPagesMap[16];
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<uint> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, bool dirtyLookupTables = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, Span<byte> used4KPagesMap = default)
+		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, Span<byte> used8KPagesMap = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -239,47 +205,30 @@ namespace Hexa.NET.ImGui
 			FallbackChar = fallbackChar;
 			EllipsisWidth = ellipsisWidth;
 			EllipsisCharStep = ellipsisCharStep;
-			DirtyLookupTables = dirtyLookupTables ? (byte)1 : (byte)0;
 			Scale = scale;
 			Ascent = ascent;
 			Descent = descent;
 			MetricsTotalSurface = metricsTotalSurface;
-			if (used4KPagesMap != default(Span<byte>))
+			DirtyLookupTables = dirtyLookupTables ? (byte)1 : (byte)0;
+			if (used8KPagesMap != default(Span<byte>))
 			{
-				Used4kPagesMap_0 = used4KPagesMap[0];
-				Used4kPagesMap_1 = used4KPagesMap[1];
-				Used4kPagesMap_2 = used4KPagesMap[2];
-				Used4kPagesMap_3 = used4KPagesMap[3];
-				Used4kPagesMap_4 = used4KPagesMap[4];
-				Used4kPagesMap_5 = used4KPagesMap[5];
-				Used4kPagesMap_6 = used4KPagesMap[6];
-				Used4kPagesMap_7 = used4KPagesMap[7];
-				Used4kPagesMap_8 = used4KPagesMap[8];
-				Used4kPagesMap_9 = used4KPagesMap[9];
-				Used4kPagesMap_10 = used4KPagesMap[10];
-				Used4kPagesMap_11 = used4KPagesMap[11];
-				Used4kPagesMap_12 = used4KPagesMap[12];
-				Used4kPagesMap_13 = used4KPagesMap[13];
-				Used4kPagesMap_14 = used4KPagesMap[14];
-				Used4kPagesMap_15 = used4KPagesMap[15];
-				Used4kPagesMap_16 = used4KPagesMap[16];
-				Used4kPagesMap_17 = used4KPagesMap[17];
-				Used4kPagesMap_18 = used4KPagesMap[18];
-				Used4kPagesMap_19 = used4KPagesMap[19];
-				Used4kPagesMap_20 = used4KPagesMap[20];
-				Used4kPagesMap_21 = used4KPagesMap[21];
-				Used4kPagesMap_22 = used4KPagesMap[22];
-				Used4kPagesMap_23 = used4KPagesMap[23];
-				Used4kPagesMap_24 = used4KPagesMap[24];
-				Used4kPagesMap_25 = used4KPagesMap[25];
-				Used4kPagesMap_26 = used4KPagesMap[26];
-				Used4kPagesMap_27 = used4KPagesMap[27];
-				Used4kPagesMap_28 = used4KPagesMap[28];
-				Used4kPagesMap_29 = used4KPagesMap[29];
-				Used4kPagesMap_30 = used4KPagesMap[30];
-				Used4kPagesMap_31 = used4KPagesMap[31];
-				Used4kPagesMap_32 = used4KPagesMap[32];
-				Used4kPagesMap_33 = used4KPagesMap[33];
+				Used8kPagesMap_0 = used8KPagesMap[0];
+				Used8kPagesMap_1 = used8KPagesMap[1];
+				Used8kPagesMap_2 = used8KPagesMap[2];
+				Used8kPagesMap_3 = used8KPagesMap[3];
+				Used8kPagesMap_4 = used8KPagesMap[4];
+				Used8kPagesMap_5 = used8KPagesMap[5];
+				Used8kPagesMap_6 = used8KPagesMap[6];
+				Used8kPagesMap_7 = used8KPagesMap[7];
+				Used8kPagesMap_8 = used8KPagesMap[8];
+				Used8kPagesMap_9 = used8KPagesMap[9];
+				Used8kPagesMap_10 = used8KPagesMap[10];
+				Used8kPagesMap_11 = used8KPagesMap[11];
+				Used8kPagesMap_12 = used8KPagesMap[12];
+				Used8kPagesMap_13 = used8KPagesMap[13];
+				Used8kPagesMap_14 = used8KPagesMap[14];
+				Used8kPagesMap_15 = used8KPagesMap[15];
+				Used8kPagesMap_16 = used8KPagesMap[16];
 			}
 		}
 
@@ -4697,7 +4646,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<uint> IndexLookup => ref Unsafe.AsRef<ImVector<uint>>(&Handle->IndexLookup);
+		public ref ImVector<ushort> IndexLookup => ref Unsafe.AsRef<ImVector<ushort>>(&Handle->IndexLookup);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4741,10 +4690,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool DirtyLookupTables => ref Unsafe.AsRef<bool>(&Handle->DirtyLookupTables);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref float Scale => ref Unsafe.AsRef<float>(&Handle->Scale);
 		/// <summary>
 		/// To be documented.
@@ -4761,12 +4706,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Span<byte> Used4kPagesMap
+		public ref bool DirtyLookupTables => ref Unsafe.AsRef<bool>(&Handle->DirtyLookupTables);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Span<byte> Used8kPagesMap
 		
 		{
 			get
 			{
-				return new Span<byte>(&Handle->Used4kPagesMap_0, 34);
+				return new Span<byte>(&Handle->Used8kPagesMap_0, 17);
 			}
 		}
 		/// <summary>

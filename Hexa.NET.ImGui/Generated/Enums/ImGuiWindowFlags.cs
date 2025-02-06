@@ -140,6 +140,11 @@ namespace Hexa.NET.ImGui
 		NoInputs = unchecked(197120),
 
 		/// <summary>
+		/// Don't use! For internal use by Begin()NewFrame()<br/>
+		/// </summary>
+		DockNodeHost = unchecked(8388608),
+
+		/// <summary>
 		/// Don't use! For internal use by BeginChild()<br/>
 		/// </summary>
 		ChildWindow = unchecked(16777216),
@@ -163,10 +168,5 @@ namespace Hexa.NET.ImGui
 		/// Don't use! For internal use by BeginMenu()<br/>
 		/// </summary>
 		ChildMenu = unchecked(268435456),
-
-		/// <summary>
-		/// Don't use! For internal use by Begin()NewFrame()<br/>
-		/// </summary>
-		DockNodeHost = unchecked(536870912),
 	}
 }

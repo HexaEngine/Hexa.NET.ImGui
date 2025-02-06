@@ -4859,9 +4859,9 @@ namespace Hexa.NET.ImGui
 		internal static void BuildLookupTableNative(ImFont* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[640])(self);
+			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[641])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[640])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[641])((nint)self);
 			#endif
 		}
 
@@ -4891,9 +4891,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearOutputDataNative(ImFont* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[641])(self);
+			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[642])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[641])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[642])((nint)self);
 			#endif
 		}
 
@@ -4923,9 +4923,9 @@ namespace Hexa.NET.ImGui
 		internal static void GrowIndexNative(ImFont* self, int newSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, int, void>)funcTable[642])(self, newSize);
+			((delegate* unmanaged[Cdecl]<ImFont*, int, void>)funcTable[643])(self, newSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[642])((nint)self, newSize);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[643])((nint)self, newSize);
 			#endif
 		}
 
@@ -4955,9 +4955,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddGlyphNative(ImFont* self, ImFontConfig* srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, ImFontConfig*, uint, float, float, float, float, float, float, float, float, float, void>)funcTable[643])(self, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+			((delegate* unmanaged[Cdecl]<ImFont*, ImFontConfig*, uint, float, float, float, float, float, float, float, float, float, void>)funcTable[644])(self, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, uint, float, float, float, float, float, float, float, float, float, void>)funcTable[643])((nint)self, (nint)srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+			((delegate* unmanaged[Cdecl]<nint, nint, uint, float, float, float, float, float, float, float, float, float, void>)funcTable[644])((nint)self, (nint)srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 			#endif
 		}
 
@@ -5012,9 +5012,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddRemapCharNative(ImFont* self, uint dst, uint src, byte overwriteDst)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, uint, uint, byte, void>)funcTable[644])(self, dst, src, overwriteDst);
+			((delegate* unmanaged[Cdecl]<ImFont*, uint, uint, byte, void>)funcTable[645])(self, dst, src, overwriteDst);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, uint, byte, void>)funcTable[644])((nint)self, dst, src, overwriteDst);
+			((delegate* unmanaged[Cdecl]<nint, uint, uint, byte, void>)funcTable[645])((nint)self, dst, src, overwriteDst);
 			#endif
 		}
 	}
