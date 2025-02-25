@@ -20,6 +20,9 @@
 		<None Update="backends\cimgui_impl.h">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="backends\generator.sdl3.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="backends\generator.glfw.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

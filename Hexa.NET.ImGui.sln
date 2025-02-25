@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleWin32D3D9", "Example
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AotStaticLinkExample", "AotStaticLinkExample\AotStaticLinkExample.csproj", "{19DD4710-AAC4-49CF-8E93-B41ABE197605}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexa.NET.ImGui.Backends.SDL3", "Hexa.NET.ImGui.Backends.SDL3\Hexa.NET.ImGui.Backends.SDL3.csproj", "{B4F77180-A941-4002-95E8-B142887F126C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleSDL3OpenGL3", "ExampleSDL3OpenGL3\ExampleSDL3OpenGL3.csproj", "{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +122,14 @@ Global
 		{19DD4710-AAC4-49CF-8E93-B41ABE197605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19DD4710-AAC4-49CF-8E93-B41ABE197605}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19DD4710-AAC4-49CF-8E93-B41ABE197605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4F77180-A941-4002-95E8-B142887F126C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F77180-A941-4002-95E8-B142887F126C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F77180-A941-4002-95E8-B142887F126C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F77180-A941-4002-95E8-B142887F126C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

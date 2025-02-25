@@ -27,10 +27,12 @@ namespace Generator
 
         private const string ImGuiBackendsOutputPath = "../../../../Hexa.NET.ImGui.Backends/Generated";
         private const string ImGuiBackendsSDL2OutputPath = "../../../../Hexa.NET.ImGui.Backends.SDL2/Generated";
+        private const string ImGuiBackendsSDL3OutputPath = "../../../../Hexa.NET.ImGui.Backends.SDL3/Generated";
         private const string ImGuiBackendsGLFWOutputPath = "../../../../Hexa.NET.ImGui.Backends.GLFW/Generated";
         private const string CImGuiBackendsHeader = "backends/cimgui_impl.h";
         private const string CImGuiBackendsConfig = "backends/generator.json";
         private const string CImGuiBackendsSDL2Config = "backends/generator.sdl2.json";
+        private const string CImGuiBackendsSDL3Config = "backends/generator.sdl3.json";
         private const string CImGuiBackendsGLFWConfig = "backends/generator.glfw.json";
 
         private static void Main(string[] args)
@@ -71,6 +73,7 @@ namespace Generator
             }
 
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -121,6 +124,8 @@ namespace Generator
                 $"CIMGUI_USE_GLFW={(name == "GLFW" ? "1":"0")}",
                 $"CIMGUI_USE_SDL2={(name == "SDL2" ? "1":"0")}",
                 $"CIMGUI_USE_SDL2Renderer={(name == "SDL2" ? "1":"0")}",
+                $"CIMGUI_USE_SDL3={(name == "SDL3" ? "1":"0")}",
+                $"CIMGUI_USE_SDL3Renderer={(name == "SDL3" ? "1":"0")}",
                 $"CIMGUI_USE_OPENGL3={(name == "OpenGL3" ? "1":"0")}",
                 $"CIMGUI_USE_OPENGL2={(name == "OpenGL2" ? "1":"0")}",
                 $"CIMGUI_USE_D3D9={(name == "D3D9" ? "1":"0")}",
