@@ -16,33 +16,16 @@ namespace Hexa.NET.ImGuiNodeEditor
 	/// <summary>
 	/// ------------------------------------------------------------------------------<br/>
 	/// </summary>
-	[NativeName(NativeNameType.Enum, "SaveReasonFlags")]
 	[Flags]
 	public enum SaveReasonFlags : uint
 	{
-		[NativeName(NativeNameType.EnumItem, "None")]
-		[NativeName(NativeNameType.Value, "0x00000000")]
 		None = unchecked((int)0x00000000),
-		[NativeName(NativeNameType.EnumItem, "Navigation")]
-		[NativeName(NativeNameType.Value, "0x00000001")]
 		Navigation = unchecked((int)0x00000001),
-		[NativeName(NativeNameType.EnumItem, "Position")]
-		[NativeName(NativeNameType.Value, "0x00000002")]
 		Position = unchecked((int)0x00000002),
-		[NativeName(NativeNameType.EnumItem, "Size")]
-		[NativeName(NativeNameType.Value, "0x00000004")]
 		Size = unchecked((int)0x00000004),
-		[NativeName(NativeNameType.EnumItem, "Selection")]
-		[NativeName(NativeNameType.Value, "0x00000008")]
 		Selection = unchecked((int)0x00000008),
-		[NativeName(NativeNameType.EnumItem, "AddNode")]
-		[NativeName(NativeNameType.Value, "0x00000010")]
 		AddNode = unchecked((int)0x00000010),
-		[NativeName(NativeNameType.EnumItem, "RemoveNode")]
-		[NativeName(NativeNameType.Value, "0x00000020")]
 		RemoveNode = unchecked((int)0x00000020),
-		[NativeName(NativeNameType.EnumItem, "User")]
-		[NativeName(NativeNameType.Value, "0x00000040")]
 		User = unchecked((int)0x00000040),
 	}
 }

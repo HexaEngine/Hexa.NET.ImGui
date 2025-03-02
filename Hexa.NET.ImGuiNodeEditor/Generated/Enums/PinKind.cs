@@ -16,15 +16,10 @@ namespace Hexa.NET.ImGuiNodeEditor
 	/// <summary>
 	/// ------------------------------------------------------------------------------<br/>
 	/// </summary>
-	[NativeName(NativeNameType.Enum, "PinKind")]
 	[Flags]
 	public enum PinKind : int
 	{
-		[NativeName(NativeNameType.EnumItem, "Input")]
-		[NativeName(NativeNameType.Value, "0")]
 		Input = unchecked(0),
-		[NativeName(NativeNameType.EnumItem, "Output")]
-		[NativeName(NativeNameType.Value, "1")]
 		Output = unchecked(1),
 	}
 }

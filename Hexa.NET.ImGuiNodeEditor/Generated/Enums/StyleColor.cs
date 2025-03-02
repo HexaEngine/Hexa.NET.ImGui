@@ -16,69 +16,28 @@ namespace Hexa.NET.ImGuiNodeEditor
 	/// <summary>
 	/// ------------------------------------------------------------------------------<br/>
 	/// </summary>
-	[NativeName(NativeNameType.Enum, "StyleColor")]
 	[Flags]
 	public enum StyleColor : int
 	{
-		[NativeName(NativeNameType.EnumItem, "StyleColor_Bg")]
-		[NativeName(NativeNameType.Value, "0")]
 		Bg = unchecked(0),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_Grid")]
-		[NativeName(NativeNameType.Value, "1")]
 		Grid = unchecked(1),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_NodeBg")]
-		[NativeName(NativeNameType.Value, "2")]
 		NodeBg = unchecked(2),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_NodeBorder")]
-		[NativeName(NativeNameType.Value, "3")]
 		NodeBorder = unchecked(3),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_HovNodeBorder")]
-		[NativeName(NativeNameType.Value, "4")]
 		HovNodeBorder = unchecked(4),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_SelNodeBorder")]
-		[NativeName(NativeNameType.Value, "5")]
 		SelNodeBorder = unchecked(5),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_NodeSelRect")]
-		[NativeName(NativeNameType.Value, "6")]
 		NodeSelRect = unchecked(6),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_NodeSelRectBorder")]
-		[NativeName(NativeNameType.Value, "7")]
 		NodeSelRectBorder = unchecked(7),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_HovLinkBorder")]
-		[NativeName(NativeNameType.Value, "8")]
 		HovLinkBorder = unchecked(8),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_SelLinkBorder")]
-		[NativeName(NativeNameType.Value, "9")]
 		SelLinkBorder = unchecked(9),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_HighlightLinkBorder")]
-		[NativeName(NativeNameType.Value, "10")]
 		HighlightLinkBorder = unchecked(10),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_LinkSelRect")]
-		[NativeName(NativeNameType.Value, "11")]
 		LinkSelRect = unchecked(11),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_LinkSelRectBorder")]
-		[NativeName(NativeNameType.Value, "12")]
 		LinkSelRectBorder = unchecked(12),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_PinRect")]
-		[NativeName(NativeNameType.Value, "13")]
 		PinRect = unchecked(13),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_PinRectBorder")]
-		[NativeName(NativeNameType.Value, "14")]
 		PinRectBorder = unchecked(14),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_Flow")]
-		[NativeName(NativeNameType.Value, "15")]
 		Flow = unchecked(15),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_FlowMarker")]
-		[NativeName(NativeNameType.Value, "16")]
 		FlowMarker = unchecked(16),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_GroupBg")]
-		[NativeName(NativeNameType.Value, "17")]
 		GroupBg = unchecked(17),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_GroupBorder")]
-		[NativeName(NativeNameType.Value, "18")]
 		GroupBorder = unchecked(18),
-		[NativeName(NativeNameType.EnumItem, "StyleColor_Count")]
-		[NativeName(NativeNameType.Value, "19")]
 		Count = unchecked(19),
 	}
 }

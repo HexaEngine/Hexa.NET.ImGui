@@ -16,73 +16,40 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	[NativeName(NativeNameType.StructOrClass, "Config")]
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Config
 	{
-		[NativeName(NativeNameType.Field, "SettingsFile")]
-		[NativeName(NativeNameType.Type, "char const *")]
 		public unsafe byte* SettingsFile;
-		[NativeName(NativeNameType.Field, "BeginSaveSession")]
-		[NativeName(NativeNameType.Type, "ConfigSession")]
 		public unsafe void* BeginSaveSession;
-		[NativeName(NativeNameType.Field, "EndSaveSession")]
-		[NativeName(NativeNameType.Type, "ConfigSession")]
 		public unsafe void* EndSaveSession;
-		[NativeName(NativeNameType.Field, "SaveSettings")]
-		[NativeName(NativeNameType.Type, "ConfigSaveSettings")]
 		public unsafe void* SaveSettings;
-		[NativeName(NativeNameType.Field, "LoadSettings")]
-		[NativeName(NativeNameType.Type, "ConfigLoadSettings")]
 		public unsafe void* LoadSettings;
-		[NativeName(NativeNameType.Field, "SaveNodeSettings")]
-		[NativeName(NativeNameType.Type, "ConfigSaveNodeSettings")]
 		public unsafe void* SaveNodeSettings;
-		[NativeName(NativeNameType.Field, "LoadNodeSettings")]
-		[NativeName(NativeNameType.Type, "ConfigLoadNodeSettings")]
 		public unsafe void* LoadNodeSettings;
-		[NativeName(NativeNameType.Field, "UserPointer")]
-		[NativeName(NativeNameType.Type, "void *")]
 		public unsafe void* UserPointer;
-		[NativeName(NativeNameType.Field, "CustomZoomLevels")]
-		[NativeName(NativeNameType.Type, "ImVector")]
 		public ImVector<float> CustomZoomLevels;
-		[NativeName(NativeNameType.Field, "CanvasSizeMode")]
-		[NativeName(NativeNameType.Type, "CanvasSizeMode")]
 		public CanvasSizeMode CanvasSizeMode;
 		/// <summary>
 		/// Mouse button index drag action will react to (0-left, 1-right, 2-middle)<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Field, "DragButtonIndex")]
-		[NativeName(NativeNameType.Type, "int")]
 		public int DragButtonIndex;
 
 		/// <summary>
 		/// Mouse button index select action will react to (0-left, 1-right, 2-middle)<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Field, "SelectButtonIndex")]
-		[NativeName(NativeNameType.Type, "int")]
 		public int SelectButtonIndex;
 
 		/// <summary>
 		/// Mouse button index navigate action will react to (0-left, 1-right, 2-middle)<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Field, "NavigateButtonIndex")]
-		[NativeName(NativeNameType.Type, "int")]
 		public int NavigateButtonIndex;
 
 		/// <summary>
 		/// Mouse button index context menu action will react to (0-left, 1-right, 2-middle)<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Field, "ContextMenuButtonIndex")]
-		[NativeName(NativeNameType.Type, "int")]
 		public int ContextMenuButtonIndex;
 
-		[NativeName(NativeNameType.Field, "EnableSmoothZoom")]
-		[NativeName(NativeNameType.Type, "bool")]
 		public byte EnableSmoothZoom;
-		[NativeName(NativeNameType.Field, "SmoothZoomPower")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float SmoothZoomPower;
 
 		public unsafe Config(byte* settingsFile = default, ConfigSession beginSaveSession = default, ConfigSession endSaveSession = default, ConfigSaveSettings saveSettings = default, ConfigLoadSettings loadSettings = default, ConfigSaveNodeSettings saveNodeSettings = default, ConfigLoadNodeSettings loadNodeSettings = default, void* userPointer = default, ImVector<float> customZoomLevels = default, CanvasSizeMode canvasSizeMode = default, int dragButtonIndex = default, int selectButtonIndex = default, int navigateButtonIndex = default, int contextMenuButtonIndex = default, bool enableSmoothZoom = default, float smoothZoomPower = default)
@@ -108,7 +75,6 @@ namespace Hexa.NET.ImGuiNodeEditor
 
 	}
 
-	[NativeName(NativeNameType.Typedef, "Config")]
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif
@@ -155,7 +121,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		public void* SaveNodeSettings { get => Handle->SaveNodeSettings; set => Handle->SaveNodeSettings = value; }
 		public void* LoadNodeSettings { get => Handle->LoadNodeSettings; set => Handle->LoadNodeSettings = value; }
 		public void* UserPointer { get => Handle->UserPointer; set => Handle->UserPointer = value; }
-
+		public ref ImVector<float> CustomZoomLevels => ref Unsafe.AsRef<ImVector<float>>(&Handle->CustomZoomLevels);
 		public ref CanvasSizeMode CanvasSizeMode => ref Unsafe.AsRef<CanvasSizeMode>(&Handle->CanvasSizeMode);
 		/// <summary>
 		/// Mouse button index drag action will react to (0-left, 1-right, 2-middle)<br/>

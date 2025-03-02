@@ -1,5 +1,6 @@
 ﻿namespace Generator
 {
+    using CppAst;
     using HexaGen;
     using HexaGen.Core.CSharp;
     using HexaGen.FunctionGeneration;
@@ -12,6 +13,16 @@
         public ImGuiCodeGenerator(CsCodeGeneratorConfig settings) : base(settings, new ImGuiFunctionGenerator(settings))
         {
             GetGenerationStep<FunctionGenerationStep>().OverwriteParameterWriter<StringParameterWriter>(new ImGuiStringParameterWriter());
+        }
+
+        protected override CppParserOptions PrepareSettings()
+        {
+            var settings = base.PrepareSettings();
+
+            Environment.SetEnvironmentVariable("VCINSTALLDIR", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532");
+            Environment.SetEnvironmentVariable("VCToolsInstallDir", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532\");
+
+            return settings;
         }
     }
 

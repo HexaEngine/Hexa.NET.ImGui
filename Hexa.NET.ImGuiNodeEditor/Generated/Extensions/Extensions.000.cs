@@ -17,275 +17,211 @@ namespace Hexa.NET.ImGuiNodeEditor
 {
 	public static unsafe partial class Extensions
 	{
-		[NativeName(NativeNameType.Func, "BeginNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void BeginNode(this NodeId id)
 		{
-			NodeEditor.BeginNodeNative(id);
+			ImGuiNodeEditor.BeginNodeNative(id);
 		}
 
-		[NativeName(NativeNameType.Func, "BeginGroupHint")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool BeginGroupHint(this NodeId nodeId)
 		{
-			byte ret = NodeEditor.BeginGroupHintNative(nodeId);
+			byte ret = ImGuiNodeEditor.BeginGroupHintNative(nodeId);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// TODO: Add a way to manage node background channels<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "GetNodeBackgroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
 		public static ImDrawList* GetNodeBackgroundDrawList(this NodeId nodeId)
 		{
-			ImDrawList* ret = NodeEditor.GetNodeBackgroundDrawListNative(nodeId);
+			ImDrawList* ret = ImGuiNodeEditor.GetNodeBackgroundDrawListNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNodePosition(this NodeId nodeId, [NativeName(NativeNameType.Param, "editorPosition")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* editorPosition)
+		public static void SetNodePosition(this NodeId nodeId, Vector2* editorPosition)
 		{
-			NodeEditor.SetNodePositionNative(nodeId, editorPosition);
+			ImGuiNodeEditor.SetNodePositionNative(nodeId, editorPosition);
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNodePosition(this NodeId nodeId, [NativeName(NativeNameType.Param, "editorPosition")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 editorPosition)
+		public static void SetNodePosition(this NodeId nodeId, ref Vector2 editorPosition)
 		{
 			fixed (Vector2* peditorPosition = &editorPosition)
 			{
-				NodeEditor.SetNodePositionNative(nodeId, (Vector2*)peditorPosition);
+				ImGuiNodeEditor.SetNodePositionNative(nodeId, (Vector2*)peditorPosition);
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "SetGroupSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetGroupSize(this NodeId nodeId, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void SetGroupSize(this NodeId nodeId, Vector2* size)
 		{
-			NodeEditor.SetGroupSizeNative(nodeId, size);
+			ImGuiNodeEditor.SetGroupSizeNative(nodeId, size);
 		}
 
-		[NativeName(NativeNameType.Func, "SetGroupSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetGroupSize(this NodeId nodeId, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void SetGroupSize(this NodeId nodeId, ref Vector2 size)
 		{
 			fixed (Vector2* psize = &size)
 			{
-				NodeEditor.SetGroupSizeNative(nodeId, (Vector2*)psize);
+				ImGuiNodeEditor.SetGroupSizeNative(nodeId, (Vector2*)psize);
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
 		public static Vector2 GetNodePosition(this NodeId nodeId)
 		{
-			Vector2 ret = NodeEditor.GetNodePositionNative(nodeId);
+			Vector2 ret = ImGuiNodeEditor.GetNodePositionNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeSize")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
 		public static Vector2 GetNodeSize(this NodeId nodeId)
 		{
-			Vector2 ret = NodeEditor.GetNodeSizeNative(nodeId);
+			Vector2 ret = ImGuiNodeEditor.GetNodeSizeNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "CenterNodeOnScreen")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void CenterNodeOnScreen(this NodeId nodeId)
 		{
-			NodeEditor.CenterNodeOnScreenNative(nodeId);
+			ImGuiNodeEditor.CenterNodeOnScreenNative(nodeId);
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodeZPosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNodeZPosition(this NodeId nodeId, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
+		public static void SetNodeZPosition(this NodeId nodeId, float z)
 		{
-			NodeEditor.SetNodeZPositionNative(nodeId, z);
+			ImGuiNodeEditor.SetNodeZPositionNative(nodeId, z);
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeZPosition")]
-		[return: NativeName(NativeNameType.Type, "float")]
 		public static float GetNodeZPosition(this NodeId nodeId)
 		{
-			float ret = NodeEditor.GetNodeZPositionNative(nodeId);
+			float ret = ImGuiNodeEditor.GetNodeZPositionNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "RestoreNodeState")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void RestoreNodeState(this NodeId nodeId)
 		{
-			NodeEditor.RestoreNodeStateNative(nodeId);
+			ImGuiNodeEditor.RestoreNodeStateNative(nodeId);
 		}
 
-		[NativeName(NativeNameType.Func, "IsNodeSelected")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool IsNodeSelected(this NodeId nodeId)
 		{
-			byte ret = NodeEditor.IsNodeSelectedNative(nodeId);
+			byte ret = ImGuiNodeEditor.IsNodeSelectedNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "SelectNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SelectNode(this NodeId nodeId, [NativeName(NativeNameType.Param, "append")] [NativeName(NativeNameType.Type, "bool")] bool append)
+		public static void SelectNode(this NodeId nodeId, bool append)
 		{
-			NodeEditor.SelectNodeNative(nodeId, append ? (byte)1 : (byte)0);
+			ImGuiNodeEditor.SelectNodeNative(nodeId, append ? (byte)1 : (byte)0);
 		}
 
-		[NativeName(NativeNameType.Func, "DeselectNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void DeselectNode(this NodeId nodeId)
 		{
-			NodeEditor.DeselectNodeNative(nodeId);
+			ImGuiNodeEditor.DeselectNodeNative(nodeId);
 		}
 
-		[NativeName(NativeNameType.Func, "DeleteNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool DeleteNode(this NodeId nodeId)
 		{
-			byte ret = NodeEditor.DeleteNodeNative(nodeId);
+			byte ret = ImGuiNodeEditor.DeleteNodeNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "Link")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool Link(this LinkId id, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId endPinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool Link(this LinkId id, PinId startPinId, PinId endPinId, Vector4* color, float thickness)
 		{
-			byte ret = NodeEditor.LinkNative(id, startPinId, endPinId, color, thickness);
+			byte ret = ImGuiNodeEditor.LinkNative(id, startPinId, endPinId, color, thickness);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "Link")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool Link(this LinkId id, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId endPinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool Link(this LinkId id, PinId startPinId, PinId endPinId, ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
-				byte ret = NodeEditor.LinkNative(id, startPinId, endPinId, (Vector4*)pcolor, thickness);
+				byte ret = ImGuiNodeEditor.LinkNative(id, startPinId, endPinId, (Vector4*)pcolor, thickness);
 				return ret != 0;
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Flow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Flow(this LinkId linkId, [NativeName(NativeNameType.Param, "direction")] [NativeName(NativeNameType.Type, "FlowDirection")] FlowDirection direction)
+		public static void Flow(this LinkId linkId, FlowDirection direction)
 		{
-			NodeEditor.FlowNative(linkId, direction);
+			ImGuiNodeEditor.FlowNative(linkId, direction);
 		}
 
-		[NativeName(NativeNameType.Func, "IsLinkSelected")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool IsLinkSelected(this LinkId linkId)
 		{
-			byte ret = NodeEditor.IsLinkSelectedNative(linkId);
+			byte ret = ImGuiNodeEditor.IsLinkSelectedNative(linkId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "SelectLink")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SelectLink(this LinkId linkId, [NativeName(NativeNameType.Param, "append")] [NativeName(NativeNameType.Type, "bool")] bool append)
+		public static void SelectLink(this LinkId linkId, bool append)
 		{
-			NodeEditor.SelectLinkNative(linkId, append ? (byte)1 : (byte)0);
+			ImGuiNodeEditor.SelectLinkNative(linkId, append ? (byte)1 : (byte)0);
 		}
 
-		[NativeName(NativeNameType.Func, "DeselectLink")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void DeselectLink(this LinkId linkId)
 		{
-			NodeEditor.DeselectLinkNative(linkId);
+			ImGuiNodeEditor.DeselectLinkNative(linkId);
 		}
 
-		[NativeName(NativeNameType.Func, "DeleteLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool DeleteLink(this LinkId linkId)
 		{
-			byte ret = NodeEditor.DeleteLinkNative(linkId);
+			byte ret = ImGuiNodeEditor.DeleteLinkNative(linkId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins(this LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endPinId)
+		public static bool GetLinkPins(this LinkId linkId, PinId* startPinId, PinId* endPinId)
 		{
-			byte ret = NodeEditor.GetLinkPinsNative(linkId, startPinId, endPinId);
+			byte ret = ImGuiNodeEditor.GetLinkPinsNative(linkId, startPinId, endPinId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins(this LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endPinId)
+		public static bool GetLinkPins(this LinkId linkId, ref PinId startPinId, PinId* endPinId)
 		{
 			fixed (PinId* pstartPinId = &startPinId)
 			{
-				byte ret = NodeEditor.GetLinkPinsNative(linkId, (PinId*)pstartPinId, endPinId);
+				byte ret = ImGuiNodeEditor.GetLinkPinsNative(linkId, (PinId*)pstartPinId, endPinId);
 				return ret != 0;
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins(this LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endPinId)
+		public static bool GetLinkPins(this LinkId linkId, PinId* startPinId, ref PinId endPinId)
 		{
 			fixed (PinId* pendPinId = &endPinId)
 			{
-				byte ret = NodeEditor.GetLinkPinsNative(linkId, startPinId, (PinId*)pendPinId);
+				byte ret = ImGuiNodeEditor.GetLinkPinsNative(linkId, startPinId, (PinId*)pendPinId);
 				return ret != 0;
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins(this LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endPinId)
+		public static bool GetLinkPins(this LinkId linkId, ref PinId startPinId, ref PinId endPinId)
 		{
 			fixed (PinId* pstartPinId = &startPinId)
 			{
 				fixed (PinId* pendPinId = &endPinId)
 				{
-					byte ret = NodeEditor.GetLinkPinsNative(linkId, (PinId*)pstartPinId, (PinId*)pendPinId);
+					byte ret = ImGuiNodeEditor.GetLinkPinsNative(linkId, (PinId*)pstartPinId, (PinId*)pendPinId);
 					return ret != 0;
 				}
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "BeginPin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void BeginPin(this PinId id, [NativeName(NativeNameType.Param, "kind")] [NativeName(NativeNameType.Type, "PinKind")] PinKind kind)
+		public static void BeginPin(this PinId id, PinKind kind)
 		{
-			NodeEditor.BeginPinNative(id, kind);
+			ImGuiNodeEditor.BeginPinNative(id, kind);
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool HasAnyLinks(NodeId nodeId); // Returns true if node has any link connected<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "HasAnyLinks")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool HasAnyLinks(this PinId pinId)
 		{
-			byte ret = NodeEditor.HasAnyLinksNative(pinId);
+			byte ret = ImGuiNodeEditor.HasAnyLinksNative(pinId);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API int BreakLinks(NodeId nodeId); // Break all links connected to this node<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "BreakLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
 		public static int BreakLinks(this PinId pinId)
 		{
-			int ret = NodeEditor.BreakLinksNative(pinId);
+			int ret = ImGuiNodeEditor.BreakLinksNative(pinId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "PinHadAnyLinks")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool HadAnyLinks(this PinId pinId)
 		{
-			byte ret = NodeEditor.PinHadAnyLinksNative(pinId);
+			byte ret = ImGuiNodeEditor.PinHadAnyLinksNative(pinId);
 			return ret != 0;
 		}
 

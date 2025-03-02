@@ -1,4 +1,5 @@
 ﻿#define BackendsOnly
+#define NodeEditorOnly
 
 namespace Generator
 {
@@ -53,6 +54,8 @@ namespace Generator
 
             Directory.CreateDirectory("./patches");
 
+#if !NodeEditorOnly
+
 #if !BackendsOnly
             // don't worry about "NoInternals" internals will be generated in a substep (post-patch) when generating. see ImGuiPostPatch.cs
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
@@ -85,10 +88,10 @@ namespace Generator
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
 
-#if NODEEDITOR
-            //CsCodeGeneratorMetadata metadata = JsonSerializer.Deserialize<CsCodeGeneratorMetadata>(File.ReadAllText("imgui-node-editor/metadata.json"))!;
+#else
 
             GenerateNodeEditor(ImGuiNodeEditorHeader, ImGuiNodeEditorConfig, ImGuiNodeEditorOutputPath, null, out _);
+
 #endif
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -99,9 +102,11 @@ namespace Generator
         private static bool GenerateNodeEditor(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata)
         {
             CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
+            settings.SystemIncludeFolders.Add("C:/dev/imgui");
             settings.WrapPointersAsHandle = true;
             ImGuiCodeGenerator generator = new(settings);
             generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
+            generator.PatchEngine.RegisterPostPatch(new ImGuiNodeEditorPostPatch());
 
             generator.LogToConsole();
 

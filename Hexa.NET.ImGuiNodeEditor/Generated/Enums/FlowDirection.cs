@@ -13,15 +13,10 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	[NativeName(NativeNameType.Enum, "FlowDirection")]
 	[Flags]
 	public enum FlowDirection : int
 	{
-		[NativeName(NativeNameType.EnumItem, "Forward")]
-		[NativeName(NativeNameType.Value, "0")]
 		Forward = unchecked(0),
-		[NativeName(NativeNameType.EnumItem, "Backward")]
-		[NativeName(NativeNameType.Value, "1")]
 		Backward = unchecked(1),
 	}
 }

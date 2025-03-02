@@ -15,7 +15,6 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	[NativeName(NativeNameType.Typedef, "PinId")]
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif

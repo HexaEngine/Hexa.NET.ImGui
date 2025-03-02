@@ -15,28 +15,25 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	public unsafe partial class NodeEditor
+	public unsafe partial class ImGuiNodeEditor
 	{
 		/// <summary>
 		/// ------------------------------------------------------------------------------<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "SetCurrentEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void SetCurrentEditorNative([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] EditorContext* ctx)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetCurrentEditorNative(EditorContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<EditorContext*, void>)vt[0])(ctx);
+			((delegate* unmanaged[Cdecl]<EditorContext*, void>)funcTable[0])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[0])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[0])((nint)ctx);
 			#endif
 		}
 
 		/// <summary>
 		/// ------------------------------------------------------------------------------<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "SetCurrentEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetCurrentEditor([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] EditorContextPtr ctx)
+		public static void SetCurrentEditor(EditorContextPtr ctx)
 		{
 			SetCurrentEditorNative(ctx);
 		}
@@ -44,9 +41,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// ------------------------------------------------------------------------------<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "SetCurrentEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetCurrentEditor([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] ref EditorContext ctx)
+		public static void SetCurrentEditor(ref EditorContext ctx)
 		{
 			fixed (EditorContext* pctx = &ctx)
 			{
@@ -54,47 +49,39 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetCurrentEditor")]
-		[return: NativeName(NativeNameType.Type, "EditorContext *")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static EditorContext* GetCurrentEditorNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<EditorContext*>)vt[1])();
+			return ((delegate* unmanaged[Cdecl]<EditorContext*>)funcTable[1])();
 			#else
-			return (EditorContext*)((delegate* unmanaged[Cdecl]<nint>)vt[1])();
+			return (EditorContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetCurrentEditor")]
-		[return: NativeName(NativeNameType.Type, "EditorContext *")]
 		public static EditorContextPtr GetCurrentEditor()
 		{
 			EditorContextPtr ret = GetCurrentEditorNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "CreateEditor")]
-		[return: NativeName(NativeNameType.Type, "EditorContext *")]
-		internal static EditorContext* CreateEditorNative([NativeName(NativeNameType.Param, "config")] [NativeName(NativeNameType.Type, "Config const *")] Config* config)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static EditorContext* CreateEditorNative(Config* config)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Config*, EditorContext*>)vt[2])(config);
+			return ((delegate* unmanaged[Cdecl]<Config*, EditorContext*>)funcTable[2])(config);
 			#else
-			return (EditorContext*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[2])((nint)config);
+			return (EditorContext*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[2])((nint)config);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "CreateEditor")]
-		[return: NativeName(NativeNameType.Type, "EditorContext *")]
-		public static EditorContextPtr CreateEditor([NativeName(NativeNameType.Param, "config")] [NativeName(NativeNameType.Type, "Config const *")] ConfigPtr config)
+		public static EditorContextPtr CreateEditor(ConfigPtr config)
 		{
 			EditorContextPtr ret = CreateEditorNative(config);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "CreateEditor")]
-		[return: NativeName(NativeNameType.Type, "EditorContext *")]
-		public static EditorContextPtr CreateEditor([NativeName(NativeNameType.Param, "config")] [NativeName(NativeNameType.Type, "Config const *")] ref Config config)
+		public static EditorContextPtr CreateEditor(ref Config config)
 		{
 			fixed (Config* pconfig = &config)
 			{
@@ -103,27 +90,22 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "DestroyEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void DestroyEditorNative([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] EditorContext* ctx)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyEditorNative(EditorContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<EditorContext*, void>)vt[3])(ctx);
+			((delegate* unmanaged[Cdecl]<EditorContext*, void>)funcTable[3])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[3])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[3])((nint)ctx);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "DestroyEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void DestroyEditor([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] EditorContextPtr ctx)
+		public static void DestroyEditor(EditorContextPtr ctx)
 		{
 			DestroyEditorNative(ctx);
 		}
 
-		[NativeName(NativeNameType.Func, "DestroyEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void DestroyEditor([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] ref EditorContext ctx)
+		public static void DestroyEditor(ref EditorContext ctx)
 		{
 			fixed (EditorContext* pctx = &ctx)
 			{
@@ -131,28 +113,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetConfig")]
-		[return: NativeName(NativeNameType.Type, "Config const&")]
-		internal static Config* GetConfigNative([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] EditorContext* ctx)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Config* GetConfigNative(EditorContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<EditorContext*, Config*>)vt[4])(ctx);
+			return ((delegate* unmanaged[Cdecl]<EditorContext*, Config*>)funcTable[4])(ctx);
 			#else
-			return (Config*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[4])((nint)ctx);
+			return (Config*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[4])((nint)ctx);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetConfig")]
-		[return: NativeName(NativeNameType.Type, "Config const&")]
-		public static ConfigPtr GetConfig([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] EditorContextPtr ctx)
+		public static ConfigPtr GetConfig(EditorContextPtr ctx)
 		{
 			ConfigPtr ret = GetConfigNative(ctx);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetConfig")]
-		[return: NativeName(NativeNameType.Type, "Config const&")]
-		public static ConfigPtr GetConfig([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "EditorContext *")] ref EditorContext ctx)
+		public static ConfigPtr GetConfig(ref EditorContext ctx)
 		{
 			fixed (EditorContext* pctx = &ctx)
 			{
@@ -161,73 +138,60 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetStyle")]
-		[return: NativeName(NativeNameType.Type, "Style&")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Style* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Style*>)vt[5])();
+			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[5])();
 			#else
-			return (Style*)((delegate* unmanaged[Cdecl]<nint>)vt[5])();
+			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[5])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetStyle")]
-		[return: NativeName(NativeNameType.Type, "Style&")]
 		public static Style* GetStyle()
 		{
 			Style* ret = GetStyleNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetStyleColorName")]
-		[return: NativeName(NativeNameType.Type, "char const *")]
-		internal static byte* GetStyleColorNameNative([NativeName(NativeNameType.Param, "colorIndex")] [NativeName(NativeNameType.Type, "StyleColor")] StyleColor colorIndex)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* GetStyleColorNameNative(StyleColor colorIndex)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<StyleColor, byte*>)vt[6])(colorIndex);
+			return ((delegate* unmanaged[Cdecl]<StyleColor, byte*>)funcTable[6])(colorIndex);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<StyleColor, nint>)vt[6])(colorIndex);
+			return (byte*)((delegate* unmanaged[Cdecl]<StyleColor, nint>)funcTable[6])(colorIndex);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetStyleColorName")]
-		[return: NativeName(NativeNameType.Type, "char const *")]
-		public static byte* GetStyleColorName([NativeName(NativeNameType.Param, "colorIndex")] [NativeName(NativeNameType.Type, "StyleColor")] StyleColor colorIndex)
+		public static byte* GetStyleColorName(StyleColor colorIndex)
 		{
 			byte* ret = GetStyleColorNameNative(colorIndex);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetStyleColorName")]
-		[return: NativeName(NativeNameType.Type, "char const *")]
-		public static string GetStyleColorNameS([NativeName(NativeNameType.Param, "colorIndex")] [NativeName(NativeNameType.Type, "StyleColor")] StyleColor colorIndex)
+		public static string GetStyleColorNameS(StyleColor colorIndex)
 		{
 			string ret = Utils.DecodeStringUTF8(GetStyleColorNameNative(colorIndex));
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "PushStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PushStyleColorNative([NativeName(NativeNameType.Param, "colorIndex")] [NativeName(NativeNameType.Type, "StyleColor")] StyleColor colorIndex, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PushStyleColorNative(StyleColor colorIndex, Vector4* color)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<StyleColor, Vector4*, void>)vt[7])(colorIndex, color);
+			((delegate* unmanaged[Cdecl]<StyleColor, Vector4*, void>)funcTable[7])(colorIndex, color);
 			#else
-			((delegate* unmanaged[Cdecl]<StyleColor, nint, void>)vt[7])(colorIndex, (nint)color);
+			((delegate* unmanaged[Cdecl]<StyleColor, nint, void>)funcTable[7])(colorIndex, (nint)color);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PushStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleColor([NativeName(NativeNameType.Param, "colorIndex")] [NativeName(NativeNameType.Type, "StyleColor")] StyleColor colorIndex, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color)
+		public static void PushStyleColor(StyleColor colorIndex, Vector4* color)
 		{
 			PushStyleColorNative(colorIndex, color);
 		}
 
-		[NativeName(NativeNameType.Func, "PushStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleColor([NativeName(NativeNameType.Param, "colorIndex")] [NativeName(NativeNameType.Type, "StyleColor")] StyleColor colorIndex, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color)
+		public static void PushStyleColor(StyleColor colorIndex, ref Vector4 color)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -235,20 +199,17 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PopStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PopStyleColorNative([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PopStyleColorNative(int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[8])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[8])(count);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[8])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[8])(count);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PopStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopStyleColor([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PopStyleColor(int count)
 		{
 			PopStyleColorNative(count);
 		}
@@ -259,14 +220,13 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// &<br/>
 		/// value);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "PushStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PushStyleVarNative([NativeName(NativeNameType.Param, "varIndex")] [NativeName(NativeNameType.Type, "StyleVar")] StyleVar varIndex, [NativeName(NativeNameType.Param, "value")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* value)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PushStyleVarNative(StyleVar varIndex, Vector4* value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<StyleVar, Vector4*, void>)vt[9])(varIndex, value);
+			((delegate* unmanaged[Cdecl]<StyleVar, Vector4*, void>)funcTable[9])(varIndex, value);
 			#else
-			((delegate* unmanaged[Cdecl]<StyleVar, nint, void>)vt[9])(varIndex, (nint)value);
+			((delegate* unmanaged[Cdecl]<StyleVar, nint, void>)funcTable[9])(varIndex, (nint)value);
 			#endif
 		}
 
@@ -276,9 +236,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// &<br/>
 		/// value);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "PushStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleVar([NativeName(NativeNameType.Param, "varIndex")] [NativeName(NativeNameType.Type, "StyleVar")] StyleVar varIndex, [NativeName(NativeNameType.Param, "value")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* value)
+		public static void PushStyleVar(StyleVar varIndex, Vector4* value)
 		{
 			PushStyleVarNative(varIndex, value);
 		}
@@ -289,9 +247,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// &<br/>
 		/// value);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "PushStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleVar([NativeName(NativeNameType.Param, "varIndex")] [NativeName(NativeNameType.Type, "StyleVar")] StyleVar varIndex, [NativeName(NativeNameType.Param, "value")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 value)
+		public static void PushStyleVar(StyleVar varIndex, ref Vector4 value)
 		{
 			fixed (Vector4* pvalue = &value)
 			{
@@ -299,45 +255,37 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PopStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PopStyleVarNative([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PopStyleVarNative(int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[10])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[10])(count);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[10])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[10])(count);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PopStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopStyleVar([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PopStyleVar(int count)
 		{
 			PopStyleVarNative(count);
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void BeginNative([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] byte* id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginNative(byte* id, Vector2* size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, Vector2*, void>)vt[11])(id, size);
+			((delegate* unmanaged[Cdecl]<byte*, Vector2*, void>)funcTable[11])(id, size);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[11])((nint)id, (nint)size);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[11])((nint)id, (nint)size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] byte* id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void Begin(byte* id, Vector2* size)
 		{
 			BeginNative(id, size);
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] ref byte id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void Begin(ref byte id, Vector2* size)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -345,9 +293,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void Begin(ReadOnlySpan<byte> id, Vector2* size)
 		{
 			fixed (byte* pid = id)
 			{
@@ -355,9 +301,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] string id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void Begin(string id, Vector2* size)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -383,9 +327,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] byte* id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void Begin(byte* id, ref Vector2 size)
 		{
 			fixed (Vector2* psize = &size)
 			{
@@ -393,9 +335,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] ref byte id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void Begin(ref byte id, ref Vector2 size)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -406,9 +346,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void Begin(ReadOnlySpan<byte> id, ref Vector2 size)
 		{
 			fixed (byte* pid = id)
 			{
@@ -419,9 +357,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Begin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Begin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "char const *")] string id, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void Begin(string id, ref Vector2 size)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -450,81 +386,67 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "End")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[12])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[12])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[12])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[12])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "End")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void End()
 		{
 			EndNative();
 		}
 
-		[NativeName(NativeNameType.Func, "BeginNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void BeginNodeNative([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "NodeId")] NodeId id)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginNodeNative(NodeId id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[13])(id);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[13])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[13])(id);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[13])(id);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "BeginNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void BeginNode([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "NodeId")] NodeId id)
+		public static void BeginNode(NodeId id)
 		{
 			BeginNodeNative(id);
 		}
 
-		[NativeName(NativeNameType.Func, "BeginPin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void BeginPinNative([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "PinId")] PinId id, [NativeName(NativeNameType.Param, "kind")] [NativeName(NativeNameType.Type, "PinKind")] PinKind kind)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginPinNative(PinId id, PinKind kind)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<PinId, PinKind, void>)vt[14])(id, kind);
+			((delegate* unmanaged[Cdecl]<PinId, PinKind, void>)funcTable[14])(id, kind);
 			#else
-			((delegate* unmanaged[Cdecl]<PinId, PinKind, void>)vt[14])(id, kind);
+			((delegate* unmanaged[Cdecl]<PinId, PinKind, void>)funcTable[14])(id, kind);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "BeginPin")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void BeginPin([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "PinId")] PinId id, [NativeName(NativeNameType.Param, "kind")] [NativeName(NativeNameType.Type, "PinKind")] PinKind kind)
+		public static void BeginPin(PinId id, PinKind kind)
 		{
 			BeginPinNative(id, kind);
 		}
 
-		[NativeName(NativeNameType.Func, "PinRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PinRectNative([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* b)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PinRectNative(Vector2* a, Vector2* b)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, Vector2*, void>)vt[15])(a, b);
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2*, void>)funcTable[15])(a, b);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[15])((nint)a, (nint)b);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[15])((nint)a, (nint)b);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PinRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* b)
+		public static void PinRect(Vector2* a, Vector2* b)
 		{
 			PinRectNative(a, b);
 		}
 
-		[NativeName(NativeNameType.Func, "PinRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* b)
+		public static void PinRect(ref Vector2 a, Vector2* b)
 		{
 			fixed (Vector2* pa = &a)
 			{
@@ -532,9 +454,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 b)
+		public static void PinRect(Vector2* a, ref Vector2 b)
 		{
 			fixed (Vector2* pb = &b)
 			{
@@ -542,9 +462,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 b)
+		public static void PinRect(ref Vector2 a, ref Vector2 b)
 		{
 			fixed (Vector2* pa = &a)
 			{
@@ -555,27 +473,22 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PinPivotRectNative([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* b)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PinPivotRectNative(Vector2* a, Vector2* b)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, Vector2*, void>)vt[16])(a, b);
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2*, void>)funcTable[16])(a, b);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[16])((nint)a, (nint)b);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[16])((nint)a, (nint)b);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* b)
+		public static void PinPivotRect(Vector2* a, Vector2* b)
 		{
 			PinPivotRectNative(a, b);
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* b)
+		public static void PinPivotRect(ref Vector2 a, Vector2* b)
 		{
 			fixed (Vector2* pa = &a)
 			{
@@ -583,9 +496,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 b)
+		public static void PinPivotRect(Vector2* a, ref Vector2 b)
 		{
 			fixed (Vector2* pb = &b)
 			{
@@ -593,9 +504,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotRect")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotRect([NativeName(NativeNameType.Param, "a")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 a, [NativeName(NativeNameType.Param, "b")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 b)
+		public static void PinPivotRect(ref Vector2 a, ref Vector2 b)
 		{
 			fixed (Vector2* pa = &a)
 			{
@@ -606,27 +515,22 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PinPivotSizeNative([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PinPivotSizeNative(Vector2* size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[17])(size);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[17])(size);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[17])((nint)size);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[17])((nint)size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotSize([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void PinPivotSize(Vector2* size)
 		{
 			PinPivotSizeNative(size);
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotSize([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void PinPivotSize(ref Vector2 size)
 		{
 			fixed (Vector2* psize = &size)
 			{
@@ -634,27 +538,22 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotScale")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PinPivotScaleNative([NativeName(NativeNameType.Param, "scale")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* scale)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PinPivotScaleNative(Vector2* scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[18])(scale);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[18])(scale);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[18])((nint)scale);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)scale);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotScale")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotScale([NativeName(NativeNameType.Param, "scale")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* scale)
+		public static void PinPivotScale(Vector2* scale)
 		{
 			PinPivotScaleNative(scale);
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotScale")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotScale([NativeName(NativeNameType.Param, "scale")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 scale)
+		public static void PinPivotScale(ref Vector2 scale)
 		{
 			fixed (Vector2* pscale = &scale)
 			{
@@ -662,27 +561,22 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotAlignment")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void PinPivotAlignmentNative([NativeName(NativeNameType.Param, "alignment")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* alignment)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PinPivotAlignmentNative(Vector2* alignment)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[19])(alignment);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[19])(alignment);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[19])((nint)alignment);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[19])((nint)alignment);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotAlignment")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotAlignment([NativeName(NativeNameType.Param, "alignment")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* alignment)
+		public static void PinPivotAlignment(Vector2* alignment)
 		{
 			PinPivotAlignmentNative(alignment);
 		}
 
-		[NativeName(NativeNameType.Func, "PinPivotAlignment")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PinPivotAlignment([NativeName(NativeNameType.Param, "alignment")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 alignment)
+		public static void PinPivotAlignment(ref Vector2 alignment)
 		{
 			fixed (Vector2* palignment = &alignment)
 			{
@@ -690,45 +584,37 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "EndPin")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndPinNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[20])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[20])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[20])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[20])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EndPin")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void EndPin()
 		{
 			EndPinNative();
 		}
 
-		[NativeName(NativeNameType.Func, "Group")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void GroupNative([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void GroupNative(Vector2* size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[21])(size);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[21])(size);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[21])((nint)size);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[21])((nint)size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "Group")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Group([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void Group(Vector2* size)
 		{
 			GroupNative(size);
 		}
 
-		[NativeName(NativeNameType.Func, "Group")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Group([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void Group(ref Vector2 size)
 		{
 			fixed (Vector2* psize = &size)
 			{
@@ -736,132 +622,111 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "EndNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndNodeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EndNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void EndNode()
 		{
 			EndNodeNative();
 		}
 
-		[NativeName(NativeNameType.Func, "BeginGroupHint")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte BeginGroupHintNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginGroupHintNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, byte>)vt[23])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, byte>)funcTable[23])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<NodeId, byte>)vt[23])(nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<NodeId, byte>)funcTable[23])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "BeginGroupHint")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool BeginGroupHint([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static bool BeginGroupHint(NodeId nodeId)
 		{
 			byte ret = BeginGroupHintNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetGroupMin")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Vector2 GetGroupMinNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)vt[24])();
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[24])();
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)vt[24])();
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[24])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetGroupMin")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
 		public static Vector2 GetGroupMin()
 		{
 			Vector2 ret = GetGroupMinNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetGroupMax")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Vector2 GetGroupMaxNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)vt[25])();
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[25])();
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)vt[25])();
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[25])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetGroupMax")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
 		public static Vector2 GetGroupMax()
 		{
 			Vector2 ret = GetGroupMaxNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetHintForegroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetHintForegroundDrawListNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)vt[26])();
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)funcTable[26])();
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint>)vt[26])();
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint>)funcTable[26])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetHintForegroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
 		public static ImDrawList* GetHintForegroundDrawList()
 		{
 			ImDrawList* ret = GetHintForegroundDrawListNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetHintBackgroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetHintBackgroundDrawListNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)vt[27])();
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)funcTable[27])();
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint>)vt[27])();
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint>)funcTable[27])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetHintBackgroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
 		public static ImDrawList* GetHintBackgroundDrawList()
 		{
 			ImDrawList* ret = GetHintBackgroundDrawListNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "EndGroupHint")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndGroupHintNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[28])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[28])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[28])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[28])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EndGroupHint")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void EndGroupHint()
 		{
 			EndGroupHintNative();
@@ -870,50 +735,42 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// TODO: Add a way to manage node background channels<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "GetNodeBackgroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
-		internal static ImDrawList* GetNodeBackgroundDrawListNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawList* GetNodeBackgroundDrawListNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, ImDrawList*>)vt[29])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, ImDrawList*>)funcTable[29])(nodeId);
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<NodeId, nint>)vt[29])(nodeId);
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<NodeId, nint>)funcTable[29])(nodeId);
 			#endif
 		}
 
 		/// <summary>
 		/// TODO: Add a way to manage node background channels<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "GetNodeBackgroundDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList *")]
-		public static ImDrawList* GetNodeBackgroundDrawList([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static ImDrawList* GetNodeBackgroundDrawList(NodeId nodeId)
 		{
 			ImDrawList* ret = GetNodeBackgroundDrawListNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "Link")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte LinkNative([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "LinkId")] LinkId id, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId endPinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte LinkNative(LinkId id, PinId startPinId, PinId endPinId, Vector4* color, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId, PinId, PinId, Vector4*, float, byte>)vt[30])(id, startPinId, endPinId, color, thickness);
+			return ((delegate* unmanaged[Cdecl]<LinkId, PinId, PinId, Vector4*, float, byte>)funcTable[30])(id, startPinId, endPinId, color, thickness);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<LinkId, PinId, PinId, nint, float, byte>)vt[30])(id, startPinId, endPinId, (nint)color, thickness);
+			return (byte)((delegate* unmanaged[Cdecl]<LinkId, PinId, PinId, nint, float, byte>)funcTable[30])(id, startPinId, endPinId, (nint)color, thickness);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "Link")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool Link([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "LinkId")] LinkId id, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId endPinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool Link(LinkId id, PinId startPinId, PinId endPinId, Vector4* color, float thickness)
 		{
 			byte ret = LinkNative(id, startPinId, endPinId, color, thickness);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "Link")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool Link([NativeName(NativeNameType.Param, "id")] [NativeName(NativeNameType.Type, "LinkId")] LinkId id, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId")] PinId endPinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool Link(LinkId id, PinId startPinId, PinId endPinId, ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -922,46 +779,38 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "Flow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void FlowNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "direction")] [NativeName(NativeNameType.Type, "FlowDirection")] FlowDirection direction)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void FlowNative(LinkId linkId, FlowDirection direction)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<LinkId, FlowDirection, void>)vt[31])(linkId, direction);
+			((delegate* unmanaged[Cdecl]<LinkId, FlowDirection, void>)funcTable[31])(linkId, direction);
 			#else
-			((delegate* unmanaged[Cdecl]<LinkId, FlowDirection, void>)vt[31])(linkId, direction);
+			((delegate* unmanaged[Cdecl]<LinkId, FlowDirection, void>)funcTable[31])(linkId, direction);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "Flow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Flow([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "direction")] [NativeName(NativeNameType.Type, "FlowDirection")] FlowDirection direction)
+		public static void Flow(LinkId linkId, FlowDirection direction)
 		{
 			FlowNative(linkId, direction);
 		}
 
-		[NativeName(NativeNameType.Func, "BeginCreate")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte BeginCreateNative([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginCreateNative(Vector4* color, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4*, float, byte>)vt[32])(color, thickness);
+			return ((delegate* unmanaged[Cdecl]<Vector4*, float, byte>)funcTable[32])(color, thickness);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, float, byte>)vt[32])((nint)color, thickness);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, float, byte>)funcTable[32])((nint)color, thickness);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "BeginCreate")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool BeginCreate([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool BeginCreate(Vector4* color, float thickness)
 		{
 			byte ret = BeginCreateNative(color, thickness);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "BeginCreate")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool BeginCreate([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool BeginCreate(ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -973,23 +822,20 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte QueryNewLinkNative([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte QueryNewLinkNative(PinId* startId, PinId* endId, Vector4* color, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId*, PinId*, Vector4*, float, byte>)vt[33])(startId, endId, color, thickness);
+			return ((delegate* unmanaged[Cdecl]<PinId*, PinId*, Vector4*, float, byte>)funcTable[33])(startId, endId, color, thickness);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, float, byte>)vt[33])((nint)startId, (nint)endId, (nint)color, thickness);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, float, byte>)funcTable[33])((nint)startId, (nint)endId, (nint)color, thickness);
 			#endif
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(PinId* startId, PinId* endId, Vector4* color, float thickness)
 		{
 			byte ret = QueryNewLinkNative(startId, endId, color, thickness);
 			return ret != 0;
@@ -998,9 +844,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(ref PinId startId, PinId* endId, Vector4* color, float thickness)
 		{
 			fixed (PinId* pstartId = &startId)
 			{
@@ -1012,9 +856,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(PinId* startId, ref PinId endId, Vector4* color, float thickness)
 		{
 			fixed (PinId* pendId = &endId)
 			{
@@ -1026,9 +868,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(ref PinId startId, ref PinId endId, Vector4* color, float thickness)
 		{
 			fixed (PinId* pstartId = &startId)
 			{
@@ -1043,9 +883,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(PinId* startId, PinId* endId, ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -1057,9 +895,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(ref PinId startId, PinId* endId, ref Vector4 color, float thickness)
 		{
 			fixed (PinId* pstartId = &startId)
 			{
@@ -1074,9 +910,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(PinId* startId, ref PinId endId, ref Vector4 color, float thickness)
 		{
 			fixed (PinId* pendId = &endId)
 			{
@@ -1091,9 +925,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewLink(PinId* startId, PinId* endId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewLink([NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewLink(ref PinId startId, ref PinId endId, ref Vector4 color, float thickness)
 		{
 			fixed (PinId* pstartId = &startId)
 			{
@@ -1111,23 +943,20 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewNode(PinId* pinId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte QueryNewNodeNative([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* pinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte QueryNewNodeNative(PinId* pinId, Vector4* color, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId*, Vector4*, float, byte>)vt[34])(pinId, color, thickness);
+			return ((delegate* unmanaged[Cdecl]<PinId*, Vector4*, float, byte>)funcTable[34])(pinId, color, thickness);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, byte>)vt[34])((nint)pinId, (nint)color, thickness);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, byte>)funcTable[34])((nint)pinId, (nint)color, thickness);
 			#endif
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewNode(PinId* pinId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewNode([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* pinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewNode(PinId* pinId, Vector4* color, float thickness)
 		{
 			byte ret = QueryNewNodeNative(pinId, color, thickness);
 			return ret != 0;
@@ -1136,9 +965,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewNode(PinId* pinId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewNode([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId pinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewNode(ref PinId pinId, Vector4* color, float thickness)
 		{
 			fixed (PinId* ppinId = &pinId)
 			{
@@ -1150,9 +977,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewNode(PinId* pinId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewNode([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* pinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewNode(PinId* pinId, ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -1164,9 +989,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool QueryNewNode(PinId* pinId);<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "QueryNewNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryNewNode([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId pinId, [NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool QueryNewNode(ref PinId pinId, ref Vector4 color, float thickness)
 		{
 			fixed (PinId* ppinId = &pinId)
 			{
@@ -1181,23 +1004,20 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool AcceptNewItem();<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "AcceptNewItem")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte AcceptNewItemNative([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte AcceptNewItemNative(Vector4* color, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4*, float, byte>)vt[35])(color, thickness);
+			return ((delegate* unmanaged[Cdecl]<Vector4*, float, byte>)funcTable[35])(color, thickness);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, float, byte>)vt[35])((nint)color, thickness);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, float, byte>)funcTable[35])((nint)color, thickness);
 			#endif
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool AcceptNewItem();<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "AcceptNewItem")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool AcceptNewItem([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool AcceptNewItem(Vector4* color, float thickness)
 		{
 			byte ret = AcceptNewItemNative(color, thickness);
 			return ret != 0;
@@ -1206,9 +1026,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool AcceptNewItem();<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "AcceptNewItem")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool AcceptNewItem([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static bool AcceptNewItem(ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -1220,23 +1038,20 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API void RejectNewItem();<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "RejectNewItem")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void RejectNewItemNative([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RejectNewItemNative(Vector4* color, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, float, void>)vt[36])(color, thickness);
+			((delegate* unmanaged[Cdecl]<Vector4*, float, void>)funcTable[36])(color, thickness);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)vt[36])((nint)color, thickness);
+			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[36])((nint)color, thickness);
 			#endif
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API void RejectNewItem();<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "RejectNewItem")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void RejectNewItem([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] Vector4* color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static void RejectNewItem(Vector4* color, float thickness)
 		{
 			RejectNewItemNative(color, thickness);
 		}
@@ -1244,9 +1059,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API void RejectNewItem();<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "RejectNewItem")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void RejectNewItem([NativeName(NativeNameType.Param, "color")] [NativeName(NativeNameType.Type, "ImVec4 const&")] ref Vector4 color, [NativeName(NativeNameType.Param, "thickness")] [NativeName(NativeNameType.Type, "float")] float thickness)
+		public static void RejectNewItem(ref Vector4 color, float thickness)
 		{
 			fixed (Vector4* pcolor = &color)
 			{
@@ -1254,65 +1067,54 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "EndCreate")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndCreateNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[37])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[37])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EndCreate")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void EndCreate()
 		{
 			EndCreateNative();
 		}
 
-		[NativeName(NativeNameType.Func, "BeginDelete")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginDeleteNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[38])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[38])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[38])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[38])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "BeginDelete")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool BeginDelete()
 		{
 			byte ret = BeginDeleteNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte QueryDeletedLinkNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte QueryDeletedLinkNative(LinkId* linkId, PinId* startId, PinId* endId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId*, PinId*, PinId*, byte>)vt[39])(linkId, startId, endId);
+			return ((delegate* unmanaged[Cdecl]<LinkId*, PinId*, PinId*, byte>)funcTable[39])(linkId, startId, endId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)vt[39])((nint)linkId, (nint)startId, (nint)endId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)funcTable[39])((nint)linkId, (nint)startId, (nint)endId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId)
+		public static bool QueryDeletedLink(LinkId* linkId, PinId* startId, PinId* endId)
 		{
 			byte ret = QueryDeletedLinkNative(linkId, startId, endId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId)
+		public static bool QueryDeletedLink(ref LinkId linkId, PinId* startId, PinId* endId)
 		{
 			fixed (LinkId* plinkId = &linkId)
 			{
@@ -1321,9 +1123,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId)
+		public static bool QueryDeletedLink(LinkId* linkId, ref PinId startId, PinId* endId)
 		{
 			fixed (PinId* pstartId = &startId)
 			{
@@ -1332,9 +1132,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endId)
+		public static bool QueryDeletedLink(ref LinkId linkId, ref PinId startId, PinId* endId)
 		{
 			fixed (LinkId* plinkId = &linkId)
 			{
@@ -1346,9 +1144,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId)
+		public static bool QueryDeletedLink(LinkId* linkId, PinId* startId, ref PinId endId)
 		{
 			fixed (PinId* pendId = &endId)
 			{
@@ -1357,9 +1153,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId)
+		public static bool QueryDeletedLink(ref LinkId linkId, PinId* startId, ref PinId endId)
 		{
 			fixed (LinkId* plinkId = &linkId)
 			{
@@ -1371,9 +1165,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId)
+		public static bool QueryDeletedLink(LinkId* linkId, ref PinId startId, ref PinId endId)
 		{
 			fixed (PinId* pstartId = &startId)
 			{
@@ -1385,9 +1177,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId linkId, [NativeName(NativeNameType.Param, "startId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startId, [NativeName(NativeNameType.Param, "endId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endId)
+		public static bool QueryDeletedLink(ref LinkId linkId, ref PinId startId, ref PinId endId)
 		{
 			fixed (LinkId* plinkId = &linkId)
 			{
@@ -1402,28 +1192,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte QueryDeletedNodeNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte QueryDeletedNodeNative(NodeId* nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId*, byte>)vt[40])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId*, byte>)funcTable[40])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[40])((nint)nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[40])((nint)nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedNode([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodeId)
+		public static bool QueryDeletedNode(NodeId* nodeId)
 		{
 			byte ret = QueryDeletedNodeNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "QueryDeletedNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool QueryDeletedNode([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId *")] ref NodeId nodeId)
+		public static bool QueryDeletedNode(ref NodeId nodeId)
 		{
 			fixed (NodeId* pnodeId = &nodeId)
 			{
@@ -1432,82 +1217,68 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptDeletedItem")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte AcceptDeletedItemNative([NativeName(NativeNameType.Param, "deleteDependencies")] [NativeName(NativeNameType.Type, "bool")] byte deleteDependencies)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte AcceptDeletedItemNative(byte deleteDependencies)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)vt[41])(deleteDependencies);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[41])(deleteDependencies);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)vt[41])(deleteDependencies);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[41])(deleteDependencies);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptDeletedItem")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool AcceptDeletedItem([NativeName(NativeNameType.Param, "deleteDependencies")] [NativeName(NativeNameType.Type, "bool")] bool deleteDependencies)
+		public static bool AcceptDeletedItem(bool deleteDependencies)
 		{
 			byte ret = AcceptDeletedItemNative(deleteDependencies ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "RejectDeletedItem")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void RejectDeletedItemNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[42])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[42])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "RejectDeletedItem")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void RejectDeletedItem()
 		{
 			RejectDeletedItemNative();
 		}
 
-		[NativeName(NativeNameType.Func, "EndDelete")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndDeleteNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[43])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[43])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[43])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[43])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EndDelete")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void EndDelete()
 		{
 			EndDeleteNative();
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void SetNodePositionNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "editorPosition")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* editorPosition)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetNodePositionNative(NodeId nodeId, Vector2* editorPosition)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, Vector2*, void>)vt[44])(nodeId, editorPosition);
+			((delegate* unmanaged[Cdecl]<NodeId, Vector2*, void>)funcTable[44])(nodeId, editorPosition);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, nint, void>)vt[44])(nodeId, (nint)editorPosition);
+			((delegate* unmanaged[Cdecl]<NodeId, nint, void>)funcTable[44])(nodeId, (nint)editorPosition);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNodePosition([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "editorPosition")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* editorPosition)
+		public static void SetNodePosition(NodeId nodeId, Vector2* editorPosition)
 		{
 			SetNodePositionNative(nodeId, editorPosition);
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNodePosition([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "editorPosition")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 editorPosition)
+		public static void SetNodePosition(NodeId nodeId, ref Vector2 editorPosition)
 		{
 			fixed (Vector2* peditorPosition = &editorPosition)
 			{
@@ -1515,27 +1286,22 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "SetGroupSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void SetGroupSizeNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetGroupSizeNative(NodeId nodeId, Vector2* size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, Vector2*, void>)vt[45])(nodeId, size);
+			((delegate* unmanaged[Cdecl]<NodeId, Vector2*, void>)funcTable[45])(nodeId, size);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, nint, void>)vt[45])(nodeId, (nint)size);
+			((delegate* unmanaged[Cdecl]<NodeId, nint, void>)funcTable[45])(nodeId, (nint)size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "SetGroupSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetGroupSize([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* size)
+		public static void SetGroupSize(NodeId nodeId, Vector2* size)
 		{
 			SetGroupSizeNative(nodeId, size);
 		}
 
-		[NativeName(NativeNameType.Func, "SetGroupSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetGroupSize([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 size)
+		public static void SetGroupSize(NodeId nodeId, ref Vector2 size)
 		{
 			fixed (Vector2* psize = &size)
 			{
@@ -1543,251 +1309,210 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		internal static Vector2 GetNodePositionNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 GetNodePositionNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, Vector2>)vt[46])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, Vector2>)funcTable[46])(nodeId);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<NodeId, Vector2>)vt[46])(nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<NodeId, Vector2>)funcTable[46])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodePosition")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		public static Vector2 GetNodePosition([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static Vector2 GetNodePosition(NodeId nodeId)
 		{
 			Vector2 ret = GetNodePositionNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeSize")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		internal static Vector2 GetNodeSizeNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 GetNodeSizeNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, Vector2>)vt[47])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, Vector2>)funcTable[47])(nodeId);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<NodeId, Vector2>)vt[47])(nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<NodeId, Vector2>)funcTable[47])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeSize")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		public static Vector2 GetNodeSize([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static Vector2 GetNodeSize(NodeId nodeId)
 		{
 			Vector2 ret = GetNodeSizeNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "CenterNodeOnScreen")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void CenterNodeOnScreenNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void CenterNodeOnScreenNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[48])(nodeId);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[48])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[48])(nodeId);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[48])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "CenterNodeOnScreen")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void CenterNodeOnScreen([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static void CenterNodeOnScreen(NodeId nodeId)
 		{
 			CenterNodeOnScreenNative(nodeId);
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodeZPosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void SetNodeZPositionNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetNodeZPositionNative(NodeId nodeId, float z)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, float, void>)vt[49])(nodeId, z);
+			((delegate* unmanaged[Cdecl]<NodeId, float, void>)funcTable[49])(nodeId, z);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, float, void>)vt[49])(nodeId, z);
+			((delegate* unmanaged[Cdecl]<NodeId, float, void>)funcTable[49])(nodeId, z);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "SetNodeZPosition")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNodeZPosition([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
+		public static void SetNodeZPosition(NodeId nodeId, float z)
 		{
 			SetNodeZPositionNative(nodeId, z);
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeZPosition")]
-		[return: NativeName(NativeNameType.Type, "float")]
-		internal static float GetNodeZPositionNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float GetNodeZPositionNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, float>)vt[50])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, float>)funcTable[50])(nodeId);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<NodeId, float>)vt[50])(nodeId);
+			return (float)((delegate* unmanaged[Cdecl]<NodeId, float>)funcTable[50])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeZPosition")]
-		[return: NativeName(NativeNameType.Type, "float")]
-		public static float GetNodeZPosition([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static float GetNodeZPosition(NodeId nodeId)
 		{
 			float ret = GetNodeZPositionNative(nodeId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "RestoreNodeState")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void RestoreNodeStateNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RestoreNodeStateNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[51])(nodeId);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[51])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[51])(nodeId);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[51])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "RestoreNodeState")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void RestoreNodeState([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static void RestoreNodeState(NodeId nodeId)
 		{
 			RestoreNodeStateNative(nodeId);
 		}
 
-		[NativeName(NativeNameType.Func, "Suspend")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SuspendNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[52])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[52])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[52])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[52])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "Suspend")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void Suspend()
 		{
 			SuspendNative();
 		}
 
-		[NativeName(NativeNameType.Func, "Resume")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ResumeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "Resume")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void Resume()
 		{
 			ResumeNative();
 		}
 
-		[NativeName(NativeNameType.Func, "IsSuspended")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsSuspendedNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[54])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[54])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[54])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[54])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "IsSuspended")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool IsSuspended()
 		{
 			byte ret = IsSuspendedNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "IsActive")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsActiveNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[55])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[55])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[55])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[55])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "IsActive")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool IsActive()
 		{
 			byte ret = IsActiveNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "HasSelectionChanged")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte HasSelectionChangedNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[56])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[56])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[56])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[56])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "HasSelectionChanged")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool HasSelectionChanged()
 		{
 			byte ret = HasSelectionChangedNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedObjectCount")]
-		[return: NativeName(NativeNameType.Type, "int")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetSelectedObjectCountNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[57])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[57])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[57])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[57])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedObjectCount")]
-		[return: NativeName(NativeNameType.Type, "int")]
 		public static int GetSelectedObjectCount()
 		{
 			int ret = GetSelectedObjectCountNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedNodes")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		internal static int GetSelectedNodesNative([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetSelectedNodesNative(NodeId* nodes, int size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId*, int, int>)vt[58])(nodes, size);
+			return ((delegate* unmanaged[Cdecl]<NodeId*, int, int>)funcTable[58])(nodes, size);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[58])((nint)nodes, size);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[58])((nint)nodes, size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedNodes")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetSelectedNodes([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetSelectedNodes(NodeId* nodes, int size)
 		{
 			int ret = GetSelectedNodesNative(nodes, size);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedNodes")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetSelectedNodes([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] ref NodeId nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetSelectedNodes(ref NodeId nodes, int size)
 		{
 			fixed (NodeId* pnodes = &nodes)
 			{
@@ -1796,28 +1521,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		internal static int GetSelectedLinksNative([NativeName(NativeNameType.Param, "links")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* links, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetSelectedLinksNative(LinkId* links, int size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId*, int, int>)vt[59])(links, size);
+			return ((delegate* unmanaged[Cdecl]<LinkId*, int, int>)funcTable[59])(links, size);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[59])((nint)links, size);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[59])((nint)links, size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetSelectedLinks([NativeName(NativeNameType.Param, "links")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* links, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetSelectedLinks(LinkId* links, int size)
 		{
 			int ret = GetSelectedLinksNative(links, size);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetSelectedLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetSelectedLinks([NativeName(NativeNameType.Param, "links")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId links, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetSelectedLinks(ref LinkId links, int size)
 		{
 			fixed (LinkId* plinks = &links)
 			{
@@ -1826,167 +1546,140 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "IsNodeSelected")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte IsNodeSelectedNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsNodeSelectedNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, byte>)vt[60])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, byte>)funcTable[60])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<NodeId, byte>)vt[60])(nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<NodeId, byte>)funcTable[60])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "IsNodeSelected")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool IsNodeSelected([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static bool IsNodeSelected(NodeId nodeId)
 		{
 			byte ret = IsNodeSelectedNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "IsLinkSelected")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte IsLinkSelectedNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsLinkSelectedNative(LinkId linkId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId, byte>)vt[61])(linkId);
+			return ((delegate* unmanaged[Cdecl]<LinkId, byte>)funcTable[61])(linkId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<LinkId, byte>)vt[61])(linkId);
+			return (byte)((delegate* unmanaged[Cdecl]<LinkId, byte>)funcTable[61])(linkId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "IsLinkSelected")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool IsLinkSelected([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId)
+		public static bool IsLinkSelected(LinkId linkId)
 		{
 			byte ret = IsLinkSelectedNative(linkId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "ClearSelection")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearSelectionNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[62])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[62])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "ClearSelection")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void ClearSelection()
 		{
 			ClearSelectionNative();
 		}
 
-		[NativeName(NativeNameType.Func, "SelectNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void SelectNodeNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "append")] [NativeName(NativeNameType.Type, "bool")] byte append)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SelectNodeNative(NodeId nodeId, byte append)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, byte, void>)vt[63])(nodeId, append);
+			((delegate* unmanaged[Cdecl]<NodeId, byte, void>)funcTable[63])(nodeId, append);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, byte, void>)vt[63])(nodeId, append);
+			((delegate* unmanaged[Cdecl]<NodeId, byte, void>)funcTable[63])(nodeId, append);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "SelectNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SelectNode([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId, [NativeName(NativeNameType.Param, "append")] [NativeName(NativeNameType.Type, "bool")] bool append)
+		public static void SelectNode(NodeId nodeId, bool append)
 		{
 			SelectNodeNative(nodeId, append ? (byte)1 : (byte)0);
 		}
 
-		[NativeName(NativeNameType.Func, "SelectLink")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void SelectLinkNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "append")] [NativeName(NativeNameType.Type, "bool")] byte append)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SelectLinkNative(LinkId linkId, byte append)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<LinkId, byte, void>)vt[64])(linkId, append);
+			((delegate* unmanaged[Cdecl]<LinkId, byte, void>)funcTable[64])(linkId, append);
 			#else
-			((delegate* unmanaged[Cdecl]<LinkId, byte, void>)vt[64])(linkId, append);
+			((delegate* unmanaged[Cdecl]<LinkId, byte, void>)funcTable[64])(linkId, append);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "SelectLink")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SelectLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "append")] [NativeName(NativeNameType.Type, "bool")] bool append)
+		public static void SelectLink(LinkId linkId, bool append)
 		{
 			SelectLinkNative(linkId, append ? (byte)1 : (byte)0);
 		}
 
-		[NativeName(NativeNameType.Func, "DeselectNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void DeselectNodeNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DeselectNodeNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[65])(nodeId);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[65])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<NodeId, void>)vt[65])(nodeId);
+			((delegate* unmanaged[Cdecl]<NodeId, void>)funcTable[65])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "DeselectNode")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void DeselectNode([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static void DeselectNode(NodeId nodeId)
 		{
 			DeselectNodeNative(nodeId);
 		}
 
-		[NativeName(NativeNameType.Func, "DeselectLink")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void DeselectLinkNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DeselectLinkNative(LinkId linkId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<LinkId, void>)vt[66])(linkId);
+			((delegate* unmanaged[Cdecl]<LinkId, void>)funcTable[66])(linkId);
 			#else
-			((delegate* unmanaged[Cdecl]<LinkId, void>)vt[66])(linkId);
+			((delegate* unmanaged[Cdecl]<LinkId, void>)funcTable[66])(linkId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "DeselectLink")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void DeselectLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId)
+		public static void DeselectLink(LinkId linkId)
 		{
 			DeselectLinkNative(linkId);
 		}
 
-		[NativeName(NativeNameType.Func, "DeleteNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte DeleteNodeNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DeleteNodeNative(NodeId nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId, byte>)vt[67])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId, byte>)funcTable[67])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<NodeId, byte>)vt[67])(nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<NodeId, byte>)funcTable[67])(nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "DeleteNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool DeleteNode([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId")] NodeId nodeId)
+		public static bool DeleteNode(NodeId nodeId)
 		{
 			byte ret = DeleteNodeNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "DeleteLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte DeleteLinkNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DeleteLinkNative(LinkId linkId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId, byte>)vt[68])(linkId);
+			return ((delegate* unmanaged[Cdecl]<LinkId, byte>)funcTable[68])(linkId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<LinkId, byte>)vt[68])(linkId);
+			return (byte)((delegate* unmanaged[Cdecl]<LinkId, byte>)funcTable[68])(linkId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "DeleteLink")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool DeleteLink([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId)
+		public static bool DeleteLink(LinkId linkId)
 		{
 			byte ret = DeleteLinkNative(linkId);
 			return ret != 0;
@@ -1995,23 +1688,20 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool HasAnyLinks(NodeId nodeId); // Returns true if node has any link connected<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "HasAnyLinks")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte HasAnyLinksNative([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId")] PinId pinId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte HasAnyLinksNative(PinId pinId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId, byte>)vt[69])(pinId);
+			return ((delegate* unmanaged[Cdecl]<PinId, byte>)funcTable[69])(pinId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<PinId, byte>)vt[69])(pinId);
+			return (byte)((delegate* unmanaged[Cdecl]<PinId, byte>)funcTable[69])(pinId);
 			#endif
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API bool HasAnyLinks(NodeId nodeId); // Returns true if node has any link connected<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "HasAnyLinks")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool HasAnyLinks([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId")] PinId pinId)
+		public static bool HasAnyLinks(PinId pinId)
 		{
 			byte ret = HasAnyLinksNative(pinId);
 			return ret != 0;
@@ -2020,86 +1710,72 @@ namespace Hexa.NET.ImGuiNodeEditor
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API int BreakLinks(NodeId nodeId); // Break all links connected to this node<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "BreakLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		internal static int BreakLinksNative([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId")] PinId pinId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int BreakLinksNative(PinId pinId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId, int>)vt[70])(pinId);
+			return ((delegate* unmanaged[Cdecl]<PinId, int>)funcTable[70])(pinId);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<PinId, int>)vt[70])(pinId);
+			return (int)((delegate* unmanaged[Cdecl]<PinId, int>)funcTable[70])(pinId);
 			#endif
 		}
 
 		/// <summary>
 		/// IMGUI_NODE_EDITOR_API int BreakLinks(NodeId nodeId); // Break all links connected to this node<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Func, "BreakLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int BreakLinks([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId")] PinId pinId)
+		public static int BreakLinks(PinId pinId)
 		{
 			int ret = BreakLinksNative(pinId);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "NavigateToContent")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void NavigateToContentNative([NativeName(NativeNameType.Param, "duration")] [NativeName(NativeNameType.Type, "float")] float duration)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void NavigateToContentNative(float duration)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)vt[71])(duration);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[71])(duration);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)vt[71])(duration);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[71])(duration);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "NavigateToContent")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void NavigateToContent([NativeName(NativeNameType.Param, "duration")] [NativeName(NativeNameType.Type, "float")] float duration)
+		public static void NavigateToContent(float duration)
 		{
 			NavigateToContentNative(duration);
 		}
 
-		[NativeName(NativeNameType.Func, "NavigateToSelection")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void NavigateToSelectionNative([NativeName(NativeNameType.Param, "zoomIn")] [NativeName(NativeNameType.Type, "bool")] byte zoomIn, [NativeName(NativeNameType.Param, "duration")] [NativeName(NativeNameType.Type, "float")] float duration)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void NavigateToSelectionNative(byte zoomIn, float duration)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, float, void>)vt[72])(zoomIn, duration);
+			((delegate* unmanaged[Cdecl]<byte, float, void>)funcTable[72])(zoomIn, duration);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, float, void>)vt[72])(zoomIn, duration);
+			((delegate* unmanaged[Cdecl]<byte, float, void>)funcTable[72])(zoomIn, duration);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "NavigateToSelection")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void NavigateToSelection([NativeName(NativeNameType.Param, "zoomIn")] [NativeName(NativeNameType.Type, "bool")] bool zoomIn, [NativeName(NativeNameType.Param, "duration")] [NativeName(NativeNameType.Type, "float")] float duration)
+		public static void NavigateToSelection(bool zoomIn, float duration)
 		{
 			NavigateToSelectionNative(zoomIn ? (byte)1 : (byte)0, duration);
 		}
 
-		[NativeName(NativeNameType.Func, "ShowNodeContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte ShowNodeContextMenuNative([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodeId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ShowNodeContextMenuNative(NodeId* nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId*, byte>)vt[73])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<NodeId*, byte>)funcTable[73])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[73])((nint)nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[73])((nint)nodeId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "ShowNodeContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool ShowNodeContextMenu([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodeId)
+		public static bool ShowNodeContextMenu(NodeId* nodeId)
 		{
 			byte ret = ShowNodeContextMenuNative(nodeId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "ShowNodeContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool ShowNodeContextMenu([NativeName(NativeNameType.Param, "nodeId")] [NativeName(NativeNameType.Type, "NodeId *")] ref NodeId nodeId)
+		public static bool ShowNodeContextMenu(ref NodeId nodeId)
 		{
 			fixed (NodeId* pnodeId = &nodeId)
 			{
@@ -2108,28 +1784,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "ShowPinContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte ShowPinContextMenuNative([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* pinId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ShowPinContextMenuNative(PinId* pinId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId*, byte>)vt[74])(pinId);
+			return ((delegate* unmanaged[Cdecl]<PinId*, byte>)funcTable[74])(pinId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[74])((nint)pinId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[74])((nint)pinId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "ShowPinContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool ShowPinContextMenu([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* pinId)
+		public static bool ShowPinContextMenu(PinId* pinId)
 		{
 			byte ret = ShowPinContextMenuNative(pinId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "ShowPinContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool ShowPinContextMenu([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId pinId)
+		public static bool ShowPinContextMenu(ref PinId pinId)
 		{
 			fixed (PinId* ppinId = &pinId)
 			{
@@ -2138,28 +1809,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "ShowLinkContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte ShowLinkContextMenuNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ShowLinkContextMenuNative(LinkId* linkId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId*, byte>)vt[75])(linkId);
+			return ((delegate* unmanaged[Cdecl]<LinkId*, byte>)funcTable[75])(linkId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[75])((nint)linkId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[75])((nint)linkId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "ShowLinkContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool ShowLinkContextMenu([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* linkId)
+		public static bool ShowLinkContextMenu(LinkId* linkId)
 		{
 			byte ret = ShowLinkContextMenuNative(linkId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "ShowLinkContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool ShowLinkContextMenu([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId linkId)
+		public static bool ShowLinkContextMenu(ref LinkId linkId)
 		{
 			fixed (LinkId* plinkId = &linkId)
 			{
@@ -2168,217 +1834,182 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "ShowBackgroundContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ShowBackgroundContextMenuNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[76])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[76])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[76])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[76])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "ShowBackgroundContextMenu")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool ShowBackgroundContextMenu()
 		{
 			byte ret = ShowBackgroundContextMenuNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "EnableShortcuts")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		internal static void EnableShortcutsNative([NativeName(NativeNameType.Param, "enable")] [NativeName(NativeNameType.Type, "bool")] byte enable)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EnableShortcutsNative(byte enable)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[77])(enable);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[77])(enable);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)vt[77])(enable);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[77])(enable);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EnableShortcuts")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void EnableShortcuts([NativeName(NativeNameType.Param, "enable")] [NativeName(NativeNameType.Type, "bool")] bool enable)
+		public static void EnableShortcuts(bool enable)
 		{
 			EnableShortcutsNative(enable ? (byte)1 : (byte)0);
 		}
 
-		[NativeName(NativeNameType.Func, "AreShortcutsEnabled")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte AreShortcutsEnabledNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[78])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[78])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[78])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[78])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AreShortcutsEnabled")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool AreShortcutsEnabled()
 		{
 			byte ret = AreShortcutsEnabledNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "BeginShortcut")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginShortcutNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[79])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[79])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[79])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[79])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "BeginShortcut")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool BeginShortcut()
 		{
 			byte ret = BeginShortcutNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptCut")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte AcceptCutNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[80])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[80])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[80])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[80])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptCut")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool AcceptCut()
 		{
 			byte ret = AcceptCutNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptCopy")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte AcceptCopyNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[81])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[81])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[81])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[81])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptCopy")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool AcceptCopy()
 		{
 			byte ret = AcceptCopyNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptPaste")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte AcceptPasteNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[82])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[82])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[82])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[82])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptPaste")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool AcceptPaste()
 		{
 			byte ret = AcceptPasteNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptDuplicate")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte AcceptDuplicateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[83])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[83])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[83])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[83])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptDuplicate")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool AcceptDuplicate()
 		{
 			byte ret = AcceptDuplicateNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptCreateNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte AcceptCreateNodeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[84])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[84])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[84])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[84])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "AcceptCreateNode")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool AcceptCreateNode()
 		{
 			byte ret = AcceptCreateNodeNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextSize")]
-		[return: NativeName(NativeNameType.Type, "int")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetActionContextSizeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[85])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[85])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[85])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[85])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextSize")]
-		[return: NativeName(NativeNameType.Type, "int")]
 		public static int GetActionContextSize()
 		{
 			int ret = GetActionContextSizeNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextNodes")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		internal static int GetActionContextNodesNative([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetActionContextNodesNative(NodeId* nodes, int size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId*, int, int>)vt[86])(nodes, size);
+			return ((delegate* unmanaged[Cdecl]<NodeId*, int, int>)funcTable[86])(nodes, size);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[86])((nint)nodes, size);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[86])((nint)nodes, size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextNodes")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetActionContextNodes([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetActionContextNodes(NodeId* nodes, int size)
 		{
 			int ret = GetActionContextNodesNative(nodes, size);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextNodes")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetActionContextNodes([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] ref NodeId nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetActionContextNodes(ref NodeId nodes, int size)
 		{
 			fixed (NodeId* pnodes = &nodes)
 			{
@@ -2387,28 +2018,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		internal static int GetActionContextLinksNative([NativeName(NativeNameType.Param, "links")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* links, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetActionContextLinksNative(LinkId* links, int size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId*, int, int>)vt[87])(links, size);
+			return ((delegate* unmanaged[Cdecl]<LinkId*, int, int>)funcTable[87])(links, size);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[87])((nint)links, size);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[87])((nint)links, size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetActionContextLinks([NativeName(NativeNameType.Param, "links")] [NativeName(NativeNameType.Type, "LinkId *")] LinkId* links, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetActionContextLinks(LinkId* links, int size)
 		{
 			int ret = GetActionContextLinksNative(links, size);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetActionContextLinks")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetActionContextLinks([NativeName(NativeNameType.Param, "links")] [NativeName(NativeNameType.Type, "LinkId *")] ref LinkId links, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetActionContextLinks(ref LinkId links, int size)
 		{
 			fixed (LinkId* plinks = &links)
 			{
@@ -2417,255 +2043,214 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "EndShortcut")]
-		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndShortcutNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[88])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[88])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[88])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[88])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "EndShortcut")]
-		[return: NativeName(NativeNameType.Type, "void")]
 		public static void EndShortcut()
 		{
 			EndShortcutNative();
 		}
 
-		[NativeName(NativeNameType.Func, "GetCurrentZoom")]
-		[return: NativeName(NativeNameType.Type, "float")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetCurrentZoomNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)vt[89])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[89])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)vt[89])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[89])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetCurrentZoom")]
-		[return: NativeName(NativeNameType.Type, "float")]
 		public static float GetCurrentZoom()
 		{
 			float ret = GetCurrentZoomNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetHoveredNode")]
-		[return: NativeName(NativeNameType.Type, "NodeId")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static NodeId GetHoveredNodeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId>)vt[90])();
+			return ((delegate* unmanaged[Cdecl]<NodeId>)funcTable[90])();
 			#else
-			return (NodeId)((delegate* unmanaged[Cdecl]<NodeId>)vt[90])();
+			return (NodeId)((delegate* unmanaged[Cdecl]<NodeId>)funcTable[90])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetHoveredNode")]
-		[return: NativeName(NativeNameType.Type, "NodeId")]
 		public static NodeId GetHoveredNode()
 		{
 			NodeId ret = GetHoveredNodeNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetHoveredPin")]
-		[return: NativeName(NativeNameType.Type, "PinId")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static PinId GetHoveredPinNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId>)vt[91])();
+			return ((delegate* unmanaged[Cdecl]<PinId>)funcTable[91])();
 			#else
-			return (PinId)((delegate* unmanaged[Cdecl]<PinId>)vt[91])();
+			return (PinId)((delegate* unmanaged[Cdecl]<PinId>)funcTable[91])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetHoveredPin")]
-		[return: NativeName(NativeNameType.Type, "PinId")]
 		public static PinId GetHoveredPin()
 		{
 			PinId ret = GetHoveredPinNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetHoveredLink")]
-		[return: NativeName(NativeNameType.Type, "LinkId")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static LinkId GetHoveredLinkNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId>)vt[92])();
+			return ((delegate* unmanaged[Cdecl]<LinkId>)funcTable[92])();
 			#else
-			return (LinkId)((delegate* unmanaged[Cdecl]<LinkId>)vt[92])();
+			return (LinkId)((delegate* unmanaged[Cdecl]<LinkId>)funcTable[92])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetHoveredLink")]
-		[return: NativeName(NativeNameType.Type, "LinkId")]
 		public static LinkId GetHoveredLink()
 		{
 			LinkId ret = GetHoveredLinkNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetDoubleClickedNode")]
-		[return: NativeName(NativeNameType.Type, "NodeId")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static NodeId GetDoubleClickedNodeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId>)vt[93])();
+			return ((delegate* unmanaged[Cdecl]<NodeId>)funcTable[93])();
 			#else
-			return (NodeId)((delegate* unmanaged[Cdecl]<NodeId>)vt[93])();
+			return (NodeId)((delegate* unmanaged[Cdecl]<NodeId>)funcTable[93])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetDoubleClickedNode")]
-		[return: NativeName(NativeNameType.Type, "NodeId")]
 		public static NodeId GetDoubleClickedNode()
 		{
 			NodeId ret = GetDoubleClickedNodeNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetDoubleClickedPin")]
-		[return: NativeName(NativeNameType.Type, "PinId")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static PinId GetDoubleClickedPinNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId>)vt[94])();
+			return ((delegate* unmanaged[Cdecl]<PinId>)funcTable[94])();
 			#else
-			return (PinId)((delegate* unmanaged[Cdecl]<PinId>)vt[94])();
+			return (PinId)((delegate* unmanaged[Cdecl]<PinId>)funcTable[94])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetDoubleClickedPin")]
-		[return: NativeName(NativeNameType.Type, "PinId")]
 		public static PinId GetDoubleClickedPin()
 		{
 			PinId ret = GetDoubleClickedPinNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetDoubleClickedLink")]
-		[return: NativeName(NativeNameType.Type, "LinkId")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static LinkId GetDoubleClickedLinkNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId>)vt[95])();
+			return ((delegate* unmanaged[Cdecl]<LinkId>)funcTable[95])();
 			#else
-			return (LinkId)((delegate* unmanaged[Cdecl]<LinkId>)vt[95])();
+			return (LinkId)((delegate* unmanaged[Cdecl]<LinkId>)funcTable[95])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetDoubleClickedLink")]
-		[return: NativeName(NativeNameType.Type, "LinkId")]
 		public static LinkId GetDoubleClickedLink()
 		{
 			LinkId ret = GetDoubleClickedLinkNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "IsBackgroundClicked")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsBackgroundClickedNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[96])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[96])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[96])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[96])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "IsBackgroundClicked")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool IsBackgroundClicked()
 		{
 			byte ret = IsBackgroundClickedNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "IsBackgroundDoubleClicked")]
-		[return: NativeName(NativeNameType.Type, "bool")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsBackgroundDoubleClickedNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[97])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[97])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[97])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[97])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "IsBackgroundDoubleClicked")]
-		[return: NativeName(NativeNameType.Type, "bool")]
 		public static bool IsBackgroundDoubleClicked()
 		{
 			byte ret = IsBackgroundDoubleClickedNative();
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetBackgroundClickButtonIndex")]
-		[return: NativeName(NativeNameType.Type, "ImGuiMouseButton")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetBackgroundClickButtonIndexNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[98])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[98])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[98])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[98])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetBackgroundClickButtonIndex")]
-		[return: NativeName(NativeNameType.Type, "ImGuiMouseButton")]
 		public static int GetBackgroundClickButtonIndex()
 		{
 			int ret = GetBackgroundClickButtonIndexNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetBackgroundDoubleClickButtonIndex")]
-		[return: NativeName(NativeNameType.Type, "ImGuiMouseButton")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetBackgroundDoubleClickButtonIndexNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[99])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[99])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[99])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[99])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetBackgroundDoubleClickButtonIndex")]
-		[return: NativeName(NativeNameType.Type, "ImGuiMouseButton")]
 		public static int GetBackgroundDoubleClickButtonIndex()
 		{
 			int ret = GetBackgroundDoubleClickButtonIndexNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte GetLinkPinsNative([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endPinId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte GetLinkPinsNative(LinkId linkId, PinId* startPinId, PinId* endPinId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkId, PinId*, PinId*, byte>)vt[100])(linkId, startPinId, endPinId);
+			return ((delegate* unmanaged[Cdecl]<LinkId, PinId*, PinId*, byte>)funcTable[100])(linkId, startPinId, endPinId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<LinkId, nint, nint, byte>)vt[100])(linkId, (nint)startPinId, (nint)endPinId);
+			return (byte)((delegate* unmanaged[Cdecl]<LinkId, nint, nint, byte>)funcTable[100])(linkId, (nint)startPinId, (nint)endPinId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endPinId)
+		public static bool GetLinkPins(LinkId linkId, PinId* startPinId, PinId* endPinId)
 		{
 			byte ret = GetLinkPinsNative(linkId, startPinId, endPinId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* endPinId)
+		public static bool GetLinkPins(LinkId linkId, ref PinId startPinId, PinId* endPinId)
 		{
 			fixed (PinId* pstartPinId = &startPinId)
 			{
@@ -2674,9 +2259,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] PinId* startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endPinId)
+		public static bool GetLinkPins(LinkId linkId, PinId* startPinId, ref PinId endPinId)
 		{
 			fixed (PinId* pendPinId = &endPinId)
 			{
@@ -2685,9 +2268,7 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetLinkPins")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool GetLinkPins([NativeName(NativeNameType.Param, "linkId")] [NativeName(NativeNameType.Type, "LinkId")] LinkId linkId, [NativeName(NativeNameType.Param, "startPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId startPinId, [NativeName(NativeNameType.Param, "endPinId")] [NativeName(NativeNameType.Type, "PinId *")] ref PinId endPinId)
+		public static bool GetLinkPins(LinkId linkId, ref PinId startPinId, ref PinId endPinId)
 		{
 			fixed (PinId* pstartPinId = &startPinId)
 			{
@@ -2699,66 +2280,55 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "PinHadAnyLinks")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		internal static byte PinHadAnyLinksNative([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId")] PinId pinId)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte PinHadAnyLinksNative(PinId pinId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<PinId, byte>)vt[101])(pinId);
+			return ((delegate* unmanaged[Cdecl]<PinId, byte>)funcTable[101])(pinId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<PinId, byte>)vt[101])(pinId);
+			return (byte)((delegate* unmanaged[Cdecl]<PinId, byte>)funcTable[101])(pinId);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "PinHadAnyLinks")]
-		[return: NativeName(NativeNameType.Type, "bool")]
-		public static bool PinHadAnyLinks([NativeName(NativeNameType.Param, "pinId")] [NativeName(NativeNameType.Type, "PinId")] PinId pinId)
+		public static bool PinHadAnyLinks(PinId pinId)
 		{
 			byte ret = PinHadAnyLinksNative(pinId);
 			return ret != 0;
 		}
 
-		[NativeName(NativeNameType.Func, "GetScreenSize")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Vector2 GetScreenSizeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)vt[102])();
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[102])();
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)vt[102])();
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[102])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetScreenSize")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
 		public static Vector2 GetScreenSize()
 		{
 			Vector2 ret = GetScreenSizeNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "ScreenToCanvas")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		internal static Vector2 ScreenToCanvasNative([NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* pos)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 ScreenToCanvasNative(Vector2* pos)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2*, Vector2>)vt[103])(pos);
+			return ((delegate* unmanaged[Cdecl]<Vector2*, Vector2>)funcTable[103])(pos);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)vt[103])((nint)pos);
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)funcTable[103])((nint)pos);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "ScreenToCanvas")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		public static Vector2 ScreenToCanvas([NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* pos)
+		public static Vector2 ScreenToCanvas(Vector2* pos)
 		{
 			Vector2 ret = ScreenToCanvasNative(pos);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "ScreenToCanvas")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		public static Vector2 ScreenToCanvas([NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 pos)
+		public static Vector2 ScreenToCanvas(ref Vector2 pos)
 		{
 			fixed (Vector2* ppos = &pos)
 			{
@@ -2767,28 +2337,23 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "CanvasToScreen")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		internal static Vector2 CanvasToScreenNative([NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* pos)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 CanvasToScreenNative(Vector2* pos)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2*, Vector2>)vt[104])(pos);
+			return ((delegate* unmanaged[Cdecl]<Vector2*, Vector2>)funcTable[104])(pos);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)vt[104])((nint)pos);
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)funcTable[104])((nint)pos);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "CanvasToScreen")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		public static Vector2 CanvasToScreen([NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2 const&")] Vector2* pos)
+		public static Vector2 CanvasToScreen(Vector2* pos)
 		{
 			Vector2 ret = CanvasToScreenNative(pos);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "CanvasToScreen")]
-		[return: NativeName(NativeNameType.Type, "ImVec2")]
-		public static Vector2 CanvasToScreen([NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2 const&")] ref Vector2 pos)
+		public static Vector2 CanvasToScreen(ref Vector2 pos)
 		{
 			fixed (Vector2* ppos = &pos)
 			{
@@ -2797,47 +2362,39 @@ namespace Hexa.NET.ImGuiNodeEditor
 			}
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeCount")]
-		[return: NativeName(NativeNameType.Type, "int")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetNodeCountNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[105])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[105])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[105])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[105])();
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetNodeCount")]
-		[return: NativeName(NativeNameType.Type, "int")]
 		public static int GetNodeCount()
 		{
 			int ret = GetNodeCountNative();
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetOrderedNodeIds")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		internal static int GetOrderedNodeIdsNative([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetOrderedNodeIdsNative(NodeId* nodes, int size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<NodeId*, int, int>)vt[106])(nodes, size);
+			return ((delegate* unmanaged[Cdecl]<NodeId*, int, int>)funcTable[106])(nodes, size);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[106])((nint)nodes, size);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[106])((nint)nodes, size);
 			#endif
 		}
 
-		[NativeName(NativeNameType.Func, "GetOrderedNodeIds")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetOrderedNodeIds([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] NodeId* nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetOrderedNodeIds(NodeId* nodes, int size)
 		{
 			int ret = GetOrderedNodeIdsNative(nodes, size);
 			return ret;
 		}
 
-		[NativeName(NativeNameType.Func, "GetOrderedNodeIds")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetOrderedNodeIds([NativeName(NativeNameType.Param, "nodes")] [NativeName(NativeNameType.Type, "NodeId *")] ref NodeId nodes, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		public static int GetOrderedNodeIds(ref NodeId nodes, int size)
 		{
 			fixed (NodeId* pnodes = &nodes)
 			{

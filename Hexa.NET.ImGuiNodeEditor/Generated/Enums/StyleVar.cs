@@ -13,93 +13,36 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	[NativeName(NativeNameType.Enum, "StyleVar")]
 	[Flags]
 	public enum StyleVar : int
 	{
-		[NativeName(NativeNameType.EnumItem, "StyleVar_NodePadding")]
-		[NativeName(NativeNameType.Value, "0")]
 		NodePadding = unchecked(0),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_NodeRounding")]
-		[NativeName(NativeNameType.Value, "1")]
 		NodeRounding = unchecked(1),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_NodeBorderWidth")]
-		[NativeName(NativeNameType.Value, "2")]
 		NodeBorderWidth = unchecked(2),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_HoveredNodeBorderWidth")]
-		[NativeName(NativeNameType.Value, "3")]
 		HoveredNodeBorderWidth = unchecked(3),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_SelectedNodeBorderWidth")]
-		[NativeName(NativeNameType.Value, "4")]
 		SelectedNodeBorderWidth = unchecked(4),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PinRounding")]
-		[NativeName(NativeNameType.Value, "5")]
 		PinRounding = unchecked(5),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PinBorderWidth")]
-		[NativeName(NativeNameType.Value, "6")]
 		PinBorderWidth = unchecked(6),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_LinkStrength")]
-		[NativeName(NativeNameType.Value, "7")]
 		LinkStrength = unchecked(7),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_SourceDirection")]
-		[NativeName(NativeNameType.Value, "8")]
 		SourceDirection = unchecked(8),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_TargetDirection")]
-		[NativeName(NativeNameType.Value, "9")]
 		TargetDirection = unchecked(9),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_ScrollDuration")]
-		[NativeName(NativeNameType.Value, "10")]
 		ScrollDuration = unchecked(10),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_FlowMarkerDistance")]
-		[NativeName(NativeNameType.Value, "11")]
 		FlowMarkerDistance = unchecked(11),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_FlowSpeed")]
-		[NativeName(NativeNameType.Value, "12")]
 		FlowSpeed = unchecked(12),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_FlowDuration")]
-		[NativeName(NativeNameType.Value, "13")]
 		FlowDuration = unchecked(13),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PivotAlignment")]
-		[NativeName(NativeNameType.Value, "14")]
 		PivotAlignment = unchecked(14),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PivotSize")]
-		[NativeName(NativeNameType.Value, "15")]
 		PivotSize = unchecked(15),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PivotScale")]
-		[NativeName(NativeNameType.Value, "16")]
 		PivotScale = unchecked(16),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PinCorners")]
-		[NativeName(NativeNameType.Value, "17")]
 		PinCorners = unchecked(17),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PinRadius")]
-		[NativeName(NativeNameType.Value, "18")]
 		PinRadius = unchecked(18),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PinArrowSize")]
-		[NativeName(NativeNameType.Value, "19")]
 		PinArrowSize = unchecked(19),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_PinArrowWidth")]
-		[NativeName(NativeNameType.Value, "20")]
 		PinArrowWidth = unchecked(20),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_GroupRounding")]
-		[NativeName(NativeNameType.Value, "21")]
 		GroupRounding = unchecked(21),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_GroupBorderWidth")]
-		[NativeName(NativeNameType.Value, "22")]
 		GroupBorderWidth = unchecked(22),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_HighlightConnectedLinks")]
-		[NativeName(NativeNameType.Value, "23")]
 		HighlightConnectedLinks = unchecked(23),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_SnapLinkToPinDir")]
-		[NativeName(NativeNameType.Value, "24")]
 		SnapLinkToPinDir = unchecked(24),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_HoveredNodeBorderOffset")]
-		[NativeName(NativeNameType.Value, "25")]
 		HoveredNodeBorderOffset = unchecked(25),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_SelectedNodeBorderOffset")]
-		[NativeName(NativeNameType.Value, "26")]
 		SelectedNodeBorderOffset = unchecked(26),
-		[NativeName(NativeNameType.EnumItem, "StyleVar_Count")]
-		[NativeName(NativeNameType.Value, "27")]
 		Count = unchecked(27),
 	}
 }

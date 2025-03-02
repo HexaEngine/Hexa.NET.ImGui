@@ -18,7 +18,6 @@ namespace Hexa.NET.ImGuiNodeEditor
 	/// <summary>
 	/// ------------------------------------------------------------------------------<br/>
 	/// </summary>
-	[NativeName(NativeNameType.Typedef, "NodeId")]
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif

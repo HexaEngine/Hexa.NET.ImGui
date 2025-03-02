@@ -1,6 +1,7 @@
 ﻿namespace ExampleOpenGL3
 {
     using ExampleFramework;
+    using Hexa.NET.ImGui;
 
     public unsafe class Program
     {

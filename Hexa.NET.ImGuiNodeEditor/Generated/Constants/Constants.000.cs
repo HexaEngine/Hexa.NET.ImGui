@@ -13,14 +13,10 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	public unsafe partial class NodeEditor
+	public unsafe partial class ImGuiNodeEditor
 	{
-		[NativeName(NativeNameType.Const, "IMGUI_NODE_EDITOR_VERSION")]
-		[NativeName(NativeNameType.Value, "\"0.9.4\"")]
 		public const string IMGUI_NODE_EDITOR_VERSION = "0.9.4";
 
-		[NativeName(NativeNameType.Const, "IMGUI_NODE_EDITOR_VERSION_NUM")]
-		[NativeName(NativeNameType.Value, "000904")]
 		public const int IMGUI_NODE_EDITOR_VERSION_NUM = 000904;
 
 	}

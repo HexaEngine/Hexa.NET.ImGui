@@ -16,97 +16,40 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	[NativeName(NativeNameType.StructOrClass, "Style")]
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Style
 	{
-		[NativeName(NativeNameType.Field, "NodePadding")]
-		[NativeName(NativeNameType.Type, "ImVec4")]
 		public Vector4 NodePadding;
-		[NativeName(NativeNameType.Field, "NodeRounding")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float NodeRounding;
-		[NativeName(NativeNameType.Field, "NodeBorderWidth")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float NodeBorderWidth;
-		[NativeName(NativeNameType.Field, "HoveredNodeBorderWidth")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float HoveredNodeBorderWidth;
-		[NativeName(NativeNameType.Field, "HoverNodeBorderOffset")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float HoverNodeBorderOffset;
-		[NativeName(NativeNameType.Field, "SelectedNodeBorderWidth")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float SelectedNodeBorderWidth;
-		[NativeName(NativeNameType.Field, "SelectedNodeBorderOffset")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float SelectedNodeBorderOffset;
-		[NativeName(NativeNameType.Field, "PinRounding")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float PinRounding;
-		[NativeName(NativeNameType.Field, "PinBorderWidth")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float PinBorderWidth;
-		[NativeName(NativeNameType.Field, "LinkStrength")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float LinkStrength;
-		[NativeName(NativeNameType.Field, "SourceDirection")]
-		[NativeName(NativeNameType.Type, "ImVec2")]
 		public Vector2 SourceDirection;
-		[NativeName(NativeNameType.Field, "TargetDirection")]
-		[NativeName(NativeNameType.Type, "ImVec2")]
 		public Vector2 TargetDirection;
-		[NativeName(NativeNameType.Field, "ScrollDuration")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float ScrollDuration;
-		[NativeName(NativeNameType.Field, "FlowMarkerDistance")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float FlowMarkerDistance;
-		[NativeName(NativeNameType.Field, "FlowSpeed")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float FlowSpeed;
-		[NativeName(NativeNameType.Field, "FlowDuration")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float FlowDuration;
-		[NativeName(NativeNameType.Field, "PivotAlignment")]
-		[NativeName(NativeNameType.Type, "ImVec2")]
 		public Vector2 PivotAlignment;
-		[NativeName(NativeNameType.Field, "PivotSize")]
-		[NativeName(NativeNameType.Type, "ImVec2")]
 		public Vector2 PivotSize;
-		[NativeName(NativeNameType.Field, "PivotScale")]
-		[NativeName(NativeNameType.Type, "ImVec2")]
 		public Vector2 PivotScale;
-		[NativeName(NativeNameType.Field, "PinCorners")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float PinCorners;
-		[NativeName(NativeNameType.Field, "PinRadius")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float PinRadius;
-		[NativeName(NativeNameType.Field, "PinArrowSize")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float PinArrowSize;
-		[NativeName(NativeNameType.Field, "PinArrowWidth")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float PinArrowWidth;
-		[NativeName(NativeNameType.Field, "GroupRounding")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float GroupRounding;
-		[NativeName(NativeNameType.Field, "GroupBorderWidth")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float GroupBorderWidth;
-		[NativeName(NativeNameType.Field, "HighlightConnectedLinks")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float HighlightConnectedLinks;
 		/// <summary>
 		/// when true link will start on the line defined by pin direction<br/>
 		/// </summary>
-		[NativeName(NativeNameType.Field, "SnapLinkToPinDir")]
-		[NativeName(NativeNameType.Type, "float")]
 		public float SnapLinkToPinDir;
 
-		[NativeName(NativeNameType.Field, "Colors")]
-		[NativeName(NativeNameType.Type, "ImVec4[19]")]
 		public Vector4 Colors_0;
 		public Vector4 Colors_1;
 		public Vector4 Colors_2;

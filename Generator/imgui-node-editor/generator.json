@@ -1,17 +1,18 @@
 {
   "Namespace": "Hexa.NET.ImGuiNodeEditor",
-  "ApiName": "NodeEditor",
-  "LibName": "NodeEditor",
+  "ApiName": "ImGuiNodeEditor",
+  "LibName": "ImGuiNodeEditor",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,
   "GeneratePlaceholderComments": false,
-  "GenerateMetadata": true,
-  "ImportType": "VTable",
+  "UseCustomContext": true,
+  "ImportType": "FunctionTable",
   "ConstantNamingConvention": "Unknown",
   "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2", "ImVector_ImDrawCmd" ],
   "TypeMappings": {
     "ImVector_ImDrawCmd": "ImVector<ImDrawCmd>",
+    "ImVector<float>": "ImVector<float>",
     "ImVec2": "Vector2",
     "ImVec3": "Vector3",
     "ImVec4": "Vector4",
@@ -36,6 +37,5 @@
     "ImBitArrayForNamedKeys": "nuint",
     "va_list": "nuint"
   },
-  "Usings": [ "System.Numerics" ],
-  "SystemIncludeFolders": [ "C:\\Users\\juna\\source\\repos\\Hexa.NET.ImGuiNodeEditor\\Generator\\bin\\Debug\\net8.0\\imgui" ]
+  "Usings": [ "System.Numerics" ]
 }

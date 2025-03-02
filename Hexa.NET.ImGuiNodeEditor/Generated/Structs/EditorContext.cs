@@ -19,7 +19,6 @@ namespace Hexa.NET.ImGuiNodeEditor
 	/// <summary>
 	/// ------------------------------------------------------------------------------<br/>
 	/// </summary>
-	[NativeName(NativeNameType.StructOrClass, "EditorContext")]
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct EditorContext
 	{
@@ -30,7 +29,6 @@ namespace Hexa.NET.ImGuiNodeEditor
 	/// <summary>
 	/// ------------------------------------------------------------------------------<br/>
 	/// </summary>
-	[NativeName(NativeNameType.Typedef, "EditorContext")]
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif

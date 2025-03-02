@@ -13,29 +13,22 @@ using System.Numerics;
 
 namespace Hexa.NET.ImGuiNodeEditor
 {
-	[NativeName(NativeNameType.Enum, "CanvasSizeMode")]
 	[Flags]
 	public enum CanvasSizeMode : int
 	{
 		/// <summary>
 		/// Previous view will be scaled to fit new view on Y axis<br/>
 		/// </summary>
-		[NativeName(NativeNameType.EnumItem, "FitVerticalView")]
-		[NativeName(NativeNameType.Value, "0")]
 		FitVerticalView = unchecked(0),
 
 		/// <summary>
 		/// Previous view will be scaled to fit new view on X axis<br/>
 		/// </summary>
-		[NativeName(NativeNameType.EnumItem, "FitHorizontalView")]
-		[NativeName(NativeNameType.Value, "1")]
 		FitHorizontalView = unchecked(1),
 
 		/// <summary>
 		/// Previous view will be centered on new view<br/>
 		/// </summary>
-		[NativeName(NativeNameType.EnumItem, "CenterOnly")]
-		[NativeName(NativeNameType.Value, "2")]
 		CenterOnly = unchecked(2),
 	}
 }
