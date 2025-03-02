@@ -10,7 +10,6 @@ namespace Generator
     using HexaGen.Metadata;
     using HexaGen.Patching;
 
-
     internal unsafe class Program
     {
         private const string CImGuiConfig = "cimgui/generator.json";
@@ -85,7 +84,7 @@ namespace Generator
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-          
+
 #if NODEEDITOR
             //CsCodeGeneratorMetadata metadata = JsonSerializer.Deserialize<CsCodeGeneratorMetadata>(File.ReadAllText("imgui-node-editor/metadata.json"))!;
 
@@ -104,7 +103,7 @@ namespace Generator
             ImGuiCodeGenerator generator = new(settings);
             generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
 
-            generator.LogEvent += GeneratorLogEvent;
+            generator.LogToConsole();
 
             if (lib != null)
             {
@@ -113,8 +112,6 @@ namespace Generator
 
             bool result = generator.Generate(header, output);
             metadata = generator.GetMetadata();
-
-            generator.LogEvent -= GeneratorLogEvent;
 
             return result;
         }
