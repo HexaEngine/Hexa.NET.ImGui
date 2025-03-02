@@ -3,8 +3,13 @@
 namespace Generator
 {
     using HexaGen;
+    using HexaGen.Core.Logging;
+    using HexaGen.Core.Mapping;
+    using Microsoft.CodeAnalysis;
+    using System.Text.Json;
     using HexaGen.Metadata;
     using HexaGen.Patching;
+
 
     internal unsafe class Program
     {
@@ -14,10 +19,14 @@ namespace Generator
         private const string CImNodesConfig = "cimnodes/generator.json";
         private const string CImPlotConfig = "cimplot/generator.json";
 
+        private const string ImGuiNodeEditorConfig = "imgui-node-editor/generator.json";
+
         private const string CImGuiHeader = "cimgui/cimgui.h";
         private const string CImGuizmoHeader = "cimguizmo/cimguizmo.h";
         private const string CImNodesHeader = "cimnodes/cimnodes.h";
         private const string CImPlotHeader = "cimplot/cimplot.h";
+
+        private const string ImGuiNodeEditorHeader = "imgui-node-editor/imgui_node_editor.h";
 
         private const string ImGuiOutputPath = "../../../../Hexa.NET.ImGui/Generated";
 
@@ -25,6 +34,7 @@ namespace Generator
         private const string ImNodesOutputPath = "../../../../Hexa.NET.ImNodes/Generated";
         private const string ImPlotOutputPath = "../../../../Hexa.NET.ImPlot/Generated";
 
+        private const string ImGuiNodeEditorOutputPath = "../../../../Hexa.NET.ImGuiNodeEditor/Generated";
         private const string ImGuiBackendsOutputPath = "../../../../Hexa.NET.ImGui.Backends/Generated";
         private const string ImGuiBackendsSDL2OutputPath = "../../../../Hexa.NET.ImGui.Backends.SDL2/Generated";
         private const string ImGuiBackendsSDL3OutputPath = "../../../../Hexa.NET.ImGui.Backends.SDL3/Generated";
@@ -75,10 +85,38 @@ namespace Generator
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+          
+#if NODEEDITOR
+            //CsCodeGeneratorMetadata metadata = JsonSerializer.Deserialize<CsCodeGeneratorMetadata>(File.ReadAllText("imgui-node-editor/metadata.json"))!;
+
+            GenerateNodeEditor(ImGuiNodeEditorHeader, ImGuiNodeEditorConfig, ImGuiNodeEditorOutputPath, null, out _);
+#endif
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("All Done!");
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        private static bool GenerateNodeEditor(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata)
+        {
+            CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
+            settings.WrapPointersAsHandle = true;
+            ImGuiCodeGenerator generator = new(settings);
+            generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
+
+            generator.LogEvent += GeneratorLogEvent;
+
+            if (lib != null)
+            {
+                generator.CopyFrom(lib);
+            }
+
+            bool result = generator.Generate(header, output);
+            metadata = generator.GetMetadata();
+
+            generator.LogEvent -= GeneratorLogEvent;
+
+            return result;
         }
 
         private static bool Generate(string[] headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
