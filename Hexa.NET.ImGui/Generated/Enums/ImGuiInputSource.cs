@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Note: may be Mouse or TouchScreen or Pen. See io.MouseSource to distinguish them.<br/>
 		/// </summary>
 		Mouse = unchecked(1),
 

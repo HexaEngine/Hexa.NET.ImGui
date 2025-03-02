@@ -25,37 +25,37 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// If item is not visible: scroll as little as possible on X axis to bring item back into view [default for X axis]<br/>
 		/// </summary>
 		KeepVisibleEdgeX = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// If item is not visible: scroll as little as possible on Y axis to bring item back into view [default for Y axis for windows that are already visible]<br/>
 		/// </summary>
 		KeepVisibleEdgeY = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// If item is not visible: scroll to make the item centered on X axis [rarely used]<br/>
 		/// </summary>
 		KeepVisibleCenterX = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// If item is not visible: scroll to make the item centered on Y axis<br/>
 		/// </summary>
 		KeepVisibleCenterY = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Always center the result item on X axis [rarely used]<br/>
 		/// </summary>
 		AlwaysCenterX = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Always center the result item on Y axis [default for Y axis for appearing window)<br/>
 		/// </summary>
 		AlwaysCenterY = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable forwarding scrolling to parent window if required to keep itemrect visible (only scroll window the function was applied to).<br/>
 		/// </summary>
 		NoScrollParent = unchecked(64),
 

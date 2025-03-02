@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// This structure is likely to evolve as we add support for incremental atlas updates.<br/>
+	/// Conceptually this could be in ImGuiPlatformIO, but we are far from ready to make this public.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontBuilderIO

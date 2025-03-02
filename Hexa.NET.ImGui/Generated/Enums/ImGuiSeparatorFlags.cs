@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Axis default to current layout type, so generally Horizontal unless e.g. in a menu bar<br/>
 		/// </summary>
 		Horizontal = unchecked(1),
 
@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		Vertical = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Make separator cover all columns of a legacy Columns() set.<br/>
 		/// </summary>
 		SpanAllColumns = unchecked(4),
 	}

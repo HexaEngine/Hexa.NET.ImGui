@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Simple column measurement, currently used for MenuItem() only.. This is very short-sightedthrow-away code and NOT a generic helper.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMenuColumns

@@ -41,7 +41,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add character<br/>
 		/// </summary>
-		public unsafe void AddChar(char c)
+		public unsafe void AddChar(uint c)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -52,7 +52,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(char* ranges)
+		public unsafe void AddRanges(uint* ranges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -63,13 +63,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(ref char ranges)
+		public unsafe void AddRanges(ref uint ranges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				fixed (char* pranges = &ranges)
+				fixed (uint* pranges = &ranges)
 				{
-					ImGui.AddRangesNative(@this, (char*)pranges);
+					ImGui.AddRangesNative(@this, (uint*)pranges);
 				}
 			}
 		}
@@ -364,9 +364,183 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ref byte text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, (byte*)ptext, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ref byte text, string textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.AddTextNative(@this, (byte*)ptext, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ReadOnlySpan<byte> text, ref byte textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.AddTextNative(@this, (byte*)ptext, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ReadOnlySpan<byte> text, string textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.AddTextNative(@this, (byte*)ptext, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(string text, ref byte textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.AddTextNative(@this, pStr0, (byte*)ptextEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(string text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, pStr0, (byte*)ptextEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ImVector<char>* outRanges)
+		public unsafe void BuildRanges(ImVector<uint>* outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -377,13 +551,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ref ImVector<char> outRanges)
+		public unsafe void BuildRanges(ref ImVector<uint> outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				fixed (ImVector<char>* poutRanges = &outRanges)
+				fixed (ImVector<uint>* poutRanges = &outRanges)
 				{
-					ImGui.BuildRangesNative(@this, (ImVector<char>*)poutRanges);
+					ImGui.BuildRangesNative(@this, (ImVector<uint>*)poutRanges);
 				}
 			}
 		}
@@ -506,7 +680,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add character<br/>
 		/// </summary>
-		public unsafe void AddChar(char c)
+		public unsafe void AddChar(uint c)
 		{
 			ImGui.AddCharNative(Handle, c);
 		}
@@ -514,7 +688,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(char* ranges)
+		public unsafe void AddRanges(uint* ranges)
 		{
 			ImGui.AddRangesNative(Handle, ranges);
 		}
@@ -522,11 +696,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
-		public unsafe void AddRanges(ref char ranges)
+		public unsafe void AddRanges(ref uint ranges)
 		{
-			fixed (char* pranges = &ranges)
+			fixed (uint* pranges = &ranges)
 			{
-				ImGui.AddRangesNative(Handle, (char*)pranges);
+				ImGui.AddRangesNative(Handle, (uint*)pranges);
 			}
 		}
 
@@ -778,9 +952,165 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ref byte text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, (byte*)ptext, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ref byte text, string textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddTextNative(Handle, (byte*)ptext, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ReadOnlySpan<byte> text, ref byte textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.AddTextNative(Handle, (byte*)ptext, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(ReadOnlySpan<byte> text, string textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddTextNative(Handle, (byte*)ptext, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(string text, ref byte textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				ImGui.AddTextNative(Handle, pStr0, (byte*)ptextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// </summary>
+		public unsafe void AddText(string text, ReadOnlySpan<byte> textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, pStr0, (byte*)ptextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ImVector<char>* outRanges)
+		public unsafe void BuildRanges(ImVector<uint>* outRanges)
 		{
 			ImGui.BuildRangesNative(Handle, outRanges);
 		}
@@ -788,11 +1118,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Output new ranges<br/>
 		/// </summary>
-		public unsafe void BuildRanges(ref ImVector<char> outRanges)
+		public unsafe void BuildRanges(ref ImVector<uint> outRanges)
 		{
-			fixed (ImVector<char>* poutRanges = &outRanges)
+			fixed (ImVector<uint>* poutRanges = &outRanges)
 			{
-				ImGui.BuildRangesNative(Handle, (ImVector<char>*)poutRanges);
+				ImGui.BuildRangesNative(Handle, (ImVector<uint>*)poutRanges);
 			}
 		}
 

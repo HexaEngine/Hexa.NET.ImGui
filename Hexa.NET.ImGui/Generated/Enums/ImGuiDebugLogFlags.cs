@@ -25,67 +25,77 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Error submitted by IM_ASSERT_USER_ERROR()<br/>
 		/// </summary>
-		EventActiveId = unchecked(1),
+		EventError = unchecked(1),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventFocus = unchecked(2),
+		EventActiveId = unchecked(2),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventPopup = unchecked(4),
+		EventFocus = unchecked(4),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventNav = unchecked(8),
+		EventPopup = unchecked(8),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventClipper = unchecked(16),
+		EventNav = unchecked(16),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventSelection = unchecked(32),
+		EventClipper = unchecked(32),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventIo = unchecked(64),
+		EventSelection = unchecked(64),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventInputRouting = unchecked(128),
+		EventIo = unchecked(128),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventDocking = unchecked(256),
+		EventFont = unchecked(256),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventViewport = unchecked(512),
+		EventInputRouting = unchecked(512),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventMask = unchecked(1023),
+		EventDocking = unchecked(1024),
 
 		/// <summary>
 		/// To be documented.
+		/// </summary>
+		EventViewport = unchecked(2048),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		EventMask = unchecked(4095),
+
+		/// <summary>
+		/// Also send output to TTY<br/>
 		/// </summary>
 		OutputToTty = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Also send output to Test Engine<br/>
 		/// </summary>
 		OutputToTestEngine = unchecked(2097152),
 	}

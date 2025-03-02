@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Hexa.NET.ImGui.Widgets" Version="1.1.18" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.2.1" />
+		<PackageReference Include="Hexa.NET.GLFW" Version="1.0.4" />
+		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.Direct3D11" Version="2.22.0" />
+		<PackageReference Include="Silk.NET.DXGI" Version="2.22.0" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.GLFW\Hexa.NET.ImGui.Backends.GLFW.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <None Update="arialuni.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="MaterialSymbolsRounded.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="NotoColorEmoji-Regular.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="seguiemj.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

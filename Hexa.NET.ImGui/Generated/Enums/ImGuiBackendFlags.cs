@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		HasMouseCursors = unchecked(2),
 
 		/// <summary>
-		/// Backend Platform supports io.WantSetMousePos requests to reposition the OS mouse position (only used if ImGuiConfigFlags_NavEnableSetMousePos is set).<br/>
+		/// Backend Platform supports io.WantSetMousePos requests to reposition the OS mouse position (only used if io.ConfigNavMoveSetMousePos is set).<br/>
 		/// </summary>
 		HasSetMousePos = unchecked(4),
 

@@ -56,6 +56,301 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(uint id)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlotItem* ret = ImPlot.GetItemNative(@this, id);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(byte* labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlotItem* ret = ImPlot.GetItemNative(@this, labelId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(ref byte labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				fixed (byte* plabelId = &labelId)
+				{
+					ImPlotItem* ret = ImPlot.GetItemNative(@this, (byte*)plabelId);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(ReadOnlySpan<byte> labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				fixed (byte* plabelId = labelId)
+				{
+					ImPlotItem* ret = ImPlot.GetItemNative(@this, (byte*)plabelId);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(string labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelId != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelId);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotItem* ret = ImPlot.GetItemNative(@this, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItemByIndex(int i)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlotItem* ret = ImPlot.GetItemByIndexNative(@this, i);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetItemCount()
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				int ret = ImPlot.GetItemCountNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(byte* labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				uint ret = ImPlot.GetItemIDNative(@this, labelId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(ref byte labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				fixed (byte* plabelId = &labelId)
+				{
+					uint ret = ImPlot.GetItemIDNative(@this, (byte*)plabelId);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(ReadOnlySpan<byte> labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				fixed (byte* plabelId = labelId)
+				{
+					uint ret = ImPlot.GetItemIDNative(@this, (byte*)plabelId);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(string labelId)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelId != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelId);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				uint ret = ImPlot.GetItemIDNative(@this, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetItemIndex(ImPlotItem* item)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				int ret = ImPlot.GetItemIndexNative(@this, item);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetItemIndex(ref ImPlotItem item)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				fixed (ImPlotItem* pitem = &item)
+				{
+					int ret = ImPlot.GetItemIndexNative(@this, (ImPlotItem*)pitem);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetLegendCount()
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				int ret = ImPlot.GetLegendCountNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetLegendItem(int i)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlotItem* ret = ImPlot.GetLegendItemNative(@this, i);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetLegendLabel(int i)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				byte* ret = ImPlot.GetLegendLabelNative(@this, i);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetLegendLabelS(int i)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlot.GetLegendLabelNative(@this, i));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetOrAddItem(uint id)
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlotItem* ret = ImPlot.GetOrAddItemNative(@this, id);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			fixed (ImPlotItemGroup* @this = &this)
+			{
+				ImPlot.ResetNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -115,6 +410,241 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref int ColormapIdx => ref Unsafe.AsRef<int>(&Handle->ColormapIdx);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(uint id)
+		{
+			ImPlotItem* ret = ImPlot.GetItemNative(Handle, id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(byte* labelId)
+		{
+			ImPlotItem* ret = ImPlot.GetItemNative(Handle, labelId);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(ref byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				ImPlotItem* ret = ImPlot.GetItemNative(Handle, (byte*)plabelId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(ReadOnlySpan<byte> labelId)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				ImPlotItem* ret = ImPlot.GetItemNative(Handle, (byte*)plabelId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItem(string labelId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotItem* ret = ImPlot.GetItemNative(Handle, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetItemByIndex(int i)
+		{
+			ImPlotItem* ret = ImPlot.GetItemByIndexNative(Handle, i);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetItemCount()
+		{
+			int ret = ImPlot.GetItemCountNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(byte* labelId)
+		{
+			uint ret = ImPlot.GetItemIDNative(Handle, labelId);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(ref byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				uint ret = ImPlot.GetItemIDNative(Handle, (byte*)plabelId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(ReadOnlySpan<byte> labelId)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				uint ret = ImPlot.GetItemIDNative(Handle, (byte*)plabelId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetItemID(string labelId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			uint ret = ImPlot.GetItemIDNative(Handle, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetItemIndex(ImPlotItem* item)
+		{
+			int ret = ImPlot.GetItemIndexNative(Handle, item);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetItemIndex(ref ImPlotItem item)
+		{
+			fixed (ImPlotItem* pitem = &item)
+			{
+				int ret = ImPlot.GetItemIndexNative(Handle, (ImPlotItem*)pitem);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetLegendCount()
+		{
+			int ret = ImPlot.GetLegendCountNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetLegendItem(int i)
+		{
+			ImPlotItem* ret = ImPlot.GetLegendItemNative(Handle, i);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetLegendLabel(int i)
+		{
+			byte* ret = ImPlot.GetLegendLabelNative(Handle, i);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetLegendLabelS(int i)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlot.GetLegendLabelNative(Handle, i));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotItem* GetOrAddItem(uint id)
+		{
+			ImPlotItem* ret = ImPlot.GetOrAddItemNative(Handle, id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			ImPlot.ResetNative(Handle);
+		}
+
 	}
 
 }

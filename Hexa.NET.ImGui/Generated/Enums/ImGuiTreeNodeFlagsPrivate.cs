@@ -20,12 +20,12 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiTreeNodeFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// FIXME-WIP: Hard-coded for CollapsingHeader()<br/>
 		/// </summary>
 		ClipLabelForTrailingButton = unchecked(268435456),
 
 		/// <summary>
-		/// To be documented.
+		/// FIXME-WIP: Turn Down arrow into an Up arrow, for reversed trees (#6517)<br/>
 		/// </summary>
 		UpsideDownArrow = unchecked(536870912),
 

@@ -1,6 +1,7 @@
 ﻿namespace ExampleFramework
 {
     using ExampleFramework.Input;
+    using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.SDL;
     using System;
     using System.Collections.Generic;
@@ -31,6 +32,11 @@
             hooks.Add(hook);
         }
 
+        public static void RemoveHook(Func<Event, bool> hook)
+        {
+            hooks.Remove(hook);
+        }
+
         public static void Init(Backend backend)
         {
             Backend = backend;
@@ -58,9 +64,14 @@
             mainWindow = window;
             mainWindowId = window.Id;
             window.InitGraphics();
+
             window.Show();
 
             PlatformRun();
+
+            window.Dispose();
+
+            sdl.Quit();
         }
 
         private static void PlatformRun()

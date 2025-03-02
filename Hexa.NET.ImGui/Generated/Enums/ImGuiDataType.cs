@@ -75,8 +75,13 @@ namespace Hexa.NET.ImGui
 		Bool = unchecked(10),
 
 		/// <summary>
+		/// char* (provided for user convenience, not supported by scalar widgets)<br/>
+		/// </summary>
+		String = unchecked(11),
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(11),
+		Count = unchecked(12),
 	}
 }

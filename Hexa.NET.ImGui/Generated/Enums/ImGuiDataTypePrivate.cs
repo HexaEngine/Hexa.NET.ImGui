@@ -22,11 +22,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		String = unchecked(12),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		Pointer = unchecked(13),
 
 		/// <summary>

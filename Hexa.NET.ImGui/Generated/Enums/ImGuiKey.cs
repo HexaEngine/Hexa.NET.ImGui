@@ -25,6 +25,11 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
+		/// First valid key value (other than 0)<br/>
+		/// </summary>
+		NamedKeyBegin = unchecked(512),
+
+		/// <summary>
 		/// == ImGuiKey_NamedKey_BEGIN<br/>
 		/// </summary>
 		Tab = unchecked(512),
@@ -796,7 +801,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(666),
+		NamedKeyEnd = unchecked(666),
 
 		/// <summary>
 		/// To be documented.
@@ -831,26 +836,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		NamedKeyBegin = unchecked(512),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		NamedKeyEnd = Count,
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		NamedKeyCount = unchecked(154),
-
-		/// <summary>
-		/// Size of KeysData[]: only hold named keys<br/>
-		/// </summary>
-		KeysDataSize = NamedKeyCount,
-
-		/// <summary>
-		/// Accesses to io.KeysData[] must use (key - ImGuiKey_KeysData_OFFSET) index.<br/>
-		/// </summary>
-		KeysDataOffset = NamedKeyBegin,
 	}
 }

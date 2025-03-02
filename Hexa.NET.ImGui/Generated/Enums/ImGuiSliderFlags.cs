@@ -25,11 +25,6 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Clamp value to minmax bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds.<br/>
-		/// </summary>
-		AlwaysClamp = unchecked(16),
-
-		/// <summary>
 		/// Make the widget logarithmic (linear otherwise). Consider using ImGuiSliderFlags_NoRoundToFormat with this if using a format-string with small amount of digits.<br/>
 		/// </summary>
 		Logarithmic = unchecked(32),
@@ -45,9 +40,29 @@ namespace Hexa.NET.ImGui
 		NoInput = unchecked(128),
 
 		/// <summary>
-		/// Enable wrapping around from max to min and from min to max (only supported by DragXXX() functions for now.<br/>
+		/// Enable wrapping around from max to min and from min to max. Only supported by DragXXX() functions for now.<br/>
 		/// </summary>
 		WrapAround = unchecked(256),
+
+		/// <summary>
+		/// Clamp value to minmax bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds.<br/>
+		/// </summary>
+		ClampOnInput = unchecked(512),
+
+		/// <summary>
+		/// Clamp even if min==max==0.0f. Otherwise due to legacy reason DragXXX functions don't clamp with those values. When your clamping limits are dynamic you almost always want to use it.<br/>
+		/// </summary>
+		ClampZeroRange = unchecked(1024),
+
+		/// <summary>
+		/// Disable keyboard modifiers altering tweak speed. Useful if you want to alter tweak speed yourself based on your own logic.<br/>
+		/// </summary>
+		NoSpeedTweaks = unchecked(2048),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		AlwaysClamp = unchecked(1536),
 
 		/// <summary>
 		/// [Internal] We treat using those bits as being potentially a 'float power' argument from the previous API that has got miscast to this enum, and will trigger an assert if needed.<br/>

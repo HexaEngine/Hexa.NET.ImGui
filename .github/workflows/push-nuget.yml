@@ -1,0 +1,63 @@
+name: Publish NuGet Packages
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'  # Change this to your required .NET version
+
+      - name: Restore dependencies
+        run: |
+          dotnet restore Hexa.NET.ImGui/Hexa.NET.ImGui.csproj
+          dotnet restore Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj
+          dotnet restore Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj
+          dotnet restore Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj
+          dotnet restore Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj
+          dotnet restore Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj
+          dotnet restore Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj
+
+      - name: Build the project
+        run: |
+          dotnet build Hexa.NET.ImGui/Hexa.NET.ImGui.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj --configuration Release
+          dotnet build Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release
+          dotnet build Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release
+          dotnet build Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release
+
+      - name: Pack the project
+        run: |
+          dotnet pack Hexa.NET.ImGui/Hexa.NET.ImGui.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release --output ./nupkgs
+
+      - name: Exclude unwanted packages
+        run: |
+          # Exclude packages that don't start with "Hexa.NET."
+          for package in ./nupkgs/*.nupkg; do
+              package_name=$(basename "$package")
+              if [[ ! $package_name == Hexa.NET* ]]; then
+                  echo "Removing $package_name as it does not start with Hexa.NET."
+                  rm -f "$package"
+              fi
+          done
+          
+      - name: List packages
+        run: ls ./nupkgs/
+
+      - name: Publish the package
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

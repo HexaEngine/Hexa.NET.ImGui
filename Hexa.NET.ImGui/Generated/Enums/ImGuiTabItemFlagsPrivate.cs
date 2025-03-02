@@ -25,18 +25,23 @@ namespace Hexa.NET.ImGui
 		SectionMask = unchecked(192),
 
 		/// <summary>
-		/// To be documented.
+		/// Track whether p_open was set or not (we'll need this info on the next frame to recompute ContentWidth during layout)<br/>
 		/// </summary>
 		NoCloseButton = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Used by TabItemButton, change the tab item behavior to mimic a button<br/>
 		/// </summary>
 		Button = unchecked(2097152),
 
 		/// <summary>
-		/// To be documented.
+		/// To reserve space e.g. with ImGuiTabItemFlags_Leading<br/>
 		/// </summary>
-		Unsorted = unchecked(4194304),
+		Invisible = unchecked(4194304),
+
+		/// <summary>
+		/// [Docking] Trailing tabs with the _Unsorted flag will be sorted based on the DockOrder of their Window.<br/>
+		/// </summary>
+		Unsorted = unchecked(8388608),
 	}
 }

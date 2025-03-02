@@ -290,9 +290,9 @@ namespace Hexa.NET.ImGui
 		DragDropTarget = unchecked(53),
 
 		/// <summary>
-		/// Gamepadkeyboard: current highlighted item<br/>
+		/// Color of keyboardgamepad navigation cursorrectangle, when visible<br/>
 		/// </summary>
-		NavHighlight = unchecked(54),
+		NavCursor = unchecked(54),
 
 		/// <summary>
 		/// Highlight window when using CTRL+TAB<br/>

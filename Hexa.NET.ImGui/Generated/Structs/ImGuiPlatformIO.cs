@@ -60,7 +60,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public char PlatformLocaleDecimalPoint;
+		public uint PlatformLocaleDecimalPoint;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* RendererRenderState;
 
 		/// <summary>
 		/// To be documented.
@@ -196,7 +201,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiPlatformIO(delegate*<ImGuiContext*, byte*> platformGetclipboardtextfn = default, delegate*<ImGuiContext*, byte*, void> platformSetclipboardtextfn = default, void* platformClipboarduserdata = default, delegate*<ImGuiContext*, byte*, bool> platformOpeninshellfn = default, void* platformOpeninshelluserdata = default, delegate*<ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData*, void> platformSetimedatafn = default, void* platformImeuserdata = default, char platformLocaledecimalpoint = default, delegate*<ImGuiViewport*, void> platformCreatewindow = default, delegate*<ImGuiViewport*, void> platformDestroywindow = default, delegate*<ImGuiViewport*, void> platformShowwindow = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowpos = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowpos = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowsize = default, delegate*<ImGuiViewport*, void> platformSetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowminimized = default, delegate*<ImGuiViewport*, byte*, void> platformSetwindowtitle = default, delegate*<ImGuiViewport*, float, void> platformSetwindowalpha = default, delegate*<ImGuiViewport*, void> platformUpdatewindow = default, delegate*<ImGuiViewport*, void*, void> platformRenderwindow = default, delegate*<ImGuiViewport*, void*, void> platformSwapbuffers = default, delegate*<ImGuiViewport*, float> platformGetwindowdpiscale = default, delegate*<ImGuiViewport*, void> platformOnchangedviewport = default, delegate*<ImGuiViewport*, Vector4> platformGetwindowworkareainsets = default, delegate*<ImGuiViewport*, ulong, void*, ulong*, int> platformCreatevksurface = default, delegate*<ImGuiViewport*, void> rendererCreatewindow = default, delegate*<ImGuiViewport*, void> rendererDestroywindow = default, delegate*<ImGuiViewport*, Vector2, void> rendererSetwindowsize = default, delegate*<ImGuiViewport*, void*, void> rendererRenderwindow = default, delegate*<ImGuiViewport*, void*, void> rendererSwapbuffers = default, ImVector<ImGuiPlatformMonitor> monitors = default, ImVector<ImGuiViewportPtr> viewports = default)
+		public unsafe ImGuiPlatformIO(delegate*<ImGuiContext*, byte*> platformGetclipboardtextfn = default, delegate*<ImGuiContext*, byte*, void> platformSetclipboardtextfn = default, void* platformClipboarduserdata = default, delegate*<ImGuiContext*, byte*, bool> platformOpeninshellfn = default, void* platformOpeninshelluserdata = default, delegate*<ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData*, void> platformSetimedatafn = default, void* platformImeuserdata = default, uint platformLocaledecimalpoint = default, void* rendererRenderstate = default, delegate*<ImGuiViewport*, void> platformCreatewindow = default, delegate*<ImGuiViewport*, void> platformDestroywindow = default, delegate*<ImGuiViewport*, void> platformShowwindow = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowpos = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowpos = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowsize = default, delegate*<ImGuiViewport*, void> platformSetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowminimized = default, delegate*<ImGuiViewport*, byte*, void> platformSetwindowtitle = default, delegate*<ImGuiViewport*, float, void> platformSetwindowalpha = default, delegate*<ImGuiViewport*, void> platformUpdatewindow = default, delegate*<ImGuiViewport*, void*, void> platformRenderwindow = default, delegate*<ImGuiViewport*, void*, void> platformSwapbuffers = default, delegate*<ImGuiViewport*, float> platformGetwindowdpiscale = default, delegate*<ImGuiViewport*, void> platformOnchangedviewport = default, delegate*<ImGuiViewport*, Vector4> platformGetwindowworkareainsets = default, delegate*<ImGuiViewport*, ulong, void*, ulong*, int> platformCreatevksurface = default, delegate*<ImGuiViewport*, void> rendererCreatewindow = default, delegate*<ImGuiViewport*, void> rendererDestroywindow = default, delegate*<ImGuiViewport*, Vector2, void> rendererSetwindowsize = default, delegate*<ImGuiViewport*, void*, void> rendererRenderwindow = default, delegate*<ImGuiViewport*, void*, void> rendererSwapbuffers = default, ImVector<ImGuiPlatformMonitor> monitors = default, ImVector<ImGuiViewportPtr> viewports = default)
 		{
 			PlatformGetClipboardTextFn = (void*)platformGetclipboardtextfn;
 			PlatformSetClipboardTextFn = (void*)platformSetclipboardtextfn;
@@ -206,6 +211,7 @@ namespace Hexa.NET.ImGui
 			PlatformSetImeDataFn = (void*)platformSetimedatafn;
 			PlatformImeUserData = platformImeuserdata;
 			PlatformLocaleDecimalPoint = platformLocaledecimalpoint;
+			RendererRenderState = rendererRenderstate;
 			PlatformCreateWindow = (void*)platformCreatewindow;
 			PlatformDestroyWindow = (void*)platformDestroywindow;
 			PlatformShowWindow = (void*)platformShowwindow;
@@ -320,7 +326,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref char PlatformLocaleDecimalPoint => ref Unsafe.AsRef<char>(&Handle->PlatformLocaleDecimalPoint);
+		public ref uint PlatformLocaleDecimalPoint => ref Unsafe.AsRef<uint>(&Handle->PlatformLocaleDecimalPoint);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* RendererRenderState { get => Handle->RendererRenderState; set => Handle->RendererRenderState = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

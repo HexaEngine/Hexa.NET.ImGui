@@ -17,7 +17,9 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Windows data saved in imgui.ini file<br/>
+	/// Because we never destroy or rename ImGuiWindowSettings, we can store the names in a separate buffer easily.<br/>
+	/// (this is designed to be stored in a ImChunkStream buffer, with the variable-length Name following our structure)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiWindowSettings

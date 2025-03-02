@@ -14,6 +14,7 @@ namespace ExampleD3D11
     using System.Runtime.InteropServices;
     using ImDrawIdx = UInt16;
 
+    [Obsolete("Use ImGuiImplD3D11 instead")]
     public static class ImGuiD3D11Renderer
     {
         private static readonly D3DCompiler D3DCompiler = D3DCompiler.GetApi();
@@ -198,13 +199,13 @@ namespace ExampleD3D11
                     {
                         // User callback, registered via ImDrawList::AddCallback()
                         // (ImDrawCallback_ResetRenderState is a special callback value used by the user to request the renderer to reset render state.)
-                        if ((nint)cmd.UserCallback == -1)
+                        if ((nint)cmd.UserCallback == ImGui.ImDrawCallbackResetRenderState)
                         {
                             SetupRenderState(data, ctx);
                         }
                         else
                         {
-                            Marshal.GetDelegateForFunctionPointer<UserCallback>((nint)cmd.UserCallback)(cmdList, &cmd);
+                            ((delegate*<ImDrawList*, ImDrawCmd*, void>)cmd.UserCallback)(cmdList, &cmd);
                         }
                     }
                     else

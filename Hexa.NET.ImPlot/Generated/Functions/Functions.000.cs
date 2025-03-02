@@ -21,12 +21,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotPoint* ImPlotPointNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)vt[0])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)funcTable[0])();
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<nint>)vt[0])();
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<nint>)funcTable[0])();
 			#endif
 		}
 
@@ -42,12 +43,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImPlotPoint* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)vt[1])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)funcTable[1])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[1])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1])((nint)self);
 			#endif
 		}
 
@@ -73,12 +75,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotPoint* ImPlotPointNative(double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)vt[2])(x, y);
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)funcTable[2])(x, y);
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<double, double, nint>)vt[2])(x, y);
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[2])(x, y);
 			#endif
 		}
 
@@ -94,12 +97,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotPoint* ImPlotPointNative(Vector2 p)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)vt[3])(p);
+			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)funcTable[3])(p);
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<Vector2, nint>)vt[3])(p);
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<Vector2, nint>)funcTable[3])(p);
 			#endif
 		}
 
@@ -115,12 +119,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotRange* ImPlotRangeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)vt[4])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)funcTable[4])();
 			#else
-			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<nint>)vt[4])();
+			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<nint>)funcTable[4])();
 			#endif
 		}
 
@@ -136,12 +141,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImPlotRange* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)vt[5])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)funcTable[5])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[5])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[5])((nint)self);
 			#endif
 		}
 
@@ -167,12 +173,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotRange* ImPlotRangeNative(double min, double max)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)vt[6])(min, max);
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)funcTable[6])(min, max);
 			#else
-			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<double, double, nint>)vt[6])(min, max);
+			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[6])(min, max);
 			#endif
 		}
 
@@ -188,12 +195,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ContainsNative(ImPlotRange* self, double value)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)vt[7])(self, value);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)funcTable[7])(self, value);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte>)vt[7])((nint)self, value);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte>)funcTable[7])((nint)self, value);
 			#endif
 		}
 
@@ -221,12 +229,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double SizeNative(ImPlotRange* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)vt[8])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)funcTable[8])(self);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[8])((nint)self);
+			return (double)((delegate* unmanaged[Cdecl]<nint, double>)funcTable[8])((nint)self);
 			#endif
 		}
 
@@ -254,12 +263,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double ClampNative(ImPlotRange* self, double value)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)vt[9])(self, value);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)funcTable[9])(self, value);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double, double>)vt[9])((nint)self, value);
+			return (double)((delegate* unmanaged[Cdecl]<nint, double, double>)funcTable[9])((nint)self, value);
 			#endif
 		}
 
@@ -287,12 +297,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotRect* ImPlotRectNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)vt[10])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)funcTable[10])();
 			#else
-			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<nint>)vt[10])();
+			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[10])();
 			#endif
 		}
 
@@ -308,12 +319,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)vt[11])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)funcTable[11])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[11])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[11])((nint)self);
 			#endif
 		}
 
@@ -339,12 +351,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)vt[12])(xMin, xMax, yMin, yMax);
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)funcTable[12])(xMin, xMax, yMin, yMax);
 			#else
-			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)vt[12])(xMin, xMax, yMin, yMax);
+			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)funcTable[12])(xMin, xMax, yMin, yMax);
 			#endif
 		}
 
@@ -360,12 +373,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ContainsNative(ImPlotRect* self, ImPlotPoint p)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)vt[13])(self, p);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)funcTable[13])(self, p);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, byte>)vt[13])((nint)self, p);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, byte>)funcTable[13])((nint)self, p);
 			#endif
 		}
 
@@ -393,12 +407,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ContainsNative(ImPlotRect* self, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)vt[14])(self, x, y);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)funcTable[14])(self, x, y);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, double, byte>)vt[14])((nint)self, x, y);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, double, byte>)funcTable[14])((nint)self, x, y);
 			#endif
 		}
 
@@ -426,12 +441,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SizeNative(ImPlotPoint* pOut, ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[15])(pOut, self);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[15])(pOut, self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[15])((nint)pOut, (nint)self);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[15])((nint)pOut, (nint)self);
 			#endif
 		}
 
@@ -505,12 +521,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClampNative(ImPlotPoint* pOut, ImPlotRect* self, ImPlotPoint p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, ImPlotPoint, void>)vt[16])(pOut, self, p);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, ImPlotPoint, void>)funcTable[16])(pOut, self, p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotPoint, void>)vt[16])((nint)pOut, (nint)self, p);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotPoint, void>)funcTable[16])((nint)pOut, (nint)self, p);
 			#endif
 		}
 
@@ -584,12 +601,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClampNative(ImPlotPoint* pOut, ImPlotRect* self, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, double, double, void>)vt[17])(pOut, self, x, y);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, double, double, void>)funcTable[17])(pOut, self, x, y);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)vt[17])((nint)pOut, (nint)self, x, y);
+			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)funcTable[17])((nint)pOut, (nint)self, x, y);
 			#endif
 		}
 
@@ -663,12 +681,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MinNative(ImPlotPoint* pOut, ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[18])(pOut, self);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[18])(pOut, self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[18])((nint)pOut, (nint)self);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[18])((nint)pOut, (nint)self);
 			#endif
 		}
 
@@ -742,12 +761,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MaxNative(ImPlotPoint* pOut, ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[19])(pOut, self);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[19])(pOut, self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[19])((nint)pOut, (nint)self);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[19])((nint)pOut, (nint)self);
 			#endif
 		}
 
@@ -821,12 +841,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotStyle* ImPlotStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)vt[20])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)funcTable[20])();
 			#else
-			return (ImPlotStyle*)((delegate* unmanaged[Cdecl]<nint>)vt[20])();
+			return (ImPlotStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[20])();
 			#endif
 		}
 
@@ -842,12 +863,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImPlotStyle* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[21])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)funcTable[21])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[21])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[21])((nint)self);
 			#endif
 		}
 
@@ -873,12 +895,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotInputMap* ImPlotInputMapNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)vt[22])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)funcTable[22])();
 			#else
-			return (ImPlotInputMap*)((delegate* unmanaged[Cdecl]<nint>)vt[22])();
+			return (ImPlotInputMap*)((delegate* unmanaged[Cdecl]<nint>)funcTable[22])();
 			#endif
 		}
 
@@ -894,12 +917,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImPlotInputMap* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)vt[23])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)funcTable[23])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[23])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[23])((nint)self);
 			#endif
 		}
 
@@ -925,12 +949,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotContext* CreateContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)vt[24])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)funcTable[24])();
 			#else
-			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)vt[24])();
+			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[24])();
 			#endif
 		}
 
@@ -946,12 +971,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyContextNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[25])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)funcTable[25])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[25])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[25])((nint)ctx);
 			#endif
 		}
 
@@ -985,12 +1011,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImPlotContext* GetCurrentContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)vt[26])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)funcTable[26])();
 			#else
-			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)vt[26])();
+			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[26])();
 			#endif
 		}
 
@@ -1006,12 +1033,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCurrentContextNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[27])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)funcTable[27])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[27])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[27])((nint)ctx);
 			#endif
 		}
 
@@ -1037,19 +1065,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetImGuiContextNative(ImGuiContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[28])(ctx);
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[28])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[28])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[28])((nint)ctx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetImGuiContext(ImGuiContext* ctx)
+		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
 			SetImGuiContextNative(ctx);
 		}
@@ -1068,12 +1097,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPlotNative(byte* titleId, Vector2 size, ImPlotFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotFlags, byte>)vt[29])(titleId, size, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotFlags, byte>)funcTable[29])(titleId, size, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlotFlags, byte>)vt[29])((nint)titleId, size, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlotFlags, byte>)funcTable[29])((nint)titleId, size, flags);
 			#endif
 		}
 
@@ -1332,12 +1362,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndPlotNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
 			#endif
 		}
 
@@ -1352,12 +1383,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginSubplotsNative(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int, Vector2, ImPlotSubplotFlags, float*, float*, byte>)vt[31])(titleId, rows, cols, size, flags, rowRatios, colRatios);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int, Vector2, ImPlotSubplotFlags, float*, float*, byte>)funcTable[31])(titleId, rows, cols, size, flags, rowRatios, colRatios);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, ImPlotSubplotFlags, nint, nint, byte>)vt[31])((nint)titleId, rows, cols, size, flags, (nint)rowRatios, (nint)colRatios);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, ImPlotSubplotFlags, nint, nint, byte>)funcTable[31])((nint)titleId, rows, cols, size, flags, (nint)rowRatios, (nint)colRatios);
 			#endif
 		}
 
@@ -2366,12 +2398,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndSubplotsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
 			#endif
 		}
 
@@ -2386,12 +2419,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisNative(ImAxis axis, byte* label, ImPlotAxisFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, byte*, ImPlotAxisFlags, void>)vt[33])(axis, label, flags);
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, ImPlotAxisFlags, void>)funcTable[33])(axis, label, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, ImPlotAxisFlags, void>)vt[33])(axis, (nint)label, flags);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, ImPlotAxisFlags, void>)funcTable[33])(axis, (nint)label, flags);
 			#endif
 		}
 
@@ -2532,12 +2566,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[34])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[34])(axis, vMin, vMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[34])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[34])(axis, vMin, vMax, cond);
 			#endif
 		}
 
@@ -2560,12 +2595,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)vt[35])(axis, linkMin, linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)funcTable[35])(axis, linkMin, linkMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)vt[35])(axis, (nint)linkMin, (nint)linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[35])(axis, (nint)linkMin, (nint)linkMax);
 			#endif
 		}
 
@@ -2616,12 +2652,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisFormatNative(ImAxis axis, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, byte*, void>)vt[36])(axis, fmt);
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, void>)funcTable[36])(axis, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, void>)vt[36])(axis, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, void>)funcTable[36])(axis, (nint)fmt);
 			#endif
 		}
 
@@ -2687,12 +2724,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisFormatNative(ImAxis axis, ImPlotFormatter formatter, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, byte*, int, void*, int>, void*, void>)vt[37])(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[37])(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)vt[37])(axis, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[37])(axis, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
 			#endif
 		}
 
@@ -2715,12 +2753,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisTicksNative(ImAxis axis, double* values, int nTicks, byte** labels, byte keepDefault)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double*, int, byte**, byte, void>)vt[38])(axis, values, nTicks, labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, int, byte**, byte, void>)funcTable[38])(axis, values, nTicks, labels, keepDefault);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, int, nint, byte, void>)vt[38])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, int, nint, byte, void>)funcTable[38])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
 			#endif
 		}
 
@@ -2945,12 +2984,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisTicksNative(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, byte keepDefault)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, byte**, byte, void>)vt[39])(axis, vMin, vMax, nTicks, labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, byte**, byte, void>)funcTable[39])(axis, vMin, vMax, nTicks, labels, keepDefault);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, nint, byte, void>)vt[39])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, nint, byte, void>)funcTable[39])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
 			#endif
 		}
 
@@ -3057,12 +3097,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotScale scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)vt[40])(axis, scale);
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)funcTable[40])(axis, scale);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)vt[40])(axis, scale);
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)funcTable[40])(axis, scale);
 			#endif
 		}
 
@@ -3077,12 +3118,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, void*, double>, delegate*<double, void*, double>, void*, void>)vt[41])(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), data);
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, void*, double>, delegate*<double, void*, double>, void*, void>)funcTable[41])(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), data);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, nint, void>)vt[41])(axis, (nint)Utils.GetFunctionPointerForDelegate(forward), (nint)Utils.GetFunctionPointerForDelegate(inverse), (nint)data);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, nint, void>)funcTable[41])(axis, (nint)Utils.GetFunctionPointerForDelegate(forward), (nint)Utils.GetFunctionPointerForDelegate(inverse), (nint)data);
 			#endif
 		}
 
@@ -3105,12 +3147,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisLimitsConstraintsNative(ImAxis axis, double vMin, double vMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[42])(axis, vMin, vMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[42])(axis, vMin, vMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[42])(axis, vMin, vMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[42])(axis, vMin, vMax);
 			#endif
 		}
 
@@ -3125,12 +3168,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxisZoomConstraintsNative(ImAxis axis, double zMin, double zMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[43])(axis, zMin, zMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[43])(axis, zMin, zMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[43])(axis, zMin, zMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[43])(axis, zMin, zMax);
 			#endif
 		}
 
@@ -3145,12 +3189,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxesNative(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ImPlotAxisFlags, ImPlotAxisFlags, void>)vt[44])(xLabel, yLabel, xFlags, yFlags);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImPlotAxisFlags, ImPlotAxisFlags, void>)funcTable[44])(xLabel, yLabel, xFlags, yFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotAxisFlags, ImPlotAxisFlags, void>)vt[44])((nint)xLabel, (nint)yLabel, xFlags, yFlags);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotAxisFlags, ImPlotAxisFlags, void>)funcTable[44])((nint)xLabel, (nint)yLabel, xFlags, yFlags);
 			#endif
 		}
 
@@ -3721,12 +3766,481 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void SetupAxes(ref byte xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pxLabel = &xLabel)
+			{
+				fixed (byte* pyLabel = yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, xFlags, yFlags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ref byte xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pxLabel = &xLabel)
+			{
+				fixed (byte* pyLabel = yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, xFlags, (ImPlotAxisFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ref byte xLabel, ReadOnlySpan<byte> yLabel)
+		{
+			fixed (byte* pxLabel = &xLabel)
+			{
+				fixed (byte* pyLabel = yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ref byte xLabel, string yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pxLabel = &xLabel)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (yLabel != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(yLabel);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(yLabel, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SetupAxesNative((byte*)pxLabel, pStr0, xFlags, yFlags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ref byte xLabel, string yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pxLabel = &xLabel)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (yLabel != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(yLabel);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(yLabel, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SetupAxesNative((byte*)pxLabel, pStr0, xFlags, (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ref byte xLabel, string yLabel)
+		{
+			fixed (byte* pxLabel = &xLabel)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (yLabel != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(yLabel);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(yLabel, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SetupAxesNative((byte*)pxLabel, pStr0, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				fixed (byte* pyLabel = &yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, xFlags, yFlags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ref byte yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				fixed (byte* pyLabel = &yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, xFlags, (ImPlotAxisFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ref byte yLabel)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				fixed (byte* pyLabel = &yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, string yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (yLabel != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(yLabel);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(yLabel, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SetupAxesNative((byte*)pxLabel, pStr0, xFlags, yFlags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, string yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (yLabel != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(yLabel);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(yLabel, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SetupAxesNative((byte*)pxLabel, pStr0, xFlags, (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, string yLabel)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (yLabel != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(yLabel);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(yLabel, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SetupAxesNative((byte*)pxLabel, pStr0, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(string xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (xLabel != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(xLabel);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(xLabel, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pyLabel = &yLabel)
+			{
+				SetupAxesNative(pStr0, (byte*)pyLabel, xFlags, yFlags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(string xLabel, ref byte yLabel, ImPlotAxisFlags xFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (xLabel != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(xLabel);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(xLabel, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pyLabel = &yLabel)
+			{
+				SetupAxesNative(pStr0, (byte*)pyLabel, xFlags, (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(string xLabel, ref byte yLabel)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (xLabel != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(xLabel);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(xLabel, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pyLabel = &yLabel)
+			{
+				SetupAxesNative(pStr0, (byte*)pyLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(string xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (xLabel != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(xLabel);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(xLabel, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pyLabel = yLabel)
+			{
+				SetupAxesNative(pStr0, (byte*)pyLabel, xFlags, yFlags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(string xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (xLabel != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(xLabel);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(xLabel, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pyLabel = yLabel)
+			{
+				SetupAxesNative(pStr0, (byte*)pyLabel, xFlags, (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxes(string xLabel, ReadOnlySpan<byte> yLabel)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (xLabel != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(xLabel);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(xLabel, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pyLabel = yLabel)
+			{
+				SetupAxesNative(pStr0, (byte*)pyLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[45])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[45])(xMin, xMax, yMin, yMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[45])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[45])(xMin, xMax, yMin, yMax, cond);
 			#endif
 		}
 
@@ -3749,12 +4263,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupLegendNative(ImPlotLocation location, ImPlotLegendFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)vt[46])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)funcTable[46])(location, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)vt[46])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)funcTable[46])(location, flags);
 			#endif
 		}
 
@@ -3777,12 +4292,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupMouseTextNative(ImPlotLocation location, ImPlotMouseTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)vt[47])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)funcTable[47])(location, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)vt[47])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)funcTable[47])(location, flags);
 			#endif
 		}
 
@@ -3805,12 +4321,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetupFinishNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[48])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[48])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
 			#endif
 		}
 
@@ -3825,12 +4342,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[49])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[49])(axis, vMin, vMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[49])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[49])(axis, vMin, vMax, cond);
 			#endif
 		}
 
@@ -3853,12 +4371,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)vt[50])(axis, linkMin, linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)funcTable[50])(axis, linkMin, linkMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)vt[50])(axis, (nint)linkMin, (nint)linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[50])(axis, (nint)linkMin, (nint)linkMax);
 			#endif
 		}
 
@@ -3909,12 +4428,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextAxisToFitNative(ImAxis axis)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, void>)vt[51])(axis);
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)funcTable[51])(axis);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, void>)vt[51])(axis);
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)funcTable[51])(axis);
 			#endif
 		}
 
@@ -3929,12 +4449,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[52])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[52])(xMin, xMax, yMin, yMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[52])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[52])(xMin, xMax, yMin, yMax, cond);
 			#endif
 		}
 
@@ -3957,12 +4478,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextAxesToFitNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
 			#endif
 		}
 
@@ -3977,12 +4499,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotLineFlags, int, int, void>)vt[54])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[54])(labelId, values, count, xscale, xstart, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[54])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[54])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
 			#endif
 		}
 
@@ -4490,532 +5013,6 @@ namespace Hexa.NET.ImPlot
 			fixed (byte* plabelId = labelId)
 			{
 				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
 			}
 		}
 	}

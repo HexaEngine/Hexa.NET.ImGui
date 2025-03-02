@@ -2,17 +2,17 @@
 {
     using ExampleD3D11.ImGuiDemo;
     using ExampleD3D11.Input;
+    using Hexa.NET.ImGui;
+    using Hexa.NET.SDL2;
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D11;
-    using Silk.NET.SDL;
     using System;
 
     internal unsafe class Program
     {
-        internal static readonly Sdl sdl = Sdl.GetApi();
         private static bool exiting = false;
-        private static readonly List<Func<Event, bool>> hooks = new();
-        private static Window* mainWindow;
+        private static readonly List<Func<SDLEvent, bool>> hooks = new();
+        private static SDLWindow* mainWindow;
         private static uint mainWindowId;
 
         private static int width;
@@ -34,13 +34,15 @@
 
         private static void Main(string[] args)
         {
-            sdl.SetHint(Sdl.HintMouseFocusClickthrough, "1");
-            sdl.SetHint(Sdl.HintMouseAutoCapture, "0");
-            sdl.SetHint(Sdl.HintAutoUpdateJoysticks, "1");
-            sdl.SetHint(Sdl.HintJoystickHidapiPS4, "1");
-            sdl.SetHint(Sdl.HintJoystickHidapiPS4Rumble, "1");
-            sdl.SetHint(Sdl.HintJoystickRawinput, "0");
-            sdl.Init(Sdl.InitEvents + Sdl.InitGamecontroller + Sdl.InitHaptic + Sdl.InitJoystick + Sdl.InitSensor);
+            SDL.SetHint(SDL.SDL_HINT_MOUSE_FOCUS_CLICKTHROUGH, "1");
+            SDL.SetHint(SDL.SDL_HINT_AUTO_UPDATE_JOYSTICKS, "1");
+            SDL.SetHint(SDL.SDL_HINT_JOYSTICK_HIDAPI_PS4, "1");//HintJoystickHidapiPS4
+            SDL.SetHint(SDL.SDL_HINT_JOYSTICK_HIDAPI_PS4_RUMBLE, "1"); //HintJoystickHidapiPS4Rumble
+            SDL.SetHint(SDL.SDL_HINT_JOYSTICK_RAWINPUT, "0");
+            SDL.SetHint(SDL.SDL_HINT_WINDOWS_DISABLE_THREAD_NAMING, "1"); //HintWindowsDisableThreadNaming
+            SDL.SetHint(SDL.SDL_HINT_MOUSE_NORMAL_SPEED_SCALE, "1");
+
+            SDL.Init(SDL.SDL_INIT_EVENTS + SDL.SDL_INIT_GAMECONTROLLER + SDL.SDL_INIT_HAPTIC + SDL.SDL_INIT_JOYSTICK + SDL.SDL_INIT_SENSOR);
 
             Keyboard.Init();
             Mouse.Init();
@@ -50,22 +52,22 @@
             int y = 100;
             int x = 100;
 
-            WindowFlags flags = WindowFlags.Resizable | WindowFlags.Hidden | WindowFlags.AllowHighdpi;
-            mainWindow = sdl.CreateWindow("", x, y, width, height, (uint)flags);
-            mainWindowId = sdl.GetWindowID(mainWindow);
+            SDLWindowFlags flags = SDLWindowFlags.Resizable | SDLWindowFlags.Hidden | SDLWindowFlags.AllowHighdpi;
+            mainWindow = SDL.CreateWindow("", x, y, width, height, (uint)flags);
+            mainWindowId = SDL.GetWindowID(mainWindow);
 
             InitGraphics(mainWindow);
             InitImGui(mainWindow);
 
-            sdl.ShowWindow(mainWindow);
+            SDL.ShowWindow(mainWindow);
 
             Time.Initialize();
 
-            Event evnt;
+            SDLEvent evnt;
             while (!exiting)
             {
-                sdl.PumpEvents();
-                while (sdl.PollEvent(&evnt) == (int)SdlBool.True)
+                SDL.PumpEvents();
+                while (SDL.PollEvent(&evnt) == (int)SDLBool.True)
                 {
                     for (int i = 0; i < hooks.Count; i++)
                     {
@@ -86,7 +88,7 @@
 
             d3d11Manager.Dispose();
 
-            sdl.DestroyWindow(mainWindow);
+            SDL.DestroyWindow(mainWindow);
             //sdl.Quit();
         }
 
@@ -94,10 +96,7 @@
         {
             imGuiManager.NewFrame();
 
-            imGuiDemo.Draw();
-            //imGuizmoDemo.Draw();
-            //imNodesDemo.Draw();
-            //imPlotDemo.Draw();
+            ImGui.ShowDemoWindow();
 
             d3d11Manager.Clear(default);
             d3d11Manager.SetTarget();
@@ -109,23 +108,23 @@
             d3d11Manager.Present(1, 0);
         }
 
-        private static void HandleEvent(Event evnt)
+        private static void HandleEvent(SDLEvent evnt)
         {
-            EventType type = (EventType)evnt.Type;
+            SDLEventType type = (SDLEventType)evnt.Type;
             switch (type)
             {
-                case EventType.Windowevent:
+                case SDLEventType.Windowevent:
                     {
                         var even = evnt.Window;
                         if (even.WindowID == mainWindowId)
                         {
-                            switch ((WindowEventID)evnt.Window.Event)
+                            switch ((SDLWindowEventID)evnt.Window.Event)
                             {
-                                case WindowEventID.Close:
+                                case SDLWindowEventID.Close:
                                     exiting = true;
                                     break;
 
-                                case WindowEventID.Resized:
+                                case SDLWindowEventID.Resized:
                                     int oldWidth = Program.width;
                                     int oldHeight = Program.height;
                                     int width = even.Data1;
@@ -139,52 +138,52 @@
                     }
                     break;
 
-                case EventType.Mousemotion:
+                case SDLEventType.Mousemotion:
                     {
                         var even = evnt.Motion;
                         Mouse.OnMotion(even);
                     }
                     break;
 
-                case EventType.Mousebuttondown:
+                case SDLEventType.Mousebuttondown:
                     {
                         var even = evnt.Button;
                         Mouse.OnButtonDown(even);
                     }
                     break;
 
-                case EventType.Mousebuttonup:
+                case SDLEventType.Mousebuttonup:
                     {
                         var even = evnt.Button;
                         Mouse.OnButtonUp(even);
                     }
                     break;
 
-                case EventType.Mousewheel:
+                case SDLEventType.Mousewheel:
                     {
                         var even = evnt.Wheel;
                         Mouse.OnWheel(even);
                     }
                     break;
 
-                case EventType.Keydown:
+                case SDLEventType.Keydown:
                     {
                         var even = evnt.Key;
                         Keyboard.OnKeyDown(even);
                     }
                     break;
 
-                case EventType.Keyup:
+                case SDLEventType.Keyup:
                     {
                         var even = evnt.Key;
                         Keyboard.OnKeyUp(even);
                     }
                     break;
 
-                case EventType.Textediting:
+                case SDLEventType.Textediting:
                     break;
 
-                case EventType.Textinput:
+                case SDLEventType.Textinput:
                     {
                         var even = evnt.Text;
                         Keyboard.OnTextInput(even);
@@ -193,12 +192,12 @@
             }
         }
 
-        private static void InitGraphics(Window* mainWindow)
+        private static void InitGraphics(SDLWindow* mainWindow)
         {
             d3d11Manager = new(mainWindow, true);
         }
 
-        private static void InitImGui(Window* mainWindow)
+        private static void InitImGui(SDLWindow* mainWindow)
         {
             imGuiManager = new(mainWindow, d3d11Manager.Device, d3d11Manager.DeviceContext);
 
@@ -214,9 +213,14 @@
             Resized?.Invoke(null, new(width, height, oldWidth, oldHeight));
         }
 
-        public static void RegisterHook(Func<Event, bool> hook)
+        public static void RegisterHook(Func<SDLEvent, bool> hook)
         {
             hooks.Add(hook);
+        }
+
+        public static void UnregisterHook(Func<SDLEvent, bool> hook)
+        {
+            hooks.Remove(hook);
         }
     }
 }

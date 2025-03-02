@@ -17,7 +17,10 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// [Internal] sizeof() ~ 112<br/>
+	/// We use the terminology "Enabled" to refer to a column that is not Hidden by userapi.<br/>
+	/// We use the terminology "Clipped" to refer to a column that is out of sight because of scrollingclipping.<br/>
+	/// This is in contrast with some user-facing api such as IsItemVisible()  IsRectVisible() which use "Visible" to mean "not clipped".<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableColumn

@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// A font inputsource (we may rename this to ImFontSource in the future)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontConfig
@@ -40,12 +40,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int FontNo;
+		public byte MergeMode;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public float SizePixels;
+		public byte PixelSnapH;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public int FontNo;
 
 		/// <summary>
 		/// To be documented.
@@ -60,7 +65,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte PixelSnapH;
+		public float SizePixels;
 
 		/// <summary>
 		/// To be documented.
@@ -75,7 +80,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe char* GlyphRanges;
+		public unsafe uint* GlyphRanges;
 
 		/// <summary>
 		/// To be documented.
@@ -86,11 +91,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public float GlyphMaxAdvanceX;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte MergeMode;
 
 		/// <summary>
 		/// To be documented.
@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public char EllipsisChar;
+		public uint EllipsisChar;
 
 		/// <summary>
 		/// To be documented.
@@ -165,22 +165,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, int fontNo = default, float sizePixels = default, int oversampleH = default, int oversampleV = default, bool pixelSnapH = default, Vector2 glyphExtraSpacing = default, Vector2 glyphOffset = default, char* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, bool mergeMode = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, char ellipsisChar = default, byte* name = default, ImFontPtr dstFont = default)
+		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphExtraSpacing = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, byte* name = default, ImFontPtr dstFont = default)
 		{
 			FontData = fontData;
 			FontDataSize = fontDataSize;
 			FontDataOwnedByAtlas = fontDataOwnedByAtlas ? (byte)1 : (byte)0;
+			MergeMode = mergeMode ? (byte)1 : (byte)0;
+			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
 			FontNo = fontNo;
-			SizePixels = sizePixels;
 			OversampleH = oversampleH;
 			OversampleV = oversampleV;
-			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
+			SizePixels = sizePixels;
 			GlyphExtraSpacing = glyphExtraSpacing;
 			GlyphOffset = glyphOffset;
 			GlyphRanges = glyphRanges;
 			GlyphMinAdvanceX = glyphMinAdvanceX;
 			GlyphMaxAdvanceX = glyphMaxAdvanceX;
-			MergeMode = mergeMode ? (byte)1 : (byte)0;
 			FontBuilderFlags = fontBuilderFlags;
 			RasterizerMultiply = rasterizerMultiply;
 			RasterizerDensity = rasterizerDensity;
@@ -234,22 +234,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, int fontNo = default, float sizePixels = default, int oversampleH = default, int oversampleV = default, bool pixelSnapH = default, Vector2 glyphExtraSpacing = default, Vector2 glyphOffset = default, char* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, bool mergeMode = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, char ellipsisChar = default, Span<byte> name = default, ImFontPtr dstFont = default)
+		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphExtraSpacing = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, Span<byte> name = default, ImFontPtr dstFont = default)
 		{
 			FontData = fontData;
 			FontDataSize = fontDataSize;
 			FontDataOwnedByAtlas = fontDataOwnedByAtlas ? (byte)1 : (byte)0;
+			MergeMode = mergeMode ? (byte)1 : (byte)0;
+			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
 			FontNo = fontNo;
-			SizePixels = sizePixels;
 			OversampleH = oversampleH;
 			OversampleV = oversampleV;
-			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
+			SizePixels = sizePixels;
 			GlyphExtraSpacing = glyphExtraSpacing;
 			GlyphOffset = glyphOffset;
 			GlyphRanges = glyphRanges;
 			GlyphMinAdvanceX = glyphMinAdvanceX;
 			GlyphMaxAdvanceX = glyphMaxAdvanceX;
-			MergeMode = mergeMode ? (byte)1 : (byte)0;
 			FontBuilderFlags = fontBuilderFlags;
 			RasterizerMultiply = rasterizerMultiply;
 			RasterizerDensity = rasterizerDensity;
@@ -370,11 +370,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int FontNo => ref Unsafe.AsRef<int>(&Handle->FontNo);
+		public ref bool MergeMode => ref Unsafe.AsRef<bool>(&Handle->MergeMode);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref float SizePixels => ref Unsafe.AsRef<float>(&Handle->SizePixels);
+		public ref bool PixelSnapH => ref Unsafe.AsRef<bool>(&Handle->PixelSnapH);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref int FontNo => ref Unsafe.AsRef<int>(&Handle->FontNo);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -386,7 +390,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool PixelSnapH => ref Unsafe.AsRef<bool>(&Handle->PixelSnapH);
+		public ref float SizePixels => ref Unsafe.AsRef<float>(&Handle->SizePixels);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -398,7 +402,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public char* GlyphRanges { get => Handle->GlyphRanges; set => Handle->GlyphRanges = value; }
+		public uint* GlyphRanges { get => Handle->GlyphRanges; set => Handle->GlyphRanges = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -407,10 +411,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref float GlyphMaxAdvanceX => ref Unsafe.AsRef<float>(&Handle->GlyphMaxAdvanceX);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref bool MergeMode => ref Unsafe.AsRef<bool>(&Handle->MergeMode);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -426,7 +426,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref char EllipsisChar => ref Unsafe.AsRef<char>(&Handle->EllipsisChar);
+		public ref uint EllipsisChar => ref Unsafe.AsRef<uint>(&Handle->EllipsisChar);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -180,7 +180,7 @@
             {
                 GetLink(idLink).Destroy();
             }
-            if (ImGui.IsKeyPressed(ImGuiKey.Delete))
+            if (ImGuiP.IsKeyPressed(ImGuiKey.Delete))
             {
                 int numLinks = ImNodes.NumSelectedLinks();
                 if (numLinks != 0)

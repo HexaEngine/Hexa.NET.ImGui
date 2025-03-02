@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Helper: ImBitVector<br/>
+	/// Store 1-bit per value.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImBitVector

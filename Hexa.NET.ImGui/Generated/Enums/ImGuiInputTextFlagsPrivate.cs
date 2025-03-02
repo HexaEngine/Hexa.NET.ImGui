@@ -20,23 +20,18 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiInputTextFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// For internal use by InputTextMultiline()<br/>
 		/// </summary>
 		Multiline = unchecked(67108864),
 
 		/// <summary>
-		/// To be documented.
+		/// For internal use by TempInputText(), will skip calling ItemAdd(). Require bounding-box to strictly match.<br/>
 		/// </summary>
-		NoMarkEdited = unchecked(134217728),
+		MergedItem = unchecked(134217728),
 
 		/// <summary>
-		/// To be documented.
+		/// For internal use by InputScalar() and TempInputScalar()<br/>
 		/// </summary>
-		MergedItem = unchecked(268435456),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		LocalizeDecimalPoint = unchecked(536870912),
+		LocalizeDecimalPoint = unchecked(268435456),
 	}
 }

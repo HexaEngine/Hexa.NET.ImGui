@@ -105,12 +105,12 @@ namespace Hexa.NET.ImGui
 		AlwaysHorizontalScrollbar = unchecked(32768),
 
 		/// <summary>
-		/// No gamepadkeyboard navigation within the window<br/>
+		/// No keyboardgamepad navigation within the window<br/>
 		/// </summary>
 		NoNavInputs = unchecked(65536),
 
 		/// <summary>
-		/// No focusing toward this window with gamepadkeyboard navigation (e.g. skipped by CTRL+TAB)<br/>
+		/// No focusing toward this window with keyboardgamepad navigation (e.g. skipped by CTRL+TAB)<br/>
 		/// </summary>
 		NoNavFocus = unchecked(131072),
 
@@ -140,6 +140,11 @@ namespace Hexa.NET.ImGui
 		NoInputs = unchecked(197120),
 
 		/// <summary>
+		/// Don't use! For internal use by Begin()NewFrame()<br/>
+		/// </summary>
+		DockNodeHost = unchecked(8388608),
+
+		/// <summary>
 		/// Don't use! For internal use by BeginChild()<br/>
 		/// </summary>
 		ChildWindow = unchecked(16777216),
@@ -163,10 +168,5 @@ namespace Hexa.NET.ImGui
 		/// Don't use! For internal use by BeginMenu()<br/>
 		/// </summary>
 		ChildMenu = unchecked(268435456),
-
-		/// <summary>
-		/// Don't use! For internal use by Begin()NewFrame()<br/>
-		/// </summary>
-		DockNodeHost = unchecked(536870912),
 	}
 }

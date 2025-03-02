@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExampleOpenGL3": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

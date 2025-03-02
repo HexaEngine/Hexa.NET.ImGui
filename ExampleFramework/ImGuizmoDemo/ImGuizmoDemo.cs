@@ -61,8 +61,8 @@
 
             if (!ImGui.IsWindowDocked())
             {
-                var node = ImGui.DockBuilderGetCentralNode(ImGuiManager.DockSpaceId);
-                ImGui.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
+                var node = ImGuiP.DockBuilderGetCentralNode(ImGuiManager.DockSpaceId);
+                ImGuiP.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
             }
 
             HandleInput();
@@ -98,7 +98,7 @@
             ImGuizmo.DrawCubes(ref view, ref proj, ref transform, 1);
 
             // IMPORTANT: If you use multiple gizmos, you need to set the ID for each gizmo
-            ImGuizmo.SetID(0);
+            ImGuizmo.PushID(0);
 
             // Call the Manipulate function to manipulate the cube
             if (ImGuizmo.Manipulate(ref view, ref proj, operation, mode, ref transform))
@@ -113,6 +113,8 @@
                 gimbalGrabbed = false;
             }
             overGimbal = ImGuizmo.IsOver();
+
+            ImGuizmo.PopID();
 
             // User-Interface for the gizmo operation modes.
             ImGui.PushItemWidth(100);
@@ -139,8 +141,8 @@
         {
             if (ImGui.IsWindowHovered())
             {
-                bool mouseMiddlePressed = ImGui.IsMouseDown(ImGuiMouseButton.Middle);
-                bool lCtrlPressed = ImGui.IsKeyPressed(ImGuiKey.LeftCtrl);
+                bool mouseMiddlePressed = ImGuiP.IsMouseDown(ImGuiMouseButton.Middle);
+                bool lCtrlPressed = ImGuiP.IsKeyPressed(ImGuiKey.LeftCtrl);
                 if (mouseMiddlePressed || lCtrlPressed || first)
                 {
                     Vector2 delta = Vector2.Zero;

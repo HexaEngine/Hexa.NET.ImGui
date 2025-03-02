@@ -1,7 +1,10 @@
 ﻿namespace Generator
 {
     using HexaGen;
+    using HexaGen.FunctionGeneration;
+    using HexaGen.Metadata;
     using HexaGen.Patching;
+    using System;
     using System.Text;
     using System.Text.RegularExpressions;
 
@@ -10,7 +13,11 @@
         private const string CImGuiHeader = "cimgui/cimgui.h";
         private const string CImGuiManualConfig = "cimgui/generator.manual.json";
 
-        private const string manual = "../../../../Hexa.NET.ImGui/Manual/";
+        private const string CImGuiInternalsConfig = "cimgui/generator.internals.json";
+        private const string ImGuiInternalsOutputPath = "../../../../Hexa.NET.ImGui/Internals";
+
+        private const string ImGuiManualOutputPath = "../../../../Hexa.NET.ImGui/Manual/";
+        private const string ImGuiOutputPath = "../../../../Hexa.NET.ImGui/Generated/";
 
         private CsCodeGeneratorMetadata patchMetadata;
 
@@ -20,57 +27,19 @@
             {
                 return;
             }
-            var settingsManual = CsCodeGeneratorConfig.Load(CImGuiManualConfig);
 
-            settingsManual.VTableStart = metadata.VTableLength;
+            Generate(metadata, CImGuiHeader, CImGuiInternalsConfig, ImGuiInternalsOutputPath, InternalsGenerationType.OnlyInternals, out var internalsMetadata);
+            metadata.Merge(internalsMetadata, true);
+            File.Delete(Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Delete base.
+            File.Delete(Path.Combine(ImGuiInternalsOutputPath, "FunctionTable.cs")); // Delete intermediate.
 
-            ImGuiCodeGenerator generator = new(settingsManual);
-            generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
-            generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch());
-            generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
-            generator.CopyFrom(metadata);
-            generator.Generate(CImGuiHeader, manual);
-            patchMetadata = generator.GetMetadata();
-
-            const string generated = "../../../../Hexa.NET.ImGui/Generated/";
-
-            // Patch VTable
-            {
-                const string vtTargetFile = generated + "Functions.VT.cs";
-                const string vtPatchFile = manual + "Functions.VT.cs";
-
-                var vtContent = File.ReadAllText(vtTargetFile);
-                var rootMatch = Regex.Match(vtContent, "vt = new VTable\\(LibraryLoader\\.LoadLibrary\\(\\), (.*)\\);");
-
-                Regex loadPattern = new("vt.Load\\((.*), \"(.*)\"\\);", RegexOptions.Singleline);
-                var matches = loadPattern.Matches(vtContent);
-                var lastMatch = matches[^1];
-                int start = lastMatch.Index + lastMatch.Length;
-
-                var content = File.ReadAllText(vtPatchFile);
-                File.Delete(vtPatchFile);
-
-                StringBuilder builder = new(vtContent[..(start + 1)]);
-
-                foreach (Match match in loadPattern.Matches(content))
-                {
-                    builder.AppendLine($"\t\t\t" + match.Value);
-                }
-
-                builder.Remove(rootMatch.Index, rootMatch.Length);
-                builder.Insert(rootMatch.Index, $"vt = new VTable(LibraryLoader.LoadLibrary(), {patchMetadata.VTableLength});");
-
-                builder.Append(vtContent.AsSpan(start));
-
-                var newContent = builder.ToString();
-
-                File.WriteAllText(vtTargetFile, newContent);
-            }
+            Generate(metadata, CImGuiHeader, CImGuiManualConfig, ImGuiManualOutputPath, InternalsGenerationType.BothOrDontCare, out patchMetadata);
+            File.Move(Path.Combine(ImGuiManualOutputPath, "FunctionTable.cs"), Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Move latest to base.
 
             // Patch Functions
             {
                 Regex regex = new("\\b(.*) = Utils.GetByteCountUTF8\\b\\(buf\\);");
-                const string manualFunctions = manual + "Functions/";
+                const string manualFunctions = ImGuiManualOutputPath + "Functions/";
 
                 foreach (var file in Directory.EnumerateFiles(manualFunctions, "*.cs"))
                 {
@@ -94,6 +63,28 @@
                     }
                 }
             }
+        }
+
+        private static void Generate(CsCodeGeneratorMetadata metadata, string header, string config, string output, InternalsGenerationType generationType, out CsCodeGeneratorMetadata meta)
+        {
+            var settingsManual = CsCodeGeneratorConfig.Load(config);
+
+            settingsManual.FunctionTableEntries = metadata.FunctionTable.Entries;
+
+            ImGuiCodeGenerator generator = new(settingsManual);
+            generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
+            generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(generationType));
+            generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
+            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None));
+            if (config.Contains("manual"))
+            {
+                generator.FunctionGenerator.OverwriteRule<FunctionGenRuleSpan>(new ManualFunctionGenRuleSpan());
+            }
+
+            generator.LogToConsole();
+            generator.CopyFrom(metadata);
+            generator.Generate(header, output);
+            meta = generator.GetMetadata();
         }
     }
 }

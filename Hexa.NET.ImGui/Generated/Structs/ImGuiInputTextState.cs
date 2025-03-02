@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Internal state of the currently focusededited text input box<br/>
+	/// For a given item ID, access with ImGui::GetInputTextState()<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputTextState
@@ -30,22 +31,27 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe STBTexteditState* Stb;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImGuiInputTextFlags Flags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public uint ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CurLenW;
+		public int TextLen;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CurLenA;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImVector<char> TextW;
+		public unsafe byte* TextSrc;
 
 		/// <summary>
 		/// To be documented.
@@ -55,27 +61,22 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<byte> InitialTextA;
+		public ImVector<byte> TextToRevertTo;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte TextAIsValid;
+		public ImVector<byte> CallbackTextBackup;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int BufCapacityA;
+		public int BufCapacity;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public Vector2 Scroll;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public STBTexteditState Stb;
 
 		/// <summary>
 		/// To be documented.
@@ -100,12 +101,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputTextFlags Flags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte ReloadUserBuf;
+		public byte WantReloadUserBuf;
 
 		/// <summary>
 		/// To be documented.
@@ -121,25 +117,24 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, uint id = default, int curLenW = default, int curLenA = default, ImVector<char> textW = default, ImVector<byte> textA = default, ImVector<byte> initialTextA = default, bool textAIsValid = default, int bufCapacityA = default, Vector2 scroll = default, STBTexteditState stb = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, ImGuiInputTextFlags flags = default, uint id = default, int textLen = default, byte* textSrc = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, bool wantReloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
-			ID = id;
-			CurLenW = curLenW;
-			CurLenA = curLenA;
-			TextW = textW;
-			TextA = textA;
-			InitialTextA = initialTextA;
-			TextAIsValid = textAIsValid ? (byte)1 : (byte)0;
-			BufCapacityA = bufCapacityA;
-			Scroll = scroll;
 			Stb = stb;
+			Flags = flags;
+			ID = id;
+			TextLen = textLen;
+			TextSrc = textSrc;
+			TextA = textA;
+			TextToRevertTo = textToRevertTo;
+			CallbackTextBackup = callbackTextBackup;
+			BufCapacity = bufCapacity;
+			Scroll = scroll;
 			CursorAnim = cursorAnim;
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
 			SelectedAllMouseLock = selectedAllMouseLock ? (byte)1 : (byte)0;
 			Edited = edited ? (byte)1 : (byte)0;
-			Flags = flags;
-			ReloadUserBuf = reloadUserBuf ? (byte)1 : (byte)0;
+			WantReloadUserBuf = wantReloadUserBuf ? (byte)1 : (byte)0;
 			ReloadSelectionStart = reloadSelectionStart;
 			ReloadSelectionEnd = reloadSelectionEnd;
 		}
@@ -195,19 +190,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref STBTexteditStatePtr Stb => ref Unsafe.AsRef<STBTexteditStatePtr>(&Handle->Stb);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CurLenW => ref Unsafe.AsRef<int>(&Handle->CurLenW);
+		public ref int TextLen => ref Unsafe.AsRef<int>(&Handle->TextLen);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CurLenA => ref Unsafe.AsRef<int>(&Handle->CurLenA);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImVector<char> TextW => ref Unsafe.AsRef<ImVector<char>>(&Handle->TextW);
+		public byte* TextSrc { get => Handle->TextSrc; set => Handle->TextSrc = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -215,23 +214,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<byte> InitialTextA => ref Unsafe.AsRef<ImVector<byte>>(&Handle->InitialTextA);
+		public ref ImVector<byte> TextToRevertTo => ref Unsafe.AsRef<ImVector<byte>>(&Handle->TextToRevertTo);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool TextAIsValid => ref Unsafe.AsRef<bool>(&Handle->TextAIsValid);
+		public ref ImVector<byte> CallbackTextBackup => ref Unsafe.AsRef<ImVector<byte>>(&Handle->CallbackTextBackup);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int BufCapacityA => ref Unsafe.AsRef<int>(&Handle->BufCapacityA);
+		public ref int BufCapacity => ref Unsafe.AsRef<int>(&Handle->BufCapacity);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref Vector2 Scroll => ref Unsafe.AsRef<Vector2>(&Handle->Scroll);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref STBTexteditState Stb => ref Unsafe.AsRef<STBTexteditState>(&Handle->Stb);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -251,11 +246,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref bool ReloadUserBuf => ref Unsafe.AsRef<bool>(&Handle->ReloadUserBuf);
+		public ref bool WantReloadUserBuf => ref Unsafe.AsRef<bool>(&Handle->WantReloadUserBuf);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

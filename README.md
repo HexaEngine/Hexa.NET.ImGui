@@ -7,14 +7,31 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 ## Features
 
 - **Comprehensive Wrapper**: Integrates the core Dear ImGui library along with essential addons such as ImGuizmo, ImNodes, and ImPlot.
+- **Backends**: Includes a collection of native backends in the Hexa.NET.ImGui.Backends package. (incl. Android, Win32, OSX, D3D9, D3D10, D3D11, D3D12, Metal, OpenGL2, OpenGL3, Vulkan and extra packages for SDL2 and GLFW)
+- **FreeType Fonts**: Allows better text rendering and colored fonts to be loaded.
 - **Multi Viewport Support**: Enables seamless multi-viewport rendering for advanced UI scenarios.
 - **Active Development**: Regular updates and improvements to ensure compatibility with the latest Dear ImGui features and .NET advancements.
 - **Trustworthy Builds**: Native libraries are built using GitHub Actions for added trustworthiness and can be found [here](https://github.com/HexaEngine/Hexa.NET.ImGui/actions).
 - **Open Source**: The source code for the native libraries is public and can be reviewed by anyone.
 - **Access to Internals**: Allows users to access Dear ImGui internals for advanced customization and functionality.
 - **Drop in replacement for ImGuiNET** Adapt to the library with minimal effort by simply changing the namespace.
-- **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
+- **High performance** Using a static function table, all API calls are faster and startup time is reduced.
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
+- **Wide range .NET support**: Supported versions net8.0, net7.0, netstandard2.1, netstandard2.0
+
+## 🎉 Acknowledgment to Our Sponsors
+We extend our heartfelt gratitude to all our sponsors for their generous support!
+
+ - @Doprez
+ - @qian-o
+ - @NotNite
+ - Mr Villa
+ - @TheSameCat2
+
+Your contributions help keep this project thriving—thank you!
+
+## Community
+- Discord: [https://discord.gg/VawN5d8HMh](https://discord.gg/VawN5d8HMh)
 
 ## Packages
 
@@ -24,6 +41,11 @@ Hexa.NET.ImGui is divided into four different packages to provide modularity and
 - [Hexa.NET.ImGuizmo](https://www.nuget.org/packages/Hexa.NET.ImGuizmo/)
 - [Hexa.NET.ImNodes](https://www.nuget.org/packages/Hexa.NET.ImNodes/)
 - [Hexa.NET.ImPlot](https://www.nuget.org/packages/Hexa.NET.ImPlot/)
+
+## Releated Projects
+
+- [Hexa.NET.ImGui.Widgets](https://github.com/HexaEngine/Hexa.NET.ImGui.Widgets)
+  - A small framework making it easier working with ImGui in C# build on top of Hexa.NET.ImGui. It allows to capsulate Widgets in classes and manage them centralized, supporting dialogs that block other windows (incl. OpenFileDialog SaveFileDialog and more)
 
 ## Getting Started
 
@@ -61,11 +83,11 @@ To get started with Hexa.NET.ImGui, follow these steps:
 
 ### Usage Example
 
-For a comprehensive example of how to use the library, refer to the [ExampleD3D11 project](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleD3D11/).
+For a comprehensive example of how to use the library, refer to the [ExampleD3D11 project](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleD3D11/) [ExampleOpenGL3 project](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleOpenGL3/).
 
 ### Setup Guide
 
-For details on how to set up the library, check the [ImGuiManager.cs](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleD3D11/ImGuiDemo/ImGuiManager.cs) file in the ExampleD3D11 project.
+For details on how to set up the library, check the [ImGuiManager.cs](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleFramework/ImGuiDemo/ImGuiManager.cs) file in the ExampleFramework project.
 
 ### Using the Flexible and Optimized API
 
@@ -113,8 +135,10 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 
 ## Credits
 
-[ImGui.NET](https://github.com/ImGuiNET/ImGui.NET/) for the JSON parsing of the cimgui metadata.
+- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET/) for the JSON parsing of the cimgui metadata. 
+- [cimgui](https://github.com/cimgui/cimgui) for the c interface. 
+- [Dear ImGui](https://github.com/ocornut/imgui) 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/LICENSE.txt) file for more details.

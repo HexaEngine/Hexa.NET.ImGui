@@ -17,7 +17,10 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Data shared between all ImDrawList instances<br/>
+	/// Conceptually this could have been called e.g. ImDrawListSharedContext<br/>
+	/// Typically one ImGui context would create and maintain one of this.<br/>
+	/// You may want to create your own instance of you try to ImDrawList completely without ImGui. In that case, watch out for future changes to this structure.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawListSharedData
@@ -26,6 +29,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public Vector2 TexUvWhitePixel;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Vector4* TexUvLines;
 
 		/// <summary>
 		/// To be documented.
@@ -192,18 +200,14 @@ namespace Hexa.NET.ImGui
 		public byte CircleSegmentCounts_62;
 		public byte CircleSegmentCounts_63;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe Vector4* TexUvLines;
-
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, ImDrawListFlags initialFlags = default, ImVector<Vector2> tempBuffer = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default, Vector4* texUvLines = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, ImDrawListFlags initialFlags = default, ImVector<Vector2> tempBuffer = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
+			TexUvLines = texUvLines;
 			Font = font;
 			FontSize = fontSize;
 			FontScale = fontScale;
@@ -331,15 +335,15 @@ namespace Hexa.NET.ImGui
 				CircleSegmentCounts_62 = circleSegmentCounts[62];
 				CircleSegmentCounts_63 = circleSegmentCounts[63];
 			}
-			TexUvLines = texUvLines;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, ImDrawListFlags initialFlags = default, ImVector<Vector2> tempBuffer = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default, Vector4* texUvLines = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, Vector4 clipRectFullscreen = default, ImDrawListFlags initialFlags = default, ImVector<Vector2> tempBuffer = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
+			TexUvLines = texUvLines;
 			Font = font;
 			FontSize = fontSize;
 			FontScale = fontScale;
@@ -467,7 +471,6 @@ namespace Hexa.NET.ImGui
 				CircleSegmentCounts_62 = circleSegmentCounts[62];
 				CircleSegmentCounts_63 = circleSegmentCounts[63];
 			}
-			TexUvLines = texUvLines;
 		}
 
 
@@ -535,6 +538,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public Vector4* TexUvLines { get => Handle->TexUvLines; set => Handle->TexUvLines = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref ImFontPtr Font => ref Unsafe.AsRef<ImFontPtr>(&Handle->Font);
 		/// <summary>
 		/// To be documented.
@@ -590,10 +597,6 @@ namespace Hexa.NET.ImGui
 				return new Span<byte>(&Handle->CircleSegmentCounts_0, 64);
 			}
 		}
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public Vector4* TexUvLines { get => Handle->TexUvLines; set => Handle->TexUvLines = value; }
 	}
 
 }

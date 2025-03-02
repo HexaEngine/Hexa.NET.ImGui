@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Stacked storage data for BeginGroup()EndGroup()<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiGroupData
@@ -70,7 +70,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte BackupActiveIdPreviousFrameIsAlive;
+		public byte BackupDeactivatedIdIsAlive;
 
 		/// <summary>
 		/// To be documented.
@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiGroupData(uint windowId = default, Vector2 backupCursorPos = default, Vector2 backupCursorMaxPos = default, Vector2 backupCursorPosPrevLine = default, ImVec1 backupIndent = default, ImVec1 backupGroupOffset = default, Vector2 backupCurrLineSize = default, float backupCurrLineTextBaseOffset = default, uint backupActiveIdIsAlive = default, bool backupActiveIdPreviousFrameIsAlive = default, bool backupHoveredIdIsAlive = default, bool backupIsSameLine = default, bool emitItem = default)
+		public unsafe ImGuiGroupData(uint windowId = default, Vector2 backupCursorPos = default, Vector2 backupCursorMaxPos = default, Vector2 backupCursorPosPrevLine = default, ImVec1 backupIndent = default, ImVec1 backupGroupOffset = default, Vector2 backupCurrLineSize = default, float backupCurrLineTextBaseOffset = default, uint backupActiveIdIsAlive = default, bool backupDeactivatedIdIsAlive = default, bool backupHoveredIdIsAlive = default, bool backupIsSameLine = default, bool emitItem = default)
 		{
 			WindowID = windowId;
 			BackupCursorPos = backupCursorPos;
@@ -102,7 +102,7 @@ namespace Hexa.NET.ImGui
 			BackupCurrLineSize = backupCurrLineSize;
 			BackupCurrLineTextBaseOffset = backupCurrLineTextBaseOffset;
 			BackupActiveIdIsAlive = backupActiveIdIsAlive;
-			BackupActiveIdPreviousFrameIsAlive = backupActiveIdPreviousFrameIsAlive ? (byte)1 : (byte)0;
+			BackupDeactivatedIdIsAlive = backupDeactivatedIdIsAlive ? (byte)1 : (byte)0;
 			BackupHoveredIdIsAlive = backupHoveredIdIsAlive ? (byte)1 : (byte)0;
 			BackupIsSameLine = backupIsSameLine ? (byte)1 : (byte)0;
 			EmitItem = emitItem ? (byte)1 : (byte)0;
@@ -191,7 +191,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool BackupActiveIdPreviousFrameIsAlive => ref Unsafe.AsRef<bool>(&Handle->BackupActiveIdPreviousFrameIsAlive);
+		public ref bool BackupDeactivatedIdIsAlive => ref Unsafe.AsRef<bool>(&Handle->BackupDeactivatedIdIsAlive);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

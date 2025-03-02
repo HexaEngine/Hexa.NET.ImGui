@@ -1,10 +1,16 @@
 ﻿namespace ExampleD3D11.ImGuiDemo
 {
     using Hexa.NET.ImGui;
+    using Hexa.NET.ImGui.Backends.SDL2;
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D11;
-    using Silk.NET.SDL;
+    using Hexa.NET.SDL2;
+    using System;
     using System.Numerics;
+    using ID3D11Device = Silk.NET.Direct3D11.ID3D11Device;
+    using Hexa.NET.ImGui.Backends.D3D11;
+    using ID3D11DeviceContext = Silk.NET.Direct3D11.ID3D11DeviceContext;
+    using Hexa.NET.ImGui.Utilities;
 
     public class ImGuiManager
     {
@@ -12,7 +18,7 @@
         //private ImNodesContextPtr nodesContext;
         //private ImPlotContextPtr plotContext;
 
-        public unsafe ImGuiManager(Window* window, ComPtr<ID3D11Device1> device, ComPtr<ID3D11DeviceContext1> deviceContext)
+        public unsafe ImGuiManager(Hexa.NET.SDL2.SDLWindow* window, ComPtr<ID3D11Device1> device, ComPtr<ID3D11DeviceContext1> deviceContext)
         {
             // Create ImGui context
             guiContext = ImGui.CreateContext(null);
@@ -49,26 +55,11 @@
             io.ConfigViewportsNoTaskBarIcon = false;
 
             // setup fonts.
-            var config = ImGui.ImFontConfig();
-            io.Fonts.AddFontDefault(config);
-
-            // load custom font
-            config.FontDataOwnedByAtlas = false; // Set this option to false to avoid ImGui to delete the data, used with fixed statement.
-            config.MergeMode = true;
-            config.GlyphMinAdvanceX = 18;
-            config.GlyphOffset = new(0, 4);
-            var range = new char[] { (char)0xE700, (char)0xF800, (char)0 };
-            fixed (char* buffer = range)
-            {
-                var bytes = File.ReadAllBytes("assets/fonts/SEGMDL2.TTF");
-                fixed (byte* buffer2 = bytes)
-                {
-                    // IMPORTANT: AddFontFromMemoryTTF() by default transfer ownership of the data buffer to the font atlas, which will attempt to free it on destruction.
-                    // This was to avoid an unnecessary copy, and is perhaps not a good API (a future version will redesign it).
-                    // Set config.FontDataOwnedByAtlas to false to keep ownership of the data (so you need to free the data yourself).
-                    io.Fonts.AddFontFromMemoryTTF(buffer2, bytes.Length, 14, config, buffer);
-                }
-            }
+            ImGuiFontBuilder builder = new();
+            builder
+                .AddDefaultFont()
+                .SetOption(config => { config.GlyphMinAdvanceX = 18; config.GlyphOffset = new(0, 4); })
+                .AddFontFromFileTTF("assets/fonts/SEGMDL2.TTF", 14, [(char)0xE700, (char)0xF800]);
 
             // setup ImGui style
             var style = ImGui.GetStyle();
@@ -125,7 +116,7 @@
             colors[(int)ImGuiCol.TableRowBgAlt] = new Vector4(1.00f, 1.00f, 1.00f, 0.06f);
             colors[(int)ImGuiCol.TextSelectedBg] = new Vector4(0.20f, 0.22f, 0.23f, 1.00f);
             colors[(int)ImGuiCol.DragDropTarget] = new Vector4(0.33f, 0.67f, 0.86f, 1.00f);
-            colors[(int)ImGuiCol.NavHighlight] = new Vector4(1.00f, 0.00f, 0.00f, 1.00f);
+            colors[(int)ImGuiCol.NavCursor] = new Vector4(1.00f, 0.00f, 0.00f, 1.00f);
             colors[(int)ImGuiCol.NavWindowingHighlight] = new Vector4(1.00f, 0.00f, 0.00f, 0.70f);
             colors[(int)ImGuiCol.NavWindowingDimBg] = new Vector4(1.00f, 0.00f, 0.00f, 0.20f);
             colors[(int)ImGuiCol.ModalWindowDimBg] = new Vector4(0.10f, 0.10f, 0.10f, 0.00f);
@@ -161,16 +152,18 @@
             }
 
             // Setup Platform
-            ImGuiSDL2Platform.Init(window, null, null);
-
-            ComPtr<ID3D11Device> d = default;
-            d.Handle = (ID3D11Device*)device.Handle;
-
-            ComPtr<ID3D11DeviceContext> c = default;
-            c.Handle = (ID3D11DeviceContext*)deviceContext.Handle;
+            ImGuiImplSDL2.SetCurrentContext(guiContext);
+            ImGuiImplSDL2.InitForD3D((Hexa.NET.ImGui.Backends.SDL2.SDLWindow*)window);
+            Program.RegisterHook(Hook);
 
             // Setup Renderer
-            ImGuiD3D11Renderer.Init(d, c);
+            ImGuiImplD3D11.SetCurrentContext(guiContext);
+            ImGuiImplD3D11.Init((Hexa.NET.ImGui.Backends.D3D11.ID3D11Device*)device.Handle, (Hexa.NET.ImGui.Backends.D3D11.ID3D11DeviceContext*)deviceContext.Handle);
+        }
+
+        private static unsafe bool Hook(Hexa.NET.SDL2.SDLEvent @event)
+        {
+            return ImGuiImplSDL2.ProcessEvent((Hexa.NET.ImGui.Backends.SDL2.SDLEvent*)&@event);
         }
 
         public unsafe void NewFrame()
@@ -190,7 +183,8 @@
             //ImPlot.SetCurrentContext(plotContext);
 
             // Start new frame, call order matters.
-            ImGuiSDL2Platform.NewFrame();
+            ImGuiImplD3D11.NewFrame();
+            ImGuiImplSDL2.NewFrame();
             ImGui.NewFrame();
             //ImGuizmo.BeginFrame(); // mandatory for ImGuizmo
 
@@ -208,7 +202,7 @@
             var io = ImGui.GetIO();
             ImGui.Render();
             ImGui.EndFrame();
-            ImGuiD3D11Renderer.RenderDrawData(ImGui.GetDrawData());
+            ImGuiImplD3D11.RenderDrawData(ImGui.GetDrawData());
 
             // Update and Render additional Platform Windows
             if ((io.ConfigFlags & ImGuiConfigFlags.ViewportsEnable) != 0)
@@ -220,8 +214,9 @@
 
         public void Dispose()
         {
-            ImGuiD3D11Renderer.Shutdown();
-            ImGuiSDL2Platform.Shutdown();
+            ImGuiImplD3D11.Shutdown();
+            Program.UnregisterHook(Hook);
+            ImGuiImplSDL2.Shutdown();
         }
     }
 }

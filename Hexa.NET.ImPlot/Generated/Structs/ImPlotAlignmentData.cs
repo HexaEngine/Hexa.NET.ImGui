@@ -62,6 +62,322 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Begin()
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				ImPlot.BeginNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void End()
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				ImPlot.EndNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				ImPlot.ResetNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				ImPlot.UpdateNative(@this, padA, padB, deltaA, deltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					ImPlot.UpdateNative(@this, (float*)ppadA, padB, deltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					ImPlot.UpdateNative(@this, padA, (float*)ppadB, deltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						ImPlot.UpdateNative(@this, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					ImPlot.UpdateNative(@this, padA, padB, (float*)pdeltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						ImPlot.UpdateNative(@this, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						ImPlot.UpdateNative(@this, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaA = &deltaA)
+						{
+							ImPlot.UpdateNative(@this, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					ImPlot.UpdateNative(@this, padA, padB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlot.UpdateNative(@this, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlot.UpdateNative(@this, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaB = &deltaB)
+						{
+							ImPlot.UpdateNative(@this, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlot.UpdateNative(@this, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						fixed (float* pdeltaB = &deltaB)
+						{
+							ImPlot.UpdateNative(@this, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						fixed (float* pdeltaB = &deltaB)
+						{
+							ImPlot.UpdateNative(@this, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* @this = &this)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaA = &deltaA)
+						{
+							fixed (float* pdeltaB = &deltaB)
+							{
+								ImPlot.UpdateNative(@this, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+							}
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -125,6 +441,262 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref float PadBMax => ref Unsafe.AsRef<float>(&Handle->PadBMax);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Begin()
+		{
+			ImPlot.BeginNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void End()
+		{
+			ImPlot.EndNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Reset()
+		{
+			ImPlot.ResetNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, float* deltaA, float* deltaB)
+		{
+			ImPlot.UpdateNative(Handle, padA, padB, deltaA, deltaB);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, float* deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				ImPlot.UpdateNative(Handle, (float*)ppadA, padB, deltaA, deltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				ImPlot.UpdateNative(Handle, padA, (float*)ppadB, deltaA, deltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					ImPlot.UpdateNative(Handle, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* pdeltaA = &deltaA)
+			{
+				ImPlot.UpdateNative(Handle, padA, padB, (float*)pdeltaA, deltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					ImPlot.UpdateNative(Handle, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					ImPlot.UpdateNative(Handle, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						ImPlot.UpdateNative(Handle, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* pdeltaB = &deltaB)
+			{
+				ImPlot.UpdateNative(Handle, padA, padB, deltaA, (float*)pdeltaB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					ImPlot.UpdateNative(Handle, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					ImPlot.UpdateNative(Handle, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlot.UpdateNative(Handle, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, float* padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (float* pdeltaA = &deltaA)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					ImPlot.UpdateNative(Handle, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, float* padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlot.UpdateNative(Handle, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(float* padA, ref float padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				fixed (float* pdeltaA = &deltaA)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlot.UpdateNative(Handle, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Update(ref float padA, ref float padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaA = &deltaA)
+					{
+						fixed (float* pdeltaB = &deltaB)
+						{
+							ImPlot.UpdateNative(Handle, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 }

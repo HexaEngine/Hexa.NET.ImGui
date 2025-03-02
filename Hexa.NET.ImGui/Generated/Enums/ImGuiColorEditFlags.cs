@@ -75,19 +75,24 @@ namespace Hexa.NET.ImGui
 		NoBorder = unchecked(1024),
 
 		/// <summary>
+		/// ColorEdit, ColorPicker, ColorButton: disable alpha in the preview,. Contrary to _NoAlpha it may still be edited when calling ColorEdit4()ColorPicker4(). For ColorButton() this does the same as _NoAlpha.<br/>
+		/// </summary>
+		AlphaOpaque = unchecked(2048),
+
+		/// <summary>
+		/// ColorEdit, ColorPicker, ColorButton: disable rendering a checkerboard background behind transparent color.<br/>
+		/// </summary>
+		AlphaNoBg = unchecked(4096),
+
+		/// <summary>
+		/// ColorEdit, ColorPicker, ColorButton: display half opaque  half transparent preview.<br/>
+		/// </summary>
+		AlphaPreviewHalf = unchecked(8192),
+
+		/// <summary>
 		/// ColorEdit, ColorPicker: show vertical alpha bargradient in picker.<br/>
 		/// </summary>
 		AlphaBar = unchecked(65536),
-
-		/// <summary>
-		/// ColorEdit, ColorPicker, ColorButton: display preview as a transparent color over a checkerboard, instead of opaque.<br/>
-		/// </summary>
-		AlphaPreview = unchecked(131072),
-
-		/// <summary>
-		/// ColorEdit, ColorPicker, ColorButton: display half opaque  half checkerboard, instead of opaque.<br/>
-		/// </summary>
-		AlphaPreviewHalf = unchecked(262144),
 
 		/// <summary>
 		/// (WIP) ColorEdit: Currently only disable 0.0f..1.0f limits in RGBA edition (note: you probably want to use ImGuiColorEditFlags_Float flag as well).<br/>
@@ -143,6 +148,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		DefaultOptions = unchecked(177209344),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		AlphaMask = unchecked(14338),
 
 		/// <summary>
 		/// To be documented.

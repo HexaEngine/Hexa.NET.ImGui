@@ -10,15 +10,16 @@ namespace ExampleOpenGL3
 {
     using Hexa.NET.ImGui;
     using Hexa.NET.Utilities;
-    using Silk.NET.OpenGL;
+    using Hexa.NET.OpenGL;
     using System.Diagnostics;
     using System.Numerics;
     using System.Runtime.InteropServices;
     using ImDrawIdx = UInt16;
 
+    [Obsolete("Use ImGuiImplOpenGL3 instead")]
     public static unsafe class ImGuiOpenGL3Renderer
     {
-        private static GL GL;
+        private static GL GL = null!;
 
         private struct RenderData
         {
@@ -36,8 +37,8 @@ namespace ExampleOpenGL3
             public uint AttribLocationVtxUV;
             public uint AttribLocationVtxColor;
             public uint VboHandle, ElementsHandle;
-            public nuint VertexBufferSize;
-            public nuint IndexBufferSize;
+            public nint VertexBufferSize;
+            public nint IndexBufferSize;
             public bool HasPolygonMode;
             public bool HasClipOrigin;
             public bool UseBufferSubData;
@@ -55,17 +56,19 @@ namespace ExampleOpenGL3
 
             public void GetState(uint index)
             {
-                GL.GetVertexAttrib(index, GLEnum.VertexAttribArrayEnabled, out Enabled);
-                GL.GetVertexAttrib(index, GLEnum.VertexAttribArraySize, out Size);
-                GL.GetVertexAttrib(index, GLEnum.VertexAttribArrayType, out Type);
-                GL.GetVertexAttrib(index, GLEnum.VertexAttribArrayNormalized, out Normalized);
-                GL.GetVertexAttrib(index, GLEnum.VertexAttribArrayStride, out Stride);
-                GL.GetVertexAttribPointer(index, GLEnum.VertexAttribArrayPointer, out Ptr);
+                GL.GetVertexAttribIiv(index, GLVertexAttribEnum.ArrayEnabled, out Enabled);
+                GL.GetVertexAttribIiv(index, GLVertexAttribEnum.ArraySize, out Size);
+                GL.GetVertexAttribIiv(index, GLVertexAttribEnum.ArrayType, out Type);
+                GL.GetVertexAttribIiv(index, GLVertexAttribEnum.ArrayNormalized, out Normalized);
+                GL.GetVertexAttribIiv(index, GLVertexAttribEnum.ArrayStride, out Stride);
+                void* ptr;
+                GL.GetVertexAttribPointerv(index, GLVertexAttribPointerPropertyARB.ArrayPointer, &ptr);
+                Ptr = ptr;
             }
 
             public void SetState(uint index)
             {
-                GL.VertexAttribPointer(index, Size, (GLEnum)Type, Normalized != 0, (uint)Stride, Ptr);
+                GL.VertexAttribPointer(index, Size, (GLVertexAttribPointerType)Type, Normalized != 0, Stride, Ptr);
                 if (Enabled != 0)
                 {
                     GL.EnableVertexAttribArray(index);
@@ -77,7 +80,7 @@ namespace ExampleOpenGL3
             }
         };
 
-        public static bool Init(GL gl, string? glsl_version_str)
+        public static bool Init(GL gl,string? glsl_version_str)
         {
             GL = gl;
             ImGuiIOPtr io = ImGui.GetIO();
@@ -95,11 +98,11 @@ namespace ExampleOpenGL3
 #else
 
             // Desktop or GLES 3
-            string gl_version_str = GL.GetStringS(GLEnum.Version);
+            string gl_version_str = ToStringFromUTF8(GL.GetString(GLStringName.Version))!;
             int major = 0;
             int minor = 0;
-            GL.GetInteger(GLEnum.MajorVersion, &major);
-            GL.GetInteger(GLEnum.MinorVersion, &minor);
+            GL.GetIntegerv(GLGetPName.MajorVersion, &major);
+            GL.GetIntegerv(GLGetPName.MinorVersion, &minor);
             if (major == 0 && minor == 0)
             {
                 // Query GL_VERSION in desktop GL 2.X, the string will start with "<major>.<minor>"
@@ -158,7 +161,8 @@ namespace ExampleOpenGL3
 
             // Make an arbitrary GL call (we don't actually need the result)
             // IF YOU GET A CRASH HERE: it probably means the OpenGL function loader didn't do its job. Let us know!
-            GL.GetInteger(GLEnum.TextureBinding2D, out int currentTexture);
+            int currentTexture = 0;
+            GL.GetIntegerv(GLGetPName.TextureBinding2D, out currentTexture);
 
             // Detect extensions we support
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_POLYGON_MODE
@@ -166,10 +170,11 @@ namespace ExampleOpenGL3
 #endif
             bd->HasClipOrigin = bd->GlVersion >= 450;
 #if IMGUI_IMPL_OPENGL_HAS_EXTENSIONS
-            GL.GetInteger(GLEnum.NumExtensions, out int numExtensions);
+            int numExtensions = 0;
+            GL.GetIntegerv(GLGetPName.NumExtensions, out numExtensions);
             for (int i = 0; i < numExtensions; i++)
             {
-                string extension = GL.GetStringS(StringName.Extensions, (uint)i);
+                string extension = ToStringFromUTF8(GL.GetStringi(GLStringName.Extensions, (uint)i))!;
                 if (extension != null && extension.Equals("GL_ARB_clip_control", StringComparison.OrdinalIgnoreCase))
                 {
                     bd->HasClipOrigin = true;
@@ -224,23 +229,23 @@ namespace ExampleOpenGL3
             RenderData* bd = GetBackendData();
 
             // Setup render state: alpha-blending enabled, no face culling, no depth testing, scissor enabled, polygon fill
-            GL.Enable(EnableCap.Blend);
-            GL.BlendEquation(GLEnum.FuncAdd);
-            GL.BlendFuncSeparate(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha, BlendingFactor.One, BlendingFactor.OneMinusSrcAlpha);
-            GL.Disable(EnableCap.CullFace);
-            GL.Disable(EnableCap.DepthTest);
-            GL.Disable(EnableCap.StencilTest);
-            GL.Enable(EnableCap.ScissorTest);
+            GL.Enable(GLEnableCap.Blend);
+            GL.BlendEquation(GLBlendEquationModeEXT.FuncAdd);
+            GL.BlendFuncSeparate(GLBlendingFactor.SrcAlpha, GLBlendingFactor.OneMinusSrcAlpha, GLBlendingFactor.One, GLBlendingFactor.OneMinusSrcAlpha);
+            GL.Disable(GLEnableCap.CullFace);
+            GL.Disable(GLEnableCap.DepthTest);
+            GL.Disable(GLEnableCap.StencilTest);
+            GL.Enable(GLEnableCap.ScissorTest);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_PRIMITIVE_RESTART
             if (bd->GlVersion >= 310)
             {
-                GL.Disable(EnableCap.PrimitiveRestart);
+                GL.Disable(GLEnableCap.PrimitiveRestart);
             }
 #endif
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_POLYGON_MODE
             if (bd->HasPolygonMode)
             {
-                GL.PolygonMode(GLEnum.FrontAndBack, GLEnum.Fill);
+                GL.PolygonMode(GLTriangleFace.FrontAndBack, GLPolygonMode.Fill);
             }
 #endif
 
@@ -258,7 +263,7 @@ namespace ExampleOpenGL3
             // Setup viewport, orthographic projection matrix
             // Our visible imgui space lies from draw_data->DisplayPos (top left) to draw_data->DisplayPos+data_data->DisplaySize (bottom right). DisplayPos is (0,0) for single viewport apps.
             /*GL_CALL*/
-            GL.Viewport(0, 0, (uint)fb_width, (uint)fb_height);
+            GL.Viewport(0, 0, fb_width, fb_height);
             float L = draw_data->DisplayPos.X;
             float R = draw_data->DisplayPos.X + draw_data->DisplaySize.X;
             float T = draw_data->DisplayPos.Y;
@@ -274,8 +279,8 @@ namespace ExampleOpenGL3
                 (R + L) / (L - R), (T + B) / (B - T), 0.0f, 1.0f
             );
             GL.UseProgram(bd->ShaderHandle);
-            GL.Uniform1(bd->AttribLocationTex, 0);
-            GL.UniformMatrix4(bd->AttribLocationProjMtx, 1, false, (float*)&mvp);
+            GL.Uniform1i(bd->AttribLocationTex, 0);
+            GL.UniformMatrix4fv(bd->AttribLocationProjMtx, 1, false, (float*)&mvp);
 
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_BIND_SAMPLER
             if (bd->GlVersion >= 330 || bd->GlProfileIsES3)
@@ -290,9 +295,9 @@ namespace ExampleOpenGL3
 
             // Bind vertex/index buffers and setup attributes for ImDrawVert
             /*GL_CALL*/
-            GL.BindBuffer(GLEnum.ArrayBuffer, bd->VboHandle);
+            GL.BindBuffer(GLBufferTargetARB.ArrayBuffer, bd->VboHandle);
             /*GL_CALL*/
-            GL.BindBuffer(GLEnum.ElementArrayBuffer, bd->ElementsHandle);
+            GL.BindBuffer(GLBufferTargetARB.ElementArrayBuffer, bd->ElementsHandle);
             /*GL_CALL*/
             GL.EnableVertexAttribArray(bd->AttribLocationVtxPos);
             /*GL_CALL*/
@@ -300,11 +305,11 @@ namespace ExampleOpenGL3
             /*GL_CALL*/
             GL.EnableVertexAttribArray(bd->AttribLocationVtxColor);
             /*GL_CALL*/
-            GL.VertexAttribPointer(bd->AttribLocationVtxPos, 2, GLEnum.Float, false, (uint)sizeof(ImDrawVert), (void*)0);
+            GL.VertexAttribPointer(bd->AttribLocationVtxPos, 2, GLVertexAttribPointerType.Float, false, sizeof(ImDrawVert), (void*)0);
             /*GL_CALL*/
-            GL.VertexAttribPointer(bd->AttribLocationVtxUV, 2, GLEnum.Float, false, (uint)sizeof(ImDrawVert), (void*)8);
+            GL.VertexAttribPointer(bd->AttribLocationVtxUV, 2, GLVertexAttribPointerType.Float, false, sizeof(ImDrawVert), (void*)8);
             /*GL_CALL*/
-            GL.VertexAttribPointer(bd->AttribLocationVtxColor, 4, GLEnum.UnsignedByte, true, (uint)sizeof(ImDrawVert), (void*)16);
+            GL.VertexAttribPointer(bd->AttribLocationVtxColor, 4, GLVertexAttribPointerType.UnsignedByte, true, sizeof(ImDrawVert), (void*)16);
         }
 
         // OpenGL3 Render function.
@@ -323,42 +328,42 @@ namespace ExampleOpenGL3
             RenderData* bd = GetBackendData();
 
             // Backup GL state
-            GLEnum last_active_texture; GL.GetInteger(GLEnum.ActiveTexture, (int*)&last_active_texture);
-            GL.ActiveTexture(GLEnum.Texture0);
-            uint last_program; GL.GetInteger(GLEnum.CurrentProgram, (int*)&last_program);
-            uint last_texture; GL.GetInteger(GLEnum.TextureBinding2D, (int*)&last_texture);
+            GLTextureUnit last_active_texture; GL.GetIntegerv(GLGetPName.ActiveTexture, (int*)&last_active_texture);
+            GL.ActiveTexture(GLTextureUnit.Texture0);
+            uint last_program; GL.GetIntegerv(GLGetPName.CurrentProgram, (int*)&last_program);
+            uint last_texture; GL.GetIntegerv(GLGetPName.TextureBinding2D, (int*)&last_texture);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_BIND_SAMPLER
-            uint last_sampler; if (bd->GlVersion >= 330 || bd->GlProfileIsES3) { GL.GetInteger(GLEnum.SamplerBinding, (int*)&last_sampler); } else { last_sampler = 0; }
+            uint last_sampler; if (bd->GlVersion >= 330 || bd->GlProfileIsES3) { GL.GetIntegerv(GLGetPName.SamplerBinding, (int*)&last_sampler); } else { last_sampler = 0; }
 #endif
-            uint last_array_buffer; GL.GetInteger(GLEnum.ArrayBufferBinding, (int*)&last_array_buffer);
+            uint last_array_buffer; GL.GetIntegerv(GLGetPName.ArrayBufferBinding, (int*)&last_array_buffer);
 #if !IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
             // This is part of VAO on OpenGL 3.0+ and OpenGL ES 3.0+.
-            int last_element_array_buffer; GL.GetInteger(GLEnum.ElementArrayBufferBinding, &last_element_array_buffer);
+            int last_element_array_buffer; GL.GetIntegerv(GLGetPName.ElementArrayBufferBinding, &last_element_array_buffer);
             //ImGui_ImplOpenGL3_VtxAttribState last_vtx_attrib_state_pos = default; last_vtx_attrib_state_pos.GetState(bd->AttribLocationVtxPos);
             //ImGui_ImplOpenGL3_VtxAttribState last_vtx_attrib_state_uv = default; last_vtx_attrib_state_uv.GetState(bd->AttribLocationVtxUV);
             //ImGui_ImplOpenGL3_VtxAttribState last_vtx_attrib_state_color = default; last_vtx_attrib_state_color.GetState(bd->AttribLocationVtxColor);
 #endif
 #if IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
-            uint last_vertex_array_object; GL.GetInteger(GLEnum.VertexArrayBinding, (int*)&last_vertex_array_object);
+            uint last_vertex_array_object; GL.GetIntegerv(GLGetPName.VertexArrayBinding, (int*)&last_vertex_array_object);
 #endif
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_POLYGON_MODE
-            int* last_polygon_mode = stackalloc int[2]; if (bd->HasPolygonMode) { GL.GetInteger(GLEnum.PolygonMode, last_polygon_mode); }
+            int* last_polygon_mode = stackalloc int[2]; if (bd->HasPolygonMode) { GL.GetIntegerv(GLGetPName.PolygonMode, last_polygon_mode); }
 #endif
-            int* last_viewport = stackalloc int[4]; GL.GetInteger(GLEnum.Viewport, last_viewport);
-            int* last_scissor_box = stackalloc int[4]; GL.GetInteger(GLEnum.ScissorBox, last_scissor_box);
-            GLEnum last_blend_src_rgb; GL.GetInteger(GLEnum.BlendSrcRgb, (int*)&last_blend_src_rgb);
-            GLEnum last_blend_dst_rgb; GL.GetInteger(GLEnum.BlendDstRgb, (int*)&last_blend_dst_rgb);
-            GLEnum last_blend_src_alpha; GL.GetInteger(GLEnum.BlendSrcAlpha, (int*)&last_blend_src_alpha);
-            GLEnum last_blend_dst_alpha; GL.GetInteger(GLEnum.BlendDstAlpha, (int*)&last_blend_dst_alpha);
-            GLEnum last_blend_equation_rgb; GL.GetInteger(GLEnum.BlendEquationRgb, (int*)&last_blend_equation_rgb);
-            GLEnum last_blend_equation_alpha; GL.GetInteger(GLEnum.BlendEquationAlpha, (int*)&last_blend_equation_alpha);
-            bool last_enable_blend = GL.IsEnabled(EnableCap.Blend);
-            bool last_enable_cull_face = GL.IsEnabled(GLEnum.CullFace);
-            bool last_enable_depth_test = GL.IsEnabled(GLEnum.DepthTest);
-            bool last_enable_stencil_test = GL.IsEnabled(GLEnum.StencilTest);
-            bool last_enable_scissor_test = GL.IsEnabled(GLEnum.ScissorTest);
+            int* last_viewport = stackalloc int[4]; GL.GetIntegerv(GLGetPName.Viewport, last_viewport);
+            int* last_scissor_box = stackalloc int[4]; GL.GetIntegerv(GLGetPName.ScissorBox, last_scissor_box);
+            GLBlendingFactor last_blend_src_rgb; GL.GetIntegerv(GLGetPName.BlendSrcRgb, (int*)&last_blend_src_rgb);
+            GLBlendingFactor last_blend_dst_rgb; GL.GetIntegerv(GLGetPName.BlendDstRgb, (int*)&last_blend_dst_rgb);
+            GLBlendingFactor last_blend_src_alpha; GL.GetIntegerv(GLGetPName.BlendSrcAlpha, (int*)&last_blend_src_alpha);
+            GLBlendingFactor last_blend_dst_alpha; GL.GetIntegerv(GLGetPName.BlendDstAlpha, (int*)&last_blend_dst_alpha);
+            GLBlendEquationModeEXT last_blend_equation_rgb; GL.GetIntegerv(GLGetPName.BlendEquationRgb, (int*)&last_blend_equation_rgb);
+            GLBlendEquationModeEXT last_blend_equation_alpha; GL.GetIntegerv(GLGetPName.BlendEquationAlpha, (int*)&last_blend_equation_alpha);
+            bool last_enable_blend = GL.IsEnabled(GLEnableCap.Blend);
+            bool last_enable_cull_face = GL.IsEnabled(GLEnableCap.CullFace);
+            bool last_enable_depth_test = GL.IsEnabled(GLEnableCap.DepthTest);
+            bool last_enable_stencil_test = GL.IsEnabled(GLEnableCap.StencilTest);
+            bool last_enable_scissor_test = GL.IsEnabled(GLEnableCap.ScissorTest);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_PRIMITIVE_RESTART
-            bool last_enable_primitive_restart = bd->GlVersion >= 310 ? GL.IsEnabled(GLEnum.PrimitiveRestart) : false;
+            bool last_enable_primitive_restart = bd->GlVersion >= 310 ? GL.IsEnabled(GLEnableCap.PrimitiveRestart) : false;
 #endif
 
             // Setup desired GL state
@@ -388,34 +393,34 @@ namespace ExampleOpenGL3
                 // - We are now back to using exclusively glBufferData(). So bd->UseBufferSubData IS ALWAYS FALSE in this code.
                 //   We are keeping the old code path for a while in case people finding new issues may want to test the bd->UseBufferSubData path.
                 // - See https://github.com/ocornut/imgui/issues/4468 and please report any corruption issues.
-                nuint vtx_buffer_size = (nuint)cmd_list->VtxBuffer.Size * (nuint)sizeof(ImDrawVert);
-                nuint idx_buffer_size = (nuint)cmd_list->IdxBuffer.Size * sizeof(ImDrawIdx);
+                nint vtx_buffer_size = cmd_list->VtxBuffer.Size * sizeof(ImDrawVert);
+                nint idx_buffer_size = cmd_list->IdxBuffer.Size * sizeof(ImDrawIdx);
                 if (bd->UseBufferSubData)
                 {
                     if (bd->VertexBufferSize < vtx_buffer_size)
                     {
                         bd->VertexBufferSize = vtx_buffer_size;
                         /*GL_CALL*/
-                        GL.BufferData(GLEnum.ArrayBuffer, bd->VertexBufferSize, null, GLEnum.StreamDraw);
+                        GL.BufferData(GLBufferTargetARB.ArrayBuffer, bd->VertexBufferSize, null, GLBufferUsageARB.StreamDraw);
                     }
                     if (bd->IndexBufferSize < idx_buffer_size)
                     {
                         bd->IndexBufferSize = idx_buffer_size;
                         /*GL_CALL*/
-                        GL.BufferData(GLEnum.ElementArrayBuffer, bd->IndexBufferSize, null, GLEnum.StreamDraw);
+                        GL.BufferData(GLBufferTargetARB.ElementArrayBuffer, bd->IndexBufferSize, null, GLBufferUsageARB.StreamDraw);
                     }
                     /*GL_CALL*/
-                    GL.BufferSubData(GLEnum.ArrayBuffer, 0, vtx_buffer_size, cmd_list->VtxBuffer.Data);
+                    GL.BufferSubData(GLBufferTargetARB.ArrayBuffer, 0, vtx_buffer_size, cmd_list->VtxBuffer.Data);
                     /*GL_CALL*/
-                    GL.BufferSubData(GLEnum.ElementArrayBuffer, 0, idx_buffer_size, cmd_list->IdxBuffer.Data);
+                    GL.BufferSubData(GLBufferTargetARB.ElementArrayBuffer, 0, idx_buffer_size, cmd_list->IdxBuffer.Data);
                 }
                 else
                 {
                     /*GL_CALL*/
-                    GL.BufferData(GLEnum.ArrayBuffer, vtx_buffer_size, cmd_list->VtxBuffer.Data, GLEnum.StreamDraw);
+                    GL.BufferData(GLBufferTargetARB.ArrayBuffer, vtx_buffer_size, cmd_list->VtxBuffer.Data, GLBufferUsageARB.StreamDraw);
 
                     /*GL_CALL*/
-                    GL.BufferData(GLEnum.ElementArrayBuffer, idx_buffer_size, cmd_list->IdxBuffer.Data, GLEnum.StreamDraw);
+                    GL.BufferData(GLBufferTargetARB.ElementArrayBuffer, idx_buffer_size, cmd_list->IdxBuffer.Data, GLBufferUsageARB.StreamDraw);
                 }
 
                 for (int cmd_i = 0; cmd_i < cmd_list->CmdBuffer.Size; cmd_i++)
@@ -425,13 +430,13 @@ namespace ExampleOpenGL3
                     {
                         // User callback, registered via ImDrawList::AddCallback()
                         // (ImDrawCallback_ResetRenderState is a special callback value used by the user to request the renderer to reset render state.)
-                        if ((nint)pcmd.UserCallback == -1)
+                        if ((nint)pcmd.UserCallback == ImGui.ImDrawCallbackResetRenderState)
                         {
                             SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object);
                         }
                         else
                         {
-                            Marshal.GetDelegateForFunctionPointer<UserCallback>((nint)pcmd.UserCallback)(cmd_list, &pcmd);
+                            ((delegate*<ImDrawList*, ImDrawCmd*, void>)pcmd.UserCallback)(cmd_list, &pcmd);
                         }
                     }
                     else
@@ -446,21 +451,21 @@ namespace ExampleOpenGL3
 
                         // Apply scissor/clipping rectangle (Y is inverted in OpenGL)
                         /*GL_CALL*/
-                        GL.Scissor((int)clip_min.X, (int)(fb_height - clip_max.Y), (uint)(clip_max.X - clip_min.X), (uint)(clip_max.Y - clip_min.Y));
+                        GL.Scissor((int)clip_min.X, (int)(fb_height - clip_max.Y), (int)(clip_max.X - clip_min.X), (int)(clip_max.Y - clip_min.Y));
 
                         // Bind texture, Draw
                         /*GL_CALL*/
-                        GL.BindTexture(GLEnum.Texture2D, (uint)pcmd.GetTexID().Handle);
+                        GL.BindTexture(GLTextureTarget.Texture2D, (uint)pcmd.GetTexID().Handle);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_VTX_OFFSET
                         if (bd->GlVersion >= 320)
                         {
                             /*GL_CALL*/
-                            GL.DrawElementsBaseVertex(GLEnum.Triangles, pcmd.ElemCount, sizeof(ImDrawIdx) == 2 ? GLEnum.UnsignedShort : GLEnum.UnsignedInt, (void*)(nint)(pcmd.IdxOffset * sizeof(ImDrawIdx)), (int)pcmd.VtxOffset);
+                            GL.DrawElementsBaseVertex(GLPrimitiveType.Triangles, (int)pcmd.ElemCount, sizeof(ImDrawIdx) == 2 ? GLDrawElementsType.UnsignedShort : GLDrawElementsType.UnsignedInt, (void*)(nint)(pcmd.IdxOffset * sizeof(ImDrawIdx)), (int)pcmd.VtxOffset);
                         }
                         else
 #endif
                             /*GL_CALL*/
-                            GL.DrawElements(GLEnum.Triangles, pcmd.ElemCount, sizeof(ImDrawIdx) == 2 ? GLEnum.UnsignedShort : GLEnum.UnsignedInt, (void*)(nint)(pcmd.IdxOffset * sizeof(ImDrawIdx)));
+                            GL.DrawElements(GLPrimitiveType.Triangles, (int)pcmd.ElemCount, sizeof(ImDrawIdx) == 2 ? GLDrawElementsType.UnsignedShort : GLDrawElementsType.UnsignedInt, (void*)(nint)(pcmd.IdxOffset * sizeof(ImDrawIdx)));
                     }
                 }
             }
@@ -478,7 +483,7 @@ namespace ExampleOpenGL3
                 GL.UseProgram(last_program);
             }
 
-            GL.BindTexture(GLEnum.Texture2D, last_texture);
+            GL.BindTexture(GLTextureTarget.Texture2D, last_texture);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_BIND_SAMPLER
             if (bd->GlVersion >= 330 || bd->GlProfileIsES3)
             {
@@ -489,9 +494,9 @@ namespace ExampleOpenGL3
 #if IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
             GL.BindVertexArray(last_vertex_array_object);
 #endif
-            GL.BindBuffer(GLEnum.ArrayBuffer, last_array_buffer);
+            GL.BindBuffer(GLBufferTargetARB.ArrayBuffer, last_array_buffer);
 #if !IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
-            GL.BindBuffer(GLEnum.ElementArrayBuffer, (uint)last_element_array_buffer);
+            GL.BindBuffer(GLBufferTargetARB.ElementArrayBuffer, (uint)last_element_array_buffer);
             //last_vtx_attrib_state_pos.SetState(bd->AttribLocationVtxPos);
             //last_vtx_attrib_state_uv.SetState(bd->AttribLocationVtxUV);
             //last_vtx_attrib_state_color.SetState(bd->AttribLocationVtxColor);
@@ -500,69 +505,69 @@ namespace ExampleOpenGL3
             GL.BlendFuncSeparate(last_blend_src_rgb, last_blend_dst_rgb, last_blend_src_alpha, last_blend_dst_alpha);
             if (last_enable_blend)
             {
-                GL.Enable(EnableCap.Blend);
+                GL.Enable(GLEnableCap.Blend);
             }
             else
             {
-                GL.Disable(EnableCap.Blend);
+                GL.Disable(GLEnableCap.Blend);
             }
 
             if (last_enable_cull_face)
             {
-                GL.Enable(GLEnum.CullFace);
+                GL.Enable(GLEnableCap.CullFace);
             }
             else
             {
-                GL.Disable(GLEnum.CullFace);
+                GL.Disable(GLEnableCap.CullFace);
             }
 
             if (last_enable_depth_test)
             {
-                GL.Enable(GLEnum.DepthTest);
+                GL.Enable(GLEnableCap.DepthTest);
             }
             else
             {
-                GL.Disable(GLEnum.DepthTest);
+                GL.Disable(GLEnableCap.DepthTest);
             }
 
             if (last_enable_stencil_test)
             {
-                GL.Enable(GLEnum.StencilTest);
+                GL.Enable(GLEnableCap.StencilTest);
             }
             else
             {
-                GL.Disable(GLEnum.StencilTest);
+                GL.Disable(GLEnableCap.StencilTest);
             }
 
             if (last_enable_scissor_test)
             {
-                GL.Enable(GLEnum.ScissorTest);
+                GL.Enable(GLEnableCap.ScissorTest);
             }
             else
             {
-                GL.Disable(GLEnum.ScissorTest);
+                GL.Disable(GLEnableCap.ScissorTest);
             }
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_PRIMITIVE_RESTART
             if (bd->GlVersion >= 310)
             {
                 if (last_enable_primitive_restart)
                 {
-                    GL.Enable(GLEnum.PrimitiveRestart);
+                    GL.Enable(GLEnableCap.PrimitiveRestart);
                 }
                 else
                 {
-                    GL.Disable(GLEnum.PrimitiveRestart);
+                    GL.Disable(GLEnableCap.PrimitiveRestart);
                 }
             }
 #endif
 
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_POLYGON_MODE
             // Desktop OpenGL 3.0 and OpenGL 3.1 had separate polygon draw modes for front-facing and back-facing faces of polygons
-            if (bd->HasPolygonMode) { if (bd->GlVersion <= 310 || bd->GlProfileIsCompat) { GL.PolygonMode(GLEnum.Front, (GLEnum)last_polygon_mode[0]); GL.PolygonMode(GLEnum.Back, (GLEnum)last_polygon_mode[1]); } else { GL.PolygonMode(GLEnum.FrontAndBack, (GLEnum)last_polygon_mode[0]); } }
+            if (bd->HasPolygonMode) { if (bd->GlVersion <= 310 || bd->GlProfileIsCompat) { GL.PolygonMode(GLTriangleFace.Front, (GLPolygonMode)last_polygon_mode[0]); GL.PolygonMode(GLTriangleFace.Back, (GLPolygonMode)last_polygon_mode[1]); } else { GL.PolygonMode(GLTriangleFace.FrontAndBack, (GLPolygonMode)last_polygon_mode[0]); } }
 #endif // IMGUI_IMPL_OPENGL_MAY_HAVE_POLYGON_MODE
 
-            GL.Viewport(last_viewport[0], last_viewport[1], (uint)last_viewport[2], (uint)last_viewport[3]);
-            GL.Scissor(last_scissor_box[0], last_scissor_box[1], (uint)last_scissor_box[2], (uint)last_scissor_box[3]);
+            GL.Viewport(last_viewport[0], last_viewport[1], (int)last_viewport[2], (int)last_viewport[3]);
+            GL.Scissor(last_scissor_box[0], last_scissor_box[1], (int)last_scissor_box[2], (int)last_scissor_box[3]);
         }
 
         private static bool CreateFontsTexture()
@@ -579,27 +584,27 @@ namespace ExampleOpenGL3
             // (Bilinear sampling is required by default. Set 'io.Fonts->Flags |= ImFontAtlasFlags_NoBakedLines' or 'style.AntiAliasedLinesUseTex = false' to allow point/nearest sampling)
             uint last_texture;
             /*GL_CALL*/
-            GL.GetInteger(GLEnum.TextureBinding2D, (int*)&last_texture);
+            GL.GetIntegerv(GLGetPName.TextureBinding2D, (int*)&last_texture);
             /*GL_CALL*/
             GL.GenTextures(1, &bd->FontTexture);
             /*GL_CALL*/
-            GL.BindTexture(GLEnum.Texture2D, bd->FontTexture);
+            GL.BindTexture(GLTextureTarget.Texture2D, bd->FontTexture);
             /*GL_CALL*/
-            GL.TexParameter(GLEnum.Texture2D, GLEnum.TextureMinFilter, (int)GLEnum.Linear);
+            GL.TexParameteri(GLTextureTarget.Texture2D, GLTextureParameterName.MinFilter, (int)GLEnum.Linear);
             /*GL_CALL*/
-            GL.TexParameter(GLEnum.Texture2D, GLEnum.TextureMagFilter, (int)GLEnum.Linear);
+            GL.TexParameteri(GLTextureTarget.Texture2D, GLTextureParameterName.MagFilter, (int)GLEnum.Linear);
 #if GL_UNPACK_ROW_LENGTH // Not on WebGL/ES
             /*GL_CALL*/(GL.PixelStore(GLEnum.UnpackRowLength, 0));
 #endif
             /*GL_CALL*/
-            GL.TexImage2D(GLEnum.Texture2D, 0, (int)GLEnum.Rgba, (uint)width, (uint)height, 0, GLEnum.Rgba, GLEnum.UnsignedByte, pixels);
+            GL.TexImage2D(GLTextureTarget.Texture2D, 0, GLInternalFormat.Rgba, width, height, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedByte, pixels);
 
             // Store our identifier
-            io.Fonts.SetTexID((ImTextureID)(nint)bd->FontTexture);
+            io.Fonts.SetTexID((ImTextureID)bd->FontTexture);
 
             // Restore state
             /*GL_CALL*/
-            GL.BindTexture(GLEnum.Texture2D, last_texture);
+            GL.BindTexture(GLTextureTarget.Texture2D, last_texture);
 
             return true;
         }
@@ -621,8 +626,8 @@ namespace ExampleOpenGL3
         {
             RenderData* bd = GetBackendData();
             int status = 0, log_length = 0;
-            GL.GetShader(handle, GLEnum.CompileStatus, &status);
-            GL.GetShader(handle, GLEnum.InfoLogLength, &log_length);
+            GL.GetShaderiv(handle, GLShaderParameterName.CompileStatus, &status);
+            GL.GetShaderiv(handle, GLShaderParameterName.InfoLogLength, &log_length);
             if (status == 0)
             {
                 Debug.WriteLine($"ERROR: ImGui_ImplOpenGL3_CreateDeviceObjects: failed to compile {desc}! With GLSL: {ToStringFromUTF8(bd->GlslVersionString)}");
@@ -631,8 +636,8 @@ namespace ExampleOpenGL3
             if (log_length > 1)
             {
                 UnsafeList<byte> buf = default;
-                buf.Resize((uint)log_length + 1);
-                GL.GetShaderInfoLog(handle, (uint)log_length, null, buf.Data);
+                buf.Resize((int)log_length + 1);
+                GL.GetShaderInfoLog(handle, log_length, (int*)null, buf.Data);
                 Debug.WriteLine(ToStringFromUTF8(buf.Data));
                 buf.Release();
             }
@@ -644,8 +649,8 @@ namespace ExampleOpenGL3
         {
             RenderData* bd = GetBackendData();
             int status = 0, log_length = 0;
-            GL.GetProgram(handle, GLEnum.LinkStatus, &status);
-            GL.GetProgram(handle, GLEnum.InfoLogLength, &log_length);
+            GL.GetProgramiv(handle, GLProgramPropertyARB.LinkStatus, &status);
+            GL.GetProgramiv(handle, GLProgramPropertyARB.InfoLogLength, &log_length);
             if (status == 0)
             {
                 Debug.WriteLine($"ERROR: ImGui_ImplOpenGL3_CreateDeviceObjects: failed to link {desc}! With GLSL {ToStringFromUTF8(bd->GlslVersionString)}");
@@ -654,8 +659,8 @@ namespace ExampleOpenGL3
             if (log_length > 1)
             {
                 UnsafeList<byte> buf = default;
-                buf.Resize((uint)log_length + 1);
-                GL.GetShaderInfoLog(handle, (uint)log_length, null, buf.Data);
+                buf.Resize((int)log_length + 1);
+                GL.GetShaderInfoLog(handle, log_length, (int*)null, buf.Data);
                 Debug.WriteLine(ToStringFromUTF8(buf.Data));
                 buf.Release();
             }
@@ -668,15 +673,15 @@ namespace ExampleOpenGL3
 
             // Backup GL state
             int last_texture, last_array_buffer;
-            GL.GetInteger(GLEnum.TextureBinding2D, &last_texture);
-            GL.GetInteger(GLEnum.ArrayBufferBinding, &last_array_buffer);
+            GL.GetIntegerv(GLGetPName.TextureBinding2D, &last_texture);
+            GL.GetIntegerv(GLGetPName.ArrayBufferBinding, &last_array_buffer);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_BIND_BUFFER_PIXEL_UNPACK
             int last_pixel_unpack_buffer = 0;
-            if (bd->GlVersion >= 210) { GL.GetInteger(GLEnum.PixelUnpackBufferBinding, &last_pixel_unpack_buffer); GL.BindBuffer(GLEnum.PixelUnpackBuffer, 0); }
+            if (bd->GlVersion >= 210) { GL.GetIntegerv(GLGetPName.PixelUnpackBufferBinding, &last_pixel_unpack_buffer); GL.BindBuffer(GLBufferTargetARB.PixelUnpackBuffer, 0); }
 #endif
 #if IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
             int last_vertex_array;
-            GL.GetInteger(GLEnum.VertexArrayBinding, &last_vertex_array);
+            GL.GetIntegerv(GLGetPName.VertexArrayBinding, &last_vertex_array);
 #endif
 
             // Parse GLSL version string
@@ -821,13 +826,13 @@ namespace ExampleOpenGL3
 
             // Create shaders
             string vertex_shader_with_version = $"{ToStringFromUTF8(bd->GlslVersionString)}\n{vertex_shader}";
-            uint vert_handle = GL.CreateShader(GLEnum.VertexShader);
+            uint vert_handle = GL.CreateShader(GLShaderType.VertexShader);
             GL.ShaderSource(vert_handle, vertex_shader_with_version);
             GL.CompileShader(vert_handle);
             CheckShader(vert_handle, "vertex shader");
 
             string fragment_shader_with_version = $"{ToStringFromUTF8(bd->GlslVersionString)}\n{fragment_shader}";
-            uint frag_handle = GL.CreateShader(GLEnum.FragmentShader);
+            uint frag_handle = GL.CreateShader(GLShaderType.FragmentShader);
             GL.ShaderSource(frag_handle, fragment_shader_with_version);
             GL.CompileShader(frag_handle);
             CheckShader(frag_handle, "fragment shader");
@@ -857,10 +862,10 @@ namespace ExampleOpenGL3
             CreateFontsTexture();
 
             // Restore modified GL state
-            GL.BindTexture(GLEnum.Texture2D, (uint)last_texture);
-            GL.BindBuffer(GLEnum.ArrayBuffer, (uint)last_array_buffer);
+            GL.BindTexture(GLTextureTarget.Texture2D, (uint)last_texture);
+            GL.BindBuffer(GLBufferTargetARB.ArrayBuffer, (uint)last_array_buffer);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_BIND_BUFFER_PIXEL_UNPACK
-            if (bd->GlVersion >= 210) { GL.BindBuffer(GLEnum.PixelUnpackBuffer, (uint)last_pixel_unpack_buffer); }
+            if (bd->GlVersion >= 210) { GL.BindBuffer(GLBufferTargetARB.PixelUnpackBuffer, (uint)last_pixel_unpack_buffer); }
 #endif
 #if IMGUI_IMPL_OPENGL_USE_VERTEX_ARRAY
             GL.BindVertexArray((uint)last_vertex_array);
@@ -890,7 +895,7 @@ namespace ExampleOpenGL3
             {
                 Vector4 clear_color = new(0.0f, 0.0f, 0.0f, 1.0f);
                 GL.ClearColor(clear_color.X, clear_color.Y, clear_color.Z, clear_color.W);
-                GL.Clear(ClearBufferMask.ColorBufferBit);
+                GL.Clear(GLClearBufferMask.ColorBufferBit);
             }
             RenderDrawData(viewport->DrawData);
         }

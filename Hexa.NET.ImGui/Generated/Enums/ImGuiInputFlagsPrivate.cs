@@ -20,57 +20,57 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiInputFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Repeat rate: Regular (default)<br/>
 		/// </summary>
 		RepeatRateDefault = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Repeat rate: Fast<br/>
 		/// </summary>
 		RepeatRateNavMove = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Repeat rate: Faster<br/>
 		/// </summary>
 		RepeatRateNavTweak = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Stop repeating when released (default for all functions except Shortcut). This only exists to allow overriding Shortcut() default behavior.<br/>
 		/// </summary>
 		RepeatUntilRelease = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Stop repeating when released OR if keyboard mods are changed (default for Shortcut)<br/>
 		/// </summary>
 		RepeatUntilKeyModsChange = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Stop repeating when released OR if keyboard mods are leaving the None state. Allows going from Mod+Key to Key by releasing Mod.<br/>
 		/// </summary>
 		RepeatUntilKeyModsChangeFromNone = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Stop repeating when released OR if any other keyboard key is pressed during the repeat<br/>
 		/// </summary>
 		RepeatUntilOtherKeyPress = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Further accesses to key data will require EXPLICIT owner ID (ImGuiKeyOwner_Any0 will NOT accepted for polling). Cleared at end of frame.<br/>
 		/// </summary>
 		LockThisFrame = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Further accesses to key data will require EXPLICIT owner ID (ImGuiKeyOwner_Any0 will NOT accepted for polling). Cleared when the key is released or at end of each frame if key is released.<br/>
 		/// </summary>
 		LockUntilRelease = unchecked(2097152),
 
 		/// <summary>
-		/// To be documented.
+		/// Only set if item is hovered (default to both)<br/>
 		/// </summary>
 		CondHovered = unchecked(4194304),
 
 		/// <summary>
-		/// To be documented.
+		/// Only set if item is active (default to both)<br/>
 		/// </summary>
 		CondActive = unchecked(8388608),
 

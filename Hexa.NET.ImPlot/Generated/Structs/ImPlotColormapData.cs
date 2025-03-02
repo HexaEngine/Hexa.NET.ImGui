@@ -98,6 +98,407 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _AppendTable(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				ImPlot._AppendTableNative(@this, cmap);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(byte* name, uint* keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				int ret = ImPlot.AppendNative(@this, name, keys, count, qual ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ref byte name, uint* keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = &name)
+				{
+					int ret = ImPlot.AppendNative(@this, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = name)
+				{
+					int ret = ImPlot.AppendNative(@this, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(string name, uint* keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (name != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(name);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = ImPlot.AppendNative(@this, pStr0, keys, count, qual ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(byte* name, ref uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(@this, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ref byte name, ref uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = &name)
+				{
+					fixed (uint* pkeys = &keys)
+					{
+						int ret = ImPlot.AppendNative(@this, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = name)
+				{
+					fixed (uint* pkeys = &keys)
+					{
+						int ret = ImPlot.AppendNative(@this, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(string name, ref uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (name != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(name);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(@this, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(byte* name)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				ImPlotColormap ret = ImPlot.GetIndexNative(@this, name);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(ref byte name)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = &name)
+				{
+					ImPlotColormap ret = ImPlot.GetIndexNative(@this, (byte*)pname);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(ReadOnlySpan<byte> name)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = name)
+				{
+					ImPlotColormap ret = ImPlot.GetIndexNative(@this, (byte*)pname);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(string name)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (name != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(name);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotColormap ret = ImPlot.GetIndexNative(@this, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetKeyColor(ImPlotColormap cmap, int idx)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				uint ret = ImPlot.GetKeyColorNative(@this, cmap, idx);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetKeyCount(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				int ret = ImPlot.GetKeyCountNative(@this, cmap);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint* GetKeys(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				uint* ret = ImPlot.GetKeysNative(@this, cmap);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetName(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				byte* ret = ImPlot.GetNameNative(@this, cmap);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetNameS(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlot.GetNameNative(@this, cmap));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint* GetTable(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				uint* ret = ImPlot.GetTableNative(@this, cmap);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetTableColor(ImPlotColormap cmap, int idx)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				uint ret = ImPlot.GetTableColorNative(@this, cmap, idx);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetTableSize(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				int ret = ImPlot.GetTableSizeNative(@this, cmap);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsQual(ImPlotColormap cmap)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				byte ret = ImPlot.IsQualNative(@this, cmap);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint LerpTable(ImPlotColormap cmap, float t)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				uint ret = ImPlot.LerpTableNative(@this, cmap, t);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RebuildTables()
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				ImPlot.RebuildTablesNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetKeyColor(ImPlotColormap cmap, int idx, uint value)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				ImPlot.SetKeyColorNative(@this, cmap, idx, value);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -185,6 +586,329 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref int Count => ref Unsafe.AsRef<int>(&Handle->Count);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _AppendTable(ImPlotColormap cmap)
+		{
+			ImPlot._AppendTableNative(Handle, cmap);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(byte* name, uint* keys, int count, bool qual)
+		{
+			int ret = ImPlot.AppendNative(Handle, name, keys, count, qual ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ref byte name, uint* keys, int count, bool qual)
+		{
+			fixed (byte* pname = &name)
+			{
+				int ret = ImPlot.AppendNative(Handle, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
+		{
+			fixed (byte* pname = name)
+			{
+				int ret = ImPlot.AppendNative(Handle, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(string name, uint* keys, int count, bool qual)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImPlot.AppendNative(Handle, pStr0, keys, count, qual ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(byte* name, ref uint keys, int count, bool qual)
+		{
+			fixed (uint* pkeys = &keys)
+			{
+				int ret = ImPlot.AppendNative(Handle, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ref byte name, ref uint keys, int count, bool qual)
+		{
+			fixed (byte* pname = &name)
+			{
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(Handle, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
+		{
+			fixed (byte* pname = name)
+			{
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(Handle, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(string name, ref uint keys, int count, bool qual)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pkeys = &keys)
+			{
+				int ret = ImPlot.AppendNative(Handle, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(byte* name)
+		{
+			ImPlotColormap ret = ImPlot.GetIndexNative(Handle, name);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(ref byte name)
+		{
+			fixed (byte* pname = &name)
+			{
+				ImPlotColormap ret = ImPlot.GetIndexNative(Handle, (byte*)pname);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(ReadOnlySpan<byte> name)
+		{
+			fixed (byte* pname = name)
+			{
+				ImPlotColormap ret = ImPlot.GetIndexNative(Handle, (byte*)pname);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotColormap GetIndex(string name)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotColormap ret = ImPlot.GetIndexNative(Handle, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetKeyColor(ImPlotColormap cmap, int idx)
+		{
+			uint ret = ImPlot.GetKeyColorNative(Handle, cmap, idx);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetKeyCount(ImPlotColormap cmap)
+		{
+			int ret = ImPlot.GetKeyCountNative(Handle, cmap);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint* GetKeys(ImPlotColormap cmap)
+		{
+			uint* ret = ImPlot.GetKeysNative(Handle, cmap);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetName(ImPlotColormap cmap)
+		{
+			byte* ret = ImPlot.GetNameNative(Handle, cmap);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetNameS(ImPlotColormap cmap)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlot.GetNameNative(Handle, cmap));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint* GetTable(ImPlotColormap cmap)
+		{
+			uint* ret = ImPlot.GetTableNative(Handle, cmap);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint GetTableColor(ImPlotColormap cmap, int idx)
+		{
+			uint ret = ImPlot.GetTableColorNative(Handle, cmap, idx);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int GetTableSize(ImPlotColormap cmap)
+		{
+			int ret = ImPlot.GetTableSizeNative(Handle, cmap);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsQual(ImPlotColormap cmap)
+		{
+			byte ret = ImPlot.IsQualNative(Handle, cmap);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint LerpTable(ImPlotColormap cmap, float t)
+		{
+			uint ret = ImPlot.LerpTableNative(Handle, cmap, t);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RebuildTables()
+		{
+			ImPlot.RebuildTablesNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void SetKeyColor(ImPlotColormap cmap, int idx, uint value)
+		{
+			ImPlot.SetKeyColorNative(Handle, cmap, idx, value);
+		}
+
 	}
 
 }

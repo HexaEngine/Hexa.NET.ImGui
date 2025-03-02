@@ -17,7 +17,10 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Store data emitted by TreeNode() for usage by TreePop()<br/>
+	/// - To implement ImGuiTreeNodeFlags_NavLeftJumpsBackHere: store the minimum amount of data<br/>
+	/// which we can't infer in TreePop(), to perform the equivalent of NavApplyItemToResult().<br/>
+	/// Only stored when the node is a potential candidate for landing on a Left arrow jump.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTreeNodeStackData
@@ -35,7 +38,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiItemFlags InFlags;
+		public ImGuiItemFlags ItemFlags;
 
 		/// <summary>
 		/// To be documented.
@@ -46,11 +49,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags inFlags = default, ImRect navRect = default)
+		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags itemFlags = default, ImRect navRect = default)
 		{
 			ID = id;
 			TreeFlags = treeFlags;
-			InFlags = inFlags;
+			ItemFlags = itemFlags;
 			NavRect = navRect;
 		}
 
@@ -109,7 +112,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
+		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

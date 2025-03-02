@@ -1,3 +1,4 @@
 {
+  "ImGuiWindow": "struct ImGuiWindow",
   "Style": "struct Style"
 }

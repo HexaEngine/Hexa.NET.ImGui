@@ -75,7 +75,7 @@ namespace Hexa.NET.ImGui
 		AllowWhenDisabled = unchecked(1024),
 
 		/// <summary>
-		/// IsItemHovered() only: Disable using gamepadkeyboard navigation state when active, always query mouse<br/>
+		/// IsItemHovered() only: Disable using keyboardgamepad navigation state when active, always query mouse<br/>
 		/// </summary>
 		NoNavOverride = unchecked(2048),
 

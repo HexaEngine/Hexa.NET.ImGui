@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,12 +13,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Silk.NET.SDL" Version="2.20.0" />
-		<PackageReference Include="Hexa.NET.Utilities" Version="2.1.1" />
-		<PackageReference Include="Hexa.NET.Math" Version="2.0.1" />
+		<PackageReference Include="Hexa.NET.DebugDraw" Version="2.3.2" />
+		<PackageReference Include="Silk.NET.SDL" Version="2.22.0" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.2.1" />
+		<PackageReference Include="Hexa.NET.Math" Version="2.0.3" />
+		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.SDL2\Hexa.NET.ImGui.Backends.SDL2.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.GLFW\Hexa.NET.ImGui.Backends.GLFW.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGuizmo\Hexa.NET.ImGuizmo.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
 		<ProjectReference Include="..\Hexa.NET.ImNodes\Hexa.NET.ImNodes.csproj" />

@@ -48,5 +48,10 @@ namespace Hexa.NET.ImGui
 		/// true      MenuItem()Selectable() automatically close their parent popup window.<br/>
 		/// </summary>
 		AutoClosePopups = unchecked(16),
+
+		/// <summary>
+		/// false     Allow submitting an item with the same identifier as an item already submitted this frame without triggering a warning tooltip if io.ConfigDebugHighlightIdConflicts is set.<br/>
+		/// </summary>
+		AllowDuplicateId = unchecked(32),
 	}
 }

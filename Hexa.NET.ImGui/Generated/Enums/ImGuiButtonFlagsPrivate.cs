@@ -20,87 +20,77 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiButtonFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// return true on click (mouse down event)<br/>
 		/// </summary>
 		PressedOnClick = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// [Default] return true on click + release on same item &lt;-- this is what the majority of Button are using<br/>
 		/// </summary>
 		PressedOnClickRelease = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// return true on click + release even if the release event is not done while hovering the item<br/>
 		/// </summary>
 		PressedOnClickReleaseAnywhere = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// return true on release (default requires click+release)<br/>
 		/// </summary>
 		PressedOnRelease = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// return true on double-click (default requires click+release)<br/>
 		/// </summary>
 		PressedOnDoubleClick = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// return true when held into while we are drag and dropping another item (used by e.g. tree nodes, collapsing headers)<br/>
 		/// </summary>
 		PressedOnDragDropHold = unchecked(512),
 
 		/// <summary>
-		/// To be documented.
-		/// </summary>
-		Repeat = unchecked(1024),
-
-		/// <summary>
-		/// To be documented.
+		/// allow interactions even if a child window is overlapping<br/>
 		/// </summary>
 		FlattenChildren = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// require previous frame HoveredId to either match id or be null before being usable.<br/>
 		/// </summary>
 		AllowOverlap = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
-		/// </summary>
-		DontClosePopups = unchecked(8192),
-
-		/// <summary>
-		/// To be documented.
+		/// vertically align button to match text baseline - ButtonEx() only  FIXME: Should be removed and handled by SmallButton(), not possible currently because of DC.CursorPosPrevLine<br/>
 		/// </summary>
 		AlignTextBaseLine = unchecked(32768),
 
 		/// <summary>
-		/// To be documented.
+		/// disable mouse interaction if a key modifier is held<br/>
 		/// </summary>
-		NoKeyModifiers = unchecked(65536),
+		NoKeyModsAllowed = unchecked(65536),
 
 		/// <summary>
-		/// To be documented.
+		/// don't set ActiveId while holding the mouse (ImGuiButtonFlags_PressedOnClick only)<br/>
 		/// </summary>
 		NoHoldingActiveId = unchecked(131072),
 
 		/// <summary>
-		/// To be documented.
+		/// don't override navigation focus when activated (FIXME: this is essentially used every time an item uses ImGuiItemFlags_NoNav, but because legacy specs don't requires LastItemData to be set ButtonBehavior(), we can't poll g.LastItemData.ItemFlags)<br/>
 		/// </summary>
 		NoNavFocus = unchecked(262144),
 
 		/// <summary>
-		/// To be documented.
+		/// don't report as hovered when nav focus is on this item<br/>
 		/// </summary>
 		NoHoveredOnFocus = unchecked(524288),
 
 		/// <summary>
-		/// To be documented.
+		/// don't set keyinput owner on the initial click (note: mouse buttons are keys! often, the key in question will be ImGuiKey_MouseLeft!)<br/>
 		/// </summary>
 		NoSetKeyOwner = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// don't test keyinput owner when polling the key (note: mouse buttons are keys! often, the key in question will be ImGuiKey_MouseLeft!)<br/>
 		/// </summary>
 		NoTestKeyOwner = unchecked(2097152),
 

@@ -21,12 +21,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static EmulateThreeButtonMouse* EmulateThreeButtonMouseNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<EmulateThreeButtonMouse*>)vt[0])();
+			return ((delegate* unmanaged[Cdecl]<EmulateThreeButtonMouse*>)funcTable[0])();
 			#else
-			return (EmulateThreeButtonMouse*)((delegate* unmanaged[Cdecl]<nint>)vt[0])();
+			return (EmulateThreeButtonMouse*)((delegate* unmanaged[Cdecl]<nint>)funcTable[0])();
 			#endif
 		}
 
@@ -42,12 +43,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(EmulateThreeButtonMouse* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<EmulateThreeButtonMouse*, void>)vt[1])(self);
+			((delegate* unmanaged[Cdecl]<EmulateThreeButtonMouse*, void>)funcTable[1])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[1])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1])((nint)self);
 			#endif
 		}
 
@@ -73,12 +75,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static LinkDetachWithModifierClick* LinkDetachWithModifierClickNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<LinkDetachWithModifierClick*>)vt[2])();
+			return ((delegate* unmanaged[Cdecl]<LinkDetachWithModifierClick*>)funcTable[2])();
 			#else
-			return (LinkDetachWithModifierClick*)((delegate* unmanaged[Cdecl]<nint>)vt[2])();
+			return (LinkDetachWithModifierClick*)((delegate* unmanaged[Cdecl]<nint>)funcTable[2])();
 			#endif
 		}
 
@@ -94,12 +97,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(LinkDetachWithModifierClick* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<LinkDetachWithModifierClick*, void>)vt[3])(self);
+			((delegate* unmanaged[Cdecl]<LinkDetachWithModifierClick*, void>)funcTable[3])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[3])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[3])((nint)self);
 			#endif
 		}
 
@@ -125,12 +129,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static MultipleSelectModifier* MultipleSelectModifierNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MultipleSelectModifier*>)vt[4])();
+			return ((delegate* unmanaged[Cdecl]<MultipleSelectModifier*>)funcTable[4])();
 			#else
-			return (MultipleSelectModifier*)((delegate* unmanaged[Cdecl]<nint>)vt[4])();
+			return (MultipleSelectModifier*)((delegate* unmanaged[Cdecl]<nint>)funcTable[4])();
 			#endif
 		}
 
@@ -146,12 +151,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(MultipleSelectModifier* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<MultipleSelectModifier*, void>)vt[5])(self);
+			((delegate* unmanaged[Cdecl]<MultipleSelectModifier*, void>)funcTable[5])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[5])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[5])((nint)self);
 			#endif
 		}
 
@@ -177,12 +183,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesIO* ImNodesIONative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesIO*>)vt[6])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesIO*>)funcTable[6])();
 			#else
-			return (ImNodesIO*)((delegate* unmanaged[Cdecl]<nint>)vt[6])();
+			return (ImNodesIO*)((delegate* unmanaged[Cdecl]<nint>)funcTable[6])();
 			#endif
 		}
 
@@ -198,12 +205,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImNodesIO* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesIO*, void>)vt[7])(self);
+			((delegate* unmanaged[Cdecl]<ImNodesIO*, void>)funcTable[7])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[7])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[7])((nint)self);
 			#endif
 		}
 
@@ -229,12 +237,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesStyle* ImNodesStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesStyle*>)vt[8])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesStyle*>)funcTable[8])();
 			#else
-			return (ImNodesStyle*)((delegate* unmanaged[Cdecl]<nint>)vt[8])();
+			return (ImNodesStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[8])();
 			#endif
 		}
 
@@ -250,12 +259,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyNative(ImNodesStyle* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[9])(self);
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)funcTable[9])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[9])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[9])((nint)self);
 			#endif
 		}
 
@@ -281,19 +291,20 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetImGuiContextNative(ImGuiContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[10])(ctx);
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[10])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[10])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[10])((nint)ctx);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetImGuiContext(ImGuiContext* ctx)
+		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
 			SetImGuiContextNative(ctx);
 		}
@@ -312,12 +323,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesContext* CreateContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesContext*>)vt[11])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesContext*>)funcTable[11])();
 			#else
-			return (ImNodesContext*)((delegate* unmanaged[Cdecl]<nint>)vt[11])();
+			return (ImNodesContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[11])();
 			#endif
 		}
 
@@ -333,12 +345,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyContextNative(ImNodesContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesContext*, void>)vt[12])(ctx);
+			((delegate* unmanaged[Cdecl]<ImNodesContext*, void>)funcTable[12])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[12])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[12])((nint)ctx);
 			#endif
 		}
 
@@ -372,12 +385,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesContext* GetCurrentContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesContext*>)vt[13])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesContext*>)funcTable[13])();
 			#else
-			return (ImNodesContext*)((delegate* unmanaged[Cdecl]<nint>)vt[13])();
+			return (ImNodesContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[13])();
 			#endif
 		}
 
@@ -393,12 +407,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCurrentContextNative(ImNodesContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesContext*, void>)vt[14])(ctx);
+			((delegate* unmanaged[Cdecl]<ImNodesContext*, void>)funcTable[14])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[14])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[14])((nint)ctx);
 			#endif
 		}
 
@@ -424,12 +439,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesEditorContext* EditorContextCreateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*>)vt[15])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*>)funcTable[15])();
 			#else
-			return (ImNodesEditorContext*)((delegate* unmanaged[Cdecl]<nint>)vt[15])();
+			return (ImNodesEditorContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[15])();
 			#endif
 		}
 
@@ -445,12 +461,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EditorContextFreeNative(ImNodesEditorContext* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, void>)vt[16])(noname1);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, void>)funcTable[16])(noname1);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[16])((nint)noname1);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[16])((nint)noname1);
 			#endif
 		}
 
@@ -476,12 +493,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EditorContextSetNative(ImNodesEditorContext* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, void>)vt[17])(noname1);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, void>)funcTable[17])(noname1);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[17])((nint)noname1);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[17])((nint)noname1);
 			#endif
 		}
 
@@ -507,12 +525,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EditorContextGetPanningNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[18])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[18])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[18])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)pOut);
 			#endif
 		}
 
@@ -548,12 +567,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EditorContextResetPanningNative(Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[19])(pos);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[19])(pos);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[19])(pos);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[19])(pos);
 			#endif
 		}
 
@@ -568,12 +588,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EditorContextMoveToNodeNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[20])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[20])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[20])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[20])(nodeId);
 			#endif
 		}
 
@@ -588,12 +609,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesIO* GetIONative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesIO*>)vt[21])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesIO*>)funcTable[21])();
 			#else
-			return (ImNodesIO*)((delegate* unmanaged[Cdecl]<nint>)vt[21])();
+			return (ImNodesIO*)((delegate* unmanaged[Cdecl]<nint>)funcTable[21])();
 			#endif
 		}
 
@@ -609,12 +631,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImNodesStyle* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesStyle*>)vt[22])();
+			return ((delegate* unmanaged[Cdecl]<ImNodesStyle*>)funcTable[22])();
 			#else
-			return (ImNodesStyle*)((delegate* unmanaged[Cdecl]<nint>)vt[22])();
+			return (ImNodesStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[22])();
 			#endif
 		}
 
@@ -630,12 +653,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsDarkNative(ImNodesStyle* dest)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[23])(dest);
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)funcTable[23])(dest);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[23])((nint)dest);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[23])((nint)dest);
 			#endif
 		}
 
@@ -669,12 +693,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsClassicNative(ImNodesStyle* dest)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[24])(dest);
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)funcTable[24])(dest);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[24])((nint)dest);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[24])((nint)dest);
 			#endif
 		}
 
@@ -708,12 +733,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsLightNative(ImNodesStyle* dest)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[25])(dest);
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)funcTable[25])(dest);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[25])((nint)dest);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[25])((nint)dest);
 			#endif
 		}
 
@@ -747,12 +773,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginNodeEditorNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
 			#endif
 		}
 
@@ -767,12 +794,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndNodeEditorNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[27])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[27])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[27])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[27])();
 			#endif
 		}
 
@@ -787,12 +815,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, delegate*<int, void*, void>, ImNodesMiniMapNodeHoveringCallbackUserData, void>)vt[28])(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, delegate*<int, void*, void>, ImNodesMiniMapNodeHoveringCallbackUserData, void>)funcTable[28])(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
 			#else
-			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, nint, ImNodesMiniMapNodeHoveringCallbackUserData, void>)vt[28])(minimapSizeFraction, location, (nint)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, nint, ImNodesMiniMapNodeHoveringCallbackUserData, void>)funcTable[28])(minimapSizeFraction, location, (nint)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
 			#endif
 		}
 
@@ -927,12 +956,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushColorStyleNative(ImNodesCol item, uint color)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesCol, uint, void>)vt[29])(item, color);
+			((delegate* unmanaged[Cdecl]<ImNodesCol, uint, void>)funcTable[29])(item, color);
 			#else
-			((delegate* unmanaged[Cdecl]<ImNodesCol, uint, void>)vt[29])(item, color);
+			((delegate* unmanaged[Cdecl]<ImNodesCol, uint, void>)funcTable[29])(item, color);
 			#endif
 		}
 
@@ -947,12 +977,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopColorStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
 			#endif
 		}
 
@@ -967,12 +998,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleVarNative(ImNodesStyleVar styleItem, float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, float, void>)vt[31])(styleItem, value);
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, float, void>)funcTable[31])(styleItem, value);
 			#else
-			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, float, void>)vt[31])(styleItem, value);
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, float, void>)funcTable[31])(styleItem, value);
 			#endif
 		}
 
@@ -987,12 +1019,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, Vector2, void>)vt[32])(styleItem, value);
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, Vector2, void>)funcTable[32])(styleItem, value);
 			#else
-			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, Vector2, void>)vt[32])(styleItem, value);
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, Vector2, void>)funcTable[32])(styleItem, value);
 			#endif
 		}
 
@@ -1007,12 +1040,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopStyleVarNative(int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[33])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[33])(count);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[33])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[33])(count);
 			#endif
 		}
 
@@ -1035,12 +1069,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginNodeNative(int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[34])(id);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[34])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[34])(id);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[34])(id);
 			#endif
 		}
 
@@ -1055,12 +1090,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndNodeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[35])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[35])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[35])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[35])();
 			#endif
 		}
 
@@ -1075,12 +1111,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetNodeDimensionsNative(Vector2* pOut, int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[36])(pOut, id);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[36])(pOut, id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[36])((nint)pOut, id);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[36])((nint)pOut, id);
 			#endif
 		}
 
@@ -1116,12 +1153,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginNodeTitleBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[37])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[37])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
 			#endif
 		}
 
@@ -1136,12 +1174,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndNodeTitleBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[38])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[38])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
 			#endif
 		}
 
@@ -1156,12 +1195,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginInputAttributeNative(int id, ImNodesPinShape shape)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[39])(id, shape);
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)funcTable[39])(id, shape);
 			#else
-			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[39])(id, shape);
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)funcTable[39])(id, shape);
 			#endif
 		}
 
@@ -1184,12 +1224,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndInputAttributeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[40])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[40])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
 			#endif
 		}
 
@@ -1204,12 +1245,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginOutputAttributeNative(int id, ImNodesPinShape shape)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[41])(id, shape);
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)funcTable[41])(id, shape);
 			#else
-			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[41])(id, shape);
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)funcTable[41])(id, shape);
 			#endif
 		}
 
@@ -1232,12 +1274,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndOutputAttributeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[42])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[42])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
 			#endif
 		}
 
@@ -1252,12 +1295,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginStaticAttributeNative(int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[43])(id);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[43])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[43])(id);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[43])(id);
 			#endif
 		}
 
@@ -1272,12 +1316,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndStaticAttributeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[44])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[44])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
 			#endif
 		}
 
@@ -1292,12 +1337,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushAttributeFlagNative(ImNodesAttributeFlags flag)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesAttributeFlags, void>)vt[45])(flag);
+			((delegate* unmanaged[Cdecl]<ImNodesAttributeFlags, void>)funcTable[45])(flag);
 			#else
-			((delegate* unmanaged[Cdecl]<ImNodesAttributeFlags, void>)vt[45])(flag);
+			((delegate* unmanaged[Cdecl]<ImNodesAttributeFlags, void>)funcTable[45])(flag);
 			#endif
 		}
 
@@ -1312,12 +1358,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopAttributeFlagNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[46])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[46])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[46])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[46])();
 			#endif
 		}
 
@@ -1332,12 +1379,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LinkNative(int id, int startAttributeId, int endAttributeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, int, int, void>)vt[47])(id, startAttributeId, endAttributeId);
+			((delegate* unmanaged[Cdecl]<int, int, int, void>)funcTable[47])(id, startAttributeId, endAttributeId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, int, int, void>)vt[47])(id, startAttributeId, endAttributeId);
+			((delegate* unmanaged[Cdecl]<int, int, int, void>)funcTable[47])(id, startAttributeId, endAttributeId);
 			#endif
 		}
 
@@ -1352,12 +1400,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNodeDraggableNative(int nodeId, byte draggable)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[48])(nodeId, draggable);
+			((delegate* unmanaged[Cdecl]<int, byte, void>)funcTable[48])(nodeId, draggable);
 			#else
-			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[48])(nodeId, draggable);
+			((delegate* unmanaged[Cdecl]<int, byte, void>)funcTable[48])(nodeId, draggable);
 			#endif
 		}
 
@@ -1372,12 +1421,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[49])(nodeId, screenSpacePos);
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)funcTable[49])(nodeId, screenSpacePos);
 			#else
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[49])(nodeId, screenSpacePos);
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)funcTable[49])(nodeId, screenSpacePos);
 			#endif
 		}
 
@@ -1392,12 +1442,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[50])(nodeId, editorSpacePos);
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)funcTable[50])(nodeId, editorSpacePos);
 			#else
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[50])(nodeId, editorSpacePos);
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)funcTable[50])(nodeId, editorSpacePos);
 			#endif
 		}
 
@@ -1412,12 +1463,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[51])(nodeId, gridPos);
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)funcTable[51])(nodeId, gridPos);
 			#else
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[51])(nodeId, gridPos);
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)funcTable[51])(nodeId, gridPos);
 			#endif
 		}
 
@@ -1432,12 +1484,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetNodeScreenSpacePosNative(Vector2* pOut, int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[52])(pOut, nodeId);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[52])(pOut, nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[52])((nint)pOut, nodeId);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[52])((nint)pOut, nodeId);
 			#endif
 		}
 
@@ -1473,12 +1526,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetNodeEditorSpacePosNative(Vector2* pOut, int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[53])(pOut, nodeId);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[53])(pOut, nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[53])((nint)pOut, nodeId);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[53])((nint)pOut, nodeId);
 			#endif
 		}
 
@@ -1514,12 +1568,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetNodeGridSpacePosNative(Vector2* pOut, int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[54])(pOut, nodeId);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[54])(pOut, nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[54])((nint)pOut, nodeId);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[54])((nint)pOut, nodeId);
 			#endif
 		}
 
@@ -1555,12 +1610,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SnapNodeToGridNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[55])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[55])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[55])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[55])(nodeId);
 			#endif
 		}
 
@@ -1575,12 +1631,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsEditorHoveredNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[56])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[56])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[56])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[56])();
 			#endif
 		}
 
@@ -1596,12 +1653,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsNodeHoveredNative(int* nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[57])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)funcTable[57])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[57])((nint)nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])((nint)nodeId);
 			#endif
 		}
 
@@ -1629,12 +1687,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkHoveredNative(int* linkId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[58])(linkId);
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)funcTable[58])(linkId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[58])((nint)linkId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])((nint)linkId);
 			#endif
 		}
 
@@ -1662,12 +1721,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsPinHoveredNative(int* attributeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[59])(attributeId);
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)funcTable[59])(attributeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[59])((nint)attributeId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[59])((nint)attributeId);
 			#endif
 		}
 
@@ -1695,12 +1755,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int NumSelectedNodesNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[60])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[60])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[60])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[60])();
 			#endif
 		}
 
@@ -1716,12 +1777,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int NumSelectedLinksNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)vt[61])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[61])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)vt[61])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[61])();
 			#endif
 		}
 
@@ -1737,12 +1799,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetSelectedNodesNative(int* nodeIds)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int*, void>)vt[62])(nodeIds);
+			((delegate* unmanaged[Cdecl]<int*, void>)funcTable[62])(nodeIds);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[62])((nint)nodeIds);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[62])((nint)nodeIds);
 			#endif
 		}
 
@@ -1768,12 +1831,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetSelectedLinksNative(int* linkIds)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int*, void>)vt[63])(linkIds);
+			((delegate* unmanaged[Cdecl]<int*, void>)funcTable[63])(linkIds);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[63])((nint)linkIds);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[63])((nint)linkIds);
 			#endif
 		}
 
@@ -1799,12 +1863,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearNodeSelectionNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[64])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[64])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[64])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[64])();
 			#endif
 		}
 
@@ -1819,12 +1884,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearLinkSelectionNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[65])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[65])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
 			#endif
 		}
 
@@ -1839,12 +1905,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SelectNodeNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[66])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[66])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[66])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[66])(nodeId);
 			#endif
 		}
 
@@ -1859,12 +1926,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearNodeSelectionNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[67])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[67])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[67])(nodeId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[67])(nodeId);
 			#endif
 		}
 
@@ -1879,12 +1947,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsNodeSelectedNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[68])(nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[68])(nodeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[68])(nodeId);
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[68])(nodeId);
 			#endif
 		}
 
@@ -1900,12 +1969,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SelectLinkNative(int linkId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[69])(linkId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[69])(linkId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[69])(linkId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[69])(linkId);
 			#endif
 		}
 
@@ -1920,12 +1990,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearLinkSelectionNative(int linkId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[70])(linkId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[70])(linkId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[70])(linkId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[70])(linkId);
 			#endif
 		}
 
@@ -1940,12 +2011,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkSelectedNative(int linkId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[71])(linkId);
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[71])(linkId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[71])(linkId);
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[71])(linkId);
 			#endif
 		}
 
@@ -1961,12 +2033,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAttributeActiveNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[72])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[72])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[72])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[72])();
 			#endif
 		}
 
@@ -1982,12 +2055,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAnyAttributeActiveNative(int* attributeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[73])(attributeId);
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)funcTable[73])(attributeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[73])((nint)attributeId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[73])((nint)attributeId);
 			#endif
 		}
 
@@ -2024,12 +2098,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkStartedNative(int* startedAtAttributeId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[74])(startedAtAttributeId);
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)funcTable[74])(startedAtAttributeId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[74])((nint)startedAtAttributeId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[74])((nint)startedAtAttributeId);
 			#endif
 		}
 
@@ -2057,12 +2132,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkDroppedNative(int* startedAtAttributeId, byte includingDetachedLinks)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte, byte>)vt[75])(startedAtAttributeId, includingDetachedLinks);
+			return ((delegate* unmanaged[Cdecl]<int*, byte, byte>)funcTable[75])(startedAtAttributeId, includingDetachedLinks);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[75])((nint)startedAtAttributeId, includingDetachedLinks);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[75])((nint)startedAtAttributeId, includingDetachedLinks);
 			#endif
 		}
 
@@ -2129,12 +2205,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int*, bool*, byte>)vt[76])(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
+			return ((delegate* unmanaged[Cdecl]<int*, int*, bool*, byte>)funcTable[76])(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)vt[76])((nint)startedAtAttributeId, (nint)endedAtAttributeId, (nint)createdFromSnap);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)funcTable[76])((nint)startedAtAttributeId, (nint)endedAtAttributeId, (nint)createdFromSnap);
 			#endif
 		}
 
@@ -2297,12 +2374,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int*, int*, int*, bool*, byte>)vt[77])(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+			return ((delegate* unmanaged[Cdecl]<int*, int*, int*, int*, bool*, byte>)funcTable[77])(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)vt[77])((nint)startedAtNodeId, (nint)startedAtAttributeId, (nint)endedAtNodeId, (nint)endedAtAttributeId, (nint)createdFromSnap);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)funcTable[77])((nint)startedAtNodeId, (nint)startedAtAttributeId, (nint)endedAtNodeId, (nint)endedAtAttributeId, (nint)createdFromSnap);
 			#endif
 		}
 
@@ -3077,12 +3155,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsLinkDestroyedNative(int* linkId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[78])(linkId);
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)funcTable[78])(linkId);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[78])((nint)linkId);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[78])((nint)linkId);
 			#endif
 		}
 
@@ -3110,12 +3189,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* SaveCurrentEditorStateToIniStringNative(ulong* dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)vt[79])(dataSize);
+			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)funcTable[79])(dataSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[79])((nint)dataSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[79])((nint)dataSize);
 			#endif
 		}
 
@@ -3182,12 +3262,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, ulong* dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, ulong*, byte*>)vt[80])(editor, dataSize);
+			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, ulong*, byte*>)funcTable[80])(editor, dataSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[80])((nint)editor, (nint)dataSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[80])((nint)editor, (nint)dataSize);
 			#endif
 		}
 
@@ -3332,12 +3413,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadCurrentEditorStateFromIniStringNative(byte* data, ulong dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)vt[81])(data, dataSize);
+			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)funcTable[81])(data, dataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, void>)vt[81])((nint)data, dataSize);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[81])((nint)data, dataSize);
 			#endif
 		}
 
@@ -3462,12 +3544,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, ulong dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, ulong, void>)vt[82])(editor, data, dataSize);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, ulong, void>)funcTable[82])(editor, data, dataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)vt[82])((nint)editor, (nint)data, dataSize);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[82])((nint)editor, (nint)data, dataSize);
 			#endif
 		}
 
@@ -3734,12 +3817,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SaveCurrentEditorStateToIniFileNative(byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[83])(fileName);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[83])(fileName);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[83])((nint)fileName);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[83])((nint)fileName);
 			#endif
 		}
 
@@ -3805,12 +3889,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, void>)vt[84])(editor, fileName);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, void>)funcTable[84])(editor, fileName);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[84])((nint)editor, (nint)fileName);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[84])((nint)editor, (nint)fileName);
 			#endif
 		}
 
@@ -3947,12 +4032,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadCurrentEditorStateFromIniFileNative(byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[85])(fileName);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[85])(fileName);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[85])((nint)fileName);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[85])((nint)fileName);
 			#endif
 		}
 
@@ -4018,12 +4104,13 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, void>)vt[86])(editor, fileName);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, void>)funcTable[86])(editor, fileName);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[86])((nint)editor, (nint)fileName);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[86])((nint)editor, (nint)fileName);
 			#endif
 		}
 
@@ -4162,12 +4249,13 @@ namespace Hexa.NET.ImNodes
 		/// &ImGui<br/>
 		/// ::GetIO().KeyCtrl<br/>
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static bool* GetIOKeyCtrlPtrNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<bool*>)vt[87])();
+			return ((delegate* unmanaged[Cdecl]<bool*>)funcTable[87])();
 			#else
-			return (bool*)((delegate* unmanaged[Cdecl]<nint>)vt[87])();
+			return (bool*)((delegate* unmanaged[Cdecl]<nint>)funcTable[87])();
 			#endif
 		}
 

@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4.1.7
       with:
-        repository: 'cimgui/cimgui'
+        repository: 'JunaMeinhold/cimgui'
         path: 'cimgui'
         submodules: true
         
@@ -82,8 +82,19 @@ jobs:
         echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
         echo "PATH=$PATH:$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
 
-    - name: Build for arm64-v8a
+    - name: Install vcpkg and FreeType
+      if: matrix.lib == 'cimgui'
       run: |
+        cd ${{ matrix.lib }}
+        git clone https://github.com/microsoft/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.sh
+        ./vcpkg/vcpkg install freetype --triplet=arm64-android
+        ./vcpkg/vcpkg install freetype --triplet=x64-android
+
+    - name: Build for arm64-v8a
+      if: matrix.lib == 'cimgui'
+      run: |
+          cd ${{ matrix.lib }}
           cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
@@ -91,12 +102,18 @@ jobs:
                 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
-                -S ${{ matrix.lib }} \
-                -B ${{ matrix.lib }}/build/arm64-v8a
-          cmake --build ${{ matrix.lib }}/build/arm64-v8a  --config Release
+                -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_TARGET_TRIPLET=arm64-android \
+                -DIMGUI_WCHAR32=ON \
+                -DIMGUI_FREETYPE=ON \
+                -S ./ \
+                -B ./build/arm64-v8a
+          cmake --build ./build/arm64-v8a  --config Release
 
     - name: Build for x86_64
+      if: matrix.lib == 'cimgui'
       run: |
+          cd ${{ matrix.lib }}
           cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
                 -DCMAKE_SYSTEM_NAME=Android \
                 -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
@@ -104,14 +121,50 @@ jobs:
                 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
-                -S ${{ matrix.lib }} \
-                -B ${{ matrix.lib }}/build/x86_64
-          cmake --build ${{ matrix.lib }}/build/x86_64 --config Release
+                -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_TARGET_TRIPLET=x64-android \
+                -DIMGUI_WCHAR32=ON \
+                -DIMGUI_FREETYPE=ON \
+                -S ./ \
+                -B ./build/x86_64
+          cmake --build ./build/x86_64 --config Release
+
+    - name: Build for arm64-v8a
+      if: matrix.lib != 'cimgui'
+      run: |
+          cd ${{ matrix.lib }}
+          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_SYSTEM_NAME=Android \
+                -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
+                -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a \
+                -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
+                -DCMAKE_ANDROID_STL_TYPE=c++_shared \
+                -DCMAKE_ANDROID_API=21 \
+                -DIMGUI_WCHAR32=ON \
+                -S ./ \
+                -B ./build/arm64-v8a
+          cmake --build ./build/arm64-v8a  --config Release
+
+    - name: Build for x86_64
+      if: matrix.lib != 'cimgui'
+      run: |
+          cd ${{ matrix.lib }}
+          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_SYSTEM_NAME=Android \
+                -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
+                -DCMAKE_ANDROID_ARCH_ABI=x86_64 \
+                -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
+                -DCMAKE_ANDROID_STL_TYPE=c++_shared \
+                -DCMAKE_ANDROID_API=21 \
+                -DIMGUI_WCHAR32=ON \
+                -S ./ \
+                -B ./build/x86_64
+          cmake --build ./build/x86_64 --config Release
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: ${{ matrix.lib }}-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        name: ${{ matrix.lib }}-android-latest-all-artifacts 
         path: |
           ${{ matrix.lib }}/build/arm64-v8a/*.so
           ${{ matrix.lib }}/build/x86_64/*.so

@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		FrameStyle = unchecked(128),
 
 		/// <summary>
-		/// [BETA] Share focus scope, allow gamepadkeyboard navigation to cross over parent border to this child or between sibling child windows.<br/>
+		/// [BETA] Share focus scope, allow keyboardgamepad navigation to cross over parent border to this child or between sibling child windows.<br/>
 		/// </summary>
 		NavFlattened = unchecked(256),
 	}

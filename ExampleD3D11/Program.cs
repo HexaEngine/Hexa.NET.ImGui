@@ -1,6 +1,8 @@
 ﻿namespace ExampleD3D11
 {
     using ExampleFramework;
+    using Hexa.NET.ImGui;
+    using System.Runtime.InteropServices;
 
     internal unsafe class Program
     {

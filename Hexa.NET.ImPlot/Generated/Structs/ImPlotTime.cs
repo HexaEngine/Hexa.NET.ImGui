@@ -44,6 +44,51 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotTime* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void FromDouble(double t)
+		{
+			fixed (ImPlotTime* @this = &this)
+			{
+				ImPlot.FromDoubleNative(@this, t);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RollOver()
+		{
+			fixed (ImPlotTime* @this = &this)
+			{
+				ImPlot.RollOverNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe double ToDouble()
+		{
+			fixed (ImPlotTime* @this = &this)
+			{
+				double ret = ImPlot.ToDoubleNative(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -95,6 +140,39 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref int Us => ref Unsafe.AsRef<int>(&Handle->Us);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void FromDouble(double t)
+		{
+			ImPlot.FromDoubleNative(Handle, t);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RollOver()
+		{
+			ImPlot.RollOverNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe double ToDouble()
+		{
+			double ret = ImPlot.ToDoubleNative(Handle);
+			return ret;
+		}
+
 	}
 
 }

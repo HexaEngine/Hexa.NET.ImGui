@@ -181,6 +181,17 @@ namespace Hexa.NET.ImPlot
 		}
 
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotSubplot* @this = &this)
+			{
+				ImPlot.DestroyNative(@this);
+			}
+		}
+
 	}
 
 	/// <summary>
@@ -307,6 +318,14 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref bool HasTitle => ref Unsafe.AsRef<bool>(&Handle->HasTitle);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImPlot.DestroyNative(Handle);
+		}
+
 	}
 
 }
