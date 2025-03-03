@@ -34,5 +34,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		IgnoreHidden = unchecked(2048),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Exploding = unchecked(4096),
 	}
 }

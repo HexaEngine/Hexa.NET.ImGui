@@ -1,5 +1,6 @@
-﻿#define BackendsOnly
-#define NodeEditorOnly
+﻿//#define BackendsOnly
+#define DisableBackends
+//#define NodeEditorOnly
 
 namespace Generator
 {
@@ -67,6 +68,7 @@ namespace Generator
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 #endif
 
+#if !DisableBackends
             string[] backends = ["OpenGL3", "OpenGL2", "D3D9", "D3D10", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal", "Android"];
 
             metadata.CppDefinedFunctions.Clear();
@@ -87,6 +89,7 @@ namespace Generator
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
             Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+#endif
 
 #else
 

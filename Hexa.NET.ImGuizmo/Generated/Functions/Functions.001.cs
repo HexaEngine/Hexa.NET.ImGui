@@ -22,6 +22,30 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		{
+			fixed (float* pprojection = &projection)
+			{
+				fixed (float* pmatrix = &matrix)
+				{
+					fixed (float* pdeltaMatrix = &deltaMatrix)
+					{
+						fixed (float* psnap = &snap)
+						{
+							fixed (float* pboundsSnap = &boundsSnap)
+							{
+								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -773,9 +797,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void ViewManipulateNative(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, float, Vector2, Vector2, uint, void>)funcTable[15])(view, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<float*, float, Vector2, Vector2, uint, void>)funcTable[16])(view, length, position, size, backgroundColor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, Vector2, Vector2, uint, void>)funcTable[15])((nint)view, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<nint, float, Vector2, Vector2, uint, void>)funcTable[16])((nint)view, length, position, size, backgroundColor);
 			#endif
 		}
 
@@ -816,9 +840,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void ViewManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, float*, ImGuizmoOperation, ImGuizmoMode, float*, float, Vector2, Vector2, uint, void>)funcTable[16])(view, projection, operation, mode, matrix, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<float*, float*, ImGuizmoOperation, ImGuizmoMode, float*, float, Vector2, Vector2, uint, void>)funcTable[17])(view, projection, operation, mode, matrix, length, position, size, backgroundColor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImGuizmoOperation, ImGuizmoMode, nint, float, Vector2, Vector2, uint, void>)funcTable[16])((nint)view, (nint)projection, operation, mode, (nint)matrix, length, position, size, backgroundColor);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuizmoOperation, ImGuizmoMode, nint, float, Vector2, Vector2, uint, void>)funcTable[17])((nint)view, (nint)projection, operation, mode, (nint)matrix, length, position, size, backgroundColor);
 			#endif
 		}
 
@@ -946,9 +970,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void SetAlternativeWindowNative(ImGuiWindow* window)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[17])(window);
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[18])(window);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[17])((nint)window);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)window);
 			#endif
 		}
 
@@ -975,17 +999,38 @@ namespace Hexa.NET.ImGuizmo
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushIDNative(byte* strId)
+		internal static void SetIDNative(int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[18])(strId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[19])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)strId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[19])(id);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
+		/// </summary>
+		public static void SetID(int id)
+		{
+			SetIDNative(id);
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PushIDNative(byte* strId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[20])(strId);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[20])((nint)strId);
+			#endif
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strId)
 		{
@@ -993,7 +1038,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strId)
 		{
@@ -1004,7 +1049,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strId)
 		{
@@ -1015,7 +1060,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strId)
 		{
@@ -1044,20 +1089,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[19])(strIdBegin, strIdEnd);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[21])(strIdBegin, strIdEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[19])((nint)strIdBegin, (nint)strIdEnd);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[21])((nint)strIdBegin, (nint)strIdEnd);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -1065,7 +1110,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, byte* strIdEnd)
 		{
@@ -1076,7 +1121,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -1087,7 +1132,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, byte* strIdEnd)
 		{
@@ -1116,7 +1161,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, ref byte strIdEnd)
 		{
@@ -1127,7 +1172,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1138,7 +1183,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, string strIdEnd)
 		{
@@ -1167,7 +1212,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, ref byte strIdEnd)
 		{
@@ -1181,7 +1226,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1195,7 +1240,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, string strIdEnd)
 		{
@@ -1245,7 +1290,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1259,7 +1304,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, string strIdEnd)
 		{
@@ -1291,7 +1336,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
@@ -1305,7 +1350,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -1337,7 +1382,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, ref byte strIdEnd)
 		{
@@ -1369,7 +1414,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1401,20 +1446,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[20])(ptrId);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[22])(ptrId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[20])((nint)ptrId);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[22])((nint)ptrId);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push pointer into the ID stack (will hash pointer).<br/>
 		/// </summary>
 		public static void PushID(void* ptrId)
 		{
@@ -1422,20 +1467,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(int intId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[21])(intId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[23])(intId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[21])(intId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[23])(intId);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push integer into the ID stack (will hash integer).<br/>
 		/// </summary>
 		public static void PushID(int intId)
 		{
@@ -1443,20 +1488,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pop from the ID stack.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopIDNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pop from the ID stack.<br/>
 		/// </summary>
 		public static void PopID()
 		{
@@ -1464,20 +1509,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint>)funcTable[23])(strId);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint>)funcTable[25])(strId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[23])((nint)strId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[25])((nint)strId);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strId)
 		{
@@ -1486,7 +1531,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strId)
 		{
@@ -1498,7 +1543,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strId)
 		{
@@ -1510,7 +1555,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strId)
 		{
@@ -1540,20 +1585,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)funcTable[24])(strIdBegin, strIdEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)funcTable[26])(strIdBegin, strIdEnd);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[24])((nint)strIdBegin, (nint)strIdEnd);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[26])((nint)strIdBegin, (nint)strIdEnd);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -1562,7 +1607,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, byte* strIdEnd)
 		{
@@ -1574,7 +1619,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -1586,7 +1631,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, byte* strIdEnd)
 		{
@@ -1616,7 +1661,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
 		{
@@ -1628,7 +1673,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1640,7 +1685,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, string strIdEnd)
 		{
@@ -1670,7 +1715,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, ref byte strIdEnd)
 		{
@@ -1685,7 +1730,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1700,7 +1745,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, string strIdEnd)
 		{
@@ -1751,7 +1796,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1766,7 +1811,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, string strIdEnd)
 		{
@@ -1799,7 +1844,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
@@ -1814,7 +1859,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -1847,7 +1892,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, ref byte strIdEnd)
 		{
@@ -1880,7 +1925,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1913,20 +1958,20 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, uint>)funcTable[25])(ptrId);
+			return ((delegate* unmanaged[Cdecl]<void*, uint>)funcTable[27])(ptrId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[25])((nint)ptrId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[27])((nint)ptrId);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(void* ptrId)
 		{
@@ -1941,9 +1986,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static byte IsOverNative(ImGuizmoOperation op)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)funcTable[26])(op);
+			return ((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)funcTable[28])(op);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)funcTable[26])(op);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuizmoOperation, byte>)funcTable[28])(op);
 			#endif
 		}
 
@@ -1963,9 +2008,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void SetGizmoSizeClipSpaceNative(float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[27])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[29])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[27])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[29])(value);
 			#endif
 		}
 
@@ -1984,9 +2029,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void AllowAxisFlipNative(byte value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[28])(value);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[30])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[28])(value);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[30])(value);
 			#endif
 		}
 
@@ -2005,9 +2050,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void SetAxisLimitNative(float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[29])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[31])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[29])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[31])(value);
 			#endif
 		}
 
@@ -2026,9 +2071,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void SetAxisMaskNative(byte x, byte y, byte z)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, byte, byte, void>)funcTable[30])(x, y, z);
+			((delegate* unmanaged[Cdecl]<byte, byte, byte, void>)funcTable[32])(x, y, z);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, byte, byte, void>)funcTable[30])(x, y, z);
+			((delegate* unmanaged[Cdecl]<byte, byte, byte, void>)funcTable[32])(x, y, z);
 			#endif
 		}
 
@@ -2047,9 +2092,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void SetPlaneLimitNative(float value)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[31])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[33])(value);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[31])(value);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[33])(value);
 			#endif
 		}
 
@@ -2068,9 +2113,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static byte IsOverNative(float* position, float pixelRadius)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, float, byte>)funcTable[32])(position, pixelRadius);
+			return ((delegate* unmanaged[Cdecl]<float*, float, byte>)funcTable[34])(position, pixelRadius);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, float, byte>)funcTable[32])((nint)position, pixelRadius);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, float, byte>)funcTable[34])((nint)position, pixelRadius);
 			#endif
 		}
 
@@ -2102,9 +2147,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static Style* StyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[33])();
+			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[35])();
 			#else
-			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[33])();
+			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[35])();
 			#endif
 		}
 
@@ -2124,9 +2169,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static void DestroyNative(Style* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Style*, void>)funcTable[34])(self);
+			((delegate* unmanaged[Cdecl]<Style*, void>)funcTable[36])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[34])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[36])((nint)self);
 			#endif
 		}
 
@@ -2156,9 +2201,9 @@ namespace Hexa.NET.ImGuizmo
 		internal static Style* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[35])();
+			return ((delegate* unmanaged[Cdecl]<Style*>)funcTable[37])();
 			#else
-			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[35])();
+			return (Style*)((delegate* unmanaged[Cdecl]<nint>)funcTable[37])();
 			#endif
 		}
 

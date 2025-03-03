@@ -1086,12 +1086,126 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MkTimeNative(ImPlotTime* pOut, Tm* ptm)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)funcTable[682])(pOut, ptm);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[682])((nint)pOut, (nint)ptm);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTime MkTime(Tm* ptm)
+		{
+			ImPlotTime ret;
+			MkTimeNative(&ret, ptm);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MkTime(ImPlotTimePtr pOut, Tm* ptm)
+		{
+			MkTimeNative(pOut, ptm);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MkTime(ref ImPlotTime pOut, Tm* ptm)
+		{
+			fixed (ImPlotTime* ppOut = &pOut)
+			{
+				MkTimeNative((ImPlotTime*)ppOut, ptm);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTime MkTime(ref Tm ptm)
+		{
+			fixed (Tm* pptm = &ptm)
+			{
+				ImPlotTime ret;
+				MkTimeNative(&ret, (Tm*)pptm);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MkTime(ImPlotTimePtr pOut, ref Tm ptm)
+		{
+			fixed (Tm* pptm = &ptm)
+			{
+				MkTimeNative(pOut, (Tm*)pptm);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MkTime(ref ImPlotTime pOut, ref Tm ptm)
+		{
+			fixed (ImPlotTime* ppOut = &pOut)
+			{
+				fixed (Tm* pptm = &ptm)
+				{
+					MkTimeNative((ImPlotTime*)ppOut, (Tm*)pptm);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Tm* GetTimeNative(ImPlotTime t, Tm* ptm)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)funcTable[683])(t, ptm);
+			#else
+			return (Tm*)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, nint>)funcTable[683])(t, (nint)ptm);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Tm* GetTime(ImPlotTime t, Tm* ptm)
+		{
+			Tm* ret = GetTimeNative(t, ptm);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Tm* GetTime(ImPlotTime t, ref Tm ptm)
+		{
+			fixed (Tm* pptm = &ptm)
+			{
+				Tm* ret = GetTimeNative(t, (Tm*)pptm);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void MakeTimeNative(ImPlotTime* pOut, int year, int month, int day, int hour, int min, int sec, int us)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, int, int, int, int, int, int, int, void>)funcTable[682])(pOut, year, month, day, hour, min, sec, us);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, int, int, int, int, int, int, int, void>)funcTable[684])(pOut, year, month, day, hour, min, sec, us);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, int, int, int, void>)funcTable[682])((nint)pOut, year, month, day, hour, min, sec, us);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, int, int, int, void>)funcTable[684])((nint)pOut, year, month, day, hour, min, sec, us);
 			#endif
 		}
 
@@ -1305,9 +1419,9 @@ namespace Hexa.NET.ImPlot
 		internal static int GetYearNative(ImPlotTime t)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[683])(t);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[685])(t);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[683])(t);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[685])(t);
 			#endif
 		}
 
@@ -1324,12 +1438,34 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetMonthNative(ImPlotTime t)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[686])(t);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, int>)funcTable[686])(t);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int GetMonth(ImPlotTime t)
+		{
+			int ret = GetMonthNative(t);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, int, void>)funcTable[684])(pOut, t, unit, count);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, int, void>)funcTable[687])(pOut, t, unit, count);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, int, void>)funcTable[684])((nint)pOut, t, unit, count);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, int, void>)funcTable[687])((nint)pOut, t, unit, count);
 			#endif
 		}
 
@@ -1369,9 +1505,9 @@ namespace Hexa.NET.ImPlot
 		internal static void FloorTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[685])(pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[688])(pOut, t, unit);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[685])((nint)pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[688])((nint)pOut, t, unit);
 			#endif
 		}
 
@@ -1411,9 +1547,9 @@ namespace Hexa.NET.ImPlot
 		internal static void CeilTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[686])(pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[689])(pOut, t, unit);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[686])((nint)pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[689])((nint)pOut, t, unit);
 			#endif
 		}
 
@@ -1453,9 +1589,9 @@ namespace Hexa.NET.ImPlot
 		internal static void RoundTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[687])(pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)funcTable[690])(pOut, t, unit);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[687])((nint)pOut, t, unit);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTimeUnit, void>)funcTable[690])((nint)pOut, t, unit);
 			#endif
 		}
 
@@ -1495,9 +1631,9 @@ namespace Hexa.NET.ImPlot
 		internal static void CombineDateTimeNative(ImPlotTime* pOut, ImPlotTime datePart, ImPlotTime timePart)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTime, void>)funcTable[688])(pOut, datePart, timePart);
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTime, void>)funcTable[691])(pOut, datePart, timePart);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTime, void>)funcTable[688])((nint)pOut, datePart, timePart);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotTime, ImPlotTime, void>)funcTable[691])((nint)pOut, datePart, timePart);
 			#endif
 		}
 
@@ -1534,12 +1670,96 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void NowNative(ImPlotTime* pOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)funcTable[692])(pOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[692])((nint)pOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTime Now()
+		{
+			ImPlotTime ret;
+			NowNative(&ret);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Now(ImPlotTimePtr pOut)
+		{
+			NowNative(pOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Now(ref ImPlotTime pOut)
+		{
+			fixed (ImPlotTime* ppOut = &pOut)
+			{
+				NowNative((ImPlotTime*)ppOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TodayNative(ImPlotTime* pOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)funcTable[693])(pOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[693])((nint)pOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotTime Today()
+		{
+			ImPlotTime ret;
+			TodayNative(&ret);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Today(ImPlotTimePtr pOut)
+		{
+			TodayNative(pOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Today(ref ImPlotTime pOut)
+		{
+			fixed (ImPlotTime* ppOut = &pOut)
+			{
+				TodayNative((ImPlotTime*)ppOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int FormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotTimeFmt, byte, int>)funcTable[689])(t, buffer, size, fmt, use24HrClk);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotTimeFmt, byte, int>)funcTable[694])(t, buffer, size, fmt, use24HrClk);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotTimeFmt, byte, int>)funcTable[689])(t, (nint)buffer, size, fmt, use24HrClk);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotTimeFmt, byte, int>)funcTable[694])(t, (nint)buffer, size, fmt, use24HrClk);
 			#endif
 		}
 
@@ -1602,9 +1822,9 @@ namespace Hexa.NET.ImPlot
 		internal static int FormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateFmt, byte, int>)funcTable[690])(t, buffer, size, fmt, useIso8601);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateFmt, byte, int>)funcTable[695])(t, buffer, size, fmt, useIso8601);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateFmt, byte, int>)funcTable[690])(t, (nint)buffer, size, fmt, useIso8601);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateFmt, byte, int>)funcTable[695])(t, (nint)buffer, size, fmt, useIso8601);
 			#endif
 		}
 
@@ -1667,9 +1887,9 @@ namespace Hexa.NET.ImPlot
 		internal static int FormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateTimeSpec, int>)funcTable[691])(t, buffer, size, fmt);
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateTimeSpec, int>)funcTable[696])(t, buffer, size, fmt);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateTimeSpec, int>)funcTable[691])(t, (nint)buffer, size, fmt);
+			return (int)((delegate* unmanaged[Cdecl]<ImPlotTime, nint, int, ImPlotDateTimeSpec, int>)funcTable[696])(t, (nint)buffer, size, fmt);
 			#endif
 		}
 
@@ -1732,9 +1952,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImPlotTime*, ImPlotTime*, ImPlotTime*, byte>)funcTable[692])(id, level, t, t1, t2);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImPlotTime*, ImPlotTime*, ImPlotTime*, byte>)funcTable[697])(id, level, t, t1, t2);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)funcTable[692])((nint)id, (nint)level, (nint)t, (nint)t1, (nint)t2);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)funcTable[697])((nint)id, (nint)level, (nint)t, (nint)t1, (nint)t2);
 			#endif
 		}
 
@@ -4085,9 +4305,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ShowTimePickerNative(byte* id, ImPlotTime* t)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotTime*, byte>)funcTable[693])(id, t);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotTime*, byte>)funcTable[698])(id, t);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[693])((nint)id, (nint)t);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[698])((nint)id, (nint)t);
 			#endif
 		}
 
@@ -4236,9 +4456,9 @@ namespace Hexa.NET.ImPlot
 		internal static double TransformForward_Log10Native(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[694])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[699])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[694])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[699])(v, (nint)noname1);
 			#endif
 		}
 
@@ -4258,9 +4478,9 @@ namespace Hexa.NET.ImPlot
 		internal static double TransformInverse_Log10Native(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[695])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[700])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[695])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[700])(v, (nint)noname1);
 			#endif
 		}
 
@@ -4280,9 +4500,9 @@ namespace Hexa.NET.ImPlot
 		internal static double TransformForward_SymLogNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[696])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[701])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[696])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[701])(v, (nint)noname1);
 			#endif
 		}
 
@@ -4302,9 +4522,9 @@ namespace Hexa.NET.ImPlot
 		internal static double TransformInverse_SymLogNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[697])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[702])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[697])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[702])(v, (nint)noname1);
 			#endif
 		}
 
@@ -4324,9 +4544,9 @@ namespace Hexa.NET.ImPlot
 		internal static double TransformForward_LogitNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[698])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[703])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[698])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[703])(v, (nint)noname1);
 			#endif
 		}
 
@@ -4346,9 +4566,9 @@ namespace Hexa.NET.ImPlot
 		internal static double TransformInverse_LogitNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[699])(v, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)funcTable[704])(v, noname1);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[699])(v, (nint)noname1);
+			return (double)((delegate* unmanaged[Cdecl]<double, nint, double>)funcTable[704])(v, (nint)noname1);
 			#endif
 		}
 
@@ -4368,9 +4588,9 @@ namespace Hexa.NET.ImPlot
 		internal static int Formatter_DefaultNative(double value, byte* buff, int size, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[700])(value, buff, size, data);
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[705])(value, buff, size, data);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[700])(value, (nint)buff, size, (nint)data);
+			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[705])(value, (nint)buff, size, (nint)data);
 			#endif
 		}
 
@@ -4433,9 +4653,9 @@ namespace Hexa.NET.ImPlot
 		internal static int Formatter_LogitNative(double value, byte* buff, int size, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[701])(value, buff, size, noname1);
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[706])(value, buff, size, noname1);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[701])(value, (nint)buff, size, (nint)noname1);
+			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[706])(value, (nint)buff, size, (nint)noname1);
 			#endif
 		}
 
@@ -4498,9 +4718,9 @@ namespace Hexa.NET.ImPlot
 		internal static int Formatter_TimeNative(double noname1, byte* buff, int size, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[702])(noname1, buff, size, data);
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)funcTable[707])(noname1, buff, size, data);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[702])(noname1, (nint)buff, size, (nint)data);
+			return (int)((delegate* unmanaged[Cdecl]<double, nint, int, nint, int>)funcTable[707])(noname1, (nint)buff, size, (nint)data);
 			#endif
 		}
 
@@ -4563,9 +4783,9 @@ namespace Hexa.NET.ImPlot
 		internal static void Locator_DefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[703])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[708])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[703])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[708])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 
@@ -4595,9 +4815,9 @@ namespace Hexa.NET.ImPlot
 		internal static void Locator_TimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[704])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[709])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[704])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[709])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 
@@ -4627,9 +4847,9 @@ namespace Hexa.NET.ImPlot
 		internal static void Locator_Log10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[705])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[710])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[705])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[710])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 
@@ -4659,9 +4879,9 @@ namespace Hexa.NET.ImPlot
 		internal static void Locator_SymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[706])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[711])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[706])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
+			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, float, byte, nint, nint, void>)funcTable[711])((nint)ticker, range, pixels, vertical, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)formatterData);
 			#endif
 		}
 

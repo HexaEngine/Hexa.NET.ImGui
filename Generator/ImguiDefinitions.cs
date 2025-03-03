@@ -88,44 +88,57 @@ namespace Generator
         {
             JObject typesJson;
             using (StreamReader fs = File.OpenText(Path.Combine(directory, "structs_and_enums.json")))
-            using (JsonTextReader jr = new JsonTextReader(fs))
+            using (JsonTextReader jr = new(fs))
             {
                 typesJson = JObject.Load(jr);
             }
 
             JObject functionsJson;
             using (StreamReader fs = File.OpenText(Path.Combine(directory, "definitions.json")))
-            using (JsonTextReader jr = new JsonTextReader(fs))
+            using (JsonTextReader jr = new(fs))
             {
                 functionsJson = JObject.Load(jr);
             }
 
             JObject typedefsJson;
             using (StreamReader fs = File.OpenText(Path.Combine(directory, "typedefs_dict.json")))
-            using (JsonTextReader jr = new JsonTextReader(fs))
+            using (JsonTextReader jr = new(fs))
             {
                 typedefsJson = JObject.Load(jr);
             }
 
             var typeLocations = typesJson["locations"];
 
-            Enums = typesJson["enums"].Select(jt =>
+            Enums = [.. typesJson["enums"].Select(jt =>
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 string? comment = typesJson["enum_comments"]?[name]?["above"]?.ToString();
-                EnumMember[] elements = jp.Values().Select(v =>
+                EnumMember[] elements = [.. jp.Values().Select(v =>
                 {
                     return new EnumMember(v["name"].ToString(), v["calc_value"].ToString(), v["comment"]?.ToString());
-                }).ToArray();
+                })];
                 return new EnumDefinition(name, elements, comment);
-            }).Where(x => x != null).ToArray();
+            }).Where(x => x != null)];
 
-            Types = typesJson["structs"].Select(jt =>
+            Types = [.. typesJson["structs"].Select(jt =>
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
-                string? comment = typesJson["struct_comments"]?[name]?["above"]?.ToString();
+                var structComments = typesJson["struct_comments"];
+                string? comment = null;
+                if (structComments is JArray array)
+                {
+                    if (array.Count > 0)
+                    {
+                        comment = structComments?[name]?["above"]?.ToString();
+                    }
+                }
+                else
+                {
+                    comment = structComments?[name]?["above"]?.ToString();
+                }
+
                 TypeReference[] fields = jp.Values().Select(v =>
                 {
                     if (v["type"].ToString().Contains("static")) { return null; }
@@ -139,7 +152,7 @@ namespace Generator
                         Enums);
                 }).Where(tr => tr != null).ToArray();
                 return new TypeDefinition(name, fields, comment);
-            }).Where(x => x != null).ToArray();
+            }).Where(x => x != null)];
 
             Functions = functionsJson.Children().Select(jt =>
             {
@@ -224,14 +237,14 @@ namespace Generator
                 return new FunctionDefinition(name, overloads, Enums);
             }).Where(x => x != null).OrderBy(fd => fd.Name).ToArray();
 
-            Typedefs = typedefsJson.Children().Select(jt =>
+            Typedefs = [.. typedefsJson.Children().Select(jt =>
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 string value = jp.Value.ToString();
 
                 return new TypedefDefinition(name, value);
-            }).ToArray();
+            })];
         }
     }
 

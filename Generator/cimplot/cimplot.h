@@ -27,8 +27,6 @@ typedef struct ImVector_ImS64 { int Size; int Capacity; ImS64* Data; } ImVector_
 
 typedef struct ImVector_ImS8 { int Size; int Capacity; ImS8* Data; } ImVector_ImS8;
 
-typedef struct ImVector_ImU16 { int Size; int Capacity; ImU16* Data; } ImVector_ImU16;
-
 typedef struct ImVector_ImU64 { int Size; int Capacity; ImU64* Data; } ImVector_ImU64;
 
 struct ImPlotContext;

@@ -25,7 +25,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(context, 707);
+			funcTable = new FunctionTable(context, 712);
 			funcTable.Load(0, "ImPlotPoint_ImPlotPoint_Nil");
 			funcTable.Load(1, "ImPlotPoint_destroy");
 			funcTable.Load(2, "ImPlotPoint_ImPlotPoint_double");
@@ -708,31 +708,36 @@ namespace Hexa.NET.ImPlot
 			funcTable.Load(679, "ImPlot_GetGmtTime");
 			funcTable.Load(680, "ImPlot_MkLocTime");
 			funcTable.Load(681, "ImPlot_GetLocTime");
-			funcTable.Load(682, "ImPlot_MakeTime");
-			funcTable.Load(683, "ImPlot_GetYear");
-			funcTable.Load(684, "ImPlot_AddTime");
-			funcTable.Load(685, "ImPlot_FloorTime");
-			funcTable.Load(686, "ImPlot_CeilTime");
-			funcTable.Load(687, "ImPlot_RoundTime");
-			funcTable.Load(688, "ImPlot_CombineDateTime");
-			funcTable.Load(689, "ImPlot_FormatTime");
-			funcTable.Load(690, "ImPlot_FormatDate");
-			funcTable.Load(691, "ImPlot_FormatDateTime");
-			funcTable.Load(692, "ImPlot_ShowDatePicker");
-			funcTable.Load(693, "ImPlot_ShowTimePicker");
-			funcTable.Load(694, "ImPlot_TransformForward_Log10");
-			funcTable.Load(695, "ImPlot_TransformInverse_Log10");
-			funcTable.Load(696, "ImPlot_TransformForward_SymLog");
-			funcTable.Load(697, "ImPlot_TransformInverse_SymLog");
-			funcTable.Load(698, "ImPlot_TransformForward_Logit");
-			funcTable.Load(699, "ImPlot_TransformInverse_Logit");
-			funcTable.Load(700, "ImPlot_Formatter_Default");
-			funcTable.Load(701, "ImPlot_Formatter_Logit");
-			funcTable.Load(702, "ImPlot_Formatter_Time");
-			funcTable.Load(703, "ImPlot_Locator_Default");
-			funcTable.Load(704, "ImPlot_Locator_Time");
-			funcTable.Load(705, "ImPlot_Locator_Log10");
-			funcTable.Load(706, "ImPlot_Locator_SymLog");
+			funcTable.Load(682, "ImPlot_MkTime");
+			funcTable.Load(683, "ImPlot_GetTime");
+			funcTable.Load(684, "ImPlot_MakeTime");
+			funcTable.Load(685, "ImPlot_GetYear");
+			funcTable.Load(686, "ImPlot_GetMonth");
+			funcTable.Load(687, "ImPlot_AddTime");
+			funcTable.Load(688, "ImPlot_FloorTime");
+			funcTable.Load(689, "ImPlot_CeilTime");
+			funcTable.Load(690, "ImPlot_RoundTime");
+			funcTable.Load(691, "ImPlot_CombineDateTime");
+			funcTable.Load(692, "ImPlot_Now");
+			funcTable.Load(693, "ImPlot_Today");
+			funcTable.Load(694, "ImPlot_FormatTime");
+			funcTable.Load(695, "ImPlot_FormatDate");
+			funcTable.Load(696, "ImPlot_FormatDateTime");
+			funcTable.Load(697, "ImPlot_ShowDatePicker");
+			funcTable.Load(698, "ImPlot_ShowTimePicker");
+			funcTable.Load(699, "ImPlot_TransformForward_Log10");
+			funcTable.Load(700, "ImPlot_TransformInverse_Log10");
+			funcTable.Load(701, "ImPlot_TransformForward_SymLog");
+			funcTable.Load(702, "ImPlot_TransformInverse_SymLog");
+			funcTable.Load(703, "ImPlot_TransformForward_Logit");
+			funcTable.Load(704, "ImPlot_TransformInverse_Logit");
+			funcTable.Load(705, "ImPlot_Formatter_Default");
+			funcTable.Load(706, "ImPlot_Formatter_Logit");
+			funcTable.Load(707, "ImPlot_Formatter_Time");
+			funcTable.Load(708, "ImPlot_Locator_Default");
+			funcTable.Load(709, "ImPlot_Locator_Time");
+			funcTable.Load(710, "ImPlot_Locator_Log10");
+			funcTable.Load(711, "ImPlot_Locator_SymLog");
 		}
 
 		public static void FreeApi()
