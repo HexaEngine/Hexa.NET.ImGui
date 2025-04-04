@@ -65,13 +65,23 @@ namespace Hexa.NET.ImGui
 		Hand = unchecked(7),
 
 		/// <summary>
+		/// When waiting for something to processload.<br/>
+		/// </summary>
+		Wait = unchecked(8),
+
+		/// <summary>
+		/// When waiting for something to processload, but application is still interactive.<br/>
+		/// </summary>
+		Progress = unchecked(9),
+
+		/// <summary>
 		/// When hovering something with disallowed interaction. Usually a crossed circle.<br/>
 		/// </summary>
-		NotAllowed = unchecked(8),
+		NotAllowed = unchecked(10),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(9),
+		Count = unchecked(11),
 	}
 }

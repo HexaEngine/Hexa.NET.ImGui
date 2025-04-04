@@ -141,8 +141,8 @@
         {
             if (ImGui.IsWindowHovered())
             {
-                bool mouseMiddlePressed = ImGuiP.IsMouseDown(ImGuiMouseButton.Middle);
-                bool lCtrlPressed = ImGuiP.IsKeyPressed(ImGuiKey.LeftCtrl);
+                bool mouseMiddlePressed = ImGui.IsMouseDown(ImGuiMouseButton.Middle);
+                bool lCtrlPressed = ImGui.IsKeyPressed(ImGuiKey.LeftCtrl);
                 if (mouseMiddlePressed || lCtrlPressed || first)
                 {
                     Vector2 delta = Vector2.Zero;

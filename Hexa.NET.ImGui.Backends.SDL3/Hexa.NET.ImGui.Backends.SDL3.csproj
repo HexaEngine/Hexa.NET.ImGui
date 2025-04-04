@@ -13,8 +13,8 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.0.11</AssemblyVersion>
-		<PackageVersion>1.0.14-preview</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.91.8) library backend SDL3.</Description>
+		<PackageVersion>1.0.15-preview</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.91.9b) library backend SDL3.</Description>
 		<PackageTags>ImGui Backends SDL3 UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
@@ -31,7 +31,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen.Runtime" Version="1.1.17" />
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.18" />
 	</ItemGroup>
 
 	<ItemGroup>

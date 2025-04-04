@@ -21,6 +21,1392 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, ulong szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, ulong szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, ulong szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, ulong szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, ulong szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, ulong szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, ulong szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, ulong szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, nuint szvec2, ulong szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
 		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, ulong szIo, ulong szStyle, ulong szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
 		{
 			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
@@ -529,9 +1915,9 @@ namespace Hexa.NET.ImGui
 		internal static void DebugLogNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[376])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[402])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[376])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[402])((nint)fmt);
 			#endif
 		}
 
@@ -601,9 +1987,9 @@ namespace Hexa.NET.ImGui
 		internal static void DebugLogVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[377])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[403])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[377])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[403])((nint)fmt, args);
 			#endif
 		}
 
@@ -673,9 +2059,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetAllocatorFunctionsNative(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<ulong, void*, void*>, delegate*<void*, void*, void>, void*, void>)funcTable[378])((delegate*<ulong, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
+			((delegate* unmanaged[Cdecl]<delegate*<ulong, void*, void*>, delegate*<void*, void*, void>, void*, void>)funcTable[404])((delegate*<ulong, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[378])((nint)Utils.GetFunctionPointerForDelegate(allocFunc), (nint)Utils.GetFunctionPointerForDelegate(freeFunc), (nint)userData);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[404])((nint)Utils.GetFunctionPointerForDelegate(allocFunc), (nint)Utils.GetFunctionPointerForDelegate(freeFunc), (nint)userData);
 			#endif
 		}
 
@@ -702,9 +2088,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetAllocatorFunctionsNative(delegate*<ulong, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<ulong, void*, void*>*, delegate*<void*, void*, void>*, void**, void>)funcTable[379])(pAllocFunc, pFreeFunc, pUserData);
+			((delegate* unmanaged[Cdecl]<delegate*<ulong, void*, void*>*, delegate*<void*, void*, void>*, void**, void>)funcTable[405])(pAllocFunc, pFreeFunc, pUserData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[379])((nint)pAllocFunc, (nint)pFreeFunc, (nint)pUserData);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[405])((nint)pAllocFunc, (nint)pFreeFunc, (nint)pUserData);
 			#endif
 		}
 
@@ -723,9 +2109,9 @@ namespace Hexa.NET.ImGui
 		internal static void* MemAllocNative(ulong size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, void*>)funcTable[380])(size);
+			return ((delegate* unmanaged[Cdecl]<ulong, void*>)funcTable[406])(size);
 			#else
-			return (void*)((delegate* unmanaged[Cdecl]<ulong, nint>)funcTable[380])(size);
+			return (void*)((delegate* unmanaged[Cdecl]<ulong, nint>)funcTable[406])(size);
 			#endif
 		}
 
@@ -754,9 +2140,9 @@ namespace Hexa.NET.ImGui
 		internal static void MemFreeNative(void* ptr)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[381])(ptr);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[407])(ptr);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[381])((nint)ptr);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[407])((nint)ptr);
 			#endif
 		}
 
@@ -775,9 +2161,9 @@ namespace Hexa.NET.ImGui
 		internal static void UpdatePlatformWindowsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[382])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[408])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[382])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[408])();
 			#endif
 		}
 
@@ -796,9 +2182,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderPlatformWindowsDefaultNative(void* platformRenderArg, void* rendererRenderArg)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void*, void>)funcTable[383])(platformRenderArg, rendererRenderArg);
+			((delegate* unmanaged[Cdecl]<void*, void*, void>)funcTable[409])(platformRenderArg, rendererRenderArg);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[383])((nint)platformRenderArg, (nint)rendererRenderArg);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[409])((nint)platformRenderArg, (nint)rendererRenderArg);
 			#endif
 		}
 
@@ -833,9 +2219,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyPlatformWindowsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[384])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[410])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[384])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[410])();
 			#endif
 		}
 
@@ -854,9 +2240,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiViewport* FindViewportByIDNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiViewport*>)funcTable[385])(id);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiViewport*>)funcTable[411])(id);
 			#else
-			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[385])(id);
+			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[411])(id);
 			#endif
 		}
 
@@ -876,9 +2262,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiViewport* FindViewportByPlatformHandleNative(void* platformHandle)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ImGuiViewport*>)funcTable[386])(platformHandle);
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiViewport*>)funcTable[412])(platformHandle);
 			#else
-			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[386])((nint)platformHandle);
+			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[412])((nint)platformHandle);
 			#endif
 		}
 
@@ -898,9 +2284,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTableSortSpecs* ImGuiTableSortSpecsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)funcTable[387])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)funcTable[413])();
 			#else
-			return (ImGuiTableSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[387])();
+			return (ImGuiTableSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[413])();
 			#endif
 		}
 
@@ -920,9 +2306,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiTableSortSpecs* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*, void>)funcTable[388])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*, void>)funcTable[414])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[388])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[414])((nint)self);
 			#endif
 		}
 
@@ -952,9 +2338,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*>)funcTable[389])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*>)funcTable[415])();
 			#else
-			return (ImGuiTableColumnSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[389])();
+			return (ImGuiTableColumnSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[415])();
 			#endif
 		}
 
@@ -974,9 +2360,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiTableColumnSortSpecs* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*, void>)funcTable[390])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*, void>)funcTable[416])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[390])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[416])((nint)self);
 			#endif
 		}
 
@@ -1006,9 +2392,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiStyle* ImGuiStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyle*>)funcTable[391])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyle*>)funcTable[417])();
 			#else
-			return (ImGuiStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[391])();
+			return (ImGuiStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[417])();
 			#endif
 		}
 
@@ -1028,9 +2414,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiStyle* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)funcTable[392])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)funcTable[418])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[392])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[418])((nint)self);
 			#endif
 		}
 
@@ -1060,9 +2446,9 @@ namespace Hexa.NET.ImGui
 		internal static void ScaleAllSizesNative(ImGuiStyle* self, float scaleFactor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyle*, float, void>)funcTable[393])(self, scaleFactor);
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, float, void>)funcTable[419])(self, scaleFactor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[393])((nint)self, scaleFactor);
+			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[419])((nint)self, scaleFactor);
 			#endif
 		}
 
@@ -1092,9 +2478,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, byte down)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, void>)funcTable[394])(self, key, down);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, void>)funcTable[420])(self, key, down);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, void>)funcTable[394])((nint)self, key, down);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, void>)funcTable[420])((nint)self, key, down);
 			#endif
 		}
 
@@ -1124,9 +2510,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddKeyAnalogEventNative(ImGuiIO* self, ImGuiKey key, byte down, float v)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, float, void>)funcTable[395])(self, key, down, v);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, float, void>)funcTable[421])(self, key, down, v);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, float, void>)funcTable[395])((nint)self, key, down, v);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, float, void>)funcTable[421])((nint)self, key, down, v);
 			#endif
 		}
 
@@ -1156,9 +2542,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddMousePosEventNative(ImGuiIO* self, float x, float y)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, float, float, void>)funcTable[396])(self, x, y);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, float, float, void>)funcTable[422])(self, x, y);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, float, void>)funcTable[396])((nint)self, x, y);
+			((delegate* unmanaged[Cdecl]<nint, float, float, void>)funcTable[422])((nint)self, x, y);
 			#endif
 		}
 
@@ -1188,9 +2574,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddMouseButtonEventNative(ImGuiIO* self, int button, byte down)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, int, byte, void>)funcTable[397])(self, button, down);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, int, byte, void>)funcTable[423])(self, button, down);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[397])((nint)self, button, down);
+			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[423])((nint)self, button, down);
 			#endif
 		}
 
@@ -1220,9 +2606,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddMouseWheelEventNative(ImGuiIO* self, float wheelX, float wheelY)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, float, float, void>)funcTable[398])(self, wheelX, wheelY);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, float, float, void>)funcTable[424])(self, wheelX, wheelY);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, float, void>)funcTable[398])((nint)self, wheelX, wheelY);
+			((delegate* unmanaged[Cdecl]<nint, float, float, void>)funcTable[424])((nint)self, wheelX, wheelY);
 			#endif
 		}
 
@@ -1252,9 +2638,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddMouseSourceEventNative(ImGuiIO* self, ImGuiMouseSource source)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiMouseSource, void>)funcTable[399])(self, source);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiMouseSource, void>)funcTable[425])(self, source);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseSource, void>)funcTable[399])((nint)self, source);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseSource, void>)funcTable[425])((nint)self, source);
 			#endif
 		}
 
@@ -1284,9 +2670,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddMouseViewportEventNative(ImGuiIO* self, uint id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, uint, void>)funcTable[400])(self, id);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, uint, void>)funcTable[426])(self, id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[400])((nint)self, id);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[426])((nint)self, id);
 			#endif
 		}
 
@@ -1316,9 +2702,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddFocusEventNative(ImGuiIO* self, byte focused)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte, void>)funcTable[401])(self, focused);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte, void>)funcTable[427])(self, focused);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[401])((nint)self, focused);
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[427])((nint)self, focused);
 			#endif
 		}
 
@@ -1348,9 +2734,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddInputCharacterNative(ImGuiIO* self, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, uint, void>)funcTable[402])(self, c);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, uint, void>)funcTable[428])(self, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[402])((nint)self, c);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[428])((nint)self, c);
 			#endif
 		}
 
@@ -1380,9 +2766,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddInputCharacterUTF16Native(ImGuiIO* self, ushort c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, ushort, void>)funcTable[403])(self, c);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ushort, void>)funcTable[429])(self, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[403])((nint)self, c);
+			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[429])((nint)self, c);
 			#endif
 		}
 
@@ -1412,9 +2798,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddInputCharactersUTF8Native(ImGuiIO* self, byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte*, void>)funcTable[404])(self, str);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte*, void>)funcTable[430])(self, str);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[404])((nint)self, (nint)str);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[430])((nint)self, (nint)str);
 			#endif
 		}
 
@@ -1555,9 +2941,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetKeyEventNativeDataNative(ImGuiIO* self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, int, int, int, void>)funcTable[405])(self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, int, int, int, void>)funcTable[431])(self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, int, int, int, void>)funcTable[405])((nint)self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, int, int, int, void>)funcTable[431])((nint)self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 			#endif
 		}
 
@@ -1606,9 +2992,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetAppAcceptingEventsNative(ImGuiIO* self, byte acceptingEvents)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte, void>)funcTable[406])(self, acceptingEvents);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte, void>)funcTable[432])(self, acceptingEvents);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[406])((nint)self, acceptingEvents);
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[432])((nint)self, acceptingEvents);
 			#endif
 		}
 
@@ -1638,9 +3024,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearEventsQueueNative(ImGuiIO* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[407])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[433])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[407])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[433])((nint)self);
 			#endif
 		}
 
@@ -1670,9 +3056,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearInputKeysNative(ImGuiIO* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[408])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[434])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[408])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[434])((nint)self);
 			#endif
 		}
 
@@ -1702,9 +3088,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearInputMouseNative(ImGuiIO* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[409])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[435])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[409])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[435])((nint)self);
 			#endif
 		}
 
@@ -1734,9 +3120,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiIO* ImGuiIONative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiIO*>)funcTable[410])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiIO*>)funcTable[436])();
 			#else
-			return (ImGuiIO*)((delegate* unmanaged[Cdecl]<nint>)funcTable[410])();
+			return (ImGuiIO*)((delegate* unmanaged[Cdecl]<nint>)funcTable[436])();
 			#endif
 		}
 
@@ -1756,9 +3142,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiIO* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[411])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, void>)funcTable[437])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[411])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[437])((nint)self);
 			#endif
 		}
 
@@ -1788,9 +3174,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiInputTextCallbackData* ImGuiInputTextCallbackDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*>)funcTable[412])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*>)funcTable[438])();
 			#else
-			return (ImGuiInputTextCallbackData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[412])();
+			return (ImGuiInputTextCallbackData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[438])();
 			#endif
 		}
 
@@ -1810,9 +3196,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiInputTextCallbackData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, void>)funcTable[413])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, void>)funcTable[439])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[413])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[439])((nint)self);
 			#endif
 		}
 
@@ -1842,9 +3228,9 @@ namespace Hexa.NET.ImGui
 		internal static void DeleteCharsNative(ImGuiInputTextCallbackData* self, int pos, int bytesCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int, int, void>)funcTable[414])(self, pos, bytesCount);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int, int, void>)funcTable[440])(self, pos, bytesCount);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[414])((nint)self, pos, bytesCount);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[440])((nint)self, pos, bytesCount);
 			#endif
 		}
 
@@ -1874,9 +3260,9 @@ namespace Hexa.NET.ImGui
 		internal static void InsertCharsNative(ImGuiInputTextCallbackData* self, int pos, byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int, byte*, byte*, void>)funcTable[415])(self, pos, text, textEnd);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, int, byte*, byte*, void>)funcTable[441])(self, pos, text, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[415])((nint)self, pos, (nint)text, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[441])((nint)self, pos, (nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -2753,9 +4139,9 @@ namespace Hexa.NET.ImGui
 		internal static void SelectAllNative(ImGuiInputTextCallbackData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, void>)funcTable[416])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, void>)funcTable[442])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[416])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[442])((nint)self);
 			#endif
 		}
 
@@ -2785,9 +4171,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearSelectionNative(ImGuiInputTextCallbackData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, void>)funcTable[417])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, void>)funcTable[443])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[417])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[443])((nint)self);
 			#endif
 		}
 
@@ -2817,9 +4203,9 @@ namespace Hexa.NET.ImGui
 		internal static byte HasSelectionNative(ImGuiInputTextCallbackData* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, byte>)funcTable[418])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextCallbackData*, byte>)funcTable[444])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[418])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[444])((nint)self);
 			#endif
 		}
 
@@ -2851,9 +4237,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiWindowClass* ImGuiWindowClassNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindowClass*>)funcTable[419])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindowClass*>)funcTable[445])();
 			#else
-			return (ImGuiWindowClass*)((delegate* unmanaged[Cdecl]<nint>)funcTable[419])();
+			return (ImGuiWindowClass*)((delegate* unmanaged[Cdecl]<nint>)funcTable[445])();
 			#endif
 		}
 
@@ -2873,9 +4259,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiWindowClass* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindowClass*, void>)funcTable[420])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiWindowClass*, void>)funcTable[446])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[420])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[446])((nint)self);
 			#endif
 		}
 
@@ -2905,9 +4291,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiPayload* ImGuiPayloadNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*>)funcTable[421])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*>)funcTable[447])();
 			#else
-			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint>)funcTable[421])();
+			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint>)funcTable[447])();
 			#endif
 		}
 
@@ -2927,9 +4313,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiPayload* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPayload*, void>)funcTable[422])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiPayload*, void>)funcTable[448])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[422])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[448])((nint)self);
 			#endif
 		}
 
@@ -2959,9 +4345,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImGuiPayload* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPayload*, void>)funcTable[423])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiPayload*, void>)funcTable[449])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[423])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[449])((nint)self);
 			#endif
 		}
 
@@ -2991,9 +4377,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsDataTypeNative(ImGuiPayload* self, byte* type)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*, byte*, byte>)funcTable[424])(self, type);
+			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*, byte*, byte>)funcTable[450])(self, type);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[424])((nint)self, (nint)type);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[450])((nint)self, (nint)type);
 			#endif
 		}
 
@@ -3142,9 +4528,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsPreviewNative(ImGuiPayload* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*, byte>)funcTable[425])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*, byte>)funcTable[451])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[425])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[451])((nint)self);
 			#endif
 		}
 
@@ -3176,9 +4562,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsDeliveryNative(ImGuiPayload* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*, byte>)funcTable[426])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*, byte>)funcTable[452])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[426])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[452])((nint)self);
 			#endif
 		}
 
@@ -3210,9 +4596,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiOnceUponAFrame* ImGuiOnceUponAFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOnceUponAFrame*>)funcTable[427])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiOnceUponAFrame*>)funcTable[453])();
 			#else
-			return (ImGuiOnceUponAFrame*)((delegate* unmanaged[Cdecl]<nint>)funcTable[427])();
+			return (ImGuiOnceUponAFrame*)((delegate* unmanaged[Cdecl]<nint>)funcTable[453])();
 			#endif
 		}
 
@@ -3232,9 +4618,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiOnceUponAFrame* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOnceUponAFrame*, void>)funcTable[428])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiOnceUponAFrame*, void>)funcTable[454])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[428])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[454])((nint)self);
 			#endif
 		}
 
@@ -3264,9 +4650,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTextFilter* ImGuiTextFilterNative(byte* defaultFilter)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTextFilter*>)funcTable[429])(defaultFilter);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTextFilter*>)funcTable[455])(defaultFilter);
 			#else
-			return (ImGuiTextFilter*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[429])((nint)defaultFilter);
+			return (ImGuiTextFilter*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[455])((nint)defaultFilter);
 			#endif
 		}
 
@@ -3349,9 +4735,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiTextFilter* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, void>)funcTable[430])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, void>)funcTable[456])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[430])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[456])((nint)self);
 			#endif
 		}
 
@@ -3381,9 +4767,9 @@ namespace Hexa.NET.ImGui
 		internal static byte DrawNative(ImGuiTextFilter* self, byte* label, float width)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, byte*, float, byte>)funcTable[431])(self, label, width);
+			return ((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, byte*, float, byte>)funcTable[457])(self, label, width);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, byte>)funcTable[431])((nint)self, (nint)label, width);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, byte>)funcTable[457])((nint)self, (nint)label, width);
 			#endif
 		}
 
@@ -3636,1402 +5022,6 @@ namespace Hexa.NET.ImGui
 					byte ret = DrawNative((ImGuiTextFilter*)pself, (byte*)plabel, (float)(0.0f));
 					return ret != 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// Helper calling InputText+Build<br/>
-		/// </summary>
-		public static bool Draw(ref ImGuiTextFilter self, string label, float width)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = DrawNative((ImGuiTextFilter*)pself, pStr0, width);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Helper calling InputText+Build<br/>
-		/// </summary>
-		public static bool Draw(ref ImGuiTextFilter self, string label)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = DrawNative((ImGuiTextFilter*)pself, pStr0, (float)(0.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte PassFilterNative(ImGuiTextFilter* self, byte* text, byte* textEnd)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, byte*, byte*, byte>)funcTable[432])(self, text, textEnd);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)funcTable[432])((nint)self, (nint)text, (nint)textEnd);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, byte* text, byte* textEnd)
-		{
-			byte ret = PassFilterNative(self, text, textEnd);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, byte* text)
-		{
-			byte ret = PassFilterNative(self, text, (byte*)(default));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, byte* text, byte* textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte ret = PassFilterNative((ImGuiTextFilter*)pself, text, textEnd);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, byte* text)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte ret = PassFilterNative((ImGuiTextFilter*)pself, text, (byte*)(default));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ref byte text, byte* textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte ret = PassFilterNative(self, (byte*)ptext, textEnd);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ref byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte ret = PassFilterNative(self, (byte*)ptext, (byte*)(default));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ReadOnlySpan<byte> text, byte* textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte ret = PassFilterNative(self, (byte*)ptext, textEnd);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte ret = PassFilterNative(self, (byte*)ptext, (byte*)(default));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, string text, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = PassFilterNative(self, pStr0, textEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, string text)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = PassFilterNative(self, pStr0, (byte*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ref byte text, byte* textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, textEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ref byte text)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, (byte*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ReadOnlySpan<byte> text, byte* textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, textEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ReadOnlySpan<byte> text)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, (byte*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, string text, byte* textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = PassFilterNative((ImGuiTextFilter*)pself, pStr0, textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, string text)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = PassFilterNative((ImGuiTextFilter*)pself, pStr0, (byte*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, byte* text, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				byte ret = PassFilterNative(self, text, (byte*)ptextEnd);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, byte* text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				byte ret = PassFilterNative(self, text, (byte*)ptextEnd);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, byte* text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = PassFilterNative(self, text, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, byte* text, ref byte textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, text, (byte*)ptextEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, byte* text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, text, (byte*)ptextEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, byte* text, string textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = PassFilterNative((ImGuiTextFilter*)pself, text, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ref byte text, ref byte textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					byte ret = PassFilterNative(self, (byte*)ptext, (byte*)ptextEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					byte ret = PassFilterNative(self, (byte*)ptext, (byte*)ptextEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, string text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = PassFilterNative(self, pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ref byte text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					byte ret = PassFilterNative(self, (byte*)ptext, (byte*)ptextEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ref byte text, string textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = PassFilterNative(self, (byte*)ptext, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ReadOnlySpan<byte> text, ref byte textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					byte ret = PassFilterNative(self, (byte*)ptext, (byte*)ptextEnd);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, ReadOnlySpan<byte> text, string textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = PassFilterNative(self, (byte*)ptext, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, string text, ref byte textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				byte ret = PassFilterNative(self, pStr0, (byte*)ptextEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ImGuiTextFilterPtr self, string text, ReadOnlySpan<byte> textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				byte ret = PassFilterNative(self, pStr0, (byte*)ptextEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ref byte text, ref byte textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, (byte*)ptextEnd);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, (byte*)ptextEnd);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, string text, string textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = PassFilterNative((ImGuiTextFilter*)pself, pStr0, pStr1);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ref byte text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, (byte*)ptextEnd);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ref byte text, string textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, pStr0);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ReadOnlySpan<byte> text, ref byte textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, (byte*)ptextEnd);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, ReadOnlySpan<byte> text, string textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, (byte*)ptext, pStr0);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, string text, ref byte textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, pStr0, (byte*)ptextEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool PassFilter(ref ImGuiTextFilter self, string text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					byte ret = PassFilterNative((ImGuiTextFilter*)pself, pStr0, (byte*)ptextEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BuildNative(ImGuiTextFilter* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, void>)funcTable[433])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[433])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Build(ImGuiTextFilterPtr self)
-		{
-			BuildNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Build(ref ImGuiTextFilter self)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				BuildNative((ImGuiTextFilter*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiTextFilter* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, void>)funcTable[434])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[434])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImGuiTextFilterPtr self)
-		{
-			ClearNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImGuiTextFilter self)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				ClearNative((ImGuiTextFilter*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsActiveNative(ImGuiTextFilter* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextFilter*, byte>)funcTable[435])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[435])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsActive(ImGuiTextFilterPtr self)
-		{
-			byte ret = IsActiveNative(self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsActive(ref ImGuiTextFilter self)
-		{
-			fixed (ImGuiTextFilter* pself = &self)
-			{
-				byte ret = IsActiveNative((ImGuiTextFilter*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTextRange* ImGuiTextRangeNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextRange*>)funcTable[436])();
-			#else
-			return (ImGuiTextRange*)((delegate* unmanaged[Cdecl]<nint>)funcTable[436])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange()
-		{
-			ImGuiTextRangePtr ret = ImGuiTextRangeNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiTextRange* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextRange*, void>)funcTable[437])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[437])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiTextRangePtr self)
-		{
-			DestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiTextRange self)
-		{
-			fixed (ImGuiTextRange* pself = &self)
-			{
-				DestroyNative((ImGuiTextRange*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTextRange* ImGuiTextRangeNative(byte* b, byte* e)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextRange*>)funcTable[438])(b, e);
-			#else
-			return (ImGuiTextRange*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[438])((nint)b, (nint)e);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, byte* e)
-		{
-			ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, e);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(ref byte b, byte* e)
-		{
-			fixed (byte* pb = &b)
-			{
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, e);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(ReadOnlySpan<byte> b, byte* e)
-		{
-			fixed (byte* pb = b)
-			{
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, e);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(string b, byte* e)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (b != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(b);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(b, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImGuiTextRangePtr ret = ImGuiTextRangeNative(pStr0, e);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, ref byte e)
-		{
-			fixed (byte* pe = &e)
-			{
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, (byte*)pe);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, ReadOnlySpan<byte> e)
-		{
-			fixed (byte* pe = e)
-			{
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, (byte*)pe);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, string e)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (e != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(e);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(e, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(ref byte b, ref byte e)
-		{
-			fixed (byte* pb = &b)
-			{
-				fixed (byte* pe = &e)
-				{
-					ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, (byte*)pe);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(ReadOnlySpan<byte> b, ReadOnlySpan<byte> e)
-		{
-			fixed (byte* pb = b)
-			{
-				fixed (byte* pe = e)
-				{
-					ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, (byte*)pe);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(string b, string e)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (b != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(b);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(b, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (e != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(e);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(e, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ImGuiTextRangePtr ret = ImGuiTextRangeNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(ref byte b, ReadOnlySpan<byte> e)
-		{
-			fixed (byte* pb = &b)
-			{
-				fixed (byte* pe = e)
-				{
-					ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, (byte*)pe);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(ref byte b, string e)
-		{
-			fixed (byte* pb = &b)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (e != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(e);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(e, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
 			}
 		}
 	}

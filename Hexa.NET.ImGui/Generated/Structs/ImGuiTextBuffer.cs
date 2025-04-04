@@ -761,6 +761,17 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
+		/// </summary>
+		public unsafe void resize(int size)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.resizeNative(@this, size);
+			}
+		}
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public unsafe int size()
@@ -1425,6 +1436,14 @@ namespace Hexa.NET.ImGui
 		public unsafe void reserve(int capacity)
 		{
 			ImGui.reserveNative(Handle, capacity);
+		}
+
+		/// <summary>
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
+		/// </summary>
+		public unsafe void resize(int size)
+		{
+			ImGui.resizeNative(Handle, size);
 		}
 
 		/// <summary>

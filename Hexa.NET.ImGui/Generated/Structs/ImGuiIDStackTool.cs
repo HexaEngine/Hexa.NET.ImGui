@@ -52,11 +52,16 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public float CopyToClipboardLastTime;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImGuiTextBuffer ResultPathBuf;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiIDStackTool(int lastActiveFrame = default, int stackLevel = default, uint queryId = default, ImVector<ImGuiStackLevelInfo> results = default, bool copyToClipboardOnCtrlC = default, float copyToClipboardLastTime = default)
+		public unsafe ImGuiIDStackTool(int lastActiveFrame = default, int stackLevel = default, uint queryId = default, ImVector<ImGuiStackLevelInfo> results = default, bool copyToClipboardOnCtrlC = default, float copyToClipboardLastTime = default, ImGuiTextBuffer resultPathBuf = default)
 		{
 			LastActiveFrame = lastActiveFrame;
 			StackLevel = stackLevel;
@@ -64,6 +69,7 @@ namespace Hexa.NET.ImGui
 			Results = results;
 			CopyToClipboardOnCtrlC = copyToClipboardOnCtrlC ? (byte)1 : (byte)0;
 			CopyToClipboardLastTime = copyToClipboardLastTime;
+			ResultPathBuf = resultPathBuf;
 		}
 
 
@@ -134,6 +140,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref float CopyToClipboardLastTime => ref Unsafe.AsRef<float>(&Handle->CopyToClipboardLastTime);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImGuiTextBuffer ResultPathBuf => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->ResultPathBuf);
 	}
 
 }

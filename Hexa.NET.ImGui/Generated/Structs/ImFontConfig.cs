@@ -70,11 +70,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public Vector2 GlyphExtraSpacing;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public Vector2 GlyphOffset;
 
 		/// <summary>
@@ -91,6 +86,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public float GlyphMaxAdvanceX;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float GlyphExtraAdvanceX;
 
 		/// <summary>
 		/// To be documented.
@@ -165,7 +165,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphExtraSpacing = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, byte* name = default, ImFontPtr dstFont = default)
+		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, float glyphExtraAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, byte* name = default, ImFontPtr dstFont = default)
 		{
 			FontData = fontData;
 			FontDataSize = fontDataSize;
@@ -176,11 +176,11 @@ namespace Hexa.NET.ImGui
 			OversampleH = oversampleH;
 			OversampleV = oversampleV;
 			SizePixels = sizePixels;
-			GlyphExtraSpacing = glyphExtraSpacing;
 			GlyphOffset = glyphOffset;
 			GlyphRanges = glyphRanges;
 			GlyphMinAdvanceX = glyphMinAdvanceX;
 			GlyphMaxAdvanceX = glyphMaxAdvanceX;
+			GlyphExtraAdvanceX = glyphExtraAdvanceX;
 			FontBuilderFlags = fontBuilderFlags;
 			RasterizerMultiply = rasterizerMultiply;
 			RasterizerDensity = rasterizerDensity;
@@ -234,7 +234,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphExtraSpacing = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, Span<byte> name = default, ImFontPtr dstFont = default)
+		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, float glyphExtraAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, Span<byte> name = default, ImFontPtr dstFont = default)
 		{
 			FontData = fontData;
 			FontDataSize = fontDataSize;
@@ -245,11 +245,11 @@ namespace Hexa.NET.ImGui
 			OversampleH = oversampleH;
 			OversampleV = oversampleV;
 			SizePixels = sizePixels;
-			GlyphExtraSpacing = glyphExtraSpacing;
 			GlyphOffset = glyphOffset;
 			GlyphRanges = glyphRanges;
 			GlyphMinAdvanceX = glyphMinAdvanceX;
 			GlyphMaxAdvanceX = glyphMaxAdvanceX;
+			GlyphExtraAdvanceX = glyphExtraAdvanceX;
 			FontBuilderFlags = fontBuilderFlags;
 			RasterizerMultiply = rasterizerMultiply;
 			RasterizerDensity = rasterizerDensity;
@@ -394,10 +394,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref Vector2 GlyphExtraSpacing => ref Unsafe.AsRef<Vector2>(&Handle->GlyphExtraSpacing);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref Vector2 GlyphOffset => ref Unsafe.AsRef<Vector2>(&Handle->GlyphOffset);
 		/// <summary>
 		/// To be documented.
@@ -411,6 +407,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref float GlyphMaxAdvanceX => ref Unsafe.AsRef<float>(&Handle->GlyphMaxAdvanceX);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float GlyphExtraAdvanceX => ref Unsafe.AsRef<float>(&Handle->GlyphExtraAdvanceX);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -180,6 +180,7 @@ namespace Hexa.NET.ImGui
 		public short Index_151;
 		public short Index_152;
 		public short Index_153;
+		public short Index_154;
 
 		/// <summary>
 		/// To be documented.
@@ -353,6 +354,7 @@ namespace Hexa.NET.ImGui
 				Index_151 = index[151];
 				Index_152 = index[152];
 				Index_153 = index[153];
+				Index_154 = index[154];
 			}
 			Entries = entries;
 			EntriesNext = entriesNext;
@@ -519,6 +521,7 @@ namespace Hexa.NET.ImGui
 				Index_151 = index[151];
 				Index_152 = index[152];
 				Index_153 = index[153];
+				Index_154 = index[154];
 			}
 			Entries = entries;
 			EntriesNext = entriesNext;
@@ -576,7 +579,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<short>(&Handle->Index_0, 154);
+				return new Span<short>(&Handle->Index_0, 155);
 			}
 		}
 		/// <summary>

@@ -2630,15 +2630,102 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowPosNative(Vector2 pos, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[55])(pos, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[55])(pos, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
+		public static void SetWindowPos(Vector2 pos, ImGuiCond cond)
+		{
+			SetWindowPosNative(pos, cond);
+		}
+
+		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
+		public static void SetWindowPos(Vector2 pos)
+		{
+			SetWindowPosNative(pos, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowSizeNative(Vector2 size, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[56])(size, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[56])(size, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
+		public static void SetWindowSize(Vector2 size, ImGuiCond cond)
+		{
+			SetWindowSizeNative(size, cond);
+		}
+
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
+		public static void SetWindowSize(Vector2 size)
+		{
+			SetWindowSizeNative(size, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[57])(collapsed, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[57])(collapsed, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(bool collapsed, ImGuiCond cond)
+		{
+			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, cond);
+		}
+
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(bool collapsed)
+		{
+			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+		}
+
+		/// <summary>
 		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowFocusNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[55])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[58])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[55])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[58])();
 			#endif
 		}
 
@@ -2657,9 +2744,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetWindowFontScaleNative(float scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[56])(scale);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[59])(scale);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[56])(scale);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[59])(scale);
 			#endif
 		}
 
@@ -2672,15 +2759,408 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)funcTable[60])(name, pos, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[60])((nint)name, pos, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(byte* name, Vector2 pos, ImGuiCond cond)
+		{
+			SetWindowPosNative(name, pos, cond);
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(byte* name, Vector2 pos)
+		{
+			SetWindowPosNative(name, pos, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(ref byte name, Vector2 pos, ImGuiCond cond)
+		{
+			fixed (byte* pname = &name)
+			{
+				SetWindowPosNative((byte*)pname, pos, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(ref byte name, Vector2 pos)
+		{
+			fixed (byte* pname = &name)
+			{
+				SetWindowPosNative((byte*)pname, pos, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos, ImGuiCond cond)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowPosNative((byte*)pname, pos, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowPosNative((byte*)pname, pos, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(string name, Vector2 pos, ImGuiCond cond)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetWindowPosNative(pStr0, pos, cond);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(string name, Vector2 pos)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetWindowPosNative(pStr0, pos, (ImGuiCond)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)funcTable[61])(name, size, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[61])((nint)name, size, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(byte* name, Vector2 size, ImGuiCond cond)
+		{
+			SetWindowSizeNative(name, size, cond);
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(byte* name, Vector2 size)
+		{
+			SetWindowSizeNative(name, size, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(ref byte name, Vector2 size, ImGuiCond cond)
+		{
+			fixed (byte* pname = &name)
+			{
+				SetWindowSizeNative((byte*)pname, size, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(ref byte name, Vector2 size)
+		{
+			fixed (byte* pname = &name)
+			{
+				SetWindowSizeNative((byte*)pname, size, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size, ImGuiCond cond)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowSizeNative((byte*)pname, size, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowSizeNative((byte*)pname, size, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(string name, Vector2 size, ImGuiCond cond)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetWindowSizeNative(pStr0, size, cond);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(string name, Vector2 size)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetWindowSizeNative(pStr0, size, (ImGuiCond)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiCond, void>)funcTable[62])(name, collapsed, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, byte, ImGuiCond, void>)funcTable[62])((nint)name, collapsed, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(byte* name, bool collapsed, ImGuiCond cond)
+		{
+			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, cond);
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(byte* name, bool collapsed)
+		{
+			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(ref byte name, bool collapsed, ImGuiCond cond)
+		{
+			fixed (byte* pname = &name)
+			{
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(ref byte name, bool collapsed)
+		{
+			fixed (byte* pname = &name)
+			{
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed, ImGuiCond cond)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(string name, bool collapsed, ImGuiCond cond)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetWindowCollapsedNative(pStr0, collapsed ? (byte)1 : (byte)0, cond);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(string name, bool collapsed)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetWindowCollapsedNative(pStr0, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
 		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowFocusNative(byte* name)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[57])(name);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[63])(name);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[57])((nint)name);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[63])((nint)name);
 			#endif
 		}
 
@@ -2750,9 +3230,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetScrollXNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[58])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[64])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[58])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[64])();
 			#endif
 		}
 
@@ -2772,9 +3252,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetScrollYNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[59])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[65])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[59])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[65])();
 			#endif
 		}
 
@@ -2788,15 +3268,57 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetScrollXNative(float scrollX)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[66])(scrollX);
+			#else
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[66])(scrollX);
+			#endif
+		}
+
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// </summary>
+		public static void SetScrollX(float scrollX)
+		{
+			SetScrollXNative(scrollX);
+		}
+
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetScrollYNative(float scrollY)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[67])(scrollY);
+			#else
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[67])(scrollY);
+			#endif
+		}
+
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
+		/// </summary>
+		public static void SetScrollY(float scrollY)
+		{
+			SetScrollYNative(scrollY);
+		}
+
+		/// <summary>
 		/// get maximum scrolling amount ~~ ContentSize.x - WindowSize.x - DecorationsSize.x<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetScrollMaxXNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[60])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[68])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[60])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[68])();
 			#endif
 		}
 
@@ -2816,9 +3338,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetScrollMaxYNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[61])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[69])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[61])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[69])();
 			#endif
 		}
 
@@ -2838,9 +3360,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetScrollHereXNative(float centerXRatio)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[62])(centerXRatio);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[70])(centerXRatio);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[62])(centerXRatio);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[70])(centerXRatio);
 			#endif
 		}
 
@@ -2867,9 +3389,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetScrollHereYNative(float centerYRatio)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[63])(centerYRatio);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[71])(centerYRatio);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[63])(centerYRatio);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[71])(centerYRatio);
 			#endif
 		}
 
@@ -2890,15 +3412,73 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetScrollFromPosXNative(float localX, float centerXRatio)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[72])(localX, centerXRatio);
+			#else
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[72])(localX, centerXRatio);
+			#endif
+		}
+
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
+		public static void SetScrollFromPosX(float localX, float centerXRatio)
+		{
+			SetScrollFromPosXNative(localX, centerXRatio);
+		}
+
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
+		public static void SetScrollFromPosX(float localX)
+		{
+			SetScrollFromPosXNative(localX, (float)(0.5f));
+		}
+
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetScrollFromPosYNative(float localY, float centerYRatio)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[73])(localY, centerYRatio);
+			#else
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[73])(localY, centerYRatio);
+			#endif
+		}
+
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
+		public static void SetScrollFromPosY(float localY, float centerYRatio)
+		{
+			SetScrollFromPosYNative(localY, centerYRatio);
+		}
+
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
+		public static void SetScrollFromPosY(float localY)
+		{
+			SetScrollFromPosYNative(localY, (float)(0.5f));
+		}
+
+		/// <summary>
 		/// use NULL as a shortcut to push default font<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushFontNative(ImFont* font)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[64])(font);
+			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[74])(font);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[64])((nint)font);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[74])((nint)font);
 			#endif
 		}
 
@@ -2928,9 +3508,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopFontNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
 			#endif
 		}
 
@@ -2949,9 +3529,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushStyleColorNative(ImGuiCol idx, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiCol, uint, void>)funcTable[66])(idx, col);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, uint, void>)funcTable[76])(idx, col);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiCol, uint, void>)funcTable[66])(idx, col);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, uint, void>)funcTable[76])(idx, col);
 			#endif
 		}
 
@@ -2970,9 +3550,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushStyleColorNative(ImGuiCol idx, Vector4 col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4, void>)funcTable[67])(idx, col);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4, void>)funcTable[77])(idx, col);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4, void>)funcTable[67])(idx, col);
+			((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4, void>)funcTable[77])(idx, col);
 			#endif
 		}
 
@@ -2991,9 +3571,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopStyleColorNative(int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[68])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[78])(count);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[68])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[78])(count);
 			#endif
 		}
 
@@ -3020,9 +3600,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushStyleVarNative(ImGuiStyleVar idx, float val)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[69])(idx, val);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[79])(idx, val);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[69])(idx, val);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[79])(idx, val);
 			#endif
 		}
 
@@ -3041,9 +3621,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushStyleVarNative(ImGuiStyleVar idx, Vector2 val)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, void>)funcTable[70])(idx, val);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, void>)funcTable[80])(idx, val);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, void>)funcTable[70])(idx, val);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, void>)funcTable[80])(idx, val);
 			#endif
 		}
 
@@ -3062,9 +3642,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushStyleVarXNative(ImGuiStyleVar idx, float valX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[71])(idx, valX);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[81])(idx, valX);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[71])(idx, valX);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[81])(idx, valX);
 			#endif
 		}
 
@@ -3083,9 +3663,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushStyleVarYNative(ImGuiStyleVar idx, float valY)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[72])(idx, valY);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[82])(idx, valY);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[72])(idx, valY);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)funcTable[82])(idx, valY);
 			#endif
 		}
 
@@ -3104,9 +3684,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopStyleVarNative(int count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[73])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[83])(count);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[73])(count);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[83])(count);
 			#endif
 		}
 
@@ -3133,9 +3713,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushItemFlagNative(ImGuiItemFlags option, byte enabled)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiItemFlags, byte, void>)funcTable[74])(option, enabled);
+			((delegate* unmanaged[Cdecl]<ImGuiItemFlags, byte, void>)funcTable[84])(option, enabled);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiItemFlags, byte, void>)funcTable[74])(option, enabled);
+			((delegate* unmanaged[Cdecl]<ImGuiItemFlags, byte, void>)funcTable[84])(option, enabled);
 			#endif
 		}
 
@@ -3154,9 +3734,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopItemFlagNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[85])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[75])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[85])();
 			#endif
 		}
 
@@ -3175,9 +3755,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushItemWidthNative(float itemWidth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[76])(itemWidth);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[86])(itemWidth);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[76])(itemWidth);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[86])(itemWidth);
 			#endif
 		}
 
@@ -3196,9 +3776,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopItemWidthNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[77])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[87])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[77])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[87])();
 			#endif
 		}
 
@@ -3217,9 +3797,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetNextItemWidthNative(float itemWidth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[78])(itemWidth);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[88])(itemWidth);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[78])(itemWidth);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[88])(itemWidth);
 			#endif
 		}
 
@@ -3238,9 +3818,9 @@ namespace Hexa.NET.ImGui
 		internal static float CalcItemWidthNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[79])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[89])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[79])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[89])();
 			#endif
 		}
 
@@ -3260,9 +3840,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushTextWrapPosNative(float wrapLocalPosX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[80])(wrapLocalPosX);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[90])(wrapLocalPosX);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[80])(wrapLocalPosX);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[90])(wrapLocalPosX);
 			#endif
 		}
 
@@ -3289,9 +3869,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopTextWrapPosNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[81])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[91])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[81])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[91])();
 			#endif
 		}
 
@@ -3310,9 +3890,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* GetFontNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*>)funcTable[82])();
+			return ((delegate* unmanaged[Cdecl]<ImFont*>)funcTable[92])();
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint>)funcTable[82])();
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint>)funcTable[92])();
 			#endif
 		}
 
@@ -3332,9 +3912,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetFontSizeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[83])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[93])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[83])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[93])();
 			#endif
 		}
 
@@ -3354,9 +3934,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetFontTexUvWhitePixelNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[84])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[94])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[84])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[94])((nint)pOut);
 			#endif
 		}
 
@@ -3396,9 +3976,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetColorU32Native(ImGuiCol idx, float alphaMul)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)funcTable[85])(idx, alphaMul);
+			return ((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)funcTable[95])(idx, alphaMul);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)funcTable[85])(idx, alphaMul);
+			return (uint)((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)funcTable[95])(idx, alphaMul);
 			#endif
 		}
 
@@ -3427,9 +4007,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetColorU32Native(Vector4 col)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[86])(col);
+			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[96])(col);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[86])(col);
+			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[96])(col);
 			#endif
 		}
 
@@ -3449,9 +4029,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetColorU32Native(uint col, float alphaMul)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[87])(col, alphaMul);
+			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[97])(col, alphaMul);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[87])(col, alphaMul);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[97])(col, alphaMul);
 			#endif
 		}
 
@@ -3480,9 +4060,9 @@ namespace Hexa.NET.ImGui
 		internal static Vector4* GetStyleColorVec4Native(ImGuiCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4*>)funcTable[88])(idx);
+			return ((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4*>)funcTable[98])(idx);
 			#else
-			return (Vector4*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[88])(idx);
+			return (Vector4*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[98])(idx);
 			#endif
 		}
 
@@ -3502,9 +4082,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetCursorScreenPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[89])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[99])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[89])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[99])((nint)pOut);
 			#endif
 		}
 
@@ -3544,9 +4124,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetCursorScreenPosNative(Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[90])(pos);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[100])(pos);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[90])(pos);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[100])(pos);
 			#endif
 		}
 
@@ -3565,9 +4145,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetContentRegionAvailNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[91])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[101])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[91])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[101])((nint)pOut);
 			#endif
 		}
 
@@ -3607,9 +4187,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetCursorPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[92])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[102])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[92])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[102])((nint)pOut);
 			#endif
 		}
 
@@ -3649,9 +4229,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetCursorPosXNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[93])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[103])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[93])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[103])();
 			#endif
 		}
 
@@ -3671,9 +4251,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetCursorPosYNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[94])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[104])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[94])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[104])();
 			#endif
 		}
 
@@ -3693,9 +4273,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetCursorPosNative(Vector2 localPos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[95])(localPos);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[105])(localPos);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[95])(localPos);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[105])(localPos);
 			#endif
 		}
 
@@ -3714,9 +4294,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetCursorPosXNative(float localX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[96])(localX);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[106])(localX);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[96])(localX);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[106])(localX);
 			#endif
 		}
 
@@ -3735,9 +4315,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetCursorPosYNative(float localY)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[97])(localY);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[107])(localY);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[97])(localY);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[107])(localY);
 			#endif
 		}
 
@@ -3756,9 +4336,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetCursorStartPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[98])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[108])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[98])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[108])((nint)pOut);
 			#endif
 		}
 
@@ -3798,9 +4378,9 @@ namespace Hexa.NET.ImGui
 		internal static void SeparatorNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[99])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[109])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[99])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[109])();
 			#endif
 		}
 
@@ -3819,9 +4399,9 @@ namespace Hexa.NET.ImGui
 		internal static void SameLineNative(float offsetFromStartX, float spacing)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[100])(offsetFromStartX, spacing);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[110])(offsetFromStartX, spacing);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[100])(offsetFromStartX, spacing);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[110])(offsetFromStartX, spacing);
 			#endif
 		}
 
@@ -3856,9 +4436,9 @@ namespace Hexa.NET.ImGui
 		internal static void NewLineNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[101])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[111])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[101])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[111])();
 			#endif
 		}
 
@@ -3877,9 +4457,9 @@ namespace Hexa.NET.ImGui
 		internal static void SpacingNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[102])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[112])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[102])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[112])();
 			#endif
 		}
 
@@ -3898,9 +4478,9 @@ namespace Hexa.NET.ImGui
 		internal static void DummyNative(Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[103])(size);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[113])(size);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[103])(size);
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[113])(size);
 			#endif
 		}
 
@@ -3919,9 +4499,9 @@ namespace Hexa.NET.ImGui
 		internal static void IndentNative(float indentW)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[104])(indentW);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[114])(indentW);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[104])(indentW);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[114])(indentW);
 			#endif
 		}
 
@@ -3948,9 +4528,9 @@ namespace Hexa.NET.ImGui
 		internal static void UnindentNative(float indentW)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[105])(indentW);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[115])(indentW);
 			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[105])(indentW);
+			((delegate* unmanaged[Cdecl]<float, void>)funcTable[115])(indentW);
 			#endif
 		}
 
@@ -3977,9 +4557,9 @@ namespace Hexa.NET.ImGui
 		internal static void BeginGroupNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[106])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[116])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[106])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[116])();
 			#endif
 		}
 
@@ -3998,9 +4578,9 @@ namespace Hexa.NET.ImGui
 		internal static void EndGroupNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[107])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[117])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[107])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[117])();
 			#endif
 		}
 
@@ -4019,9 +4599,9 @@ namespace Hexa.NET.ImGui
 		internal static void AlignTextToFramePaddingNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[108])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[118])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[108])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[118])();
 			#endif
 		}
 
@@ -4040,9 +4620,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetTextLineHeightNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[109])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[119])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[109])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[119])();
 			#endif
 		}
 
@@ -4062,9 +4642,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetTextLineHeightWithSpacingNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[110])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[120])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[110])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[120])();
 			#endif
 		}
 
@@ -4084,9 +4664,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetFrameHeightNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[111])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[121])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[111])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[121])();
 			#endif
 		}
 
@@ -4106,9 +4686,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetFrameHeightWithSpacingNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[112])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[122])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[112])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[122])();
 			#endif
 		}
 
@@ -4128,9 +4708,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushIDNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[113])(strId);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[123])(strId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[113])((nint)strId);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[123])((nint)strId);
 			#endif
 		}
 
@@ -4200,9 +4780,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[114])(strIdBegin, strIdEnd);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[124])(strIdBegin, strIdEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[114])((nint)strIdBegin, (nint)strIdEnd);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[124])((nint)strIdBegin, (nint)strIdEnd);
 			#endif
 		}
 
@@ -4437,595 +5017,6 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStr0);
 				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strIdEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PushIDNative((byte*)pstrIdBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(string strIdBegin, ref byte strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pstrIdEnd = &strIdEnd)
-			{
-				PushIDNative(pStr0, (byte*)pstrIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pstrIdEnd = strIdEnd)
-			{
-				PushIDNative(pStr0, (byte*)pstrIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushIDNative(void* ptrId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[115])(ptrId);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[115])((nint)ptrId);
-			#endif
-		}
-
-		/// <summary>
-		/// push pointer into the ID stack (will hash pointer).<br/>
-		/// </summary>
-		public static void PushID(void* ptrId)
-		{
-			PushIDNative(ptrId);
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushIDNative(int intId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[116])(intId);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[116])(intId);
-			#endif
-		}
-
-		/// <summary>
-		/// push integer into the ID stack (will hash integer).<br/>
-		/// </summary>
-		public static void PushID(int intId)
-		{
-			PushIDNative(intId);
-		}
-
-		/// <summary>
-		/// pop from the ID stack.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopIDNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[117])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[117])();
-			#endif
-		}
-
-		/// <summary>
-		/// pop from the ID stack.<br/>
-		/// </summary>
-		public static void PopID()
-		{
-			PopIDNative();
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(byte* strId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint>)funcTable[118])(strId);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[118])((nint)strId);
-			#endif
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(byte* strId)
-		{
-			uint ret = GetIDNative(strId);
-			return ret;
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				uint ret = GetIDNative((byte*)pstrId);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				uint ret = GetIDNative((byte*)pstrId);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			uint ret = GetIDNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)funcTable[119])(strIdBegin, strIdEnd);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[119])((nint)strIdBegin, (nint)strIdEnd);
-			#endif
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
-		{
-			uint ret = GetIDNative(strIdBegin, strIdEnd);
-			return ret;
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ref byte strIdBegin, byte* strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(string strIdBegin, byte* strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			uint ret = GetIDNative(pStr0, strIdEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
-		{
-			fixed (byte* pstrIdEnd = &strIdEnd)
-			{
-				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdEnd = strIdEnd)
-			{
-				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(byte* strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			uint ret = GetIDNative(strIdBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ref byte strIdBegin, ref byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(string strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			uint ret = GetIDNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ref byte strIdBegin, string strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strIdEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				uint ret = GetIDNative((byte*)pstrIdBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					uint ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strIdEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				uint ret = GetIDNative((byte*)pstrIdBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
-		/// </summary>
-		public static uint GetID(string strIdBegin, ref byte strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pstrIdEnd = &strIdEnd)
-			{
-				uint ret = GetIDNative(pStr0, (byte*)pstrIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
 			}
 		}
 	}

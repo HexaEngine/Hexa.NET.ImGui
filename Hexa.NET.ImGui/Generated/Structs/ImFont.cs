@@ -61,12 +61,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig* ConfigData;
+		public unsafe ImFontConfig* Sources;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short ConfigDataCount;
+		public short SourcesCount;
 
 		/// <summary>
 		/// To be documented.
@@ -143,7 +143,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, byte* used8KPagesMap = default)
+		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* sources = default, short sourcesCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, byte* used8KPagesMap = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -152,8 +152,8 @@ namespace Hexa.NET.ImGui
 			Glyphs = glyphs;
 			FallbackGlyph = fallbackGlyph;
 			ContainerAtlas = containerAtlas;
-			ConfigData = configData;
-			ConfigDataCount = configDataCount;
+			Sources = sources;
+			SourcesCount = sourcesCount;
 			EllipsisCharCount = ellipsisCharCount;
 			EllipsisChar = ellipsisChar;
 			FallbackChar = fallbackChar;
@@ -189,7 +189,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* configData = default, short configDataCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, Span<byte> used8KPagesMap = default)
+		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* sources = default, short sourcesCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, Span<byte> used8KPagesMap = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -198,8 +198,8 @@ namespace Hexa.NET.ImGui
 			Glyphs = glyphs;
 			FallbackGlyph = fallbackGlyph;
 			ContainerAtlas = containerAtlas;
-			ConfigData = configData;
-			ConfigDataCount = configDataCount;
+			Sources = sources;
+			SourcesCount = sourcesCount;
 			EllipsisCharCount = ellipsisCharCount;
 			EllipsisChar = ellipsisChar;
 			FallbackChar = fallbackChar;
@@ -4577,17 +4577,6 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void SetGlyphVisible(uint c, bool visible)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				ImGui.SetGlyphVisibleNative(@this, c, visible ? (byte)1 : (byte)0);
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -4662,11 +4651,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImFontConfigPtr ConfigData => ref Unsafe.AsRef<ImFontConfigPtr>(&Handle->ConfigData);
+		public ref ImFontConfigPtr Sources => ref Unsafe.AsRef<ImFontConfigPtr>(&Handle->Sources);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short ConfigDataCount => ref Unsafe.AsRef<short>(&Handle->ConfigDataCount);
+		public ref short SourcesCount => ref Unsafe.AsRef<short>(&Handle->SourcesCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -8529,14 +8518,6 @@ namespace Hexa.NET.ImGui
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void SetGlyphVisible(uint c, bool visible)
-		{
-			ImGui.SetGlyphVisibleNative(Handle, c, visible ? (byte)1 : (byte)0);
 		}
 
 	}

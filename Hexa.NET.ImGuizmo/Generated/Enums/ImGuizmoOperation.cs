@@ -106,7 +106,7 @@ namespace Hexa.NET.ImGuizmo
 		Scale = unchecked(896),
 
 		/// <summary>
-		/// universal<br/>
+		/// To be documented.
 		/// </summary>
 		Scaleu = unchecked(14336),
 

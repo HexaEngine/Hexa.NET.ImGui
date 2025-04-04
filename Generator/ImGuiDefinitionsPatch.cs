@@ -36,30 +36,24 @@
             {
                 var functionDefinition = imguiDefinitions.Functions[i];
 
-                if (generationType != InternalsGenerationType.BothOrDontCare)
-                {
-                    bool isInternal = functionDefinition.Overloads.Any(x => x.Internal);
-                    if (isInternal && generationType == InternalsGenerationType.SkipInternalsMetadata)
-                    {
-                        continue;
-                    }
-
-                    if (generationType == InternalsGenerationType.NoInternals && isInternal || generationType == InternalsGenerationType.OnlyInternals && !isInternal)
-                    {
-                        // removes internals.
-                        for (int j = 0; j < functionDefinition.Overloads.Length; j++)
-                        {
-                            var overload = functionDefinition.Overloads[j];
-                            settings.IgnoredFunctions.Add(overload.ExportedName);
-                        }
-
-                        continue;
-                    }
-                }
-
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
                     var overload = functionDefinition.Overloads[j];
+
+                    if (generationType != InternalsGenerationType.BothOrDontCare)
+                    {
+                        bool isInternal = overload.Internal;
+                        if (isInternal && generationType == InternalsGenerationType.SkipInternalsMetadata)
+                        {
+                            continue;
+                        }
+
+                        if (generationType == InternalsGenerationType.NoInternals && isInternal || generationType == InternalsGenerationType.OnlyInternals && !isInternal)
+                        {
+                            settings.IgnoredFunctions.Add(overload.ExportedName);
+                            continue;
+                        }
+                    }
 
                     var signature = $"{overload.ReturnType} {overload.FriendlyName} {overload.Args}";
                     bool useName = false;

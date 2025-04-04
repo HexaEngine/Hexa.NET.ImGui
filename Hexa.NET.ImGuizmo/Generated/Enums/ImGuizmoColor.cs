@@ -21,47 +21,47 @@ namespace Hexa.NET.ImGuizmo
 	public enum ImGuizmoColor : int
 	{
 		/// <summary>
-		/// directionColor[0]<br/>
+		/// To be documented.
 		/// </summary>
 		DirectionX = unchecked(0),
 
 		/// <summary>
-		/// directionColor[1]<br/>
+		/// To be documented.
 		/// </summary>
 		DirectionY = unchecked(1),
 
 		/// <summary>
-		/// directionColor[2]<br/>
+		/// To be documented.
 		/// </summary>
 		DirectionZ = unchecked(2),
 
 		/// <summary>
-		/// planeColor[0]<br/>
+		/// To be documented.
 		/// </summary>
 		PlaneX = unchecked(3),
 
 		/// <summary>
-		/// planeColor[1]<br/>
+		/// To be documented.
 		/// </summary>
 		PlaneY = unchecked(4),
 
 		/// <summary>
-		/// planeColor[2]<br/>
+		/// To be documented.
 		/// </summary>
 		PlaneZ = unchecked(5),
 
 		/// <summary>
-		/// selectionColor<br/>
+		/// To be documented.
 		/// </summary>
 		Selection = unchecked(6),
 
 		/// <summary>
-		/// inactiveColor<br/>
+		/// To be documented.
 		/// </summary>
 		Inactive = unchecked(7),
 
 		/// <summary>
-		/// translationLineColor<br/>
+		/// To be documented.
 		/// </summary>
 		TranslationLine = unchecked(8),
 

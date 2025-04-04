@@ -65,11 +65,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte ShowAtlasTintedWithTextColor;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public byte ShowDockingNodes;
 
 		/// <summary>
@@ -96,7 +91,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiMetricsConfig(bool showDebugLog = default, bool showIdStackTool = default, bool showWindowsRects = default, bool showWindowsBeginOrder = default, bool showTablesRects = default, bool showDrawCmdMesh = default, bool showDrawCmdBoundingBoxes = default, bool showTextEncodingViewer = default, bool showAtlasTintedWithTextColor = default, bool showDockingNodes = default, int showWindowsRectsType = default, int showTablesRectsType = default, int highlightMonitorIdx = default, uint highlightViewportId = default)
+		public unsafe ImGuiMetricsConfig(bool showDebugLog = default, bool showIdStackTool = default, bool showWindowsRects = default, bool showWindowsBeginOrder = default, bool showTablesRects = default, bool showDrawCmdMesh = default, bool showDrawCmdBoundingBoxes = default, bool showTextEncodingViewer = default, bool showDockingNodes = default, int showWindowsRectsType = default, int showTablesRectsType = default, int highlightMonitorIdx = default, uint highlightViewportId = default)
 		{
 			ShowDebugLog = showDebugLog ? (byte)1 : (byte)0;
 			ShowIDStackTool = showIdStackTool ? (byte)1 : (byte)0;
@@ -106,7 +101,6 @@ namespace Hexa.NET.ImGui
 			ShowDrawCmdMesh = showDrawCmdMesh ? (byte)1 : (byte)0;
 			ShowDrawCmdBoundingBoxes = showDrawCmdBoundingBoxes ? (byte)1 : (byte)0;
 			ShowTextEncodingViewer = showTextEncodingViewer ? (byte)1 : (byte)0;
-			ShowAtlasTintedWithTextColor = showAtlasTintedWithTextColor ? (byte)1 : (byte)0;
 			ShowDockingNodes = showDockingNodes ? (byte)1 : (byte)0;
 			ShowWindowsRectsType = showWindowsRectsType;
 			ShowTablesRectsType = showTablesRectsType;

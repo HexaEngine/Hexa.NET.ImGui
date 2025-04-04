@@ -18,1365 +18,6 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGuiP
 	{
 		/// <summary>
-		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowPosNative(Vector2 pos, ImGuiCond cond)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[670])(pos, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[670])(pos, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
-		/// </summary>
-		public static void SetWindowPos(Vector2 pos, ImGuiCond cond)
-		{
-			SetWindowPosNative(pos, cond);
-		}
-
-		/// <summary>
-		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
-		/// </summary>
-		public static void SetWindowPos(Vector2 pos)
-		{
-			SetWindowPosNative(pos, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowSizeNative(Vector2 size, ImGuiCond cond)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[671])(size, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)funcTable[671])(size, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
-		/// </summary>
-		public static void SetWindowSize(Vector2 size, ImGuiCond cond)
-		{
-			SetWindowSizeNative(size, cond);
-		}
-
-		/// <summary>
-		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
-		/// </summary>
-		public static void SetWindowSize(Vector2 size)
-		{
-			SetWindowSizeNative(size, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[672])(collapsed, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)funcTable[672])(collapsed, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(bool collapsed, ImGuiCond cond)
-		{
-			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, cond);
-		}
-
-		/// <summary>
-		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(bool collapsed)
-		{
-			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)funcTable[673])(name, pos, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[673])((nint)name, pos, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(byte* name, Vector2 pos, ImGuiCond cond)
-		{
-			SetWindowPosNative(name, pos, cond);
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(byte* name, Vector2 pos)
-		{
-			SetWindowPosNative(name, pos, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(ref byte name, Vector2 pos, ImGuiCond cond)
-		{
-			fixed (byte* pname = &name)
-			{
-				SetWindowPosNative((byte*)pname, pos, cond);
-			}
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(ref byte name, Vector2 pos)
-		{
-			fixed (byte* pname = &name)
-			{
-				SetWindowPosNative((byte*)pname, pos, (ImGuiCond)(0));
-			}
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos, ImGuiCond cond)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowPosNative((byte*)pname, pos, cond);
-			}
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowPosNative((byte*)pname, pos, (ImGuiCond)(0));
-			}
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(string name, Vector2 pos, ImGuiCond cond)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetWindowPosNative(pStr0, pos, cond);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// set named window position.<br/>
-		/// </summary>
-		public static void SetWindowPos(string name, Vector2 pos)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetWindowPosNative(pStr0, pos, (ImGuiCond)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)funcTable[674])(name, size, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[674])((nint)name, size, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(byte* name, Vector2 size, ImGuiCond cond)
-		{
-			SetWindowSizeNative(name, size, cond);
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(byte* name, Vector2 size)
-		{
-			SetWindowSizeNative(name, size, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(ref byte name, Vector2 size, ImGuiCond cond)
-		{
-			fixed (byte* pname = &name)
-			{
-				SetWindowSizeNative((byte*)pname, size, cond);
-			}
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(ref byte name, Vector2 size)
-		{
-			fixed (byte* pname = &name)
-			{
-				SetWindowSizeNative((byte*)pname, size, (ImGuiCond)(0));
-			}
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size, ImGuiCond cond)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowSizeNative((byte*)pname, size, cond);
-			}
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowSizeNative((byte*)pname, size, (ImGuiCond)(0));
-			}
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(string name, Vector2 size, ImGuiCond cond)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetWindowSizeNative(pStr0, size, cond);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
-		/// </summary>
-		public static void SetWindowSize(string name, Vector2 size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetWindowSizeNative(pStr0, size, (ImGuiCond)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiCond, void>)funcTable[675])(name, collapsed, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, ImGuiCond, void>)funcTable[675])((nint)name, collapsed, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(byte* name, bool collapsed, ImGuiCond cond)
-		{
-			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, cond);
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(byte* name, bool collapsed)
-		{
-			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(ref byte name, bool collapsed, ImGuiCond cond)
-		{
-			fixed (byte* pname = &name)
-			{
-				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
-			}
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(ref byte name, bool collapsed)
-		{
-			fixed (byte* pname = &name)
-			{
-				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
-			}
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed, ImGuiCond cond)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
-			}
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
-			}
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(string name, bool collapsed, ImGuiCond cond)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetWindowCollapsedNative(pStr0, collapsed ? (byte)1 : (byte)0, cond);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// set named window collapsed state<br/>
-		/// </summary>
-		public static void SetWindowCollapsed(string name, bool collapsed)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetWindowCollapsedNative(pStr0, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetScrollXNative(float scrollX)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[676])(scrollX);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[676])(scrollX);
-			#endif
-		}
-
-		/// <summary>
-		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
-		/// </summary>
-		public static void SetScrollX(float scrollX)
-		{
-			SetScrollXNative(scrollX);
-		}
-
-		/// <summary>
-		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetScrollYNative(float scrollY)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[677])(scrollY);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[677])(scrollY);
-			#endif
-		}
-
-		/// <summary>
-		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
-		/// </summary>
-		public static void SetScrollY(float scrollY)
-		{
-			SetScrollYNative(scrollY);
-		}
-
-		/// <summary>
-		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetScrollFromPosXNative(float localX, float centerXRatio)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[678])(localX, centerXRatio);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[678])(localX, centerXRatio);
-			#endif
-		}
-
-		/// <summary>
-		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
-		/// </summary>
-		public static void SetScrollFromPosX(float localX, float centerXRatio)
-		{
-			SetScrollFromPosXNative(localX, centerXRatio);
-		}
-
-		/// <summary>
-		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
-		/// </summary>
-		public static void SetScrollFromPosX(float localX)
-		{
-			SetScrollFromPosXNative(localX, (float)(0.5f));
-		}
-
-		/// <summary>
-		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetScrollFromPosYNative(float localY, float centerYRatio)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[679])(localY, centerYRatio);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[679])(localY, centerYRatio);
-			#endif
-		}
-
-		/// <summary>
-		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
-		/// </summary>
-		public static void SetScrollFromPosY(float localY, float centerYRatio)
-		{
-			SetScrollFromPosYNative(localY, centerYRatio);
-		}
-
-		/// <summary>
-		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
-		/// </summary>
-		public static void SetScrollFromPosY(float localY)
-		{
-			SetScrollFromPosYNative(localY, (float)(0.5f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte CheckboxFlagsNative(byte* label, int* flags, int flagsValue)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[680])(label, flags, flagsValue);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[680])((nint)label, (nint)flags, flagsValue);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(byte* label, int* flags, int flagsValue)
-		{
-			byte ret = CheckboxFlagsNative(label, flags, flagsValue);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ref byte label, int* flags, int flagsValue)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ReadOnlySpan<byte> label, int* flags, int flagsValue)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(string label, int* flags, int flagsValue)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = CheckboxFlagsNative(pStr0, flags, flagsValue);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(byte* label, ref int flags, int flagsValue)
-		{
-			fixed (int* pflags = &flags)
-			{
-				byte ret = CheckboxFlagsNative(label, (int*)pflags, flagsValue);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ref byte label, ref int flags, int flagsValue)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pflags = &flags)
-				{
-					byte ret = CheckboxFlagsNative((byte*)plabel, (int*)pflags, flagsValue);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ReadOnlySpan<byte> label, ref int flags, int flagsValue)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pflags = &flags)
-				{
-					byte ret = CheckboxFlagsNative((byte*)plabel, (int*)pflags, flagsValue);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(string label, ref int flags, int flagsValue)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pflags = &flags)
-			{
-				byte ret = CheckboxFlagsNative(pStr0, (int*)pflags, flagsValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte CheckboxFlagsNative(byte* label, uint* flags, uint flagsValue)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)funcTable[681])(label, flags, flagsValue);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)funcTable[681])((nint)label, (nint)flags, flagsValue);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(byte* label, uint* flags, uint flagsValue)
-		{
-			byte ret = CheckboxFlagsNative(label, flags, flagsValue);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ref byte label, uint* flags, uint flagsValue)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ReadOnlySpan<byte> label, uint* flags, uint flagsValue)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(string label, uint* flags, uint flagsValue)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = CheckboxFlagsNative(pStr0, flags, flagsValue);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(byte* label, ref uint flags, uint flagsValue)
-		{
-			fixed (uint* pflags = &flags)
-			{
-				byte ret = CheckboxFlagsNative(label, (uint*)pflags, flagsValue);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ref byte label, ref uint flags, uint flagsValue)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (uint* pflags = &flags)
-				{
-					byte ret = CheckboxFlagsNative((byte*)plabel, (uint*)pflags, flagsValue);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(ReadOnlySpan<byte> label, ref uint flags, uint flagsValue)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (uint* pflags = &flags)
-				{
-					byte ret = CheckboxFlagsNative((byte*)plabel, (uint*)pflags, flagsValue);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CheckboxFlags(string label, ref uint flags, uint flagsValue)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pflags = &flags)
-			{
-				byte ret = CheckboxFlagsNative(pStr0, (uint*)pflags, flagsValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsPopupOpenNative(byte* strId, ImGuiPopupFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[682])(strId, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[682])((nint)strId, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(byte* strId, ImGuiPopupFlags flags)
-		{
-			byte ret = IsPopupOpenNative(strId, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(byte* strId)
-		{
-			byte ret = IsPopupOpenNative(strId, (ImGuiPopupFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(ref byte strId, ImGuiPopupFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = IsPopupOpenNative((byte*)pstrId, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = IsPopupOpenNative((byte*)pstrId, (ImGuiPopupFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(ReadOnlySpan<byte> strId, ImGuiPopupFlags flags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = IsPopupOpenNative((byte*)pstrId, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = IsPopupOpenNative((byte*)pstrId, (ImGuiPopupFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(string strId, ImGuiPopupFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = IsPopupOpenNative(pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return true if the popup is open.<br/>
-		/// </summary>
-		public static bool IsPopupOpen(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = IsPopupOpenNative(pStr0, (ImGuiPopupFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* TableGetColumnNameNative(int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte*>)funcTable[683])(columnN);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[683])(columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static byte* TableGetColumnName(int columnN)
-		{
-			byte* ret = TableGetColumnNameNative(columnN);
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static byte* TableGetColumnName()
-		{
-			byte* ret = TableGetColumnNameNative((int)(-1));
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static string TableGetColumnNameS()
-		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((int)(-1)));
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static string TableGetColumnNameS(int columnN)
-		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative(columnN));
-			return ret;
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[684])(viewport);
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[684])((nint)viewport);
-			#endif
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
-		{
-			ImDrawListPtr ret = GetForegroundDrawListNative(viewport);
-			return ret;
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetForegroundDrawList()
-		{
-			ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetForegroundDrawList(ref ImGuiViewport viewport)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)pviewport);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// is key being held.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyDownNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[685])(key);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[685])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// is key being held.<br/>
-		/// </summary>
-		public static bool IsKeyDown(ImGuiKey key)
-		{
-			byte ret = IsKeyDownNative(key);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyPressedNative(ImGuiKey key, byte repeat)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[686])(key, repeat);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[686])(key, repeat);
-			#endif
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		public static bool IsKeyPressed(ImGuiKey key, bool repeat)
-		{
-			byte ret = IsKeyPressedNative(key, repeat ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		public static bool IsKeyPressed(ImGuiKey key)
-		{
-			byte ret = IsKeyPressedNative(key, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key released (went from Down to !Down)?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyReleasedNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[687])(key);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[687])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// was key released (went from Down to !Down)?<br/>
-		/// </summary>
-		public static bool IsKeyReleased(ImGuiKey key)
-		{
-			byte ret = IsKeyReleasedNative(key);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyChordPressedNative(int keyChord)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[688])(keyChord);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[688])(keyChord);
-			#endif
-		}
-
-		/// <summary>
-		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
-		/// </summary>
-		public static bool IsKeyChordPressed(int keyChord)
-		{
-			byte ret = IsKeyChordPressedNative(keyChord);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ShortcutNative(int keyChord, ImGuiInputFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[689])(keyChord, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[689])(keyChord, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Shortcut(int keyChord, ImGuiInputFlags flags)
-		{
-			byte ret = ShortcutNative(keyChord, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Shortcut(int keyChord)
-		{
-			byte ret = ShortcutNative(keyChord, (ImGuiInputFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetItemKeyOwnerNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[690])(key);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[690])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
-		/// </summary>
-		public static void SetItemKeyOwner(ImGuiKey key)
-		{
-			SetItemKeyOwnerNative(key);
-		}
-
-		/// <summary>
-		/// is mouse button held?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDownNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[691])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[691])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse button held?<br/>
-		/// </summary>
-		public static bool IsMouseDown(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDownNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[692])(button, repeat);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[692])(button, repeat);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
-		{
-			byte ret = IsMouseClickedNative(button, repeat ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		public static bool IsMouseClicked(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseClickedNative(button, (byte)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button released? (went from Down to !Down)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseReleasedNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[693])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[693])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button released? (went from Down to !Down)<br/>
-		/// </summary>
-		public static bool IsMouseReleased(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseReleasedNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDoubleClickedNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[694])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[694])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
-		/// </summary>
-		public static bool IsMouseDoubleClicked(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDoubleClickedNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1950,15 +591,37 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint ImCountSetBitsNative(uint v)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, uint>)funcTable[702])(v);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<uint, uint>)funcTable[702])(v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint ImCountSetBits(uint v)
+		{
+			uint ret = ImCountSetBitsNative(v);
+			return ret;
+		}
+
+		/// <summary>
 		/// Case insensitive compare.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImStricmpNative(byte* str1, byte* str2)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[702])(str1, str2);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[703])(str1, str2);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[702])((nint)str1, (nint)str2);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[703])((nint)str1, (nint)str2);
 			#endif
 		}
 
@@ -2329,9 +992,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImStrnicmpNative(byte* str1, byte* str2, ulong count)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, int>)funcTable[703])(str1, str2, count);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, int>)funcTable[704])(str1, str2, count);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, ulong, int>)funcTable[703])((nint)str1, (nint)str2, count);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, ulong, int>)funcTable[704])((nint)str1, (nint)str2, count);
 			#endif
 		}
 
@@ -3062,9 +1725,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImStrncpyNative(byte* dst, byte* src, ulong count)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)funcTable[704])(dst, src, count);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, void>)funcTable[705])(dst, src, count);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[704])((nint)dst, (nint)src, count);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)funcTable[705])((nint)dst, (nint)src, count);
 			#endif
 		}
 
@@ -3629,9 +2292,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStrdupNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[705])(str);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[706])(str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[705])((nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[706])((nint)str);
 			#endif
 		}
 
@@ -3768,9 +2431,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStrdupcpyNative(byte* dst, ulong* pDstSize, byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, byte*, byte*>)funcTable[706])(dst, pDstSize, str);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, byte*, byte*>)funcTable[707])(dst, pDstSize, str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint>)funcTable[706])((nint)dst, (nint)pDstSize, (nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint>)funcTable[707])((nint)dst, (nint)pDstSize, (nint)str);
 			#endif
 		}
 
@@ -5009,10 +3672,1364 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImStrchrRangeNative(byte* strBegin, byte* strEnd, byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte*>)funcTable[707])(strBegin, strEnd, c);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte*>)funcTable[708])(strBegin, strEnd, c);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, byte, nint>)funcTable[707])((nint)strBegin, (nint)strEnd, c);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, byte, nint>)funcTable[708])((nint)strBegin, (nint)strEnd, c);
 			#endif
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(byte* strBegin, byte* strEnd, byte c)
+		{
+			byte* ret = ImStrchrRangeNative(strBegin, strEnd, c);
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(byte* strBegin, byte* strEnd, byte c)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, strEnd, c));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ref byte strBegin, byte* strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				byte* ret = ImStrchrRangeNative((byte*)pstrBegin, strEnd, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ref byte strBegin, byte* strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, strEnd, c));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ReadOnlySpan<byte> strBegin, byte* strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				byte* ret = ImStrchrRangeNative((byte*)pstrBegin, strEnd, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ReadOnlySpan<byte> strBegin, byte* strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, strEnd, c));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(string strBegin, byte* strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImStrchrRangeNative(pStr0, strEnd, c);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(string strBegin, byte* strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, strEnd, c));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(byte* strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				byte* ret = ImStrchrRangeNative(strBegin, (byte*)pstrEnd, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(byte* strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, (byte*)pstrEnd, c));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(byte* strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			fixed (byte* pstrEnd = strEnd)
+			{
+				byte* ret = ImStrchrRangeNative(strBegin, (byte*)pstrEnd, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(byte* strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			fixed (byte* pstrEnd = strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, (byte*)pstrEnd, c));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(byte* strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImStrchrRangeNative(strBegin, pStr0, c);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(byte* strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, pStr0, c));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ref byte strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					byte* ret = ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ref byte strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ReadOnlySpan<byte> strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					byte* ret = ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ReadOnlySpan<byte> strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(string strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = ImStrchrRangeNative(pStr0, pStr1, c);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(string strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, pStr1, c));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ref byte strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					byte* ret = ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ref byte strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ref byte strBegin, string strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImStrchrRangeNative((byte*)pstrBegin, pStr0, c);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ref byte strBegin, string strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, pStr0, c));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ReadOnlySpan<byte> strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					byte* ret = ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ReadOnlySpan<byte> strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(ReadOnlySpan<byte> strBegin, string strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImStrchrRangeNative((byte*)pstrBegin, pStr0, c);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(ReadOnlySpan<byte> strBegin, string strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = strBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, pStr0, c));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(string strBegin, ref byte strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				byte* ret = ImStrchrRangeNative(pStr0, (byte*)pstrEnd, c);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(string strBegin, ref byte strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, (byte*)pstrEnd, c));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static byte* ImStrchrRange(string strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pstrEnd = strEnd)
+			{
+				byte* ret = ImStrchrRangeNative(pStr0, (byte*)pstrEnd, c);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find first occurrence of 'c' in string range.<br/>
+		/// </summary>
+		public static string ImStrchrRangeS(string strBegin, ReadOnlySpan<byte> strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pstrEnd = strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, (byte*)pstrEnd, c));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* ImStreolRangeNative(byte* str, byte* strEnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[709])(str, strEnd);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[709])((nint)str, (nint)strEnd);
+			#endif
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(byte* str, byte* strEnd)
+		{
+			byte* ret = ImStreolRangeNative(str, strEnd);
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(byte* str, byte* strEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, strEnd));
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ref byte str, byte* strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				byte* ret = ImStreolRangeNative((byte*)pstr, strEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ref byte str, byte* strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, strEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ReadOnlySpan<byte> str, byte* strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				byte* ret = ImStreolRangeNative((byte*)pstr, strEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ReadOnlySpan<byte> str, byte* strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, strEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(string str, byte* strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImStreolRangeNative(pStr0, strEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(string str, byte* strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(pStr0, strEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(byte* str, ref byte strEnd)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				byte* ret = ImStreolRangeNative(str, (byte*)pstrEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(byte* str, ref byte strEnd)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, (byte*)pstrEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(byte* str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstrEnd = strEnd)
+			{
+				byte* ret = ImStreolRangeNative(str, (byte*)pstrEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(byte* str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstrEnd = strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, (byte*)pstrEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(byte* str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImStreolRangeNative(str, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(byte* str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ref byte str, ref byte strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ref byte str, ref byte strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(string str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = ImStreolRangeNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(string str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(pStr0, pStr1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ref byte str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ref byte str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ref byte str, string strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImStreolRangeNative((byte*)pstr, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ref byte str, string strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, pStr0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ReadOnlySpan<byte> str, ref byte strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ReadOnlySpan<byte> str, ref byte strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(ReadOnlySpan<byte> str, string strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImStreolRangeNative((byte*)pstr, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static string ImStreolRangeS(ReadOnlySpan<byte> str, string strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, pStr0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// End end-of-line<br/>
+		/// </summary>
+		public static byte* ImStreolRange(string str, ref byte strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				byte* ret = ImStreolRangeNative(pStr0, (byte*)pstrEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
 		}
 	}
 }

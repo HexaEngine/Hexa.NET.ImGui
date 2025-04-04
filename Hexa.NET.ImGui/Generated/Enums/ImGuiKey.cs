@@ -624,184 +624,189 @@ namespace Hexa.NET.ImGui
 		AppForward = unchecked(630),
 
 		/// <summary>
+		/// Non-US backslash.<br/>
+		/// </summary>
+		Oem102 = unchecked(631),
+
+		/// <summary>
 		/// Menu (Xbox)      + (Switch)   StartOptions (PS)<br/>
 		/// </summary>
-		GamepadStart = unchecked(631),
+		GamepadStart = unchecked(632),
 
 		/// <summary>
 		/// View (Xbox)      - (Switch)   Share (PS)<br/>
 		/// </summary>
-		GamepadBack = unchecked(632),
+		GamepadBack = unchecked(633),
 
 		/// <summary>
 		/// X (Xbox)         Y (Switch)   Square (PS)         Tap: Toggle Menu. Hold: Windowing mode (FocusMoveResize windows)<br/>
 		/// </summary>
-		GamepadFaceLeft = unchecked(633),
+		GamepadFaceLeft = unchecked(634),
 
 		/// <summary>
 		/// B (Xbox)         A (Switch)   Circle (PS)         Cancel  Close  Exit<br/>
 		/// </summary>
-		GamepadFaceRight = unchecked(634),
+		GamepadFaceRight = unchecked(635),
 
 		/// <summary>
 		/// Y (Xbox)         X (Switch)   Triangle (PS)       Text Input  On-screen Keyboard<br/>
 		/// </summary>
-		GamepadFaceUp = unchecked(635),
+		GamepadFaceUp = unchecked(636),
 
 		/// <summary>
 		/// A (Xbox)         B (Switch)   Cross (PS)          Activate  Open  Toggle  Tweak<br/>
 		/// </summary>
-		GamepadFaceDown = unchecked(636),
+		GamepadFaceDown = unchecked(637),
 
 		/// <summary>
 		/// D-pad Left                                        Move  Tweak  Resize Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadDpadLeft = unchecked(637),
+		GamepadDpadLeft = unchecked(638),
 
 		/// <summary>
 		/// D-pad Right                                       Move  Tweak  Resize Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadDpadRight = unchecked(638),
+		GamepadDpadRight = unchecked(639),
 
 		/// <summary>
 		/// D-pad Up                                          Move  Tweak  Resize Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadDpadUp = unchecked(639),
+		GamepadDpadUp = unchecked(640),
 
 		/// <summary>
 		/// D-pad Down                                        Move  Tweak  Resize Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadDpadDown = unchecked(640),
+		GamepadDpadDown = unchecked(641),
 
 		/// <summary>
 		/// L Bumper (Xbox)  L (Switch)   L1 (PS)             Tweak Slower  Focus Previous (in Windowing mode)<br/>
 		/// </summary>
-		GamepadL1 = unchecked(641),
+		GamepadL1 = unchecked(642),
 
 		/// <summary>
 		/// R Bumper (Xbox)  R (Switch)   R1 (PS)             Tweak Faster  Focus Next (in Windowing mode)<br/>
 		/// </summary>
-		GamepadR1 = unchecked(642),
+		GamepadR1 = unchecked(643),
 
 		/// <summary>
 		/// L Trig. (Xbox)   ZL (Switch)  L2 (PS) [Analog]<br/>
 		/// </summary>
-		GamepadL2 = unchecked(643),
+		GamepadL2 = unchecked(644),
 
 		/// <summary>
 		/// R Trig. (Xbox)   ZR (Switch)  R2 (PS) [Analog]<br/>
 		/// </summary>
-		GamepadR2 = unchecked(644),
+		GamepadR2 = unchecked(645),
 
 		/// <summary>
 		/// L Stick (Xbox)   L3 (Switch)  L3 (PS)<br/>
 		/// </summary>
-		GamepadL3 = unchecked(645),
+		GamepadL3 = unchecked(646),
 
 		/// <summary>
 		/// R Stick (Xbox)   R3 (Switch)  R3 (PS)<br/>
 		/// </summary>
-		GamepadR3 = unchecked(646),
+		GamepadR3 = unchecked(647),
 
 		/// <summary>
 		/// [Analog]                                          Move Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadLStickLeft = unchecked(647),
+		GamepadLStickLeft = unchecked(648),
 
 		/// <summary>
 		/// [Analog]                                          Move Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadLStickRight = unchecked(648),
+		GamepadLStickRight = unchecked(649),
 
 		/// <summary>
 		/// [Analog]                                          Move Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadLStickUp = unchecked(649),
+		GamepadLStickUp = unchecked(650),
 
 		/// <summary>
 		/// [Analog]                                          Move Window (in Windowing mode)<br/>
 		/// </summary>
-		GamepadLStickDown = unchecked(650),
+		GamepadLStickDown = unchecked(651),
 
 		/// <summary>
 		/// [Analog]<br/>
 		/// </summary>
-		GamepadRStickLeft = unchecked(651),
+		GamepadRStickLeft = unchecked(652),
 
 		/// <summary>
 		/// [Analog]<br/>
 		/// </summary>
-		GamepadRStickRight = unchecked(652),
+		GamepadRStickRight = unchecked(653),
 
 		/// <summary>
 		/// [Analog]<br/>
 		/// </summary>
-		GamepadRStickUp = unchecked(653),
+		GamepadRStickUp = unchecked(654),
 
 		/// <summary>
 		/// [Analog]<br/>
 		/// </summary>
-		GamepadRStickDown = unchecked(654),
+		GamepadRStickDown = unchecked(655),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseLeft = unchecked(655),
+		MouseLeft = unchecked(656),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseRight = unchecked(656),
+		MouseRight = unchecked(657),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseMiddle = unchecked(657),
+		MouseMiddle = unchecked(658),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseX1 = unchecked(658),
+		MouseX1 = unchecked(659),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseX2 = unchecked(659),
+		MouseX2 = unchecked(660),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseWheelX = unchecked(660),
+		MouseWheelX = unchecked(661),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		MouseWheelY = unchecked(661),
+		MouseWheelY = unchecked(662),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ReservedForModCtrl = unchecked(662),
+		ReservedForModCtrl = unchecked(663),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ReservedForModShift = unchecked(663),
+		ReservedForModShift = unchecked(664),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ReservedForModAlt = unchecked(664),
+		ReservedForModAlt = unchecked(665),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ReservedForModSuper = unchecked(665),
+		ReservedForModSuper = unchecked(666),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		NamedKeyEnd = unchecked(666),
+		NamedKeyEnd = unchecked(667),
 
 		/// <summary>
 		/// To be documented.
@@ -836,6 +841,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		NamedKeyCount = unchecked(154),
+		NamedKeyCount = unchecked(155),
 	}
 }

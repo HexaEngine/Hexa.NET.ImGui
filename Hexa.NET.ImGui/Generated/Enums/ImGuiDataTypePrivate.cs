@@ -22,11 +22,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Pointer = unchecked(13),
+		Pointer = unchecked((int)ImGuiDataType.Count),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Id = unchecked(14),
+		Id = unchecked(13),
 	}
 }

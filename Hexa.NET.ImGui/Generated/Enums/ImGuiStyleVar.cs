@@ -130,68 +130,73 @@ namespace Hexa.NET.ImGui
 		GrabRounding = unchecked(21),
 
 		/// <summary>
+		/// float     ImageBorderSize<br/>
+		/// </summary>
+		ImageBorderSize = unchecked(22),
+
+		/// <summary>
 		/// float     TabRounding<br/>
 		/// </summary>
-		TabRounding = unchecked(22),
+		TabRounding = unchecked(23),
 
 		/// <summary>
 		/// float     TabBorderSize<br/>
 		/// </summary>
-		TabBorderSize = unchecked(23),
+		TabBorderSize = unchecked(24),
 
 		/// <summary>
 		/// float     TabBarBorderSize<br/>
 		/// </summary>
-		TabBarBorderSize = unchecked(24),
+		TabBarBorderSize = unchecked(25),
 
 		/// <summary>
 		/// float     TabBarOverlineSize<br/>
 		/// </summary>
-		TabBarOverlineSize = unchecked(25),
+		TabBarOverlineSize = unchecked(26),
 
 		/// <summary>
 		/// float     TableAngledHeadersAngle<br/>
 		/// </summary>
-		TableAngledHeadersAngle = unchecked(26),
+		TableAngledHeadersAngle = unchecked(27),
 
 		/// <summary>
 		/// ImVec2  TableAngledHeadersTextAlign<br/>
 		/// </summary>
-		TableAngledHeadersTextAlign = unchecked(27),
+		TableAngledHeadersTextAlign = unchecked(28),
 
 		/// <summary>
 		/// ImVec2    ButtonTextAlign<br/>
 		/// </summary>
-		ButtonTextAlign = unchecked(28),
+		ButtonTextAlign = unchecked(29),
 
 		/// <summary>
 		/// ImVec2    SelectableTextAlign<br/>
 		/// </summary>
-		SelectableTextAlign = unchecked(29),
+		SelectableTextAlign = unchecked(30),
 
 		/// <summary>
 		/// float     SeparatorTextBorderSize<br/>
 		/// </summary>
-		SeparatorTextBorderSize = unchecked(30),
+		SeparatorTextBorderSize = unchecked(31),
 
 		/// <summary>
 		/// ImVec2    SeparatorTextAlign<br/>
 		/// </summary>
-		SeparatorTextAlign = unchecked(31),
+		SeparatorTextAlign = unchecked(32),
 
 		/// <summary>
 		/// ImVec2    SeparatorTextPadding<br/>
 		/// </summary>
-		SeparatorTextPadding = unchecked(32),
+		SeparatorTextPadding = unchecked(33),
 
 		/// <summary>
 		/// float     DockingSeparatorSize<br/>
 		/// </summary>
-		DockingSeparatorSize = unchecked(33),
+		DockingSeparatorSize = unchecked(34),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(34),
+		Count = unchecked(35),
 	}
 }

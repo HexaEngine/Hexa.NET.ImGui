@@ -21,6 +21,1443 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
@@ -2520,9 +3957,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[534])(self, p1, p2, p3, p4, col, thickness, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[561])(self, p1, p2, p3, p4, col, thickness, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[534])((nint)self, p1, p2, p3, p4, col, thickness, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[561])((nint)self, p1, p2, p3, p4, col, thickness, numSegments);
 			#endif
 		}
 
@@ -2571,9 +4008,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[535])(self, p1, p2, p3, col, thickness, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[562])(self, p1, p2, p3, col, thickness, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[535])((nint)self, p1, p2, p3, col, thickness, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, float, int, void>)funcTable[562])((nint)self, p1, p2, p3, col, thickness, numSegments);
 			#endif
 		}
 
@@ -2622,9 +4059,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddPolylineNative(ImDrawList* self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, ImDrawFlags, float, void>)funcTable[536])(self, points, numPoints, col, flags, thickness);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, ImDrawFlags, float, void>)funcTable[563])(self, points, numPoints, col, flags, thickness);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, ImDrawFlags, float, void>)funcTable[536])((nint)self, (nint)points, numPoints, col, flags, thickness);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, ImDrawFlags, float, void>)funcTable[563])((nint)self, (nint)points, numPoints, col, flags, thickness);
 			#endif
 		}
 
@@ -2679,9 +4116,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddConvexPolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)funcTable[537])(self, points, numPoints, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)funcTable[564])(self, points, numPoints, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, void>)funcTable[537])((nint)self, (nint)points, numPoints, col);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, void>)funcTable[564])((nint)self, (nint)points, numPoints, col);
 			#endif
 		}
 
@@ -2736,9 +4173,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddConcavePolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)funcTable[538])(self, points, numPoints, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)funcTable[565])(self, points, numPoints, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, void>)funcTable[538])((nint)self, (nint)points, numPoints, col);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, void>)funcTable[565])((nint)self, (nint)points, numPoints, col);
 			#endif
 		}
 
@@ -2793,9 +4230,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddImageNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[539])(self, userTextureId, pMin, pMax, uvMin, uvMax, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[566])(self, userTextureId, pMin, pMax, uvMin, uvMax, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[539])((nint)self, userTextureId, pMin, pMax, uvMin, uvMax, col);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[566])((nint)self, userTextureId, pMin, pMax, uvMin, uvMax, col);
 			#endif
 		}
 
@@ -2920,9 +4357,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddImageQuadNative(ImDrawList* self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[540])(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[567])(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[540])((nint)self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[567])((nint)self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
 			#endif
 		}
 
@@ -3123,9 +4560,9 @@ namespace Hexa.NET.ImGui
 		internal static void AddImageRoundedNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)funcTable[541])(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)funcTable[568])(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)funcTable[541])((nint)self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)funcTable[568])((nint)self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
 			#endif
 		}
 
@@ -3174,9 +4611,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathClearNative(ImDrawList* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[542])(self);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[569])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[542])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[569])((nint)self);
 			#endif
 		}
 
@@ -3206,9 +4643,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathLineToNative(ImDrawList* self, Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)funcTable[543])(self, pos);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)funcTable[570])(self, pos);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[543])((nint)self, pos);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[570])((nint)self, pos);
 			#endif
 		}
 
@@ -3238,9 +4675,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathLineToMergeDuplicateNative(ImDrawList* self, Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)funcTable[544])(self, pos);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)funcTable[571])(self, pos);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[544])((nint)self, pos);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[571])((nint)self, pos);
 			#endif
 		}
 
@@ -3270,9 +4707,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathFillConvexNative(ImDrawList* self, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, void>)funcTable[545])(self, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, void>)funcTable[572])(self, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[545])((nint)self, col);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[572])((nint)self, col);
 			#endif
 		}
 
@@ -3302,9 +4739,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathFillConcaveNative(ImDrawList* self, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, void>)funcTable[546])(self, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, void>)funcTable[573])(self, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[546])((nint)self, col);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[573])((nint)self, col);
 			#endif
 		}
 
@@ -3334,9 +4771,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathStrokeNative(ImDrawList* self, uint col, ImDrawFlags flags, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, ImDrawFlags, float, void>)funcTable[547])(self, col, flags, thickness);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, ImDrawFlags, float, void>)funcTable[574])(self, col, flags, thickness);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, ImDrawFlags, float, void>)funcTable[547])((nint)self, col, flags, thickness);
+			((delegate* unmanaged[Cdecl]<nint, uint, ImDrawFlags, float, void>)funcTable[574])((nint)self, col, flags, thickness);
 			#endif
 		}
 
@@ -3423,9 +4860,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathArcToNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[548])(self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[575])(self, center, radius, aMin, aMax, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[548])((nint)self, center, radius, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[575])((nint)self, center, radius, aMin, aMax, numSegments);
 			#endif
 		}
 
@@ -3474,9 +4911,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, void>)funcTable[549])(self, center, radius, aMinOf12, aMaxOf12);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, void>)funcTable[576])(self, center, radius, aMinOf12, aMaxOf12);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, void>)funcTable[549])((nint)self, center, radius, aMinOf12, aMaxOf12);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, void>)funcTable[576])((nint)self, center, radius, aMinOf12, aMaxOf12);
 			#endif
 		}
 
@@ -3506,9 +4943,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, float, int, void>)funcTable[550])(self, center, radius, rot, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, float, int, void>)funcTable[577])(self, center, radius, rot, aMin, aMax, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, float, int, void>)funcTable[550])((nint)self, center, radius, rot, aMin, aMax, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, float, int, void>)funcTable[577])((nint)self, center, radius, rot, aMin, aMax, numSegments);
 			#endif
 		}
 
@@ -3557,9 +4994,9 @@ namespace Hexa.NET.ImGui
 		internal static void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, int, void>)funcTable[551])(self, p2, p3, p4, numSegments);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, int, void>)funcTable[578])(self, p2, p3, p4, numSegments);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, int, void>)funcTable[551])((nint)self, p2, p3, p4, numSegments);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, int, void>)funcTable[578])((nint)self, p2, p3, p4, numSegments);
 			#endif
 		}
 
@@ -3588,1441 +5025,6 @@ namespace Hexa.NET.ImGui
 			{
 				PathBezierCubicCurveToNative((ImDrawList*)pself, p2, p3, p4, numSegments);
 			}
-		}
-
-		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
-		/// </summary>
-		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierCubicCurveToNative((ImDrawList*)pself, p2, p3, p4, (int)(0));
-			}
-		}
-
-		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, int, void>)funcTable[552])(self, p2, p3, numSegments);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, int, void>)funcTable[552])((nint)self, p2, p3, numSegments);
-			#endif
-		}
-
-		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
-		/// </summary>
-		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, int numSegments)
-		{
-			PathBezierQuadraticCurveToNative(self, p2, p3, numSegments);
-		}
-
-		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
-		/// </summary>
-		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3)
-		{
-			PathBezierQuadraticCurveToNative(self, p2, p3, (int)(0));
-		}
-
-		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
-		/// </summary>
-		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierQuadraticCurveToNative((ImDrawList*)pself, p2, p3, numSegments);
-			}
-		}
-
-		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
-		/// </summary>
-		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierQuadraticCurveToNative((ImDrawList*)pself, p2, p3, (int)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PathRectNative(ImDrawList* self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[553])(self, rectMin, rectMax, rounding, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, ImDrawFlags, void>)funcTable[553])((nint)self, rectMin, rectMax, rounding, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
-		{
-			PathRectNative(self, rectMin, rectMax, rounding, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, float rounding)
-		{
-			PathRectNative(self, rectMin, rectMax, rounding, (ImDrawFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax)
-		{
-			PathRectNative(self, rectMin, rectMax, (float)(0.0f), (ImDrawFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, ImDrawFlags flags)
-		{
-			PathRectNative(self, rectMin, rectMax, (float)(0.0f), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathRectNative((ImDrawList*)pself, rectMin, rectMax, rounding, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax, float rounding)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathRectNative((ImDrawList*)pself, rectMin, rectMax, rounding, (ImDrawFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathRectNative((ImDrawList*)pself, rectMin, rectMax, (float)(0.0f), (ImDrawFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PathRect(ref ImDrawList self, Vector2 rectMin, Vector2 rectMax, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathRectNative((ImDrawList*)pself, rectMin, rectMax, (float)(0.0f), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddCallbackNative(ImDrawList* self, ImDrawCallback callback, void* userdata, ulong userdataSize)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, delegate*<ImDrawList*, ImDrawCmd*, void>, void*, ulong, void>)funcTable[554])(self, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), userdata, userdataSize);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, ulong, void>)funcTable[554])((nint)self, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)userdata, userdataSize);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* userdata, ulong userdataSize)
-		{
-			AddCallbackNative(self, callback, userdata, userdataSize);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* userdata)
-		{
-			AddCallbackNative(self, callback, userdata, (ulong)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* userdata, ulong userdataSize)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCallbackNative((ImDrawList*)pself, callback, userdata, userdataSize);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* userdata)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCallbackNative((ImDrawList*)pself, callback, userdata, (ulong)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* userdata, nuint userdataSize)
-		{
-			AddCallbackNative(self, callback, userdata, userdataSize);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCallback(ref ImDrawList self, ImDrawCallback callback, void* userdata, nuint userdataSize)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCallbackNative((ImDrawList*)pself, callback, userdata, userdataSize);
-			}
-		}
-
-		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddDrawCmdNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[555])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[555])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
-		/// </summary>
-		public static void AddDrawCmd(ImDrawListPtr self)
-		{
-			AddDrawCmdNative(self);
-		}
-
-		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
-		/// </summary>
-		public static void AddDrawCmd(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddDrawCmdNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* CloneOutputNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*>)funcTable[556])(self);
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[556])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
-		/// </summary>
-		public static ImDrawListPtr CloneOutput(ImDrawListPtr self)
-		{
-			ImDrawListPtr ret = CloneOutputNative(self);
-			return ret;
-		}
-
-		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
-		/// </summary>
-		public static ImDrawListPtr CloneOutput(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				ImDrawListPtr ret = CloneOutputNative((ImDrawList*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ChannelsSplitNative(ImDrawList* self, int count)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[557])(self, count);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[557])((nint)self, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ChannelsSplit(ImDrawListPtr self, int count)
-		{
-			ChannelsSplitNative(self, count);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ChannelsSplit(ref ImDrawList self, int count)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				ChannelsSplitNative((ImDrawList*)pself, count);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ChannelsMergeNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[558])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[558])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ChannelsMerge(ImDrawListPtr self)
-		{
-			ChannelsMergeNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ChannelsMerge(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				ChannelsMergeNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ChannelsSetCurrentNative(ImDrawList* self, int n)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)funcTable[559])(self, n);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[559])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ChannelsSetCurrent(ImDrawListPtr self, int n)
-		{
-			ChannelsSetCurrentNative(self, n);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ChannelsSetCurrent(ref ImDrawList self, int n)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				ChannelsSetCurrentNative((ImDrawList*)pself, n);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimReserveNative(ImDrawList* self, int idxCount, int vtxCount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[560])(self, idxCount, vtxCount);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[560])((nint)self, idxCount, vtxCount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimReserve(ImDrawListPtr self, int idxCount, int vtxCount)
-		{
-			PrimReserveNative(self, idxCount, vtxCount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimReserve(ref ImDrawList self, int idxCount, int vtxCount)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimReserveNative((ImDrawList*)pself, idxCount, vtxCount);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimUnreserveNative(ImDrawList* self, int idxCount, int vtxCount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)funcTable[561])(self, idxCount, vtxCount);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[561])((nint)self, idxCount, vtxCount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimUnreserve(ImDrawListPtr self, int idxCount, int vtxCount)
-		{
-			PrimUnreserveNative(self, idxCount, vtxCount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimUnreserve(ref ImDrawList self, int idxCount, int vtxCount)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimUnreserveNative((ImDrawList*)pself, idxCount, vtxCount);
-			}
-		}
-
-		/// <summary>
-		/// Axis aligned rectangle (composed of two triangles)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimRectNative(ImDrawList* self, Vector2 a, Vector2 b, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[562])(self, a, b, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[562])((nint)self, a, b, col);
-			#endif
-		}
-
-		/// <summary>
-		/// Axis aligned rectangle (composed of two triangles)<br/>
-		/// </summary>
-		public static void PrimRect(ImDrawListPtr self, Vector2 a, Vector2 b, uint col)
-		{
-			PrimRectNative(self, a, b, col);
-		}
-
-		/// <summary>
-		/// Axis aligned rectangle (composed of two triangles)<br/>
-		/// </summary>
-		public static void PrimRect(ref ImDrawList self, Vector2 a, Vector2 b, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimRectNative((ImDrawList*)pself, a, b, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimRectUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[563])(self, a, b, uvA, uvB, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[563])((nint)self, a, b, uvA, uvB, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimRectUV(ImDrawListPtr self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
-		{
-			PrimRectUVNative(self, a, b, uvA, uvB, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimRectUV(ref ImDrawList self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimRectUVNative((ImDrawList*)pself, a, b, uvA, uvB, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimQuadUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[564])(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[564])((nint)self, a, b, c, d, uvA, uvB, uvC, uvD, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimQuadUV(ImDrawListPtr self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
-		{
-			PrimQuadUVNative(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimQuadUV(ref ImDrawList self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimQuadUVNative((ImDrawList*)pself, a, b, c, d, uvA, uvB, uvC, uvD, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimWriteVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[565])(self, pos, uv, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[565])((nint)self, pos, uv, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimWriteVtx(ImDrawListPtr self, Vector2 pos, Vector2 uv, uint col)
-		{
-			PrimWriteVtxNative(self, pos, uv, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimWriteVtx(ref ImDrawList self, Vector2 pos, Vector2 uv, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimWriteVtxNative((ImDrawList*)pself, pos, uv, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimWriteIdxNative(ImDrawList* self, ushort idx)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ushort, void>)funcTable[566])(self, idx);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[566])((nint)self, idx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimWriteIdx(ImDrawListPtr self, ushort idx)
-		{
-			PrimWriteIdxNative(self, idx);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PrimWriteIdx(ref ImDrawList self, ushort idx)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimWriteIdxNative((ImDrawList*)pself, idx);
-			}
-		}
-
-		/// <summary>
-		/// Write vertex with unique index<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PrimVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)funcTable[567])(self, pos, uv, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, void>)funcTable[567])((nint)self, pos, uv, col);
-			#endif
-		}
-
-		/// <summary>
-		/// Write vertex with unique index<br/>
-		/// </summary>
-		public static void PrimVtx(ImDrawListPtr self, Vector2 pos, Vector2 uv, uint col)
-		{
-			PrimVtxNative(self, pos, uv, col);
-		}
-
-		/// <summary>
-		/// Write vertex with unique index<br/>
-		/// </summary>
-		public static void PrimVtx(ref ImDrawList self, Vector2 pos, Vector2 uv, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PrimVtxNative((ImDrawList*)pself, pos, uv, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _ResetForNewFrameNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[568])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[568])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _ResetForNewFrame(ImDrawListPtr self)
-		{
-			_ResetForNewFrameNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _ResetForNewFrame(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_ResetForNewFrameNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _ClearFreeMemoryNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[569])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[569])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _ClearFreeMemory(ImDrawListPtr self)
-		{
-			_ClearFreeMemoryNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _ClearFreeMemory(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_ClearFreeMemoryNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _PopUnusedDrawCmdNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[570])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[570])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _PopUnusedDrawCmd(ImDrawListPtr self)
-		{
-			_PopUnusedDrawCmdNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _PopUnusedDrawCmd(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_PopUnusedDrawCmdNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _TryMergeDrawCmdsNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[571])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[571])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _TryMergeDrawCmds(ImDrawListPtr self)
-		{
-			_TryMergeDrawCmdsNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _TryMergeDrawCmds(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_TryMergeDrawCmdsNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _OnChangedClipRectNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[572])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[572])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _OnChangedClipRect(ImDrawListPtr self)
-		{
-			_OnChangedClipRectNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _OnChangedClipRect(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_OnChangedClipRectNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _OnChangedTextureIDNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[573])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[573])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _OnChangedTextureID(ImDrawListPtr self)
-		{
-			_OnChangedTextureIDNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _OnChangedTextureID(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_OnChangedTextureIDNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _OnChangedVtxOffsetNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[574])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[574])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _OnChangedVtxOffset(ImDrawListPtr self)
-		{
-			_OnChangedVtxOffsetNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _OnChangedVtxOffset(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_OnChangedVtxOffsetNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _SetTextureIDNative(ImDrawList* self, ImTextureID textureId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, void>)funcTable[575])(self, textureId);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)funcTable[575])((nint)self, textureId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _SetTextureID(ImDrawListPtr self, ImTextureID textureId)
-		{
-			_SetTextureIDNative(self, textureId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _SetTextureID(ref ImDrawList self, ImTextureID textureId)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_SetTextureIDNative((ImDrawList*)pself, textureId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int _CalcCircleAutoSegmentCountNative(ImDrawList* self, float radius)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, float, int>)funcTable[576])(self, radius);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, float, int>)funcTable[576])((nint)self, radius);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int _CalcCircleAutoSegmentCount(ImDrawListPtr self, float radius)
-		{
-			int ret = _CalcCircleAutoSegmentCountNative(self, radius);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int _CalcCircleAutoSegmentCount(ref ImDrawList self, float radius)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				int ret = _CalcCircleAutoSegmentCountNative((ImDrawList*)pself, radius);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _PathArcToFastExNative(ImDrawList* self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, int, void>)funcTable[577])(self, center, radius, aMinSample, aMaxSample, aStep);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, int, int, int, void>)funcTable[577])((nint)self, center, radius, aMinSample, aMaxSample, aStep);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _PathArcToFastEx(ImDrawListPtr self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
-		{
-			_PathArcToFastExNative(self, center, radius, aMinSample, aMaxSample, aStep);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _PathArcToFastEx(ref ImDrawList self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_PathArcToFastExNative((ImDrawList*)pself, center, radius, aMinSample, aMaxSample, aStep);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void _PathArcToNNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)funcTable[578])(self, center, radius, aMin, aMax, numSegments);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, float, float, int, void>)funcTable[578])((nint)self, center, radius, aMin, aMax, numSegments);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _PathArcToN(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
-		{
-			_PathArcToNNative(self, center, radius, aMin, aMax, numSegments);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void _PathArcToN(ref ImDrawList self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				_PathArcToNNative((ImDrawList*)pself, center, radius, aMin, aMax, numSegments);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawData* ImDrawDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)funcTable[579])();
-			#else
-			return (ImDrawData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[579])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawDataPtr ImDrawData()
-		{
-			ImDrawDataPtr ret = ImDrawDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImDrawData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[580])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[580])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImDrawDataPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImDrawData self)
-		{
-			fixed (ImDrawData* pself = &self)
-			{
-				DestroyNative((ImDrawData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImDrawData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[581])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[581])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImDrawDataPtr self)
-		{
-			ClearNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImDrawData self)
-		{
-			fixed (ImDrawData* pself = &self)
-			{
-				ClearNative((ImDrawData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Helper to add an external draw list into an existing ImDrawData.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddDrawListNative(ImDrawData* self, ImDrawList* drawList)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ImDrawList*, void>)funcTable[582])(self, drawList);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[582])((nint)self, (nint)drawList);
-			#endif
-		}
-
-		/// <summary>
-		/// Helper to add an external draw list into an existing ImDrawData.<br/>
-		/// </summary>
-		public static void AddDrawList(ImDrawDataPtr self, ImDrawListPtr drawList)
-		{
-			AddDrawListNative(self, drawList);
-		}
-
-		/// <summary>
-		/// Helper to add an external draw list into an existing ImDrawData.<br/>
-		/// </summary>
-		public static void AddDrawList(ref ImDrawData self, ImDrawListPtr drawList)
-		{
-			fixed (ImDrawData* pself = &self)
-			{
-				AddDrawListNative((ImDrawData*)pself, drawList);
-			}
-		}
-
-		/// <summary>
-		/// Helper to add an external draw list into an existing ImDrawData.<br/>
-		/// </summary>
-		public static void AddDrawList(ImDrawDataPtr self, ref ImDrawList drawList)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				AddDrawListNative(self, (ImDrawList*)pdrawList);
-			}
-		}
-
-		/// <summary>
-		/// Helper to add an external draw list into an existing ImDrawData.<br/>
-		/// </summary>
-		public static void AddDrawList(ref ImDrawData self, ref ImDrawList drawList)
-		{
-			fixed (ImDrawData* pself = &self)
-			{
-				fixed (ImDrawList* pdrawList = &drawList)
-				{
-					AddDrawListNative((ImDrawData*)pself, (ImDrawList*)pdrawList);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DeIndexAllBuffersNative(ImDrawData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[583])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[583])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
-		/// </summary>
-		public static void DeIndexAllBuffers(ImDrawDataPtr self)
-		{
-			DeIndexAllBuffersNative(self);
-		}
-
-		/// <summary>
-		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
-		/// </summary>
-		public static void DeIndexAllBuffers(ref ImDrawData self)
-		{
-			fixed (ImDrawData* pself = &self)
-			{
-				DeIndexAllBuffersNative((ImDrawData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ScaleClipRectsNative(ImDrawData* self, Vector2 fbScale)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, Vector2, void>)funcTable[584])(self, fbScale);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[584])((nint)self, fbScale);
-			#endif
-		}
-
-		/// <summary>
-		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
-		/// </summary>
-		public static void ScaleClipRects(ImDrawDataPtr self, Vector2 fbScale)
-		{
-			ScaleClipRectsNative(self, fbScale);
-		}
-
-		/// <summary>
-		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
-		/// </summary>
-		public static void ScaleClipRects(ref ImDrawData self, Vector2 fbScale)
-		{
-			fixed (ImDrawData* pself = &self)
-			{
-				ScaleClipRectsNative((ImDrawData*)pself, fbScale);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontConfig* ImFontConfigNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontConfig*>)funcTable[585])();
-			#else
-			return (ImFontConfig*)((delegate* unmanaged[Cdecl]<nint>)funcTable[585])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontConfigPtr ImFontConfig()
-		{
-			ImFontConfigPtr ret = ImFontConfigNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImFontConfig* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontConfig*, void>)funcTable[586])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[586])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImFontConfigPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImFontConfig self)
-		{
-			fixed (ImFontConfig* pself = &self)
-			{
-				DestroyNative((ImFontConfig*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilderNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*>)funcTable[587])();
-			#else
-			return (ImFontGlyphRangesBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[587])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphRangesBuilderPtr ImFontGlyphRangesBuilder()
-		{
-			ImFontGlyphRangesBuilderPtr ret = ImFontGlyphRangesBuilderNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImFontGlyphRangesBuilder* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[588])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[588])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImFontGlyphRangesBuilderPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImFontGlyphRangesBuilder self)
-		{
-			fixed (ImFontGlyphRangesBuilder* pself = &self)
-			{
-				DestroyNative((ImFontGlyphRangesBuilder*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImFontGlyphRangesBuilder* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)funcTable[589])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[589])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImFontGlyphRangesBuilderPtr self)
-		{
-			ClearNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImFontGlyphRangesBuilder self)
-		{
-			fixed (ImFontGlyphRangesBuilder* pself = &self)
-			{
-				ClearNative((ImFontGlyphRangesBuilder*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte GetBitNative(ImFontGlyphRangesBuilder* self, ulong n)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, byte>)funcTable[590])(self, n);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ulong, byte>)funcTable[590])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		public static bool GetBit(ImFontGlyphRangesBuilderPtr self, ulong n)
-		{
-			byte ret = GetBitNative(self, n);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		public static bool GetBit(ref ImFontGlyphRangesBuilder self, ulong n)
-		{
-			fixed (ImFontGlyphRangesBuilder* pself = &self)
-			{
-				byte ret = GetBitNative((ImFontGlyphRangesBuilder*)pself, n);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		public static bool GetBit(ImFontGlyphRangesBuilderPtr self, nuint n)
-		{
-			byte ret = GetBitNative(self, n);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		public static bool GetBit(ref ImFontGlyphRangesBuilder self, nuint n)
-		{
-			fixed (ImFontGlyphRangesBuilder* pself = &self)
-			{
-				byte ret = GetBitNative((ImFontGlyphRangesBuilder*)pself, n);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetBitNative(ImFontGlyphRangesBuilder* self, ulong n)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ulong, void>)funcTable[591])(self, n);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ulong, void>)funcTable[591])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public static void SetBit(ImFontGlyphRangesBuilderPtr self, ulong n)
-		{
-			SetBitNative(self, n);
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public static void SetBit(ref ImFontGlyphRangesBuilder self, ulong n)
-		{
-			fixed (ImFontGlyphRangesBuilder* pself = &self)
-			{
-				SetBitNative((ImFontGlyphRangesBuilder*)pself, n);
-			}
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public static void SetBit(ImFontGlyphRangesBuilderPtr self, nuint n)
-		{
-			SetBitNative(self, n);
 		}
 	}
 }
