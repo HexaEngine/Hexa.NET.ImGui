@@ -139,6 +139,7 @@ namespace Generator
             generator.PatchEngine.RegisterPrePatch(new NamingPatch(["CImGui", "ImGui", "ImGuizmo", "ImNodes", "ImPlot", "ImplSDL2", "ImplGlfw", "Impl"], NamingPatchOptions.MultiplePrefixes));
             generator.PatchEngine.RegisterPostPatch(new ImGuiPostPatch());
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
+            generator.PatchEngine.RegisterPostPatch(new ImGuiImGuiDataTypePrivatePatch());
 
             generator.LogToConsole();
 
