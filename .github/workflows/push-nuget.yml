@@ -21,6 +21,7 @@ jobs:
           dotnet restore Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj
           dotnet restore Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj
           dotnet restore Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj
+          dotnet restore Hexa.NET.ImGui.Backends.SDL3/Hexa.NET.ImGui.Backends.SDL3.csproj
           dotnet restore Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj
           dotnet restore Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj
           dotnet restore Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj
@@ -31,6 +32,7 @@ jobs:
           dotnet build Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj --configuration Release
           dotnet build Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj --configuration Release
           dotnet build Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj --configuration Release
+          dotnet build Hexa.NET.ImGui.Backends.SDL3/Hexa.NET.ImGui.Backends.SDL3.csproj --configuration Release
           dotnet build Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release
           dotnet build Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release
           dotnet build Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release
@@ -41,6 +43,7 @@ jobs:
           dotnet pack Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImGui.Backends.SDL3/Hexa.NET.ImGui.Backends.SDL3.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release --output ./nupkgs
