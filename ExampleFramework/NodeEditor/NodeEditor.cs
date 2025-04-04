@@ -2,6 +2,7 @@
 {
     using Hexa.NET.ImGui;
     using Hexa.NET.ImNodes;
+    using Hexa.NET.ImPlot;
     using System.Collections.Generic;
 
     public class NodeEditor
@@ -150,6 +151,8 @@
         {
             if (context.IsNull)
                 Initialize();
+            ImNodes.SetImGuiContext(ImGui.GetCurrentContext());
+
             ImNodes.EditorContextSet(context);
             ImNodes.BeginNodeEditor();
             for (int i = 0; i < Nodes.Count; i++)

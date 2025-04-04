@@ -8,6 +8,8 @@
     using Hexa.NET.ImNodes;
     using Hexa.NET.ImPlot;
     using System.Numerics;
+    using System.Runtime.InteropServices;
+    using System.Runtime.InteropServices.Marshalling;
 
     public class ImGuiManager : IDisposable
     {
@@ -17,6 +19,7 @@
 
         public unsafe ImGuiManager()
         {
+            ImGui.SetAllocatorFunctions(AllocFunc, FreeFunc);
             // Create ImGui context
             guiContext = ImGui.CreateContext(null);
 
@@ -32,6 +35,7 @@
             ImPlot.SetImGuiContext(guiContext);
 
             // Set ImGui context for ImNodes
+            ImNodes.SetAllocatorFunctions(AllocFunc, FreeFunc, null);
             ImNodes.SetImGuiContext(guiContext);
 
             // Create and set ImNodes context and set style
@@ -149,6 +153,16 @@
                 style.WindowRounding = 0.0f;
                 style.Colors[(int)ImGuiCol.WindowBg].W = 1.0f;
             }
+        }
+
+        private unsafe void FreeFunc(void* ptr, void* userData)
+        {
+            NativeMemory.Free(ptr);
+        }
+
+        private unsafe void* AllocFunc(ulong sz, void* userData)
+        {
+            return NativeMemory.Alloc((nuint)sz);
         }
 
         public unsafe void NewFrame()

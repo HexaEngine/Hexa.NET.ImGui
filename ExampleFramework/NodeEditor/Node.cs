@@ -234,26 +234,8 @@
             ImNodes.PushColorStyle(ImNodesCol.TitleBarSelected, TitleSelectedColor);
             ImNodes.BeginNode(id);
             ImNodes.BeginNodeTitleBar();
-            if (isEditing)
-            {
-                string name = Name;
-                ImGui.PushItemWidth(100);
-                if (ImGui.InputText("Name", ref name, 256, ImGuiInputTextFlags.EnterReturnsTrue))
-                {
-                    Name = name;
-                    isEditing = false;
-                }
-                ImGui.PopItemWidth();
-            }
-            else
-            {
-                ImGui.Text(Name);
-                ImGui.SameLine();
-                if (ImGui.SmallButton("Edit")) // TODO: Replace with icon
-                {
-                    isEditing = true;
-                }
-            }
+            ImGui.PushItemWidth(100);
+            ImGui.Text(Name);
 
             ImNodes.EndNodeTitleBar();
 
@@ -266,7 +248,11 @@
 
             DrawContent();
 
+            ImGui.PopItemWidth();
+
             ImNodes.EndNode();
+            ImNodes.PopColorStyle();
+            ImNodes.PopColorStyle();
             ImNodes.PopColorStyle();
         }
 
