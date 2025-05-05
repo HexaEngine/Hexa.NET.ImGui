@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.0.11</AssemblyVersion>
-		<PackageVersion>1.0.15</PackageVersion>
+		<PackageVersion>1.0.16</PackageVersion>
 		<Description>A .NET wrapper for the Dear ImGui (1.91.9b) library backend SDL3.</Description>
 		<PackageTags>ImGui Backends SDL3 UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -51,12 +51,12 @@
 			<PackagePath>runtimes/osx-x64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<!--<None Include="native\linux-arm64\libImGuiImplSDL3.so">
+		<None Include="native\linux-arm64\libImGuiImplSDL3.so">
 			<Link>runtimes\linux-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/linux-arm64/native</PackagePath>
 			<Pack>true</Pack>
-		</None>-->
+		</None>
 		<None Include="native\linux-x64\libImGuiImplSDL3.so">
 			<Link>runtimes\linux-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

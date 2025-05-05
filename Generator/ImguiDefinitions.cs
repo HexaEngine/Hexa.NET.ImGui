@@ -31,24 +31,23 @@ namespace Generator
     using System.IO;
     using System.Linq;
 
-    internal class ImguiDefinitions
+    public class ImguiDefinitions
     {
-        public EnumDefinition[] Enums;
-        public TypeDefinition[] Types;
-        public FunctionDefinition[] Functions;
-        public TypedefDefinition[] Typedefs;
+        public EnumDefinition[] Enums = [];
+        public TypeDefinition[] Types = [];
+        public FunctionDefinition[] Functions = [];
 
-        public static readonly List<string> WellKnownEnums = new List<string>()
-        {
+        public static readonly List<string> WellKnownEnums =
+        [
             "ImGuiMouseButton"
-        };
+        ];
 
-        public static readonly Dictionary<string, string> AlternateEnumPrefixes = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> AlternateEnumPrefixes = new()
         {
             { "ImGuiKey", "ImGuiMod" },
         };
 
-        public static readonly Dictionary<string, string> AlternateEnumPrefixSubstitutions = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> AlternateEnumPrefixSubstitutions = new()
         {
             { "ImGuiMod_", "Mod" },
         };
@@ -109,19 +108,9 @@ namespace Generator
 
             var typeLocations = typesJson["locations"];
 
-            Enums = [.. typesJson["enums"].Select(jt =>
-            {
-                JProperty jp = (JProperty)jt;
-                string name = jp.Name;
-                string? comment = typesJson["enum_comments"]?[name]?["above"]?.ToString();
-                EnumMember[] elements = [.. jp.Values().Select(v =>
-                {
-                    return new EnumMember(v["name"].ToString(), v["calc_value"].ToString(), v["comment"]?.ToString());
-                })];
-                return new EnumDefinition(name, elements, comment);
-            }).Where(x => x != null)];
+            Enums = ParseEnums(typesJson);
 
-            Types = [.. typesJson["structs"].Select(jt =>
+            Types = [.. typesJson["structs"]!.Select(jt =>
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
@@ -139,36 +128,33 @@ namespace Generator
                     comment = structComments?[name]?["above"]?.ToString();
                 }
 
-                TypeReference[] fields = jp.Values().Select(v =>
+                Field[] fields = [.. jp.Values().Select(v =>
                 {
-                    if (v["type"].ToString().Contains("static")) { return null; }
+                    if (v["type"]!.ToString().Contains("static")) { return null; }
 
-                    return new TypeReference(
-                        v["name"].ToString(),
-                        GetComment(v["comment"]),
-                        v["type"].ToString(),
-                            GetInt(v, "size"),
-                        v["template_type"]?.ToString(),
+                    return new Field(
+                        v["name"]!.ToString(),
+                        GetComment(v["comment"]), GetInt(v, "size"),
                         Enums);
-                }).Where(tr => tr != null).ToArray();
+                }).Where(tr => tr != null).Select(x => x!)];
                 return new TypeDefinition(name, fields, comment);
             }).Where(x => x != null)];
 
-            Functions = functionsJson.Children().Select(jt =>
+            Functions = [.. functionsJson.Children().Select(jt =>
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
                 bool hasNonUdtVariants = jp.Values().Any(val => val["ov_cimguiname"]?.ToString().EndsWith("nonUDT") ?? false);
-                OverloadDefinition[] overloads = jp.Values().Select(val =>
+                OverloadDefinition[] overloads = [.. jp.Values().Select(val =>
                 {
-                    string ov_cimguiname = val["ov_cimguiname"]?.ToString();
-                    string cimguiname = val["cimguiname"].ToString();
-                    string friendlyName = val["funcname"]?.ToString();
+                    string? ov_cimguiname = val["ov_cimguiname"]?.ToString();
+                    string cimguiname = val["cimguiname"]!.ToString();
+                    string? friendlyName = val["funcname"]?.ToString();
                     if (cimguiname.EndsWith("_destroy"))
                     {
                         friendlyName = "Destroy";
                     }
-                    //skip internal functions
+
                     var typename = val["stname"]?.ToString();
                     if (!string.IsNullOrEmpty(typename))
                     {
@@ -179,30 +165,24 @@ namespace Generator
                     }
                     if (friendlyName == null) { return null; }
 
-                    string exportedName = ov_cimguiname;
-                    if (exportedName == null)
-                    {
-                        exportedName = cimguiname;
-                    }
+                    string exportedName = ov_cimguiname ?? cimguiname;
 
                     if (hasNonUdtVariants && !exportedName.EndsWith("nonUDT2"))
                     {
                         return null;
                     }
 
-                    string selfTypeName = null;
+                    string? selfTypeName = null;
                     int underscoreIndex = exportedName.IndexOf('_');
                     if (underscoreIndex > 0 && !exportedName.StartsWith("ig")) // Hack to exclude some weirdly-named non-instance functions.
                     {
-                        selfTypeName = exportedName.Substring(0, underscoreIndex);
+                        selfTypeName = exportedName[..underscoreIndex];
                     }
-
-                    List<TypeReference> parameters = new List<TypeReference>();
 
                     // find any variants that can be applied to the parameters of this method based on the method name
 
-                    Dictionary<string, string> defaultValues = new Dictionary<string, string>();
-                    foreach (JToken dv in val["defaults"])
+                    Dictionary<string, string> defaultValues = [];
+                    foreach (JToken dv in val["defaults"]!)
                     {
                         JProperty dvProp = (JProperty)dv;
                         defaultValues.Add(dvProp.Name, dvProp.Value.ToString());
@@ -210,7 +190,7 @@ namespace Generator
                     string returnType = val["ret"]?.ToString() ?? "void";
                     string? comment = val["comment"]?.ToString();
 
-                    string structName = val["stname"].ToString();
+                    string structName = val["stname"]!.ToString();
                     bool isConstructor = val.Value<bool>("constructor");
                     bool isDestructor = val.Value<bool>("destructor");
                     if (isConstructor)
@@ -218,37 +198,30 @@ namespace Generator
                         returnType = structName + "*";
                     }
 
-                    return new OverloadDefinition(
-                        exportedName,
-                        friendlyName,
-                        parameters.ToArray(),
-                        defaultValues,
-                        returnType,
-                        structName,
-                        comment,
-                        isConstructor,
-                        isDestructor)
+                    var args = val["args"]!.ToString();
+
+                    return new OverloadDefinition(exportedName, friendlyName, defaultValues, returnType, structName, comment, isConstructor, isDestructor, args)
                     {
                         Internal = val["location"]?.ToString().Contains("internal") ?? false,
-                        Args = val["args"]?.ToString()
                     };
-                }).Where(od => od != null).ToArray();
+                }).Where(od => od != null).Select(x => x!)];
+
                 if (overloads.Length == 0) return null;
+
                 return new FunctionDefinition(name, overloads, Enums);
-            }).Where(x => x != null).OrderBy(fd => fd.Name).ToArray();
+            }).Where(x => x != null).Select(x => x!).OrderBy(fd => fd.Name)];
+        }
 
-            Typedefs = [.. typedefsJson.Children().Select(jt =>
-            {
-                JProperty jp = (JProperty)jt;
-                string name = jp.Name;
-                string value = jp.Value.ToString();
+        private static EnumDefinition[] ParseEnums(JObject json)
+        {
+            var enumsToken = json["enums"] ?? throw new InvalidOperationException("'enumsToken' was null.");
+            var commentsToken = json["enum_comments"] as JObject ?? [];
 
-                return new TypedefDefinition(name, value);
-            })];
+            return [.. enumsToken.Children<JProperty>().Select(prop => EnumDefinition.FromJson(prop, commentsToken))];
         }
     }
 
-    internal class EnumDefinition : IEquatable<EnumDefinition?>
+    public class EnumDefinition : IEquatable<EnumDefinition?>
     {
         private readonly Dictionary<string, string> _sanitizedNames;
 
@@ -266,13 +239,13 @@ namespace Generator
         {
             Name = name;
 
-            if (ImguiDefinitions.AlternateEnumPrefixes.TryGetValue(name, out string altName))
+            if (ImguiDefinitions.AlternateEnumPrefixes.TryGetValue(name, out string? altName))
             {
-                Names = new[] { name, altName };
+                Names = [name, altName];
             }
             else
             {
-                Names = new[] { name };
+                Names = [name];
             }
             FriendlyNames = new string[Names.Length];
             for (int i = 0; i < Names.Length; i++)
@@ -280,7 +253,7 @@ namespace Generator
                 string n = Names[i];
                 if (n.EndsWith('_'))
                 {
-                    FriendlyNames[i] = n.Substring(0, n.Length - 1);
+                    FriendlyNames[i] = n[..^1];
                 }
                 else
                 {
@@ -290,7 +263,7 @@ namespace Generator
 
             Members = elements;
 
-            _sanitizedNames = new Dictionary<string, string>();
+            _sanitizedNames = [];
             foreach (EnumMember el in elements)
             {
                 _sanitizedNames.Add(el.Name, SanitizeMemberName(el.Name));
@@ -299,14 +272,14 @@ namespace Generator
             Comment = comment;
         }
 
-        public string SanitizeNames(string text)
+        public static EnumDefinition FromJson(JProperty prop, JObject enumComments)
         {
-            foreach (KeyValuePair<string, string> kvp in _sanitizedNames)
-            {
-                text = text.Replace(kvp.Key, kvp.Value);
-            }
+            string name = prop.Name;
+            string? comment = enumComments?[name]?["above"]?.ToString();
 
-            return text;
+            EnumMember[] members = [.. prop.Values().Select(EnumMember.FromJson)];
+
+            return new EnumDefinition(name, members, comment);
         }
 
         private string SanitizeMemberName(string memberName)
@@ -331,10 +304,10 @@ namespace Generator
                 {
                     if (memberName.StartsWith(name))
                     {
-                        ret = memberName.Substring(name.Length);
-                        if (ret.StartsWith("_"))
+                        ret = memberName[name.Length..];
+                        if (ret.StartsWith('_'))
                         {
-                            ret = ret.Substring(1);
+                            ret = ret[1..];
                         }
                     }
                 }
@@ -342,7 +315,7 @@ namespace Generator
 
             if (ret.EndsWith('_'))
             {
-                ret = ret.Substring(0, ret.Length - 1);
+                ret = ret[..^1];
             }
 
             if (char.IsDigit(ret.First()))
@@ -374,9 +347,14 @@ namespace Generator
         {
             return !(left == right);
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_sanitizedNames, Names, FriendlyNames, Members);
+        }
     }
 
-    internal class EnumMember
+    public class EnumMember
     {
         public EnumMember(string name, string value, string? comment)
         {
@@ -390,17 +368,22 @@ namespace Generator
         public string Value { get; }
 
         public string? Comment { get; }
+
+        public static EnumMember FromJson(JToken token)
+        {
+            return new EnumMember(token["name"]?.ToString() ?? string.Empty, token["calc_value"]?.ToString() ?? string.Empty, token["comment"]?.ToString());
+        }
     }
 
-    internal class TypeDefinition
+    public class TypeDefinition
     {
         public string Name { get; }
 
-        public TypeReference[] Fields { get; }
+        public Field[] Fields { get; }
 
         public string? Comment { get; }
 
-        public TypeDefinition(string name, TypeReference[] fields, string? comment)
+        public TypeDefinition(string name, Field[] fields, string? comment)
         {
             Name = name;
             Fields = fields;
@@ -408,63 +391,18 @@ namespace Generator
         }
     }
 
-    internal class TypeReference
+    public class Field
     {
         public string Name { get; }
 
-        public string Type { get; }
-
-        public string TemplateType { get; }
-
         public int ArraySize { get; }
-
-        public bool IsFunctionPointer { get; }
-
-        public string[] TypeVariants { get; }
-
-        public bool IsEnum { get; }
 
         public string? Comment { get; }
 
-        public TypeReference(string name, string? comment, string type, int asize, EnumDefinition[] enums)
-            : this(name, comment, type, asize, null, enums, null) { }
-
-        public TypeReference(string name, string? comment, string type, int asize, EnumDefinition[] enums, string[] typeVariants)
-            : this(name, comment, type, asize, null, enums, typeVariants) { }
-
-        public TypeReference(string name, string? comment, string type, int asize, string templateType, EnumDefinition[] enums)
-            : this(name, comment, type, asize, templateType, enums, null) { }
-
-        public TypeReference(string name, string? comment, string type, int asize, string templateType, EnumDefinition[] enums, string[] typeVariants)
+        public Field(string name, string? comment, int asize, EnumDefinition[] enums)
         {
             Name = name;
-            Type = type.Replace("const", string.Empty).Trim();
 
-            if (Type.StartsWith("ImVector_"))
-            {
-                if (Type.EndsWith("*"))
-                {
-                    Type = "ImVector*";
-                }
-                else
-                {
-                    Type = "ImVector";
-                }
-            }
-
-            if (Type.StartsWith("ImChunkStream_"))
-            {
-                if (Type.EndsWith("*"))
-                {
-                    Type = "ImChunkStream*";
-                }
-                else
-                {
-                    Type = "ImChunkStream";
-                }
-            }
-
-            TemplateType = templateType;
             ArraySize = asize;
             int startBracket = name.IndexOf('[');
             if (startBracket != -1)
@@ -474,24 +412,19 @@ namespace Generator
                 string sizePart = name.Substring(startBracket + 1, endBracket - startBracket - 1);
                 if (ArraySize == 0)
                     ArraySize = ParseSizeString(sizePart, enums);
-                Name = Name.Substring(0, startBracket);
+                Name = Name[..startBracket];
             }
-            IsFunctionPointer = Type.IndexOf('(') != -1;
-
-            TypeVariants = typeVariants;
-
-            IsEnum = enums.Any(t => t.Names.Contains(type) || t.FriendlyNames.Contains(type) || ImguiDefinitions.WellKnownEnums.Contains(type));
 
             Comment = comment;
         }
 
-        private int ParseSizeString(string sizePart, EnumDefinition[] enums)
+        private static int ParseSizeString(string sizePart, EnumDefinition[] enums)
         {
             int plusStart = sizePart.IndexOf('+');
             if (plusStart != -1)
             {
-                string first = sizePart.Substring(0, plusStart);
-                string second = sizePart.Substring(plusStart, sizePart.Length - plusStart);
+                string first = sizePart[..plusStart];
+                string second = sizePart[plusStart..];
                 int firstVal = int.Parse(first);
                 int secondVal = int.Parse(second);
                 return firstVal + secondVal;
@@ -501,7 +434,7 @@ namespace Generator
             {
                 foreach (EnumDefinition ed in enums)
                 {
-                    if (ed.Names.Any(n => sizePart.StartsWith(n)))
+                    if (ed.Names.Any(sizePart.StartsWith))
                     {
                         foreach (EnumMember member in ed.Members)
                         {
@@ -518,90 +451,39 @@ namespace Generator
 
             return ret;
         }
-
-        public TypeReference WithVariant(int variantIndex, EnumDefinition[] enums)
-        {
-            if (variantIndex == 0) return this;
-            else return new TypeReference(Name, Comment, TypeVariants[variantIndex - 1], ArraySize, TemplateType, enums);
-        }
     }
 
-    internal class FunctionDefinition
+    public class FunctionDefinition
     {
         public string Name { get; }
+
         public OverloadDefinition[] Overloads { get; }
 
         public FunctionDefinition(string name, OverloadDefinition[] overloads, EnumDefinition[] enums)
         {
             Name = name;
-            Overloads = ExpandOverloadVariants(overloads, enums);
-        }
-
-        private OverloadDefinition[] ExpandOverloadVariants(OverloadDefinition[] overloads, EnumDefinition[] enums)
-        {
-            List<OverloadDefinition> newDefinitions = new List<OverloadDefinition>();
-
-            foreach (OverloadDefinition overload in overloads)
-            {
-                bool hasVariants = false;
-                int[] variantCounts = new int[overload.Parameters.Length];
-
-                for (int i = 0; i < overload.Parameters.Length; i++)
-                {
-                    if (overload.Parameters[i].TypeVariants != null)
-                    {
-                        hasVariants = true;
-                        variantCounts[i] = overload.Parameters[i].TypeVariants.Length + 1;
-                    }
-                    else
-                    {
-                        variantCounts[i] = 1;
-                    }
-                }
-
-                if (hasVariants)
-                {
-                    int totalVariants = variantCounts[0];
-                    for (int i = 1; i < variantCounts.Length; i++) totalVariants *= variantCounts[i];
-
-                    for (int i = 0; i < totalVariants; i++)
-                    {
-                        TypeReference[] parameters = new TypeReference[overload.Parameters.Length];
-                        int div = 1;
-
-                        for (int j = 0; j < parameters.Length; j++)
-                        {
-                            int k = i / div % variantCounts[j];
-
-                            parameters[j] = overload.Parameters[j].WithVariant(k, enums);
-
-                            if (j > 0) div *= variantCounts[j];
-                        }
-
-                        newDefinitions.Add(overload.WithParameters(parameters));
-                    }
-                }
-                else
-                {
-                    newDefinitions.Add(overload);
-                }
-            }
-
-            return newDefinitions.ToArray();
+            Overloads = overloads;
         }
     }
 
-    internal class OverloadDefinition
+    public class OverloadDefinition
     {
         public string ExportedName { get; }
-        public string FriendlyName { get; }
-        public TypeReference[] Parameters { get; }
+
+        public string? FriendlyName { get; }
+
         public Dictionary<string, string> DefaultValues { get; }
+
         public string ReturnType { get; }
+
         public string StructName { get; }
+
         public bool IsMemberFunction { get; }
-        public string Comment { get; }
+
+        public string? Comment { get; }
+
         public bool IsConstructor { get; }
+
         public bool IsDestructor { get; }
 
         public bool Internal { get; init; }
@@ -610,18 +492,17 @@ namespace Generator
 
         public OverloadDefinition(
             string exportedName,
-            string friendlyName,
-            TypeReference[] parameters,
+            string? friendlyName,
             Dictionary<string, string> defaultValues,
             string returnType,
             string structName,
-            string comment,
+            string? comment,
             bool isConstructor,
-            bool isDestructor)
+            bool isDestructor,
+            string args)
         {
             ExportedName = exportedName;
             FriendlyName = friendlyName;
-            Parameters = parameters;
             DefaultValues = defaultValues;
             ReturnType = returnType.Replace("const", string.Empty).Replace("inline", string.Empty).Trim();
             StructName = structName;
@@ -629,15 +510,11 @@ namespace Generator
             Comment = comment;
             IsConstructor = isConstructor;
             IsDestructor = isDestructor;
-        }
-
-        public OverloadDefinition WithParameters(TypeReference[] parameters)
-        {
-            return new OverloadDefinition(ExportedName, FriendlyName, parameters, DefaultValues, ReturnType, StructName, Comment, IsConstructor, IsDestructor);
+            Args = args;
         }
     }
 
-    internal class TypedefDefinition
+    public class TypedefDefinition
     {
         public TypedefDefinition(string name, string definition)
         {
@@ -648,7 +525,5 @@ namespace Generator
         public string Name { get; set; }
 
         public string Definition { get; set; }
-
-        public bool IsStruct => Definition.StartsWith("struct");
     }
 }

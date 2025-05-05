@@ -1,5 +1,5 @@
-﻿//#define BackendsOnly
-#define DisableBackends
+﻿#define BackendsOnly
+//#define DisableBackends
 //#define NodeEditorOnly
 
 namespace Generator
@@ -136,7 +136,7 @@ namespace Generator
             generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(type));
             generator.PatchEngine.RegisterPrePatch(new ImGuizmoPrePatch());
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
-            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["CImGui", "ImGui", "ImGuizmo", "ImNodes", "ImPlot", "ImplSDL2", "ImplGlfw", "Impl"], NamingPatchOptions.MultiplePrefixes));
+            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["CImGui", "ImGui", "ImGuizmo", "ImNodes", "ImPlot", "ImplSDL2", "ImplSDL3", "ImplGlfw", "Impl"], NamingPatchOptions.MultiplePrefixes));
             generator.PatchEngine.RegisterPostPatch(new ImGuiPostPatch());
             generator.PatchEngine.RegisterPostPatch(new ImGuiBackendsPostPatch());
             generator.PatchEngine.RegisterPostPatch(new ImGuiImGuiDataTypePrivatePatch());
@@ -191,6 +191,7 @@ namespace Generator
             string ignoreName = name switch
             {
                 "SDL2" => "ImplSDL2",
+                "SDL3" => "ImplSDL3",
                 "GLFW" => "ImplGlfw",
                 "D3D9" => "ImplDX9",
                 "D3D10" => "ImplDX10",

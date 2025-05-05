@@ -76,7 +76,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForOpenGLNative(SDLWindow* window, void* sdlGlContext)
+		internal static byte InitForOpenGLNative(SDLWindow* window, void* sdlGlContext)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, void*, byte>)funcTable[2])(window, sdlGlContext);
@@ -88,20 +88,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
+		public static bool InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
 		{
-			byte ret = SDL3InitForOpenGLNative(window, sdlGlContext);
+			byte ret = InitForOpenGLNative(window, sdlGlContext);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForOpenGL(ref SDLWindow window, void* sdlGlContext)
+		public static bool InitForOpenGL(ref SDLWindow window, void* sdlGlContext)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForOpenGLNative((SDLWindow*)pwindow, sdlGlContext);
+				byte ret = InitForOpenGLNative((SDLWindow*)pwindow, sdlGlContext);
 				return ret != 0;
 			}
 		}
@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForVulkanNative(SDLWindow* window)
+		internal static byte InitForVulkanNative(SDLWindow* window)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[3])(window);
@@ -122,20 +122,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForVulkan(SDLWindowPtr window)
+		public static bool InitForVulkan(SDLWindowPtr window)
 		{
-			byte ret = SDL3InitForVulkanNative(window);
+			byte ret = InitForVulkanNative(window);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForVulkan(ref SDLWindow window)
+		public static bool InitForVulkan(ref SDLWindow window)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForVulkanNative((SDLWindow*)pwindow);
+				byte ret = InitForVulkanNative((SDLWindow*)pwindow);
 				return ret != 0;
 			}
 		}
@@ -144,7 +144,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForD3DNative(SDLWindow* window)
+		internal static byte InitForD3DNative(SDLWindow* window)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[4])(window);
@@ -156,20 +156,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForD3D(SDLWindowPtr window)
+		public static bool InitForD3D(SDLWindowPtr window)
 		{
-			byte ret = SDL3InitForD3DNative(window);
+			byte ret = InitForD3DNative(window);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForD3D(ref SDLWindow window)
+		public static bool InitForD3D(ref SDLWindow window)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForD3DNative((SDLWindow*)pwindow);
+				byte ret = InitForD3DNative((SDLWindow*)pwindow);
 				return ret != 0;
 			}
 		}
@@ -178,7 +178,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForMetalNative(SDLWindow* window)
+		internal static byte InitForMetalNative(SDLWindow* window)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[5])(window);
@@ -190,20 +190,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForMetal(SDLWindowPtr window)
+		public static bool InitForMetal(SDLWindowPtr window)
 		{
-			byte ret = SDL3InitForMetalNative(window);
+			byte ret = InitForMetalNative(window);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForMetal(ref SDLWindow window)
+		public static bool InitForMetal(ref SDLWindow window)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForMetalNative((SDLWindow*)pwindow);
+				byte ret = InitForMetalNative((SDLWindow*)pwindow);
 				return ret != 0;
 			}
 		}
@@ -212,7 +212,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForSDLRendererNative(SDLWindow* window, SDLRenderer* renderer)
+		internal static byte InitForSDLRendererNative(SDLWindow* window, SDLRenderer* renderer)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, SDLRenderer*, byte>)funcTable[6])(window, renderer);
@@ -224,20 +224,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForSDLRenderer(SDLWindowPtr window, SDLRendererPtr renderer)
+		public static bool InitForSDLRenderer(SDLWindowPtr window, SDLRendererPtr renderer)
 		{
-			byte ret = SDL3InitForSDLRendererNative(window, renderer);
+			byte ret = InitForSDLRendererNative(window, renderer);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForSDLRenderer(ref SDLWindow window, SDLRendererPtr renderer)
+		public static bool InitForSDLRenderer(ref SDLWindow window, SDLRendererPtr renderer)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForSDLRendererNative((SDLWindow*)pwindow, renderer);
+				byte ret = InitForSDLRendererNative((SDLWindow*)pwindow, renderer);
 				return ret != 0;
 			}
 		}
@@ -245,11 +245,11 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForSDLRenderer(SDLWindowPtr window, ref SDLRenderer renderer)
+		public static bool InitForSDLRenderer(SDLWindowPtr window, ref SDLRenderer renderer)
 		{
 			fixed (SDLRenderer* prenderer = &renderer)
 			{
-				byte ret = SDL3InitForSDLRendererNative(window, (SDLRenderer*)prenderer);
+				byte ret = InitForSDLRendererNative(window, (SDLRenderer*)prenderer);
 				return ret != 0;
 			}
 		}
@@ -257,13 +257,13 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForSDLRenderer(ref SDLWindow window, ref SDLRenderer renderer)
+		public static bool InitForSDLRenderer(ref SDLWindow window, ref SDLRenderer renderer)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
 				fixed (SDLRenderer* prenderer = &renderer)
 				{
-					byte ret = SDL3InitForSDLRendererNative((SDLWindow*)pwindow, (SDLRenderer*)prenderer);
+					byte ret = InitForSDLRendererNative((SDLWindow*)pwindow, (SDLRenderer*)prenderer);
 					return ret != 0;
 				}
 			}
@@ -273,7 +273,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForSDLGPUNative(SDLWindow* window)
+		internal static byte InitForSDLGPUNative(SDLWindow* window)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[7])(window);
@@ -285,20 +285,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForSDLGPU(SDLWindowPtr window)
+		public static bool InitForSDLGPU(SDLWindowPtr window)
 		{
-			byte ret = SDL3InitForSDLGPUNative(window);
+			byte ret = InitForSDLGPUNative(window);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForSDLGPU(ref SDLWindow window)
+		public static bool InitForSDLGPU(ref SDLWindow window)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForSDLGPUNative((SDLWindow*)pwindow);
+				byte ret = InitForSDLGPUNative((SDLWindow*)pwindow);
 				return ret != 0;
 			}
 		}
@@ -307,7 +307,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3InitForOtherNative(SDLWindow* window)
+		internal static byte InitForOtherNative(SDLWindow* window)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLWindow*, byte>)funcTable[8])(window);
@@ -319,20 +319,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForOther(SDLWindowPtr window)
+		public static bool InitForOther(SDLWindowPtr window)
 		{
-			byte ret = SDL3InitForOtherNative(window);
+			byte ret = InitForOtherNative(window);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3InitForOther(ref SDLWindow window)
+		public static bool InitForOther(ref SDLWindow window)
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = SDL3InitForOtherNative((SDLWindow*)pwindow);
+				byte ret = InitForOtherNative((SDLWindow*)pwindow);
 				return ret != 0;
 			}
 		}
@@ -341,7 +341,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SDL3ShutdownNative()
+		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<void>)funcTable[9])();
@@ -353,16 +353,16 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SDL3Shutdown()
+		public static void Shutdown()
 		{
-			SDL3ShutdownNative();
+			ShutdownNative();
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SDL3NewFrameNative()
+		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<void>)funcTable[10])();
@@ -374,16 +374,16 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SDL3NewFrame()
+		public static void NewFrame()
 		{
-			SDL3NewFrameNative();
+			NewFrameNative();
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDL3ProcessEventNative(SDLEvent* evnt)
+		internal static byte ProcessEventNative(SDLEvent* evnt)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<SDLEvent*, byte>)funcTable[11])(evnt);
@@ -395,20 +395,20 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3ProcessEvent(SDLEventPtr evnt)
+		public static bool ProcessEvent(SDLEventPtr evnt)
 		{
-			byte ret = SDL3ProcessEventNative(evnt);
+			byte ret = ProcessEventNative(evnt);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SDL3ProcessEvent(ref SDLEvent evnt)
+		public static bool ProcessEvent(ref SDLEvent evnt)
 		{
 			fixed (SDLEvent* pevnt = &evnt)
 			{
-				byte ret = SDL3ProcessEventNative((SDLEvent*)pevnt);
+				byte ret = ProcessEventNative((SDLEvent*)pevnt);
 				return ret != 0;
 			}
 		}
@@ -417,7 +417,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SDL3SetGamepadModeNative(ImGuiImplSDL3GamepadMode mode, SDLGamepad** manualGamepadsArray, int manualGamepadsCount)
+		internal static void SetGamepadModeNative(ImGuiImplSDL3GamepadMode mode, SDLGamepad** manualGamepadsArray, int manualGamepadsCount)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiImplSDL3GamepadMode, SDLGamepad**, int, void>)funcTable[12])(mode, manualGamepadsArray, manualGamepadsCount);
@@ -429,19 +429,19 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SDL3SetGamepadMode(ImGuiImplSDL3GamepadMode mode, SDLGamepadPtrPtr manualGamepadsArray, int manualGamepadsCount)
+		public static void SetGamepadMode(ImGuiImplSDL3GamepadMode mode, SDLGamepadPtrPtr manualGamepadsArray, int manualGamepadsCount)
 		{
-			SDL3SetGamepadModeNative(mode, manualGamepadsArray, manualGamepadsCount);
+			SetGamepadModeNative(mode, manualGamepadsArray, manualGamepadsCount);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SDL3SetGamepadMode(ImGuiImplSDL3GamepadMode mode, ref SDLGamepad* manualGamepadsArray, int manualGamepadsCount)
+		public static void SetGamepadMode(ImGuiImplSDL3GamepadMode mode, ref SDLGamepad* manualGamepadsArray, int manualGamepadsCount)
 		{
 			fixed (SDLGamepad** pmanualGamepadsArray = &manualGamepadsArray)
 			{
-				SDL3SetGamepadModeNative(mode, (SDLGamepad**)pmanualGamepadsArray, manualGamepadsCount);
+				SetGamepadModeNative(mode, (SDLGamepad**)pmanualGamepadsArray, manualGamepadsCount);
 			}
 		}
 
