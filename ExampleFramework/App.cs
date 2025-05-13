@@ -14,6 +14,10 @@
         Metal,
     }
 
+    // This example project and the other C# backends are deprecated and will not receive updates
+    // This project is kept as a reference for people looking to integrate into an environment where you don't
+    // have direct access to the windowing or graphics backends, like an existing game engine
+    [Obsolete("The C# backends are no longer maintained")]
     public static unsafe class App
     {
         public static readonly Sdl sdl = Sdl.GetApi();
