@@ -16,7 +16,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
     /// <summary>
-    /// Represents a texture handle passed to ImGui functions like <see cref="ImGui.Image(ImTextureID, Vector2)"/>. 
+    /// Represents a texture handle passed to ImGui functions like <see cref="ImGui.Image(ImTextureID, Vector2)"/>.
     /// </summary>
 #if NET5_0_OR_GREATER
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 
 		public bool IsNull => Handle == 0;
 
-		public static ImTextureID Null => new ImTextureID(0);
+		public static ImTextureID Null => new ImTextureID(0UL);
 
         public static implicit operator ImTextureID(ulong handle) => new ImTextureID(handle);
 
