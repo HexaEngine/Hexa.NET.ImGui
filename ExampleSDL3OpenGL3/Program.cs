@@ -31,7 +31,7 @@ unsafe
     var context = SDL.GLCreateContext(window);
 
     ImGuiImplSDL3.SetCurrentContext(guiContext);
-    if (!ImGuiImplSDL3.SDL3InitForOpenGL(new SDLWindowPtr((Hexa.NET.ImGui.Backends.SDL3.SDLWindow*)window), (void*)context.Handle))
+    if (!ImGuiImplSDL3.InitForOpenGL(new SDLWindowPtr((Hexa.NET.ImGui.Backends.SDL3.SDLWindow*)window), (void*)context.Handle))
     {
         Console.WriteLine("Failed to init ImGui Impl SDL3");
         SDL.Quit();
@@ -56,7 +56,7 @@ unsafe
 
         while (SDL.PollEvent(ref sdlEvent))
         {
-            ImGuiImplSDL3.SDL3ProcessEvent((Hexa.NET.ImGui.Backends.SDL3.SDLEvent*)&sdlEvent);
+            ImGuiImplSDL3.ProcessEvent((Hexa.NET.ImGui.Backends.SDL3.SDLEvent*)&sdlEvent);
 
             switch ((SDLEventType)sdlEvent.Type)
             {
@@ -83,7 +83,7 @@ unsafe
         GL.Clear(GLClearBufferMask.ColorBufferBit);
 
         ImGuiImplOpenGL3.NewFrame();
-        ImGuiImplSDL3.SDL3NewFrame();
+        ImGuiImplSDL3.NewFrame();
         ImGui.NewFrame();
 
         ImGui.ShowDemoWindow();
@@ -107,7 +107,7 @@ unsafe
     }
 
     ImGuiImplOpenGL3.Shutdown();
-    ImGuiImplSDL3.SDL3Shutdown();
+    ImGuiImplSDL3.Shutdown();
     ImGui.DestroyContext();
     GL.Dispose();
 
