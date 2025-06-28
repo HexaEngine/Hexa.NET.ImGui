@@ -2489,7 +2489,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, hint, pStr0, bufSize, flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -2523,7 +2523,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, hint, pStr0, bufSize, flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -2557,7 +2557,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, hint, pStr0, bufSize, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -2659,7 +2659,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, hint, pStr0, bufSize, flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -3018,7 +3018,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -3073,7 +3073,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -3128,7 +3128,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -3293,7 +3293,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -3443,7 +3443,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3480,7 +3480,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3517,7 +3517,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3628,7 +3628,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, (ImGuiInputTextCallback)(default), userData);
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3739,7 +3739,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3776,7 +3776,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3813,7 +3813,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3924,7 +3924,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative((byte*)plabel, hint, pStr0, bufSize, flags, (ImGuiInputTextCallback)(default), userData);
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -4554,7 +4554,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, pStr0, pStr1, bufSize, flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -4609,7 +4609,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, pStr0, pStr1, bufSize, flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -4664,7 +4664,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, pStr0, pStr1, bufSize, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -4829,7 +4829,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextWithHintNative(label, pStr0, pStr1, bufSize, flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -4979,7 +4979,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative(label, (byte*)phint, pStr0, bufSize, flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -5016,7 +5016,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextWithHintNative(label, (byte*)phint, pStr0, bufSize, flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || (flags.HasFlag(ImGuiInputTextFlags.EnterReturnsTrue) && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
