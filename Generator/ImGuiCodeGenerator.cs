@@ -70,6 +70,12 @@
     {
         protected override string? GetConvertBackCondition(FunctionWriterContext context, CsParameterInfo rootParameter, CsParameterInfo cppParameter, ParameterFlags paramFlags)
         {
+            // Special case for input widgets to handle ImGuiInputTextFlags.EnterReturnsTrue.
+            if (context.Variation.Parameters.Any(p => p.Name == "flags" && p.Type.Name == "ImGuiInputTextFlags" && p.DefaultValue != "0" ))
+            {
+                return context.Variation.ReturnType.IsBool ? "ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit())" : null;
+            }
+            
             // Only inject the condition if the return type is bool to optimize decoding behavior
             return context.Variation.ReturnType.IsBool ? "ret != 0" : null;
         }

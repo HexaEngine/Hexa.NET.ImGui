@@ -893,7 +893,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, size, flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -927,7 +927,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, size, flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -961,7 +961,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, size, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -1063,7 +1063,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -1165,7 +1165,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -1199,7 +1199,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, size, flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -1301,7 +1301,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -1403,7 +1403,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = InputTextMultilineNative(label, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr0);
 			}
@@ -1934,7 +1934,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, size, flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -1989,7 +1989,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, size, flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2044,7 +2044,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, size, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2209,7 +2209,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2374,7 +2374,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, (void*)(default));
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2429,7 +2429,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, size, flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2594,7 +2594,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2759,7 +2759,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			byte ret = InputTextMultilineNative(pStr0, pStr1, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, userData);
-			if (ret != 0)
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 			{
 				buf = Utils.DecodeStringUTF8(pStr1);
 			}
@@ -2799,7 +2799,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -2836,7 +2836,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -2873,7 +2873,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -2984,7 +2984,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3095,7 +3095,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3132,7 +3132,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, (ImGuiInputTextCallback)(default), userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3243,7 +3243,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3354,7 +3354,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3391,7 +3391,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3428,7 +3428,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3465,7 +3465,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, (ImGuiInputTextCallback)(default), (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3576,7 +3576,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3687,7 +3687,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, (void*)(default));
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3724,7 +3724,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, size, flags, (ImGuiInputTextCallback)(default), userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3835,7 +3835,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, (ImGuiInputTextCallback)(default), userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
@@ -3946,7 +3946,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				byte ret = InputTextMultilineNative((byte*)plabel, pStr0, bufSize, (Vector2)(new Vector2(0,0)), flags, callback, userData);
-				if (ret != 0)
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
 				{
 					buf = Utils.DecodeStringUTF8(pStr0);
 				}
