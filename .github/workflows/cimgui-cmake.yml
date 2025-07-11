@@ -1,113 +1,92 @@
-name: Build cimgui Libraries
+name: Build cimgui and addons Libraries
 
 on: [workflow_dispatch]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            arch: x86_64
-            cmake-arch: x64
-            vcpkg-triplet: x64-linux
-          - os: ubuntu-latest
-            arch: arm64
-            cmake-arch: aarch64
-            vcpkg-triplet: arm64-linux
-          - os: windows-latest
-            arch: x86_64
-            cmake-arch: x64
-            vcpkg-triplet: x64-windows-static
-          - os: windows-latest
-            arch: x86
-            cmake-arch: win32
-            vcpkg-triplet: x86-windows-static
-          - os: windows-latest
-            arch: arm64
-            cmake-arch: arm64
-            vcpkg-triplet: arm64-windows-static
-          - os: macos-latest
-            arch: x86_64
-            cmake-arch: x86_64
-            vcpkg-triplet: x64-osx
-          - os: macos-latest
-            arch: arm64
-            cmake-arch: arm64
-            vcpkg-triplet: arm64-osx
-    steps:
-    - uses: actions/checkout@v4.1.7
-      with:
-        repository: 'JunaMeinhold/cimgui'
-        path: 'cimgui'
-        submodules: true
-
-    - name: Install dependencies on Ubuntu
-      if: matrix.os == 'ubuntu-latest'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential cmake
-        
-    - name: Install Cross-Compilation Tools for ARM64
-      if: matrix.os == 'ubuntu-latest' && matrix.arch == 'arm64'
-      run: |
-        sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
-
-    - name: Install vcpkg on Linux and macOS
-      if: runner.os != 'Windows'
-      run: |
-        cd cimgui 
-        git clone https://github.com/microsoft/vcpkg.git
-        ./vcpkg/bootstrap-vcpkg.sh
-        ./vcpkg/vcpkg install freetype --triplet ${{ matrix.vcpkg-triplet }}
-
-    - name: Install vcpkg on Windows
-      if: runner.os == 'Windows'
-      run: |
-        cd cimgui 
-        git clone https://github.com/microsoft/vcpkg.git
-        ./vcpkg/bootstrap-vcpkg.bat
-        ./vcpkg/vcpkg.exe install freetype --triplet ${{ matrix.vcpkg-triplet }}
-
-    - name: Configure cimgui with CMake for ARM64 on Linux
-      if: matrix.os == 'ubuntu-latest' && matrix.arch == 'arm64'
-      run: |
-        cd cimgui
-        cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }} -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
-
-    - name: Configure cimgui with CMake on Linux (x86_64)
-      if: matrix.os == 'ubuntu-latest' && matrix.arch == 'x86_64'
-      run: |
-        cd cimgui
-        cmake -S ./ -B ./build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
-
-    - name: Configure cimgui with CMake for macOS
-      if: matrix.os == 'macos-latest'
-      run: | 
-        cd cimgui
-        cmake -S ./ -B ./build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
-
-    - name: Configure cimgui with CMake for Windows
-      if: matrix.os == 'windows-latest'
-      run: | 
-        cd cimgui
-        cmake -S ./ -B ./build -A ${{ matrix.cmake-arch }} -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg-triplet }} -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
-
-    - name: Build cimgui
-      run: cmake --build cimgui/build --config Release
-
-    - name: Move Windows binaries
-      if: matrix.os == 'windows-latest'
-      run: |
-        mv cimgui/build/Release/*.dll cimgui/build/
-
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v4.3.4
-      with:
-        name: cimgui-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
-        path: |
-          cimgui/build/*.dll
-          cimgui/build/*.so
-          cimgui/build/*.dylib
-        if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
+  build-cimgui:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    with:
+      lib-name: cimgui
+      repo: JunaMeinhold/cimgui
+      repo-tag: docking_inter
+      output-dir: native
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      use-vcpkg: true
+      vcpkg-packages: freetype
+      bin-name-linux: cimgui.so
+      bin-name-linux-normalized: cimgui.so
+      bin-name-windows: Release/cimgui.dll
+      bin-name-windows-normalized: cimgui.dll
+      bin-name-osx: cimgui.dylib
+      bin-name-osx-normalized: cimgui.dylib
+      bin-name-android: cimgui.so
+      bin-name-android-normalized: cimgui.so
+      android-api: 23
+      create-pr: false
+  build-cimplot:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    with:
+      lib-name: cimplot
+      repo: JunaMeinhold/cimplot
+      repo-tag: master
+      output-dir: native
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      bin-name-linux: cimplot.so
+      bin-name-linux-normalized: cimplot.so
+      bin-name-windows: Release/cimplot.dll
+      bin-name-windows-normalized: cimplot.dll
+      bin-name-osx: cimplot.dylib
+      bin-name-osx-normalized: cimplot.dylib
+      bin-name-android: cimplot.so
+      bin-name-android-normalized: cimplot.so
+      android-api: 23
+      pre-configure-steps: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
+      create-pr: false
+  build-cimnodes:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    with:
+      lib-name: cimnodes
+      repo: JunaMeinhold/cimnodes
+      repo-tag: master
+      output-dir: native
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      bin-name-linux: cimnodes.so
+      bin-name-linux-normalized: cimnodes.so
+      bin-name-windows: Release/cimnodes.dll
+      bin-name-windows-normalized: cimnodes.dll
+      bin-name-osx: cimnodes.dylib
+      bin-name-osx-normalized: cimnodes.dylib
+      bin-name-android: cimnodes.so
+      bin-name-android-normalized: cimnodes.so
+      android-api: 23
+      pre-configure-steps: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
+      create-pr: false
+  build-cimguizmo:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    with:
+      lib-name: cimguizmo
+      repo: JunaMeinhold/cimguizmo
+      repo-tag: master
+      output-dir: native
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      bin-name-linux: cimguizmo.so
+      bin-name-linux-normalized: cimguizmo.so
+      bin-name-windows: Release/cimguizmo.dll
+      bin-name-windows-normalized: cimguizmo.dll
+      bin-name-osx: cimguizmo.dylib
+      bin-name-osx-normalized: cimguizmo.dylib
+      bin-name-android: cimguizmo.so
+      bin-name-android-normalized: cimguizmo.so
+      android-api: 23
+      pre-configure-steps: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
+      create-pr: false
+  create-pr:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.0
+    needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo]
+    with:
+      lib-name: Dear ImGui + Addons
+      repo-tag: latest
+      output-dir: native
+      branch: native-artifacts-branch
+      base: master
+      reviewers: JunaMeinhold
