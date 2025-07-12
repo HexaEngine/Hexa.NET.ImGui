@@ -25,11 +25,7 @@
 
         public static string GetLibraryName()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return "ImGuiImplGLFW";
-            }
-            return "libImGuiImplGLFW";
+            return "ImGuiImplGLFW";
         }
     }
 }

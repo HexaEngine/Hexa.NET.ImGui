@@ -25,11 +25,7 @@
 
         public static string GetLibraryName()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return "ImGuiImplSDL3";
-            }
-            return "libImGuiImplSDL3";
+            return "ImGuiImplSDL3";
         }
     }
 }

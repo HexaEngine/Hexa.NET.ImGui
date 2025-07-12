@@ -25,11 +25,7 @@
 
         public static string GetLibraryName()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return "ImGuiImplSDL2";
-            }
-            return "libImGuiImplSDL2";
+            return "ImGuiImplSDL2";
         }
     }
 }
