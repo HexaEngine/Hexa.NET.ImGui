@@ -11,7 +11,9 @@ jobs:
       lib-name: ImGuiImpl
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      reviewers: JunaMeinhold
+      pr-reviewers: JunaMeinhold
+      pr-branch: backends-base-artifacts
+      pr-output-dir: Hexa.NET.ImGui.Backends/native
       cmake-flags: -DBACKENDS_BASE_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImpl.dylib
@@ -22,7 +24,6 @@ jobs:
       bin-name-linux-normalized: ImGuiImpl.so
       bin-name-android-normalized: ImGuiImpl.so
       bin-name-windows-normalized: ImGuiImpl.dll
-      output-dir: Hexa.NET.ImGui.Backends/native
       linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf"
       macos-deps: "sdl2 glfw glew glm"
       use-vcpkg: true
@@ -42,7 +43,9 @@ jobs:
       lib-name: ImGuiImplSDL2
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      reviewers: JunaMeinhold
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImGui.Backends.SDL2/native
+      pr-branch: sdl2-backends-artifacts
       cmake-flags: -DBACKENDS_SDL2_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplSDL2.dylib
@@ -53,7 +56,6 @@ jobs:
       bin-name-linux-normalized: ImGuiImplSDL2.so
       bin-name-android-normalized: ImGuiImplSDL2.so
       bin-name-windows-normalized: ImGuiImplSDL2.dll
-      output-dir: Hexa.NET.ImGui.Backends.SDL2/native
       linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf"
       macos-deps: "sdl2 glfw glew glm"
       use-vcpkg: true
@@ -71,7 +73,9 @@ jobs:
       lib-name: ImGuiImplSDL3
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      reviewers: JunaMeinhold
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImGui.Backends.SDL3/native
+      pr-branch: sdl3-backends-artifacts
       checkout-self: true
       cmake-flags: -DBACKENDS_SDL3_ONLY=ON -DIMGUI_WCHAR32=ON -DCMAKE_PREFIX_PATH="./SDL/install"
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
@@ -83,7 +87,6 @@ jobs:
       bin-name-linux-normalized: ImGuiImplSDL3.so
       bin-name-android-normalized: ImGuiImplSDL3.so
       bin-name-windows-normalized: ImGuiImplSDL3.dll
-      output-dir: Hexa.NET.ImGui.Backends.SDL3/native
       linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf libasound2-dev libpulse-dev libaudio-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxinerama-dev libxss-dev libwayland-dev libwayland-egl-backend-dev libdbus-1-dev libudev-dev libgles2-mesa-dev libegl1-mesa-dev libgl1-mesa-dev libibus-1.0-dev fcitx-libs-dev libsamplerate0-dev ccache libjack-jackd2-dev libdrm-dev libpipewire-0.3-dev libdecor-0-dev qtwayland5 libxkbcommon-dev libsndio-dev libpng-dev libjpeg-dev libtiff-dev libwebp-dev libavif-dev"
       macos-deps: "sdl2 glfw glew glm"
       pre-configure-steps: "bash scripts/build_sdl3.sh"
@@ -99,7 +102,9 @@ jobs:
       lib-name: ImGuiImplGLFW
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      reviewers: JunaMeinhold
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImGui.Backends.GLFW/native
+      pr-branch: glfw-backends-artifacts
       cmake-flags: -DBACKENDS_GLFW_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplGLFW.dylib
@@ -110,7 +115,6 @@ jobs:
       bin-name-linux-normalized: ImGuiImplGLFW.so
       bin-name-android-normalized: ImGuiImplGLFW.so
       bin-name-windows-normalized: ImGuiImplGLFW.dll
-      output-dir: Hexa.NET.ImGui.Backends.GLFW/native
       linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf"
       macos-deps: "sdl2 glfw glew glm"
       use-vcpkg: true

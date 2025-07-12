@@ -4,12 +4,14 @@ on: [workflow_dispatch]
 
 jobs:
   build-cimgui:
-    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
       lib-name: cimgui
       repo: JunaMeinhold/cimgui
       repo-tag: docking_inter
-      output-dir: native
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImGui/native
+      pr-branch: imgui-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       use-vcpkg: true
       vcpkg-packages: freetype
@@ -22,14 +24,16 @@ jobs:
       bin-name-android: cimgui.so
       bin-name-android-normalized: cimgui.so
       android-api: 23
-      create-pr: false
+
   build-cimplot:
-    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
       lib-name: cimplot
       repo: JunaMeinhold/cimplot
       repo-tag: master
-      output-dir: native
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImPlot/native
+      pr-branch: implot-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       bin-name-linux: cimplot.so
       bin-name-linux-normalized: cimplot.so
@@ -40,15 +44,17 @@ jobs:
       bin-name-android: cimplot.so
       bin-name-android-normalized: cimplot.so
       android-api: 23
-      pre-configure-steps: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
-      create-pr: false
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+
   build-cimnodes:
-    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
       lib-name: cimnodes
       repo: JunaMeinhold/cimnodes
       repo-tag: master
-      output-dir: native
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImNodes/native
+      pr-branch: imnodes-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       bin-name-linux: cimnodes.so
       bin-name-linux-normalized: cimnodes.so
@@ -59,15 +65,17 @@ jobs:
       bin-name-android: cimnodes.so
       bin-name-android-normalized: cimnodes.so
       android-api: 23
-      pre-configure-steps: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
-      create-pr: false
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+
   build-cimguizmo:
-    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.0
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
       lib-name: cimguizmo
       repo: JunaMeinhold/cimguizmo
       repo-tag: master
-      output-dir: native
+      pr-reviewers: JunaMeinhold
+      pr-output-dir: Hexa.NET.ImGuizmo/native
+      pr-branch: imguizmo-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       bin-name-linux: cimguizmo.so
       bin-name-linux-normalized: cimguizmo.so
@@ -78,15 +86,4 @@ jobs:
       bin-name-android: cimguizmo.so
       bin-name-android-normalized: cimguizmo.so
       android-api: 23
-      pre-configure-steps: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
-      create-pr: false
-  create-pr:
-    uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.0
-    needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo]
-    with:
-      lib-name: Dear ImGui + Addons
-      repo-tag: latest
-      output-dir: native
-      branch: native-artifacts-branch
-      base: master
-      reviewers: JunaMeinhold
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
