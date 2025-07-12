@@ -88,10 +88,4 @@ jobs:
         pr-base-branch: "master"
         pr-reviewers: JunaMeinhold
         pr-branch: imgui-artifacts
-        pr-output-map: | 
-          '{
-            "cimgui": "Hexa.NET.ImGui/native", 
-            "cimplot": "Hexa.NET.ImPlot/native"
-            "cimnodes": "Hexa.NET.ImNodes/native"
-            "cimguizmo": "Hexa.NET.ImGuizmo/native"
-           }'
+        pr-manifest-path: imgui

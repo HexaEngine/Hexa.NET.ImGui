@@ -121,10 +121,4 @@ jobs:
         pr-base-branch: "master"
         pr-reviewers: JunaMeinhold
         pr-branch: backends-artifacts
-        pr-output-map: | 
-          '{
-            "ImGuiImpl": "Hexa.NET.ImGui.Backends/native", 
-            "ImGuiImplSDL2": "Hexa.NET.ImGui.Backends.SDL3/native"
-            "ImGuiImplSDL3": "Hexa.NET.ImGui.Backends.SDL3/native"
-            "ImGuiImplGLFW": "Hexa.NET.ImGui.Backends.GLFW/native"
-           }'
+        pr-manifest-path: imgui_impl
