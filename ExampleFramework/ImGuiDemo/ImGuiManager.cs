@@ -1,7 +1,6 @@
 ﻿namespace ExampleFramework.ImGuiDemo
 {
     using Hexa.NET.ImGui;
-    using Hexa.NET.ImGui.Backends;
     using Hexa.NET.ImGui.Backends.SDL2;
     using Hexa.NET.ImGui.Utilities;
     using Hexa.NET.ImGuizmo;
