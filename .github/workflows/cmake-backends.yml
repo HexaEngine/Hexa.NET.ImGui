@@ -117,6 +117,7 @@ jobs:
     uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
     with:
         lib-name: "ImGuiImpl"
+        lib-version: "v1.92.1"
         pr-base-branch: "master"
         pr-reviewers: JunaMeinhold
         pr-branch: backends-artifacts
