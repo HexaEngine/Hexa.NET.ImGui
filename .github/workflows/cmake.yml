@@ -1,4 +1,4 @@
-name: Build cimgui and addons Libraries
+name: Build ImGui and Addons Libraries
 
 on: [workflow_dispatch]
 

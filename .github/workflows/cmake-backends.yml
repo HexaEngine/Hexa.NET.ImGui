@@ -1,0 +1,130 @@
+name: Build ImGui Backends
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-base:
+    name: Build (Base)
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: ImGuiImpl
+      repo: HexaEngine/cimgui_impl
+      repo-tag: master
+      cmake-flags: -DBACKENDS_BASE_ONLY=ON -DIMGUI_WCHAR32=ON
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      bin-name-osx: libImGuiImpl.dylib
+      bin-name-linux: libImGuiImpl.so
+      bin-name-android: libImGuiImpl.so
+      bin-name-windows: Release/ImGuiImpl.dll
+      bin-name-osx-normalized: ImGuiImpl.dylib
+      bin-name-linux-normalized: ImGuiImpl.so
+      bin-name-android-normalized: ImGuiImpl.so
+      bin-name-windows-normalized: ImGuiImpl.dll
+      output-dir: native
+      linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf"
+      macos-deps: "sdl2 glfw glew glm"
+      use-vcpkg: true
+      use-vcpkg-linux: false
+      use-vcpkg-macos: false
+      use-vcpkg-android: false
+      vcpkg-packages-windows: "vulkan glslang"
+      setup-vulkan: true
+      setup-vulkan-linux: false
+      setup-vulkan-windows: false
+      create-pr: false
+
+  build-sdl2:
+    name: Build (SDL2)
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: ImGuiImplSDL2
+      repo: HexaEngine/cimgui_impl
+      repo-tag: master
+      cmake-flags: -DBACKENDS_SDL2_ONLY=ON -DIMGUI_WCHAR32=ON
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      bin-name-osx: libImGuiImplSDL2.dylib
+      bin-name-linux: libImGuiImplSDL2.so
+      bin-name-android: libImGuiImplSDL2.so
+      bin-name-windows: Release/ImGuiImplSDL2.dll
+      bin-name-osx-normalized: ImGuiImplSDL2.dylib
+      bin-name-linux-normalized: ImGuiImplSDL2.so
+      bin-name-android-normalized: ImGuiImplSDL2.so
+      bin-name-windows-normalized: ImGuiImplSDL2.dll
+      output-dir: native
+      linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf"
+      macos-deps: "sdl2 glfw glew glm"
+      use-vcpkg: true
+      use-vcpkg-linux: false
+      vcpkg-packages: "sdl2"
+      setup-vulkan: true
+      setup-vulkan-linux: false
+      setup-vulkan-windows: false
+      create-pr: false
+
+  build-sdl3:
+    name: Build (SDL3)
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: ImGuiImplSDL3
+      repo: HexaEngine/cimgui_impl
+      repo-tag: master
+      checkout-self: true
+      cmake-flags: -DBACKENDS_SDL3_ONLY=ON -DIMGUI_WCHAR32=ON -DCMAKE_PREFIX_PATH="./SDL/install"
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      bin-name-osx: libImGuiImplSDL3.dylib
+      bin-name-linux: libImGuiImplSDL3.so
+      bin-name-android: libImGuiImplSDL3.so
+      bin-name-windows: Release/ImGuiImplSDL3.dll
+      bin-name-osx-normalized: ImGuiImplSDL3.dylib
+      bin-name-linux-normalized: ImGuiImplSDL3.so
+      bin-name-android-normalized: ImGuiImplSDL3.so
+      bin-name-windows-normalized: ImGuiImplSDL3.dll
+      output-dir: native
+      linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf libasound2-dev libpulse-dev libaudio-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxinerama-dev libxss-dev libwayland-dev libwayland-egl-backend-dev libdbus-1-dev libudev-dev libgles2-mesa-dev libegl1-mesa-dev libgl1-mesa-dev libibus-1.0-dev fcitx-libs-dev libsamplerate0-dev ccache libjack-jackd2-dev libdrm-dev libpipewire-0.3-dev libdecor-0-dev qtwayland5 libxkbcommon-dev libsndio-dev libpng-dev libjpeg-dev libtiff-dev libwebp-dev libavif-dev"
+      macos-deps: "sdl2 glfw glew glm"
+      pre-configure-steps: "bash scripts/build_sdl3.sh"
+      setup-vulkan: true
+      setup-vulkan-linux: false
+      setup-vulkan-windows: false
+      create-pr: false
+
+  build-glfw:
+    name: Build (GLFW)
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      enable-android: false
+      lib-name: ImGuiImplGLFW
+      repo: HexaEngine/cimgui_impl
+      repo-tag: master
+      cmake-flags: -DBACKENDS_GLFW_ONLY=ON -DIMGUI_WCHAR32=ON
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      bin-name-osx: libImGuiImplGLFW.dylib
+      bin-name-linux: libImGuiImplGLFW.so
+      bin-name-android: libImGuiImplGLFW.so
+      bin-name-windows: Release/ImGuiImplGLFW.dll
+      bin-name-osx-normalized: ImGuiImplGLFW.dylib
+      bin-name-linux-normalized: ImGuiImplGLFW.so
+      bin-name-android-normalized: ImGuiImplGLFW.so
+      bin-name-windows-normalized: ImGuiImplGLFW.dll
+      output-dir: native
+      linux-deps: "build-essential cmake libsdl2-dev libglfw3-dev libglu1-mesa-dev libvulkan-dev patchelf"
+      macos-deps: "sdl2 glfw glew glm"
+      use-vcpkg: true
+      use-vcpkg-linux: false
+      vcpkg-packages: "glfw3"
+      setup-vulkan: true
+      setup-vulkan-linux: false
+      setup-vulkan-windows: false
+      create-pr: false
+
+  create-pr:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.0
+    needs: [build-base, build-glfw, build-sdl3, build-sdl2]
+    with:
+      lib-name: Dear ImGui Backends
+      repo-tag: latest
+      output-dir: native
+      branch: native-artifacts-branch
+      base: master
+      reviewers: JunaMeinhold
