@@ -38,6 +38,7 @@ jobs:
     name: Build (SDL2)
     uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
+      enable-android: false
       lib-name: ImGuiImplSDL2
       repo: HexaEngine/cimgui_impl
       repo-tag: master
@@ -60,12 +61,14 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+      android-api: 23
       create-pr: false
 
   build-sdl3:
     name: Build (SDL3)
     uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
+      enable-android: false
       lib-name: ImGuiImplSDL3
       repo: HexaEngine/cimgui_impl
       repo-tag: master
@@ -87,6 +90,7 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+      android-api: 23
       create-pr: false
 
   build-glfw:
