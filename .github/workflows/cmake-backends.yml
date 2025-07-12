@@ -11,9 +11,6 @@ jobs:
       lib-name: ImGuiImpl
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-branch: backends-base-artifacts
-      pr-output-dir: Hexa.NET.ImGui.Backends/native
       cmake-flags: -DBACKENDS_BASE_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImpl.dylib
@@ -43,9 +40,6 @@ jobs:
       lib-name: ImGuiImplSDL2
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImGui.Backends.SDL2/native
-      pr-branch: sdl2-backends-artifacts
       cmake-flags: -DBACKENDS_SDL2_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplSDL2.dylib
@@ -73,9 +67,6 @@ jobs:
       lib-name: ImGuiImplSDL3
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImGui.Backends.SDL3/native
-      pr-branch: sdl3-backends-artifacts
       checkout-self: true
       cmake-flags: -DBACKENDS_SDL3_ONLY=ON -DIMGUI_WCHAR32=ON -DCMAKE_PREFIX_PATH="./SDL/install"
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
@@ -102,9 +93,6 @@ jobs:
       lib-name: ImGuiImplGLFW
       repo: HexaEngine/cimgui_impl
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImGui.Backends.GLFW/native
-      pr-branch: glfw-backends-artifacts
       cmake-flags: -DBACKENDS_GLFW_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplGLFW.dylib
@@ -123,3 +111,19 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+
+  create-pr:
+    needs: [build-base, build-sdl2, build-sdl3, build-glfw]
+    uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
+    with:
+        lib-name: "ImGuiImpl"
+        pr-base-branch: "master"
+        pr-reviewers: JunaMeinhold
+        pr-branch: backends-artifacts
+        pr-output-map: | 
+          '{
+            "ImGuiImpl": "Hexa.NET.ImGui.Backends/native", 
+            "ImGuiImplSDL2": "Hexa.NET.ImGui.Backends.SDL3/native"
+            "ImGuiImplSDL3": "Hexa.NET.ImGui.Backends.SDL3/native"
+            "ImGuiImplGLFW": "Hexa.NET.ImGui.Backends.GLFW/native"
+           }'

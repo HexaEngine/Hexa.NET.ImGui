@@ -9,9 +9,6 @@ jobs:
       lib-name: cimgui
       repo: JunaMeinhold/cimgui
       repo-tag: docking_inter
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImGui/native
-      pr-branch: imgui-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       use-vcpkg: true
       vcpkg-packages: freetype
@@ -31,9 +28,6 @@ jobs:
       lib-name: cimplot
       repo: JunaMeinhold/cimplot
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImPlot/native
-      pr-branch: implot-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       bin-name-linux: cimplot.so
       bin-name-linux-normalized: cimplot.so
@@ -53,9 +47,6 @@ jobs:
       lib-name: cimnodes
       repo: JunaMeinhold/cimnodes
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImNodes/native
-      pr-branch: imnodes-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       bin-name-linux: cimnodes.so
       bin-name-linux-normalized: cimnodes.so
@@ -75,9 +66,6 @@ jobs:
       lib-name: cimguizmo
       repo: JunaMeinhold/cimguizmo
       repo-tag: master
-      pr-reviewers: JunaMeinhold
-      pr-output-dir: Hexa.NET.ImGuizmo/native
-      pr-branch: imguizmo-artifacts
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
       bin-name-linux: cimguizmo.so
       bin-name-linux-normalized: cimguizmo.so
@@ -90,3 +78,19 @@ jobs:
       android-api: 23
       pre-configure-steps: "bash scripts/setup_addon_build.sh"
       checkout-self: true
+
+  create-pr:
+    needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo]
+    uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
+    with:
+        lib-name: "ImGui"
+        pr-base-branch: "master"
+        pr-reviewers: JunaMeinhold
+        pr-branch: backends-artifacts
+        pr-output-map: | 
+          '{
+            "cimgui": "Hexa.NET.ImGui/native", 
+            "cimplot": "Hexa.NET.ImPlot/native"
+            "cimnodes": "Hexa.NET.ImNodes/native"
+            "cimguizmo": "Hexa.NET.ImGuizmo/native"
+           }'
