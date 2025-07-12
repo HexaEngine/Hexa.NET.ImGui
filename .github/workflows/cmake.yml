@@ -45,6 +45,7 @@ jobs:
       bin-name-android-normalized: cimplot.so
       android-api: 23
       pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
 
   build-cimnodes:
     uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
@@ -66,6 +67,7 @@ jobs:
       bin-name-android-normalized: cimnodes.so
       android-api: 23
       pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
 
   build-cimguizmo:
     uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
@@ -87,3 +89,4 @@ jobs:
       bin-name-android-normalized: cimguizmo.so
       android-api: 23
       pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
