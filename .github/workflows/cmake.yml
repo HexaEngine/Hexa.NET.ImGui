@@ -86,7 +86,7 @@ jobs:
         lib-name: "ImGui"
         pr-base-branch: "master"
         pr-reviewers: JunaMeinhold
-        pr-branch: backends-artifacts
+        pr-branch: imgui-artifacts
         pr-output-map: | 
           '{
             "cimgui": "Hexa.NET.ImGui/native", 
