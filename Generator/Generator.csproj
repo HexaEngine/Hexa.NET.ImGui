@@ -11,7 +11,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="HexaGen" Version="1.1.10" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="HexaGen.BuildSystems" Version="0.0.1-alpha" />
 	</ItemGroup>
 
 	<ItemGroup>
