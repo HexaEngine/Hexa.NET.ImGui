@@ -1,0 +1,85 @@
+version: "1.0"
+
+env:
+  # Global environment vars if needed
+
+targets:
+  clone-repos:
+    steps:
+      - name: Clone Hexa.NET.ImGui
+        run: git clone --recursive https://github.com/HexaEngine/Hexa.NET.ImGui.git
+      - name: Clone cimgui
+        run: git clone --recursive https://github.com/JunaMeinhold/cimgui.git
+      - name: Clone cimplot
+        run: git clone --recursive https://github.com/JunaMeinhold/cimplot.git
+      - name: Clone cimnodes
+        run: git clone --recursive https://github.com/JunaMeinhold/cimnodes.git
+      - name: Clone cimguizmo
+        run: git clone --recursive https://github.com/JunaMeinhold/cimguizmo.git
+
+  run-generators:
+    needs: [clone-repos]
+    steps:
+      - name: Generate cimgui
+        run: |
+          cd cimgui/generator
+          luajit ./generator.lua gcc "comments internal noimstrv"
+          cd ../../
+      - name: Generate cimplot
+        run: |
+          cd cimplot/generator
+          luajit ./generator.lua gcc "internal"
+          cd ../../
+      - name: Generate cimnodes
+        run: |
+          cd cimnodes/generator
+          luajit ./generator.lua gcc
+          cd ../../
+      - name: Generate cimguizmo
+        run: |
+          cd cimguizmo/generator
+          luajit ./generator.lua gcc "comments"
+          cd ../../
+
+  copy-headers:
+    needs: [run-generators]
+    steps:
+      - name: Copy headers for cimgui
+        run: cp cimgui/cimgui.h Hexa.NET.ImGui/Generator/cimgui
+      - name: Copy headers for cimplot
+        run: cp cimplot/cimplot.h Hexa.NET.ImGui/Generator/cimplot
+      - name: Copy headers for cimnodes
+        run: cp cimnodes/cimnodes.h Hexa.NET.ImGui/Generator/cimnodes
+      - name: Copy headers for cimguizmo
+        run: cp cimguizmo/cimguizmo.h Hexa.NET.ImGui/Generator/cimguizmo
+
+      - name: Copy cimgui header to other folders
+        run: |
+          cp cimgui/cimgui.h Hexa.NET.ImGui/Generator/cimplot
+          cp cimgui/cimgui.h Hexa.NET.ImGui/Generator/cimnodes
+          cp cimgui/cimgui.h Hexa.NET.ImGui/Generator/cimguizmo
+          cp cimgui/cimgui.h Hexa.NET.ImGui/Generator/backends
+
+  copy-json:
+    needs: [run-generators]
+    steps:
+      - name: Copy cimgui json output
+        run: cp cimgui/generator/output/*.json Hexa.NET.ImGui/Generator/cimgui
+      - name: Copy cimplot json output
+        run: cp cimplot/generator/output/*.json Hexa.NET.ImGui/Generator/cimplot
+      - name: Copy cimnodes json output
+        run: cp cimnodes/generator/output/*.json Hexa.NET.ImGui/Generator/cimnodes
+      - name: Copy cimguizmo json output
+        run: cp cimguizmo/generator/output/*.json Hexa.NET.ImGui/Generator/cimguizmo
+
+  dotnet-build:
+    needs: [copy-headers, copy-json]
+    steps:
+      - name: Restore .NET dependencies
+        run: |
+          cd Hexa.NET.ImGui
+          dotnet restore
+      - name: Run generator project
+        run: |
+          cd Hexa.NET.ImGui
+          dotnet run ./Generator/Generator.csproj -- --targets all

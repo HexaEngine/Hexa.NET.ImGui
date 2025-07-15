@@ -22,35 +22,1530 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* py1 = &y1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
-			fixed (uint* pxs = &xs)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* ppos = &pos)
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -60,35 +1555,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (double* py2 = &y2)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -98,35 +1576,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (double* py2 = &y2)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -136,35 +1597,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (double* py2 = &y2)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -174,35 +1618,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (double* py2 = &y2)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -212,35 +1639,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (double* py2 = &y2)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -250,617 +1660,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered)
 		{
-			fixed (uint* pneg = &neg)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* ppos = &pos)
+				fixed (double* py1 = &y1)
 				{
-					PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* px2 = &x2)
 					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pneg = &neg)
-			{
-				fixed (uint* ppos = &pos)
-				{
-					PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
+						fixed (double* py2 = &y2)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -870,17 +1681,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (double* py2 = &y2)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -890,17 +1702,684 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (uint* pxs = &xs)
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
 				{
-					fixed (uint* pneg = &neg)
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -910,17 +2389,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -930,17 +2410,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -950,17 +2431,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -970,17 +2452,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -990,17 +2473,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1010,17 +2494,324 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* py2 = &y2)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					fixed (uint* pneg = &neg)
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1030,17 +2821,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1050,17 +2842,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1070,17 +2863,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1090,35 +2884,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* py2 = &y2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1128,35 +2905,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* py2 = &y2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1166,35 +2926,126 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px2 = &x2)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py2 = &y2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1204,35 +3055,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* px2 = &x2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* py2 = &y2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1242,35 +3076,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* px2 = &x2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* py2 = &y2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1280,35 +3097,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* px2 = &x2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
+					fixed (double* py2 = &y2)
 					{
-						PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							Utils.Free(pStr0);
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1318,119 +3118,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			fixed (uint* pys = &ys)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pneg = &neg)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* ppos = &pos)
+					fixed (double* py2 = &y2)
 					{
-						PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1440,17 +3139,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1460,17 +3160,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1480,17 +3181,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1500,17 +3202,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1520,17 +3223,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1540,17 +3244,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1560,17 +3265,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* py1 = &y1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* px2 = &x2)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* py2 = &y2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutClicked = &outClicked)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -1580,447 +3286,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pys = &ys)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pneg = &neg)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (double* py2 = &y2)
 						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pys = &ys)
-			{
-				fixed (uint* pneg = &neg)
-				{
-					fixed (uint* ppos = &pos)
-					{
-						PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
-					{
-						fixed (uint* ppos = &pos)
-						{
-							PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						fixed (uint* pneg = &neg)
-						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutClicked = &outClicked)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+								return ret != 0;
 							}
 						}
 					}
@@ -2031,19 +3310,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutClicked = &outClicked)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+								return ret != 0;
 							}
 						}
 					}
@@ -2054,19 +3334,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutClicked = &outClicked)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+								return ret != 0;
 							}
 						}
 					}
@@ -2077,19 +3358,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutClicked = &outClicked)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+								return ret != 0;
 							}
 						}
 					}
@@ -2100,19 +3382,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutClicked = &outClicked)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+								return ret != 0;
 							}
 						}
 					}
@@ -2123,19 +3406,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutClicked = &outClicked)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+								return ret != 0;
 							}
 						}
 					}
@@ -2146,19 +3430,1076 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (bool* poutHovered = &outHovered)
 			{
-				fixed (uint* pxs = &xs)
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutHovered = &outHovered)
 				{
-					fixed (uint* pys = &ys)
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
 					{
-						fixed (uint* pneg = &neg)
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
 						{
-							fixed (uint* ppos = &pos)
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+								return ret != 0;
 							}
 						}
 					}
@@ -2169,19 +4510,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutHovered = &outHovered)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
 							}
 						}
 					}
@@ -2192,19 +4534,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutHovered = &outHovered)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
 							}
 						}
 					}
@@ -2215,19 +4558,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (double* px2 = &x2)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (double* py2 = &y2)
 						{
-							fixed (uint* ppos = &pos)
+							fixed (bool* poutHovered = &outHovered)
 							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+								return ret != 0;
 							}
 						}
 					}
@@ -2238,20 +4582,222 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (bool* poutHovered = &outHovered)
 				{
-					fixed (uint* pys = &ys)
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
 					{
-						fixed (uint* pneg = &neg)
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
 						{
-							fixed (uint* ppos = &pos)
-							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-							}
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -2261,20 +4807,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (double* px1 = &x1)
 			{
-				fixed (uint* pxs = &xs)
+				fixed (double* py1 = &y1)
 				{
-					fixed (uint* pys = &ys)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* pneg = &neg)
+						fixed (bool* poutHovered = &outHovered)
 						{
-							fixed (uint* ppos = &pos)
-							{
-								PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-							}
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -2284,38 +4828,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutHovered = &outHovered)
 						{
-							PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, stride);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -2325,38 +4849,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutHovered = &outHovered)
 						{
-							PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -2366,38 +4870,90 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px2 = &x2)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
+					fixed (bool* poutHovered = &outHovered)
 					{
-						fixed (uint* ppos = &pos)
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
 						{
-							PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
 						}
 					}
 				}
@@ -2407,38 +4963,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* px2 = &x2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutHovered = &outHovered)
 						{
-							PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -2448,38 +4984,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* px2 = &x2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutHovered = &outHovered)
 						{
-							PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -2489,2540 +5005,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, ref uint pos, int count, int offset, int stride)
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* px2 = &x2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pxs = &xs)
-			{
-				fixed (uint* pys = &ys)
-				{
-					fixed (uint* pneg = &neg)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						fixed (uint* ppos = &pos)
+						fixed (bool* poutHovered = &outHovered)
 						{
-							PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
 						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotErrorBarsNative(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, long*, long*, long*, long*, int, ImPlotErrorBarsFlags, int, int, void>)funcTable[183])(labelId, xs, ys, neg, pos, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, int, ImPlotErrorBarsFlags, int, int, void>)funcTable[183])((nint)labelId, (nint)xs, (nint)ys, (nint)neg, (nint)pos, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count)
-		{
-			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, long* neg, long* pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(labelId, (long*)pxs, ys, neg, pos, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(labelId, (long*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(labelId, (long*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, long* neg, long* pos, int count)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(labelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(labelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(labelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(pStr0, (long*)pxs, ys, neg, pos, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(pStr0, (long*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(pStr0, (long*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, long* neg, long* pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(pStr0, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(pStr0, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotErrorBarsNative(pStr0, (long*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(labelId, xs, (long*)pys, neg, pos, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(labelId, xs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(labelId, xs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, ref long ys, long* neg, long* pos, int count)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(labelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(labelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(labelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, ref long ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, ref long ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(pStr0, xs, (long*)pys, neg, pos, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(pStr0, xs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(pStr0, xs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, ref long ys, long* neg, long* pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(pStr0, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(pStr0, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotErrorBarsNative(pStr0, xs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, ref long ys, long* neg, long* pos, int count)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, ref long ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, long* neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, (long*)pys, neg, pos, count, flags, offset, (int)(sizeof(long)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, ref long ys, long* neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, (long*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, ref long ys, long* neg, long* pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, ref long ys, long* neg, long* pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, (long*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(labelId, xs, ys, (long*)pneg, pos, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(labelId, xs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(labelId, xs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, ref long neg, long* pos, int count)
-		{
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(labelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(labelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(labelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, ref long neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, ref long neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative((byte*)plabelId, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(pStr0, xs, ys, (long*)pneg, pos, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(pStr0, xs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(pStr0, xs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, ref long neg, long* pos, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(pStr0, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(pStr0, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, long* xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pneg = &neg)
-			{
-				PlotErrorBarsNative(pStr0, xs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, ref long neg, long* pos, int count)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(byte* labelId, ref long xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(labelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, ref long neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ref byte labelId, ref long xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, flags, (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, ref long neg, long* pos, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, ref long neg, long* pos, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref long xs, long* ys, ref long neg, long* pos, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pneg = &neg)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (long*)pxs, ys, (long*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(string labelId, ref long xs, long* ys, ref long neg, long* pos, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pneg = &neg)
-				{
-					PlotErrorBarsNative(pStr0, (long*)pxs, ys, (long*)pneg, pos, count, flags, offset, (int)(sizeof(long)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
 					}
 				}
 			}

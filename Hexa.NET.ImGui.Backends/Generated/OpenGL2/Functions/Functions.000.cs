@@ -19,20 +19,20 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 	public unsafe partial class ImGuiImplOpenGL2
 	{
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InitNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[10])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[9])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[10])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[9])();
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool Init()
 		{
@@ -47,9 +47,9 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[11])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[10])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[11])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[10])();
 			#endif
 		}
 
@@ -68,9 +68,9 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[12])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[11])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[12])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[11])();
 			#endif
 		}
 
@@ -89,9 +89,9 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		internal static void RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[13])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[12])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[13])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[12])((nint)drawData);
 			#endif
 		}
 
@@ -118,43 +118,32 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte CreateFontsTextureNative()
+		internal static void UpdateTextureNative(ImTextureData* tex)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[14])();
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[13])(tex);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[14])();
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[13])((nint)tex);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool CreateFontsTexture()
+		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			byte ret = CreateFontsTextureNative();
-			return ret != 0;
+			UpdateTextureNative(tex);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyFontsTextureNative()
+		public static void UpdateTexture(ref ImTextureData tex)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[15])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[15])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DestroyFontsTexture()
-		{
-			DestroyFontsTextureNative();
+			fixed (ImTextureData* ptex = &tex)
+			{
+				UpdateTextureNative((ImTextureData*)ptex);
+			}
 		}
 
 		/// <summary>
@@ -164,9 +153,9 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		internal static byte CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[16])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[14])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[16])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[14])();
 			#endif
 		}
 
@@ -186,9 +175,9 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		internal static void DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[15])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[15])();
 			#endif
 		}
 

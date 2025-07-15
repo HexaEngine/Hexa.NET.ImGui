@@ -1,26 +1,11 @@
 {
+  "BaseConfig": {
+    "Url": "file://config.base.json",
+    "IgnoredProperties": [ "IgnoredFunctions" ]
+  },
   "Namespace": "Hexa.NET.ImGui",
   "ApiName": "ImGui",
   "LibName": "cimgui",
-  "ImportType": "FunctionTable",
-  "EnableExperimentalOptions": true,
-  "GenerateConstructorsForStructs": true,
-  "GenerateSizeOfStructs": false,
-  "AutoSquashTypedef": true,
-  "GenerateAdditionalOverloads": true,
-  "UseCustomContext": true,
-  "KnownConstantNames": {},
-  "KnownEnumValueNames": {
-    "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
-    "ImGuiItemFlags_AutoClosePopups": "ImGuiItemFlags.AutoClosePopups"
-  },
-  "KnownEnumPrefixes": {},
-  "KnownExtensionPrefixes": {},
-  "KnownExtensionNames": {},
-  "KnownStructMethods": {},
-  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
-  "PreserveCaps": [ "" ],
-  "Keywords": [ "object", "event", "out", "base" ],
   "GenerateConstants": false,
   "GenerateEnums": false,
   "GenerateExtensions": false,
@@ -41,66 +26,5 @@
     "igDataTypeFormatString",
     "igInputTextEx",
     "igTempInputText"
-  ],
-  "AllowedTypes": [],
-  "AllowedEnums": [],
-  "AllowedTypedefs": [],
-  "ArrayMappings": [
-    {
-      "Primitive": 11,
-      "Size": 4,
-      "Name": "ref Vector4"
-    },
-    {
-      "Primitive": 11,
-      "Size": 3,
-      "Name": "ref Vector3"
-    },
-    {
-      "Primitive": 11,
-      "Size": 2,
-      "Name": "ref Vector2"
-    }
-  ],
-  "TypeMappings": {
-    "uint8_t": "byte",
-    "uint16_t": "ushort",
-    "uint32_t": "uint",
-    "uint64_t": "ulong",
-    "int8_t": "sbyte",
-    "int32_t": "int",
-    "int16_t": "short",
-    "int64_t": "long",
-    "int64_t*": "long*",
-    "unsigned char": "byte",
-    "signed char": "sbyte",
-    "char": "byte",
-    "size_t": "nuint",
-    "ImVec2": "Vector2",
-    "ImVec3": "Vector3",
-    "ImVec4": "Vector4",
-    "ImGuiID": "int",
-    "ImS8": "sbyte",
-    "ImU8": "byte",
-    "ImS16": "short",
-    "ImU16": "ushort",
-    "ImS32": "int",
-    "ImU32": "uint",
-    "ImS64": "long",
-    "ImU64": "ulong",
-    "ImWchar16": "ushort",
-    "ImWchar32": "uint",
-    "ImWchar": "uint",
-    "ImDrawIdx": "ushort",
-    "ImGuiKeyChord": "int",
-    "ImGuiKeyRoutingIndex": "short",
-    "ImPoolIdx": "int",
-    "ImGuiTableDrawChannelIdx": "byte",
-    "ImGuiTableColumnIdx": "sbyte",
-    "ImGuiSelectionUserData": "long",
-    "ImBitArrayForNamedKeys": "nuint",
-    "va_list": "nuint"
-  },
-
-  "Usings": [ "System.Numerics" ]
+  ]
 }

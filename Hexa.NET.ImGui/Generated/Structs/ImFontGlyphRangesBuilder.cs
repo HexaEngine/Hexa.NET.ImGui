@@ -17,8 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Helper to build glyph ranges from textstring data. Feed your application stringscharacters to it then call BuildRanges().<br/>
-	/// This is essentially a tightly packed of vector of 64k booleans = 8KB storage.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyphRangesBuilder
@@ -39,7 +38,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// Add character<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddChar(uint c)
 		{
@@ -50,7 +49,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRanges(uint* ranges)
 		{
@@ -61,21 +60,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
-		/// </summary>
-		public unsafe void AddRanges(ref uint ranges)
-		{
-			fixed (ImFontGlyphRangesBuilder* @this = &this)
-			{
-				fixed (uint* pranges = &ranges)
-				{
-					ImGui.AddRangesNative(@this, (uint*)pranges);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, byte* textEnd)
 		{
@@ -86,7 +71,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text)
 		{
@@ -97,7 +82,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, byte* textEnd)
 		{
@@ -111,7 +96,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text)
 		{
@@ -125,7 +110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -139,7 +124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text)
 		{
@@ -153,7 +138,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, byte* textEnd)
 		{
@@ -185,7 +170,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text)
 		{
@@ -217,7 +202,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, ref byte textEnd)
 		{
@@ -231,7 +216,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -245,7 +230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, string textEnd)
 		{
@@ -277,7 +262,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, ref byte textEnd)
 		{
@@ -294,7 +279,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -311,7 +296,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, string textEnd)
 		{
@@ -364,7 +349,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -381,7 +366,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, string textEnd)
 		{
@@ -416,7 +401,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -433,7 +418,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -468,7 +453,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, ref byte textEnd)
 		{
@@ -503,7 +488,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -538,7 +523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Output new ranges<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void BuildRanges(ImVector<uint>* outRanges)
 		{
@@ -549,7 +534,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Output new ranges<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void BuildRanges(ref ImVector<uint> outRanges)
 		{
@@ -585,19 +570,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		public unsafe bool GetBit(ulong n)
-		{
-			fixed (ImFontGlyphRangesBuilder* @this = &this)
-			{
-				byte ret = ImGui.GetBitNative(@this, n);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool GetBit(nuint n)
 		{
@@ -609,18 +582,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public unsafe void SetBit(ulong n)
-		{
-			fixed (ImFontGlyphRangesBuilder* @this = &this)
-			{
-				ImGui.SetBitNative(@this, n);
-			}
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetBit(nuint n)
 		{
@@ -678,7 +640,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImVector<uint> UsedChars => ref Unsafe.AsRef<ImVector<uint>>(&Handle->UsedChars);
 		/// <summary>
-		/// Add character<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddChar(uint c)
 		{
@@ -686,7 +648,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRanges(uint* ranges)
 		{
@@ -694,18 +656,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
-		/// </summary>
-		public unsafe void AddRanges(ref uint ranges)
-		{
-			fixed (uint* pranges = &ranges)
-			{
-				ImGui.AddRangesNative(Handle, (uint*)pranges);
-			}
-		}
-
-		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, byte* textEnd)
 		{
@@ -713,7 +664,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text)
 		{
@@ -721,7 +672,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, byte* textEnd)
 		{
@@ -732,7 +683,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text)
 		{
@@ -743,7 +694,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -754,7 +705,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text)
 		{
@@ -765,7 +716,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, byte* textEnd)
 		{
@@ -794,7 +745,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text)
 		{
@@ -823,7 +774,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, ref byte textEnd)
 		{
@@ -834,7 +785,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -845,7 +796,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(byte* text, string textEnd)
 		{
@@ -874,7 +825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, ref byte textEnd)
 		{
@@ -888,7 +839,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -902,7 +853,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, string textEnd)
 		{
@@ -952,7 +903,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -966,7 +917,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ref byte text, string textEnd)
 		{
@@ -998,7 +949,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -1012,7 +963,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -1044,7 +995,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, ref byte textEnd)
 		{
@@ -1076,7 +1027,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Add string (each character of the UTF-8 string are added)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddText(string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1108,7 +1059,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Output new ranges<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void BuildRanges(ImVector<uint>* outRanges)
 		{
@@ -1116,7 +1067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Output new ranges<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void BuildRanges(ref ImVector<uint> outRanges)
 		{
@@ -1143,16 +1094,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Get bit n in the array<br/>
-		/// </summary>
-		public unsafe bool GetBit(ulong n)
-		{
-			byte ret = ImGui.GetBitNative(Handle, n);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Get bit n in the array<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool GetBit(nuint n)
 		{
@@ -1161,15 +1103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Set bit n in the array<br/>
-		/// </summary>
-		public unsafe void SetBit(ulong n)
-		{
-			ImGui.SetBitNative(Handle, n);
-		}
-
-		/// <summary>
-		/// Set bit n in the array<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetBit(nuint n)
 		{

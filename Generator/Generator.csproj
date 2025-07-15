@@ -10,17 +10,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen" Version="1.1.10" />
+		<PackageReference Include="HexaGen.Legacy" Version="1.0.4" />
 		<PackageReference Include="HexaGen.BuildSystems" Version="0.0.1-alpha" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="backends\cimgui.h">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="backends\cimgui_impl.h">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="backends\generator.sdl3.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -31,6 +26,72 @@
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="backends\generator.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_config.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_android.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_core.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_dx10.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_dx11.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_dx12.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_dx9.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_glfw.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_metal.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_opengl2.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_opengl3.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_osx.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_sdl2.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_sdl2renderer.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_sdl3.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_sdl3renderer.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_sdlgpu3.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_vulkan.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="backends\include\cimgui_impl_win32.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="config.backends.base.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="config.base.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="cimguizmo\cimgui.h">
@@ -115,6 +176,9 @@
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="imgui-node-editor\metadata.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Test2.csx">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

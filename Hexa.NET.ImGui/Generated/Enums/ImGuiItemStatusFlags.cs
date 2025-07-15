@@ -25,57 +25,57 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Mouse position is within item rectangle (does NOT mean that the window is in correct z-order and can be hovered!, this is only one part of the most-common IsItemHovered test)<br/>
+		/// To be documented.
 		/// </summary>
 		HoveredRect = unchecked(1),
 
 		/// <summary>
-		/// g.LastItemData.DisplayRect is valid<br/>
+		/// To be documented.
 		/// </summary>
 		HasDisplayRect = unchecked(2),
 
 		/// <summary>
-		/// Value exposed by item was edited in the current frame (should match the bool return value of most widgets)<br/>
+		/// To be documented.
 		/// </summary>
 		Edited = unchecked(4),
 
 		/// <summary>
-		/// Set when Selectable(), TreeNode() reports toggling a selection. We can't report "Selected", only state changes, in order to easily handle clipping with less issues.<br/>
+		/// To be documented.
 		/// </summary>
 		ToggledSelection = unchecked(8),
 
 		/// <summary>
-		/// Set when TreeNode() reports toggling their open state.<br/>
+		/// To be documented.
 		/// </summary>
 		ToggledOpen = unchecked(16),
 
 		/// <summary>
-		/// Set if the widgetgroup is able to provide data for the ImGuiItemStatusFlags_Deactivated flag.<br/>
+		/// To be documented.
 		/// </summary>
 		HasDeactivated = unchecked(32),
 
 		/// <summary>
-		/// Only valid if ImGuiItemStatusFlags_HasDeactivated is set.<br/>
+		/// To be documented.
 		/// </summary>
 		Deactivated = unchecked(64),
 
 		/// <summary>
-		/// Override the HoveredWindow test to allow cross-window hover testing.<br/>
+		/// To be documented.
 		/// </summary>
 		HoveredWindow = unchecked(128),
 
 		/// <summary>
-		/// [WIP] Set when item is overlapping the current clipping rectangle (Used internally. Please don't use yet: APIsystem will change as we refactor Itemadd()).<br/>
+		/// To be documented.
 		/// </summary>
 		Visible = unchecked(256),
 
 		/// <summary>
-		/// g.LastItemData.ClipRect is valid.<br/>
+		/// To be documented.
 		/// </summary>
 		HasClipRect = unchecked(512),
 
 		/// <summary>
-		/// g.LastItemData.Shortcut valid. Set by SetNextItemShortcut() -&gt; ItemAdd().<br/>
+		/// To be documented.
 		/// </summary>
 		HasShortcut = unchecked(1024),
 	}

@@ -19,4348 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)(default), remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), remaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), remaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)(default), remaining);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)(default), remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret;
-			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret;
-			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			Vector2 ret;
-			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			Vector2 ret;
-			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						Vector2 ret;
-						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte* ptextEnd = textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte* ptextEnd = textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEnd != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEnd != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEnd != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEnd != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pself = &self)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, byte** remaining)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, byte** remaining)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, remaining);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte* remaining)
-		{
-			fixed (byte** premaining = &remaining)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)(default), (byte**)premaining);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
-		{
-			fixed (byte** premaining = &remaining)
-			{
-				Vector2 ret;
-				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
-		{
-			fixed (byte** premaining = &remaining)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte* remaining)
-		{
-			fixed (byte** premaining = &remaining)
-			{
-				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)(default), (byte**)premaining);
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
-		/// </summary>
-		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte** premaining = &remaining)
-				{
-					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
-				}
-			}
-		}
-
-		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte* remaining)
 		{
@@ -4374,7 +33,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte* remaining)
 		{
@@ -4390,7 +49,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4406,7 +65,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4420,7 +79,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte* remaining)
 		{
@@ -4434,7 +93,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4451,7 +110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte* remaining)
 		{
@@ -4468,7 +127,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte* remaining)
 		{
@@ -4484,7 +143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4500,7 +159,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte* remaining)
 		{
@@ -4516,7 +175,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4532,7 +191,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte* remaining)
 		{
@@ -4566,7 +225,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4600,7 +259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4617,7 +276,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte* remaining)
 		{
@@ -4634,7 +293,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4651,7 +310,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte* remaining)
 		{
@@ -4668,7 +327,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4703,7 +362,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte* remaining)
 		{
@@ -4738,7 +397,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte* remaining)
 		{
@@ -4757,7 +416,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4776,7 +435,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte* remaining)
 		{
@@ -4795,7 +454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4814,7 +473,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte* remaining)
 		{
@@ -4851,7 +510,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4888,7 +547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4908,7 +567,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte* remaining)
 		{
@@ -4928,7 +587,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -4948,7 +607,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte* remaining)
 		{
@@ -4968,7 +627,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
 		{
@@ -5006,7 +665,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// utf8<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte* remaining)
 		{
@@ -5040,6 +699,4324 @@ namespace Hexa.NET.ImGui
 						}
 					}
 				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)premaining);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)premaining);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)premaining);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)premaining);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							Vector2 ret;
+							CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							Vector2 ret;
+							CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							Vector2 ret;
+							CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							Vector2 ret;
+							CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							fixed (byte** premaining = &remaining)
+							{
+								CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							fixed (byte** premaining = &remaining)
+							{
+								CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr1);
+						}
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							fixed (byte** premaining = &remaining)
+							{
+								CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						byte* pStr0 = null;
+						int pStrSize0 = 0;
+						if (textEnd != null)
+						{
+							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+							}
+							else
+							{
+								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+								pStr0 = pStrStack0;
+							}
+							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+							pStr0[pStrOffset0] = 0;
+						}
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							fixed (byte** premaining = &remaining)
+							{
+								CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						byte* pStr0 = null;
+						int pStrSize0 = 0;
+						if (textEnd != null)
+						{
+							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+							}
+							else
+							{
+								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+								pStr0 = pStrStack0;
+							}
+							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+							pStr0[pStrOffset0] = 0;
+						}
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(ref Vector2 pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* ppOut = &pOut)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative((Vector2*)ppOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ImFontPtr self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, self, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void CalcTextSizeA(Vector2* pOut, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						CalcTextSizeANative(pOut, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEnd, (byte**)premaining);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* CalcWordWrapPositionNative(ImFont* self, float size, byte* text, byte* textEnd, float wrapWidth)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImFont*, float, byte*, byte*, float, byte*>)funcTable[678])(self, size, text, textEnd, wrapWidth);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, float, nint, nint, float, nint>)funcTable[678])((nint)self, size, (nint)text, (nint)textEnd, wrapWidth);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, byte* text, byte* textEnd, float wrapWidth)
+		{
+			byte* ret = CalcWordWrapPositionNative(self, size, text, textEnd, wrapWidth);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, byte* text, byte* textEnd, float wrapWidth)
+		{
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, text, textEnd, wrapWidth));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, byte* text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, text, textEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, byte* text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, text, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, textEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, textEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, string text, byte* textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = CalcWordWrapPositionNative(self, size, pStr0, textEnd, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, string text, byte* textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, pStr0, textEnd, wrapWidth));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, textEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, textEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, textEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, textEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, textEnd, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, textEnd, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				byte* ret = CalcWordWrapPositionNative(self, size, text, (byte*)ptextEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, text, (byte*)ptextEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				byte* ret = CalcWordWrapPositionNative(self, size, text, (byte*)ptextEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, text, (byte*)ptextEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = CalcWordWrapPositionNative(self, size, text, pStr0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, text, pStr0, wrapWidth));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, text, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, text, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, text, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, text, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, text, pStr0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, text, pStr0, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, string text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = CalcWordWrapPositionNative(self, size, pStr0, pStr1, wrapWidth);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, string text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, pStr0, pStr1, wrapWidth));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ref byte text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, pStr0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ref byte text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, pStr0, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = CalcWordWrapPositionNative(self, size, (byte*)ptext, pStr0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, (byte*)ptext, pStr0, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, string text, ref byte textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				byte* ret = CalcWordWrapPositionNative(self, size, pStr0, (byte*)ptextEnd, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, string text, ref byte textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, pStr0, (byte*)ptextEnd, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ImFontPtr self, float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				byte* ret = CalcWordWrapPositionNative(self, size, pStr0, (byte*)ptextEnd, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ImFontPtr self, float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative(self, size, pStr0, (byte*)ptextEnd, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, string text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, pStr1, wrapWidth);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, string text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, pStr1, wrapWidth));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ref byte text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, pStr0, wrapWidth);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ref byte text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, pStr0, wrapWidth));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, pStr0, wrapWidth);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, (byte*)ptext, pStr0, wrapWidth));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, string text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, (byte*)ptextEnd, wrapWidth);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, string text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, (byte*)ptextEnd, wrapWidth));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* CalcWordWrapPosition(ref ImFont self, float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, (byte*)ptextEnd, wrapWidth);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string CalcWordWrapPositionS(ref ImFont self, float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionNative((ImFont*)pself, size, pStr0, (byte*)ptextEnd, wrapWidth));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderCharNative(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFont*, ImDrawList*, float, Vector2, uint, uint, Vector4*, void>)funcTable[679])(self, drawList, size, pos, col, c, cpuFineClip);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, uint, nint, void>)funcTable[679])((nint)self, (nint)drawList, size, pos, col, c, (nint)cpuFineClip);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			RenderCharNative(self, drawList, size, pos, col, c, cpuFineClip);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
+		{
+			RenderCharNative(self, drawList, size, pos, col, c, (Vector4*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				RenderCharNative((ImFont*)pself, drawList, size, pos, col, c, cpuFineClip);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				RenderCharNative((ImFont*)pself, drawList, size, pos, col, c, (Vector4*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderCharNative(self, (ImDrawList*)pdrawList, size, pos, col, c, cpuFineClip);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderCharNative(self, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					RenderCharNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, c, cpuFineClip);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					RenderCharNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (Vector4* pcpuFineClip = &cpuFineClip)
+			{
+				RenderCharNative(self, drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (Vector4* pcpuFineClip = &cpuFineClip)
+				{
+					RenderCharNative((ImFont*)pself, drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (Vector4* pcpuFineClip = &cpuFineClip)
+				{
+					RenderCharNative(self, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderChar(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (Vector4* pcpuFineClip = &cpuFineClip)
+					{
+						RenderCharNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderTextNative(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, byte cpuFineClip)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFont*, ImDrawList*, float, Vector2, uint, Vector4, byte*, byte*, float, byte, void>)funcTable[680])(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, Vector4, nint, nint, float, byte, void>)funcTable[680])((nint)self, (nint)drawList, size, pos, col, clipRect, (nint)textBegin, (nint)textEnd, wrapWidth, cpuFineClip);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
+		{
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
+		{
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ref ImFont self, ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderText(ImFontPtr self, ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 	}

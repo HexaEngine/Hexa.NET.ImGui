@@ -20,17 +20,17 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiInputTextFlagsPrivate : int
 	{
 		/// <summary>
-		/// For internal use by InputTextMultiline()<br/>
+		/// To be documented.
 		/// </summary>
 		Multiline = unchecked(67108864),
 
 		/// <summary>
-		/// For internal use by TempInputText(), will skip calling ItemAdd(). Require bounding-box to strictly match.<br/>
+		/// To be documented.
 		/// </summary>
 		MergedItem = unchecked(134217728),
 
 		/// <summary>
-		/// For internal use by InputScalar() and TempInputScalar()<br/>
+		/// To be documented.
 		/// </summary>
 		LocalizeDecimalPoint = unchecked(268435456),
 	}

@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(context, 21);
+			funcTable = new FunctionTable(context, 33);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
 			funcTable.Load(2, "CImGui_ImplSDL3_InitForOpenGL");
@@ -43,10 +43,22 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			funcTable.Load(14, "CImGui_ImplSDLRenderer3_Shutdown");
 			funcTable.Load(15, "CImGui_ImplSDLRenderer3_NewFrame");
 			funcTable.Load(16, "CImGui_ImplSDLRenderer3_RenderDrawData");
-			funcTable.Load(17, "CImGui_ImplSDLRenderer3_CreateFontsTexture");
-			funcTable.Load(18, "CImGui_ImplSDLRenderer3_DestroyFontsTexture");
-			funcTable.Load(19, "CImGui_ImplSDLRenderer3_CreateDeviceObjects");
-			funcTable.Load(20, "CImGui_ImplSDLRenderer3_DestroyDeviceObjects");
+			funcTable.Load(17, "CImGui_ImplSDLRenderer3_CreateDeviceObjects");
+			funcTable.Load(18, "CImGui_ImplSDLRenderer3_DestroyDeviceObjects");
+			funcTable.Load(19, "CImGui_ImplSDLRenderer3_UpdateTexture");
+			funcTable.Load(20, "CImGui_ImplSDLGPU3_Init");
+			funcTable.Load(21, "CImGui_ImplSDLGPU3_Shutdown");
+			funcTable.Load(22, "CImGui_ImplSDLGPU3_NewFrame");
+			funcTable.Load(23, "CImGui_ImplSDLGPU3_PrepareDrawData");
+			funcTable.Load(24, "CImGui_ImplSDLGPU3_RenderDrawData");
+			funcTable.Load(25, "CImGui_ImplSDLGPU3_CreateDeviceObjects");
+			funcTable.Load(26, "CImGui_ImplSDLGPU3_DestroyDeviceObjects");
+			funcTable.Load(27, "CImGui_ImplSDLGPU3_GetSPIRVVertexShader");
+			funcTable.Load(28, "CImGui_ImplSDLGPU3_GetSPIRVFragmentShader");
+			funcTable.Load(29, "CImGui_ImplSDLGPU3_GetDXBCVertexShader");
+			funcTable.Load(30, "CImGui_ImplSDLGPU3_GetDXBCFragmentShader");
+			funcTable.Load(31, "CImGui_ImplSDLGPU3_GetMetallibVertexShader");
+			funcTable.Load(32, "CImGui_ImplSDLGPU3_GetMetallibFragmentShader");
 		}
 
 		public static void FreeApi()

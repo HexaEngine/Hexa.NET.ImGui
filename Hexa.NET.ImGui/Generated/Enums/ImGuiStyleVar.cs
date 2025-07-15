@@ -20,183 +20,193 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiStyleVar : int
 	{
 		/// <summary>
-		/// float     Alpha<br/>
+		/// To be documented.
 		/// </summary>
 		Alpha = unchecked(0),
 
 		/// <summary>
-		/// float     DisabledAlpha<br/>
+		/// To be documented.
 		/// </summary>
 		DisabledAlpha = unchecked(1),
 
 		/// <summary>
-		/// ImVec2    WindowPadding<br/>
+		/// To be documented.
 		/// </summary>
 		WindowPadding = unchecked(2),
 
 		/// <summary>
-		/// float     WindowRounding<br/>
+		/// To be documented.
 		/// </summary>
 		WindowRounding = unchecked(3),
 
 		/// <summary>
-		/// float     WindowBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		WindowBorderSize = unchecked(4),
 
 		/// <summary>
-		/// ImVec2    WindowMinSize<br/>
+		/// To be documented.
 		/// </summary>
 		WindowMinSize = unchecked(5),
 
 		/// <summary>
-		/// ImVec2    WindowTitleAlign<br/>
+		/// To be documented.
 		/// </summary>
 		WindowTitleAlign = unchecked(6),
 
 		/// <summary>
-		/// float     ChildRounding<br/>
+		/// To be documented.
 		/// </summary>
 		ChildRounding = unchecked(7),
 
 		/// <summary>
-		/// float     ChildBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		ChildBorderSize = unchecked(8),
 
 		/// <summary>
-		/// float     PopupRounding<br/>
+		/// To be documented.
 		/// </summary>
 		PopupRounding = unchecked(9),
 
 		/// <summary>
-		/// float     PopupBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		PopupBorderSize = unchecked(10),
 
 		/// <summary>
-		/// ImVec2    FramePadding<br/>
+		/// To be documented.
 		/// </summary>
 		FramePadding = unchecked(11),
 
 		/// <summary>
-		/// float     FrameRounding<br/>
+		/// To be documented.
 		/// </summary>
 		FrameRounding = unchecked(12),
 
 		/// <summary>
-		/// float     FrameBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		FrameBorderSize = unchecked(13),
 
 		/// <summary>
-		/// ImVec2    ItemSpacing<br/>
+		/// To be documented.
 		/// </summary>
 		ItemSpacing = unchecked(14),
 
 		/// <summary>
-		/// ImVec2    ItemInnerSpacing<br/>
+		/// To be documented.
 		/// </summary>
 		ItemInnerSpacing = unchecked(15),
 
 		/// <summary>
-		/// float     IndentSpacing<br/>
+		/// To be documented.
 		/// </summary>
 		IndentSpacing = unchecked(16),
 
 		/// <summary>
-		/// ImVec2    CellPadding<br/>
+		/// To be documented.
 		/// </summary>
 		CellPadding = unchecked(17),
 
 		/// <summary>
-		/// float     ScrollbarSize<br/>
+		/// To be documented.
 		/// </summary>
 		ScrollbarSize = unchecked(18),
 
 		/// <summary>
-		/// float     ScrollbarRounding<br/>
+		/// To be documented.
 		/// </summary>
 		ScrollbarRounding = unchecked(19),
 
 		/// <summary>
-		/// float     GrabMinSize<br/>
+		/// To be documented.
 		/// </summary>
 		GrabMinSize = unchecked(20),
 
 		/// <summary>
-		/// float     GrabRounding<br/>
+		/// To be documented.
 		/// </summary>
 		GrabRounding = unchecked(21),
 
 		/// <summary>
-		/// float     ImageBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		ImageBorderSize = unchecked(22),
 
 		/// <summary>
-		/// float     TabRounding<br/>
+		/// To be documented.
 		/// </summary>
 		TabRounding = unchecked(23),
 
 		/// <summary>
-		/// float     TabBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		TabBorderSize = unchecked(24),
 
 		/// <summary>
-		/// float     TabBarBorderSize<br/>
+		/// To be documented.
 		/// </summary>
 		TabBarBorderSize = unchecked(25),
 
 		/// <summary>
-		/// float     TabBarOverlineSize<br/>
+		/// To be documented.
 		/// </summary>
 		TabBarOverlineSize = unchecked(26),
 
 		/// <summary>
-		/// float     TableAngledHeadersAngle<br/>
+		/// To be documented.
 		/// </summary>
 		TableAngledHeadersAngle = unchecked(27),
 
 		/// <summary>
-		/// ImVec2  TableAngledHeadersTextAlign<br/>
+		/// To be documented.
 		/// </summary>
 		TableAngledHeadersTextAlign = unchecked(28),
 
 		/// <summary>
-		/// ImVec2    ButtonTextAlign<br/>
+		/// To be documented.
 		/// </summary>
-		ButtonTextAlign = unchecked(29),
-
-		/// <summary>
-		/// ImVec2    SelectableTextAlign<br/>
-		/// </summary>
-		SelectableTextAlign = unchecked(30),
-
-		/// <summary>
-		/// float     SeparatorTextBorderSize<br/>
-		/// </summary>
-		SeparatorTextBorderSize = unchecked(31),
-
-		/// <summary>
-		/// ImVec2    SeparatorTextAlign<br/>
-		/// </summary>
-		SeparatorTextAlign = unchecked(32),
-
-		/// <summary>
-		/// ImVec2    SeparatorTextPadding<br/>
-		/// </summary>
-		SeparatorTextPadding = unchecked(33),
-
-		/// <summary>
-		/// float     DockingSeparatorSize<br/>
-		/// </summary>
-		DockingSeparatorSize = unchecked(34),
+		TreeLinesSize = unchecked(29),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(35),
+		TreeLinesRounding = unchecked(30),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ButtonTextAlign = unchecked(31),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		SelectableTextAlign = unchecked(32),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		SeparatorTextBorderSize = unchecked(33),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		SeparatorTextAlign = unchecked(34),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		SeparatorTextPadding = unchecked(35),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		DockingSeparatorSize = unchecked(36),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Count = unchecked(37),
 	}
 }

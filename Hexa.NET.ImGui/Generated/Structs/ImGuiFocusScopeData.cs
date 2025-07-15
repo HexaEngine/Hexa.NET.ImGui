@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Storage for PushFocusScope(), g.FocusScopeStack[], g.NavFocusRoute[]<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiFocusScopeData

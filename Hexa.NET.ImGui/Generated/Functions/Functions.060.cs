@@ -21,6 +21,252 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ref byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), pMin, pMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, pMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNative(label, dataType, pData, (float)(1.0f), pMin, pMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, pMax, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, void* pMax, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, void* pMin, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragScalarNative(label, dataType, pData, vSpeed, pMin, (void*)(default), pStr0, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool DragScalar(byte* label, ImGuiDataType dataType, void* pData, float vSpeed, string format)
 		{
 			byte* pStr0 = null;
@@ -3211,9 +3457,9 @@ namespace Hexa.NET.ImGui
 		internal static byte DragScalarNNative(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, int, float, void*, void*, byte*, ImGuiSliderFlags, byte>)funcTable[178])(label, dataType, pData, components, vSpeed, pMin, pMax, format, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, int, float, void*, void*, byte*, ImGuiSliderFlags, byte>)funcTable[182])(label, dataType, pData, components, vSpeed, pMin, pMax, format, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, int, float, nint, nint, nint, ImGuiSliderFlags, byte>)funcTable[178])((nint)label, dataType, (nint)pData, components, vSpeed, (nint)pMin, (nint)pMax, (nint)format, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, int, float, nint, nint, nint, ImGuiSliderFlags, byte>)funcTable[182])((nint)label, dataType, (nint)pData, components, vSpeed, (nint)pMin, (nint)pMax, (nint)format, flags);
 			#endif
 		}
 
@@ -4775,276 +5021,6 @@ namespace Hexa.NET.ImGui
 				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, pMax, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
 		}
 	}
 }

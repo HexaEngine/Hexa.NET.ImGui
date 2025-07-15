@@ -38,14 +38,14 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void* PFNVkVoidFunction([NativeName(NativeNameType.Param, "function_name")] [NativeName(NativeNameType.Type, "const char*")] byte* functionName, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] void* userData);
+	public unsafe delegate void PFNVkVoidFunction();
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate nint PFNVkVoidFunction([NativeName(NativeNameType.Param, "function_name")] [NativeName(NativeNameType.Type, "const char*")] nint functionName, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] nint userData);
+	public unsafe delegate void PFNVkVoidFunction();
 
 	#endif
 

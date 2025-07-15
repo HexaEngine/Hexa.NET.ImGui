@@ -21,6 +21,256 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool InputInt(string label, ref int v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt(string label, ref int v, int step, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, step, (int)(100), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt(string label, ref int v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, (int)(1), (int)(100), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte InputInt2Native(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[202])(label, v, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[202])((nint)label, (nint)v, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputInt2Native(label, v, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(byte* label, int* v)
+		{
+			byte ret = InputInt2Native(label, v, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(ref byte label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(ref byte label, int* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(ReadOnlySpan<byte> label, int* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(string label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt2Native(pStr0, v, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(string label, int* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt2Native(pStr0, v, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputInt2(byte* label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt2Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool InputInt2(byte* label, ref int v)
 		{
 			fixed (int* pv = &v)
@@ -217,9 +467,9 @@ namespace Hexa.NET.ImGui
 		internal static byte InputInt3Native(byte* label, int* v, ImGuiInputTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[199])(label, v, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[203])(label, v, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[199])((nint)label, (nint)v, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[203])((nint)label, (nint)v, flags);
 			#endif
 		}
 
@@ -560,9 +810,9 @@ namespace Hexa.NET.ImGui
 		internal static byte InputInt4Native(byte* label, int* v, ImGuiInputTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[200])(label, v, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[204])(label, v, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[200])((nint)label, (nint)v, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[204])((nint)label, (nint)v, flags);
 			#endif
 		}
 
@@ -903,9 +1153,9 @@ namespace Hexa.NET.ImGui
 		internal static byte InputDoubleNative(byte* label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, double*, double, double, byte*, ImGuiInputTextFlags, byte>)funcTable[201])(label, v, step, stepFast, format, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, double*, double, double, byte*, ImGuiInputTextFlags, byte>)funcTable[205])(label, v, step, stepFast, format, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, double, double, nint, ImGuiInputTextFlags, byte>)funcTable[201])((nint)label, (nint)v, step, stepFast, (nint)format, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, double, double, nint, ImGuiInputTextFlags, byte>)funcTable[205])((nint)label, (nint)v, step, stepFast, (nint)format, flags);
 			#endif
 		}
 
@@ -4776,276 +5026,6 @@ namespace Hexa.NET.ImGui
 						return ret != 0;
 					}
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, ref byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, ref byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (double* pv = &v)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pv = &v)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, pStr1, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, double stepFast, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pv = &v)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, pStr1, (ImGuiInputTextFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 	}

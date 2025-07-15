@@ -17,13 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// - Currently represents the Platform Window created by the application which is hosting our Dear ImGui windows.<br/>
-	/// - With multi-viewport enabled, we extend this concept to have multiple active viewports.<br/>
-	/// - In the future we will extend this concept further to also represent Platform Monitor and support a "no main platform window" operation mode.<br/>
-	/// - About Main Area vs Work Area:<br/>
-	/// - Main Area = entire viewport.<br/>
-	/// - Work Area = entire viewport minus sections used by main menu bars (for platform windows), or by task bar (for platform monitor).<br/>
-	/// - Windows are generally trying to stay within the Work Area of their host viewport.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiViewport
@@ -47,6 +41,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public Vector2 Size;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public Vector2 FramebufferScale;
 
 		/// <summary>
 		/// To be documented.
@@ -117,12 +116,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImDrawDataPtr drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
+		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImDrawData* drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
 		{
 			ID = id;
 			Flags = flags;
 			Pos = pos;
 			Size = size;
+			FramebufferScale = framebufferScale;
 			WorkPos = workPos;
 			WorkSize = workSize;
 			DpiScale = dpiScale;
@@ -209,6 +209,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref Vector2 Size => ref Unsafe.AsRef<Vector2>(&Handle->Size);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref Vector2 FramebufferScale => ref Unsafe.AsRef<Vector2>(&Handle->FramebufferScale);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

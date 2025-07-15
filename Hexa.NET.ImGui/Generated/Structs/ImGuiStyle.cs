@@ -25,6 +25,21 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public float FontSizeBase;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float FontScaleMain;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float FontScaleDpi;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float Alpha;
 
 		/// <summary>
@@ -205,6 +220,21 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ImGuiTreeNodeFlags TreeLinesFlags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float TreeLinesSize;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float TreeLinesRounding;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ImGuiDir ColorButtonPosition;
 
 		/// <summary>
@@ -338,6 +368,8 @@ namespace Hexa.NET.ImGui
 		public Vector4 Colors_55;
 		public Vector4 Colors_56;
 		public Vector4 Colors_57;
+		public Vector4 Colors_58;
+		public Vector4 Colors_59;
 
 		/// <summary>
 		/// To be documented.
@@ -364,12 +396,25 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ImGuiHoveredFlags HoverFlagsForTooltipNav;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float MainScale;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStyle(float alpha = default, float disabledAlpha = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float windowBorderHoverPadding = default, Vector2 windowMinSize = default, Vector2 windowTitleAlign = default, ImGuiDir windowMenuButtonPosition = default, float childRounding = default, float childBorderSize = default, float popupRounding = default, float popupBorderSize = default, Vector2 framePadding = default, float frameRounding = default, float frameBorderSize = default, Vector2 itemSpacing = default, Vector2 itemInnerSpacing = default, Vector2 cellPadding = default, Vector2 touchExtraPadding = default, float indentSpacing = default, float columnsMinSpacing = default, float scrollbarSize = default, float scrollbarRounding = default, float grabMinSize = default, float grabRounding = default, float logSliderDeadzone = default, float imageBorderSize = default, float tabRounding = default, float tabBorderSize = default, float tabCloseButtonMinWidthSelected = default, float tabCloseButtonMinWidthUnselected = default, float tabBarBorderSize = default, float tabBarOverlineSize = default, float tableAngledHeadersAngle = default, Vector2 tableAngledHeadersTextAlign = default, ImGuiDir colorButtonPosition = default, Vector2 buttonTextAlign = default, Vector2 selectableTextAlign = default, float separatorTextBorderSize = default, Vector2 separatorTextAlign = default, Vector2 separatorTextPadding = default, Vector2 displayWindowPadding = default, Vector2 displaySafeAreaPadding = default, float dockingSeparatorSize = default, float mouseCursorScale = default, bool antiAliasedLines = default, bool antiAliasedLinesUseTex = default, bool antiAliasedFill = default, float curveTessellationTol = default, float circleTessellationMaxError = default, Vector4* colors = default, float hoverStationaryDelay = default, float hoverDelayShort = default, float hoverDelayNormal = default, ImGuiHoveredFlags hoverFlagsForTooltipMouse = default, ImGuiHoveredFlags hoverFlagsForTooltipNav = default)
+		public float NextFrameFontSizeBase;
+
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImGuiStyle(float fontSizeBase = default, float fontScaleMain = default, float fontScaleDpi = default, float alpha = default, float disabledAlpha = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float windowBorderHoverPadding = default, Vector2 windowMinSize = default, Vector2 windowTitleAlign = default, ImGuiDir windowMenuButtonPosition = default, float childRounding = default, float childBorderSize = default, float popupRounding = default, float popupBorderSize = default, Vector2 framePadding = default, float frameRounding = default, float frameBorderSize = default, Vector2 itemSpacing = default, Vector2 itemInnerSpacing = default, Vector2 cellPadding = default, Vector2 touchExtraPadding = default, float indentSpacing = default, float columnsMinSpacing = default, float scrollbarSize = default, float scrollbarRounding = default, float grabMinSize = default, float grabRounding = default, float logSliderDeadzone = default, float imageBorderSize = default, float tabRounding = default, float tabBorderSize = default, float tabCloseButtonMinWidthSelected = default, float tabCloseButtonMinWidthUnselected = default, float tabBarBorderSize = default, float tabBarOverlineSize = default, float tableAngledHeadersAngle = default, Vector2 tableAngledHeadersTextAlign = default, ImGuiTreeNodeFlags treeLinesFlags = default, float treeLinesSize = default, float treeLinesRounding = default, ImGuiDir colorButtonPosition = default, Vector2 buttonTextAlign = default, Vector2 selectableTextAlign = default, float separatorTextBorderSize = default, Vector2 separatorTextAlign = default, Vector2 separatorTextPadding = default, Vector2 displayWindowPadding = default, Vector2 displaySafeAreaPadding = default, float dockingSeparatorSize = default, float mouseCursorScale = default, bool antiAliasedLines = default, bool antiAliasedLinesUseTex = default, bool antiAliasedFill = default, float curveTessellationTol = default, float circleTessellationMaxError = default, Vector4* colors = default, float hoverStationaryDelay = default, float hoverDelayShort = default, float hoverDelayNormal = default, ImGuiHoveredFlags hoverFlagsForTooltipMouse = default, ImGuiHoveredFlags hoverFlagsForTooltipNav = default, float mainScale = default, float nextFrameFontSizeBase = default)
 		{
+			FontSizeBase = fontSizeBase;
+			FontScaleMain = fontScaleMain;
+			FontScaleDpi = fontScaleDpi;
 			Alpha = alpha;
 			DisabledAlpha = disabledAlpha;
 			WindowPadding = windowPadding;
@@ -406,6 +451,9 @@ namespace Hexa.NET.ImGui
 			TabBarOverlineSize = tabBarOverlineSize;
 			TableAngledHeadersAngle = tableAngledHeadersAngle;
 			TableAngledHeadersTextAlign = tableAngledHeadersTextAlign;
+			TreeLinesFlags = treeLinesFlags;
+			TreeLinesSize = treeLinesSize;
+			TreeLinesRounding = treeLinesRounding;
 			ColorButtonPosition = colorButtonPosition;
 			ButtonTextAlign = buttonTextAlign;
 			SelectableTextAlign = selectableTextAlign;
@@ -481,19 +529,26 @@ namespace Hexa.NET.ImGui
 				Colors_55 = colors[55];
 				Colors_56 = colors[56];
 				Colors_57 = colors[57];
+				Colors_58 = colors[58];
+				Colors_59 = colors[59];
 			}
 			HoverStationaryDelay = hoverStationaryDelay;
 			HoverDelayShort = hoverDelayShort;
 			HoverDelayNormal = hoverDelayNormal;
 			HoverFlagsForTooltipMouse = hoverFlagsForTooltipMouse;
 			HoverFlagsForTooltipNav = hoverFlagsForTooltipNav;
+			MainScale = mainScale;
+			NextFrameFontSizeBase = nextFrameFontSizeBase;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStyle(float alpha = default, float disabledAlpha = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float windowBorderHoverPadding = default, Vector2 windowMinSize = default, Vector2 windowTitleAlign = default, ImGuiDir windowMenuButtonPosition = default, float childRounding = default, float childBorderSize = default, float popupRounding = default, float popupBorderSize = default, Vector2 framePadding = default, float frameRounding = default, float frameBorderSize = default, Vector2 itemSpacing = default, Vector2 itemInnerSpacing = default, Vector2 cellPadding = default, Vector2 touchExtraPadding = default, float indentSpacing = default, float columnsMinSpacing = default, float scrollbarSize = default, float scrollbarRounding = default, float grabMinSize = default, float grabRounding = default, float logSliderDeadzone = default, float imageBorderSize = default, float tabRounding = default, float tabBorderSize = default, float tabCloseButtonMinWidthSelected = default, float tabCloseButtonMinWidthUnselected = default, float tabBarBorderSize = default, float tabBarOverlineSize = default, float tableAngledHeadersAngle = default, Vector2 tableAngledHeadersTextAlign = default, ImGuiDir colorButtonPosition = default, Vector2 buttonTextAlign = default, Vector2 selectableTextAlign = default, float separatorTextBorderSize = default, Vector2 separatorTextAlign = default, Vector2 separatorTextPadding = default, Vector2 displayWindowPadding = default, Vector2 displaySafeAreaPadding = default, float dockingSeparatorSize = default, float mouseCursorScale = default, bool antiAliasedLines = default, bool antiAliasedLinesUseTex = default, bool antiAliasedFill = default, float curveTessellationTol = default, float circleTessellationMaxError = default, Span<Vector4> colors = default, float hoverStationaryDelay = default, float hoverDelayShort = default, float hoverDelayNormal = default, ImGuiHoveredFlags hoverFlagsForTooltipMouse = default, ImGuiHoveredFlags hoverFlagsForTooltipNav = default)
+		public unsafe ImGuiStyle(float fontSizeBase = default, float fontScaleMain = default, float fontScaleDpi = default, float alpha = default, float disabledAlpha = default, Vector2 windowPadding = default, float windowRounding = default, float windowBorderSize = default, float windowBorderHoverPadding = default, Vector2 windowMinSize = default, Vector2 windowTitleAlign = default, ImGuiDir windowMenuButtonPosition = default, float childRounding = default, float childBorderSize = default, float popupRounding = default, float popupBorderSize = default, Vector2 framePadding = default, float frameRounding = default, float frameBorderSize = default, Vector2 itemSpacing = default, Vector2 itemInnerSpacing = default, Vector2 cellPadding = default, Vector2 touchExtraPadding = default, float indentSpacing = default, float columnsMinSpacing = default, float scrollbarSize = default, float scrollbarRounding = default, float grabMinSize = default, float grabRounding = default, float logSliderDeadzone = default, float imageBorderSize = default, float tabRounding = default, float tabBorderSize = default, float tabCloseButtonMinWidthSelected = default, float tabCloseButtonMinWidthUnselected = default, float tabBarBorderSize = default, float tabBarOverlineSize = default, float tableAngledHeadersAngle = default, Vector2 tableAngledHeadersTextAlign = default, ImGuiTreeNodeFlags treeLinesFlags = default, float treeLinesSize = default, float treeLinesRounding = default, ImGuiDir colorButtonPosition = default, Vector2 buttonTextAlign = default, Vector2 selectableTextAlign = default, float separatorTextBorderSize = default, Vector2 separatorTextAlign = default, Vector2 separatorTextPadding = default, Vector2 displayWindowPadding = default, Vector2 displaySafeAreaPadding = default, float dockingSeparatorSize = default, float mouseCursorScale = default, bool antiAliasedLines = default, bool antiAliasedLinesUseTex = default, bool antiAliasedFill = default, float curveTessellationTol = default, float circleTessellationMaxError = default, Span<Vector4> colors = default, float hoverStationaryDelay = default, float hoverDelayShort = default, float hoverDelayNormal = default, ImGuiHoveredFlags hoverFlagsForTooltipMouse = default, ImGuiHoveredFlags hoverFlagsForTooltipNav = default, float mainScale = default, float nextFrameFontSizeBase = default)
 		{
+			FontSizeBase = fontSizeBase;
+			FontScaleMain = fontScaleMain;
+			FontScaleDpi = fontScaleDpi;
 			Alpha = alpha;
 			DisabledAlpha = disabledAlpha;
 			WindowPadding = windowPadding;
@@ -530,6 +585,9 @@ namespace Hexa.NET.ImGui
 			TabBarOverlineSize = tabBarOverlineSize;
 			TableAngledHeadersAngle = tableAngledHeadersAngle;
 			TableAngledHeadersTextAlign = tableAngledHeadersTextAlign;
+			TreeLinesFlags = treeLinesFlags;
+			TreeLinesSize = treeLinesSize;
+			TreeLinesRounding = treeLinesRounding;
 			ColorButtonPosition = colorButtonPosition;
 			ButtonTextAlign = buttonTextAlign;
 			SelectableTextAlign = selectableTextAlign;
@@ -605,12 +663,16 @@ namespace Hexa.NET.ImGui
 				Colors_55 = colors[55];
 				Colors_56 = colors[56];
 				Colors_57 = colors[57];
+				Colors_58 = colors[58];
+				Colors_59 = colors[59];
 			}
 			HoverStationaryDelay = hoverStationaryDelay;
 			HoverDelayShort = hoverDelayShort;
 			HoverDelayNormal = hoverDelayNormal;
 			HoverFlagsForTooltipMouse = hoverFlagsForTooltipMouse;
 			HoverFlagsForTooltipNav = hoverFlagsForTooltipNav;
+			MainScale = mainScale;
+			NextFrameFontSizeBase = nextFrameFontSizeBase;
 		}
 
 
@@ -624,7 +686,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (Vector4* p = &this.Colors_0)
 				{
-					return new Span<Vector4>(p, 58);
+					return new Span<Vector4>(p, 60);
 				}
 			}
 		}
@@ -693,6 +755,18 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float FontSizeBase => ref Unsafe.AsRef<float>(&Handle->FontSizeBase);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float FontScaleMain => ref Unsafe.AsRef<float>(&Handle->FontScaleMain);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float FontScaleDpi => ref Unsafe.AsRef<float>(&Handle->FontScaleDpi);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -840,6 +914,18 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref ImGuiTreeNodeFlags TreeLinesFlags => ref Unsafe.AsRef<ImGuiTreeNodeFlags>(&Handle->TreeLinesFlags);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float TreeLinesSize => ref Unsafe.AsRef<float>(&Handle->TreeLinesSize);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float TreeLinesRounding => ref Unsafe.AsRef<float>(&Handle->TreeLinesRounding);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref ImGuiDir ColorButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&Handle->ColorButtonPosition);
 		/// <summary>
 		/// To be documented.
@@ -905,7 +991,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<Vector4>(&Handle->Colors_0, 58);
+				return new Span<Vector4>(&Handle->Colors_0, 60);
 			}
 		}
 		/// <summary>
@@ -928,6 +1014,14 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImGuiHoveredFlags HoverFlagsForTooltipNav => ref Unsafe.AsRef<ImGuiHoveredFlags>(&Handle->HoverFlagsForTooltipNav);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float MainScale => ref Unsafe.AsRef<float>(&Handle->MainScale);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float NextFrameFontSizeBase => ref Unsafe.AsRef<float>(&Handle->NextFrameFontSizeBase);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

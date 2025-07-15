@@ -25,37 +25,37 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Don't display the dockspace node but keep it alive. Windows docked into this dockspace node won't be undocked.<br/>
+		/// To be documented.
 		/// </summary>
 		KeepAliveOnly = unchecked(1),
 
 		/// <summary>
-		/// Disable docking over the Central Node, which will be always kept empty.<br/>
+		/// To be documented.
 		/// </summary>
 		NoDockingOverCentralNode = unchecked(4),
 
 		/// <summary>
-		/// Enable passthru dockspace: 1) DockSpace() will render a ImGuiCol_WindowBg background covering everything excepted the Central Node when empty. Meaning the host window should probably use SetNextWindowBgAlpha(0.0f) prior to Begin() when using this. 2) When Central Node is empty: let inputs pass-through + won't display a DockingEmptyBg background. See demo for details.<br/>
+		/// To be documented.
 		/// </summary>
 		PassthruCentralNode = unchecked(8),
 
 		/// <summary>
-		/// Disable other windowsnodes from splitting this node.<br/>
+		/// To be documented.
 		/// </summary>
 		NoDockingSplit = unchecked(16),
 
 		/// <summary>
-		/// Saved  Disable resizing node using the splitterseparators. Useful with programmatically setup dockspaces.<br/>
+		/// To be documented.
 		/// </summary>
 		NoResize = unchecked(32),
 
 		/// <summary>
-		/// Tab bar will automatically hide when there is a single window in the dock node.<br/>
+		/// To be documented.
 		/// </summary>
 		AutoHideTabBar = unchecked(64),
 
 		/// <summary>
-		/// Disable undocking this node.<br/>
+		/// To be documented.
 		/// </summary>
 		NoUndocking = unchecked(128),
 	}

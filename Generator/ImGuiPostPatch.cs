@@ -19,8 +19,6 @@
         private const string ImGuiManualOutputPath = "../../../../Hexa.NET.ImGui/Manual/";
         private const string ImGuiOutputPath = "../../../../Hexa.NET.ImGui/Generated/";
 
-        private CsCodeGeneratorMetadata patchMetadata;
-
         public override void Apply(PatchContext context, CsCodeGeneratorMetadata metadata, List<string> files)
         {
             if (metadata.Settings.LibName != "cimgui")
@@ -33,7 +31,7 @@
             File.Delete(Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Delete base.
             File.Delete(Path.Combine(ImGuiInternalsOutputPath, "FunctionTable.cs")); // Delete intermediate.
 
-            Generate(metadata, CImGuiHeader, CImGuiManualConfig, ImGuiManualOutputPath, InternalsGenerationType.BothOrDontCare, out patchMetadata);
+            Generate(metadata, CImGuiHeader, CImGuiManualConfig, ImGuiManualOutputPath, InternalsGenerationType.BothOrDontCare, out _);
             File.Move(Path.Combine(ImGuiManualOutputPath, "FunctionTable.cs"), Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Move latest to base.
 
             // Patch Functions
@@ -65,26 +63,77 @@
             }
         }
 
-        private static void Generate(CsCodeGeneratorMetadata metadata, string header, string config, string output, InternalsGenerationType generationType, out CsCodeGeneratorMetadata meta)
+        private static void Generate(CsCodeGeneratorMetadata metadata, string header, string configPath, string output, InternalsGenerationType generationType, out CsCodeGeneratorMetadata meta)
         {
-            var settingsManual = CsCodeGeneratorConfig.Load(config);
+            GeneratorBuilder.Create<ImGuiCodeGenerator>(configPath)
+                .WithPrePatch<ImVectorPatch>()
+                .WithPrePatch<ImGuiDefinitionsPatch>(() => new(generationType))
+                .WithPrePatch<ImGuiPrePatch>()
+                .WithPrePatch<NamingPatch>(() => new(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None))
+                .WithFunctionTableEntires(metadata)
+                .OnConditionalPostConfigure(configPath.Contains("manual"), (gen, _) =>
+                {
+                    gen.FunctionGenerator.OverwriteRule<FunctionGenRuleSpan>(new ManualFunctionGenRuleSpan());
+                })
+                .CopyFromMetadata(metadata)
+                .Generate(header, output)
+                .GetMetadata(out meta);
+        }
+    }
 
-            settingsManual.FunctionTableEntries = metadata.FunctionTable.Entries;
+    public static class GeneratorBuilderExtensions
+    {
+        public delegate TOut FactoryCallback<TOut>();
 
-            ImGuiCodeGenerator generator = new(settingsManual);
-            generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
-            generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch(generationType));
-            generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
-            generator.PatchEngine.RegisterPrePatch(new NamingPatch(["ImGui", "ImGuizmo", "ImNodes", "ImPlot"], NamingPatchOptions.None));
-            if (config.Contains("manual"))
+        public delegate TOut FactoryCallback<TOut, TParam>(TParam param);
+
+        public static GeneratorBuilder WithPrePatch<T>(this GeneratorBuilder builder) where T : IPrePatch, new()
+        {
+            return builder.WithPrePatch(new T());
+        }
+
+        public static GeneratorBuilder WithPrePatch<T>(this GeneratorBuilder builder, T patch) where T : IPrePatch
+        {
+            return builder.WithPrePatch(patch);
+        }
+
+        public static GeneratorBuilder WithPrePatch<T>(this GeneratorBuilder builder, FactoryCallback<T> factory) where T : IPrePatch
+        {
+            return builder.WithPrePatch(factory());
+        }
+
+        public static GeneratorBuilder WithPrePatch<T, TParam>(this GeneratorBuilder builder, TParam param, FactoryCallback<T, TParam> factory) where T : IPrePatch
+        {
+            return builder.WithPrePatch(factory(param));
+        }
+
+        public static GeneratorBuilder WithPostPatch<T>(this GeneratorBuilder builder) where T : IPostPatch, new()
+        {
+            return builder.WithPostPatch(new T());
+        }
+
+        public static GeneratorBuilder WithPostPatch<T>(this GeneratorBuilder builder, T patch) where T : IPostPatch
+        {
+            return builder.WithPostPatch(patch);
+        }
+
+        public static GeneratorBuilder WithPostPatch<T>(this GeneratorBuilder builder, FactoryCallback<T> factory) where T : IPostPatch
+        {
+            return builder.WithPostPatch(factory());
+        }
+
+        public static GeneratorBuilder WithPostPatch<T, TParam>(this GeneratorBuilder builder, TParam param, FactoryCallback<T, TParam> factory) where T : IPostPatch
+        {
+            return builder.WithPostPatch(factory(param));
+        }
+
+        public static GeneratorBuilder OnConditionalPostConfigure(this GeneratorBuilder builder, bool condition, GenEventHandler<CsCodeGenerator, CsCodeGeneratorConfig> callback)
+        {
+            if (condition)
             {
-                generator.FunctionGenerator.OverwriteRule<FunctionGenRuleSpan>(new ManualFunctionGenRuleSpan());
+                builder.OnPostConfigure(callback);
             }
-
-            generator.LogToConsole();
-            generator.CopyFrom(metadata);
-            generator.Generate(header, output);
-            meta = generator.GetMetadata();
+            return builder;
         }
     }
 }

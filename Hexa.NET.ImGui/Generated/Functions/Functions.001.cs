@@ -19,7 +19,117 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
+		/// To be documented.
+		/// </summary>
+		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = strIdBegin)
+			{
+				fixed (byte* pstrIdEnd = strIdEnd)
+				{
+					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PushID(string strIdBegin, string strIdEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strIdBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strIdEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strIdEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PushIDNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PushID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = &strIdBegin)
+			{
+				fixed (byte* pstrIdEnd = strIdEnd)
+				{
+					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PushID(ref byte strIdBegin, string strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = &strIdBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strIdEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PushIDNative((byte*)pstrIdBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
@@ -33,7 +143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
+		/// To be documented.
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -65,7 +175,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
+		/// To be documented.
 		/// </summary>
 		public static void PushID(string strIdBegin, ref byte strIdEnd)
 		{
@@ -97,7 +207,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
+		/// To be documented.
 		/// </summary>
 		public static void PushID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -129,20 +239,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[125])(ptrId);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[129])(ptrId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[125])((nint)ptrId);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[129])((nint)ptrId);
 			#endif
 		}
 
 		/// <summary>
-		/// push pointer into the ID stack (will hash pointer).<br/>
+		/// To be documented.
 		/// </summary>
 		public static void PushID(void* ptrId)
 		{
@@ -150,20 +260,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(int intId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[126])(intId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[130])(intId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[126])(intId);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[130])(intId);
 			#endif
 		}
 
 		/// <summary>
-		/// push integer into the ID stack (will hash integer).<br/>
+		/// To be documented.
 		/// </summary>
 		public static void PushID(int intId)
 		{
@@ -171,20 +281,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// pop from the ID stack.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopIDNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[127])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[131])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[127])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[131])();
 			#endif
 		}
 
 		/// <summary>
-		/// pop from the ID stack.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void PopID()
 		{
@@ -192,20 +302,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint>)funcTable[128])(strId);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint>)funcTable[132])(strId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[128])((nint)strId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[132])((nint)strId);
 			#endif
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(byte* strId)
 		{
@@ -214,7 +324,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ref byte strId)
 		{
@@ -226,7 +336,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strId)
 		{
@@ -238,7 +348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(string strId)
 		{
@@ -268,20 +378,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)funcTable[129])(strIdBegin, strIdEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)funcTable[133])(strIdBegin, strIdEnd);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[129])((nint)strIdBegin, (nint)strIdEnd);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[133])((nint)strIdBegin, (nint)strIdEnd);
 			#endif
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -290,7 +400,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, byte* strIdEnd)
 		{
@@ -302,7 +412,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -314,7 +424,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(string strIdBegin, byte* strIdEnd)
 		{
@@ -344,7 +454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
 		{
@@ -356,7 +466,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -368,7 +478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, string strIdEnd)
 		{
@@ -398,7 +508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, ref byte strIdEnd)
 		{
@@ -413,7 +523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -428,7 +538,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(string strIdBegin, string strIdEnd)
 		{
@@ -479,7 +589,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -494,7 +604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, string strIdEnd)
 		{
@@ -527,7 +637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
@@ -542,7 +652,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -575,7 +685,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(string strIdBegin, ref byte strIdEnd)
 		{
@@ -608,7 +718,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -641,20 +751,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, uint>)funcTable[130])(ptrId);
+			return ((delegate* unmanaged[Cdecl]<void*, uint>)funcTable[134])(ptrId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[130])((nint)ptrId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[134])((nint)ptrId);
 			#endif
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(void* ptrId)
 		{
@@ -663,20 +773,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(int intId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, uint>)funcTable[131])(intId);
+			return ((delegate* unmanaged[Cdecl]<int, uint>)funcTable[135])(intId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<int, uint>)funcTable[131])(intId);
+			return (uint)((delegate* unmanaged[Cdecl]<int, uint>)funcTable[135])(intId);
 			#endif
 		}
 
 		/// <summary>
-		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetID(int intId)
 		{
@@ -685,20 +795,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextUnformattedNative(byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[132])(text, textEnd);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[136])(text, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[132])((nint)text, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[136])((nint)text, (nint)textEnd);
 			#endif
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(byte* text, byte* textEnd)
 		{
@@ -706,7 +816,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(byte* text)
 		{
@@ -714,7 +824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ref byte text, byte* textEnd)
 		{
@@ -725,7 +835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ref byte text)
 		{
@@ -736,7 +846,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -747,7 +857,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text)
 		{
@@ -758,7 +868,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(string text, byte* textEnd)
 		{
@@ -787,7 +897,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(string text)
 		{
@@ -816,7 +926,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(byte* text, ref byte textEnd)
 		{
@@ -827,7 +937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -838,7 +948,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(byte* text, string textEnd)
 		{
@@ -867,7 +977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ref byte text, ref byte textEnd)
 		{
@@ -881,7 +991,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -895,7 +1005,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(string text, string textEnd)
 		{
@@ -945,7 +1055,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -959,7 +1069,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ref byte text, string textEnd)
 		{
@@ -991,7 +1101,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -1005,7 +1115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -1037,7 +1147,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(string text, ref byte textEnd)
 		{
@@ -1069,7 +1179,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextUnformatted(string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1101,20 +1211,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// formatted text<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[133])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[137])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[133])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[137])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// formatted text<br/>
+		/// To be documented.
 		/// </summary>
 		public static void Text(byte* fmt)
 		{
@@ -1122,7 +1232,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// formatted text<br/>
+		/// To be documented.
 		/// </summary>
 		public static void Text(ref byte fmt)
 		{
@@ -1133,7 +1243,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// formatted text<br/>
+		/// To be documented.
 		/// </summary>
 		public static void Text(ReadOnlySpan<byte> fmt)
 		{
@@ -1144,7 +1254,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// formatted text<br/>
+		/// To be documented.
 		/// </summary>
 		public static void Text(string fmt)
 		{
@@ -1179,9 +1289,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[134])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[138])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[134])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[138])((nint)fmt, args);
 			#endif
 		}
 
@@ -1245,20 +1355,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextColoredNative(Vector4 col, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)funcTable[135])(col, fmt);
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)funcTable[139])(col, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)funcTable[135])(col, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)funcTable[139])(col, (nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextColored(Vector4 col, byte* fmt)
 		{
@@ -1266,7 +1376,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextColored(Vector4 col, ref byte fmt)
 		{
@@ -1277,7 +1387,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextColored(Vector4 col, ReadOnlySpan<byte> fmt)
 		{
@@ -1288,7 +1398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextColored(Vector4 col, string fmt)
 		{
@@ -1323,9 +1433,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextColoredVNative(Vector4 col, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)funcTable[136])(col, fmt, args);
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)funcTable[140])(col, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)funcTable[136])(col, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)funcTable[140])(col, (nint)fmt, args);
 			#endif
 		}
 
@@ -1389,20 +1499,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextDisabledNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[137])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[141])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[137])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[141])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextDisabled(byte* fmt)
 		{
@@ -1410,7 +1520,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextDisabled(ref byte fmt)
 		{
@@ -1421,7 +1531,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextDisabled(ReadOnlySpan<byte> fmt)
 		{
@@ -1432,7 +1542,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextDisabled(string fmt)
 		{
@@ -1467,9 +1577,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextDisabledVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[138])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[142])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[138])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[142])((nint)fmt, args);
 			#endif
 		}
 
@@ -1533,20 +1643,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextWrappedNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[139])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[143])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[139])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[143])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextWrapped(byte* fmt)
 		{
@@ -1554,7 +1664,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextWrapped(ref byte fmt)
 		{
@@ -1565,7 +1675,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextWrapped(ReadOnlySpan<byte> fmt)
 		{
@@ -1576,7 +1686,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TextWrapped(string fmt)
 		{
@@ -1611,9 +1721,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextWrappedVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[140])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[144])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[140])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[144])((nint)fmt, args);
 			#endif
 		}
 
@@ -1677,20 +1787,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LabelTextNative(byte* label, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[141])(label, fmt);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[145])(label, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[141])((nint)label, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[145])((nint)label, (nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(byte* label, byte* fmt)
 		{
@@ -1698,7 +1808,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ref byte label, byte* fmt)
 		{
@@ -1709,7 +1819,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, byte* fmt)
 		{
@@ -1720,7 +1830,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(string label, byte* fmt)
 		{
@@ -1749,7 +1859,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(byte* label, ref byte fmt)
 		{
@@ -1760,7 +1870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(byte* label, ReadOnlySpan<byte> fmt)
 		{
@@ -1771,7 +1881,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(byte* label, string fmt)
 		{
@@ -1800,7 +1910,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ref byte label, ref byte fmt)
 		{
@@ -1814,7 +1924,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, ReadOnlySpan<byte> fmt)
 		{
@@ -1828,7 +1938,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(string label, string fmt)
 		{
@@ -1878,7 +1988,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ref byte label, ReadOnlySpan<byte> fmt)
 		{
@@ -1892,7 +2002,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ref byte label, string fmt)
 		{
@@ -1924,7 +2034,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, ref byte fmt)
 		{
@@ -1938,7 +2048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, string fmt)
 		{
@@ -1970,7 +2080,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(string label, ref byte fmt)
 		{
@@ -2002,7 +2112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display text+label aligned the same way as value+label widgets<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LabelText(string label, ReadOnlySpan<byte> fmt)
 		{
@@ -2040,9 +2150,9 @@ namespace Hexa.NET.ImGui
 		internal static void LabelTextVNative(byte* label, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)funcTable[142])(label, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)funcTable[146])(label, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[142])((nint)label, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[146])((nint)label, (nint)fmt, args);
 			#endif
 		}
 
@@ -2391,20 +2501,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for Bullet()+Text()<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletTextNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[143])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[147])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[143])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[147])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// shortcut for Bullet()+Text()<br/>
+		/// To be documented.
 		/// </summary>
 		public static void BulletText(byte* fmt)
 		{
@@ -2412,7 +2522,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for Bullet()+Text()<br/>
+		/// To be documented.
 		/// </summary>
 		public static void BulletText(ref byte fmt)
 		{
@@ -2423,7 +2533,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for Bullet()+Text()<br/>
+		/// To be documented.
 		/// </summary>
 		public static void BulletText(ReadOnlySpan<byte> fmt)
 		{
@@ -2434,7 +2544,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut for Bullet()+Text()<br/>
+		/// To be documented.
 		/// </summary>
 		public static void BulletText(string fmt)
 		{
@@ -2469,9 +2579,9 @@ namespace Hexa.NET.ImGui
 		internal static void BulletTextVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[144])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[148])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[144])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[148])((nint)fmt, args);
 			#endif
 		}
 
@@ -2535,20 +2645,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// currently: formatted text with a horizontal line<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SeparatorTextNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[145])(label);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[149])(label);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[145])((nint)label);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[149])((nint)label);
 			#endif
 		}
 
 		/// <summary>
-		/// currently: formatted text with a horizontal line<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SeparatorText(byte* label)
 		{
@@ -2556,7 +2666,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// currently: formatted text with a horizontal line<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SeparatorText(ref byte label)
 		{
@@ -2567,7 +2677,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// currently: formatted text with a horizontal line<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SeparatorText(ReadOnlySpan<byte> label)
 		{
@@ -2578,7 +2688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// currently: formatted text with a horizontal line<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SeparatorText(string label)
 		{
@@ -2607,20 +2717,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ButtonNative(byte* label, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)funcTable[146])(label, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)funcTable[150])(label, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)funcTable[146])((nint)label, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)funcTable[150])((nint)label, size);
 			#endif
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(byte* label, Vector2 size)
 		{
@@ -2629,7 +2739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(byte* label)
 		{
@@ -2638,7 +2748,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(ref byte label, Vector2 size)
 		{
@@ -2650,7 +2760,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(ref byte label)
 		{
@@ -2662,7 +2772,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(ReadOnlySpan<byte> label, Vector2 size)
 		{
@@ -2674,7 +2784,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(ReadOnlySpan<byte> label)
 		{
@@ -2686,7 +2796,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(string label, Vector2 size)
 		{
@@ -2716,7 +2826,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool Button(string label)
 		{
@@ -2746,20 +2856,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button with (FramePadding.y == 0) to easily embed within text<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SmallButtonNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[147])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[151])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[147])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[151])((nint)label);
 			#endif
 		}
 
 		/// <summary>
-		/// button with (FramePadding.y == 0) to easily embed within text<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SmallButton(byte* label)
 		{
@@ -2768,7 +2878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button with (FramePadding.y == 0) to easily embed within text<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SmallButton(ref byte label)
 		{
@@ -2780,7 +2890,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button with (FramePadding.y == 0) to easily embed within text<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SmallButton(ReadOnlySpan<byte> label)
 		{
@@ -2792,7 +2902,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// button with (FramePadding.y == 0) to easily embed within text<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SmallButton(string label)
 		{
@@ -2822,20 +2932,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InvisibleButtonNative(byte* strId, Vector2 size, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)funcTable[148])(strId, size, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)funcTable[152])(strId, size, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)funcTable[148])((nint)strId, size, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)funcTable[152])((nint)strId, size, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(byte* strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2844,7 +2954,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(byte* strId, Vector2 size)
 		{
@@ -2853,7 +2963,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(ref byte strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2865,7 +2975,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(ref byte strId, Vector2 size)
 		{
@@ -2877,7 +2987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(ReadOnlySpan<byte> strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2889,7 +2999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(ReadOnlySpan<byte> strId, Vector2 size)
 		{
@@ -2901,7 +3011,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(string strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2931,7 +3041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool InvisibleButton(string strId, Vector2 size)
 		{
@@ -2961,20 +3071,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// square button with an arrow shape<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ArrowButtonNative(byte* strId, ImGuiDir dir)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)funcTable[149])(strId, dir);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)funcTable[153])(strId, dir);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, byte>)funcTable[149])((nint)strId, dir);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, byte>)funcTable[153])((nint)strId, dir);
 			#endif
 		}
 
 		/// <summary>
-		/// square button with an arrow shape<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ArrowButton(byte* strId, ImGuiDir dir)
 		{
@@ -2983,7 +3093,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// square button with an arrow shape<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ArrowButton(ref byte strId, ImGuiDir dir)
 		{
@@ -2995,7 +3105,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// square button with an arrow shape<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ArrowButton(ReadOnlySpan<byte> strId, ImGuiDir dir)
 		{
@@ -3007,7 +3117,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// square button with an arrow shape<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ArrowButton(string strId, ImGuiDir dir)
 		{
@@ -3043,9 +3153,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxNative(byte* label, bool* v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)funcTable[150])(label, v);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)funcTable[154])(label, v);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[150])((nint)label, (nint)v);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[154])((nint)label, (nint)v);
 			#endif
 		}
 
@@ -3194,9 +3304,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxFlagsNative(byte* label, int* flags, int flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[151])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[155])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[151])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[155])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -3345,9 +3455,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxFlagsNative(byte* label, uint* flags, uint flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)funcTable[152])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)funcTable[156])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)funcTable[152])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)funcTable[156])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -3490,20 +3600,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte RadioButtonNative(byte* label, byte active)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)funcTable[153])(label, active);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)funcTable[157])(label, active);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[153])((nint)label, active);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[157])((nint)label, active);
 			#endif
 		}
 
 		/// <summary>
-		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(byte* label, bool active)
 		{
@@ -3512,7 +3622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(ref byte label, bool active)
 		{
@@ -3524,7 +3634,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(ReadOnlySpan<byte> label, bool active)
 		{
@@ -3536,7 +3646,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(string label, bool active)
 		{
@@ -3566,20 +3676,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte RadioButtonNative(byte* label, int* v, int vButton)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[154])(label, v, vButton);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)funcTable[158])(label, v, vButton);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[154])((nint)label, (nint)v, vButton);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)funcTable[158])((nint)label, (nint)v, vButton);
 			#endif
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(byte* label, int* v, int vButton)
 		{
@@ -3588,7 +3698,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(ref byte label, int* v, int vButton)
 		{
@@ -3600,7 +3710,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(ReadOnlySpan<byte> label, int* v, int vButton)
 		{
@@ -3612,7 +3722,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(string label, int* v, int vButton)
 		{
@@ -3642,7 +3752,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(byte* label, ref int v, int vButton)
 		{
@@ -3654,7 +3764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(ref byte label, ref int v, int vButton)
 		{
@@ -3669,7 +3779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(ReadOnlySpan<byte> label, ref int v, int vButton)
 		{
@@ -3684,7 +3794,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// shortcut to handle the above pattern when value is an integer<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool RadioButton(string label, ref int v, int vButton)
 		{
@@ -3723,9 +3833,9 @@ namespace Hexa.NET.ImGui
 		internal static void ProgressBarNative(float fraction, Vector2 sizeArg, byte* overlay)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)funcTable[155])(fraction, sizeArg, overlay);
+			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)funcTable[159])(fraction, sizeArg, overlay);
 			#else
-			((delegate* unmanaged[Cdecl]<float, Vector2, nint, void>)funcTable[155])(fraction, sizeArg, (nint)overlay);
+			((delegate* unmanaged[Cdecl]<float, Vector2, nint, void>)funcTable[159])(fraction, sizeArg, (nint)overlay);
 			#endif
 		}
 
@@ -3864,20 +3974,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[156])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[160])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[156])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[160])();
 			#endif
 		}
 
 		/// <summary>
-		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
+		/// To be documented.
 		/// </summary>
 		public static void Bullet()
 		{
@@ -3885,20 +3995,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// hyperlink text button, return true when clicked<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TextLinkNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[157])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[161])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[157])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[161])((nint)label);
 			#endif
 		}
 
 		/// <summary>
-		/// hyperlink text button, return true when clicked<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TextLink(byte* label)
 		{
@@ -3907,7 +4017,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// hyperlink text button, return true when clicked<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TextLink(ref byte label)
 		{
@@ -3919,7 +4029,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// hyperlink text button, return true when clicked<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TextLink(ReadOnlySpan<byte> label)
 		{
@@ -3931,7 +4041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// hyperlink text button, return true when clicked<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TextLink(string label)
 		{
@@ -3961,82 +4071,88 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TextLinkOpenURLNative(byte* label, byte* url)
+		internal static byte TextLinkOpenURLNative(byte* label, byte* url)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[158])(label, url);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)funcTable[162])(label, url);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[158])((nint)label, (nint)url);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[162])((nint)label, (nint)url);
 			#endif
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(byte* label, byte* url)
+		public static bool TextLinkOpenURL(byte* label, byte* url)
 		{
-			TextLinkOpenURLNative(label, url);
+			byte ret = TextLinkOpenURLNative(label, url);
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(byte* label)
+		public static bool TextLinkOpenURL(byte* label)
 		{
-			TextLinkOpenURLNative(label, (byte*)(default));
+			byte ret = TextLinkOpenURLNative(label, (byte*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ref byte label, byte* url)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TextLinkOpenURLNative((byte*)plabel, url);
-			}
-		}
-
-		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
-		/// </summary>
-		public static void TextLinkOpenURL(ref byte label)
+		public static bool TextLinkOpenURL(ref byte label, byte* url)
 		{
 			fixed (byte* plabel = &label)
 			{
-				TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+				byte ret = TextLinkOpenURLNative((byte*)plabel, url);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ReadOnlySpan<byte> label, byte* url)
+		public static bool TextLinkOpenURL(ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, byte* url)
 		{
 			fixed (byte* plabel = label)
 			{
-				TextLinkOpenURLNative((byte*)plabel, url);
+				byte ret = TextLinkOpenURLNative((byte*)plabel, url);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ReadOnlySpan<byte> label)
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label)
 		{
 			fixed (byte* plabel = label)
 			{
-				TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+				byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(string label, byte* url)
+		public static bool TextLinkOpenURL(string label, byte* url)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4055,17 +4171,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TextLinkOpenURLNative(pStr0, url);
+			byte ret = TextLinkOpenURLNative(pStr0, url);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(string label)
+		public static bool TextLinkOpenURL(string label)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4084,39 +4201,42 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TextLinkOpenURLNative(pStr0, (byte*)(default));
+			byte ret = TextLinkOpenURLNative(pStr0, (byte*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(byte* label, ref byte url)
+		public static bool TextLinkOpenURL(byte* label, ref byte url)
 		{
 			fixed (byte* purl = &url)
 			{
-				TextLinkOpenURLNative(label, (byte*)purl);
+				byte ret = TextLinkOpenURLNative(label, (byte*)purl);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(byte* label, ReadOnlySpan<byte> url)
+		public static bool TextLinkOpenURL(byte* label, ReadOnlySpan<byte> url)
 		{
 			fixed (byte* purl = url)
 			{
-				TextLinkOpenURLNative(label, (byte*)purl);
+				byte ret = TextLinkOpenURLNative(label, (byte*)purl);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(byte* label, string url)
+		public static bool TextLinkOpenURL(byte* label, string url)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4135,45 +4255,48 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TextLinkOpenURLNative(label, pStr0);
+			byte ret = TextLinkOpenURLNative(label, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ref byte label, ref byte url)
+		public static bool TextLinkOpenURL(ref byte label, ref byte url)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* purl = &url)
 				{
-					TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ReadOnlySpan<byte> label, ReadOnlySpan<byte> url)
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, ReadOnlySpan<byte> url)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* purl = url)
 				{
-					TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(string label, string url)
+		public static bool TextLinkOpenURL(string label, string url)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4209,7 +4332,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(url, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			TextLinkOpenURLNative(pStr0, pStr1);
+			byte ret = TextLinkOpenURLNative(pStr0, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4218,26 +4341,28 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ref byte label, ReadOnlySpan<byte> url)
+		public static bool TextLinkOpenURL(ref byte label, ReadOnlySpan<byte> url)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* purl = url)
 				{
-					TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ref byte label, string url)
+		public static bool TextLinkOpenURL(ref byte label, string url)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4258,32 +4383,34 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				TextLinkOpenURLNative((byte*)plabel, pStr0);
+				byte ret = TextLinkOpenURLNative((byte*)plabel, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ReadOnlySpan<byte> label, ref byte url)
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, ref byte url)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* purl = &url)
 				{
-					TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(ReadOnlySpan<byte> label, string url)
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, string url)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4304,18 +4431,19 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				TextLinkOpenURLNative((byte*)plabel, pStr0);
+				byte ret = TextLinkOpenURLNative((byte*)plabel, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(string label, ref byte url)
+		public static bool TextLinkOpenURL(string label, ref byte url)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4336,18 +4464,19 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* purl = &url)
 			{
-				TextLinkOpenURLNative(pStr0, (byte*)purl);
+				byte ret = TextLinkOpenURLNative(pStr0, (byte*)purl);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// To be documented.
 		/// </summary>
-		public static void TextLinkOpenURL(string label, ReadOnlySpan<byte> url)
+		public static bool TextLinkOpenURL(string label, ReadOnlySpan<byte> url)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4368,11 +4497,12 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* purl = url)
 			{
-				TextLinkOpenURLNative(pStr0, (byte*)purl);
+				byte ret = TextLinkOpenURLNative(pStr0, (byte*)purl);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret != 0;
 			}
 		}
 
@@ -4380,226 +4510,226 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		internal static void ImageNative(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, void>)funcTable[159])(userTextureId, imageSize, uv0, uv1);
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, void>)funcTable[163])(texRef, imageSize, uv0, uv1);
 			#else
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, void>)funcTable[159])(userTextureId, imageSize, uv0, uv1);
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, void>)funcTable[163])(texRef, imageSize, uv0, uv1);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		public static void Image(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
-			ImageNative(userTextureId, imageSize, uv0, uv1);
+			ImageNative(texRef, imageSize, uv0, uv1);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		public static void Image(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
 		{
-			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)));
+			ImageNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize)
+		public static void Image(ImTextureRef texRef, Vector2 imageSize)
 		{
-			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)));
+			ImageNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImageWithBgNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		internal static void ImageWithBgNative(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[160])(userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[164])(texRef, imageSize, uv0, uv1, bgCol, tintCol);
 			#else
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[160])(userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[164])(texRef, imageSize, uv0, uv1, bgCol, tintCol);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
-			ImageWithBgNative(userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			ImageWithBgNative(texRef, imageSize, uv0, uv1, bgCol, tintCol);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
-			ImageWithBgNative(userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			ImageWithBgNative(texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
-			ImageWithBgNative(userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			ImageWithBgNative(texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
 		{
-			ImageWithBgNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			ImageWithBgNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize)
 		{
-			ImageWithBgNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			ImageWithBgNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
-			ImageWithBgNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			ImageWithBgNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
 		{
-			ImageWithBgNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			ImageWithBgNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
-			ImageWithBgNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			ImageWithBgNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImageWithBg(ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
-			ImageWithBgNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			ImageWithBgNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		internal static byte ImageButtonNative(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[161])(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[165])(strId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[161])((nint)strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[165])((nint)strId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			byte ret = ImageButtonNative(strId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
 				return ret != 0;
 			}
 		}
@@ -4607,11 +4737,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4619,11 +4749,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4631,11 +4761,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4643,11 +4773,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4655,11 +4785,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4667,11 +4797,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4679,11 +4809,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 				return ret != 0;
 			}
 		}
@@ -4691,11 +4821,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ref byte strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 				return ret != 0;
 			}
 		}
@@ -4703,11 +4833,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
 				return ret != 0;
 			}
 		}
@@ -4715,11 +4845,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4727,11 +4857,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4739,11 +4869,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4751,11 +4881,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4763,11 +4893,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4775,11 +4905,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
@@ -4787,11 +4917,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 				return ret != 0;
 			}
 		}
@@ -4799,11 +4929,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 				return ret != 0;
 			}
 		}
@@ -4811,7 +4941,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4830,7 +4960,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, tintCol);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4841,7 +4971,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4860,7 +4990,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4871,7 +5001,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4890,127 +5020,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);

@@ -20,37 +20,37 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiItemFlags : int
 	{
 		/// <summary>
-		/// (Default)<br/>
+		/// To be documented.
 		/// </summary>
 		None = unchecked(0),
 
 		/// <summary>
-		/// false     Disable keyboard tabbing. This is a "lighter" version of ImGuiItemFlags_NoNav.<br/>
+		/// To be documented.
 		/// </summary>
 		NoTabStop = unchecked(1),
 
 		/// <summary>
-		/// false     Disable any form of focusing (keyboardgamepad directional navigation and SetKeyboardFocusHere() calls).<br/>
+		/// To be documented.
 		/// </summary>
 		NoNav = unchecked(2),
 
 		/// <summary>
-		/// false     Disable item being a candidate for default focus (e.g. used by title bar items).<br/>
+		/// To be documented.
 		/// </summary>
 		NoNavDefaultFocus = unchecked(4),
 
 		/// <summary>
-		/// false     Any button-like behavior will have repeat mode enabled (based on io.KeyRepeatDelay and io.KeyRepeatRate values). Note that you can also call IsItemActive() after any button to tell if it is being held.<br/>
+		/// To be documented.
 		/// </summary>
 		ButtonRepeat = unchecked(8),
 
 		/// <summary>
-		/// true      MenuItem()Selectable() automatically close their parent popup window.<br/>
+		/// To be documented.
 		/// </summary>
 		AutoClosePopups = unchecked(16),
 
 		/// <summary>
-		/// false     Allow submitting an item with the same identifier as an item already submitted this frame without triggering a warning tooltip if io.ConfigDebugHighlightIdConflicts is set.<br/>
+		/// To be documented.
 		/// </summary>
 		AllowDuplicateId = unchecked(32),
 	}

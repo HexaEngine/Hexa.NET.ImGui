@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.D3D10
 		internal static byte InitNative(ID3D10Device* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ID3D10Device*, byte>)funcTable[24])(device);
+			return ((delegate* unmanaged[Cdecl]<ID3D10Device*, byte>)funcTable[23])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[24])((nint)device);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[23])((nint)device);
 			#endif
 		}
 
@@ -59,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.D3D10
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[24])();
 			#endif
 		}
 
@@ -80,9 +80,9 @@ namespace Hexa.NET.ImGui.Backends.D3D10
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
 			#endif
 		}
 
@@ -101,9 +101,9 @@ namespace Hexa.NET.ImGui.Backends.D3D10
 		internal static void RenderDrawDataNative(ImDrawData* drawData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[27])(drawData);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)funcTable[26])(drawData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[27])((nint)drawData);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[26])((nint)drawData);
 			#endif
 		}
 
@@ -127,7 +127,39 @@ namespace Hexa.NET.ImGui.Backends.D3D10
 		}
 
 		/// <summary>
-		/// Use if you want to reset your rendering device without losing Dear ImGui state.<br/>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void UpdateTextureNative(ImTextureData* tex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[27])(tex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[27])((nint)tex);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateTexture(ImTextureDataPtr tex)
+		{
+			UpdateTextureNative(tex);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateTexture(ref ImTextureData tex)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				UpdateTextureNative((ImTextureData*)ptex);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CreateDeviceObjectsNative()
@@ -140,7 +172,7 @@ namespace Hexa.NET.ImGui.Backends.D3D10
 		}
 
 		/// <summary>
-		/// Use if you want to reset your rendering device without losing Dear ImGui state.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool CreateDeviceObjects()
 		{

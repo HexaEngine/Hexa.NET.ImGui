@@ -17,8 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// SplitMerge functions are used to split the draw list into different layers which can be drawn into out of order.<br/>
-	/// This is used by the ColumnsTables API, so items of each column can be batched together in a same draw call.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawListSplitter
@@ -51,7 +50,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// Do not clear Channels[] so our allocations are reused next frame<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -214,7 +213,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImVector<ImDrawChannel> Channels => ref Unsafe.AsRef<ImVector<ImDrawChannel>>(&Handle->Channels);
 		/// <summary>
-		/// Do not clear Channels[] so our allocations are reused next frame<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Clear()
 		{

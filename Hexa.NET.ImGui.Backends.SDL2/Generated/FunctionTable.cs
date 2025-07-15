@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(context, 20);
+			funcTable = new FunctionTable(context, 19);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
 			funcTable.Load(2, "CImGui_ImplSDL2_InitForOpenGL");
@@ -42,10 +42,9 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 			funcTable.Load(13, "CImGui_ImplSDLRenderer2_Shutdown");
 			funcTable.Load(14, "CImGui_ImplSDLRenderer2_NewFrame");
 			funcTable.Load(15, "CImGui_ImplSDLRenderer2_RenderDrawData");
-			funcTable.Load(16, "CImGui_ImplSDLRenderer2_CreateFontsTexture");
-			funcTable.Load(17, "CImGui_ImplSDLRenderer2_DestroyFontsTexture");
-			funcTable.Load(18, "CImGui_ImplSDLRenderer2_CreateDeviceObjects");
-			funcTable.Load(19, "CImGui_ImplSDLRenderer2_DestroyDeviceObjects");
+			funcTable.Load(16, "CImGui_ImplSDLRenderer2_CreateDeviceObjects");
+			funcTable.Load(17, "CImGui_ImplSDLRenderer2_DestroyDeviceObjects");
+			funcTable.Load(18, "CImGui_ImplSDLRenderer2_UpdateTexture");
 		}
 
 		public static void FreeApi()

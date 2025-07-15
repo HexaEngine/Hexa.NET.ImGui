@@ -30,17 +30,17 @@ namespace Hexa.NET.ImGui
 		TextDisabled = unchecked(1),
 
 		/// <summary>
-		/// Background of normal windows<br/>
+		/// To be documented.
 		/// </summary>
 		WindowBg = unchecked(2),
 
 		/// <summary>
-		/// Background of child windows<br/>
+		/// To be documented.
 		/// </summary>
 		ChildBg = unchecked(3),
 
 		/// <summary>
-		/// Background of popups, menus, tooltips windows<br/>
+		/// To be documented.
 		/// </summary>
 		PopupBg = unchecked(4),
 
@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		BorderShadow = unchecked(6),
 
 		/// <summary>
-		/// Background of checkbox, radio button, plot, slider, text input<br/>
+		/// To be documented.
 		/// </summary>
 		FrameBg = unchecked(7),
 
@@ -70,17 +70,17 @@ namespace Hexa.NET.ImGui
 		FrameBgActive = unchecked(9),
 
 		/// <summary>
-		/// Title bar<br/>
+		/// To be documented.
 		/// </summary>
 		TitleBg = unchecked(10),
 
 		/// <summary>
-		/// Title bar when focused<br/>
+		/// To be documented.
 		/// </summary>
 		TitleBgActive = unchecked(11),
 
 		/// <summary>
-		/// Title bar when collapsed<br/>
+		/// To be documented.
 		/// </summary>
 		TitleBgCollapsed = unchecked(12),
 
@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui
 		ScrollbarGrabActive = unchecked(17),
 
 		/// <summary>
-		/// Checkbox tick and RadioButton circle<br/>
+		/// To be documented.
 		/// </summary>
 		CheckMark = unchecked(18),
 
@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 		ButtonActive = unchecked(23),
 
 		/// <summary>
-		/// Header* colors are used for CollapsingHeader, TreeNode, Selectable, MenuItem<br/>
+		/// To be documented.
 		/// </summary>
 		Header = unchecked(24),
 
@@ -170,7 +170,7 @@ namespace Hexa.NET.ImGui
 		SeparatorActive = unchecked(29),
 
 		/// <summary>
-		/// Resize grip in lower-right and lower-left corners of windows.<br/>
+		/// To be documented.
 		/// </summary>
 		ResizeGrip = unchecked(30),
 
@@ -185,133 +185,143 @@ namespace Hexa.NET.ImGui
 		ResizeGripActive = unchecked(32),
 
 		/// <summary>
-		/// Tab background, when hovered<br/>
+		/// To be documented.
 		/// </summary>
-		TabHovered = unchecked(33),
-
-		/// <summary>
-		/// Tab background, when tab-bar is focused &amp; tab is unselected<br/>
-		/// </summary>
-		Tab = unchecked(34),
-
-		/// <summary>
-		/// Tab background, when tab-bar is focused &amp; tab is selected<br/>
-		/// </summary>
-		TabSelected = unchecked(35),
-
-		/// <summary>
-		/// Tab horizontal overline, when tab-bar is focused &amp; tab is selected<br/>
-		/// </summary>
-		TabSelectedOverline = unchecked(36),
-
-		/// <summary>
-		/// Tab background, when tab-bar is unfocused &amp; tab is unselected<br/>
-		/// </summary>
-		TabDimmed = unchecked(37),
-
-		/// <summary>
-		/// Tab background, when tab-bar is unfocused &amp; tab is selected<br/>
-		/// </summary>
-		TabDimmedSelected = unchecked(38),
-
-		/// <summary>
-		/// ..horizontal overline, when tab-bar is unfocused &amp; tab is selected<br/>
-		/// </summary>
-		TabDimmedSelectedOverline = unchecked(39),
-
-		/// <summary>
-		/// Preview overlay color when about to docking something<br/>
-		/// </summary>
-		DockingPreview = unchecked(40),
-
-		/// <summary>
-		/// Background color for empty node (e.g. CentralNode with no window docked into it)<br/>
-		/// </summary>
-		DockingEmptyBg = unchecked(41),
+		InputTextCursor = unchecked(33),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotLines = unchecked(42),
+		TabHovered = unchecked(34),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotLinesHovered = unchecked(43),
+		Tab = unchecked(35),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotHistogram = unchecked(44),
+		TabSelected = unchecked(36),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotHistogramHovered = unchecked(45),
-
-		/// <summary>
-		/// Table header background<br/>
-		/// </summary>
-		TableHeaderBg = unchecked(46),
-
-		/// <summary>
-		/// Table outer and header borders (prefer using Alpha=1.0 here)<br/>
-		/// </summary>
-		TableBorderStrong = unchecked(47),
-
-		/// <summary>
-		/// Table inner borders (prefer using Alpha=1.0 here)<br/>
-		/// </summary>
-		TableBorderLight = unchecked(48),
-
-		/// <summary>
-		/// Table row background (even rows)<br/>
-		/// </summary>
-		TableRowBg = unchecked(49),
-
-		/// <summary>
-		/// Table row background (odd rows)<br/>
-		/// </summary>
-		TableRowBgAlt = unchecked(50),
-
-		/// <summary>
-		/// Hyperlink color<br/>
-		/// </summary>
-		TextLink = unchecked(51),
+		TabSelectedOverline = unchecked(37),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		TextSelectedBg = unchecked(52),
-
-		/// <summary>
-		/// Rectangle highlighting a drop target<br/>
-		/// </summary>
-		DragDropTarget = unchecked(53),
-
-		/// <summary>
-		/// Color of keyboardgamepad navigation cursorrectangle, when visible<br/>
-		/// </summary>
-		NavCursor = unchecked(54),
-
-		/// <summary>
-		/// Highlight window when using CTRL+TAB<br/>
-		/// </summary>
-		NavWindowingHighlight = unchecked(55),
-
-		/// <summary>
-		/// Darkencolorize entire screen behind the CTRL+TAB window list, when active<br/>
-		/// </summary>
-		NavWindowingDimBg = unchecked(56),
-
-		/// <summary>
-		/// Darkencolorize entire screen behind a modal window, when one is active<br/>
-		/// </summary>
-		ModalWindowDimBg = unchecked(57),
+		TabDimmed = unchecked(38),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(58),
+		TabDimmedSelected = unchecked(39),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TabDimmedSelectedOverline = unchecked(40),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		DockingPreview = unchecked(41),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		DockingEmptyBg = unchecked(42),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		PlotLines = unchecked(43),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		PlotLinesHovered = unchecked(44),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		PlotHistogram = unchecked(45),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		PlotHistogramHovered = unchecked(46),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TableHeaderBg = unchecked(47),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TableBorderStrong = unchecked(48),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TableBorderLight = unchecked(49),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TableRowBg = unchecked(50),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TableRowBgAlt = unchecked(51),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TextLink = unchecked(52),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TextSelectedBg = unchecked(53),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		TreeLines = unchecked(54),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		DragDropTarget = unchecked(55),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		NavCursor = unchecked(56),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		NavWindowingHighlight = unchecked(57),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		NavWindowingDimBg = unchecked(58),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ModalWindowDimBg = unchecked(59),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Count = unchecked(60),
 	}
 }

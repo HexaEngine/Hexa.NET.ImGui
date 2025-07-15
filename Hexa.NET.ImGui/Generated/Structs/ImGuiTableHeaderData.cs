@@ -17,9 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Parameters for TableAngledHeadersRowEx()<br/>
-	/// This may end up being refactored for more general purpose.<br/>
-	/// sizeof() ~ 12 bytes<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableHeaderData

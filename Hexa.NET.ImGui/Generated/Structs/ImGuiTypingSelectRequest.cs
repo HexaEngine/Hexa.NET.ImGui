@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Returned by GetTypingSelectRequest(), designed to eventually be public.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTypingSelectRequest
@@ -50,13 +50,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte SingleCharSize;
+		public sbyte SingleCharSize;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTypingSelectRequest(ImGuiTypingSelectFlags flags = default, int searchBufferLen = default, byte* searchBuffer = default, bool selectRequest = default, bool singleCharMode = default, byte singleCharSize = default)
+		public unsafe ImGuiTypingSelectRequest(ImGuiTypingSelectFlags flags = default, int searchBufferLen = default, byte* searchBuffer = default, bool selectRequest = default, bool singleCharMode = default, sbyte singleCharSize = default)
 		{
 			Flags = flags;
 			SearchBufferLen = searchBufferLen;
@@ -133,7 +133,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte SingleCharSize => ref Unsafe.AsRef<byte>(&Handle->SingleCharSize);
+		public ref sbyte SingleCharSize => ref Unsafe.AsRef<sbyte>(&Handle->SingleCharSize);
 	}
 
 }

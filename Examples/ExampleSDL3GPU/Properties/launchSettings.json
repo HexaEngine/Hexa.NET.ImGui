@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExampleSDL3GPU": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

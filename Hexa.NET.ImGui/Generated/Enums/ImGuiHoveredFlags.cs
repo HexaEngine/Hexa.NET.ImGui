@@ -20,62 +20,62 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiHoveredFlags : int
 	{
 		/// <summary>
-		/// Return true if directly over the itemwindow, not obstructed by another window, not obstructed by an active popup or modal blocking inputs under them.<br/>
+		/// To be documented.
 		/// </summary>
 		None = unchecked(0),
 
 		/// <summary>
-		/// IsWindowHovered() only: Return true if any children of the window is hovered<br/>
+		/// To be documented.
 		/// </summary>
 		ChildWindows = unchecked(1),
 
 		/// <summary>
-		/// IsWindowHovered() only: Test from root window (top most parent of the current hierarchy)<br/>
+		/// To be documented.
 		/// </summary>
 		RootWindow = unchecked(2),
 
 		/// <summary>
-		/// IsWindowHovered() only: Return true if any window is hovered<br/>
+		/// To be documented.
 		/// </summary>
 		AnyWindow = unchecked(4),
 
 		/// <summary>
-		/// IsWindowHovered() only: Do not consider popup hierarchy (do not treat popup emitter as parent of popup) (when used with _ChildWindows or _RootWindow)<br/>
+		/// To be documented.
 		/// </summary>
 		NoPopupHierarchy = unchecked(8),
 
 		/// <summary>
-		/// IsWindowHovered() only: Consider docking hierarchy (treat dockspace host as parent of docked window) (when used with _ChildWindows or _RootWindow)<br/>
+		/// To be documented.
 		/// </summary>
 		DockHierarchy = unchecked(16),
 
 		/// <summary>
-		/// Return true even if a popup window is normally blocking access to this itemwindow<br/>
+		/// To be documented.
 		/// </summary>
 		AllowWhenBlockedByPopup = unchecked(32),
 
 		/// <summary>
-		/// Return true even if an active item is blocking access to this itemwindow. Useful for Drag and Drop patterns.<br/>
+		/// To be documented.
 		/// </summary>
 		AllowWhenBlockedByActiveItem = unchecked(128),
 
 		/// <summary>
-		/// IsItemHovered() only: Return true even if the item uses AllowOverlap mode and is overlapped by another hoverable item.<br/>
+		/// To be documented.
 		/// </summary>
 		AllowWhenOverlappedByItem = unchecked(256),
 
 		/// <summary>
-		/// IsItemHovered() only: Return true even if the position is obstructed or overlapped by another window.<br/>
+		/// To be documented.
 		/// </summary>
 		AllowWhenOverlappedByWindow = unchecked(512),
 
 		/// <summary>
-		/// IsItemHovered() only: Return true even if the item is disabled<br/>
+		/// To be documented.
 		/// </summary>
 		AllowWhenDisabled = unchecked(1024),
 
 		/// <summary>
-		/// IsItemHovered() only: Disable using keyboardgamepad navigation state when active, always query mouse<br/>
+		/// To be documented.
 		/// </summary>
 		NoNavOverride = unchecked(2048),
 
@@ -95,32 +95,32 @@ namespace Hexa.NET.ImGui
 		RootAndChildWindows = unchecked(3),
 
 		/// <summary>
-		/// Shortcut for standard flags when using IsItemHovered() + SetTooltip() sequence.<br/>
+		/// To be documented.
 		/// </summary>
 		ForTooltip = unchecked(4096),
 
 		/// <summary>
-		/// Require mouse to be stationary for style.HoverStationaryDelay (~0.15 sec) _at least one time_. After this, can move on same itemwindow. Using the stationary test tends to reduces the need for a long delay.<br/>
+		/// To be documented.
 		/// </summary>
 		Stationary = unchecked(8192),
 
 		/// <summary>
-		/// IsItemHovered() only: Return true immediately (default). As this is the default you generally ignore this.<br/>
+		/// To be documented.
 		/// </summary>
 		DelayNone = unchecked(16384),
 
 		/// <summary>
-		/// IsItemHovered() only: Return true after style.HoverDelayShort elapsed (~0.15 sec) (shared between items) + requires mouse to be stationary for style.HoverStationaryDelay (once per item).<br/>
+		/// To be documented.
 		/// </summary>
 		DelayShort = unchecked(32768),
 
 		/// <summary>
-		/// IsItemHovered() only: Return true after style.HoverDelayNormal elapsed (~0.40 sec) (shared between items) + requires mouse to be stationary for style.HoverStationaryDelay (once per item).<br/>
+		/// To be documented.
 		/// </summary>
 		DelayNormal = unchecked(65536),
 
 		/// <summary>
-		/// IsItemHovered() only: Disable shared delay system where moving from one item to the next keeps the previous timer for a short time (standard for tooltips with long delays)<br/>
+		/// To be documented.
 		/// </summary>
 		NoSharedDelay = unchecked(131072),
 	}

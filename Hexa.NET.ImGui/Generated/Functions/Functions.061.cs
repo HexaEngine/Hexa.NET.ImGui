@@ -21,6 +21,276 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, ref byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, ref byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ref byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ref byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ref byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, pMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = DragScalarNNative(label, dataType, pData, components, (float)(1.0f), pMin, pMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragScalarNNative(label, dataType, pData, components, vSpeed, pMin, pMax, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool DragScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, float vSpeed, void* pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
@@ -3265,20 +3535,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SliderFloatNative(byte* label, float* v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, float, float, byte*, ImGuiSliderFlags, byte>)funcTable[179])(label, v, vMin, vMax, format, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, float, float, byte*, ImGuiSliderFlags, byte>)funcTable[183])(label, v, vMin, vMax, format, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint, ImGuiSliderFlags, byte>)funcTable[179])((nint)label, (nint)v, vMin, vMax, (nint)format, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint, ImGuiSliderFlags, byte>)funcTable[183])((nint)label, (nint)v, vMin, vMax, (nint)format, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3287,7 +3557,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, byte* format)
 		{
@@ -3296,7 +3566,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax)
 		{
@@ -3305,7 +3575,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3314,7 +3584,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3326,7 +3596,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, byte* format)
 		{
@@ -3338,7 +3608,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax)
 		{
@@ -3350,7 +3620,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3362,7 +3632,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3374,7 +3644,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, byte* format)
 		{
@@ -3386,7 +3656,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax)
 		{
@@ -3398,7 +3668,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3410,7 +3680,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3440,7 +3710,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, byte* format)
 		{
@@ -3470,7 +3740,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax)
 		{
@@ -3500,7 +3770,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3530,7 +3800,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3542,7 +3812,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, byte* format)
 		{
@@ -3554,7 +3824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax)
 		{
@@ -3566,7 +3836,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3578,7 +3848,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3593,7 +3863,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, byte* format)
 		{
@@ -3608,7 +3878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax)
 		{
@@ -3623,7 +3893,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3638,7 +3908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3653,7 +3923,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, byte* format)
 		{
@@ -3668,7 +3938,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax)
 		{
@@ -3683,7 +3953,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3698,7 +3968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3731,7 +4001,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, byte* format)
 		{
@@ -3764,7 +4034,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, ref float v, float vMin, float vMax)
 		{
@@ -3797,7 +4067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3830,7 +4100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3842,7 +4112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, ref byte format)
 		{
@@ -3854,7 +4124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3866,7 +4136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -3878,7 +4148,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -3908,7 +4178,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, float* v, float vMin, float vMax, string format)
 		{
@@ -3938,7 +4208,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3953,7 +4223,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, ref byte format)
 		{
@@ -3968,7 +4238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3983,7 +4253,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -3998,7 +4268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4049,7 +4319,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, string format)
 		{
@@ -4100,7 +4370,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4115,7 +4385,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -4130,7 +4400,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4163,7 +4433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, float* v, float vMin, float vMax, string format)
 		{
@@ -4196,7 +4466,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4211,7 +4481,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, ref byte format)
 		{
@@ -4226,7 +4496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4259,7 +4529,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, float* v, float vMin, float vMax, string format)
 		{
@@ -4292,7 +4562,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4325,7 +4595,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, ref byte format)
 		{
@@ -4358,7 +4628,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4391,7 +4661,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, float* v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -4424,7 +4694,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4439,7 +4709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, ref byte format)
 		{
@@ -4454,7 +4724,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4469,7 +4739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -4484,7 +4754,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4517,7 +4787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(byte* label, ref float v, float vMin, float vMax, string format)
 		{
@@ -4550,7 +4820,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4568,7 +4838,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, ref byte format)
 		{
@@ -4586,7 +4856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4604,7 +4874,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -4622,7 +4892,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4676,7 +4946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, string format)
 		{
@@ -4730,7 +5000,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4748,7 +5018,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -4761,294 +5031,6 @@ namespace Hexa.NET.ImGui
 						byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, pStr0, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(ref byte label, ref float v, float vMin, float vMax, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, pStr0, (ImGuiSliderFlags)(0));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, ref byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, pStr0, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(ReadOnlySpan<byte> label, ref float v, float vMin, float vMax, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = SliderFloatNative((byte*)plabel, (float*)pv, vMin, vMax, pStr0, (ImGuiSliderFlags)(0));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderFloatNative(pStr0, (float*)pv, vMin, vMax, (byte*)pformat, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, ref byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderFloatNative(pStr0, (float*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// adjust format to decorate the value with a prefix or a suffix for in-slider labels or unit display.<br/>
-		/// </summary>
-		public static bool SliderFloat(string label, ref float v, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderFloatNative(pStr0, (float*)pv, vMin, vMax, (byte*)pformat, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
 				}
 			}
 		}

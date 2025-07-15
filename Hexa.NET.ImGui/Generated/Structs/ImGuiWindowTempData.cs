@@ -17,9 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Transient per-window data, reset at the beginning of the frame. This used to be called ImGuiDrawContext, hence the DC variable name in ImGuiWindow.<br/>
-	/// (That's theory, in practice the delimitation between ImGuiWindow and ImGuiWindowTempData is quite tenuous and could be reconsidered..)<br/>
-	/// (This doesn't need a constructor because we zero-clear it as part of ImGuiWindow and all frame-temporary data are setup on Begin)<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiWindowTempData
@@ -157,6 +155,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public uint TreeRecordsClippedNodesY2Mask;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ImVector<ImGuiWindowPtr> ChildWindows;
 
 		/// <summary>
@@ -233,7 +236,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiWindowTempData(Vector2 cursorPos = default, Vector2 cursorPosPrevLine = default, Vector2 cursorStartPos = default, Vector2 cursorMaxPos = default, Vector2 idealMaxPos = default, Vector2 currLineSize = default, Vector2 prevLineSize = default, float currLineTextBaseOffset = default, float prevLineTextBaseOffset = default, bool isSameLine = default, bool isSetPos = default, ImVec1 indent = default, ImVec1 columnsOffset = default, ImVec1 groupOffset = default, Vector2 cursorStartPosLossyness = default, ImGuiNavLayer navLayerCurrent = default, short navLayersActiveMask = default, short navLayersActiveMaskNext = default, bool navIsScrollPushableX = default, bool navHideHighlightOneFrame = default, bool navWindowHasScrollY = default, bool menuBarAppending = default, Vector2 menuBarOffset = default, ImGuiMenuColumns menuColumns = default, int treeDepth = default, uint treeHasStackDataDepthMask = default, ImVector<ImGuiWindowPtr> childWindows = default, ImGuiStorage* stateStorage = default, ImGuiOldColumns* currentColumns = default, int currentTableIdx = default, ImGuiLayoutType layoutType = default, ImGuiLayoutType parentLayoutType = default, uint modalDimBgColor = default, ImGuiItemStatusFlags windowItemStatusFlags = default, ImGuiItemStatusFlags childItemStatusFlags = default, ImGuiItemStatusFlags dockTabItemStatusFlags = default, ImRect dockTabItemRect = default, float itemWidth = default, float textWrapPos = default, ImVector<float> itemWidthStack = default, ImVector<float> textWrapPosStack = default)
+		public unsafe ImGuiWindowTempData(Vector2 cursorPos = default, Vector2 cursorPosPrevLine = default, Vector2 cursorStartPos = default, Vector2 cursorMaxPos = default, Vector2 idealMaxPos = default, Vector2 currLineSize = default, Vector2 prevLineSize = default, float currLineTextBaseOffset = default, float prevLineTextBaseOffset = default, bool isSameLine = default, bool isSetPos = default, ImVec1 indent = default, ImVec1 columnsOffset = default, ImVec1 groupOffset = default, Vector2 cursorStartPosLossyness = default, ImGuiNavLayer navLayerCurrent = default, short navLayersActiveMask = default, short navLayersActiveMaskNext = default, bool navIsScrollPushableX = default, bool navHideHighlightOneFrame = default, bool navWindowHasScrollY = default, bool menuBarAppending = default, Vector2 menuBarOffset = default, ImGuiMenuColumns menuColumns = default, int treeDepth = default, uint treeHasStackDataDepthMask = default, uint treeRecordsClippedNodesY2Mask = default, ImVector<ImGuiWindowPtr> childWindows = default, ImGuiStoragePtr stateStorage = default, ImGuiOldColumns* currentColumns = default, int currentTableIdx = default, ImGuiLayoutType layoutType = default, ImGuiLayoutType parentLayoutType = default, uint modalDimBgColor = default, ImGuiItemStatusFlags windowItemStatusFlags = default, ImGuiItemStatusFlags childItemStatusFlags = default, ImGuiItemStatusFlags dockTabItemStatusFlags = default, ImRect dockTabItemRect = default, float itemWidth = default, float textWrapPos = default, ImVector<float> itemWidthStack = default, ImVector<float> textWrapPosStack = default)
 		{
 			CursorPos = cursorPos;
 			CursorPosPrevLine = cursorPosPrevLine;
@@ -261,6 +264,7 @@ namespace Hexa.NET.ImGui
 			MenuColumns = menuColumns;
 			TreeDepth = treeDepth;
 			TreeHasStackDataDepthMask = treeHasStackDataDepthMask;
+			TreeRecordsClippedNodesY2Mask = treeRecordsClippedNodesY2Mask;
 			ChildWindows = childWindows;
 			StateStorage = stateStorage;
 			CurrentColumns = currentColumns;

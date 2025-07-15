@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Selection request item<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiSelectionRequest
@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte RangeDirection;
+		public sbyte RangeDirection;
 
 		/// <summary>
 		/// To be documented.
@@ -51,7 +51,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiSelectionRequest(ImGuiSelectionRequestType type = default, bool selected = default, byte rangeDirection = default, long rangeFirstItem = default, long rangeLastItem = default)
+		public unsafe ImGuiSelectionRequest(ImGuiSelectionRequestType type = default, bool selected = default, sbyte rangeDirection = default, long rangeFirstItem = default, long rangeLastItem = default)
 		{
 			Type = type;
 			Selected = selected ? (byte)1 : (byte)0;
@@ -115,7 +115,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte RangeDirection => ref Unsafe.AsRef<byte>(&Handle->RangeDirection);
+		public ref sbyte RangeDirection => ref Unsafe.AsRef<sbyte>(&Handle->RangeDirection);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

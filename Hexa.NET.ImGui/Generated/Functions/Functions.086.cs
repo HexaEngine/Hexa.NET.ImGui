@@ -21,6 +21,175 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type, ImGuiDragDropFlags flags)
+		{
+			fixed (byte* ptype = type)
+			{
+				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type)
+		{
+			fixed (byte* ptype = type)
+			{
+				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPayloadPtr AcceptDragDropPayload(string type, ImGuiDragDropFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (type != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(type);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPayloadPtr AcceptDragDropPayload(string type)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (type != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(type);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, (ImGuiDragDropFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndDragDropTargetNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[327])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[327])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void EndDragDropTarget()
+		{
+			EndDragDropTargetNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiPayload* GetDragDropPayloadNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*>)funcTable[328])();
+			#else
+			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint>)funcTable[328])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPayloadPtr GetDragDropPayload()
+		{
+			ImGuiPayloadPtr ret = GetDragDropPayloadNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginDisabledNative(byte disabled)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[329])(disabled);
+			#else
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[329])(disabled);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDisabled(bool disabled)
+		{
+			BeginDisabledNative(disabled ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void BeginDisabled()
+		{
+			BeginDisabledNative((byte)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndDisabledNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[330])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[330])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndDisabled()
 		{
 			EndDisabledNative();
@@ -33,9 +202,9 @@ namespace Hexa.NET.ImGui
 		internal static void PushClipRectNative(Vector2 clipRectMin, Vector2 clipRectMax, byte intersectWithCurrentClipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, void>)funcTable[326])(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, void>)funcTable[331])(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, void>)funcTable[326])(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, void>)funcTable[331])(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
 			#endif
 		}
 
@@ -54,9 +223,9 @@ namespace Hexa.NET.ImGui
 		internal static void PopClipRectNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[327])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[332])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[327])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[332])();
 			#endif
 		}
 
@@ -69,20 +238,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// make last item the default focused item of a newly appearing window.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemDefaultFocusNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[328])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[333])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[328])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[333])();
 			#endif
 		}
 
 		/// <summary>
-		/// make last item the default focused item of a newly appearing window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetItemDefaultFocus()
 		{
@@ -90,20 +259,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetKeyboardFocusHereNative(int offset)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[329])(offset);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[334])(offset);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[329])(offset);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[334])(offset);
 			#endif
 		}
 
 		/// <summary>
-		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetKeyboardFocusHere(int offset)
 		{
@@ -111,7 +280,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetKeyboardFocusHere()
 		{
@@ -119,20 +288,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// alter visibility of keyboardgamepad cursor. by default: show when using an arrow key, hide when clicking with mouse.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNavCursorVisibleNative(byte visible)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[330])(visible);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[335])(visible);
 			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[330])(visible);
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[335])(visible);
 			#endif
 		}
 
 		/// <summary>
-		/// alter visibility of keyboardgamepad cursor. by default: show when using an arrow key, hide when clicking with mouse.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetNavCursorVisible(bool visible)
 		{
@@ -140,20 +309,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// allow next item to be overlapped by a subsequent item. Useful with invisible buttons, selectable, treenode covering an area where subsequent items may need to be added. Note that both Selectable() and TreeNode() have dedicated flags doing this.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemAllowOverlapNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[331])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[336])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[331])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[336])();
 			#endif
 		}
 
 		/// <summary>
-		/// allow next item to be overlapped by a subsequent item. Useful with invisible buttons, selectable, treenode covering an area where subsequent items may need to be added. Note that both Selectable() and TreeNode() have dedicated flags doing this.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetNextItemAllowOverlap()
 		{
@@ -161,20 +330,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemHoveredNative(ImGuiHoveredFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)funcTable[332])(flags);
+			return ((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)funcTable[337])(flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)funcTable[332])(flags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)funcTable[337])(flags);
 			#endif
 		}
 
 		/// <summary>
-		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsItemHovered(ImGuiHoveredFlags flags)
 		{
@@ -183,7 +352,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsItemHovered()
 		{
@@ -192,129 +361,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is the last item active? (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemActiveNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[333])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[333])();
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item active? (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)<br/>
-		/// </summary>
-		public static bool IsItemActive()
-		{
-			byte ret = IsItemActiveNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item focused for keyboardgamepad navigation?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemFocusedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[334])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[334])();
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item focused for keyboardgamepad navigation?<br/>
-		/// </summary>
-		public static bool IsItemFocused()
-		{
-			byte ret = IsItemFocusedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemClickedNative(ImGuiMouseButton mouseButton)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[335])(mouseButton);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[335])(mouseButton);
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
-		/// </summary>
-		public static bool IsItemClicked(ImGuiMouseButton mouseButton)
-		{
-			byte ret = IsItemClickedNative(mouseButton);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
-		/// </summary>
-		public static bool IsItemClicked()
-		{
-			byte ret = IsItemClickedNative((ImGuiMouseButton)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item visible? (items may be out of sight because of clippingscrolling)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemVisibleNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[336])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[336])();
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item visible? (items may be out of sight because of clippingscrolling)<br/>
-		/// </summary>
-		public static bool IsItemVisible()
-		{
-			byte ret = IsItemVisibleNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did the last item modify its underlying value this frame? or was pressed? This is generally the same as the "bool" return value of many widgets.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemEditedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[337])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[337])();
-			#endif
-		}
-
-		/// <summary>
-		/// did the last item modify its underlying value this frame? or was pressed? This is generally the same as the "bool" return value of many widgets.<br/>
-		/// </summary>
-		public static bool IsItemEdited()
-		{
-			byte ret = IsItemEditedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was the last item just made active (item was previously inactive).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemActivatedNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[338])();
@@ -324,19 +374,19 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// was the last item just made active (item was previously inactive).<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool IsItemActivated()
+		public static bool IsItemActive()
 		{
-			byte ret = IsItemActivatedNative();
+			byte ret = IsItemActiveNative();
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// was the last item just made inactive (item was previously active). Useful for UndoRedo patterns with widgets that require continuous editing.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemDeactivatedNative()
+		internal static byte IsItemFocusedNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[339])();
@@ -346,41 +396,50 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// was the last item just made inactive (item was previously active). Useful for UndoRedo patterns with widgets that require continuous editing.<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool IsItemDeactivated()
+		public static bool IsItemFocused()
 		{
-			byte ret = IsItemDeactivatedNative();
+			byte ret = IsItemFocusedNative();
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// was the last item just made inactive and made a value change when it was active? (e.g. SliderDrag moved). Useful for UndoRedo patterns with widgets that require continuous editing. Note that you may get false positives (some widgets such as Combo()ListBox()Selectable() will return true even when clicking an already selected item).<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemDeactivatedAfterEditNative()
+		internal static byte IsItemClickedNative(ImGuiMouseButton mouseButton)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[340])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[340])(mouseButton);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[340])();
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[340])(mouseButton);
 			#endif
 		}
 
 		/// <summary>
-		/// was the last item just made inactive and made a value change when it was active? (e.g. SliderDrag moved). Useful for UndoRedo patterns with widgets that require continuous editing. Note that you may get false positives (some widgets such as Combo()ListBox()Selectable() will return true even when clicking an already selected item).<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool IsItemDeactivatedAfterEdit()
+		public static bool IsItemClicked(ImGuiMouseButton mouseButton)
 		{
-			byte ret = IsItemDeactivatedAfterEditNative();
+			byte ret = IsItemClickedNative(mouseButton);
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// was the last item open state toggled? set by TreeNode().<br/>
+		/// To be documented.
+		/// </summary>
+		public static bool IsItemClicked()
+		{
+			byte ret = IsItemClickedNative((ImGuiMouseButton)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemToggledOpenNative()
+		internal static byte IsItemVisibleNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[341])();
@@ -390,19 +449,19 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// was the last item open state toggled? set by TreeNode().<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool IsItemToggledOpen()
+		public static bool IsItemVisible()
 		{
-			byte ret = IsItemToggledOpenNative();
+			byte ret = IsItemVisibleNative();
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// is any item hovered?<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyItemHoveredNative()
+		internal static byte IsItemEditedNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[342])();
@@ -412,19 +471,19 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is any item hovered?<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool IsAnyItemHovered()
+		public static bool IsItemEdited()
 		{
-			byte ret = IsAnyItemHoveredNative();
+			byte ret = IsItemEditedNative();
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// is any item active?<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyItemActiveNative()
+		internal static byte IsItemActivatedNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[343])();
@@ -434,19 +493,19 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is any item active?<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool IsAnyItemActive()
+		public static bool IsItemActivated()
 		{
-			byte ret = IsAnyItemActiveNative();
+			byte ret = IsItemActivatedNative();
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// is any item focused?<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyItemFocusedNative()
+		internal static byte IsItemDeactivatedNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[344])();
@@ -456,7 +515,117 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is any item focused?<br/>
+		/// To be documented.
+		/// </summary>
+		public static bool IsItemDeactivated()
+		{
+			byte ret = IsItemDeactivatedNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsItemDeactivatedAfterEditNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[345])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[345])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsItemDeactivatedAfterEdit()
+		{
+			byte ret = IsItemDeactivatedAfterEditNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsItemToggledOpenNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[346])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[346])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsItemToggledOpen()
+		{
+			byte ret = IsItemToggledOpenNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsAnyItemHoveredNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[347])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[347])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsAnyItemHovered()
+		{
+			byte ret = IsAnyItemHoveredNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsAnyItemActiveNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[348])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[348])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsAnyItemActive()
+		{
+			byte ret = IsAnyItemActiveNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsAnyItemFocusedNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[349])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[349])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		public static bool IsAnyItemFocused()
 		{
@@ -465,20 +634,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get ID of last item (~~ often same ImGui::GetID(label) beforehand)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetItemIDNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[345])();
+			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[350])();
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[345])();
+			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[350])();
 			#endif
 		}
 
 		/// <summary>
-		/// get ID of last item (~~ often same ImGui::GetID(label) beforehand)<br/>
+		/// To be documented.
 		/// </summary>
 		public static uint GetItemID()
 		{
@@ -487,20 +656,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get upper-left bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetItemRectMinNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[346])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[351])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[346])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[351])((nint)pOut);
 			#endif
 		}
 
 		/// <summary>
-		/// get upper-left bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 GetItemRectMin()
 		{
@@ -510,7 +679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get upper-left bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void GetItemRectMin(Vector2* pOut)
 		{
@@ -518,7 +687,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get upper-left bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void GetItemRectMin(ref Vector2 pOut)
 		{
@@ -529,20 +698,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get lower-right bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetItemRectMaxNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[347])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[352])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[347])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[352])((nint)pOut);
 			#endif
 		}
 
 		/// <summary>
-		/// get lower-right bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 GetItemRectMax()
 		{
@@ -552,7 +721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get lower-right bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void GetItemRectMax(Vector2* pOut)
 		{
@@ -560,7 +729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get lower-right bounding rectangle of the last item (screen space)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void GetItemRectMax(ref Vector2 pOut)
 		{
@@ -571,20 +740,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get size of last item<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetItemRectSizeNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[348])(pOut);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[353])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[348])((nint)pOut);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[353])((nint)pOut);
 			#endif
 		}
 
 		/// <summary>
-		/// get size of last item<br/>
+		/// To be documented.
 		/// </summary>
 		public static Vector2 GetItemRectSize()
 		{
@@ -594,7 +763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get size of last item<br/>
+		/// To be documented.
 		/// </summary>
 		public static void GetItemRectSize(Vector2* pOut)
 		{
@@ -602,7 +771,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get size of last item<br/>
+		/// To be documented.
 		/// </summary>
 		public static void GetItemRectSize(ref Vector2 pOut)
 		{
@@ -613,20 +782,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return primarydefault viewport. This can never be NULL.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiViewport* GetMainViewportNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*>)funcTable[349])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*>)funcTable[354])();
 			#else
-			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint>)funcTable[349])();
+			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint>)funcTable[354])();
 			#endif
 		}
 
 		/// <summary>
-		/// return primarydefault viewport. This can never be NULL.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImGuiViewportPtr GetMainViewport()
 		{
@@ -635,20 +804,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetBackgroundDrawListNative(ImGuiViewport* viewport)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[350])(viewport);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[355])(viewport);
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[350])((nint)viewport);
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[355])((nint)viewport);
 			#endif
 		}
 
 		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewportPtr viewport)
 		{
@@ -657,7 +826,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListPtr GetBackgroundDrawList()
 		{
@@ -666,7 +835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListPtr GetBackgroundDrawList(ref ImGuiViewport viewport)
 		{
@@ -678,20 +847,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[351])(viewport);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[356])(viewport);
 			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[351])((nint)viewport);
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[356])((nint)viewport);
 			#endif
 		}
 
 		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
 		{
@@ -700,7 +869,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListPtr GetForegroundDrawList()
 		{
@@ -709,7 +878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListPtr GetForegroundDrawList(ref ImGuiViewport viewport)
 		{
@@ -721,20 +890,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsRectVisibleNative(Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[352])(size);
+			return ((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[357])(size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[352])(size);
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[357])(size);
 			#endif
 		}
 
 		/// <summary>
-		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsRectVisible(Vector2 size)
 		{
@@ -743,20 +912,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsRectVisibleNative(Vector2 rectMin, Vector2 rectMax)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[353])(rectMin, rectMax);
+			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[358])(rectMin, rectMax);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[353])(rectMin, rectMax);
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[358])(rectMin, rectMax);
 			#endif
 		}
 
 		/// <summary>
-		/// test if rectangle (in screen space) is visible  not clipped. to perform coarse clipping on user's side.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsRectVisible(Vector2 rectMin, Vector2 rectMax)
 		{
@@ -765,20 +934,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double GetTimeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double>)funcTable[354])();
+			return ((delegate* unmanaged[Cdecl]<double>)funcTable[359])();
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<double>)funcTable[354])();
+			return (double)((delegate* unmanaged[Cdecl]<double>)funcTable[359])();
 			#endif
 		}
 
 		/// <summary>
-		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
+		/// To be documented.
 		/// </summary>
 		public static double GetTime()
 		{
@@ -787,20 +956,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get global imgui frame count. incremented by 1 every frame.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetFrameCountNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[355])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[360])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[355])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[360])();
 			#endif
 		}
 
 		/// <summary>
-		/// get global imgui frame count. incremented by 1 every frame.<br/>
+		/// To be documented.
 		/// </summary>
 		public static int GetFrameCount()
 		{
@@ -809,20 +978,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// you may use this when creating your own ImDrawList instances.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawListSharedData* GetDrawListSharedDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*>)funcTable[356])();
+			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*>)funcTable[361])();
 			#else
-			return (ImDrawListSharedData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[356])();
+			return (ImDrawListSharedData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[361])();
 			#endif
 		}
 
 		/// <summary>
-		/// you may use this when creating your own ImDrawList instances.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImDrawListSharedDataPtr GetDrawListSharedData()
 		{
@@ -831,20 +1000,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetStyleColorNameNative(ImGuiCol idx)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiCol, byte*>)funcTable[357])(idx);
+			return ((delegate* unmanaged[Cdecl]<ImGuiCol, byte*>)funcTable[362])(idx);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[357])(idx);
+			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[362])(idx);
 			#endif
 		}
 
 		/// <summary>
-		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* GetStyleColorName(ImGuiCol idx)
 		{
@@ -853,7 +1022,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
+		/// To be documented.
 		/// </summary>
 		public static string GetStyleColorNameS(ImGuiCol idx)
 		{
@@ -862,20 +1031,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetStateStorageNative(ImGuiStorage* storage)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)funcTable[358])(storage);
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)funcTable[363])(storage);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[358])((nint)storage);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[363])((nint)storage);
 			#endif
 		}
 
 		/// <summary>
-		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetStateStorage(ImGuiStoragePtr storage)
 		{
@@ -883,7 +1052,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetStateStorage(ref ImGuiStorage storage)
 		{
@@ -900,9 +1069,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiStorage* GetStateStorageNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*>)funcTable[359])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*>)funcTable[364])();
 			#else
-			return (ImGuiStorage*)((delegate* unmanaged[Cdecl]<nint>)funcTable[359])();
+			return (ImGuiStorage*)((delegate* unmanaged[Cdecl]<nint>)funcTable[364])();
 			#endif
 		}
 
@@ -922,9 +1091,9 @@ namespace Hexa.NET.ImGui
 		internal static void CalcTextSizeNative(Vector2* pOut, byte* text, byte* textEnd, byte hideTextAfterDoubleHash, float wrapWidth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, byte*, byte*, byte, float, void>)funcTable[360])(pOut, text, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			((delegate* unmanaged[Cdecl]<Vector2*, byte*, byte*, byte, float, void>)funcTable[365])(pOut, text, textEnd, hideTextAfterDoubleHash, wrapWidth);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, float, void>)funcTable[360])((nint)pOut, (nint)text, (nint)textEnd, hideTextAfterDoubleHash, wrapWidth);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, float, void>)funcTable[365])((nint)pOut, (nint)text, (nint)textEnd, hideTextAfterDoubleHash, wrapWidth);
 			#endif
 		}
 
@@ -4852,181 +5021,6 @@ namespace Hexa.NET.ImGui
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ref byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ref byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);

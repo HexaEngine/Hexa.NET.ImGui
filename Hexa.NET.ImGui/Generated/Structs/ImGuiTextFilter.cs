@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Helper: Parse and apply text filters. In format "aaaaa[,bbbb][,ccccc]"<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextFilter
@@ -864,7 +864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(byte* label, float width)
 		{
@@ -876,7 +876,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(byte* label)
 		{
@@ -888,7 +888,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw()
 		{
@@ -900,7 +900,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(float width)
 		{
@@ -912,7 +912,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ref byte label, float width)
 		{
@@ -927,7 +927,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ref byte label)
 		{
@@ -942,7 +942,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ReadOnlySpan<byte> label, float width)
 		{
@@ -957,7 +957,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ReadOnlySpan<byte> label)
 		{
@@ -972,7 +972,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(string label, float width)
 		{
@@ -1005,7 +1005,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(string label)
 		{
@@ -1619,7 +1619,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(byte* label, float width)
 		{
@@ -1628,7 +1628,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(byte* label)
 		{
@@ -1637,7 +1637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw()
 		{
@@ -1646,7 +1646,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(float width)
 		{
@@ -1655,7 +1655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ref byte label, float width)
 		{
@@ -1667,7 +1667,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ref byte label)
 		{
@@ -1679,7 +1679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ReadOnlySpan<byte> label, float width)
 		{
@@ -1691,7 +1691,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(ReadOnlySpan<byte> label)
 		{
@@ -1703,7 +1703,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(string label, float width)
 		{
@@ -1733,7 +1733,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Helper calling InputText+Build<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Draw(string label)
 		{

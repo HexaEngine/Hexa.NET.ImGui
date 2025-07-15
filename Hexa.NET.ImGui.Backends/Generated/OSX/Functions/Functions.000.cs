@@ -19,20 +19,20 @@ namespace Hexa.NET.ImGui.Backends.OSX
 	public unsafe partial class ImGuiImplOSX
 	{
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InitNative(void* view)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[66])(view);
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[69])(view);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[66])((nint)view);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[69])((nint)view);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool Init(void* view)
 		{
@@ -47,9 +47,9 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[67])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[70])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[67])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[70])();
 			#endif
 		}
 
@@ -68,9 +68,9 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		internal static void NewFrameNative(void* view)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[68])(view);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[71])(view);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[68])((nint)view);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[71])((nint)view);
 			#endif
 		}
 

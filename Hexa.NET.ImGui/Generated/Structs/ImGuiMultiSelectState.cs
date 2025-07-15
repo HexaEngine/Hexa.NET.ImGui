@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Persistent storage for multi-select (as long as selection is alive)<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMultiSelectState
@@ -45,12 +45,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte RangeSelected;
+		public sbyte RangeSelected;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte NavIdSelected;
+		public sbyte NavIdSelected;
 
 		/// <summary>
 		/// To be documented.
@@ -66,7 +66,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiMultiSelectState(ImGuiWindowPtr window = default, uint id = default, int lastFrameActive = default, int lastSelectionSize = default, byte rangeSelected = default, byte navIdSelected = default, long rangeSrcItem = default, long navIdItem = default)
+		public unsafe ImGuiMultiSelectState(ImGuiWindowPtr window = default, uint id = default, int lastFrameActive = default, int lastSelectionSize = default, sbyte rangeSelected = default, sbyte navIdSelected = default, long rangeSrcItem = default, long navIdItem = default)
 		{
 			Window = window;
 			ID = id;
@@ -141,11 +141,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte RangeSelected => ref Unsafe.AsRef<byte>(&Handle->RangeSelected);
+		public ref sbyte RangeSelected => ref Unsafe.AsRef<sbyte>(&Handle->RangeSelected);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte NavIdSelected => ref Unsafe.AsRef<byte>(&Handle->NavIdSelected);
+		public ref sbyte NavIdSelected => ref Unsafe.AsRef<sbyte>(&Handle->NavIdSelected);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

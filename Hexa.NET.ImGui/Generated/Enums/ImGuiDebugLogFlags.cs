@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Error submitted by IM_ASSERT_USER_ERROR()<br/>
+		/// To be documented.
 		/// </summary>
 		EventError = unchecked(1),
 
@@ -90,12 +90,12 @@ namespace Hexa.NET.ImGui
 		EventMask = unchecked(4095),
 
 		/// <summary>
-		/// Also send output to TTY<br/>
+		/// To be documented.
 		/// </summary>
 		OutputToTty = unchecked(1048576),
 
 		/// <summary>
-		/// Also send output to Test Engine<br/>
+		/// To be documented.
 		/// </summary>
 		OutputToTestEngine = unchecked(2097152),
 	}

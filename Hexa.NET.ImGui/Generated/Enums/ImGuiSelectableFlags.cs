@@ -25,32 +25,32 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Clicking this doesn't close parent popup window (overrides ImGuiItemFlags_AutoClosePopups)<br/>
+		/// To be documented.
 		/// </summary>
 		NoAutoClosePopups = unchecked(1),
 
 		/// <summary>
-		/// Frame will span all columns of its container table (text will still fit in current column)<br/>
+		/// To be documented.
 		/// </summary>
 		SpanAllColumns = unchecked(2),
 
 		/// <summary>
-		/// Generate press events on double clicks too<br/>
+		/// To be documented.
 		/// </summary>
 		AllowDoubleClick = unchecked(4),
 
 		/// <summary>
-		/// Cannot be selected, display grayed out text<br/>
+		/// To be documented.
 		/// </summary>
 		Disabled = unchecked(8),
 
 		/// <summary>
-		/// (WIP) Hit testing to allow subsequent widgets to overlap this one<br/>
+		/// To be documented.
 		/// </summary>
 		AllowOverlap = unchecked(16),
 
 		/// <summary>
-		/// Make the item be displayed as if it is hovered<br/>
+		/// To be documented.
 		/// </summary>
 		Highlight = unchecked(32),
 	}

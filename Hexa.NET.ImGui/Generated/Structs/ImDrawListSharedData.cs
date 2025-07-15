@@ -17,10 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Data shared between all ImDrawList instances<br/>
-	/// Conceptually this could have been called e.g. ImDrawListSharedContext<br/>
-	/// Typically one ImGui context would create and maintain one of this.<br/>
-	/// You may want to create your own instance of you try to ImDrawList completely without ImGui. In that case, watch out for future changes to this structure.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawListSharedData
@@ -34,6 +31,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public unsafe Vector4* TexUvLines;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontAtlas* FontAtlas;
 
 		/// <summary>
 		/// To be documented.
@@ -79,6 +81,16 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ImVector<Vector2> TempBuffer;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImVector<ImDrawListPtr> DrawLists;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImGuiContext* Context;
 
 		/// <summary>
 		/// To be documented.
@@ -209,10 +221,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFontAtlas* fontAtlas = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, ImVector<ImDrawListPtr> drawLists = default, ImGuiContext* context = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
 			TexUvLines = texUvLines;
+			FontAtlas = fontAtlas;
 			Font = font;
 			FontSize = fontSize;
 			FontScale = fontScale;
@@ -222,6 +235,8 @@ namespace Hexa.NET.ImGui
 			InitialFlags = initialFlags;
 			ClipRectFullscreen = clipRectFullscreen;
 			TempBuffer = tempBuffer;
+			DrawLists = drawLists;
+			Context = context;
 			if (arcFastVtx != default(Vector2*))
 			{
 				ArcFastVtx_0 = arcFastVtx[0];
@@ -346,10 +361,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFontAtlas* fontAtlas = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, ImVector<ImDrawListPtr> drawLists = default, ImGuiContext* context = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
 			TexUvLines = texUvLines;
+			FontAtlas = fontAtlas;
 			Font = font;
 			FontSize = fontSize;
 			FontScale = fontScale;
@@ -359,6 +375,8 @@ namespace Hexa.NET.ImGui
 			InitialFlags = initialFlags;
 			ClipRectFullscreen = clipRectFullscreen;
 			TempBuffer = tempBuffer;
+			DrawLists = drawLists;
+			Context = context;
 			if (arcFastVtx != default(Span<Vector2>))
 			{
 				ArcFastVtx_0 = arcFastVtx[0];
@@ -549,6 +567,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref ImFontAtlasPtr FontAtlas => ref Unsafe.AsRef<ImFontAtlasPtr>(&Handle->FontAtlas);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref ImFontPtr Font => ref Unsafe.AsRef<ImFontPtr>(&Handle->Font);
 		/// <summary>
 		/// To be documented.
@@ -585,6 +607,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref ImVector<ImDrawListPtr> DrawLists => ref Unsafe.AsRef<ImVector<ImDrawListPtr>>(&Handle->DrawLists);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImGuiContextPtr Context => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Context);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe Span<Vector2> ArcFastVtx
 		
 		{
@@ -608,6 +638,49 @@ namespace Hexa.NET.ImGui
 				return new Span<byte>(&Handle->CircleSegmentCounts_0, 64);
 			}
 		}
+	}
+
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	#if NET5_0_OR_GREATER
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
+	public unsafe struct ImDrawListSharedDataPtrPtr : IEquatable<ImDrawListSharedDataPtrPtr>
+	{
+		public ImDrawListSharedDataPtrPtr(ImDrawListSharedData** handle) { Handle = handle; }
+
+		public ImDrawListSharedData** Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImDrawListSharedDataPtrPtr Null => new ImDrawListSharedDataPtrPtr(null);
+
+		public ImDrawListSharedData* this[int index] { get => Handle[index]; set => Handle[index] = value; }
+
+		public static implicit operator ImDrawListSharedDataPtrPtr(ImDrawListSharedData** handle) => new ImDrawListSharedDataPtrPtr(handle);
+
+		public static implicit operator ImDrawListSharedData**(ImDrawListSharedDataPtrPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImDrawListSharedDataPtrPtr left, ImDrawListSharedDataPtrPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImDrawListSharedDataPtrPtr left, ImDrawListSharedDataPtrPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImDrawListSharedDataPtrPtr left, ImDrawListSharedData** right) => left.Handle == right;
+
+		public static bool operator !=(ImDrawListSharedDataPtrPtr left, ImDrawListSharedData** right) => left.Handle != right;
+
+		public bool Equals(ImDrawListSharedDataPtrPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImDrawListSharedDataPtrPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		#if NET5_0_OR_GREATER
+		private string DebuggerDisplay => string.Format("ImDrawListSharedDataPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 	}
 
 }

@@ -20,12 +20,17 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiTreeNodeFlagsPrivate : int
 	{
 		/// <summary>
-		/// FIXME-WIP: Hard-coded for CollapsingHeader()<br/>
+		/// To be documented.
+		/// </summary>
+		NoNavFocus = unchecked(134217728),
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		ClipLabelForTrailingButton = unchecked(268435456),
 
 		/// <summary>
-		/// FIXME-WIP: Turn Down arrow into an Up arrow, for reversed trees (#6517)<br/>
+		/// To be documented.
 		/// </summary>
 		UpsideDownArrow = unchecked(536870912),
 
@@ -33,5 +38,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		OpenOnMask = unchecked(192),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		DrawLinesMask = unchecked(1835008),
 	}
 }

@@ -73,7 +73,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InitForOpenGLNative(SDLWindow* window, void* sdlGlContext)
@@ -86,7 +86,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
 		{
@@ -95,7 +95,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool InitForOpenGL(ref SDLWindow window, void* sdlGlContext)
 		{
@@ -380,7 +380,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// DPI-related helpers (optional)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetGamepadModeNative(ImGuiImplSDL2GamepadMode mode, SDLGameController** manualGamepadsArray, int manualGamepadsCount)
@@ -393,7 +393,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// DPI-related helpers (optional)<br/>
 		/// </summary>
 		public static void SetGamepadMode(ImGuiImplSDL2GamepadMode mode, SDLGameControllerPtrPtr manualGamepadsArray, int manualGamepadsCount)
 		{
@@ -401,7 +401,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// DPI-related helpers (optional)<br/>
 		/// </summary>
 		public static void SetGamepadMode(ImGuiImplSDL2GamepadMode mode, ref SDLGameController* manualGamepadsArray, int manualGamepadsCount)
 		{
@@ -548,65 +548,21 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// Called by Init/NewFrame/Shutdown<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDLRenderer2CreateFontsTextureNative()
+		internal static void SDLRenderer2CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[16])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[16])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[16])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[16])();
 			#endif
 		}
 
 		/// <summary>
 		/// Called by Init/NewFrame/Shutdown<br/>
 		/// </summary>
-		public static bool SDLRenderer2CreateFontsTexture()
+		public static void SDLRenderer2CreateDeviceObjects()
 		{
-			byte ret = SDLRenderer2CreateFontsTextureNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SDLRenderer2DestroyFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SDLRenderer2DestroyFontsTexture()
-		{
-			SDLRenderer2DestroyFontsTextureNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDLRenderer2CreateDeviceObjectsNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[18])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[18])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SDLRenderer2CreateDeviceObjects()
-		{
-			byte ret = SDLRenderer2CreateDeviceObjectsNative();
-			return ret != 0;
+			SDLRenderer2CreateDeviceObjectsNative();
 		}
 
 		/// <summary>
@@ -616,9 +572,9 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		internal static void SDLRenderer2DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[19])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[19])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
 			#endif
 		}
 
@@ -628,6 +584,38 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		public static void SDLRenderer2DestroyDeviceObjects()
 		{
 			SDLRenderer2DestroyDeviceObjectsNative();
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLRenderer2UpdateTextureNative(ImTextureData* tex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[18])(tex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)tex);
+			#endif
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		public static void SDLRenderer2UpdateTexture(ImTextureDataPtr tex)
+		{
+			SDLRenderer2UpdateTextureNative(tex);
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		public static void SDLRenderer2UpdateTexture(ref ImTextureData tex)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				SDLRenderer2UpdateTextureNative((ImTextureData*)ptex);
+			}
 		}
 
 	}

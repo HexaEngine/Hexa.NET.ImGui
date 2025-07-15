@@ -18,7 +18,7 @@ using Hexa.NET.ImGui;
 namespace Hexa.NET.ImGui.Backends.SDL2
 {
 	/// <summary>
-	/// To be documented.
+	/// typedefs for SDL2 types used in this header<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct SDLWindow
@@ -28,7 +28,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 	}
 
 	/// <summary>
-	/// To be documented.
+	/// typedefs for SDL2 types used in this header<br/>
 	/// </summary>
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]

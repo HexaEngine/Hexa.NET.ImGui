@@ -17,8 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Helper: ImGuiTextIndex<br/>
-	/// Maintain a line index for a text buffer. This is a strong candidate to be moved into the public API.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextIndex

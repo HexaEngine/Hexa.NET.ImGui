@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static byte InitNative(MTLDevice* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[69])(device);
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[72])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[69])((nint)device);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[72])((nint)device);
 			#endif
 		}
 
@@ -59,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[70])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[73])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[70])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[73])();
 			#endif
 		}
 
@@ -80,9 +80,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void NewFrameNative(MTLRenderPassDescriptor* renderPassDescriptor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<MTLRenderPassDescriptor*, void>)funcTable[71])(renderPassDescriptor);
+			((delegate* unmanaged[Cdecl]<MTLRenderPassDescriptor*, void>)funcTable[74])(renderPassDescriptor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[71])((nint)renderPassDescriptor);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[74])((nint)renderPassDescriptor);
 			#endif
 		}
 
@@ -112,9 +112,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void RenderDrawDataNative(ImDrawData* drawData, MTLCommandBuffer* commandBuffer, MTLRenderCommandEncoder* commandEncoder)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, MTLCommandBuffer*, MTLRenderCommandEncoder*, void>)funcTable[72])(drawData, commandBuffer, commandEncoder);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, MTLCommandBuffer*, MTLRenderCommandEncoder*, void>)funcTable[75])(drawData, commandBuffer, commandEncoder);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[72])((nint)drawData, (nint)commandBuffer, (nint)commandEncoder);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[75])((nint)drawData, (nint)commandBuffer, (nint)commandEncoder);
 			#endif
 		}
 
@@ -219,58 +219,35 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		}
 
 		/// <summary>
-		/// Called by Init/NewFrame/Shutdown<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte CreateFontsTextureNative(MTLDevice* device)
+		internal static void UpdateTextureNative(ImTextureData* tex)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[73])(device);
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[76])(tex);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[73])((nint)device);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[76])((nint)tex);
 			#endif
 		}
 
 		/// <summary>
-		/// Called by Init/NewFrame/Shutdown<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool CreateFontsTexture(MTLDevicePtr device)
+		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			byte ret = CreateFontsTextureNative(device);
-			return ret != 0;
+			UpdateTextureNative(tex);
 		}
 
 		/// <summary>
-		/// Called by Init/NewFrame/Shutdown<br/>
+		/// To be documented.
 		/// </summary>
-		public static bool CreateFontsTexture(ref MTLDevice device)
+		public static void UpdateTexture(ref ImTextureData tex)
 		{
-			fixed (MTLDevice* pdevice = &device)
+			fixed (ImTextureData* ptex = &tex)
 			{
-				byte ret = CreateFontsTextureNative((MTLDevice*)pdevice);
-				return ret != 0;
+				UpdateTextureNative((ImTextureData*)ptex);
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[74])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[74])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DestroyFontsTexture()
-		{
-			DestroyFontsTextureNative();
 		}
 
 		/// <summary>
@@ -280,9 +257,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static byte CreateDeviceObjectsNative(MTLDevice* device)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[75])(device);
+			return ((delegate* unmanaged[Cdecl]<MTLDevice*, byte>)funcTable[77])(device);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[75])((nint)device);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[77])((nint)device);
 			#endif
 		}
 
@@ -314,9 +291,9 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		internal static void DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[76])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[78])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[76])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[78])();
 			#endif
 		}
 

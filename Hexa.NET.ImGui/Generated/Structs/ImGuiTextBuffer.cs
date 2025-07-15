@@ -17,8 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Helper: Growable text buffer for loggingaccumulating text<br/>
-	/// (this could be called 'ImGuiTextBuilder'  'ImGuiStringBuilder')<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextBuffer
@@ -502,6 +501,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(byte* fmt)
@@ -513,6 +513,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(ref byte fmt)
@@ -527,6 +528,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(ReadOnlySpan<byte> fmt)
@@ -541,6 +543,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(string fmt)
@@ -726,7 +729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe byte* end()
 		{
@@ -738,7 +741,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe string endS()
 		{
@@ -761,7 +764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void resize(int size)
 		{
@@ -1234,6 +1237,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(byte* fmt)
@@ -1242,6 +1246,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(ref byte fmt)
@@ -1253,6 +1258,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(ReadOnlySpan<byte> fmt)
@@ -1264,6 +1270,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
 		public unsafe void appendf(string fmt)
@@ -1413,7 +1420,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe byte* end()
 		{
@@ -1422,7 +1429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe string endS()
 		{
@@ -1439,7 +1446,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void resize(int size)
 		{

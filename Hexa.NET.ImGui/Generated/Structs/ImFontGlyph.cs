@@ -17,8 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Hold rendering data for one glyph.<br/>
-	/// (Note: some language parsers may fail to convert the 31+1 bitfield members, in this case maybe drop store a single u32 or we can rework this)<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyph
@@ -32,6 +31,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public uint Visible;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint SourceIdx;
 
 		/// <summary>
 		/// To be documented.
@@ -83,14 +87,20 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public float V1;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public int PackId;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph(uint colored = default, uint visible = default, uint codepoint = default, float advanceX = default, float x0 = default, float y0 = default, float x1 = default, float y1 = default, float u0 = default, float v0 = default, float u1 = default, float v1 = default)
+		public unsafe ImFontGlyph(uint colored = default, uint visible = default, uint sourceIdx = default, uint codepoint = default, float advanceX = default, float x0 = default, float y0 = default, float x1 = default, float y1 = default, float u0 = default, float v0 = default, float u1 = default, float v1 = default, int packId = default)
 		{
 			Colored = colored;
 			Visible = visible;
+			SourceIdx = sourceIdx;
 			Codepoint = codepoint;
 			AdvanceX = advanceX;
 			X0 = x0;
@@ -101,8 +111,20 @@ namespace Hexa.NET.ImGui
 			V0 = v0;
 			U1 = u1;
 			V1 = v1;
+			PackId = packId;
 		}
 
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			fixed (ImFontGlyph* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
 
 	}
 
@@ -158,6 +180,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref uint SourceIdx => ref Unsafe.AsRef<uint>(&Handle->SourceIdx);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref uint Codepoint => ref Unsafe.AsRef<uint>(&Handle->Codepoint);
 		/// <summary>
 		/// To be documented.
@@ -195,6 +221,18 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref float V1 => ref Unsafe.AsRef<float>(&Handle->V1);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref int PackId => ref Unsafe.AsRef<int>(&Handle->PackId);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
 	}
 
 }

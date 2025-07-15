@@ -73,7 +73,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InitForOpenGLNative(GLFWwindow* window, byte installCallbacks)
@@ -86,7 +86,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool InitForOpenGL(GLFWwindowPtr window, bool installCallbacks)
 		{
@@ -95,7 +95,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool InitForOpenGL(ref GLFWwindow window, bool installCallbacks)
 		{
@@ -217,7 +217,9 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW callbacks install<br/>
+		/// - When calling Init with 'install_callbacks=true': ImGui_ImplGlfw_InstallCallbacks() is called. GLFW callbacks will be installed for you. They will chain-call user's previously installed callbacks, if any.<br/>
+		/// - When calling Init with 'install_callbacks=false': GLFW callbacks won't be installed. You will need to call individual function yourself from your own GLFW callbacks.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void InstallCallbacksNative(GLFWwindow* window)
@@ -230,7 +232,9 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW callbacks install<br/>
+		/// - When calling Init with 'install_callbacks=true': ImGui_ImplGlfw_InstallCallbacks() is called. GLFW callbacks will be installed for you. They will chain-call user's previously installed callbacks, if any.<br/>
+		/// - When calling Init with 'install_callbacks=false': GLFW callbacks won't be installed. You will need to call individual function yourself from your own GLFW callbacks.<br/>
 		/// </summary>
 		public static void InstallCallbacks(GLFWwindowPtr window)
 		{
@@ -238,7 +242,9 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW callbacks install<br/>
+		/// - When calling Init with 'install_callbacks=true': ImGui_ImplGlfw_InstallCallbacks() is called. GLFW callbacks will be installed for you. They will chain-call user's previously installed callbacks, if any.<br/>
+		/// - When calling Init with 'install_callbacks=false': GLFW callbacks won't be installed. You will need to call individual function yourself from your own GLFW callbacks.<br/>
 		/// </summary>
 		public static void InstallCallbacks(ref GLFWwindow window)
 		{
@@ -281,7 +287,8 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GFLW callbacks options:<br/>
+		/// - Set 'chain_for_all_windows=true' to enable chaining callbacks for all windows (including secondary viewports created by backends or by user)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCallbacksChainForAllWindowsNative(byte chainForAllWindows)
@@ -294,7 +301,8 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GFLW callbacks options:<br/>
+		/// - Set 'chain_for_all_windows=true' to enable chaining callbacks for all windows (including secondary viewports created by backends or by user)<br/>
 		/// </summary>
 		public static void SetCallbacksChainForAllWindows(bool chainForAllWindows)
 		{
@@ -302,7 +310,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW callbacks (individual callbacks to call yourself if you didn't install callbacks)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void WindowFocusCallbackNative(GLFWwindow* window, int focused)
@@ -315,7 +323,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW callbacks (individual callbacks to call yourself if you didn't install callbacks)<br/>
 		/// </summary>
 		public static void WindowFocusCallback(GLFWwindowPtr window, int focused)
 		{
@@ -323,7 +331,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW callbacks (individual callbacks to call yourself if you didn't install callbacks)<br/>
 		/// </summary>
 		public static void WindowFocusCallback(ref GLFWwindow window, int focused)
 		{
@@ -558,7 +566,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW helpers<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SleepNative(int milliseconds)
@@ -571,11 +579,79 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// GLFW helpers<br/>
 		/// </summary>
 		public static void Sleep(int milliseconds)
 		{
 			SleepNative(milliseconds);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float GetContentScaleForWindowNative(GLFWwindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<GLFWwindow*, float>)funcTable[19])(window);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[19])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetContentScaleForWindow(GLFWwindowPtr window)
+		{
+			float ret = GetContentScaleForWindowNative(window);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetContentScaleForWindow(ref GLFWwindow window)
+		{
+			fixed (GLFWwindow* pwindow = &window)
+			{
+				float ret = GetContentScaleForWindowNative((GLFWwindow*)pwindow);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float GetContentScaleForMonitorNative(GLFWmonitor* monitor)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<GLFWmonitor*, float>)funcTable[20])(monitor);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[20])((nint)monitor);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetContentScaleForMonitor(GLFWmonitorPtr monitor)
+		{
+			float ret = GetContentScaleForMonitorNative(monitor);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetContentScaleForMonitor(ref GLFWmonitor monitor)
+		{
+			fixed (GLFWmonitor* pmonitor = &monitor)
+			{
+				float ret = GetContentScaleForMonitorNative((GLFWmonitor*)pmonitor);
+				return ret;
+			}
 		}
 
 	}

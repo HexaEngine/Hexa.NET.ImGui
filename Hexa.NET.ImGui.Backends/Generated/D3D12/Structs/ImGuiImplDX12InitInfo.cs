@@ -29,7 +29,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		public unsafe ID3D12Device* Device;
 
 		/// <summary>
-		/// To be documented.
+		/// Command queue used for queuing texture uploads.<br/>
 		/// </summary>
 		public unsafe ID3D12CommandQueue* CommandQueue;
 
@@ -41,12 +41,12 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// <summary>
 		/// RenderTarget format.<br/>
 		/// </summary>
-		public uint RTVFormat;
+		public int RTVFormat;
 
 		/// <summary>
 		/// DepthStencilView format.<br/>
 		/// </summary>
-		public uint DSVFormat;
+		public int DSVFormat;
 
 		/// <summary>
 		/// To be documented.
@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 
 		/// <summary>
 		/// Allocating SRV descriptors for textures is up to the application, so we provide callbacks.<br/>
-		/// (current version of the backend will only allocate one descriptor, future versions will need to allocate more)<br/>
+		/// (current version of the backend will only allocate one descriptor, from 1.92 the backend will need to allocate more)<br/>
 		/// </summary>
 		public unsafe ID3D12DescriptorHeap* SrvDescriptorHeap;
 
@@ -83,7 +83,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiImplDX12InitInfo(ID3D12DevicePtr device = default, ID3D12CommandQueuePtr commandQueue = default, int numFramesInFlight = default, uint rtvFormat = default, uint dsvFormat = default, void* userData = default, ID3D12DescriptorHeapPtr srvDescriptorHeap = default, delegate*<ImGuiImplDX12InitInfo*, D3D12CpuDescriptorHandle*, D3D12GpuDescriptorHandle*, void> srvDescriptorAllocFn = default, delegate*<ImGuiImplDX12InitInfo*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, void> srvDescriptorFreeFn = default, D3D12CpuDescriptorHandle legacySingleSrvCpuDescriptor = default, D3D12GpuDescriptorHandle legacySingleSrvGpuDescriptor = default)
+		public unsafe ImGuiImplDX12InitInfo(ID3D12DevicePtr device = default, ID3D12CommandQueuePtr commandQueue = default, int numFramesInFlight = default, int rtvFormat = default, int dsvFormat = default, void* userData = default, ID3D12DescriptorHeapPtr srvDescriptorHeap = default, delegate*<ImGuiImplDX12InitInfo*, D3D12CpuDescriptorHandle*, D3D12GpuDescriptorHandle*, void> srvDescriptorAllocFn = default, delegate*<ImGuiImplDX12InitInfo*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, void> srvDescriptorFreeFn = default, D3D12CpuDescriptorHandle legacySingleSrvCpuDescriptor = default, D3D12GpuDescriptorHandle legacySingleSrvGpuDescriptor = default)
 		{
 			Device = device;
 			CommandQueue = commandQueue;
@@ -147,7 +147,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// </summary>
 		public ref ID3D12DevicePtr Device => ref Unsafe.AsRef<ID3D12DevicePtr>(&Handle->Device);
 		/// <summary>
-		/// To be documented.
+		/// Command queue used for queuing texture uploads.<br/>
 		/// </summary>
 		public ref ID3D12CommandQueuePtr CommandQueue => ref Unsafe.AsRef<ID3D12CommandQueuePtr>(&Handle->CommandQueue);
 		/// <summary>
@@ -157,18 +157,18 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// <summary>
 		/// RenderTarget format.<br/>
 		/// </summary>
-		public ref uint RTVFormat => ref Unsafe.AsRef<uint>(&Handle->RTVFormat);
+		public ref int RTVFormat => ref Unsafe.AsRef<int>(&Handle->RTVFormat);
 		/// <summary>
 		/// DepthStencilView format.<br/>
 		/// </summary>
-		public ref uint DSVFormat => ref Unsafe.AsRef<uint>(&Handle->DSVFormat);
+		public ref int DSVFormat => ref Unsafe.AsRef<int>(&Handle->DSVFormat);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
 		/// <summary>
 		/// Allocating SRV descriptors for textures is up to the application, so we provide callbacks.<br/>
-		/// (current version of the backend will only allocate one descriptor, future versions will need to allocate more)<br/>
+		/// (current version of the backend will only allocate one descriptor, from 1.92 the backend will need to allocate more)<br/>
 		/// </summary>
 		public ref ID3D12DescriptorHeapPtr SrvDescriptorHeap => ref Unsafe.AsRef<ID3D12DescriptorHeapPtr>(&Handle->SrvDescriptorHeap);
 		/// <summary>

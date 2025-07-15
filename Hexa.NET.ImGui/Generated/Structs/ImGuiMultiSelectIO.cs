@@ -17,11 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Main IO structure returned by BeginMultiSelect()EndMultiSelect().<br/>
-	/// This mainly contains a list of selection requests.<br/>
-	/// - Use 'Demo-&gt;Tools-&gt;Debug Log-&gt;Selection' to see requests as they happen.<br/>
-	/// - Some fields are only useful if your list is dynamic and allows deletion (getting post-deletion focusstate right is shown in the demo)<br/>
-	/// - Below: who readswrites each fields? 'r'=read, 'w'=write, 'ms'=multi-select code, 'app'=applicationuser code.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMultiSelectIO

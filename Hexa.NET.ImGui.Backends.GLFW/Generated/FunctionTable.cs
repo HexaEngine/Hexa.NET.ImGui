@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(context, 19);
+			funcTable = new FunctionTable(context, 21);
 			funcTable.Load(0, "igSetCurrentContext");
 			funcTable.Load(1, "igGetCurrentContext");
 			funcTable.Load(2, "CImGui_ImplGlfw_InitForOpenGL");
@@ -45,6 +45,8 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 			funcTable.Load(16, "CImGui_ImplGlfw_CharCallback");
 			funcTable.Load(17, "CImGui_ImplGlfw_MonitorCallback");
 			funcTable.Load(18, "CImGui_ImplGlfw_Sleep");
+			funcTable.Load(19, "CImGui_ImplGlfw_GetContentScaleForWindow");
+			funcTable.Load(20, "CImGui_ImplGlfw_GetContentScaleForMonitor");
 		}
 
 		public static void FreeApi()

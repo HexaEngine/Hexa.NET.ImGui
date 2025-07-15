@@ -117,6 +117,7 @@
     /// ⚠️ <c>Warning</c>: If you use glyph ranges, do not dispose of this builder until after ImGui shutdown.
     /// Disposing prematurely can cause dangling pointers, as ImGui may continue to reference glyph ranges during its lifetime.
     /// </remarks>
+    [Obsolete("This might be broken, use it with caution.")]
     public unsafe class ImGuiFontBuilder : IDisposable
     {
         private ImFontAtlasPtr fontAtlas;
@@ -437,7 +438,7 @@
         /// <returns>The pointer to the constructed <see cref="ImFontPtr"/>.</returns>
         public ImFontPtr Build()
         {
-            fontAtlas.Build();
+            //fontAtlas.Build();
             return Font;
         }
 

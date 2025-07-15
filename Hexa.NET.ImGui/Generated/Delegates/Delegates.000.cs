@@ -37,14 +37,126 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate byte FontBuilderBuild([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas);
+	public unsafe delegate byte LoaderInit([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate byte FontBuilderBuild([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas);
+	public unsafe delegate byte LoaderInit([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void LoaderShutdown([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void LoaderShutdown([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontSrcInit([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] ImFontConfig* src);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontSrcInit([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] nint src);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void FontSrcDestroy([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] ImFontConfig* src);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void FontSrcDestroy([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] nint src);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontSrcContainsGlyph([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] ImFontConfig* src, [NativeName(NativeNameType.Param, "codepoint")] [NativeName(NativeNameType.Type, "ImWchar")] uint codepoint);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontSrcContainsGlyph([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] nint src, [NativeName(NativeNameType.Param, "codepoint")] [NativeName(NativeNameType.Type, "ImWchar")] uint codepoint);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontBakedInit([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] ImFontConfig* src, [NativeName(NativeNameType.Param, "baked")] [NativeName(NativeNameType.Type, "ImFontBaked*")] ImFontBaked* baked, [NativeName(NativeNameType.Param, "loader_data_for_baked_src")] [NativeName(NativeNameType.Type, "void*")] void* loaderDataForBakedSrc);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontBakedInit([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] nint src, [NativeName(NativeNameType.Param, "baked")] [NativeName(NativeNameType.Type, "ImFontBaked*")] nint baked, [NativeName(NativeNameType.Param, "loader_data_for_baked_src")] [NativeName(NativeNameType.Type, "void*")] nint loaderDataForBakedSrc);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void FontBakedDestroy([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] ImFontConfig* src, [NativeName(NativeNameType.Param, "baked")] [NativeName(NativeNameType.Type, "ImFontBaked*")] ImFontBaked* baked, [NativeName(NativeNameType.Param, "loader_data_for_baked_src")] [NativeName(NativeNameType.Type, "void*")] void* loaderDataForBakedSrc);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void FontBakedDestroy([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] nint src, [NativeName(NativeNameType.Param, "baked")] [NativeName(NativeNameType.Type, "ImFontBaked*")] nint baked, [NativeName(NativeNameType.Param, "loader_data_for_baked_src")] [NativeName(NativeNameType.Type, "void*")] nint loaderDataForBakedSrc);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontBakedLoadGlyph([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] ImFontAtlas* atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] ImFontConfig* src, [NativeName(NativeNameType.Param, "baked")] [NativeName(NativeNameType.Type, "ImFontBaked*")] ImFontBaked* baked, [NativeName(NativeNameType.Param, "loader_data_for_baked_src")] [NativeName(NativeNameType.Type, "void*")] void* loaderDataForBakedSrc, [NativeName(NativeNameType.Param, "codepoint")] [NativeName(NativeNameType.Type, "ImWchar")] uint codepoint, [NativeName(NativeNameType.Param, "out_glyph")] [NativeName(NativeNameType.Type, "ImFontGlyph*")] ImFontGlyph* outGlyph, [NativeName(NativeNameType.Param, "out_advance_x")] [NativeName(NativeNameType.Type, "float*")] float* outAdvanceX);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontBakedLoadGlyph([NativeName(NativeNameType.Param, "atlas")] [NativeName(NativeNameType.Type, "ImFontAtlas*")] nint atlas, [NativeName(NativeNameType.Param, "src")] [NativeName(NativeNameType.Type, "ImFontConfig*")] nint src, [NativeName(NativeNameType.Param, "baked")] [NativeName(NativeNameType.Type, "ImFontBaked*")] nint baked, [NativeName(NativeNameType.Param, "loader_data_for_baked_src")] [NativeName(NativeNameType.Type, "void*")] nint loaderDataForBakedSrc, [NativeName(NativeNameType.Param, "codepoint")] [NativeName(NativeNameType.Type, "ImWchar")] uint codepoint, [NativeName(NativeNameType.Param, "out_glyph")] [NativeName(NativeNameType.Type, "ImFontGlyph*")] nint outGlyph, [NativeName(NativeNameType.Param, "out_advance_x")] [NativeName(NativeNameType.Type, "float*")] nint outAdvanceX);
 
 	#endif
 
@@ -253,6 +365,22 @@ namespace Hexa.NET.ImGui
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate Vector2* PlatformGetWindowSize(Vector2* size, ImGuiViewport* viewport);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate Vector2 PlatformGetWindowFramebufferScale([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport*")] ImGuiViewport* vp);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate Vector2 PlatformGetWindowFramebufferScale([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport*")] nint vp);
 
 	#endif
 
@@ -693,22 +821,6 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "const ImDrawList*")] ImDrawList* parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "const ImDrawCmd*")] ImDrawCmd* cmd);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "const ImDrawList*")] nint parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "const ImDrawCmd*")] nint cmd);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiSizeCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiSizeCallbackData*")] ImGuiSizeCallbackData* data);
 
 	#else
@@ -757,6 +869,22 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "const ImDrawList*")] ImDrawList* parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "const ImDrawCmd*")] ImDrawCmd* cmd);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "const ImDrawList*")] nint parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "const ImDrawCmd*")] nint cmd);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int ImGuiInputTextCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiInputTextCallbackData*")] ImGuiInputTextCallbackData* data);
 
 	#else
@@ -773,14 +901,14 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void* ImGuiMemAllocFunc([NativeName(NativeNameType.Param, "sz")] [NativeName(NativeNameType.Type, "size_t")] ulong sz, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] void* userData);
+	public unsafe delegate void* ImGuiMemAllocFunc([NativeName(NativeNameType.Param, "sz")] [NativeName(NativeNameType.Type, "size_t")] nuint sz, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] void* userData);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate nint ImGuiMemAllocFunc([NativeName(NativeNameType.Param, "sz")] [NativeName(NativeNameType.Type, "size_t")] ulong sz, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] nint userData);
+	public unsafe delegate nint ImGuiMemAllocFunc([NativeName(NativeNameType.Param, "sz")] [NativeName(NativeNameType.Type, "size_t")] nuint sz, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void*")] nint userData);
 
 	#endif
 

@@ -22,19 +22,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InitNative(nint hwnd)
+		internal static byte InitNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[60])(hwnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[57])(hwnd);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[60])((nint)hwnd);
 			#endif
 		}
 
 		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
-		public static bool Init(nint hwnd)
+		public static bool Init(void* hwnd)
 		{
 			byte ret = InitNative(hwnd);
 			return ret != 0;
@@ -44,19 +44,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InitForOpenGLNative(nint hwnd)
+		internal static byte InitForOpenGLNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<void*, byte>)funcTable[61])(hwnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[58])(hwnd);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[61])((nint)hwnd);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InitForOpenGL(nint hwnd)
+		public static bool InitForOpenGL(void* hwnd)
 		{
 			byte ret = InitForOpenGLNative(hwnd);
 			return ret != 0;
@@ -69,9 +69,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[59])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[59])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
 			#endif
 		}
 
@@ -90,9 +90,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[60])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[63])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[60])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[63])();
 			#endif
 		}
 
@@ -106,19 +106,29 @@ namespace Hexa.NET.ImGui.Backends.Win32
 
 		/// <summary>
 		/// Win32 message handler your application need to call.<br/>
+		/// - Intentionally commented out in a '#if 0' block to avoid dragging dependencies on <br/>
+		/// <windows<br/>
+		/// .h> from this helper.<br/>
+		/// - You should COPY the line below into your .cpp code to forward declare the function and then you can call it.<br/>
+		/// - Call from your application's message handler. Keep calling your message handler unless this function returns TRUE.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static nint WndProcHandlerNative(nint hWnd, uint msg, nuint wParam, nint lParam)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nint, uint, nuint, nint, nint>)funcTable[61])(hWnd, msg, wParam, lParam);
+			return ((delegate* unmanaged[Cdecl]<nint, uint, nuint, nint, nint>)funcTable[64])(hWnd, msg, wParam, lParam);
 			#else
-			return (nint)((delegate* unmanaged[Cdecl]<nint, uint, nuint, nint, nint>)funcTable[61])(hWnd, msg, wParam, lParam);
+			return (nint)((delegate* unmanaged[Cdecl]<nint, uint, nuint, nint, nint>)funcTable[64])(hWnd, msg, wParam, lParam);
 			#endif
 		}
 
 		/// <summary>
 		/// Win32 message handler your application need to call.<br/>
+		/// - Intentionally commented out in a '#if 0' block to avoid dragging dependencies on <br/>
+		/// <windows<br/>
+		/// .h> from this helper.<br/>
+		/// - You should COPY the line below into your .cpp code to forward declare the function and then you can call it.<br/>
+		/// - Call from your application's message handler. Keep calling your message handler unless this function returns TRUE.<br/>
 		/// </summary>
 		public static nint WndProcHandler(nint hWnd, uint msg, nuint wParam, nint lParam)
 		{
@@ -138,9 +148,9 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		internal static void EnableDpiAwarenessNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[62])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[65])();
 			#endif
 		}
 
@@ -161,19 +171,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetDpiScaleForHwndNative(nint hwnd)
+		internal static float GetDpiScaleForHwndNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nint, float>)funcTable[63])(hwnd);
+			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[66])(hwnd);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[63])(hwnd);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[66])((nint)hwnd);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float GetDpiScaleForHwnd(nint hwnd)
+		public static float GetDpiScaleForHwnd(void* hwnd)
 		{
 			float ret = GetDpiScaleForHwndNative(hwnd);
 			return ret;
@@ -183,19 +193,19 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetDpiScaleForMonitorNative(nint monitor)
+		internal static float GetDpiScaleForMonitorNative(void* monitor)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nint, float>)funcTable[64])(monitor);
+			return ((delegate* unmanaged[Cdecl]<void*, float>)funcTable[67])(monitor);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[64])(monitor);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[67])((nint)monitor);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static float GetDpiScaleForMonitor(nint monitor)
+		public static float GetDpiScaleForMonitor(void* monitor)
 		{
 			float ret = GetDpiScaleForMonitorNative(monitor);
 			return ret;
@@ -207,12 +217,12 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EnableAlphaCompositingNative(nint hwnd)
+		internal static void EnableAlphaCompositingNative(void* hwnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[65])(hwnd);
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[68])(hwnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[65])(hwnd);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[68])((nint)hwnd);
 			#endif
 		}
 
@@ -221,7 +231,7 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// - Use to enable alpha compositing transparency with the desktop.<br/>
 		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
 		/// </summary>
-		public static void EnableAlphaCompositing(nint hwnd)
+		public static void EnableAlphaCompositing(void* hwnd)
 		{
 			EnableAlphaCompositingNative(hwnd);
 		}

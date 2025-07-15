@@ -17,8 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Font runtime data and rendering<br/>
-	/// ImFontAtlas automatically loads a default embedded font for you when you call GetTexDataAsAlpha8() or GetTexDataAsRGBA32().<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFont
@@ -26,32 +25,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<float> IndexAdvanceX;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float FallbackAdvanceX;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float FontSize;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImVector<ushort> IndexLookup;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImVector<ImFontGlyph> Glyphs;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe ImFontGlyph* FallbackGlyph;
+		public unsafe ImFontBaked* LastBaked;
 
 		/// <summary>
 		/// To be documented.
@@ -61,17 +35,27 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig* Sources;
+		public ImFontFlags Flags;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short SourcesCount;
+		public float CurrentRasterizerDensity;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public short EllipsisCharCount;
+		public uint FontId;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float LegacySize;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImVector<ImFontConfigPtr> Sources;
 
 		/// <summary>
 		/// To be documented.
@@ -82,41 +66,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public uint FallbackChar;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float EllipsisWidth;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float EllipsisCharStep;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float Scale;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float Ascent;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float Descent;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int MetricsTotalSurface;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte DirtyLookupTables;
 
 		/// <summary>
 		/// To be documented.
@@ -139,31 +88,31 @@ namespace Hexa.NET.ImGui
 		public byte Used8kPagesMap_15;
 		public byte Used8kPagesMap_16;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte EllipsisAutoBake;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* sources = default, short sourcesCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, byte* used8KPagesMap = default)
+		public ImGuiStorage RemapPairs;
+
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFont(ImFontBaked* lastBaked = default, ImFontAtlasPtr containerAtlas = default, ImFontFlags flags = default, float currentRasterizerDensity = default, uint fontId = default, float legacySize = default, ImVector<ImFontConfigPtr> sources = default, uint ellipsisChar = default, uint fallbackChar = default, byte* used8KPagesMap = default, bool ellipsisAutoBake = default, ImGuiStorage remapPairs = default)
 		{
-			IndexAdvanceX = indexAdvanceX;
-			FallbackAdvanceX = fallbackAdvanceX;
-			FontSize = fontSize;
-			IndexLookup = indexLookup;
-			Glyphs = glyphs;
-			FallbackGlyph = fallbackGlyph;
+			LastBaked = lastBaked;
 			ContainerAtlas = containerAtlas;
+			Flags = flags;
+			CurrentRasterizerDensity = currentRasterizerDensity;
+			FontId = fontId;
+			LegacySize = legacySize;
 			Sources = sources;
-			SourcesCount = sourcesCount;
-			EllipsisCharCount = ellipsisCharCount;
 			EllipsisChar = ellipsisChar;
 			FallbackChar = fallbackChar;
-			EllipsisWidth = ellipsisWidth;
-			EllipsisCharStep = ellipsisCharStep;
-			Scale = scale;
-			Ascent = ascent;
-			Descent = descent;
-			MetricsTotalSurface = metricsTotalSurface;
-			DirtyLookupTables = dirtyLookupTables ? (byte)1 : (byte)0;
 			if (used8KPagesMap != default(byte*))
 			{
 				Used8kPagesMap_0 = used8KPagesMap[0];
@@ -184,32 +133,24 @@ namespace Hexa.NET.ImGui
 				Used8kPagesMap_15 = used8KPagesMap[15];
 				Used8kPagesMap_16 = used8KPagesMap[16];
 			}
+			EllipsisAutoBake = ellipsisAutoBake ? (byte)1 : (byte)0;
+			RemapPairs = remapPairs;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float fontSize = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, ImFontGlyph* fallbackGlyph = default, ImFontAtlas* containerAtlas = default, ImFontConfig* sources = default, short sourcesCount = default, short ellipsisCharCount = default, uint ellipsisChar = default, uint fallbackChar = default, float ellipsisWidth = default, float ellipsisCharStep = default, float scale = default, float ascent = default, float descent = default, int metricsTotalSurface = default, bool dirtyLookupTables = default, Span<byte> used8KPagesMap = default)
+		public unsafe ImFont(ImFontBaked* lastBaked = default, ImFontAtlasPtr containerAtlas = default, ImFontFlags flags = default, float currentRasterizerDensity = default, uint fontId = default, float legacySize = default, ImVector<ImFontConfigPtr> sources = default, uint ellipsisChar = default, uint fallbackChar = default, Span<byte> used8KPagesMap = default, bool ellipsisAutoBake = default, ImGuiStorage remapPairs = default)
 		{
-			IndexAdvanceX = indexAdvanceX;
-			FallbackAdvanceX = fallbackAdvanceX;
-			FontSize = fontSize;
-			IndexLookup = indexLookup;
-			Glyphs = glyphs;
-			FallbackGlyph = fallbackGlyph;
+			LastBaked = lastBaked;
 			ContainerAtlas = containerAtlas;
+			Flags = flags;
+			CurrentRasterizerDensity = currentRasterizerDensity;
+			FontId = fontId;
+			LegacySize = legacySize;
 			Sources = sources;
-			SourcesCount = sourcesCount;
-			EllipsisCharCount = ellipsisCharCount;
 			EllipsisChar = ellipsisChar;
 			FallbackChar = fallbackChar;
-			EllipsisWidth = ellipsisWidth;
-			EllipsisCharStep = ellipsisCharStep;
-			Scale = scale;
-			Ascent = ascent;
-			Descent = descent;
-			MetricsTotalSurface = metricsTotalSurface;
-			DirtyLookupTables = dirtyLookupTables ? (byte)1 : (byte)0;
 			if (used8KPagesMap != default(Span<byte>))
 			{
 				Used8kPagesMap_0 = used8KPagesMap[0];
@@ -230,75 +171,30 @@ namespace Hexa.NET.ImGui
 				Used8kPagesMap_15 = used8KPagesMap[15];
 				Used8kPagesMap_16 = used8KPagesMap[16];
 			}
+			EllipsisAutoBake = ellipsisAutoBake ? (byte)1 : (byte)0;
+			RemapPairs = remapPairs;
 		}
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ImFontConfig* srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe void AddRemapChar(uint fromCodepoint, uint toCodepoint)
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.AddGlyphNative(@this, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+				ImGui.AddRemapCharNative(@this, fromCodepoint, toCodepoint);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ref ImFontConfig srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
-				fixed (ImFontConfig* psrcCfg = &srcCfg)
-				{
-					ImGui.AddGlyphNative(@this, (ImFontConfig*)psrcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
-		/// </summary>
-		public unsafe void AddRemapChar(uint dst, uint src, bool overwriteDst)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				ImGui.AddRemapCharNative(@this, dst, src, overwriteDst ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
-		/// </summary>
-		public unsafe void AddRemapChar(uint dst, uint src)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				ImGui.AddRemapCharNative(@this, dst, src, (byte)(1));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void BuildLookupTable()
-		{
-			fixed (ImFont* @this = &this)
-			{
-				ImGui.BuildLookupTableNative(@this);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, textEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, text, textEnd, wrapWidth);
 				return ret;
 			}
 		}
@@ -306,11 +202,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, textEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, text, textEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -318,13 +214,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptext = &text)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, textEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -333,13 +229,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptext = &text)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, textEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -348,13 +244,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptext = text)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, textEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -363,13 +259,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptext = text)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, textEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -378,7 +274,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -399,7 +295,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, textEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, pStr0, textEnd, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -411,7 +307,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -432,7 +328,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, textEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, pStr0, textEnd, wrapWidth));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -444,13 +340,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, text, (byte*)ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -459,13 +355,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, text, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -474,13 +370,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, text, (byte*)ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -489,13 +385,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, text, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -504,7 +400,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -525,7 +421,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, pStr0, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, text, pStr0, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -537,7 +433,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -558,7 +454,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, pStr0, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, text, pStr0, wrapWidth));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -570,7 +466,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -578,7 +474,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 						return ret;
 					}
 				}
@@ -588,7 +484,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -596,7 +492,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -606,7 +502,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -614,7 +510,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 						return ret;
 					}
 				}
@@ -624,7 +520,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -632,7 +528,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -642,7 +538,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -680,7 +576,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, pStr1, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, pStr0, pStr1, wrapWidth);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -696,7 +592,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -734,7 +630,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, pStr1, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, pStr0, pStr1, wrapWidth));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -750,7 +646,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -758,7 +654,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 						return ret;
 					}
 				}
@@ -768,7 +664,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -776,7 +672,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -786,7 +682,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -809,7 +705,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, pStr0, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, pStr0, wrapWidth);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -822,7 +718,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -845,7 +741,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, pStr0, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, pStr0, wrapWidth));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -858,7 +754,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -866,7 +762,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 						return ret;
 					}
 				}
@@ -876,7 +772,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -884,7 +780,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -894,7 +790,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -917,7 +813,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, pStr0, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, pStr0, wrapWidth);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -930,7 +826,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -953,7 +849,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, pStr0, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, (byte*)ptext, pStr0, wrapWidth));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -966,7 +862,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -989,7 +885,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, pStr0, (byte*)ptextEnd, wrapWidth);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1002,7 +898,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1025,7 +921,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, pStr0, (byte*)ptextEnd, wrapWidth));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1038,7 +934,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1061,7 +957,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(@this, size, pStr0, (byte*)ptextEnd, wrapWidth);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1074,7 +970,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1097,7 +993,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(@this, size, pStr0, (byte*)ptextEnd, wrapWidth));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1132,42 +1028,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph* FindGlyph(uint c)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				ImFontGlyph* ret = ImGui.FindGlyphNative(@this, c);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe ImFontGlyph* FindGlyphNoFallback(uint c)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				ImFontGlyph* ret = ImGui.FindGlyphNoFallbackNative(@this, c);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe float GetCharAdvance(uint c)
-		{
-			fixed (ImFont* @this = &this)
-			{
-				float ret = ImGui.GetCharAdvanceNative(@this, c);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public unsafe byte* GetDebugName()
 		{
 			fixed (ImFont* @this = &this)
@@ -1192,11 +1052,36 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void GrowIndex(int newSize)
+		public unsafe ImFontBaked* GetFontBaked(float fontSize, float density)
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.GrowIndexNative(@this, newSize);
+				ImFontBaked* ret = ImGui.GetFontBakedNative(@this, fontSize, density);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontBaked* GetFontBaked(float fontSize)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImFontBaked* ret = ImGui.GetFontBakedNative(@this, fontSize, (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsGlyphInFont(uint c)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte ret = ImGui.IsGlyphInFontNative(@this, c);
+				return ret != 0;
 			}
 		}
 
@@ -1227,11 +1112,36 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.RenderCharNative(@this, drawList, size, pos, col, c, cpuFineClip);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderCharNative(@this, drawList, size, pos, col, c);
+				ImGui.RenderCharNative(@this, drawList, size, pos, col, c, (Vector4*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.RenderCharNative(@this, (ImDrawList*)pdrawList, size, pos, col, c, cpuFineClip);
+				}
 			}
 		}
 
@@ -1244,7 +1154,38 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.RenderCharNative(@this, (ImDrawList*)pdrawList, size, pos, col, c);
+					ImGui.RenderCharNative(@this, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (Vector4* pcpuFineClip = &cpuFineClip)
+				{
+					ImGui.RenderCharNative(@this, drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (Vector4* pcpuFineClip = &cpuFineClip)
+					{
+						ImGui.RenderCharNative(@this, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+					}
 				}
 			}
 		}
@@ -4623,27 +4564,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<float> IndexAdvanceX => ref Unsafe.AsRef<ImVector<float>>(&Handle->IndexAdvanceX);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float FallbackAdvanceX => ref Unsafe.AsRef<float>(&Handle->FallbackAdvanceX);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float FontSize => ref Unsafe.AsRef<float>(&Handle->FontSize);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImVector<ushort> IndexLookup => ref Unsafe.AsRef<ImVector<ushort>>(&Handle->IndexLookup);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImVector<ImFontGlyph> Glyphs => ref Unsafe.AsRef<ImVector<ImFontGlyph>>(&Handle->Glyphs);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImFontGlyphPtr FallbackGlyph => ref Unsafe.AsRef<ImFontGlyphPtr>(&Handle->FallbackGlyph);
+		public ref ImFontBakedPtr LastBaked => ref Unsafe.AsRef<ImFontBakedPtr>(&Handle->LastBaked);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4651,15 +4572,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImFontConfigPtr Sources => ref Unsafe.AsRef<ImFontConfigPtr>(&Handle->Sources);
+		public ref ImFontFlags Flags => ref Unsafe.AsRef<ImFontFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short SourcesCount => ref Unsafe.AsRef<short>(&Handle->SourcesCount);
+		public ref float CurrentRasterizerDensity => ref Unsafe.AsRef<float>(&Handle->CurrentRasterizerDensity);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref short EllipsisCharCount => ref Unsafe.AsRef<short>(&Handle->EllipsisCharCount);
+		public ref uint FontId => ref Unsafe.AsRef<uint>(&Handle->FontId);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float LegacySize => ref Unsafe.AsRef<float>(&Handle->LegacySize);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImVector<ImFontConfigPtr> Sources => ref Unsafe.AsRef<ImVector<ImFontConfigPtr>>(&Handle->Sources);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4668,34 +4597,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint FallbackChar => ref Unsafe.AsRef<uint>(&Handle->FallbackChar);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float EllipsisWidth => ref Unsafe.AsRef<float>(&Handle->EllipsisWidth);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float EllipsisCharStep => ref Unsafe.AsRef<float>(&Handle->EllipsisCharStep);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float Scale => ref Unsafe.AsRef<float>(&Handle->Scale);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float Ascent => ref Unsafe.AsRef<float>(&Handle->Ascent);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref float Descent => ref Unsafe.AsRef<float>(&Handle->Descent);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref int MetricsTotalSurface => ref Unsafe.AsRef<int>(&Handle->MetricsTotalSurface);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref bool DirtyLookupTables => ref Unsafe.AsRef<bool>(&Handle->DirtyLookupTables);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -4710,72 +4611,45 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ImFontConfig* srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public ref bool EllipsisAutoBake => ref Unsafe.AsRef<bool>(&Handle->EllipsisAutoBake);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImGuiStorage RemapPairs => ref Unsafe.AsRef<ImGuiStorage>(&Handle->RemapPairs);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddRemapChar(uint fromCodepoint, uint toCodepoint)
 		{
-			ImGui.AddGlyphNative(Handle, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+			ImGui.AddRemapCharNative(Handle, fromCodepoint, toCodepoint);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddGlyph(ref ImFontConfig srcCfg, uint c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, byte* textEnd, float wrapWidth)
 		{
-			fixed (ImFontConfig* psrcCfg = &srcCfg)
-			{
-				ImGui.AddGlyphNative(Handle, (ImFontConfig*)psrcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
-		/// </summary>
-		public unsafe void AddRemapChar(uint dst, uint src, bool overwriteDst)
-		{
-			ImGui.AddRemapCharNative(Handle, dst, src, overwriteDst ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// Makes 'dst' characterglyph points to 'src' characterglyph. Currently needs to be called AFTER fonts have been built.<br/>
-		/// </summary>
-		public unsafe void AddRemapChar(uint dst, uint src)
-		{
-			ImGui.AddRemapCharNative(Handle, dst, src, (byte)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void BuildLookupTable()
-		{
-			ImGui.BuildLookupTableNative(Handle);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, byte* textEnd, float wrapWidth)
-		{
-			byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, text, textEnd, wrapWidth);
+			byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, text, textEnd, wrapWidth);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, byte* textEnd, float wrapWidth)
 		{
-			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, text, textEnd, wrapWidth));
+			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, text, textEnd, wrapWidth));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, textEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, textEnd, wrapWidth);
 				return ret;
 			}
 		}
@@ -4783,11 +4657,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, textEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, textEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -4795,11 +4669,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, textEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, textEnd, wrapWidth);
 				return ret;
 			}
 		}
@@ -4807,11 +4681,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, textEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, textEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -4819,7 +4693,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, byte* textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4838,7 +4712,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, textEnd, wrapWidth);
+			byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, textEnd, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4849,7 +4723,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, byte* textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4868,7 +4742,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, textEnd, wrapWidth));
+			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, textEnd, wrapWidth));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4879,11 +4753,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, text, (byte*)ptextEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, text, (byte*)ptextEnd, wrapWidth);
 				return ret;
 			}
 		}
@@ -4891,11 +4765,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, text, (byte*)ptextEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, text, (byte*)ptextEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -4903,11 +4777,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, text, (byte*)ptextEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, text, (byte*)ptextEnd, wrapWidth);
 				return ret;
 			}
 		}
@@ -4915,11 +4789,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, text, (byte*)ptextEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, text, (byte*)ptextEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -4927,7 +4801,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, string textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4946,7 +4820,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, text, pStr0, wrapWidth);
+			byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, text, pStr0, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4957,7 +4831,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, string textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4976,7 +4850,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, text, pStr0, wrapWidth));
+			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, text, pStr0, wrapWidth));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4987,13 +4861,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -5002,13 +4876,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -5017,13 +4891,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -5032,13 +4906,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -5047,7 +4921,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, string textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5083,7 +4957,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, pStr1, wrapWidth);
+			byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, pStr1, wrapWidth);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -5098,7 +4972,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, string textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5134,7 +5008,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, pStr1, wrapWidth));
+			string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, pStr1, wrapWidth));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -5149,13 +5023,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -5164,13 +5038,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -5179,7 +5053,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5200,7 +5074,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, pStr0, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, pStr0, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5212,7 +5086,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ref byte text, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5233,7 +5107,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, pStr0, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, pStr0, wrapWidth));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5245,13 +5119,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -5260,13 +5134,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -5275,7 +5149,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -5296,7 +5170,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, pStr0, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, pStr0, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5308,7 +5182,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -5329,7 +5203,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, pStr0, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, (byte*)ptext, pStr0, wrapWidth));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5341,7 +5215,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, ref byte textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5362,7 +5236,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, (byte*)ptextEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, (byte*)ptextEnd, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5374,7 +5248,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, ref byte textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5395,7 +5269,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, (byte*)ptextEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, (byte*)ptextEnd, wrapWidth));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5407,7 +5281,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPositionA(float scale, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5428,7 +5302,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = textEnd)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, (byte*)ptextEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, (byte*)ptextEnd, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5440,7 +5314,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionAS(float scale, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5461,7 +5335,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = textEnd)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, pStr0, (byte*)ptextEnd, wrapWidth));
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionNative(Handle, size, pStr0, (byte*)ptextEnd, wrapWidth));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5489,33 +5363,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontGlyph* FindGlyph(uint c)
-		{
-			ImFontGlyph* ret = ImGui.FindGlyphNative(Handle, c);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe ImFontGlyph* FindGlyphNoFallback(uint c)
-		{
-			ImFontGlyph* ret = ImGui.FindGlyphNoFallbackNative(Handle, c);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe float GetCharAdvance(uint c)
-		{
-			float ret = ImGui.GetCharAdvanceNative(Handle, c);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public unsafe byte* GetDebugName()
 		{
 			byte* ret = ImGui.GetDebugNameNative(Handle);
@@ -5534,9 +5381,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void GrowIndex(int newSize)
+		public unsafe ImFontBaked* GetFontBaked(float fontSize, float density)
 		{
-			ImGui.GrowIndexNative(Handle, newSize);
+			ImFontBaked* ret = ImGui.GetFontBakedNative(Handle, fontSize, density);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontBaked* GetFontBaked(float fontSize)
+		{
+			ImFontBaked* ret = ImGui.GetFontBakedNative(Handle, fontSize, (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe bool IsGlyphInFont(uint c)
+		{
+			byte ret = ImGui.IsGlyphInFontNative(Handle, c);
+			return ret != 0;
 		}
 
 		/// <summary>
@@ -5560,9 +5426,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			ImGui.RenderCharNative(Handle, drawList, size, pos, col, c, cpuFineClip);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
-			ImGui.RenderCharNative(Handle, drawList, size, pos, col, c);
+			ImGui.RenderCharNative(Handle, drawList, size, pos, col, c, (Vector4*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImGui.RenderCharNative(Handle, (ImDrawList*)pdrawList, size, pos, col, c, cpuFineClip);
+			}
 		}
 
 		/// <summary>
@@ -5572,7 +5457,32 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				ImGui.RenderCharNative(Handle, (ImDrawList*)pdrawList, size, pos, col, c);
+				ImGui.RenderCharNative(Handle, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (Vector4* pcpuFineClip = &cpuFineClip)
+			{
+				ImGui.RenderCharNative(Handle, drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (Vector4* pcpuFineClip = &cpuFineClip)
+				{
+					ImGui.RenderCharNative(Handle, (ImDrawList*)pdrawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+				}
 			}
 		}
 

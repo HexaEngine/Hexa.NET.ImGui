@@ -26,13 +26,13 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ulong Ptr;
+		public nuint Ptr;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe D3D12CpuDescriptorHandle(ulong ptr = default)
+		public unsafe D3D12CpuDescriptorHandle(nuint ptr = default)
 		{
 			Ptr = ptr;
 		}

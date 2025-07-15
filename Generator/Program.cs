@@ -1,23 +1,19 @@
-﻿namespace Generator
-{
-    using Generator.Targets;
-    using HexaGen.BuildSystems;
+﻿using Generator.Targets;
+using HexaGen.BuildSystems;
 
-    internal unsafe class Program
-    {
-        private static void Main(string[] args)
-        {
-            var builder = BuildSystemBuilder.Create()
-                .WithArgs(args)
-                .AddImGui()
-                .AddImPlot()
-                .AddImNodes()
-                .AddImGuizmo()
-                .AddImGuiBackends()
-                .AddImGuiNodeEditor(false);
+var builder =
+   BuildSystemBuilder.Create()
+    .WithArgs(args)
+    .AddImGui()
+    .AddImPlot()
+    .AddImNodes()
+    .AddImGuizmo()
+    .AddImGuiBackends()
+    .AddImGuiNodeEditor(false);
 
-            var context = builder.Build();
-            context.Execute();
-        }
-    }
-}
+var context = builder.Build();
+context.Execute();
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("All done! Have fun!");
+Console.ForegroundColor = ConsoleColor.White;

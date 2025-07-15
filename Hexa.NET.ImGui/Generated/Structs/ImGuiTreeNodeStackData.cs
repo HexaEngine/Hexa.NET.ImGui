@@ -17,10 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Store data emitted by TreeNode() for usage by TreePop()<br/>
-	/// - To implement ImGuiTreeNodeFlags_NavLeftJumpsBackHere: store the minimum amount of data<br/>
-	/// which we can't infer in TreePop(), to perform the equivalent of NavApplyItemToResult().<br/>
-	/// Only stored when the node is a potential candidate for landing on a Left arrow jump.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTreeNodeStackData
@@ -45,16 +42,34 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ImRect NavRect;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float DrawLinesX1;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags itemFlags = default, ImRect navRect = default)
+		public float DrawLinesToNodesY2;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public sbyte DrawLinesTableColumn;
+
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags itemFlags = default, ImRect navRect = default, float drawLinesX1 = default, float drawLinesToNodesY2 = default, sbyte drawLinesTableColumn = default)
 		{
 			ID = id;
 			TreeFlags = treeFlags;
 			ItemFlags = itemFlags;
 			NavRect = navRect;
+			DrawLinesX1 = drawLinesX1;
+			DrawLinesToNodesY2 = drawLinesToNodesY2;
+			DrawLinesTableColumn = drawLinesTableColumn;
 		}
 
 
@@ -117,6 +132,18 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImRect NavRect => ref Unsafe.AsRef<ImRect>(&Handle->NavRect);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float DrawLinesX1 => ref Unsafe.AsRef<float>(&Handle->DrawLinesX1);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float DrawLinesToNodesY2 => ref Unsafe.AsRef<float>(&Handle->DrawLinesToNodesY2);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref sbyte DrawLinesTableColumn => ref Unsafe.AsRef<sbyte>(&Handle->DrawLinesTableColumn);
 	}
 
 }

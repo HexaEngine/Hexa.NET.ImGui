@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte QueryFrameCount;
+		public sbyte QueryFrameCount;
 
 		/// <summary>
 		/// To be documented.
@@ -107,7 +107,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStackLevelInfo(uint id = default, byte queryFrameCount = default, bool querySuccess = default, ImGuiDataType dataType = default, byte* desc = default)
+		public unsafe ImGuiStackLevelInfo(uint id = default, sbyte queryFrameCount = default, bool querySuccess = default, ImGuiDataType dataType = default, byte* desc = default)
 		{
 			ID = id;
 			QueryFrameCount = queryFrameCount;
@@ -178,7 +178,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStackLevelInfo(uint id = default, byte queryFrameCount = default, bool querySuccess = default, ImGuiDataType dataType = default, Span<byte> desc = default)
+		public unsafe ImGuiStackLevelInfo(uint id = default, sbyte queryFrameCount = default, bool querySuccess = default, ImGuiDataType dataType = default, Span<byte> desc = default)
 		{
 			ID = id;
 			QueryFrameCount = queryFrameCount;
@@ -297,7 +297,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte QueryFrameCount => ref Unsafe.AsRef<byte>(&Handle->QueryFrameCount);
+		public ref sbyte QueryFrameCount => ref Unsafe.AsRef<sbyte>(&Handle->QueryFrameCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

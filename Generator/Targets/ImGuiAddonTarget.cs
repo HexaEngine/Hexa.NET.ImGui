@@ -1,6 +1,7 @@
 ﻿namespace Generator.Targets
 {
     using HexaGen.BuildSystems;
+    using Microsoft.Extensions.Options;
     using System.Collections.Generic;
 
     public class ImGuiAddonTargetOptions
@@ -30,7 +31,7 @@
 
         public static BuildSystemBuilder AddImGuizmo(this BuildSystemBuilder builder, string configPath = CImGuizmoConfig, string outputPath = ImGuizmoOutputPath)
         {
-            builder.AddTarget<ImGuiAddonTarget, ImGuiAddonTargetOptions>("imguizmo", options =>
+            builder.AddTarget<ImGuizmoTarget, ImGuizmoTargetOptions>(options =>
             {
                 options.Name = "imguizmo";
                 options.Headers = [CImGuizmoHeader];
@@ -42,7 +43,7 @@
 
         public static BuildSystemBuilder AddImNodes(this BuildSystemBuilder builder, string configPath = CImNodesConfig, string outputPath = ImNodesOutputPath)
         {
-            builder.AddTarget<ImGuiAddonTarget, ImGuiAddonTargetOptions>("imnodes", options =>
+            builder.AddTarget<ImNodesTarget, ImNodesTargetOptions>(options =>
             {
                 options.Name = "imnodes";
                 options.Headers = [CImNodesHeader];
@@ -54,7 +55,7 @@
 
         public static BuildSystemBuilder AddImPlot(this BuildSystemBuilder builder, string configPath = CImPlotConfig, string outputPath = ImPlotOutputPath)
         {
-            builder.AddTarget<ImGuiAddonTarget, ImGuiAddonTargetOptions>("implot", options =>
+            builder.AddTarget<ImPlotTarget, ImPlotTargetOptions>(options =>
             {
                 options.Name = "implot";
                 options.Headers = [CImPlotHeader];
@@ -65,21 +66,41 @@
         }
     }
 
+    public class ImPlotTarget(IOptions<ImPlotTargetOptions> options) : ImGuiAddonTarget(options)
+    { }
+
+    public class ImNodesTarget(IOptions<ImNodesTargetOptions> options) : ImGuiAddonTarget(options)
+    { }
+
+    public class ImGuizmoTarget(IOptions<ImGuizmoTargetOptions> options) : ImGuiAddonTarget(options)
+    { }
+
+    public class ImPlotTargetOptions() : ImGuiAddonTargetOptions()
+    { }
+
+    public class ImNodesTargetOptions() : ImGuiAddonTargetOptions()
+    { }
+
+    public class ImGuizmoTargetOptions() : ImGuiAddonTargetOptions()
+
+    { }
+
     public class ImGuiAddonTarget : ImGuiBaseTarget
     {
         private readonly List<string> headers;
         private readonly string configPath;
         private readonly string outputPath;
 
-        public ImGuiAddonTarget(ImGuiAddonTargetOptions options)
+        protected ImGuiAddonTarget(IOptions<ImGuiAddonTargetOptions> opt)
         {
+            var options = opt.Value;
             Name = options.Name;
             headers = options.Headers;
             configPath = options.ConfigPath;
             outputPath = options.OutputPath;
         }
 
-        public ImGuiAddonTarget(string name, IEnumerable<string> headers, string configPath, string outputPath)
+        protected ImGuiAddonTarget(string name, IEnumerable<string> headers, string configPath, string outputPath)
         {
             Name = name;
             this.headers = [.. headers];

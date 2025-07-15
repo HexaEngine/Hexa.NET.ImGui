@@ -20,57 +20,62 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiItemFlagsPrivate : int
 	{
 		/// <summary>
-		/// false      Disable interactions (DOES NOT affect visuals. DO NOT mix direct use of this with BeginDisabled(). See BeginDisabled()EndDisabled() for full disable feature, and github #211).<br/>
+		/// To be documented.
 		/// </summary>
 		Disabled = unchecked(1024),
 
 		/// <summary>
-		/// false      [ALPHA] Allow hovering interactions but underlying value is not changed.<br/>
+		/// To be documented.
 		/// </summary>
 		ReadOnly = unchecked(2048),
 
 		/// <summary>
-		/// false      [BETA] Represent a mixedindeterminate value, generally multi-selection where values differ. Currently only supported by Checkbox() (later should support all sorts of widgets)<br/>
+		/// To be documented.
 		/// </summary>
 		MixedValue = unchecked(4096),
 
 		/// <summary>
-		/// false      Disable hoverable check in ItemHoverable()<br/>
+		/// To be documented.
 		/// </summary>
 		NoWindowHoverableCheck = unchecked(8192),
 
 		/// <summary>
-		/// false      Allow being overlapped by another widget. Not-hovered to Hovered transition deferred by a frame.<br/>
+		/// To be documented.
 		/// </summary>
 		AllowOverlap = unchecked(16384),
 
 		/// <summary>
-		/// false      Nav keyboardgamepad mode doesn't disable hover highlight (behave as if NavHighlightItemUnderNav==false).<br/>
+		/// To be documented.
 		/// </summary>
 		NoNavDisableMouseHover = unchecked(32768),
 
 		/// <summary>
-		/// false      Skip calling MarkItemEdited()<br/>
+		/// To be documented.
 		/// </summary>
 		NoMarkEdited = unchecked(65536),
 
 		/// <summary>
-		/// false      [WIP] Auto-activate input mode when tab focused. Currently only used and supported by a few items before it becomes a generic feature.<br/>
+		/// To be documented.
+		/// </summary>
+		NoFocus = unchecked(131072),
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		Inputable = unchecked(1048576),
 
 		/// <summary>
-		/// false      Set by SetNextItemSelectionUserData()<br/>
+		/// To be documented.
 		/// </summary>
 		HasSelectionUserData = unchecked(2097152),
 
 		/// <summary>
-		/// false      Set by SetNextItemSelectionUserData()<br/>
+		/// To be documented.
 		/// </summary>
 		IsMultiSelect = unchecked(4194304),
 
 		/// <summary>
-		/// Please don't change, use PushItemFlag() instead.<br/>
+		/// To be documented.
 		/// </summary>
 		Default = unchecked((int)ImGuiItemFlags.AutoClosePopups),
 	}

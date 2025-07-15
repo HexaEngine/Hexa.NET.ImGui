@@ -18,20 +18,9 @@ using Hexa.NET.ImGui;
 namespace Hexa.NET.ImGui.Backends.Vulkan
 {
 	/// <summary>
-	/// -------------------------------------------------------------------------<br/>
-	/// Internal / Miscellaneous Vulkan Helpers<br/>
-	/// (Used by example's main.cpp. Used by multi-viewport features. PROBABLY NOT used by your own engine/app.)<br/>
-	/// -------------------------------------------------------------------------<br/>
-	/// You probably do NOT need to use or care about those functions.<br/>
-	/// Those functions only exist because:<br/>
-	/// 1) they facilitate the readability and maintenance of the multiple main.cpp examples files.<br/>
-	/// 2) the multi-viewport / platform window implementation needs them internally.<br/>
-	/// Generally we avoid exposing any kind of superfluous high-level helpers in the bindings,<br/>
-	/// but it is too much code to duplicate everywhere so we exceptionally expose them.<br/>
-	/// Your engine/app will likely _already_ have code to setup all that stuff (swap chain, render pass, frame buffers, etc.).<br/>
-	/// You may read this code to learn about Vulkan, but it is recommended you use you own custom tailored code to do equivalent work.<br/>
-	/// (The ImGui_ImplVulkanH_XXX functions do not interact with any of the state used by the regular ImGui_ImplVulkan_XXX functions)<br/>
-	/// -------------------------------------------------------------------------<br/>
+	/// Helper structure to hold the data needed by one rendering frame<br/>
+	/// (Used by example's main.cpp. Used by multi-viewport features. Probably NOT used by your own engine/app.)<br/>
+	/// [Please zero-clear before use!]<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiImplVulkanHFrame
@@ -84,20 +73,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 	}
 
 	/// <summary>
-	/// -------------------------------------------------------------------------<br/>
-	/// Internal / Miscellaneous Vulkan Helpers<br/>
-	/// (Used by example's main.cpp. Used by multi-viewport features. PROBABLY NOT used by your own engine/app.)<br/>
-	/// -------------------------------------------------------------------------<br/>
-	/// You probably do NOT need to use or care about those functions.<br/>
-	/// Those functions only exist because:<br/>
-	/// 1) they facilitate the readability and maintenance of the multiple main.cpp examples files.<br/>
-	/// 2) the multi-viewport / platform window implementation needs them internally.<br/>
-	/// Generally we avoid exposing any kind of superfluous high-level helpers in the bindings,<br/>
-	/// but it is too much code to duplicate everywhere so we exceptionally expose them.<br/>
-	/// Your engine/app will likely _already_ have code to setup all that stuff (swap chain, render pass, frame buffers, etc.).<br/>
-	/// You may read this code to learn about Vulkan, but it is recommended you use you own custom tailored code to do equivalent work.<br/>
-	/// (The ImGui_ImplVulkanH_XXX functions do not interact with any of the state used by the regular ImGui_ImplVulkan_XXX functions)<br/>
-	/// -------------------------------------------------------------------------<br/>
+	/// Helper structure to hold the data needed by one rendering frame<br/>
+	/// (Used by example's main.cpp. Used by multi-viewport features. Probably NOT used by your own engine/app.)<br/>
+	/// [Please zero-clear before use!]<br/>
 	/// </summary>
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]

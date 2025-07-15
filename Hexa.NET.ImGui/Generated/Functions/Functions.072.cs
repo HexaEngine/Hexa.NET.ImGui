@@ -21,6 +21,270 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
@@ -1423,9 +1687,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ColorEdit3Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[204])(label, col, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[208])(label, col, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[204])((nint)label, (nint)col, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[208])((nint)label, (nint)col, flags);
 			#endif
 		}
 
@@ -1856,9 +2120,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ColorEdit4Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[205])(label, col, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[209])(label, col, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[205])((nint)label, (nint)col, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[209])((nint)label, (nint)col, flags);
 			#endif
 		}
 
@@ -2289,9 +2553,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ColorPicker3Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[206])(label, col, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)funcTable[210])(label, col, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[206])((nint)label, (nint)col, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)funcTable[210])((nint)label, (nint)col, flags);
 			#endif
 		}
 
@@ -2722,9 +2986,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ColorPicker4Native(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, float*, byte>)funcTable[207])(label, col, flags, refCol);
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, float*, byte>)funcTable[211])(label, col, flags, refCol);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, nint, byte>)funcTable[207])((nint)label, (nint)col, flags, (nint)refCol);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, nint, byte>)funcTable[211])((nint)label, (nint)col, flags, (nint)refCol);
 			#endif
 		}
 
@@ -4061,20 +4325,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorButtonNative(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector4, ImGuiColorEditFlags, Vector2, byte>)funcTable[208])(descId, col, flags, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector4, ImGuiColorEditFlags, Vector2, byte>)funcTable[212])(descId, col, flags, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector4, ImGuiColorEditFlags, Vector2, byte>)funcTable[208])((nint)descId, col, flags, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector4, ImGuiColorEditFlags, Vector2, byte>)funcTable[212])((nint)descId, col, flags, size);
 			#endif
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4083,7 +4347,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4092,7 +4356,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col)
 		{
@@ -4101,7 +4365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col, Vector2 size)
 		{
@@ -4110,7 +4374,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4122,7 +4386,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4134,7 +4398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col)
 		{
@@ -4146,7 +4410,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col, Vector2 size)
 		{
@@ -4158,7 +4422,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4170,7 +4434,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4182,7 +4446,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col)
 		{
@@ -4194,7 +4458,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col, Vector2 size)
 		{
@@ -4206,7 +4470,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4236,7 +4500,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4266,7 +4530,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col)
 		{
@@ -4296,7 +4560,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// display a color squarebutton, hover for details, return true when pressed.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col, Vector2 size)
 		{
@@ -4326,20 +4590,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// initialize current options (generally on application startup) if you want to select a default format, picker type, etc. User will be able to change many settings, unless you pass the _NoOptions flag to your calls.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColorEditOptionsNative(ImGuiColorEditFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)funcTable[209])(flags);
+			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)funcTable[213])(flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)funcTable[209])(flags);
+			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)funcTable[213])(flags);
 			#endif
 		}
 
 		/// <summary>
-		/// initialize current options (generally on application startup) if you want to select a default format, picker type, etc. User will be able to change many settings, unless you pass the _NoOptions flag to your calls.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetColorEditOptions(ImGuiColorEditFlags flags)
 		{
@@ -4353,9 +4617,9 @@ namespace Hexa.NET.ImGui
 		internal static byte TreeNodeNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[210])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[214])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[210])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[214])((nint)label);
 			#endif
 		}
 
@@ -4429,14 +4693,14 @@ namespace Hexa.NET.ImGui
 		internal static byte TreeNodeNative(byte* strId, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)funcTable[211])(strId, fmt);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)funcTable[215])(strId, fmt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[211])((nint)strId, (nint)fmt);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[215])((nint)strId, (nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(byte* strId, byte* fmt)
 		{
@@ -4445,7 +4709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ref byte strId, byte* fmt)
 		{
@@ -4457,7 +4721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, byte* fmt)
 		{
@@ -4469,7 +4733,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(string strId, byte* fmt)
 		{
@@ -4499,7 +4763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(byte* strId, ref byte fmt)
 		{
@@ -4511,7 +4775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(byte* strId, ReadOnlySpan<byte> fmt)
 		{
@@ -4523,7 +4787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(byte* strId, string fmt)
 		{
@@ -4553,7 +4817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ref byte strId, ref byte fmt)
 		{
@@ -4568,7 +4832,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, ReadOnlySpan<byte> fmt)
 		{
@@ -4583,7 +4847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(string strId, string fmt)
 		{
@@ -4634,7 +4898,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ref byte strId, ReadOnlySpan<byte> fmt)
 		{
@@ -4649,7 +4913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ref byte strId, string fmt)
 		{
@@ -4682,7 +4946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, ref byte fmt)
 		{
@@ -4697,7 +4961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, string fmt)
 		{
@@ -4730,7 +4994,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TreeNode(string strId, ref byte fmt)
 		{
@@ -4759,275 +5023,6 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
-		/// </summary>
-		public static bool TreeNode(string strId, ReadOnlySpan<byte> fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pfmt = fmt)
-			{
-				byte ret = TreeNodeNative(pStr0, (byte*)pfmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte TreeNodeNative(void* ptrId, byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, byte*, byte>)funcTable[212])(ptrId, fmt);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[212])((nint)ptrId, (nint)fmt);
-			#endif
-		}
-
-		/// <summary>
-		/// "<br/>
-		/// </summary>
-		public static bool TreeNode(void* ptrId, byte* fmt)
-		{
-			byte ret = TreeNodeNative(ptrId, fmt);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// "<br/>
-		/// </summary>
-		public static bool TreeNode(void* ptrId, ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				byte ret = TreeNodeNative(ptrId, (byte*)pfmt);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// "<br/>
-		/// </summary>
-		public static bool TreeNode(void* ptrId, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				byte ret = TreeNodeNative(ptrId, (byte*)pfmt);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// "<br/>
-		/// </summary>
-		public static bool TreeNode(void* ptrId, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TreeNodeNative(ptrId, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte TreeNodeVNative(byte* strId, byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte>)funcTable[213])(strId, fmt, args);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, byte>)funcTable[213])((nint)strId, (nint)fmt, args);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(byte* strId, byte* fmt, nuint args)
-		{
-			byte ret = TreeNodeVNative(strId, fmt, args);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(ref byte strId, byte* fmt, nuint args)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = TreeNodeVNative((byte*)pstrId, fmt, args);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(ReadOnlySpan<byte> strId, byte* fmt, nuint args)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = TreeNodeVNative((byte*)pstrId, fmt, args);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(string strId, byte* fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TreeNodeVNative(pStr0, fmt, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(byte* strId, ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				byte ret = TreeNodeVNative(strId, (byte*)pfmt, args);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(byte* strId, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				byte ret = TreeNodeVNative(strId, (byte*)pfmt, args);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(byte* strId, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TreeNodeVNative(strId, pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(ref byte strId, ref byte fmt, nuint args)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					byte ret = TreeNodeVNative((byte*)pstrId, (byte*)pfmt, args);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TreeNodeV(ReadOnlySpan<byte> strId, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					byte ret = TreeNodeVNative((byte*)pstrId, (byte*)pfmt, args);
-					return ret != 0;
-				}
 			}
 		}
 	}

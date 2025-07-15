@@ -101,18 +101,18 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiImplVulkanHFrame* Frames;
+		public ImVector<ImGuiImplVulkanHFrame> Frames;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiImplVulkanHFrameSemaphores* FrameSemaphores;
+		public ImVector<ImGuiImplVulkanHFrameSemaphores> FrameSemaphores;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiImplVulkanHWindow(int width = default, int height = default, VkSwapchainKHR swapchain = default, VkSurfaceKHR surface = default, VkSurfaceFormatKHR surfaceFormat = default, VkPresentModeKHR presentMode = default, VkRenderPass renderPass = default, bool useDynamicRendering = default, bool clearEnable = default, VkClearValue clearValue = default, uint frameIndex = default, uint imageCount = default, uint semaphoreCount = default, uint semaphoreIndex = default, ImGuiImplVulkanHFramePtr frames = default, ImGuiImplVulkanHFrameSemaphores* frameSemaphores = default)
+		public unsafe ImGuiImplVulkanHWindow(int width = default, int height = default, VkSwapchainKHR swapchain = default, VkSurfaceKHR surface = default, VkSurfaceFormatKHR surfaceFormat = default, VkPresentModeKHR presentMode = default, VkRenderPass renderPass = default, bool useDynamicRendering = default, bool clearEnable = default, VkClearValue clearValue = default, uint frameIndex = default, uint imageCount = default, uint semaphoreCount = default, uint semaphoreIndex = default, ImVector<ImGuiImplVulkanHFrame> frames = default, ImVector<ImGuiImplVulkanHFrameSemaphores> frameSemaphores = default)
 		{
 			Width = width;
 			Height = height;
@@ -240,11 +240,11 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiImplVulkanHFramePtr Frames => ref Unsafe.AsRef<ImGuiImplVulkanHFramePtr>(&Handle->Frames);
+		public ref ImVector<ImGuiImplVulkanHFrame> Frames => ref Unsafe.AsRef<ImVector<ImGuiImplVulkanHFrame>>(&Handle->Frames);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiImplVulkanHFrameSemaphoresPtr FrameSemaphores => ref Unsafe.AsRef<ImGuiImplVulkanHFrameSemaphoresPtr>(&Handle->FrameSemaphores);
+		public ref ImVector<ImGuiImplVulkanHFrameSemaphores> FrameSemaphores => ref Unsafe.AsRef<ImVector<ImGuiImplVulkanHFrameSemaphores>>(&Handle->FrameSemaphores);
 	}
 
 }

@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Identify header row (set default background color + width of its contents accounted differently for auto column width)<br/>
+		/// To be documented.
 		/// </summary>
 		Headers = unchecked(1),
 	}

@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static byte InitNative(ImGuiImplVulkanInitInfo* info)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiImplVulkanInitInfo*, byte>)funcTable[42])(info);
+			return ((delegate* unmanaged[Cdecl]<ImGuiImplVulkanInitInfo*, byte>)funcTable[44])(info);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[42])((nint)info);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[44])((nint)info);
 			#endif
 		}
 
@@ -59,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[43])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[45])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[43])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[45])();
 			#endif
 		}
 
@@ -80,9 +80,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[46])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[44])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[46])();
 			#endif
 		}
 
@@ -101,9 +101,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static void RenderDrawDataNative(ImDrawData* drawData, VkCommandBuffer commandBuffer, VkPipeline pipeline)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, VkCommandBuffer, VkPipeline, void>)funcTable[45])(drawData, commandBuffer, pipeline);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, VkCommandBuffer, VkPipeline, void>)funcTable[47])(drawData, commandBuffer, pipeline);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, VkCommandBuffer, VkPipeline, void>)funcTable[45])((nint)drawData, commandBuffer, pipeline);
+			((delegate* unmanaged[Cdecl]<nint, VkCommandBuffer, VkPipeline, void>)funcTable[47])((nint)drawData, commandBuffer, pipeline);
 			#endif
 		}
 
@@ -130,49 +130,6 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte CreateFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[46])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[46])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool CreateFontsTexture()
-		{
-			byte ret = CreateFontsTextureNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DestroyFontsTexture()
-		{
-			DestroyFontsTextureNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetMinImageCountNative(uint minImageCount)
 		{
 			#if NET5_0_OR_GREATER
@@ -191,6 +148,38 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		}
 
 		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void UpdateTextureNative(ImTextureData* tex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[49])(tex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[49])((nint)tex);
+			#endif
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		public static void UpdateTexture(ImTextureDataPtr tex)
+		{
+			UpdateTextureNative(tex);
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		public static void UpdateTexture(ref ImTextureData tex)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				UpdateTextureNative((ImTextureData*)ptex);
+			}
+		}
+
+		/// <summary>
 		/// Register a texture (VkDescriptorSet == ImTextureID)<br/>
 		/// FIXME: This is experimental in the sense that we are unsure how to best design/tackle this problem<br/>
 		/// Please post to https://github.com/ocornut/imgui/pull/914 if you have suggestions.<br/>
@@ -199,9 +188,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static VkDescriptorSet AddTextureNative(VkSampler sampler, VkImageView imageView, VkImageLayout imageLayout)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[49])(sampler, imageView, imageLayout);
+			return ((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[50])(sampler, imageView, imageLayout);
 			#else
-			return (VkDescriptorSet)((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[49])(sampler, imageView, imageLayout);
+			return (VkDescriptorSet)((delegate* unmanaged[Cdecl]<VkSampler, VkImageView, VkImageLayout, VkDescriptorSet>)funcTable[50])(sampler, imageView, imageLayout);
 			#endif
 		}
 
@@ -223,9 +212,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static void RemoveTextureNative(VkDescriptorSet descriptorSet)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[50])(descriptorSet);
+			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[51])(descriptorSet);
 			#else
-			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[50])(descriptorSet);
+			((delegate* unmanaged[Cdecl]<VkDescriptorSet, void>)funcTable[51])(descriptorSet);
 			#endif
 		}
 
@@ -242,12 +231,12 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// This is only useful with IMGUI_IMPL_VULKAN_NO_PROTOTYPES / VK_NO_PROTOTYPES<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte LoadFunctionsNative(PFNVkVoidFunction loaderFunc, void* userData)
+		internal static byte LoadFunctionsNative(uint apiVersion, delegate*<uint, delegate*<byte*, void*, PFNVkVoidFunction>, void*, PFNVkVoidFunction> loaderFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<delegate*<byte*, void*, void*>, void*, byte>)funcTable[51])((delegate*<byte*, void*, void*>)Utils.GetFunctionPointerForDelegate(loaderFunc), userData);
+			return ((delegate* unmanaged[Cdecl]<uint, delegate*<uint, delegate*<byte*, void*, PFNVkVoidFunction>, void*, PFNVkVoidFunction>, void*, byte>)funcTable[52])(apiVersion, loaderFunc, userData);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[51])((nint)Utils.GetFunctionPointerForDelegate(loaderFunc), (nint)userData);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, nint, nint, byte>)funcTable[52])(apiVersion, (nint)loaderFunc, (nint)userData);
 			#endif
 		}
 
@@ -255,9 +244,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// Optional: load Vulkan functions with a custom function loader<br/>
 		/// This is only useful with IMGUI_IMPL_VULKAN_NO_PROTOTYPES / VK_NO_PROTOTYPES<br/>
 		/// </summary>
-		public static bool LoadFunctions(PFNVkVoidFunction loaderFunc, void* userData)
+		public static bool LoadFunctions(uint apiVersion, delegate*<uint, delegate*<byte*, void*, PFNVkVoidFunction>, void*, PFNVkVoidFunction> loaderFunc, void* userData)
 		{
-			byte ret = LoadFunctionsNative(loaderFunc, userData);
+			byte ret = LoadFunctionsNative(apiVersion, loaderFunc, userData);
 			return ret != 0;
 		}
 
@@ -268,9 +257,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static void HCreateOrResizeWindowNative(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindow* wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, void>)funcTable[52])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, void>)funcTable[53])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount);
 			#else
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, void>)funcTable[52])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, void>)funcTable[53])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount);
 			#endif
 		}
 
@@ -325,9 +314,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static void HDestroyWindowNative(VkInstance instance, VkDevice device, ImGuiImplVulkanHWindow* wd, VkAllocationCallbacks* allocator)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, ImGuiImplVulkanHWindow*, VkAllocationCallbacks*, void>)funcTable[53])(instance, device, wd, allocator);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, ImGuiImplVulkanHWindow*, VkAllocationCallbacks*, void>)funcTable[54])(instance, device, wd, allocator);
 			#else
-			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, nint, nint, void>)funcTable[53])(instance, device, (nint)wd, (nint)allocator);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkDevice, nint, nint, void>)funcTable[54])(instance, device, (nint)wd, (nint)allocator);
 			#endif
 		}
 
@@ -382,9 +371,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static VkSurfaceFormatKHR HSelectSurfaceFormatNative(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint* requestFormats, int requestFormatsCount, uint requestColorSpace)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, uint*, int, uint, VkSurfaceFormatKHR>)funcTable[54])(physicalDevice, surface, requestFormats, requestFormatsCount, requestColorSpace);
+			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, uint*, int, uint, VkSurfaceFormatKHR>)funcTable[55])(physicalDevice, surface, requestFormats, requestFormatsCount, requestColorSpace);
 			#else
-			return (VkSurfaceFormatKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, uint, VkSurfaceFormatKHR>)funcTable[54])(physicalDevice, surface, (nint)requestFormats, requestFormatsCount, requestColorSpace);
+			return (VkSurfaceFormatKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, uint, VkSurfaceFormatKHR>)funcTable[55])(physicalDevice, surface, (nint)requestFormats, requestFormatsCount, requestColorSpace);
 			#endif
 		}
 
@@ -416,9 +405,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		internal static VkPresentModeKHR HSelectPresentModeNative(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, VkPresentModeKHR* requestModes, int requestModesCount)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, VkPresentModeKHR*, int, VkPresentModeKHR>)funcTable[55])(physicalDevice, surface, requestModes, requestModesCount);
+			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, VkPresentModeKHR*, int, VkPresentModeKHR>)funcTable[56])(physicalDevice, surface, requestModes, requestModesCount);
 			#else
-			return (VkPresentModeKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, VkPresentModeKHR>)funcTable[55])(physicalDevice, surface, (nint)requestModes, requestModesCount);
+			return (VkPresentModeKHR)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, VkSurfaceKHR, nint, int, VkPresentModeKHR>)funcTable[56])(physicalDevice, surface, (nint)requestModes, requestModesCount);
 			#endif
 		}
 
@@ -447,12 +436,56 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static VkPhysicalDevice HSelectPhysicalDeviceNative(VkInstance instance)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice>)funcTable[57])(instance);
+			#else
+			return (VkPhysicalDevice)((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice>)funcTable[57])(instance);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static VkPhysicalDevice HSelectPhysicalDevice(VkInstance instance)
+		{
+			VkPhysicalDevice ret = HSelectPhysicalDeviceNative(instance);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint HSelectQueueFamilyIndexNative(VkPhysicalDevice physicalDevice)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<VkPhysicalDevice, uint>)funcTable[58])(physicalDevice);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<VkPhysicalDevice, uint>)funcTable[58])(physicalDevice);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint HSelectQueueFamilyIndex(VkPhysicalDevice physicalDevice)
+		{
+			uint ret = HSelectQueueFamilyIndexNative(physicalDevice);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int HGetMinImageCountFromPresentModeNative(VkPresentModeKHR presentMode)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[56])(presentMode);
+			return ((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[59])(presentMode);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[56])(presentMode);
+			return (int)((delegate* unmanaged[Cdecl]<VkPresentModeKHR, int>)funcTable[59])(presentMode);
 			#endif
 		}
 

@@ -21,6 +21,230 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
@@ -185,9 +409,9 @@ namespace Hexa.NET.ImGui
 		internal static void ValueNative(byte* prefix, byte b)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte, void>)funcTable[242])(prefix, b);
+			((delegate* unmanaged[Cdecl]<byte*, byte, void>)funcTable[246])(prefix, b);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[242])((nint)prefix, b);
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[246])((nint)prefix, b);
 			#endif
 		}
 
@@ -257,9 +481,9 @@ namespace Hexa.NET.ImGui
 		internal static void ValueNative(byte* prefix, int v)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, void>)funcTable[243])(prefix, v);
+			((delegate* unmanaged[Cdecl]<byte*, int, void>)funcTable[247])(prefix, v);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[243])((nint)prefix, v);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[247])((nint)prefix, v);
 			#endif
 		}
 
@@ -329,9 +553,9 @@ namespace Hexa.NET.ImGui
 		internal static void ValueNative(byte* prefix, uint v)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint, void>)funcTable[244])(prefix, v);
+			((delegate* unmanaged[Cdecl]<byte*, uint, void>)funcTable[248])(prefix, v);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[244])((nint)prefix, v);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[248])((nint)prefix, v);
 			#endif
 		}
 
@@ -401,9 +625,9 @@ namespace Hexa.NET.ImGui
 		internal static void ValueNative(byte* prefix, float v, byte* floatFormat)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float, byte*, void>)funcTable[245])(prefix, v, floatFormat);
+			((delegate* unmanaged[Cdecl]<byte*, float, byte*, void>)funcTable[249])(prefix, v, floatFormat);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, nint, void>)funcTable[245])((nint)prefix, v, (nint)floatFormat);
+			((delegate* unmanaged[Cdecl]<nint, float, nint, void>)funcTable[249])((nint)prefix, v, (nint)floatFormat);
 			#endif
 		}
 
@@ -811,20 +1035,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set on parent window).<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginMenuBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[246])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[250])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[246])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[250])();
 			#endif
 		}
 
 		/// <summary>
-		/// append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set on parent window).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenuBar()
 		{
@@ -833,20 +1057,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndMenuBar() if BeginMenuBar() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndMenuBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[247])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[251])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[247])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[251])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndMenuBar() if BeginMenuBar() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndMenuBar()
 		{
@@ -854,20 +1078,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append to a full screen menu-bar.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginMainMenuBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[248])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[252])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[248])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[252])();
 			#endif
 		}
 
 		/// <summary>
-		/// create and append to a full screen menu-bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMainMenuBar()
 		{
@@ -876,20 +1100,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndMainMenuBar() if BeginMainMenuBar() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndMainMenuBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[249])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[253])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[249])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[253])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndMainMenuBar() if BeginMainMenuBar() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndMainMenuBar()
 		{
@@ -897,20 +1121,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginMenuNative(byte* label, byte enabled)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)funcTable[250])(label, enabled);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)funcTable[254])(label, enabled);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[250])((nint)label, enabled);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[254])((nint)label, enabled);
 			#endif
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(byte* label, bool enabled)
 		{
@@ -919,7 +1143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(byte* label)
 		{
@@ -928,7 +1152,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(ref byte label, bool enabled)
 		{
@@ -940,7 +1164,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(ref byte label)
 		{
@@ -952,7 +1176,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(ReadOnlySpan<byte> label, bool enabled)
 		{
@@ -964,7 +1188,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(ReadOnlySpan<byte> label)
 		{
@@ -976,7 +1200,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(string label, bool enabled)
 		{
@@ -1006,7 +1230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginMenu(string label)
 		{
@@ -1036,20 +1260,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndMenu() if BeginMenu() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndMenuNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[251])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[255])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[251])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[255])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndMenu() if BeginMenu() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndMenu()
 		{
@@ -1057,20 +1281,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte MenuItemNative(byte* label, byte* shortcut, byte selected, byte enabled)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte, byte>)funcTable[252])(label, shortcut, selected, enabled);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte, byte>)funcTable[256])(label, shortcut, selected, enabled);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte, byte, byte>)funcTable[252])((nint)label, (nint)shortcut, selected, enabled);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte, byte, byte>)funcTable[256])((nint)label, (nint)shortcut, selected, enabled);
 			#endif
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1079,7 +1303,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool selected)
 		{
@@ -1088,7 +1312,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut)
 		{
@@ -1097,7 +1321,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label)
 		{
@@ -1106,7 +1330,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, bool selected)
 		{
@@ -1115,7 +1339,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, bool selected, bool enabled)
 		{
@@ -1124,7 +1348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1136,7 +1360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool selected)
 		{
@@ -1148,7 +1372,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut)
 		{
@@ -1160,7 +1384,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label)
 		{
@@ -1172,7 +1396,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, bool selected)
 		{
@@ -1184,7 +1408,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, bool selected, bool enabled)
 		{
@@ -1196,7 +1420,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1208,7 +1432,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool selected)
 		{
@@ -1220,7 +1444,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut)
 		{
@@ -1232,7 +1456,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label)
 		{
@@ -1244,7 +1468,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, bool selected)
 		{
@@ -1256,7 +1480,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, bool selected, bool enabled)
 		{
@@ -1268,7 +1492,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1298,7 +1522,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool selected)
 		{
@@ -1328,7 +1552,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut)
 		{
@@ -1358,7 +1582,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label)
 		{
@@ -1388,7 +1612,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, bool selected)
 		{
@@ -1418,7 +1642,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, bool selected, bool enabled)
 		{
@@ -1448,7 +1672,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -1460,7 +1684,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool selected)
 		{
@@ -1472,7 +1696,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut)
 		{
@@ -1484,7 +1708,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -1496,7 +1720,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -1508,7 +1732,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut)
 		{
@@ -1520,7 +1744,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool selected, bool enabled)
 		{
@@ -1550,7 +1774,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool selected)
 		{
@@ -1580,7 +1804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut)
 		{
@@ -1610,7 +1834,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -1625,7 +1849,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool selected)
 		{
@@ -1640,7 +1864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut)
 		{
@@ -1655,7 +1879,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -1670,7 +1894,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -1685,7 +1909,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut)
 		{
@@ -1700,7 +1924,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool selected, bool enabled)
 		{
@@ -1751,7 +1975,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool selected)
 		{
@@ -1802,7 +2026,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut)
 		{
@@ -1853,7 +2077,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -1868,7 +2092,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -1883,7 +2107,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut)
 		{
@@ -1898,7 +2122,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool selected, bool enabled)
 		{
@@ -1931,7 +2155,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool selected)
 		{
@@ -1964,7 +2188,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut)
 		{
@@ -1997,7 +2221,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -2012,7 +2236,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool selected)
 		{
@@ -2027,7 +2251,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut)
 		{
@@ -2042,7 +2266,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool selected, bool enabled)
 		{
@@ -2075,7 +2299,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool selected)
 		{
@@ -2108,7 +2332,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut)
 		{
@@ -2141,7 +2365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -2174,7 +2398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool selected)
 		{
@@ -2207,7 +2431,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut)
 		{
@@ -2240,7 +2464,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -2273,7 +2497,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -2306,7 +2530,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut)
 		{
@@ -2339,20 +2563,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, byte enabled)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, bool*, byte, byte>)funcTable[253])(label, shortcut, pSelected, enabled);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, bool*, byte, byte>)funcTable[257])(label, shortcut, pSelected, enabled);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, byte>)funcTable[253])((nint)label, (nint)shortcut, (nint)pSelected, enabled);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, byte>)funcTable[257])((nint)label, (nint)shortcut, (nint)pSelected, enabled);
 			#endif
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2361,7 +2585,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected)
 		{
@@ -2370,7 +2594,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2382,7 +2606,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool* pSelected)
 		{
@@ -2394,7 +2618,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2406,7 +2630,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected)
 		{
@@ -2418,7 +2642,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2448,7 +2672,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool* pSelected)
 		{
@@ -2478,7 +2702,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -2490,7 +2714,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool* pSelected)
 		{
@@ -2502,7 +2726,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -2514,7 +2738,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -2526,7 +2750,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -2556,7 +2780,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool* pSelected)
 		{
@@ -2586,7 +2810,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -2601,7 +2825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool* pSelected)
 		{
@@ -2616,7 +2840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -2631,7 +2855,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -2646,7 +2870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -2697,7 +2921,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool* pSelected)
 		{
@@ -2748,7 +2972,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -2763,7 +2987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -2778,7 +3002,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -2811,7 +3035,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool* pSelected)
 		{
@@ -2844,7 +3068,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -2859,7 +3083,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool* pSelected)
 		{
@@ -2874,7 +3098,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -2907,7 +3131,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected)
 		{
@@ -2940,7 +3164,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -2973,7 +3197,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool* pSelected)
 		{
@@ -3006,7 +3230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -3039,7 +3263,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -3072,7 +3296,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3084,7 +3308,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected)
 		{
@@ -3096,7 +3320,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3111,7 +3335,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, ref bool pSelected)
 		{
@@ -3126,7 +3350,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3141,7 +3365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected)
 		{
@@ -3156,7 +3380,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3189,7 +3413,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected)
 		{
@@ -3222,7 +3446,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3237,7 +3461,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3252,7 +3476,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3267,7 +3491,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3282,7 +3506,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3315,7 +3539,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected)
 		{
@@ -3348,7 +3572,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3366,7 +3590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3384,7 +3608,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3402,7 +3626,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3420,7 +3644,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3474,7 +3698,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, ref bool pSelected)
 		{
@@ -3528,7 +3752,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3546,7 +3770,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3564,7 +3788,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3600,7 +3824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, ref bool pSelected)
 		{
@@ -3636,7 +3860,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3654,7 +3878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3672,7 +3896,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3708,7 +3932,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected)
 		{
@@ -3744,7 +3968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3780,7 +4004,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3816,7 +4040,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3852,7 +4076,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3888,20 +4112,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// beginappend a tooltip window.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[254])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[254])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
 			#endif
 		}
 
 		/// <summary>
-		/// beginappend a tooltip window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTooltip()
 		{
@@ -3910,20 +4134,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[255])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[259])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[255])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[259])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndTooltip()
 		{
@@ -3931,20 +4155,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetTooltipNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[256])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[260])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[256])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[260])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTooltip(byte* fmt)
 		{
@@ -3952,7 +4176,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTooltip(ref byte fmt)
 		{
@@ -3963,7 +4187,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTooltip(ReadOnlySpan<byte> fmt)
 		{
@@ -3974,7 +4198,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTooltip(string fmt)
 		{
@@ -4009,9 +4233,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetTooltipVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[257])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[261])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[257])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[261])((nint)fmt, args);
 			#endif
 		}
 
@@ -4075,20 +4299,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// beginappend a tooltip window if preceding item was hovered.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginItemTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[262])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[262])();
 			#endif
 		}
 
 		/// <summary>
-		/// beginappend a tooltip window if preceding item was hovered.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginItemTooltip()
 		{
@@ -4097,20 +4321,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemTooltipNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[259])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[263])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[259])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[263])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetItemTooltip(byte* fmt)
 		{
@@ -4118,7 +4342,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetItemTooltip(ref byte fmt)
 		{
@@ -4129,7 +4353,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetItemTooltip(ReadOnlySpan<byte> fmt)
 		{
@@ -4140,7 +4364,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetItemTooltip(string fmt)
 		{
@@ -4175,9 +4399,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetItemTooltipVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[260])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[264])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[260])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[264])((nint)fmt, args);
 			#endif
 		}
 
@@ -4241,20 +4465,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupNative(byte* strId, ImGuiWindowFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiWindowFlags, byte>)funcTable[261])(strId, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiWindowFlags, byte>)funcTable[265])(strId, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiWindowFlags, byte>)funcTable[261])((nint)strId, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiWindowFlags, byte>)funcTable[265])((nint)strId, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(byte* strId, ImGuiWindowFlags flags)
 		{
@@ -4263,7 +4487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(byte* strId)
 		{
@@ -4272,7 +4496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(ref byte strId, ImGuiWindowFlags flags)
 		{
@@ -4284,7 +4508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(ref byte strId)
 		{
@@ -4296,7 +4520,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(ReadOnlySpan<byte> strId, ImGuiWindowFlags flags)
 		{
@@ -4308,7 +4532,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(ReadOnlySpan<byte> strId)
 		{
@@ -4320,7 +4544,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(string strId, ImGuiWindowFlags flags)
 		{
@@ -4350,7 +4574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopup(string strId)
 		{
@@ -4380,20 +4604,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupModalNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiWindowFlags, byte>)funcTable[262])(name, pOpen, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiWindowFlags, byte>)funcTable[266])(name, pOpen, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiWindowFlags, byte>)funcTable[262])((nint)name, (nint)pOpen, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiWindowFlags, byte>)funcTable[266])((nint)name, (nint)pOpen, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4402,7 +4626,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, bool* pOpen)
 		{
@@ -4411,7 +4635,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(byte* name)
 		{
@@ -4420,7 +4644,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, ImGuiWindowFlags flags)
 		{
@@ -4429,7 +4653,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4441,7 +4665,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, bool* pOpen)
 		{
@@ -4453,7 +4677,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name)
 		{
@@ -4465,7 +4689,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, ImGuiWindowFlags flags)
 		{
@@ -4477,7 +4701,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4489,7 +4713,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, bool* pOpen)
 		{
@@ -4501,7 +4725,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name)
 		{
@@ -4513,7 +4737,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ImGuiWindowFlags flags)
 		{
@@ -4525,7 +4749,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(string name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4555,7 +4779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(string name, bool* pOpen)
 		{
@@ -4585,7 +4809,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(string name)
 		{
@@ -4615,7 +4839,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(string name, ImGuiWindowFlags flags)
 		{
@@ -4645,7 +4869,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4657,7 +4881,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, ref bool pOpen)
 		{
@@ -4669,7 +4893,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4684,7 +4908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, ref bool pOpen)
 		{
@@ -4699,7 +4923,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4714,7 +4938,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ref bool pOpen)
 		{
@@ -4729,7 +4953,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(string name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4762,7 +4986,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupModal(string name, ref bool pOpen)
 		{
@@ -4792,232 +5016,6 @@ namespace Hexa.NET.ImGui
 				}
 				return ret != 0;
 			}
-		}
-
-		/// <summary>
-		/// only call EndPopup() if BeginPopupXXX() returns true!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndPopupNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[263])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[263])();
-			#endif
-		}
-
-		/// <summary>
-		/// only call EndPopup() if BeginPopupXXX() returns true!<br/>
-		/// </summary>
-		public static void EndPopup()
-		{
-			EndPopupNative();
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void OpenPopupNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, void>)funcTable[264])(strId, popupFlags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, void>)funcTable[264])((nint)strId, popupFlags);
-			#endif
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupNative(strId, popupFlags);
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(byte* strId)
-		{
-			OpenPopupNative(strId, (ImGuiPopupFlags)(0));
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(ref byte strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				OpenPopupNative((byte*)pstrId, popupFlags);
-			}
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				OpenPopupNative((byte*)pstrId, popupFlags);
-			}
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(string strId, ImGuiPopupFlags popupFlags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			OpenPopupNative(pStr0, popupFlags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		public static void OpenPopup(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			OpenPopupNative(pStr0, (ImGuiPopupFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// call to mark popup as open (don't call every frame!).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void OpenPopupNative(uint id, ImGuiPopupFlags popupFlags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, ImGuiPopupFlags, void>)funcTable[265])(id, popupFlags);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, ImGuiPopupFlags, void>)funcTable[265])(id, popupFlags);
-			#endif
-		}
-
-		/// <summary>
-		/// id overload to facilitate calling from nested stacks<br/>
-		/// </summary>
-		public static void OpenPopup(uint id, ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupNative(id, popupFlags);
-		}
-
-		/// <summary>
-		/// id overload to facilitate calling from nested stacks<br/>
-		/// </summary>
-		public static void OpenPopup(uint id)
-		{
-			OpenPopupNative(id, (ImGuiPopupFlags)(0));
-		}
-
-		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void OpenPopupOnItemClickNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, void>)funcTable[266])(strId, popupFlags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, void>)funcTable[266])((nint)strId, popupFlags);
-			#endif
-		}
-
-		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
-		/// </summary>
-		public static void OpenPopupOnItemClick(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupOnItemClickNative(strId, popupFlags);
-		}
-
-		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
-		/// </summary>
-		public static void OpenPopupOnItemClick(byte* strId)
-		{
-			OpenPopupOnItemClickNative(strId, (ImGuiPopupFlags)(1));
-		}
-
-		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
-		/// </summary>
-		public static void OpenPopupOnItemClick()
-		{
-			OpenPopupOnItemClickNative((byte*)(default), (ImGuiPopupFlags)(1));
-		}
-
-		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
-		/// </summary>
-		public static void OpenPopupOnItemClick(ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupOnItemClickNative((byte*)(default), popupFlags);
 		}
 	}
 }

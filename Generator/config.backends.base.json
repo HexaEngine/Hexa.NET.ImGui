@@ -1,0 +1,17 @@
+{
+  "BaseConfig": {
+    "Url": "file://config.base.json"
+  },
+  "GenerateConstants": false,
+  "IgnoredTypes": [ "ImDrawData", "ImTextureData", "ImGuiContext" ],
+  "IgnoredFunctions": [
+    "igSetCurrentContext",
+    "igGetCurrentContext"
+  ],
+  "Defines": [
+    "CIMGUI_IMPL_VULKAN_HAS_DYNAMIC_RENDERING",
+    "CIMGUI_IMPL_METAL_CPP"
+  ],
+  "Usings": [ "Hexa.NET.ImGui" ],
+  "SystemIncludeFolders": [ "C:\\VulkanSDK\\1.3.250.0\\Include\\" ]
+}

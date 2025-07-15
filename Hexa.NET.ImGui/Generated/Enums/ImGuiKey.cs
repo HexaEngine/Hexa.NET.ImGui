@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// First valid key value (other than 0)<br/>
+		/// To be documented.
 		/// </summary>
 		NamedKeyBegin = unchecked(512),
 
 		/// <summary>
-		/// == ImGuiKey_NamedKey_BEGIN<br/>
+		/// To be documented.
 		/// </summary>
 		Tab = unchecked(512),
 
@@ -450,56 +450,57 @@ namespace Hexa.NET.ImGui
 		F24 = unchecked(595),
 
 		/// <summary>
-		/// '<br/>
+		/// To be documented.
 		/// </summary>
 		Apostrophe = unchecked(596),
 
 		/// <summary>
-		/// ,<br/>
+		/// To be documented.
 		/// </summary>
 		Comma = unchecked(597),
 
 		/// <summary>
-		/// -<br/>
+		/// To be documented.
 		/// </summary>
 		Minus = unchecked(598),
 
 		/// <summary>
-		/// .<br/>
+		/// To be documented.
 		/// </summary>
 		Period = unchecked(599),
 
 		/// <summary>
+		/// To be documented.
 		/// </summary>
 		Slash = unchecked(600),
 
 		/// <summary>
-		/// ;<br/>
+		/// To be documented.
 		/// </summary>
 		Semicolon = unchecked(601),
 
 		/// <summary>
-		/// =<br/>
+		/// To be documented.
 		/// </summary>
 		Equal = unchecked(602),
 
 		/// <summary>
-		/// [<br/>
+		/// To be documented.
 		/// </summary>
 		LeftBracket = unchecked(603),
 
 		/// <summary>
-		/// \ (this text inhibit multiline comment caused by backslash)<br/>
+		/// To be documented.
 		/// </summary>
 		Backslash = unchecked(604),
 
 		/// <summary>
-		/// ]<br/>
+		/// To be documented.
 		/// </summary>
 		RightBracket = unchecked(605),
 
 		/// <summary>
-		/// `<br/>
+		/// To be documented.
 		/// </summary>
 		GraveAccent = unchecked(606),
 
@@ -614,7 +615,7 @@ namespace Hexa.NET.ImGui
 		KeypadEqual = unchecked(628),
 
 		/// <summary>
-		/// Available on some keyboardmouses. Often referred as "Browser Back"<br/>
+		/// To be documented.
 		/// </summary>
 		AppBack = unchecked(629),
 
@@ -624,127 +625,127 @@ namespace Hexa.NET.ImGui
 		AppForward = unchecked(630),
 
 		/// <summary>
-		/// Non-US backslash.<br/>
+		/// To be documented.
 		/// </summary>
 		Oem102 = unchecked(631),
 
 		/// <summary>
-		/// Menu (Xbox)      + (Switch)   StartOptions (PS)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadStart = unchecked(632),
 
 		/// <summary>
-		/// View (Xbox)      - (Switch)   Share (PS)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadBack = unchecked(633),
 
 		/// <summary>
-		/// X (Xbox)         Y (Switch)   Square (PS)         Tap: Toggle Menu. Hold: Windowing mode (FocusMoveResize windows)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadFaceLeft = unchecked(634),
 
 		/// <summary>
-		/// B (Xbox)         A (Switch)   Circle (PS)         Cancel  Close  Exit<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadFaceRight = unchecked(635),
 
 		/// <summary>
-		/// Y (Xbox)         X (Switch)   Triangle (PS)       Text Input  On-screen Keyboard<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadFaceUp = unchecked(636),
 
 		/// <summary>
-		/// A (Xbox)         B (Switch)   Cross (PS)          Activate  Open  Toggle  Tweak<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadFaceDown = unchecked(637),
 
 		/// <summary>
-		/// D-pad Left                                        Move  Tweak  Resize Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadDpadLeft = unchecked(638),
 
 		/// <summary>
-		/// D-pad Right                                       Move  Tweak  Resize Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadDpadRight = unchecked(639),
 
 		/// <summary>
-		/// D-pad Up                                          Move  Tweak  Resize Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadDpadUp = unchecked(640),
 
 		/// <summary>
-		/// D-pad Down                                        Move  Tweak  Resize Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadDpadDown = unchecked(641),
 
 		/// <summary>
-		/// L Bumper (Xbox)  L (Switch)   L1 (PS)             Tweak Slower  Focus Previous (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadL1 = unchecked(642),
 
 		/// <summary>
-		/// R Bumper (Xbox)  R (Switch)   R1 (PS)             Tweak Faster  Focus Next (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadR1 = unchecked(643),
 
 		/// <summary>
-		/// L Trig. (Xbox)   ZL (Switch)  L2 (PS) [Analog]<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadL2 = unchecked(644),
 
 		/// <summary>
-		/// R Trig. (Xbox)   ZR (Switch)  R2 (PS) [Analog]<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadR2 = unchecked(645),
 
 		/// <summary>
-		/// L Stick (Xbox)   L3 (Switch)  L3 (PS)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadL3 = unchecked(646),
 
 		/// <summary>
-		/// R Stick (Xbox)   R3 (Switch)  R3 (PS)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadR3 = unchecked(647),
 
 		/// <summary>
-		/// [Analog]                                          Move Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadLStickLeft = unchecked(648),
 
 		/// <summary>
-		/// [Analog]                                          Move Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadLStickRight = unchecked(649),
 
 		/// <summary>
-		/// [Analog]                                          Move Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadLStickUp = unchecked(650),
 
 		/// <summary>
-		/// [Analog]                                          Move Window (in Windowing mode)<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadLStickDown = unchecked(651),
 
 		/// <summary>
-		/// [Analog]<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadRStickLeft = unchecked(652),
 
 		/// <summary>
-		/// [Analog]<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadRStickRight = unchecked(653),
 
 		/// <summary>
-		/// [Analog]<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadRStickUp = unchecked(654),
 
 		/// <summary>
-		/// [Analog]<br/>
+		/// To be documented.
 		/// </summary>
 		GamepadRStickDown = unchecked(655),
 
@@ -811,36 +812,36 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ModNone = unchecked(0),
-
-		/// <summary>
-		/// Ctrl (non-macOS), Cmd (macOS)<br/>
-		/// </summary>
-		ModCtrl = unchecked(4096),
-
-		/// <summary>
-		/// Shift<br/>
-		/// </summary>
-		ModShift = unchecked(8192),
-
-		/// <summary>
-		/// OptionMenu<br/>
-		/// </summary>
-		ModAlt = unchecked(16384),
-
-		/// <summary>
-		/// WindowsSuper (non-macOS), Ctrl (macOS)<br/>
-		/// </summary>
-		ModSuper = unchecked(32768),
-
-		/// <summary>
-		/// 4-bits<br/>
-		/// </summary>
-		ModMask = unchecked(61440),
+		NamedKeyCount = unchecked(155),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		NamedKeyCount = unchecked(155),
+		ModNone = unchecked(0),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ModCtrl = unchecked(4096),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ModShift = unchecked(8192),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ModAlt = unchecked(16384),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ModSuper = unchecked(32768),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ModMask = unchecked(61440),
 	}
 }

@@ -15,7 +15,7 @@ using Hexa.NET.ImGui;
 namespace Hexa.NET.ImGui.Backends.SDL3
 {
 	/// <summary>
-	/// To be documented.
+	/// enums from backend<br/>
 	/// </summary>
 	[Flags]
 	public enum ImGuiImplSDL3GamepadMode : int

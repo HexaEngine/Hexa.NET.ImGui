@@ -17,11 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Typically, 1 command = 1 GPU draw call (unless command is a callback)<br/>
-	/// - VtxOffset: When 'io.BackendFlags &amp; ImGuiBackendFlags_RendererHasVtxOffset' is enabled,<br/>
-	/// this fields allow us to render meshes larger than 64K vertices while keeping 16-bit indices.<br/>
-	/// Backends made for &lt;1.71. will typically ignore the VtxOffset fields.<br/>
-	/// - The ClipRectTextureIdVtxOffset fields must be contiguous as we memcmp() them together (this is asserted for).<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawCmd
@@ -34,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImTextureID TextureId;
+		public ImTextureRef TexRef;
 
 		/// <summary>
 		/// To be documented.
@@ -74,10 +70,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureID textureId = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, ImDrawCallback userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
+		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureRef texRef = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, ImDrawCallback userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
 		{
 			ClipRect = clipRect;
-			TextureId = textureId;
+			TexRef = texRef;
 			VtxOffset = vtxOffset;
 			IdxOffset = idxOffset;
 			ElemCount = elemCount;
@@ -161,7 +157,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImTextureID TextureId => ref Unsafe.AsRef<ImTextureID>(&Handle->TextureId);
+		public ref ImTextureRef TexRef => ref Unsafe.AsRef<ImTextureRef>(&Handle->TexRef);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Backspace to delete character inputs. If using: ensure GetTypingSelectRequest() is not called more than once per frame (filter by e.g. focus state)<br/>
+		/// To be documented.
 		/// </summary>
 		AllowBackspace = unchecked(1),
 
 		/// <summary>
-		/// Allow "single char" search mode which is activated when pressing the same character multiple times.<br/>
+		/// To be documented.
 		/// </summary>
 		AllowSingleCharMode = unchecked(2),
 	}

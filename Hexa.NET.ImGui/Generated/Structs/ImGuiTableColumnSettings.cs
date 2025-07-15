@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// sizeof() ~ 16<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableColumnSettings
@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte IsEnabled;
+		public sbyte IsEnabled;
 
 		/// <summary>
 		/// To be documented.
@@ -66,7 +66,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableColumnSettings(float widthOrWeight = default, uint userId = default, sbyte index = default, sbyte displayOrder = default, sbyte sortOrder = default, byte sortDirection = default, byte isEnabled = default, byte isStretch = default)
+		public unsafe ImGuiTableColumnSettings(float widthOrWeight = default, uint userId = default, sbyte index = default, sbyte displayOrder = default, sbyte sortOrder = default, byte sortDirection = default, sbyte isEnabled = default, byte isStretch = default)
 		{
 			WidthOrWeight = widthOrWeight;
 			UserID = userId;
@@ -149,7 +149,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte IsEnabled => ref Unsafe.AsRef<byte>(&Handle->IsEnabled);
+		public ref sbyte IsEnabled => ref Unsafe.AsRef<sbyte>(&Handle->IsEnabled);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

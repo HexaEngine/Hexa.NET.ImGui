@@ -19,26 +19,20 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 	public unsafe partial class ImGuiImplD3D12
 	{
 		/// <summary>
-		/// cmd_list is the command list that the implementation will use to render imgui draw lists.<br/>
-		/// Before calling the render function, caller must prepare cmd_list by resetting it and setting the appropriate<br/>
-		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
-		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
+		/// Initialization data, for ImGui_ImplDX12_Init()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InitNative(ImGuiImplDX12InitInfo* info)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiImplDX12InitInfo*, byte>)funcTable[36])(info);
+			return ((delegate* unmanaged[Cdecl]<ImGuiImplDX12InitInfo*, byte>)funcTable[37])(info);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[36])((nint)info);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[37])((nint)info);
 			#endif
 		}
 
 		/// <summary>
-		/// cmd_list is the command list that the implementation will use to render imgui draw lists.<br/>
-		/// Before calling the render function, caller must prepare cmd_list by resetting it and setting the appropriate<br/>
-		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
-		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
+		/// Initialization data, for ImGui_ImplDX12_Init()<br/>
 		/// </summary>
 		public static bool Init(ImGuiImplDX12InitInfoPtr info)
 		{
@@ -47,10 +41,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		}
 
 		/// <summary>
-		/// cmd_list is the command list that the implementation will use to render imgui draw lists.<br/>
-		/// Before calling the render function, caller must prepare cmd_list by resetting it and setting the appropriate<br/>
-		/// render target and descriptor heap that contains font_srv_cpu_desc_handle/font_srv_gpu_desc_handle.<br/>
-		/// font_srv_cpu_desc_handle and font_srv_gpu_desc_handle are handles to a single SRV descriptor to use for the internal font texture.<br/>
+		/// Initialization data, for ImGui_ImplDX12_Init()<br/>
 		/// </summary>
 		public static bool Init(ref ImGuiImplDX12InitInfo info)
 		{
@@ -68,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[37])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
 			#endif
 		}
 
@@ -89,9 +80,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[39])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[38])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[39])();
 			#endif
 		}
 
@@ -110,9 +101,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static void RenderDrawDataNative(ImDrawData* drawData, ID3D12GraphicsCommandList* graphicsCommandList)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ID3D12GraphicsCommandList*, void>)funcTable[39])(drawData, graphicsCommandList);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ID3D12GraphicsCommandList*, void>)funcTable[40])(drawData, graphicsCommandList);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[39])((nint)drawData, (nint)graphicsCommandList);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[40])((nint)drawData, (nint)graphicsCommandList);
 			#endif
 		}
 
@@ -161,20 +152,52 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		}
 
 		/// <summary>
-		/// Use if you want to reset your rendering device without losing Dear ImGui state.<br/>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void UpdateTextureNative(ImTextureData* tex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[41])(tex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[41])((nint)tex);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateTexture(ImTextureDataPtr tex)
+		{
+			UpdateTextureNative(tex);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateTexture(ref ImTextureData tex)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				UpdateTextureNative((ImTextureData*)ptex);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void InvalidateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[40])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[42])();
 			#endif
 		}
 
 		/// <summary>
-		/// Use if you want to reset your rendering device without losing Dear ImGui state.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void InvalidateDeviceObjects()
 		{
@@ -188,9 +211,9 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		internal static byte CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[41])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[43])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[41])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[43])();
 			#endif
 		}
 

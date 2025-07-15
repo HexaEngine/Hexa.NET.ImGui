@@ -25,117 +25,117 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Overridingmaster disable flag: hide column, won't show in context menu (unlike calling TableSetColumnEnabled() which manipulates the user accessible state)<br/>
+		/// To be documented.
 		/// </summary>
 		Disabled = unchecked(1),
 
 		/// <summary>
-		/// Default as a hiddendisabled column.<br/>
+		/// To be documented.
 		/// </summary>
 		DefaultHide = unchecked(2),
 
 		/// <summary>
-		/// Default as a sorting column.<br/>
+		/// To be documented.
 		/// </summary>
 		DefaultSort = unchecked(4),
 
 		/// <summary>
-		/// Column will stretch. Preferable with horizontal scrolling disabled (default if table sizing policy is _SizingStretchSame or _SizingStretchProp).<br/>
+		/// To be documented.
 		/// </summary>
 		WidthStretch = unchecked(8),
 
 		/// <summary>
-		/// Column will not stretch. Preferable with horizontal scrolling enabled (default if table sizing policy is _SizingFixedFit and table is resizable).<br/>
+		/// To be documented.
 		/// </summary>
 		WidthFixed = unchecked(16),
 
 		/// <summary>
-		/// Disable manual resizing.<br/>
+		/// To be documented.
 		/// </summary>
 		NoResize = unchecked(32),
 
 		/// <summary>
-		/// Disable manual reordering this column, this will also prevent other columns from crossing over this column.<br/>
+		/// To be documented.
 		/// </summary>
 		NoReorder = unchecked(64),
 
 		/// <summary>
-		/// Disable ability to hidedisable this column.<br/>
+		/// To be documented.
 		/// </summary>
 		NoHide = unchecked(128),
 
 		/// <summary>
-		/// Disable clipping for this column (all NoClip columns will render in a same draw command).<br/>
+		/// To be documented.
 		/// </summary>
 		NoClip = unchecked(256),
 
 		/// <summary>
-		/// Disable ability to sort on this field (even if ImGuiTableFlags_Sortable is set on the table).<br/>
+		/// To be documented.
 		/// </summary>
 		NoSort = unchecked(512),
 
 		/// <summary>
-		/// Disable ability to sort in the ascending direction.<br/>
+		/// To be documented.
 		/// </summary>
 		NoSortAscending = unchecked(1024),
 
 		/// <summary>
-		/// Disable ability to sort in the descending direction.<br/>
+		/// To be documented.
 		/// </summary>
 		NoSortDescending = unchecked(2048),
 
 		/// <summary>
-		/// TableHeadersRow() will submit an empty label for this column. Convenient for some small columns. Name will still appear in context menu or in angled headers. You may append into this cell by calling TableSetColumnIndex() right after the TableHeadersRow() call.<br/>
+		/// To be documented.
 		/// </summary>
 		NoHeaderLabel = unchecked(4096),
 
 		/// <summary>
-		/// Disable header text width contribution to automatic column width.<br/>
+		/// To be documented.
 		/// </summary>
 		NoHeaderWidth = unchecked(8192),
 
 		/// <summary>
-		/// Make the initial sort direction Ascending when first sorting on this column (default).<br/>
+		/// To be documented.
 		/// </summary>
 		PreferSortAscending = unchecked(16384),
 
 		/// <summary>
-		/// Make the initial sort direction Descending when first sorting on this column.<br/>
+		/// To be documented.
 		/// </summary>
 		PreferSortDescending = unchecked(32768),
 
 		/// <summary>
-		/// Use current Indent value when entering cell (default for column 0).<br/>
+		/// To be documented.
 		/// </summary>
 		IndentEnable = unchecked(65536),
 
 		/// <summary>
-		/// Ignore current Indent value when entering cell (default for columns &gt; 0). Indentation changes _within_ the cell will still be honored.<br/>
+		/// To be documented.
 		/// </summary>
 		IndentDisable = unchecked(131072),
 
 		/// <summary>
-		/// TableHeadersRow() will submit an angled header row for this column. Note this will add an extra row.<br/>
+		/// To be documented.
 		/// </summary>
 		AngledHeader = unchecked(262144),
 
 		/// <summary>
-		/// Status: is enabled == not hidden by userapi (referred to as "Hide" in _DefaultHide and _NoHide) flags.<br/>
+		/// To be documented.
 		/// </summary>
 		IsEnabled = unchecked(16777216),
 
 		/// <summary>
-		/// Status: is visible == is enabled AND not clipped by scrolling.<br/>
+		/// To be documented.
 		/// </summary>
 		IsVisible = unchecked(33554432),
 
 		/// <summary>
-		/// Status: is currently part of the sort specs<br/>
+		/// To be documented.
 		/// </summary>
 		IsSorted = unchecked(67108864),
 
 		/// <summary>
-		/// Status: is hovered by mouse<br/>
+		/// To be documented.
 		/// </summary>
 		IsHovered = unchecked(134217728),
 
@@ -155,7 +155,7 @@ namespace Hexa.NET.ImGui
 		StatusMask = unchecked(251658240),
 
 		/// <summary>
-		/// [Internal] Disable user resizing this column directly (it may however we resized indirectly from its left edge)<br/>
+		/// To be documented.
 		/// </summary>
 		NoDirectResize = unchecked(1073741824),
 	}

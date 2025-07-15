@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Compact highlight, no paddingdistance from focused item<br/>
+		/// To be documented.
 		/// </summary>
 		Compact = unchecked(2),
 
 		/// <summary>
-		/// Draw rectangular highlight if (g.NavId == id) even when g.NavCursorVisible == false, aka even when using the mouse.<br/>
+		/// To be documented.
 		/// </summary>
 		AlwaysDraw = unchecked(4),
 

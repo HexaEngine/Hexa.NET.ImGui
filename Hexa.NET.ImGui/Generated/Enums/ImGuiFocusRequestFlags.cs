@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Find last focused child (if any) and focus it instead.<br/>
+		/// To be documented.
 		/// </summary>
 		RestoreFocusedChild = unchecked(1),
 
 		/// <summary>
-		/// Do not set focus if the window is below a modal.<br/>
+		/// To be documented.
 		/// </summary>
 		UnlessBelowModal = unchecked(2),
 	}

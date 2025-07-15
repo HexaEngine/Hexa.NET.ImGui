@@ -19,1534 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = &needleEnd)
-					{
-						string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, pStr0, (byte*)pneedle, (byte*)pneedleEnd));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = needleEnd)
-					{
-						byte* ret = ImStristrNative((byte*)phaystack, pStr0, (byte*)pneedle, (byte*)pneedleEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = needleEnd)
-					{
-						string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, pStr0, (byte*)pneedle, (byte*)pneedleEnd));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pneedle = needle)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (needleEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					byte* ret = ImStristrNative((byte*)phaystack, pStr0, (byte*)pneedle, pStr1);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pneedle = needle)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (needleEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, pStr0, (byte*)pneedle, pStr1));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, ref byte needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = &needleEnd)
-				{
-					byte* ret = ImStristrNative((byte*)phaystack, pStr0, pStr1, (byte*)pneedleEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, ref byte needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = &needleEnd)
-				{
-					string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, pStr0, pStr1, (byte*)pneedleEnd));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = needleEnd)
-				{
-					byte* ret = ImStristrNative((byte*)phaystack, pStr0, pStr1, (byte*)pneedleEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = needleEnd)
-				{
-					string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, pStr0, pStr1, (byte*)pneedleEnd));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, string needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte* pStr2 = null;
-				int pStrSize2 = 0;
-				if (needleEnd != null)
-				{
-					pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
-					if (pStrSize2 >= Utils.MaxStackallocSize)
-					{
-						pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-					}
-					else
-					{
-						byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-						pStr2 = pStrStack2;
-					}
-					int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
-					pStr2[pStrOffset2] = 0;
-				}
-				byte* ret = ImStristrNative((byte*)phaystack, pStr0, pStr1, pStr2);
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr2);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, string needleEnd)
-		{
-			fixed (byte* phaystack = haystack)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (haystackEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte* pStr2 = null;
-				int pStrSize2 = 0;
-				if (needleEnd != null)
-				{
-					pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
-					if (pStrSize2 >= Utils.MaxStackallocSize)
-					{
-						pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-					}
-					else
-					{
-						byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-						pStr2 = pStrStack2;
-					}
-					int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
-					pStr2[pStrOffset2] = 0;
-				}
-				string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, pStr0, pStr1, pStr2));
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr2);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, ref byte needle, ref byte needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = &needle)
-				{
-					fixed (byte* pneedleEnd = &needleEnd)
-					{
-						byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, ref byte needle, ref byte needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = &needle)
-				{
-					fixed (byte* pneedleEnd = &needleEnd)
-					{
-						string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = &needle)
-				{
-					fixed (byte* pneedleEnd = needleEnd)
-					{
-						byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = &needle)
-				{
-					fixed (byte* pneedleEnd = needleEnd)
-					{
-						string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, ref byte needle, string needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = &needle)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (needleEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, pStr1);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, ref byte needle, string needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = &needle)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (needleEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, pStr1));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = &needleEnd)
-					{
-						byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = &needleEnd)
-					{
-						string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = needleEnd)
-					{
-						byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = needle)
-				{
-					fixed (byte* pneedleEnd = needleEnd)
-					{
-						string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = needle)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (needleEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, pStr1);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				fixed (byte* pneedle = needle)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (needleEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, (byte*)pneedle, pStr1));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, string needle, ref byte needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = &needleEnd)
-				{
-					byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, pStr1, (byte*)pneedleEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, string needle, ref byte needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = &needleEnd)
-				{
-					string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, pStr1, (byte*)pneedleEnd));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = needleEnd)
-				{
-					byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, pStr1, (byte*)pneedleEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* pneedleEnd = needleEnd)
-				{
-					string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, pStr1, (byte*)pneedleEnd));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static byte* ImStristr(string haystack, ref byte haystackEnd, string needle, string needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte* pStr2 = null;
-				int pStrSize2 = 0;
-				if (needleEnd != null)
-				{
-					pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
-					if (pStrSize2 >= Utils.MaxStackallocSize)
-					{
-						pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-					}
-					else
-					{
-						byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-						pStr2 = pStrStack2;
-					}
-					int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
-					pStr2[pStrOffset2] = 0;
-				}
-				byte* ret = ImStristrNative(pStr0, (byte*)phaystackEnd, pStr1, pStr2);
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr2);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
-		/// </summary>
-		public static string ImStristrS(string haystack, ref byte haystackEnd, string needle, string needleEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (haystack != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(haystack);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phaystackEnd = &haystackEnd)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (needle != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(needle);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte* pStr2 = null;
-				int pStrSize2 = 0;
-				if (needleEnd != null)
-				{
-					pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
-					if (pStrSize2 >= Utils.MaxStackallocSize)
-					{
-						pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-					}
-					else
-					{
-						byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-						pStr2 = pStrStack2;
-					}
-					int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
-					pStr2[pStrOffset2] = 0;
-				}
-				string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, (byte*)phaystackEnd, pStr1, pStr2));
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr2);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -1585,7 +58,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -1624,7 +97,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1663,7 +136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1702,7 +175,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -1759,7 +232,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -1816,7 +289,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -1855,7 +328,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -1894,7 +367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1933,7 +406,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1972,7 +445,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -2029,7 +502,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -2086,7 +559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -2143,7 +616,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -2200,7 +673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2257,7 +730,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2314,7 +787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, string needleEnd)
 		{
@@ -2389,7 +862,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, string needleEnd)
 		{
@@ -2464,7 +937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -2521,7 +994,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -2578,7 +1051,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2635,7 +1108,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2692,7 +1165,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -2767,7 +1240,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -2842,7 +1315,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -2899,7 +1372,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -2956,7 +1429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3013,7 +1486,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3070,7 +1543,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -3145,7 +1618,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -3220,7 +1693,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -3295,7 +1768,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -3370,7 +1843,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3445,7 +1918,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find a substring in a string range.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3520,20 +1993,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Remove leading and trailing blanks from a buffer.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImStrTrimBlanksNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[711])(str);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[724])(str);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[711])((nint)str);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[724])((nint)str);
 			#endif
 		}
 
 		/// <summary>
-		/// Remove leading and trailing blanks from a buffer.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void ImStrTrimBlanks(byte* str)
 		{
@@ -3541,7 +2014,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Remove leading and trailing blanks from a buffer.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void ImStrTrimBlanks(ref byte str)
 		{
@@ -3552,7 +2025,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Remove leading and trailing blanks from a buffer.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void ImStrTrimBlanks(ref string str)
 		{
@@ -3582,20 +2055,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrSkipBlankNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[712])(str);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[725])(str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[712])((nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[725])((nint)str);
 			#endif
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrSkipBlank(byte* str)
 		{
@@ -3604,7 +2077,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrSkipBlankS(byte* str)
 		{
@@ -3613,7 +2086,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrSkipBlank(ref byte str)
 		{
@@ -3625,7 +2098,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrSkipBlankS(ref byte str)
 		{
@@ -3637,7 +2110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrSkipBlank(ReadOnlySpan<byte> str)
 		{
@@ -3649,7 +2122,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrSkipBlankS(ReadOnlySpan<byte> str)
 		{
@@ -3661,7 +2134,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrSkipBlank(string str)
 		{
@@ -3691,7 +2164,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find first non-blank character.<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrSkipBlankS(string str)
 		{
@@ -3721,20 +2194,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Computer string length (ImWchar string)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImStrlenWNative(uint* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int>)funcTable[713])(str);
+			return ((delegate* unmanaged[Cdecl]<uint*, int>)funcTable[726])(str);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[713])((nint)str);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[726])((nint)str);
 			#endif
 		}
 
 		/// <summary>
-		/// Computer string length (ImWchar string)<br/>
+		/// To be documented.
 		/// </summary>
 		public static int ImStrlenW(uint* str)
 		{
@@ -3743,32 +2216,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Computer string length (ImWchar string)<br/>
-		/// </summary>
-		public static int ImStrlenW(ref uint str)
-		{
-			fixed (uint* pstr = &str)
-			{
-				int ret = ImStrlenWNative((uint*)pstr);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrbolNative(byte* bufMidLine, byte* bufBegin)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[714])(bufMidLine, bufBegin);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[727])(bufMidLine, bufBegin);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[714])((nint)bufMidLine, (nint)bufBegin);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[727])((nint)bufMidLine, (nint)bufBegin);
 			#endif
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, byte* bufBegin)
 		{
@@ -3777,7 +2238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, byte* bufBegin)
 		{
@@ -3786,7 +2247,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, byte* bufBegin)
 		{
@@ -3798,7 +2259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, byte* bufBegin)
 		{
@@ -3810,7 +2271,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, byte* bufBegin)
 		{
@@ -3822,7 +2283,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, byte* bufBegin)
 		{
@@ -3834,7 +2295,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, byte* bufBegin)
 		{
@@ -3864,7 +2325,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, byte* bufBegin)
 		{
@@ -3894,7 +2355,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, ref byte bufBegin)
 		{
@@ -3906,7 +2367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, ref byte bufBegin)
 		{
@@ -3918,7 +2379,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -3930,7 +2391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -3942,7 +2403,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, string bufBegin)
 		{
@@ -3972,7 +2433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, string bufBegin)
 		{
@@ -4002,7 +2463,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, ref byte bufBegin)
 		{
@@ -4017,7 +2478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, ref byte bufBegin)
 		{
@@ -4032,7 +2493,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -4047,7 +2508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -4062,7 +2523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, string bufBegin)
 		{
@@ -4113,7 +2574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, string bufBegin)
 		{
@@ -4164,7 +2625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -4179,7 +2640,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -4194,7 +2655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, string bufBegin)
 		{
@@ -4227,7 +2688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, string bufBegin)
 		{
@@ -4260,7 +2721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, ref byte bufBegin)
 		{
@@ -4275,7 +2736,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, ref byte bufBegin)
 		{
@@ -4290,7 +2751,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, string bufBegin)
 		{
@@ -4323,7 +2784,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, string bufBegin)
 		{
@@ -4356,7 +2817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, ref byte bufBegin)
 		{
@@ -4389,7 +2850,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, ref byte bufBegin)
 		{
@@ -4422,7 +2883,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -4455,7 +2916,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Find beginning-of-line<br/>
+		/// To be documented.
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -4494,9 +2955,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImToUpperNative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[715])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[728])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[715])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[728])(c);
 			#endif
 		}
 
@@ -4516,9 +2977,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsBlankANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[716])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[729])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[716])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[729])(c);
 			#endif
 		}
 
@@ -4538,9 +2999,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsBlankWNative(uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[717])(c);
+			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[730])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[717])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[730])(c);
 			#endif
 		}
 
@@ -4560,9 +3021,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsXdigitANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[718])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[731])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[718])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[731])(c);
 			#endif
 		}
 
@@ -4582,9 +3043,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFormatStringToTempBufferNative(byte** outBuf, byte** outBufEnd, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)funcTable[719])(outBuf, outBufEnd, fmt);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)funcTable[732])(outBuf, outBufEnd, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[719])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[732])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
 			#endif
 		}
 
@@ -4879,9 +3340,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFormatStringToTempBufferVNative(byte** outBuf, byte** outBufEnd, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[720])(outBuf, outBufEnd, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[733])(outBuf, outBufEnd, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[720])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[733])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
 			#endif
 		}
 
@@ -5038,6 +3499,1537 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBufferV(byte** outBuf, ref byte* outBufEnd, ref byte fmt, nuint args)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					ImFormatStringToTempBufferVNative(outBuf, (byte**)poutBufEnd, (byte*)pfmt, args);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBufferV(byte** outBuf, ref byte* outBufEnd, ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				fixed (byte* pfmt = fmt)
+				{
+					ImFormatStringToTempBufferVNative(outBuf, (byte**)poutBufEnd, (byte*)pfmt, args);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBufferV(byte** outBuf, ref byte* outBufEnd, string fmt, nuint args)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFormatStringToTempBufferVNative(outBuf, (byte**)poutBufEnd, pStr0, args);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBufferV(ref byte* outBuf, ref byte* outBufEnd, ref byte fmt, nuint args)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					fixed (byte* pfmt = &fmt)
+					{
+						ImFormatStringToTempBufferVNative((byte**)poutBuf, (byte**)poutBufEnd, (byte*)pfmt, args);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBufferV(ref byte* outBuf, ref byte* outBufEnd, ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					fixed (byte* pfmt = fmt)
+					{
+						ImFormatStringToTempBufferVNative((byte**)poutBuf, (byte**)poutBufEnd, (byte*)pfmt, args);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBufferV(ref byte* outBuf, ref byte* outBufEnd, string fmt, nuint args)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (fmt != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(fmt);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImFormatStringToTempBufferVNative((byte**)poutBuf, (byte**)poutBufEnd, pStr0, args);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* ImParseFormatFindStartNative(byte* format)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[734])(format);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[734])((nint)format);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindStart(byte* format)
+		{
+			byte* ret = ImParseFormatFindStartNative(format);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindStartS(byte* format)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative(format));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindStart(ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte* ret = ImParseFormatFindStartNative((byte*)pformat);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindStartS(ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative((byte*)pformat));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindStart(ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte* ret = ImParseFormatFindStartNative((byte*)pformat);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindStartS(ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative((byte*)pformat));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindStart(string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImParseFormatFindStartNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindStartS(string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative(pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* ImParseFormatFindEndNative(byte* format)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[735])(format);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[735])((nint)format);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindEnd(byte* format)
+		{
+			byte* ret = ImParseFormatFindEndNative(format);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindEndS(byte* format)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative(format));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindEnd(ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte* ret = ImParseFormatFindEndNative((byte*)pformat);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindEndS(ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative((byte*)pformat));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindEnd(ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte* ret = ImParseFormatFindEndNative((byte*)pformat);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindEndS(ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative((byte*)pformat));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatFindEnd(string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImParseFormatFindEndNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatFindEndS(string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative(pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImParseFormatSanitizeForPrintingNative(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)funcTable[736])(fmtIn, fmtOut, fmtOutSize);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[736])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			ImParseFormatSanitizeForPrintingNative(fmtIn, fmtOut, fmtOutSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(ref byte fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				ImParseFormatSanitizeForPrintingNative((byte*)pfmtIn, fmtOut, fmtOutSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(ReadOnlySpan<byte> fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				ImParseFormatSanitizeForPrintingNative((byte*)pfmtIn, fmtOut, fmtOutSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(string fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImParseFormatSanitizeForPrintingNative(pStr0, fmtOut, fmtOutSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(byte* fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				ImParseFormatSanitizeForPrintingNative(fmtIn, (byte*)pfmtOut, fmtOutSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(byte* fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImParseFormatSanitizeForPrintingNative(fmtIn, pStr0, fmtOutSize);
+			fmtOut = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(ref byte fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					ImParseFormatSanitizeForPrintingNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(ReadOnlySpan<byte> fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					ImParseFormatSanitizeForPrintingNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(string fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmtOut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			ImParseFormatSanitizeForPrintingNative(pStr0, pStr1, fmtOutSize);
+			fmtOut = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(ref byte fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImParseFormatSanitizeForPrintingNative((byte*)pfmtIn, pStr0, fmtOutSize);
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(ReadOnlySpan<byte> fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImParseFormatSanitizeForPrintingNative((byte*)pfmtIn, pStr0, fmtOutSize);
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImParseFormatSanitizeForPrinting(string fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				ImParseFormatSanitizeForPrintingNative(pStr0, (byte*)pfmtOut, fmtOutSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* ImParseFormatSanitizeForScanningNative(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte*>)funcTable[737])(fmtIn, fmtOut, fmtOutSize);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nuint, nint>)funcTable[737])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			byte* ret = ImParseFormatSanitizeForScanningNative(fmtIn, fmtOut, fmtOutSize);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(fmtIn, fmtOut, fmtOutSize));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ref byte fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, fmtOut, fmtOutSize);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ref byte fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, fmtOut, fmtOutSize));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ReadOnlySpan<byte> fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, fmtOut, fmtOutSize);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ReadOnlySpan<byte> fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, fmtOut, fmtOutSize));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(string fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImParseFormatSanitizeForScanningNative(pStr0, fmtOut, fmtOutSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, fmtOut, fmtOutSize));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(byte* fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				byte* ret = ImParseFormatSanitizeForScanningNative(fmtIn, (byte*)pfmtOut, fmtOutSize);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(byte* fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(fmtIn, (byte*)pfmtOut, fmtOutSize));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(byte* fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImParseFormatSanitizeForScanningNative(fmtIn, pStr0, fmtOutSize);
+			fmtOut = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(byte* fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(fmtIn, pStr0, fmtOutSize));
+			fmtOut = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ref byte fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ref byte fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ReadOnlySpan<byte> fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ReadOnlySpan<byte> fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(string fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmtOut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = ImParseFormatSanitizeForScanningNative(pStr0, pStr1, fmtOutSize);
+			fmtOut = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmtOut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, pStr1, fmtOutSize));
+			fmtOut = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ref byte fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize);
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ref byte fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize));
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ReadOnlySpan<byte> fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize);
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ReadOnlySpan<byte> fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize));
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(string fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				byte* ret = ImParseFormatSanitizeForScanningNative(pStr0, (byte*)pfmtOut, fmtOutSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, (byte*)pfmtOut, fmtOutSize));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImParseFormatPrecisionNative(byte* format, int defaultValue)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[738])(format, defaultValue);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[738])((nint)format, defaultValue);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(byte* format, int defaultValue)
+		{
+			int ret = ImParseFormatPrecisionNative(format, defaultValue);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(ref byte format, int defaultValue)
+		{
+			fixed (byte* pformat = &format)
+			{
+				int ret = ImParseFormatPrecisionNative((byte*)pformat, defaultValue);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(ReadOnlySpan<byte> format, int defaultValue)
+		{
+			fixed (byte* pformat = format)
+			{
+				int ret = ImParseFormatPrecisionNative((byte*)pformat, defaultValue);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(string format, int defaultValue)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImParseFormatPrecisionNative(pStr0, defaultValue);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* ImTextCharToUtf8Native(byte* outBuf, uint c)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, byte*>)funcTable[739])(outBuf, c);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[739])((nint)outBuf, c);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImTextCharToUtf8(byte* outBuf, uint c)
+		{
+			byte* ret = ImTextCharToUtf8Native(outBuf, c);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImTextCharToUtf8S(byte* outBuf, uint c)
+		{
+			string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native(outBuf, c));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImTextCharToUtf8(ref byte outBuf, uint c)
+		{
+			fixed (byte* poutBuf = &outBuf)
+			{
+				byte* ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImTextCharToUtf8S(ref byte outBuf, uint c)
+		{
+			fixed (byte* poutBuf = &outBuf)
+			{
+				string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native((byte*)poutBuf, c));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImTextCharToUtf8(ReadOnlySpan<byte> outBuf, uint c)
+		{
+			fixed (byte* poutBuf = outBuf)
+			{
+				byte* ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImTextCharToUtf8S(ReadOnlySpan<byte> outBuf, uint c)
+		{
+			fixed (byte* poutBuf = outBuf)
+			{
+				string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native((byte*)poutBuf, c));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImTextCharFromUtf8Native(uint* outChar, byte* inText, byte* inTextEnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[740])(outChar, inText, inTextEnd);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[740])((nint)outChar, (nint)inText, (nint)inTextEnd);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, byte* inTextEnd)
+		{
+			int ret = ImTextCharFromUtf8Native(outChar, inText, inTextEnd);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, byte* inTextEnd)
+		{
+			fixed (uint* poutChar = &outChar)
+			{
+				int ret = ImTextCharFromUtf8Native((uint*)poutChar, inText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, byte* inTextEnd)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				int ret = ImTextCharFromUtf8Native(outChar, (byte*)pinText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, byte* inTextEnd)
+		{
+			fixed (byte* pinText = inText)
+			{
+				int ret = ImTextCharFromUtf8Native(outChar, (byte*)pinText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, string inText, byte* inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImTextCharFromUtf8Native(outChar, pStr0, inTextEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
 		}
 	}
 }

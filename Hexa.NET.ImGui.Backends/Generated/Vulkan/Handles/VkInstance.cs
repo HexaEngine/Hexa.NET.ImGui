@@ -17,7 +17,7 @@ using Hexa.NET.ImGui;
 namespace Hexa.NET.ImGui.Backends.Vulkan
 {
 	/// <summary>
-	/// Forward declarations for Vulkan types<br/>
+	/// To be documented.
 	/// </summary>
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]

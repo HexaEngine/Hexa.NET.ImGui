@@ -19,7 +19,233 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndPopupNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[267])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[267])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void EndPopup()
+		{
+			EndPopupNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void OpenPopupNative(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, void>)funcTable[268])(strId, popupFlags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, void>)funcTable[268])((nint)strId, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			OpenPopupNative(strId, popupFlags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(byte* strId)
+		{
+			OpenPopupNative(strId, (ImGuiPopupFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(ref byte strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				OpenPopupNative((byte*)pstrId, popupFlags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(ref byte strId)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				OpenPopupNative((byte*)pstrId, popupFlags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(string strId, ImGuiPopupFlags popupFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			OpenPopupNative(pStr0, popupFlags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(string strId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			OpenPopupNative(pStr0, (ImGuiPopupFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void OpenPopupNative(uint id, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint, ImGuiPopupFlags, void>)funcTable[269])(id, popupFlags);
+			#else
+			((delegate* unmanaged[Cdecl]<uint, ImGuiPopupFlags, void>)funcTable[269])(id, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(uint id, ImGuiPopupFlags popupFlags)
+		{
+			OpenPopupNative(id, popupFlags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopup(uint id)
+		{
+			OpenPopupNative(id, (ImGuiPopupFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void OpenPopupOnItemClickNative(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, void>)funcTable[270])(strId, popupFlags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, void>)funcTable[270])((nint)strId, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopupOnItemClick(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			OpenPopupOnItemClickNative(strId, popupFlags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopupOnItemClick(byte* strId)
+		{
+			OpenPopupOnItemClickNative(strId, (ImGuiPopupFlags)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopupOnItemClick()
+		{
+			OpenPopupOnItemClickNative((byte*)(default), (ImGuiPopupFlags)(1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void OpenPopupOnItemClick(ImGuiPopupFlags popupFlags)
+		{
+			OpenPopupOnItemClickNative((byte*)(default), popupFlags);
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		public static void OpenPopupOnItemClick(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -30,7 +256,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void OpenPopupOnItemClick(ref byte strId)
 		{
@@ -41,7 +267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void OpenPopupOnItemClick(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -52,7 +278,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void OpenPopupOnItemClick(ReadOnlySpan<byte> strId)
 		{
@@ -63,7 +289,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void OpenPopupOnItemClick(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -92,7 +318,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void OpenPopupOnItemClick(string strId)
 		{
@@ -121,20 +347,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// manually close the popup we have begin-ed into.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CloseCurrentPopupNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[267])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[271])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[267])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[271])();
 			#endif
 		}
 
 		/// <summary>
-		/// manually close the popup we have begin-ed into.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void CloseCurrentPopup()
 		{
@@ -142,20 +368,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupContextItemNative(byte* strId, ImGuiPopupFlags popupFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[268])(strId, popupFlags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[272])(strId, popupFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[268])((nint)strId, popupFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[272])((nint)strId, popupFlags);
 			#endif
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -164,7 +390,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(byte* strId)
 		{
@@ -173,7 +399,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem()
 		{
@@ -182,7 +408,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(ImGuiPopupFlags popupFlags)
 		{
@@ -191,7 +417,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -203,7 +429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(ref byte strId)
 		{
@@ -215,7 +441,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -227,7 +453,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(ReadOnlySpan<byte> strId)
 		{
@@ -239,7 +465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -269,7 +495,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextItem(string strId)
 		{
@@ -299,20 +525,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupContextWindowNative(byte* strId, ImGuiPopupFlags popupFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[269])(strId, popupFlags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[273])(strId, popupFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[269])((nint)strId, popupFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[273])((nint)strId, popupFlags);
 			#endif
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -321,7 +547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(byte* strId)
 		{
@@ -330,7 +556,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow()
 		{
@@ -339,7 +565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(ImGuiPopupFlags popupFlags)
 		{
@@ -348,7 +574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -360,7 +586,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(ref byte strId)
 		{
@@ -372,7 +598,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -384,7 +610,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(ReadOnlySpan<byte> strId)
 		{
@@ -396,7 +622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -426,7 +652,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked on current window.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextWindow(string strId)
 		{
@@ -456,20 +682,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupContextVoidNative(byte* strId, ImGuiPopupFlags popupFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[270])(strId, popupFlags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[274])(strId, popupFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[270])((nint)strId, popupFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[274])((nint)strId, popupFlags);
 			#endif
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -478,7 +704,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(byte* strId)
 		{
@@ -487,7 +713,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid()
 		{
@@ -496,7 +722,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(ImGuiPopupFlags popupFlags)
 		{
@@ -505,7 +731,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -517,7 +743,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(ref byte strId)
 		{
@@ -529,7 +755,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -541,7 +767,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(ReadOnlySpan<byte> strId)
 		{
@@ -553,7 +779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -583,7 +809,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginPopupContextVoid(string strId)
 		{
@@ -613,20 +839,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsPopupOpenNative(byte* strId, ImGuiPopupFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[271])(strId, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[275])(strId, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[271])((nint)strId, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[275])((nint)strId, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(byte* strId, ImGuiPopupFlags flags)
 		{
@@ -635,7 +861,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(byte* strId)
 		{
@@ -644,7 +870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(ref byte strId, ImGuiPopupFlags flags)
 		{
@@ -656,7 +882,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(ref byte strId)
 		{
@@ -668,7 +894,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(ReadOnlySpan<byte> strId, ImGuiPopupFlags flags)
 		{
@@ -680,7 +906,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(ReadOnlySpan<byte> strId)
 		{
@@ -692,7 +918,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(string strId, ImGuiPopupFlags flags)
 		{
@@ -722,7 +948,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return true if the popup is open.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsPopupOpen(string strId)
 		{
@@ -758,9 +984,9 @@ namespace Hexa.NET.ImGui
 		internal static byte BeginTableNative(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[272])(strId, columns, flags, outerSize, innerWidth);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[276])(strId, columns, flags, outerSize, innerWidth);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[272])((nint)strId, columns, flags, outerSize, innerWidth);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[276])((nint)strId, columns, flags, outerSize, innerWidth);
 			#endif
 		}
 
@@ -1269,20 +1495,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndTable() if BeginTable() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTableNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[273])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[277])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[273])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[277])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndTable() if BeginTable() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndTable()
 		{
@@ -1290,20 +1516,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append into the first cell of a new row.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableNextRowNative(ImGuiTableRowFlags rowFlags, float minRowHeight)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableRowFlags, float, void>)funcTable[274])(rowFlags, minRowHeight);
+			((delegate* unmanaged[Cdecl]<ImGuiTableRowFlags, float, void>)funcTable[278])(rowFlags, minRowHeight);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiTableRowFlags, float, void>)funcTable[274])(rowFlags, minRowHeight);
+			((delegate* unmanaged[Cdecl]<ImGuiTableRowFlags, float, void>)funcTable[278])(rowFlags, minRowHeight);
 			#endif
 		}
 
 		/// <summary>
-		/// append into the first cell of a new row.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableNextRow(ImGuiTableRowFlags rowFlags, float minRowHeight)
 		{
@@ -1311,7 +1537,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append into the first cell of a new row.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableNextRow(ImGuiTableRowFlags rowFlags)
 		{
@@ -1319,7 +1545,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append into the first cell of a new row.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableNextRow()
 		{
@@ -1327,7 +1553,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append into the first cell of a new row.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableNextRow(float minRowHeight)
 		{
@@ -1335,20 +1561,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append into the next column (or first column of next row if currently in last column). Return true when column is visible.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TableNextColumnNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[275])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[279])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[275])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[279])();
 			#endif
 		}
 
 		/// <summary>
-		/// append into the next column (or first column of next row if currently in last column). Return true when column is visible.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TableNextColumn()
 		{
@@ -1357,20 +1583,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// append into the specified column. Return true when column is visible.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TableSetColumnIndexNative(int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[276])(columnN);
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[280])(columnN);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[276])(columnN);
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[280])(columnN);
 			#endif
 		}
 
 		/// <summary>
-		/// append into the specified column. Return true when column is visible.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TableSetColumnIndex(int columnN)
 		{
@@ -1385,9 +1611,9 @@ namespace Hexa.NET.ImGui
 		internal static void TableSetupColumnNative(byte* label, ImGuiTableColumnFlags flags, float initWidthOrWeight, uint userId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImGuiTableColumnFlags, float, uint, void>)funcTable[277])(label, flags, initWidthOrWeight, userId);
+			((delegate* unmanaged[Cdecl]<byte*, ImGuiTableColumnFlags, float, uint, void>)funcTable[281])(label, flags, initWidthOrWeight, userId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiTableColumnFlags, float, uint, void>)funcTable[277])((nint)label, flags, initWidthOrWeight, userId);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiTableColumnFlags, float, uint, void>)funcTable[281])((nint)label, flags, initWidthOrWeight, userId);
 			#endif
 		}
 
@@ -1864,20 +2090,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// lock columnsrows so they stay visible when scrolled.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableSetupScrollFreezeNative(int cols, int rows)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, int, void>)funcTable[278])(cols, rows);
+			((delegate* unmanaged[Cdecl]<int, int, void>)funcTable[282])(cols, rows);
 			#else
-			((delegate* unmanaged[Cdecl]<int, int, void>)funcTable[278])(cols, rows);
+			((delegate* unmanaged[Cdecl]<int, int, void>)funcTable[282])(cols, rows);
 			#endif
 		}
 
 		/// <summary>
-		/// lock columnsrows so they stay visible when scrolled.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableSetupScrollFreeze(int cols, int rows)
 		{
@@ -1885,20 +2111,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// submit one header cell manually (rarely used)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableHeaderNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[279])(label);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[283])(label);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[279])((nint)label);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[283])((nint)label);
 			#endif
 		}
 
 		/// <summary>
-		/// submit one header cell manually (rarely used)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableHeader(byte* label)
 		{
@@ -1906,7 +2132,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// submit one header cell manually (rarely used)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableHeader(ref byte label)
 		{
@@ -1917,7 +2143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// submit one header cell manually (rarely used)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableHeader(ReadOnlySpan<byte> label)
 		{
@@ -1928,7 +2154,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// submit one header cell manually (rarely used)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableHeader(string label)
 		{
@@ -1957,20 +2183,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// submit a row with headers cells based on data provided to TableSetupColumn() + submit context menu<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableHeadersRowNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[280])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[284])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[280])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[284])();
 			#endif
 		}
 
 		/// <summary>
-		/// submit a row with headers cells based on data provided to TableSetupColumn() + submit context menu<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableHeadersRow()
 		{
@@ -1978,20 +2204,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// submit a row with angled headers for every column with the ImGuiTableColumnFlags_AngledHeader flag. MUST BE FIRST ROW.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableAngledHeadersRowNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[281])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[285])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[281])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[285])();
 			#endif
 		}
 
 		/// <summary>
-		/// submit a row with angled headers for every column with the ImGuiTableColumnFlags_AngledHeader flag. MUST BE FIRST ROW.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableAngledHeadersRow()
 		{
@@ -1999,20 +2225,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get latest sort specs for the table (NULL if not sorting).  Lifetime: don't hold on this pointer over multiple frames or past any subsequent call to BeginTable().<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiTableSortSpecs* TableGetSortSpecsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)funcTable[282])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)funcTable[286])();
 			#else
-			return (ImGuiTableSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[282])();
+			return (ImGuiTableSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[286])();
 			#endif
 		}
 
 		/// <summary>
-		/// get latest sort specs for the table (NULL if not sorting).  Lifetime: don't hold on this pointer over multiple frames or past any subsequent call to BeginTable().<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImGuiTableSortSpecsPtr TableGetSortSpecs()
 		{
@@ -2021,20 +2247,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return number of columns (value passed to BeginTable)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetColumnCountNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[283])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[287])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[283])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[287])();
 			#endif
 		}
 
 		/// <summary>
-		/// return number of columns (value passed to BeginTable)<br/>
+		/// To be documented.
 		/// </summary>
 		public static int TableGetColumnCount()
 		{
@@ -2043,20 +2269,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return current column index.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetColumnIndexNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[284])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[288])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[284])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[288])();
 			#endif
 		}
 
 		/// <summary>
-		/// return current column index.<br/>
+		/// To be documented.
 		/// </summary>
 		public static int TableGetColumnIndex()
 		{
@@ -2065,133 +2291,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return current row index.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetRowIndexNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[285])();
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[285])();
-			#endif
-		}
-
-		/// <summary>
-		/// return current row index.<br/>
-		/// </summary>
-		public static int TableGetRowIndex()
-		{
-			int ret = TableGetRowIndexNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* TableGetColumnNameNative(int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte*>)funcTable[286])(columnN);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[286])(columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static byte* TableGetColumnName(int columnN)
-		{
-			byte* ret = TableGetColumnNameNative(columnN);
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static byte* TableGetColumnName()
-		{
-			byte* ret = TableGetColumnNameNative((int)(-1));
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static string TableGetColumnNameS()
-		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((int)(-1)));
-			return ret;
-		}
-
-		/// <summary>
-		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
-		/// </summary>
-		public static string TableGetColumnNameS(int columnN)
-		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative(columnN));
-			return ret;
-		}
-
-		/// <summary>
-		/// return column flags so you can query their EnabledVisibleSortedHovered status flags. Pass -1 to use current column.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableColumnFlags TableGetColumnFlagsNative(int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiTableColumnFlags>)funcTable[287])(columnN);
-			#else
-			return (ImGuiTableColumnFlags)((delegate* unmanaged[Cdecl]<int, ImGuiTableColumnFlags>)funcTable[287])(columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// return column flags so you can query their EnabledVisibleSortedHovered status flags. Pass -1 to use current column.<br/>
-		/// </summary>
-		public static ImGuiTableColumnFlags TableGetColumnFlags(int columnN)
-		{
-			ImGuiTableColumnFlags ret = TableGetColumnFlagsNative(columnN);
-			return ret;
-		}
-
-		/// <summary>
-		/// return column flags so you can query their EnabledVisibleSortedHovered status flags. Pass -1 to use current column.<br/>
-		/// </summary>
-		public static ImGuiTableColumnFlags TableGetColumnFlags()
-		{
-			ImGuiTableColumnFlags ret = TableGetColumnFlagsNative((int)(-1));
-			return ret;
-		}
-
-		/// <summary>
-		/// change user accessible enableddisabled state of a column. Set to false to hide the column. User can use the context menu to change this themselves (right-click in headers, or right-click in columns body with ImGuiTableFlags_ContextMenuInBody)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSetColumnEnabledNative(int columnN, byte v)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, byte, void>)funcTable[288])(columnN, v);
-			#else
-			((delegate* unmanaged[Cdecl]<int, byte, void>)funcTable[288])(columnN, v);
-			#endif
-		}
-
-		/// <summary>
-		/// change user accessible enableddisabled state of a column. Set to false to hide the column. User can use the context menu to change this themselves (right-click in headers, or right-click in columns body with ImGuiTableFlags_ContextMenuInBody)<br/>
-		/// </summary>
-		public static void TableSetColumnEnabled(int columnN, bool v)
-		{
-			TableSetColumnEnabledNative(columnN, v ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered. Can also use (TableGetColumnFlags() &amp; ImGuiTableColumnFlags_IsHovered) instead.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int TableGetHoveredColumnNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<int>)funcTable[289])();
@@ -2201,7 +2304,130 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered. Can also use (TableGetColumnFlags() &amp; ImGuiTableColumnFlags_IsHovered) instead.<br/>
+		/// To be documented.
+		/// </summary>
+		public static int TableGetRowIndex()
+		{
+			int ret = TableGetRowIndexNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* TableGetColumnNameNative(int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, byte*>)funcTable[290])(columnN);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[290])(columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* TableGetColumnName(int columnN)
+		{
+			byte* ret = TableGetColumnNameNative(columnN);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* TableGetColumnName()
+		{
+			byte* ret = TableGetColumnNameNative((int)(-1));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string TableGetColumnNameS()
+		{
+			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((int)(-1)));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string TableGetColumnNameS(int columnN)
+		{
+			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative(columnN));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableColumnFlags TableGetColumnFlagsNative(int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiTableColumnFlags>)funcTable[291])(columnN);
+			#else
+			return (ImGuiTableColumnFlags)((delegate* unmanaged[Cdecl]<int, ImGuiTableColumnFlags>)funcTable[291])(columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnFlags TableGetColumnFlags(int columnN)
+		{
+			ImGuiTableColumnFlags ret = TableGetColumnFlagsNative(columnN);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnFlags TableGetColumnFlags()
+		{
+			ImGuiTableColumnFlags ret = TableGetColumnFlagsNative((int)(-1));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetColumnEnabledNative(int columnN, byte v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, byte, void>)funcTable[292])(columnN, v);
+			#else
+			((delegate* unmanaged[Cdecl]<int, byte, void>)funcTable[292])(columnN, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnEnabled(int columnN, bool v)
+		{
+			TableSetColumnEnabledNative(columnN, v ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int TableGetHoveredColumnNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[293])();
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[293])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		public static int TableGetHoveredColumn()
 		{
@@ -2210,20 +2436,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// change the color of a cell, row, or column. See ImGuiTableBgTarget_ flags for details.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableSetBgColorNative(ImGuiTableBgTarget target, uint color, int columnN)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableBgTarget, uint, int, void>)funcTable[290])(target, color, columnN);
+			((delegate* unmanaged[Cdecl]<ImGuiTableBgTarget, uint, int, void>)funcTable[294])(target, color, columnN);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiTableBgTarget, uint, int, void>)funcTable[290])(target, color, columnN);
+			((delegate* unmanaged[Cdecl]<ImGuiTableBgTarget, uint, int, void>)funcTable[294])(target, color, columnN);
 			#endif
 		}
 
 		/// <summary>
-		/// change the color of a cell, row, or column. See ImGuiTableBgTarget_ flags for details.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableSetBgColor(ImGuiTableBgTarget target, uint color, int columnN)
 		{
@@ -2231,7 +2457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// change the color of a cell, row, or column. See ImGuiTableBgTarget_ flags for details.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void TableSetBgColor(ImGuiTableBgTarget target, uint color)
 		{
@@ -2245,9 +2471,9 @@ namespace Hexa.NET.ImGui
 		internal static void ColumnsNative(int count, byte* id, byte borders)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, byte*, byte, void>)funcTable[291])(count, id, borders);
+			((delegate* unmanaged[Cdecl]<int, byte*, byte, void>)funcTable[295])(count, id, borders);
 			#else
-			((delegate* unmanaged[Cdecl]<int, nint, byte, void>)funcTable[291])(count, (nint)id, borders);
+			((delegate* unmanaged[Cdecl]<int, nint, byte, void>)funcTable[295])(count, (nint)id, borders);
 			#endif
 		}
 
@@ -2520,20 +2746,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// next column, defaults to current row or next row if the current row is finished<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void NextColumnNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[292])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[296])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[292])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[296])();
 			#endif
 		}
 
 		/// <summary>
-		/// next column, defaults to current row or next row if the current row is finished<br/>
+		/// To be documented.
 		/// </summary>
 		public static void NextColumn()
 		{
@@ -2541,20 +2767,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get current column index<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetColumnIndexNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[293])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[297])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[293])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[297])();
 			#endif
 		}
 
 		/// <summary>
-		/// get current column index<br/>
+		/// To be documented.
 		/// </summary>
 		public static int GetColumnIndex()
 		{
@@ -2563,20 +2789,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get column width (in pixels). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetColumnWidthNative(int columnIndex)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, float>)funcTable[294])(columnIndex);
+			return ((delegate* unmanaged[Cdecl]<int, float>)funcTable[298])(columnIndex);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<int, float>)funcTable[294])(columnIndex);
+			return (float)((delegate* unmanaged[Cdecl]<int, float>)funcTable[298])(columnIndex);
 			#endif
 		}
 
 		/// <summary>
-		/// get column width (in pixels). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		public static float GetColumnWidth(int columnIndex)
 		{
@@ -2585,7 +2811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get column width (in pixels). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		public static float GetColumnWidth()
 		{
@@ -2594,20 +2820,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set column width (in pixels). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColumnWidthNative(int columnIndex, float width)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[295])(columnIndex, width);
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[299])(columnIndex, width);
 			#else
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[295])(columnIndex, width);
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[299])(columnIndex, width);
 			#endif
 		}
 
 		/// <summary>
-		/// set column width (in pixels). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetColumnWidth(int columnIndex, float width)
 		{
@@ -2615,20 +2841,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetColumnsCount() inclusive. column 0 is typically 0.0f<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetColumnOffsetNative(int columnIndex)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, float>)funcTable[296])(columnIndex);
+			return ((delegate* unmanaged[Cdecl]<int, float>)funcTable[300])(columnIndex);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<int, float>)funcTable[296])(columnIndex);
+			return (float)((delegate* unmanaged[Cdecl]<int, float>)funcTable[300])(columnIndex);
 			#endif
 		}
 
 		/// <summary>
-		/// get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetColumnsCount() inclusive. column 0 is typically 0.0f<br/>
+		/// To be documented.
 		/// </summary>
 		public static float GetColumnOffset(int columnIndex)
 		{
@@ -2637,7 +2863,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetColumnsCount() inclusive. column 0 is typically 0.0f<br/>
+		/// To be documented.
 		/// </summary>
 		public static float GetColumnOffset()
 		{
@@ -2646,20 +2872,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set position of column line (in pixels, from the left side of the contents region). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColumnOffsetNative(int columnIndex, float offsetX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[297])(columnIndex, offsetX);
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[301])(columnIndex, offsetX);
 			#else
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[297])(columnIndex, offsetX);
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[301])(columnIndex, offsetX);
 			#endif
 		}
 
 		/// <summary>
-		/// set position of column line (in pixels, from the left side of the contents region). pass -1 to use current column<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetColumnOffset(int columnIndex, float offsetX)
 		{
@@ -2673,9 +2899,9 @@ namespace Hexa.NET.ImGui
 		internal static int GetColumnsCountNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[298])();
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[302])();
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[298])();
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[302])();
 			#endif
 		}
 
@@ -2689,20 +2915,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginTabBarNative(byte* strId, ImGuiTabBarFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTabBarFlags, byte>)funcTable[299])(strId, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTabBarFlags, byte>)funcTable[303])(strId, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTabBarFlags, byte>)funcTable[299])((nint)strId, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTabBarFlags, byte>)funcTable[303])((nint)strId, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(byte* strId, ImGuiTabBarFlags flags)
 		{
@@ -2711,7 +2937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(byte* strId)
 		{
@@ -2720,7 +2946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(ref byte strId, ImGuiTabBarFlags flags)
 		{
@@ -2732,7 +2958,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(ref byte strId)
 		{
@@ -2744,7 +2970,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(ReadOnlySpan<byte> strId, ImGuiTabBarFlags flags)
 		{
@@ -2756,7 +2982,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(ReadOnlySpan<byte> strId)
 		{
@@ -2768,7 +2994,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(string strId, ImGuiTabBarFlags flags)
 		{
@@ -2798,7 +3024,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create and append into a TabBar<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabBar(string strId)
 		{
@@ -2828,20 +3054,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndTabBar() if BeginTabBar() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTabBarNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[300])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[304])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[300])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[304])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndTabBar() if BeginTabBar() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndTabBar()
 		{
@@ -2849,20 +3075,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginTabItemNative(byte* label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiTabItemFlags, byte>)funcTable[301])(label, pOpen, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiTabItemFlags, byte>)funcTable[305])(label, pOpen, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTabItemFlags, byte>)funcTable[301])((nint)label, (nint)pOpen, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTabItemFlags, byte>)funcTable[305])((nint)label, (nint)pOpen, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(byte* label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -2871,7 +3097,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(byte* label, bool* pOpen)
 		{
@@ -2880,7 +3106,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(byte* label)
 		{
@@ -2889,7 +3115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(byte* label, ImGuiTabItemFlags flags)
 		{
@@ -2898,7 +3124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -2910,7 +3136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, bool* pOpen)
 		{
@@ -2922,7 +3148,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ref byte label)
 		{
@@ -2934,7 +3160,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, ImGuiTabItemFlags flags)
 		{
@@ -2946,7 +3172,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -2958,7 +3184,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, bool* pOpen)
 		{
@@ -2970,7 +3196,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label)
 		{
@@ -2982,7 +3208,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, ImGuiTabItemFlags flags)
 		{
@@ -2994,7 +3220,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(string label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3024,7 +3250,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(string label, bool* pOpen)
 		{
@@ -3054,7 +3280,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(string label)
 		{
@@ -3084,7 +3310,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(string label, ImGuiTabItemFlags flags)
 		{
@@ -3114,7 +3340,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(byte* label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3126,7 +3352,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(byte* label, ref bool pOpen)
 		{
@@ -3138,7 +3364,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3153,7 +3379,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, ref bool pOpen)
 		{
@@ -3168,7 +3394,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3183,7 +3409,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, ref bool pOpen)
 		{
@@ -3198,7 +3424,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(string label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3231,7 +3457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab. Returns true if the Tab is selected.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginTabItem(string label, ref bool pOpen)
 		{
@@ -3264,20 +3490,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndTabItem() if BeginTabItem() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTabItemNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[302])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[306])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[302])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[306])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndTabItem() if BeginTabItem() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndTabItem()
 		{
@@ -3285,20 +3511,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TabItemButtonNative(byte* label, ImGuiTabItemFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTabItemFlags, byte>)funcTable[303])(label, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTabItemFlags, byte>)funcTable[307])(label, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTabItemFlags, byte>)funcTable[303])((nint)label, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiTabItemFlags, byte>)funcTable[307])((nint)label, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(byte* label, ImGuiTabItemFlags flags)
 		{
@@ -3307,7 +3533,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(byte* label)
 		{
@@ -3316,7 +3542,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(ref byte label, ImGuiTabItemFlags flags)
 		{
@@ -3328,7 +3554,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(ref byte label)
 		{
@@ -3340,7 +3566,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(ReadOnlySpan<byte> label, ImGuiTabItemFlags flags)
 		{
@@ -3352,7 +3578,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(ReadOnlySpan<byte> label)
 		{
@@ -3364,7 +3590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(string label, ImGuiTabItemFlags flags)
 		{
@@ -3394,7 +3620,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool TabItemButton(string label)
 		{
@@ -3424,20 +3650,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetTabItemClosedNative(byte* tabOrDockedWindowLabel)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[304])(tabOrDockedWindowLabel);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[308])(tabOrDockedWindowLabel);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[304])((nint)tabOrDockedWindowLabel);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[308])((nint)tabOrDockedWindowLabel);
 			#endif
 		}
 
 		/// <summary>
-		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTabItemClosed(byte* tabOrDockedWindowLabel)
 		{
@@ -3445,7 +3671,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTabItemClosed(ref byte tabOrDockedWindowLabel)
 		{
@@ -3456,7 +3682,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTabItemClosed(ReadOnlySpan<byte> tabOrDockedWindowLabel)
 		{
@@ -3467,7 +3693,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTabItemClosed(string tabOrDockedWindowLabel)
 		{
@@ -3502,9 +3728,9 @@ namespace Hexa.NET.ImGui
 		internal static uint DockSpaceNative(uint dockspaceId, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClass* windowClass)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNodeFlags, ImGuiWindowClass*, uint>)funcTable[305])(dockspaceId, size, flags, windowClass);
+			return ((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNodeFlags, ImGuiWindowClass*, uint>)funcTable[309])(dockspaceId, size, flags, windowClass);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNodeFlags, nint, uint>)funcTable[305])(dockspaceId, size, flags, (nint)windowClass);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNodeFlags, nint, uint>)funcTable[309])(dockspaceId, size, flags, (nint)windowClass);
 			#endif
 		}
 
@@ -3635,9 +3861,9 @@ namespace Hexa.NET.ImGui
 		internal static uint DockSpaceOverViewportNative(uint dockspaceId, ImGuiViewport* viewport, ImGuiDockNodeFlags flags, ImGuiWindowClass* windowClass)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiViewport*, ImGuiDockNodeFlags, ImGuiWindowClass*, uint>)funcTable[306])(dockspaceId, viewport, flags, windowClass);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiViewport*, ImGuiDockNodeFlags, ImGuiWindowClass*, uint>)funcTable[310])(dockspaceId, viewport, flags, windowClass);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, nint, ImGuiDockNodeFlags, nint, uint>)funcTable[306])(dockspaceId, (nint)viewport, flags, (nint)windowClass);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, nint, ImGuiDockNodeFlags, nint, uint>)funcTable[310])(dockspaceId, (nint)viewport, flags, (nint)windowClass);
 			#endif
 		}
 
@@ -4038,20 +4264,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window dock id<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowDockIDNative(uint dockId, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, ImGuiCond, void>)funcTable[307])(dockId, cond);
+			((delegate* unmanaged[Cdecl]<uint, ImGuiCond, void>)funcTable[311])(dockId, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, ImGuiCond, void>)funcTable[307])(dockId, cond);
+			((delegate* unmanaged[Cdecl]<uint, ImGuiCond, void>)funcTable[311])(dockId, cond);
 			#endif
 		}
 
 		/// <summary>
-		/// set next window dock id<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetNextWindowDockID(uint dockId, ImGuiCond cond)
 		{
@@ -4059,7 +4285,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window dock id<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetNextWindowDockID(uint dockId)
 		{
@@ -4067,20 +4293,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowClassNative(ImGuiWindowClass* windowClass)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindowClass*, void>)funcTable[308])(windowClass);
+			((delegate* unmanaged[Cdecl]<ImGuiWindowClass*, void>)funcTable[312])(windowClass);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[308])((nint)windowClass);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[312])((nint)windowClass);
 			#endif
 		}
 
 		/// <summary>
-		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetNextWindowClass(ImGuiWindowClassPtr windowClass)
 		{
@@ -4088,7 +4314,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetNextWindowClass(ref ImGuiWindowClass windowClass)
 		{
@@ -4105,9 +4331,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetWindowDockIDNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[309])();
+			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[313])();
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[309])();
+			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[313])();
 			#endif
 		}
 
@@ -4121,20 +4347,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// is current window docked into another window?<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsWindowDockedNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[310])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[314])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[310])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[314])();
 			#endif
 		}
 
 		/// <summary>
-		/// is current window docked into another window?<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool IsWindowDocked()
 		{
@@ -4143,20 +4369,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to tty (stdout)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogToTTYNative(int autoOpenDepth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[311])(autoOpenDepth);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[315])(autoOpenDepth);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[311])(autoOpenDepth);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[315])(autoOpenDepth);
 			#endif
 		}
 
 		/// <summary>
-		/// start logging to tty (stdout)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToTTY(int autoOpenDepth)
 		{
@@ -4164,7 +4390,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to tty (stdout)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToTTY()
 		{
@@ -4172,20 +4398,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogToFileNative(int autoOpenDepth, byte* filename)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, byte*, void>)funcTable[312])(autoOpenDepth, filename);
+			((delegate* unmanaged[Cdecl]<int, byte*, void>)funcTable[316])(autoOpenDepth, filename);
 			#else
-			((delegate* unmanaged[Cdecl]<int, nint, void>)funcTable[312])(autoOpenDepth, (nint)filename);
+			((delegate* unmanaged[Cdecl]<int, nint, void>)funcTable[316])(autoOpenDepth, (nint)filename);
 			#endif
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, byte* filename)
 		{
@@ -4193,7 +4419,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth)
 		{
@@ -4201,7 +4427,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile()
 		{
@@ -4209,7 +4435,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(byte* filename)
 		{
@@ -4217,7 +4443,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, ref byte filename)
 		{
@@ -4228,7 +4454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(ref byte filename)
 		{
@@ -4239,7 +4465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, ReadOnlySpan<byte> filename)
 		{
@@ -4250,7 +4476,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(ReadOnlySpan<byte> filename)
 		{
@@ -4261,7 +4487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, string filename)
 		{
@@ -4290,7 +4516,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToFile(string filename)
 		{
@@ -4319,20 +4545,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to OS clipboard<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogToClipboardNative(int autoOpenDepth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[313])(autoOpenDepth);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[317])(autoOpenDepth);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[313])(autoOpenDepth);
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[317])(autoOpenDepth);
 			#endif
 		}
 
 		/// <summary>
-		/// start logging to OS clipboard<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToClipboard(int autoOpenDepth)
 		{
@@ -4340,7 +4566,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// start logging to OS clipboard<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogToClipboard()
 		{
@@ -4348,20 +4574,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// stop logging (close file, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogFinishNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[314])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[318])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[314])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[318])();
 			#endif
 		}
 
 		/// <summary>
-		/// stop logging (close file, etc.)<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogFinish()
 		{
@@ -4369,20 +4595,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// helper to display buttons for logging to ttyfileclipboard<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogButtonsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[315])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[319])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[315])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[319])();
 			#endif
 		}
 
 		/// <summary>
-		/// helper to display buttons for logging to ttyfileclipboard<br/>
+		/// To be documented.
 		/// </summary>
 		public static void LogButtons()
 		{
@@ -4393,12 +4619,84 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogTextNative(byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[320])(fmt);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[320])((nint)fmt);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LogText(byte* fmt)
+		{
+			LogTextNative(fmt);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LogText(ref byte fmt)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				LogTextNative((byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LogText(ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				LogTextNative((byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LogText(string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LogTextNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogTextVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[316])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[321])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[316])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[321])((nint)fmt, args);
 			#endif
 		}
 
@@ -4462,20 +4760,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginDragDropSourceNative(ImGuiDragDropFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)funcTable[317])(flags);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)funcTable[322])(flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)funcTable[317])(flags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)funcTable[322])(flags);
 			#endif
 		}
 
 		/// <summary>
-		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginDragDropSource(ImGuiDragDropFlags flags)
 		{
@@ -4484,7 +4782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginDragDropSource()
 		{
@@ -4493,146 +4791,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SetDragDropPayloadNative(byte* type, void* data, ulong sz, ImGuiCond cond)
+		internal static byte SetDragDropPayloadNative(byte* type, void* data, nuint sz, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, void*, ulong, ImGuiCond, byte>)funcTable[318])(type, data, sz, cond);
+			return ((delegate* unmanaged[Cdecl]<byte*, void*, nuint, ImGuiCond, byte>)funcTable[323])(type, data, sz, cond);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ulong, ImGuiCond, byte>)funcTable[318])((nint)type, (nint)data, sz, cond);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, ImGuiCond, byte>)funcTable[323])((nint)type, (nint)data, sz, cond);
 			#endif
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(byte* type, void* data, ulong sz, ImGuiCond cond)
-		{
-			byte ret = SetDragDropPayloadNative(type, data, sz, cond);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(byte* type, void* data, ulong sz)
-		{
-			byte ret = SetDragDropPayloadNative(type, data, sz, (ImGuiCond)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(ref byte type, void* data, ulong sz, ImGuiCond cond)
-		{
-			fixed (byte* ptype = &type)
-			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, cond);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(ref byte type, void* data, ulong sz)
-		{
-			fixed (byte* ptype = &type)
-			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, (ImGuiCond)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, ulong sz, ImGuiCond cond)
-		{
-			fixed (byte* ptype = type)
-			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, cond);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, ulong sz)
-		{
-			fixed (byte* ptype = type)
-			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, (ImGuiCond)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(string type, void* data, ulong sz, ImGuiCond cond)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SetDragDropPayloadNative(pStr0, data, sz, cond);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(string type, void* data, ulong sz)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SetDragDropPayloadNative(pStr0, data, sz, (ImGuiCond)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(byte* type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4641,7 +4813,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(byte* type, void* data, nuint sz)
 		{
@@ -4650,7 +4822,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(ref byte type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4662,7 +4834,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(ref byte type, void* data, nuint sz)
 		{
@@ -4674,7 +4846,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4686,7 +4858,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, nuint sz)
 		{
@@ -4698,7 +4870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(string type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4728,7 +4900,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool SetDragDropPayload(string type, void* data, nuint sz)
 		{
@@ -4758,20 +4930,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// only call EndDragDropSource() if BeginDragDropSource() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndDragDropSourceNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[319])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[324])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[319])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[324])();
 			#endif
 		}
 
 		/// <summary>
-		/// only call EndDragDropSource() if BeginDragDropSource() returns true!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void EndDragDropSource()
 		{
@@ -4779,20 +4951,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// call after submitting an item that may receive a payload. If this returns true, you can call AcceptDragDropPayload() + EndDragDropTarget()<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginDragDropTargetNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[320])();
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[325])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[320])();
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[325])();
 			#endif
 		}
 
 		/// <summary>
-		/// call after submitting an item that may receive a payload. If this returns true, you can call AcceptDragDropPayload() + EndDragDropTarget()<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool BeginDragDropTarget()
 		{
@@ -4801,20 +4973,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiPayload* AcceptDragDropPayloadNative(byte* type, ImGuiDragDropFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDragDropFlags, ImGuiPayload*>)funcTable[321])(type, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDragDropFlags, ImGuiPayload*>)funcTable[326])(type, flags);
 			#else
-			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint, ImGuiDragDropFlags, nint>)funcTable[321])((nint)type, flags);
+			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint, ImGuiDragDropFlags, nint>)funcTable[326])((nint)type, flags);
 			#endif
 		}
 
 		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type, ImGuiDragDropFlags flags)
 		{
@@ -4823,7 +4995,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type)
 		{
@@ -4832,7 +5004,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(ref byte type, ImGuiDragDropFlags flags)
 		{
@@ -4844,7 +5016,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
+		/// To be documented.
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(ref byte type)
 		{
@@ -4853,175 +5025,6 @@ namespace Hexa.NET.ImGui
 				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
 				return ret;
 			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type, ImGuiDragDropFlags flags)
-		{
-			fixed (byte* ptype = type)
-			{
-				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type)
-		{
-			fixed (byte* ptype = type)
-			{
-				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(string type, ImGuiDragDropFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(string type)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, (ImGuiDragDropFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// only call EndDragDropTarget() if BeginDragDropTarget() returns true!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndDragDropTargetNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[322])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[322])();
-			#endif
-		}
-
-		/// <summary>
-		/// only call EndDragDropTarget() if BeginDragDropTarget() returns true!<br/>
-		/// </summary>
-		public static void EndDragDropTarget()
-		{
-			EndDragDropTargetNative();
-		}
-
-		/// <summary>
-		/// peek directly into the current payload from anywhere. returns NULL when drag and drop is finished or inactive. use ImGuiPayload::IsDataType() to test for the payload type.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiPayload* GetDragDropPayloadNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*>)funcTable[323])();
-			#else
-			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint>)funcTable[323])();
-			#endif
-		}
-
-		/// <summary>
-		/// peek directly into the current payload from anywhere. returns NULL when drag and drop is finished or inactive. use ImGuiPayload::IsDataType() to test for the payload type.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr GetDragDropPayload()
-		{
-			ImGuiPayloadPtr ret = GetDragDropPayloadNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginDisabledNative(byte disabled)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[324])(disabled);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[324])(disabled);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDisabled(bool disabled)
-		{
-			BeginDisabledNative(disabled ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDisabled()
-		{
-			BeginDisabledNative((byte)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndDisabledNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[325])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[325])();
-			#endif
 		}
 	}
 }

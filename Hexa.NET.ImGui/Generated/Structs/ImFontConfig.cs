@@ -17,101 +17,11 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// A font inputsource (we may rename this to ImFontSource in the future)<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontConfig
 	{
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void* FontData;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int FontDataSize;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte FontDataOwnedByAtlas;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte MergeMode;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte PixelSnapH;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int FontNo;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int OversampleH;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int OversampleV;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float SizePixels;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public Vector2 GlyphOffset;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe uint* GlyphRanges;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float GlyphMinAdvanceX;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float GlyphMaxAdvanceX;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float GlyphExtraAdvanceX;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint FontBuilderFlags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float RasterizerMultiply;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public float RasterizerDensity;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint EllipsisChar;
-
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -159,32 +69,129 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void* FontData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public int FontDataSize;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte FontDataOwnedByAtlas;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte MergeMode;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte PixelSnapH;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte PixelSnapV;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public sbyte OversampleH;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public sbyte OversampleV;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint EllipsisChar;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float SizePixels;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint* GlyphRanges;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe uint* GlyphExcludeRanges;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public Vector2 GlyphOffset;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float GlyphMinAdvanceX;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float GlyphMaxAdvanceX;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float GlyphExtraAdvanceX;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint FontNo;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint FontLoaderFlags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float RasterizerMultiply;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float RasterizerDensity;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImFontFlags Flags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe ImFont* DstFont;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontLoader* FontLoader;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* FontLoaderData;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, float glyphExtraAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, byte* name = default, ImFontPtr dstFont = default)
+		public unsafe ImFontConfig(byte* name = default, void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, bool pixelSnapV = default, sbyte oversampleH = default, sbyte oversampleV = default, uint ellipsisChar = default, float sizePixels = default, uint* glyphRanges = default, uint* glyphExcludeRanges = default, Vector2 glyphOffset = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, float glyphExtraAdvanceX = default, uint fontNo = default, uint fontLoaderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, ImFontFlags flags = default, ImFontPtr dstFont = default, ImFontLoader* fontLoader = default, void* fontLoaderData = default)
 		{
-			FontData = fontData;
-			FontDataSize = fontDataSize;
-			FontDataOwnedByAtlas = fontDataOwnedByAtlas ? (byte)1 : (byte)0;
-			MergeMode = mergeMode ? (byte)1 : (byte)0;
-			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
-			FontNo = fontNo;
-			OversampleH = oversampleH;
-			OversampleV = oversampleV;
-			SizePixels = sizePixels;
-			GlyphOffset = glyphOffset;
-			GlyphRanges = glyphRanges;
-			GlyphMinAdvanceX = glyphMinAdvanceX;
-			GlyphMaxAdvanceX = glyphMaxAdvanceX;
-			GlyphExtraAdvanceX = glyphExtraAdvanceX;
-			FontBuilderFlags = fontBuilderFlags;
-			RasterizerMultiply = rasterizerMultiply;
-			RasterizerDensity = rasterizerDensity;
-			EllipsisChar = ellipsisChar;
 			if (name != default(byte*))
 			{
 				Name_0 = name[0];
@@ -228,32 +235,37 @@ namespace Hexa.NET.ImGui
 				Name_38 = name[38];
 				Name_39 = name[39];
 			}
-			DstFont = dstFont;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe ImFontConfig(void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, int fontNo = default, int oversampleH = default, int oversampleV = default, float sizePixels = default, Vector2 glyphOffset = default, uint* glyphRanges = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, float glyphExtraAdvanceX = default, uint fontBuilderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, uint ellipsisChar = default, Span<byte> name = default, ImFontPtr dstFont = default)
-		{
 			FontData = fontData;
 			FontDataSize = fontDataSize;
 			FontDataOwnedByAtlas = fontDataOwnedByAtlas ? (byte)1 : (byte)0;
 			MergeMode = mergeMode ? (byte)1 : (byte)0;
 			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
-			FontNo = fontNo;
+			PixelSnapV = pixelSnapV ? (byte)1 : (byte)0;
 			OversampleH = oversampleH;
 			OversampleV = oversampleV;
+			EllipsisChar = ellipsisChar;
 			SizePixels = sizePixels;
-			GlyphOffset = glyphOffset;
 			GlyphRanges = glyphRanges;
+			GlyphExcludeRanges = glyphExcludeRanges;
+			GlyphOffset = glyphOffset;
 			GlyphMinAdvanceX = glyphMinAdvanceX;
 			GlyphMaxAdvanceX = glyphMaxAdvanceX;
 			GlyphExtraAdvanceX = glyphExtraAdvanceX;
-			FontBuilderFlags = fontBuilderFlags;
+			FontNo = fontNo;
+			FontLoaderFlags = fontLoaderFlags;
 			RasterizerMultiply = rasterizerMultiply;
 			RasterizerDensity = rasterizerDensity;
-			EllipsisChar = ellipsisChar;
+			Flags = flags;
+			DstFont = dstFont;
+			FontLoader = fontLoader;
+			FontLoaderData = fontLoaderData;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontConfig(Span<byte> name = default, void* fontData = default, int fontDataSize = default, bool fontDataOwnedByAtlas = default, bool mergeMode = default, bool pixelSnapH = default, bool pixelSnapV = default, sbyte oversampleH = default, sbyte oversampleV = default, uint ellipsisChar = default, float sizePixels = default, uint* glyphRanges = default, uint* glyphExcludeRanges = default, Vector2 glyphOffset = default, float glyphMinAdvanceX = default, float glyphMaxAdvanceX = default, float glyphExtraAdvanceX = default, uint fontNo = default, uint fontLoaderFlags = default, float rasterizerMultiply = default, float rasterizerDensity = default, ImFontFlags flags = default, ImFontPtr dstFont = default, ImFontLoader* fontLoader = default, void* fontLoaderData = default)
+		{
 			if (name != default(Span<byte>))
 			{
 				Name_0 = name[0];
@@ -297,7 +309,30 @@ namespace Hexa.NET.ImGui
 				Name_38 = name[38];
 				Name_39 = name[39];
 			}
+			FontData = fontData;
+			FontDataSize = fontDataSize;
+			FontDataOwnedByAtlas = fontDataOwnedByAtlas ? (byte)1 : (byte)0;
+			MergeMode = mergeMode ? (byte)1 : (byte)0;
+			PixelSnapH = pixelSnapH ? (byte)1 : (byte)0;
+			PixelSnapV = pixelSnapV ? (byte)1 : (byte)0;
+			OversampleH = oversampleH;
+			OversampleV = oversampleV;
+			EllipsisChar = ellipsisChar;
+			SizePixels = sizePixels;
+			GlyphRanges = glyphRanges;
+			GlyphExcludeRanges = glyphExcludeRanges;
+			GlyphOffset = glyphOffset;
+			GlyphMinAdvanceX = glyphMinAdvanceX;
+			GlyphMaxAdvanceX = glyphMaxAdvanceX;
+			GlyphExtraAdvanceX = glyphExtraAdvanceX;
+			FontNo = fontNo;
+			FontLoaderFlags = fontLoaderFlags;
+			RasterizerMultiply = rasterizerMultiply;
+			RasterizerDensity = rasterizerDensity;
+			Flags = flags;
 			DstFont = dstFont;
+			FontLoader = fontLoader;
+			FontLoaderData = fontLoaderData;
 		}
 
 
@@ -358,6 +393,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe Span<byte> Name
+		
+		{
+			get
+			{
+				return new Span<byte>(&Handle->Name_0, 40);
+			}
+		}
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public void* FontData { get => Handle->FontData; set => Handle->FontData = value; }
 		/// <summary>
 		/// To be documented.
@@ -378,15 +424,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int FontNo => ref Unsafe.AsRef<int>(&Handle->FontNo);
+		public ref bool PixelSnapV => ref Unsafe.AsRef<bool>(&Handle->PixelSnapV);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int OversampleH => ref Unsafe.AsRef<int>(&Handle->OversampleH);
+		public ref sbyte OversampleH => ref Unsafe.AsRef<sbyte>(&Handle->OversampleH);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int OversampleV => ref Unsafe.AsRef<int>(&Handle->OversampleV);
+		public ref sbyte OversampleV => ref Unsafe.AsRef<sbyte>(&Handle->OversampleV);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint EllipsisChar => ref Unsafe.AsRef<uint>(&Handle->EllipsisChar);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -394,11 +444,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref Vector2 GlyphOffset => ref Unsafe.AsRef<Vector2>(&Handle->GlyphOffset);
+		public uint* GlyphRanges { get => Handle->GlyphRanges; set => Handle->GlyphRanges = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint* GlyphRanges { get => Handle->GlyphRanges; set => Handle->GlyphRanges = value; }
+		public uint* GlyphExcludeRanges { get => Handle->GlyphExcludeRanges; set => Handle->GlyphExcludeRanges = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref Vector2 GlyphOffset => ref Unsafe.AsRef<Vector2>(&Handle->GlyphOffset);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -414,7 +468,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint FontBuilderFlags => ref Unsafe.AsRef<uint>(&Handle->FontBuilderFlags);
+		public ref uint FontNo => ref Unsafe.AsRef<uint>(&Handle->FontNo);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint FontLoaderFlags => ref Unsafe.AsRef<uint>(&Handle->FontLoaderFlags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -426,22 +484,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint EllipsisChar => ref Unsafe.AsRef<uint>(&Handle->EllipsisChar);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe Span<byte> Name
-		
-		{
-			get
-			{
-				return new Span<byte>(&Handle->Name_0, 40);
-			}
-		}
+		public ref ImFontFlags Flags => ref Unsafe.AsRef<ImFontFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref ImFontPtr DstFont => ref Unsafe.AsRef<ImFontPtr>(&Handle->DstFont);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImFontLoaderPtr FontLoader => ref Unsafe.AsRef<ImFontLoaderPtr>(&Handle->FontLoader);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* FontLoaderData { get => Handle->FontLoaderData; set => Handle->FontLoaderData = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -450,6 +505,49 @@ namespace Hexa.NET.ImGui
 			ImGui.DestroyNative(Handle);
 		}
 
+	}
+
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	#if NET5_0_OR_GREATER
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
+	public unsafe struct ImFontConfigPtrPtr : IEquatable<ImFontConfigPtrPtr>
+	{
+		public ImFontConfigPtrPtr(ImFontConfig** handle) { Handle = handle; }
+
+		public ImFontConfig** Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImFontConfigPtrPtr Null => new ImFontConfigPtrPtr(null);
+
+		public ImFontConfig* this[int index] { get => Handle[index]; set => Handle[index] = value; }
+
+		public static implicit operator ImFontConfigPtrPtr(ImFontConfig** handle) => new ImFontConfigPtrPtr(handle);
+
+		public static implicit operator ImFontConfig**(ImFontConfigPtrPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImFontConfigPtrPtr left, ImFontConfigPtrPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImFontConfigPtrPtr left, ImFontConfigPtrPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImFontConfigPtrPtr left, ImFontConfig** right) => left.Handle == right;
+
+		public static bool operator !=(ImFontConfigPtrPtr left, ImFontConfig** right) => left.Handle != right;
+
+		public bool Equals(ImFontConfigPtrPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImFontConfigPtrPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		#if NET5_0_OR_GREATER
+		private string DebuggerDisplay => string.Format("ImFontConfigPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 	}
 
 }

@@ -21,6 +21,240 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool DragIntRange2(byte* label, ref int vCurrentMin, int* vCurrentMax, int vMin, int vMax, ReadOnlySpan<byte> format, ReadOnlySpan<byte> formatMax, ImGuiSliderFlags flags)
+		{
+			fixed (int* pvCurrentMin = &vCurrentMin)
+			{
+				fixed (byte* pformat = format)
+				{
+					fixed (byte* pformatMax = formatMax)
+					{
+						byte ret = DragIntRange2Native(label, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), vMin, vMax, (byte*)pformat, (byte*)pformatMax, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragIntRange2(byte* label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, int vMin, int vMax, string format, string formatMax, ImGuiSliderFlags flags)
+		{
+			fixed (int* pvCurrentMin = &vCurrentMin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (formatMax != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(formatMax);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(formatMax, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = DragIntRange2Native(label, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, vMax, pStr0, pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragIntRange2(byte* label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, int vMin, int vMax, string format, string formatMax)
+		{
+			fixed (int* pvCurrentMin = &vCurrentMin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (formatMax != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(formatMax);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(formatMax, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = DragIntRange2Native(label, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, vMax, pStr0, pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragIntRange2(byte* label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, int vMin, string format, string formatMax)
+		{
+			fixed (int* pvCurrentMin = &vCurrentMin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (formatMax != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(formatMax);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(formatMax, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = DragIntRange2Native(label, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, (int)(0), pStr0, pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragIntRange2(byte* label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, string format, string formatMax)
+		{
+			fixed (int* pvCurrentMin = &vCurrentMin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (formatMax != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(formatMax);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(formatMax, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = DragIntRange2Native(label, (int*)pvCurrentMin, vCurrentMax, vSpeed, (int)(0), (int)(0), pStr0, pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool DragIntRange2(byte* label, ref int vCurrentMin, int* vCurrentMax, string format, string formatMax)
 		{
 			fixed (int* pvCurrentMin = &vCurrentMin)
@@ -4790,237 +5024,6 @@ namespace Hexa.NET.ImGui
 						fixed (byte* pformatMax = &formatMax)
 						{
 							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, (int)(0), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, ReadOnlySpan<byte> format, ref byte formatMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, vSpeed, (int)(0), (int)(0), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, ReadOnlySpan<byte> format, ref byte formatMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), (int)(0), (int)(0), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, int vMin, ReadOnlySpan<byte> format, ref byte formatMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), vMin, (int)(0), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, int vMin, int vMax, ReadOnlySpan<byte> format, ref byte formatMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), vMin, vMax, (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, int vMin, ReadOnlySpan<byte> format, ref byte formatMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, (int)(0), (byte*)pformat, (byte*)pformatMax, flags);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, ReadOnlySpan<byte> format, ref byte formatMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, vSpeed, (int)(0), (int)(0), (byte*)pformat, (byte*)pformatMax, flags);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, ReadOnlySpan<byte> format, ref byte formatMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), (int)(0), (int)(0), (byte*)pformat, (byte*)pformatMax, flags);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, int vMin, ReadOnlySpan<byte> format, ref byte formatMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), vMin, (int)(0), (byte*)pformat, (byte*)pformatMax, flags);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, int vMin, int vMax, ReadOnlySpan<byte> format, ref byte formatMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = &formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, (float)(1.0f), vMin, vMax, (byte*)pformat, (byte*)pformatMax, flags);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, int vMin, int vMax, ReadOnlySpan<byte> format, ReadOnlySpan<byte> formatMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, vMax, (byte*)pformat, (byte*)pformatMax, flags);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragIntRange2(ref byte label, ref int vCurrentMin, int* vCurrentMax, float vSpeed, int vMin, int vMax, ReadOnlySpan<byte> format, ReadOnlySpan<byte> formatMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pvCurrentMin = &vCurrentMin)
-				{
-					fixed (byte* pformat = format)
-					{
-						fixed (byte* pformatMax = formatMax)
-						{
-							byte ret = DragIntRange2Native((byte*)plabel, (int*)pvCurrentMin, vCurrentMax, vSpeed, vMin, vMax, (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
 							return ret != 0;
 						}
 					}

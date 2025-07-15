@@ -17,26 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Helper: Manually clip large list of items.<br/>
-	/// If you have lots evenly spaced items and you have random access to the list, you can perform coarse<br/>
-	/// clipping based on visibility to only submit items that are in view.<br/>
-	/// The clipper calculates the range of visible items and advance the cursor to compensate for the non-visible items we have skipped.<br/>
-	/// (Dear ImGui already clip items based on their bounds but: it needs to first layout the item to do so, and generally<br/>
-	/// fetchingsubmitting your own data incurs additional cost. Coarse clipping using ImGuiListClipper allows you to easily<br/>
-	/// scale using lists with tens of thousands of items without a problem)<br/>
-	/// Usage:<br/>
-	/// ImGuiListClipper clipper;<br/>
-	/// clipper.Begin(1000);          We have 1000 elements, evenly spaced.<br/>
-	/// while (clipper.Step())<br/>
-	/// for (int i = clipper.DisplayStart; i &lt; clipper.DisplayEnd; i++)<br/>
-	/// ImGui::Text("line number %d", i);<br/>
-	/// Generally what happens is:<br/>
-	/// - Clipper lets you process the first element (DisplayStart = 0, DisplayEnd = 1) regardless of it being visible or not.<br/>
-	/// - User code submit that one element.<br/>
-	/// - Clipper can measure the height of the first element<br/>
-	/// - Clipper calculate the actual range of elements to display based on the current clipping rectangle, position the cursor before the first visible element.<br/>
-	/// - User code submit visible elements.<br/>
-	/// - The clipper also handles various subtleties related to keyboardgamepad navigation, wrapping etc.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiListClipper
@@ -69,7 +50,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public float StartPosY;
+		public double StartPosY;
 
 		/// <summary>
 		/// To be documented.
@@ -85,7 +66,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiListClipper(ImGuiContextPtr ctx = default, int displayStart = default, int displayEnd = default, int itemsCount = default, float itemsHeight = default, float startPosY = default, double startSeekOffsetY = default, void* tempData = default)
+		public unsafe ImGuiListClipper(ImGuiContextPtr ctx = default, int displayStart = default, int displayEnd = default, int itemsCount = default, float itemsHeight = default, double startPosY = default, double startSeekOffsetY = default, void* tempData = default)
 		{
 			Ctx = ctx;
 			DisplayStart = displayStart;
@@ -132,7 +113,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Automatically called on the last call of Step() that returns false.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void End()
 		{
@@ -154,7 +135,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void IncludeItemsByIndex(int itemBegin, int itemEnd)
 		{
@@ -176,7 +157,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Step()
 		{
@@ -253,7 +234,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref float StartPosY => ref Unsafe.AsRef<float>(&Handle->StartPosY);
+		public ref double StartPosY => ref Unsafe.AsRef<double>(&Handle->StartPosY);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -287,7 +268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Automatically called on the last call of Step() that returns false.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void End()
 		{
@@ -303,7 +284,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void IncludeItemsByIndex(int itemBegin, int itemEnd)
 		{
@@ -319,7 +300,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Step()
 		{

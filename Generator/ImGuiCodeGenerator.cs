@@ -2,33 +2,45 @@
 {
     using CppAst;
     using HexaGen;
+    using HexaGen.Batteries.Legacy.Steps;
     using HexaGen.Core.CSharp;
     using HexaGen.FunctionGeneration;
     using HexaGen.FunctionGeneration.ParameterWriters;
-    using HexaGen.GenerationSteps;
     using System.Collections.Generic;
 
     public class ImGuiCodeGenerator : CsCodeGenerator
     {
-        public ImGuiCodeGenerator(CsCodeGeneratorConfig settings) : base(settings, new ImGuiFunctionGenerator(settings))
+        public ImGuiCodeGenerator(CsCodeGeneratorConfig config) : base(config)
         {
+        }
+
+        protected override void OnConfigureGenerator()
+        {
+            FunctionGenerator = new ImGuiFunctionGenerator(config);
             GetGenerationStep<FunctionGenerationStep>().OverwriteParameterWriter<StringParameterWriter>(new ImGuiStringParameterWriter());
         }
 
-        protected override CppParserOptions PrepareSettings()
+        protected override void OnPostConfigure(CsCodeGeneratorConfig config)
         {
-            var settings = base.PrepareSettings();
+            config.LogLevel = HexaGen.Core.Logging.LogSeverity.Error;
+            config.Defines.Add("IMGUI_USE_WCHAR32");
+            config.Defines.Add("IMGUI_ENABLE_FREETYPE");
+            config.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
+            LogLevel = HexaGen.Core.Logging.LogSeverity.Error;
 
             Environment.SetEnvironmentVariable("VCINSTALLDIR", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532");
             Environment.SetEnvironmentVariable("VCToolsInstallDir", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532\");
+        }
 
-            return settings;
+        public override bool GenerateCore(CppCompilation compilation, List<string> headerFiles, string outputPath, List<string>? allowedHeaders = null)
+        {
+            return base.GenerateCore(compilation, headerFiles, outputPath, allowedHeaders);
         }
     }
 
     public class ImGuiFunctionGenerator : FunctionGenerator
     {
-        public ImGuiFunctionGenerator(CsCodeGeneratorConfig settings) : base(settings)
+        public ImGuiFunctionGenerator(CsCodeGeneratorConfig config) : base(config)
         {
             AddRule(new FunctionGenRuleRef());
             AddRule(new FunctionGenRuleSpan());
@@ -71,11 +83,11 @@
         protected override string? GetConvertBackCondition(FunctionWriterContext context, CsParameterInfo rootParameter, CsParameterInfo cppParameter, ParameterFlags paramFlags)
         {
             // Special case for input widgets to handle ImGuiInputTextFlags.EnterReturnsTrue.
-            if (context.Variation.Parameters.Any(p => p.Name == "flags" && p.Type.Name == "ImGuiInputTextFlags" && p.DefaultValue != "0" ))
+            if (context.Variation.Parameters.Any(p => p.Name == "flags" && p.Type.Name == "ImGuiInputTextFlags" && p.DefaultValue != "0"))
             {
                 return context.Variation.ReturnType.IsBool ? "ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit())" : null;
             }
-            
+
             // Only inject the condition if the return type is bool to optimize decoding behavior
             return context.Variation.ReturnType.IsBool ? "ret != 0" : null;
         }

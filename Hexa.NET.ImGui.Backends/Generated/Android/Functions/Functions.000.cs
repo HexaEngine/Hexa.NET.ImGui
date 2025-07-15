@@ -25,9 +25,9 @@ namespace Hexa.NET.ImGui.Backends.Android
 		internal static byte InitNative(ANativeWindow* window)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ANativeWindow*, byte>)funcTable[77])(window);
+			return ((delegate* unmanaged[Cdecl]<ANativeWindow*, byte>)funcTable[79])(window);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[77])((nint)window);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[79])((nint)window);
 			#endif
 		}
 
@@ -59,9 +59,9 @@ namespace Hexa.NET.ImGui.Backends.Android
 		internal static int HandleInputEventNative(AInputEvent* inputEvent)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<AInputEvent*, int>)funcTable[78])(inputEvent);
+			return ((delegate* unmanaged[Cdecl]<AInputEvent*, int>)funcTable[80])(inputEvent);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[78])((nint)inputEvent);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[80])((nint)inputEvent);
 			#endif
 		}
 
@@ -93,9 +93,9 @@ namespace Hexa.NET.ImGui.Backends.Android
 		internal static void ShutdownNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[79])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[81])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[79])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[81])();
 			#endif
 		}
 
@@ -114,9 +114,9 @@ namespace Hexa.NET.ImGui.Backends.Android
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[80])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[82])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[80])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[82])();
 			#endif
 		}
 

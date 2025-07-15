@@ -19,6 +19,8 @@ namespace Hexa.NET.ImGui
 
 		public const int IMGUI_ENABLE_FREETYPE = 1;
 
+		public const int CIMGUI_DEFINE_ENUMS_AND_STRUCTS = 1;
+
 		public const int IM_UNICODE_CODEPOINT_MAX = 0x10FFFF;
 
 		public const int IMGUI_HAS_DOCK = 1;

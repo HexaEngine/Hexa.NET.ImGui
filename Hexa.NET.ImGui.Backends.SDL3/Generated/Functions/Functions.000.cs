@@ -73,7 +73,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InitForOpenGLNative(SDLWindow* window, void* sdlGlContext)
@@ -86,7 +86,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
 		{
@@ -95,7 +95,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
 		public static bool InitForOpenGL(ref SDLWindow window, void* sdlGlContext)
 		{
@@ -414,7 +414,8 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Gamepad selection automatically starts in AutoFirst mode, picking first available SDL_Gamepad. You may override this.<br/>
+		/// When using manual mode, caller is responsible for opening/closing gamepad.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetGamepadModeNative(ImGuiImplSDL3GamepadMode mode, SDLGamepad** manualGamepadsArray, int manualGamepadsCount)
@@ -427,7 +428,8 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Gamepad selection automatically starts in AutoFirst mode, picking first available SDL_Gamepad. You may override this.<br/>
+		/// When using manual mode, caller is responsible for opening/closing gamepad.<br/>
 		/// </summary>
 		public static void SetGamepadMode(ImGuiImplSDL3GamepadMode mode, SDLGamepadPtrPtr manualGamepadsArray, int manualGamepadsCount)
 		{
@@ -435,7 +437,8 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Gamepad selection automatically starts in AutoFirst mode, picking first available SDL_Gamepad. You may override this.<br/>
+		/// When using manual mode, caller is responsible for opening/closing gamepad.<br/>
 		/// </summary>
 		public static void SetGamepadMode(ImGuiImplSDL3GamepadMode mode, ref SDLGamepad* manualGamepadsArray, int manualGamepadsCount)
 		{
@@ -582,65 +585,21 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// Called by Init/NewFrame/Shutdown<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDLRenderer3CreateFontsTextureNative()
+		internal static void SDLRenderer3CreateDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[17])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[17])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[17])();
 			#endif
 		}
 
 		/// <summary>
 		/// Called by Init/NewFrame/Shutdown<br/>
 		/// </summary>
-		public static bool SDLRenderer3CreateFontsTexture()
+		public static void SDLRenderer3CreateDeviceObjects()
 		{
-			byte ret = SDLRenderer3CreateFontsTextureNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SDLRenderer3DestroyFontsTextureNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[18])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[18])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SDLRenderer3DestroyFontsTexture()
-		{
-			SDLRenderer3DestroyFontsTextureNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SDLRenderer3CreateDeviceObjectsNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[19])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[19])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SDLRenderer3CreateDeviceObjects()
-		{
-			byte ret = SDLRenderer3CreateDeviceObjectsNative();
-			return ret != 0;
+			SDLRenderer3CreateDeviceObjectsNative();
 		}
 
 		/// <summary>
@@ -650,9 +609,9 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		internal static void SDLRenderer3DestroyDeviceObjectsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[20])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[18])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[20])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[18])();
 			#endif
 		}
 
@@ -662,6 +621,584 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		public static void SDLRenderer3DestroyDeviceObjects()
 		{
 			SDLRenderer3DestroyDeviceObjectsNative();
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLRenderer3UpdateTextureNative(ImTextureData* tex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureData*, void>)funcTable[19])(tex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[19])((nint)tex);
+			#endif
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		public static void SDLRenderer3UpdateTexture(ImTextureDataPtr tex)
+		{
+			SDLRenderer3UpdateTextureNative(tex);
+		}
+
+		/// <summary>
+		/// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually.<br/>
+		/// </summary>
+		public static void SDLRenderer3UpdateTexture(ref ImTextureData tex)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				SDLRenderer3UpdateTextureNative((ImTextureData*)ptex);
+			}
+		}
+
+		/// <summary>
+		/// Initialization data, for ImGui_ImplSDLGPU_Init()<br/>
+		/// - Remember to set ColorTargetFormat to the correct format. If you're rendering to the swapchain, call SDL_GetGPUSwapchainTextureFormat to query the right value<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte SDLGPU3InitNative(ImGuiImplSDLGPU3InitInfo* info)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiImplSDLGPU3InitInfo*, byte>)funcTable[20])(info);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[20])((nint)info);
+			#endif
+		}
+
+		/// <summary>
+		/// Initialization data, for ImGui_ImplSDLGPU_Init()<br/>
+		/// - Remember to set ColorTargetFormat to the correct format. If you're rendering to the swapchain, call SDL_GetGPUSwapchainTextureFormat to query the right value<br/>
+		/// </summary>
+		public static bool SDLGPU3Init(ImGuiImplSDLGPU3InitInfoPtr info)
+		{
+			byte ret = SDLGPU3InitNative(info);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Initialization data, for ImGui_ImplSDLGPU_Init()<br/>
+		/// - Remember to set ColorTargetFormat to the correct format. If you're rendering to the swapchain, call SDL_GetGPUSwapchainTextureFormat to query the right value<br/>
+		/// </summary>
+		public static bool SDLGPU3Init(ref ImGuiImplSDLGPU3InitInfo info)
+		{
+			fixed (ImGuiImplSDLGPU3InitInfo* pinfo = &info)
+			{
+				byte ret = SDLGPU3InitNative((ImGuiImplSDLGPU3InitInfo*)pinfo);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3ShutdownNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[21])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[21])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3Shutdown()
+		{
+			SDLGPU3ShutdownNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3NewFrameNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[22])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3NewFrame()
+		{
+			SDLGPU3NewFrameNative();
+		}
+
+		/// <summary>
+		/// - Unlike other backends, the user must call the function ImGui_ImplSDLGPU_PrepareDrawData BEFORE issuing a SDL_GPURenderPass containing ImGui_ImplSDLGPU_RenderDrawData.<br/>
+		/// Calling the function is MANDATORY, otherwise the ImGui will not upload neither the vertex nor the index buffer for the GPU. See imgui_impl_sdlgpu3.cpp for more info.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3PrepareDrawDataNative(ImDrawData* drawData, SDLGPUCommandBuffer* commandBuffer)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawData*, SDLGPUCommandBuffer*, void>)funcTable[23])(drawData, commandBuffer);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[23])((nint)drawData, (nint)commandBuffer);
+			#endif
+		}
+
+		/// <summary>
+		/// - Unlike other backends, the user must call the function ImGui_ImplSDLGPU_PrepareDrawData BEFORE issuing a SDL_GPURenderPass containing ImGui_ImplSDLGPU_RenderDrawData.<br/>
+		/// Calling the function is MANDATORY, otherwise the ImGui will not upload neither the vertex nor the index buffer for the GPU. See imgui_impl_sdlgpu3.cpp for more info.<br/>
+		/// </summary>
+		public static void SDLGPU3PrepareDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer)
+		{
+			SDLGPU3PrepareDrawDataNative(drawData, commandBuffer);
+		}
+
+		/// <summary>
+		/// - Unlike other backends, the user must call the function ImGui_ImplSDLGPU_PrepareDrawData BEFORE issuing a SDL_GPURenderPass containing ImGui_ImplSDLGPU_RenderDrawData.<br/>
+		/// Calling the function is MANDATORY, otherwise the ImGui will not upload neither the vertex nor the index buffer for the GPU. See imgui_impl_sdlgpu3.cpp for more info.<br/>
+		/// </summary>
+		public static void SDLGPU3PrepareDrawData(ref ImDrawData drawData, SDLGPUCommandBufferPtr commandBuffer)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				SDLGPU3PrepareDrawDataNative((ImDrawData*)pdrawData, commandBuffer);
+			}
+		}
+
+		/// <summary>
+		/// - Unlike other backends, the user must call the function ImGui_ImplSDLGPU_PrepareDrawData BEFORE issuing a SDL_GPURenderPass containing ImGui_ImplSDLGPU_RenderDrawData.<br/>
+		/// Calling the function is MANDATORY, otherwise the ImGui will not upload neither the vertex nor the index buffer for the GPU. See imgui_impl_sdlgpu3.cpp for more info.<br/>
+		/// </summary>
+		public static void SDLGPU3PrepareDrawData(ImDrawDataPtr drawData, ref SDLGPUCommandBuffer commandBuffer)
+		{
+			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				SDLGPU3PrepareDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer);
+			}
+		}
+
+		/// <summary>
+		/// - Unlike other backends, the user must call the function ImGui_ImplSDLGPU_PrepareDrawData BEFORE issuing a SDL_GPURenderPass containing ImGui_ImplSDLGPU_RenderDrawData.<br/>
+		/// Calling the function is MANDATORY, otherwise the ImGui will not upload neither the vertex nor the index buffer for the GPU. See imgui_impl_sdlgpu3.cpp for more info.<br/>
+		/// </summary>
+		public static void SDLGPU3PrepareDrawData(ref ImDrawData drawData, ref SDLGPUCommandBuffer commandBuffer)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					SDLGPU3PrepareDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3RenderDrawDataNative(ImDrawData* drawData, SDLGPUCommandBuffer* commandBuffer, SDLGPURenderPass* renderPass, SDLGPUGraphicsPipeline* pipeline)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawData*, SDLGPUCommandBuffer*, SDLGPURenderPass*, SDLGPUGraphicsPipeline*, void>)funcTable[24])(drawData, commandBuffer, renderPass, pipeline);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[24])((nint)drawData, (nint)commandBuffer, (nint)renderPass, (nint)pipeline);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer, SDLGPURenderPassPtr renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			SDLGPU3RenderDrawDataNative(drawData, commandBuffer, renderPass, pipeline);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, SDLGPUCommandBufferPtr commandBuffer, SDLGPURenderPassPtr renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, renderPass, pipeline);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, ref SDLGPUCommandBuffer commandBuffer, SDLGPURenderPassPtr renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, pipeline);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, ref SDLGPUCommandBuffer commandBuffer, SDLGPURenderPassPtr renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, pipeline);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer, ref SDLGPURenderPass renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (SDLGPURenderPass* prenderPass = &renderPass)
+			{
+				SDLGPU3RenderDrawDataNative(drawData, commandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, SDLGPUCommandBufferPtr commandBuffer, ref SDLGPURenderPass renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPURenderPass* prenderPass = &renderPass)
+				{
+					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, ref SDLGPUCommandBuffer commandBuffer, ref SDLGPURenderPass renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				fixed (SDLGPURenderPass* prenderPass = &renderPass)
+				{
+					SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, ref SDLGPUCommandBuffer commandBuffer, ref SDLGPURenderPass renderPass, SDLGPUGraphicsPipelinePtr pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					fixed (SDLGPURenderPass* prenderPass = &renderPass)
+					{
+						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer, SDLGPURenderPassPtr renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+			{
+				SDLGPU3RenderDrawDataNative(drawData, commandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, SDLGPUCommandBufferPtr commandBuffer, SDLGPURenderPassPtr renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+				{
+					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, ref SDLGPUCommandBuffer commandBuffer, SDLGPURenderPassPtr renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+				{
+					SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, ref SDLGPUCommandBuffer commandBuffer, SDLGPURenderPassPtr renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+					{
+						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer, ref SDLGPURenderPass renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (SDLGPURenderPass* prenderPass = &renderPass)
+			{
+				fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+				{
+					SDLGPU3RenderDrawDataNative(drawData, commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, SDLGPUCommandBufferPtr commandBuffer, ref SDLGPURenderPass renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPURenderPass* prenderPass = &renderPass)
+				{
+					fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+					{
+						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, ref SDLGPUCommandBuffer commandBuffer, ref SDLGPURenderPass renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+			{
+				fixed (SDLGPURenderPass* prenderPass = &renderPass)
+				{
+					fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+					{
+						SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3RenderDrawData(ref ImDrawData drawData, ref SDLGPUCommandBuffer commandBuffer, ref SDLGPURenderPass renderPass, ref SDLGPUGraphicsPipeline pipeline)
+		{
+			fixed (ImDrawData* pdrawData = &drawData)
+			{
+				fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
+				{
+					fixed (SDLGPURenderPass* prenderPass = &renderPass)
+					{
+						fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
+						{
+							SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3CreateDeviceObjectsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[25])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3CreateDeviceObjects()
+		{
+			SDLGPU3CreateDeviceObjectsNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3DestroyDeviceObjectsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[26])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3DestroyDeviceObjects()
+		{
+			SDLGPU3DestroyDeviceObjectsNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3GetSPIRVVertexShaderNative(void** ptr, nuint* size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void**, nuint*, void>)funcTable[27])(ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[27])((nint)ptr, (nint)size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVVertexShader(void** ptr, nuint* size)
+		{
+			SDLGPU3GetSPIRVVertexShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3GetSPIRVFragmentShaderNative(void** ptr, nuint* size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void**, nuint*, void>)funcTable[28])(ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[28])((nint)ptr, (nint)size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVFragmentShader(void** ptr, nuint* size)
+		{
+			SDLGPU3GetSPIRVFragmentShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3GetDXBCVertexShaderNative(void** ptr, nuint* size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void**, nuint*, void>)funcTable[29])(ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[29])((nint)ptr, (nint)size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCVertexShader(void** ptr, nuint* size)
+		{
+			SDLGPU3GetDXBCVertexShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3GetDXBCFragmentShaderNative(void** ptr, nuint* size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void**, nuint*, void>)funcTable[30])(ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[30])((nint)ptr, (nint)size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCFragmentShader(void** ptr, nuint* size)
+		{
+			SDLGPU3GetDXBCFragmentShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3GetMetallibVertexShaderNative(void** ptr, nuint* size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void**, nuint*, void>)funcTable[31])(ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[31])((nint)ptr, (nint)size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibVertexShader(void** ptr, nuint* size)
+		{
+			SDLGPU3GetMetallibVertexShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SDLGPU3GetMetallibFragmentShaderNative(void** ptr, nuint* size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void**, nuint*, void>)funcTable[32])(ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[32])((nint)ptr, (nint)size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibFragmentShader(void** ptr, nuint* size)
+		{
+			SDLGPU3GetMetallibFragmentShaderNative(ptr, size);
 		}
 
 	}

@@ -33,26 +33,13 @@
             GenerateNodeEditor(ImGuiNodeEditorHeader, ImGuiNodeEditorConfig, ImGuiNodeEditorOutputPath, null, out _);
         }
 
-        protected static bool GenerateNodeEditor(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata)
+        protected static void GenerateNodeEditor(string header, string configPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata)
         {
-            CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
-            settings.SystemIncludeFolders.Add("C:/dev/imgui");
-            settings.WrapPointersAsHandle = true;
-            ImGuiCodeGenerator generator = new(settings);
-            generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());
-            generator.PatchEngine.RegisterPostPatch(new ImGuiNodeEditorPostPatch());
-
-            generator.LogToConsole();
-
-            if (lib != null)
-            {
-                generator.CopyFrom(lib);
-            }
-
-            bool result = generator.Generate(header, output);
-            metadata = generator.GetMetadata();
-
-            return result;
+            GeneratorBuilder.Create<ImGuiCodeGenerator>(configPath)
+                .WithPrePatch<ImVectorPatch>()
+                .WithPostPatch<ImGuiNodeEditorPostPatch>()
+                .Generate(header, output)
+                .GetMetadata(out metadata);
         }
     }
 }

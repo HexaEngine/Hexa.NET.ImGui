@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// [Internal] For use by ImDrawList<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawCmdHeader
@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImTextureID TextureId;
+		public ImTextureRef TexRef;
 
 		/// <summary>
 		/// To be documented.
@@ -41,10 +41,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawCmdHeader(Vector4 clipRect = default, ImTextureID textureId = default, uint vtxOffset = default)
+		public unsafe ImDrawCmdHeader(Vector4 clipRect = default, ImTextureRef texRef = default, uint vtxOffset = default)
 		{
 			ClipRect = clipRect;
-			TextureId = textureId;
+			TexRef = texRef;
 			VtxOffset = vtxOffset;
 		}
 

@@ -17,15 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Draw command list<br/>
-	/// This is the low-level list of polygons that ImGui:: functions are filling. At the end of the frame,<br/>
-	/// all command lists are passed to your ImGuiIO::RenderDrawListFn function for rendering.<br/>
-	/// Each dear imgui window contains its own ImDrawList. You can use ImGui::GetWindowDrawList() to<br/>
-	/// access the current window draw list and draw custom primitives.<br/>
-	/// You can interleave normal ImGui:: calls and adding primitives to the current draw list.<br/>
-	/// In single viewport mode, top-left is == GetMainViewport()-&gt;Pos (generally 0,0), bottom-right is == GetMainViewport()-&gt;Pos+Size (generally io.DisplaySize).<br/>
-	/// You are totally free to apply whatever transformation matrix you want to the data (depending on the use of the transformation you may want to apply it to ClipRect as well!)<br/>
-	/// Important: Primitives are always added to the list and not culled (culling is done at higher-level by ImGui:: functions), if you use this API a lot consider coarse culling your drawn objects.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawList
@@ -93,7 +85,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<ImTextureID> TextureIdStack;
+		public ImVector<ImTextureRef> TextureStack;
 
 		/// <summary>
 		/// To be documented.
@@ -114,7 +106,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawList(ImVector<ImDrawCmd> cmdBuffer = default, ImVector<ushort> idxBuffer = default, ImVector<ImDrawVert> vtxBuffer = default, ImDrawListFlags flags = default, uint vtxCurrentIdx = default, ImDrawListSharedData* data = default, ImDrawVert* vtxWritePtr = default, ushort* idxWritePtr = default, ImVector<Vector2> path = default, ImDrawCmdHeader cmdHeader = default, ImDrawListSplitter splitter = default, ImVector<Vector4> clipRectStack = default, ImVector<ImTextureID> textureIdStack = default, ImVector<byte> callbacksDataBuf = default, float fringeScale = default, byte* ownerName = default)
+		public unsafe ImDrawList(ImVector<ImDrawCmd> cmdBuffer = default, ImVector<ushort> idxBuffer = default, ImVector<ImDrawVert> vtxBuffer = default, ImDrawListFlags flags = default, uint vtxCurrentIdx = default, ImDrawListSharedData* data = default, ImDrawVert* vtxWritePtr = default, ushort* idxWritePtr = default, ImVector<Vector2> path = default, ImDrawCmdHeader cmdHeader = default, ImDrawListSplitter splitter = default, ImVector<Vector4> clipRectStack = default, ImVector<ImTextureRef> textureStack = default, ImVector<byte> callbacksDataBuf = default, float fringeScale = default, byte* ownerName = default)
 		{
 			CmdBuffer = cmdBuffer;
 			IdxBuffer = idxBuffer;
@@ -128,7 +120,7 @@ namespace Hexa.NET.ImGui
 			CmdHeader = cmdHeader;
 			Splitter = splitter;
 			ClipRectStack = clipRectStack;
-			TextureIdStack = textureIdStack;
+			TextureStack = textureStack;
 			CallbacksDataBuf = callbacksDataBuf;
 			FringeScale = fringeScale;
 			OwnerName = ownerName;
@@ -172,11 +164,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void _OnChangedTextureID()
+		public unsafe void _OnChangedTexture()
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._OnChangedTextureIDNative(@this);
+				ImGui._OnChangedTextureNative(@this);
 			}
 		}
 
@@ -238,11 +230,36 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void _SetTextureID(ImTextureID textureId)
+		public unsafe void _SetDrawListSharedData(ImDrawListSharedData* data)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._SetTextureIDNative(@this, textureId);
+				ImGui._SetDrawListSharedDataNative(@this, data);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _SetDrawListSharedData(ref ImDrawListSharedData data)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImDrawListSharedData* pdata = &data)
+				{
+					ImGui._SetDrawListSharedDataNative(@this, (ImDrawListSharedData*)pdata);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _SetTexture(ImTextureRef texRef)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._SetTextureNative(@this, texRef);
 			}
 		}
 
@@ -258,7 +275,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -269,7 +286,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
@@ -280,7 +297,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -291,7 +308,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
@@ -304,7 +321,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, ulong userdataSize)
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -319,18 +336,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddCallbackNative(@this, callback, userdata, (ulong)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.AddCallbackNative(@this, callback, userdata, userdataSize);
+				ImGui.AddCallbackNative(@this, callback, userdata, (nuint)(0));
 			}
 		}
 
@@ -451,7 +457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddDrawCmd()
 		{
@@ -585,198 +591,198 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, uvMin, uvMax, col);
+				ImGui.AddImageNative(@this, texRef, pMin, pMax, uvMin, uvMax, col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
+				ImGui.AddImageNative(@this, texRef, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+				ImGui.AddImageNative(@this, texRef, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+				ImGui.AddImageNative(@this, texRef, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
+				ImGui.AddImageNative(@this, texRef, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, uint col)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
+				ImGui.AddImageNative(@this, texRef, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+				ImGui.AddImageQuadNative(@this, texRef, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageRounded(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		public unsafe void AddImageRounded(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageRoundedNative(@this, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+				ImGui.AddImageRoundedNative(@this, texRef, pMin, pMax, uvMin, uvMax, col, rounding, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageRounded(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
+		public unsafe void AddImageRounded(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageRoundedNative(@this, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
+				ImGui.AddImageRoundedNative(@this, texRef, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
 			}
 		}
 
@@ -894,7 +900,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
@@ -905,7 +911,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -916,7 +922,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -927,7 +933,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -938,7 +944,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -949,7 +955,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
@@ -960,7 +966,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -971,7 +977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -982,7 +988,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -993,7 +999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -1004,7 +1010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -7711,7 +7717,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe ImDrawList* CloneOutput()
 		{
@@ -7756,7 +7762,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Use precomputed angles for a 12 steps circle<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathArcToFast(Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -7767,7 +7773,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -7778,7 +7784,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4)
 		{
@@ -7789,7 +7795,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -7800,7 +7806,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3)
 		{
@@ -7822,7 +7828,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Ellipse<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -7833,7 +7839,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Ellipse<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
@@ -7989,11 +7995,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void PopTextureID()
+		public unsafe void PopTexture()
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PopTextureIDNative(@this);
+				ImGui.PopTextureNative(@this);
 			}
 		}
 
@@ -8009,7 +8015,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Axis aligned rectangle (composed of two triangles)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PrimRect(Vector2 a, Vector2 b, uint col)
 		{
@@ -8053,7 +8059,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Write vertex with unique index<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PrimVtx(Vector2 pos, Vector2 uv, uint col)
 		{
@@ -8086,7 +8092,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
@@ -8097,7 +8103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax)
 		{
@@ -8121,11 +8127,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void PushTextureID(ImTextureID textureId)
+		public unsafe void PushTexture(ImTextureRef texRef)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PushTextureIDNative(@this, textureId);
+				ImGui.PushTextureNative(@this, texRef);
 			}
 		}
 
@@ -8223,7 +8229,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<ImTextureID> TextureIdStack => ref Unsafe.AsRef<ImVector<ImTextureID>>(&Handle->TextureIdStack);
+		public ref ImVector<ImTextureRef> TextureStack => ref Unsafe.AsRef<ImVector<ImTextureRef>>(&Handle->TextureStack);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -8264,9 +8270,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void _OnChangedTextureID()
+		public unsafe void _OnChangedTexture()
 		{
-			ImGui._OnChangedTextureIDNative(Handle);
+			ImGui._OnChangedTextureNative(Handle);
 		}
 
 		/// <summary>
@@ -8312,9 +8318,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void _SetTextureID(ImTextureID textureId)
+		public unsafe void _SetDrawListSharedData(ImDrawListSharedData* data)
 		{
-			ImGui._SetTextureIDNative(Handle, textureId);
+			ImGui._SetDrawListSharedDataNative(Handle, data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _SetDrawListSharedData(ref ImDrawListSharedData data)
+		{
+			fixed (ImDrawListSharedData* pdata = &data)
+			{
+				ImGui._SetDrawListSharedDataNative(Handle, (ImDrawListSharedData*)pdata);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _SetTexture(ImTextureRef texRef)
+		{
+			ImGui._SetTextureNative(Handle, texRef);
 		}
 
 		/// <summary>
@@ -8326,7 +8351,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -8334,7 +8359,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
@@ -8342,7 +8367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -8350,7 +8375,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
@@ -8360,7 +8385,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, ulong userdataSize)
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
 		{
 			ImGui.AddCallbackNative(Handle, callback, userdata, userdataSize);
 		}
@@ -8370,15 +8395,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
 		{
-			ImGui.AddCallbackNative(Handle, callback, userdata, (ulong)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
-		{
-			ImGui.AddCallbackNative(Handle, callback, userdata, userdataSize);
+			ImGui.AddCallbackNative(Handle, callback, userdata, (nuint)(0));
 		}
 
 		/// <summary>
@@ -8468,7 +8485,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddDrawCmd()
 		{
@@ -8566,145 +8583,145 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
-			ImGui.AddImageNative(Handle, userTextureId, pMin, pMax, uvMin, uvMax, col);
+			ImGui.AddImageNative(Handle, texRef, pMin, pMax, uvMin, uvMax, col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
 		{
-			ImGui.AddImageNative(Handle, userTextureId, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
+			ImGui.AddImageNative(Handle, texRef, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
 		{
-			ImGui.AddImageNative(Handle, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+			ImGui.AddImageNative(Handle, texRef, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax)
 		{
-			ImGui.AddImageNative(Handle, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+			ImGui.AddImageNative(Handle, texRef, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
 		{
-			ImGui.AddImageNative(Handle, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
+			ImGui.AddImageNative(Handle, texRef, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, uint col)
+		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, uint col)
 		{
-			ImGui.AddImageNative(Handle, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
+			ImGui.AddImageNative(Handle, texRef, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		public unsafe void AddImageQuad(ImTextureRef texRef, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
-			ImGui.AddImageQuadNative(Handle, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			ImGui.AddImageQuadNative(Handle, texRef, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageRounded(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		public unsafe void AddImageRounded(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
 		{
-			ImGui.AddImageRoundedNative(Handle, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			ImGui.AddImageRoundedNative(Handle, texRef, pMin, pMax, uvMin, uvMax, col, rounding, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddImageRounded(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
+		public unsafe void AddImageRounded(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
 		{
-			ImGui.AddImageRoundedNative(Handle, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
+			ImGui.AddImageRoundedNative(Handle, texRef, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
 		}
 
 		/// <summary>
@@ -8791,7 +8808,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
@@ -8799,7 +8816,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -8807,7 +8824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -8815,7 +8832,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -8823,7 +8840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -8831,7 +8848,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
@@ -8839,7 +8856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -8847,7 +8864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -8855,7 +8872,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -8863,7 +8880,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -8871,7 +8888,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -14774,11 +14791,11 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
+		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawList* CloneOutput()
+		public unsafe ImDrawListPtr CloneOutput()
 		{
-			ImDrawList* ret = ImGui.CloneOutputNative(Handle);
+			ImDrawListPtr ret = ImGui.CloneOutputNative(Handle);
 			return ret;
 		}
 
@@ -14807,7 +14824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Use precomputed angles for a 12 steps circle<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathArcToFast(Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -14815,7 +14832,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -14823,7 +14840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Cubic Bezier (4 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4)
 		{
@@ -14831,7 +14848,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -14839,7 +14856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Quadratic Bezier (3 control points)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3)
 		{
@@ -14855,7 +14872,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Ellipse<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -14863,7 +14880,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Ellipse<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
@@ -14977,9 +14994,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void PopTextureID()
+		public unsafe void PopTexture()
 		{
-			ImGui.PopTextureIDNative(Handle);
+			ImGui.PopTextureNative(Handle);
 		}
 
 		/// <summary>
@@ -14991,7 +15008,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Axis aligned rectangle (composed of two triangles)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PrimRect(Vector2 a, Vector2 b, uint col)
 		{
@@ -15023,7 +15040,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Write vertex with unique index<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PrimVtx(Vector2 pos, Vector2 uv, uint col)
 		{
@@ -15047,7 +15064,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
@@ -15055,7 +15072,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax)
 		{
@@ -15073,9 +15090,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void PushTextureID(ImTextureID textureId)
+		public unsafe void PushTexture(ImTextureRef texRef)
 		{
-			ImGui.PushTextureIDNative(Handle, textureId);
+			ImGui.PushTextureNative(Handle, texRef);
 		}
 
 	}

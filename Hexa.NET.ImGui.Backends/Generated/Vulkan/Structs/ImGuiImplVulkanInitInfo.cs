@@ -19,14 +19,22 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 {
 	/// <summary>
 	/// Initialization data, for ImGui_ImplVulkan_Init()<br/>
-	/// - VkDescriptorPool should be created with VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,<br/>
-	/// and must contain a pool size large enough to hold an ImGui VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER descriptor.<br/>
-	/// - When using dynamic rendering, set UseDynamicRendering=true and fill PipelineRenderingCreateInfo structure.<br/>
 	/// [Please zero-clear before use!]<br/>
+	/// - About descriptor pool:<br/>
+	/// - A VkDescriptorPool should be created with VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,<br/>
+	/// and must contain a pool size large enough to hold a small number of VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER descriptors.<br/>
+	/// - As an convenience, by setting DescriptorPoolSize > 0 the backend will create one for you.<br/>
+	/// - About dynamic rendering:<br/>
+	/// - When using dynamic rendering, set UseDynamicRendering=true and fill PipelineRenderingCreateInfo structure.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiImplVulkanInitInfo
 	{
+		/// <summary>
+		/// Fill with API version of Instance, e.g. VK_API_VERSION_1_3 or your value of VkApplicationInfo::apiVersion. May be lower than header version (VK_HEADER_VERSION_COMPLETE)<br/>
+		/// </summary>
+		public uint ApiVersion;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -53,7 +61,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		public VkQueue Queue;
 
 		/// <summary>
-		/// See requirements in note above<br/>
+		/// See requirements in note above; ignored if using DescriptorPoolSize > 0<br/>
 		/// </summary>
 		public VkDescriptorPool DescriptorPool;
 
@@ -88,6 +96,11 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		public uint Subpass;
 
 		/// <summary>
+		/// (Optional) Set to create internal descriptor pool instead of using DescriptorPool<br/>
+		/// </summary>
+		public uint DescriptorPoolSize;
+
+		/// <summary>
 		/// (Optional) Dynamic Rendering<br/>
 		/// Need to explicitly enable VK_KHR_dynamic_rendering extension to use this, even for Vulkan 1.3.<br/>
 		/// </summary>
@@ -117,8 +130,9 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiImplVulkanInitInfo(VkInstance instance = default, VkPhysicalDevice physicalDevice = default, VkDevice device = default, uint queueFamily = default, VkQueue queue = default, VkDescriptorPool descriptorPool = default, VkRenderPass renderPass = default, uint minImageCount = default, uint imageCount = default, uint msaaSamples = default, VkPipelineCache pipelineCache = default, uint subpass = default, bool useDynamicRendering = default, VkPipelineRenderingCreateInfo pipelineRenderingCreateInfo = default, VkAllocationCallbacks* allocator = default, delegate*<int, void> checkVkResultFn = default, ulong minAllocationSize = default)
+		public unsafe ImGuiImplVulkanInitInfo(uint apiVersion = default, VkInstance instance = default, VkPhysicalDevice physicalDevice = default, VkDevice device = default, uint queueFamily = default, VkQueue queue = default, VkDescriptorPool descriptorPool = default, VkRenderPass renderPass = default, uint minImageCount = default, uint imageCount = default, uint msaaSamples = default, VkPipelineCache pipelineCache = default, uint subpass = default, uint descriptorPoolSize = default, bool useDynamicRendering = default, VkPipelineRenderingCreateInfo pipelineRenderingCreateInfo = default, VkAllocationCallbacks* allocator = default, delegate*<int, void> checkVkResultFn = default, ulong minAllocationSize = default)
 		{
+			ApiVersion = apiVersion;
 			Instance = instance;
 			PhysicalDevice = physicalDevice;
 			Device = device;
@@ -131,6 +145,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 			MSAASamples = msaaSamples;
 			PipelineCache = pipelineCache;
 			Subpass = subpass;
+			DescriptorPoolSize = descriptorPoolSize;
 			UseDynamicRendering = useDynamicRendering ? (byte)1 : (byte)0;
 			PipelineRenderingCreateInfo = pipelineRenderingCreateInfo;
 			Allocator = allocator;
@@ -143,10 +158,13 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 
 	/// <summary>
 	/// Initialization data, for ImGui_ImplVulkan_Init()<br/>
-	/// - VkDescriptorPool should be created with VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,<br/>
-	/// and must contain a pool size large enough to hold an ImGui VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER descriptor.<br/>
-	/// - When using dynamic rendering, set UseDynamicRendering=true and fill PipelineRenderingCreateInfo structure.<br/>
 	/// [Please zero-clear before use!]<br/>
+	/// - About descriptor pool:<br/>
+	/// - A VkDescriptorPool should be created with VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,<br/>
+	/// and must contain a pool size large enough to hold a small number of VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER descriptors.<br/>
+	/// - As an convenience, by setting DescriptorPoolSize > 0 the backend will create one for you.<br/>
+	/// - About dynamic rendering:<br/>
+	/// - When using dynamic rendering, set UseDynamicRendering=true and fill PipelineRenderingCreateInfo structure.<br/>
 	/// </summary>
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -187,6 +205,10 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		private string DebuggerDisplay => string.Format("ImGuiImplVulkanInitInfoPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		/// <summary>
+		/// Fill with API version of Instance, e.g. VK_API_VERSION_1_3 or your value of VkApplicationInfo::apiVersion. May be lower than header version (VK_HEADER_VERSION_COMPLETE)<br/>
+		/// </summary>
+		public ref uint ApiVersion => ref Unsafe.AsRef<uint>(&Handle->ApiVersion);
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref VkInstance Instance => ref Unsafe.AsRef<VkInstance>(&Handle->Instance);
@@ -207,7 +229,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// </summary>
 		public ref VkQueue Queue => ref Unsafe.AsRef<VkQueue>(&Handle->Queue);
 		/// <summary>
-		/// See requirements in note above<br/>
+		/// See requirements in note above; ignored if using DescriptorPoolSize > 0<br/>
 		/// </summary>
 		public ref VkDescriptorPool DescriptorPool => ref Unsafe.AsRef<VkDescriptorPool>(&Handle->DescriptorPool);
 		/// <summary>
@@ -234,6 +256,10 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// To be documented.
 		/// </summary>
 		public ref uint Subpass => ref Unsafe.AsRef<uint>(&Handle->Subpass);
+		/// <summary>
+		/// (Optional) Set to create internal descriptor pool instead of using DescriptorPool<br/>
+		/// </summary>
+		public ref uint DescriptorPoolSize => ref Unsafe.AsRef<uint>(&Handle->DescriptorPoolSize);
 		/// <summary>
 		/// (Optional) Dynamic Rendering<br/>
 		/// Need to explicitly enable VK_KHR_dynamic_rendering extension to use this, even for Vulkan 1.3.<br/>

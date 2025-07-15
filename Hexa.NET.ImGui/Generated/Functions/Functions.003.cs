@@ -19,7 +19,127 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					byte ret = DragFloatNative((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					bool ret = DragFloat((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = &v)
+				{
+					byte ret = DragFloatNative((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -52,7 +172,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -85,7 +205,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax)
 		{
@@ -118,7 +238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin)
 		{
@@ -151,7 +271,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed)
 		{
@@ -184,7 +304,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v)
 		{
@@ -217,7 +337,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, byte* format)
 		{
@@ -250,7 +370,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, byte* format)
 		{
@@ -283,7 +403,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, byte* format)
 		{
@@ -316,7 +436,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -349,7 +469,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -382,7 +502,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -415,7 +535,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, ImGuiSliderFlags flags)
 		{
@@ -448,7 +568,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -481,7 +601,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -514,7 +634,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -547,7 +667,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -559,7 +679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -571,7 +691,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, ref byte format)
 		{
@@ -583,7 +703,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, ref byte format)
 		{
@@ -595,7 +715,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, ref byte format)
 		{
@@ -607,7 +727,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -619,7 +739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -631,7 +751,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -643,7 +763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -655,7 +775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -667,7 +787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -679,7 +799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -691,7 +811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, ReadOnlySpan<byte> format)
 		{
@@ -703,7 +823,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -715,7 +835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -727,7 +847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -739,7 +859,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -769,7 +889,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -799,7 +919,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, string format)
 		{
@@ -829,7 +949,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, string format)
 		{
@@ -859,7 +979,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, string format)
 		{
@@ -889,7 +1009,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -919,7 +1039,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -949,7 +1069,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, string format, ImGuiSliderFlags flags)
 		{
@@ -979,7 +1099,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -994,7 +1114,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -1009,7 +1129,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, ref byte format)
 		{
@@ -1024,7 +1144,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, ref byte format)
 		{
@@ -1039,7 +1159,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, ref byte format)
 		{
@@ -1054,7 +1174,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -1069,7 +1189,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -1084,7 +1204,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -1099,7 +1219,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1114,7 +1234,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -1129,7 +1249,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -1144,7 +1264,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -1159,7 +1279,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, ReadOnlySpan<byte> format)
 		{
@@ -1174,7 +1294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1189,7 +1309,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1204,7 +1324,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1219,7 +1339,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -1270,7 +1390,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -1321,7 +1441,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, string format)
 		{
@@ -1372,7 +1492,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, string format)
 		{
@@ -1423,7 +1543,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, string format)
 		{
@@ -1474,7 +1594,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -1525,7 +1645,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -1576,7 +1696,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, string format, ImGuiSliderFlags flags)
 		{
@@ -1627,7 +1747,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1642,7 +1762,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -1657,7 +1777,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -1672,7 +1792,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -1687,7 +1807,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, ReadOnlySpan<byte> format)
 		{
@@ -1702,7 +1822,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1717,7 +1837,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1732,7 +1852,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -1747,7 +1867,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -1780,7 +1900,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -1813,7 +1933,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, string format)
 		{
@@ -1846,7 +1966,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, string format)
 		{
@@ -1879,7 +1999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, string format)
 		{
@@ -1912,7 +2032,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -1945,7 +2065,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -1978,7 +2098,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, string format, ImGuiSliderFlags flags)
 		{
@@ -2011,7 +2131,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2026,7 +2146,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -2041,7 +2161,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, ref byte format)
 		{
@@ -2056,7 +2176,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, ref byte format)
 		{
@@ -2071,7 +2191,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, ref byte format)
 		{
@@ -2086,7 +2206,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2101,7 +2221,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2116,7 +2236,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2131,7 +2251,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -2164,7 +2284,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -2197,7 +2317,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, string format)
 		{
@@ -2230,7 +2350,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, string format)
 		{
@@ -2263,7 +2383,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, string format)
 		{
@@ -2296,7 +2416,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -2329,7 +2449,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -2362,7 +2482,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, string format, ImGuiSliderFlags flags)
 		{
@@ -2395,7 +2515,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2428,7 +2548,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -2461,7 +2581,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, ref byte format)
 		{
@@ -2494,7 +2614,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, ref byte format)
 		{
@@ -2527,7 +2647,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, ref byte format)
 		{
@@ -2560,7 +2680,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2593,7 +2713,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2626,7 +2746,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2659,7 +2779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -2692,7 +2812,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -2725,7 +2845,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -2758,7 +2878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -2791,7 +2911,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, ReadOnlySpan<byte> format)
 		{
@@ -2824,7 +2944,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -2857,7 +2977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -2890,7 +3010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, float* v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -2923,7 +3043,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -2938,7 +3058,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -2953,7 +3073,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, ref byte format)
 		{
@@ -2968,7 +3088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, ref byte format)
 		{
@@ -2983,7 +3103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, ref byte format)
 		{
@@ -2998,7 +3118,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3013,7 +3133,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3028,7 +3148,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3043,7 +3163,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3058,7 +3178,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -3073,7 +3193,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -3088,7 +3208,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -3103,7 +3223,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, ReadOnlySpan<byte> format)
 		{
@@ -3118,7 +3238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3133,7 +3253,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3148,7 +3268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3163,7 +3283,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -3196,7 +3316,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -3229,7 +3349,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, string format)
 		{
@@ -3262,7 +3382,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, string format)
 		{
@@ -3295,7 +3415,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, string format)
 		{
@@ -3328,7 +3448,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -3361,7 +3481,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -3394,7 +3514,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, string format, ImGuiSliderFlags flags)
 		{
@@ -3427,7 +3547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3445,7 +3565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -3463,7 +3583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, ref byte format)
 		{
@@ -3481,7 +3601,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, ref byte format)
 		{
@@ -3499,7 +3619,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, ref byte format)
 		{
@@ -3517,7 +3637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3535,7 +3655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3553,7 +3673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -3571,7 +3691,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3589,7 +3709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -3607,7 +3727,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -3625,7 +3745,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -3643,7 +3763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, ReadOnlySpan<byte> format)
 		{
@@ -3661,7 +3781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3679,7 +3799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3697,7 +3817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -3715,7 +3835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -3769,7 +3889,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -3823,7 +3943,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, string format)
 		{
@@ -3877,7 +3997,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, string format)
 		{
@@ -3931,7 +4051,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, string format)
 		{
@@ -3985,7 +4105,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -4039,7 +4159,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -4093,7 +4213,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(string label, ref float v, string format, ImGuiSliderFlags flags)
 		{
@@ -4147,7 +4267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4165,7 +4285,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, ReadOnlySpan<byte> format)
 		{
@@ -4183,7 +4303,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, ReadOnlySpan<byte> format)
 		{
@@ -4201,7 +4321,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -4219,7 +4339,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, ReadOnlySpan<byte> format)
 		{
@@ -4237,7 +4357,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4255,7 +4375,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4273,7 +4393,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -4291,7 +4411,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4327,7 +4447,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -4363,7 +4483,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, string format)
 		{
@@ -4399,7 +4519,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, string format)
 		{
@@ -4435,7 +4555,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, string format)
 		{
@@ -4471,7 +4591,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
 		{
@@ -4507,7 +4627,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, string format, ImGuiSliderFlags flags)
 		{
@@ -4543,7 +4663,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, string format, ImGuiSliderFlags flags)
 		{
@@ -4579,7 +4699,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4597,7 +4717,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, ref byte format)
 		{
@@ -4615,7 +4735,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, ref byte format)
 		{
@@ -4633,7 +4753,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, ref byte format)
 		{
@@ -4651,7 +4771,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, ref byte format)
 		{
@@ -4669,7 +4789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4687,7 +4807,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4705,7 +4825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -4723,7 +4843,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, string format, ImGuiSliderFlags flags)
 		{
@@ -4759,7 +4879,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, string format)
 		{
@@ -4795,7 +4915,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, string format)
 		{
@@ -4831,7 +4951,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, string format)
 		{
@@ -4867,7 +4987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
+		/// To be documented.
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, string format)
 		{
@@ -4893,150 +5013,6 @@ namespace Hexa.NET.ImGui
 						pStr0[pStrOffset0] = 0;
 					}
 					byte ret = DragFloatNative((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), pStr0, (ImGuiSliderFlags)(0));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), pStr0, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), pStr0, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), pStr0, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, float vMax, ref byte format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = DragFloatNative(pStr0, (float*)pv, vSpeed, vMin, vMax, (byte*)pformat, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);

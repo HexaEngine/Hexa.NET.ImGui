@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Temporary storage for multi-select<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMultiSelectTempData
@@ -70,7 +70,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte LoopRequestSetAll;
+		public sbyte LoopRequestSetAll;
 
 		/// <summary>
 		/// To be documented.
@@ -106,7 +106,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiMultiSelectTempData(ImGuiMultiSelectIO io = default, ImGuiMultiSelectState* storage = default, uint focusScopeId = default, ImGuiMultiSelectFlags flags = default, Vector2 scopeRectMin = default, Vector2 backupCursorMaxPos = default, long lastSubmittedItem = default, uint boxSelectId = default, int keyMods = default, byte loopRequestSetAll = default, bool isEndIo = default, bool isFocused = default, bool isKeyboardSetRange = default, bool navIdPassedBy = default, bool rangeSrcPassedBy = default, bool rangeDstPassedBy = default)
+		public unsafe ImGuiMultiSelectTempData(ImGuiMultiSelectIO io = default, ImGuiMultiSelectState* storage = default, uint focusScopeId = default, ImGuiMultiSelectFlags flags = default, Vector2 scopeRectMin = default, Vector2 backupCursorMaxPos = default, long lastSubmittedItem = default, uint boxSelectId = default, int keyMods = default, sbyte loopRequestSetAll = default, bool isEndIo = default, bool isFocused = default, bool isKeyboardSetRange = default, bool navIdPassedBy = default, bool rangeSrcPassedBy = default, bool rangeDstPassedBy = default)
 		{
 			IO = io;
 			Storage = storage;
@@ -209,7 +209,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte LoopRequestSetAll => ref Unsafe.AsRef<byte>(&Handle->LoopRequestSetAll);
+		public ref sbyte LoopRequestSetAll => ref Unsafe.AsRef<sbyte>(&Handle->LoopRequestSetAll);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

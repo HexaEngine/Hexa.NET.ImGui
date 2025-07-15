@@ -17,22 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Optional helper to store multi-selection state + apply multi-selection requests.<br/>
-	/// - Used by our demos and provided as a convenience to easily implement basic multi-selection.<br/>
-	/// - Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-	/// Or you can check 'if (Contains(id))  ... ' for each possible object if their number is not too high to iterate.<br/>
-	/// - USING THIS IS NOT MANDATORY. This is only a helper and not a required API.<br/>
-	/// To store a multi-selection, in your application you could:<br/>
-	/// - Use this helper as a convenience. We use our simple key-&gt;value ImGuiStorage as a std::set&lt;ImGuiID&gt; replacement.<br/>
-	/// - Use your own external storage: e.g. std::set&lt;MyObjectId&gt;, std::vector&lt;MyObjectId&gt;, interval trees, intrusively stored selection etc.<br/>
-	/// In ImGuiSelectionBasicStorage we:<br/>
-	/// - always use indices in the multi-selection API (passed to SetNextItemSelectionUserData(), retrieved in ImGuiMultiSelectIO)<br/>
-	/// - use the AdapterIndexToStorageId() indirection layer to abstract how persistent selection data is derived from an index.<br/>
-	/// - use decently optimized logic to allow queries and insertion of very large selection sets.<br/>
-	/// - do not preserve selection order.<br/>
-	/// Many combinations are possible depending on how you prefer to store your items and how you prefer to store your selection.<br/>
-	/// Large applications are likely to eventually want to get rid of this indirection layer and do their own thing.<br/>
-	/// See https:github.comocornutimguiwikiMulti-Select for details and pseudo-code using this helper.<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiSelectionBasicStorage
@@ -83,7 +68,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
 		{
@@ -94,7 +79,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
 		{
@@ -108,7 +93,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Clear selection<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -119,7 +104,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Query if an item id is in selection.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Contains(uint id)
 		{
@@ -142,7 +127,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool GetNextSelectedItem(void** opaqueIt, uint* outId)
 		{
@@ -154,22 +139,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref uint outId)
-		{
-			fixed (ImGuiSelectionBasicStorage* @this = &this)
-			{
-				fixed (uint* poutId = &outId)
-				{
-					byte ret = ImGui.GetNextSelectedItemNative(@this, opaqueIt, (uint*)poutId);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Convert index to item id based on provided adapter.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe uint GetStorageIdFromIndex(int idx)
 		{
@@ -181,7 +151,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetItemSelected(uint id, bool selected)
 		{
@@ -192,7 +162,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Swap two selections<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Swap(ImGuiSelectionBasicStorage* r)
 		{
@@ -203,7 +173,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Swap two selections<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Swap(ref ImGuiSelectionBasicStorage r)
 		{
@@ -284,7 +254,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImGuiStorage Storage => ref Unsafe.AsRef<ImGuiStorage>(&Handle->Storage);
 		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
 		{
@@ -292,7 +262,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
 		{
@@ -303,7 +273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Clear selection<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -311,7 +281,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Query if an item id is in selection.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool Contains(uint id)
 		{
@@ -328,7 +298,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe bool GetNextSelectedItem(void** opaqueIt, uint* outId)
 		{
@@ -337,19 +307,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref uint outId)
-		{
-			fixed (uint* poutId = &outId)
-			{
-				byte ret = ImGui.GetNextSelectedItemNative(Handle, opaqueIt, (uint*)poutId);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Convert index to item id based on provided adapter.<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe uint GetStorageIdFromIndex(int idx)
 		{
@@ -358,7 +316,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetItemSelected(uint id, bool selected)
 		{
@@ -366,15 +324,15 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Swap two selections<br/>
+		/// To be documented.
 		/// </summary>
-		public unsafe void Swap(ImGuiSelectionBasicStorage* r)
+		public unsafe void Swap(ImGuiSelectionBasicStoragePtr r)
 		{
 			ImGui.SwapNative(Handle, r);
 		}
 
 		/// <summary>
-		/// Swap two selections<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void Swap(ref ImGuiSelectionBasicStorage r)
 		{
