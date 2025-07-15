@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.91.9</AssemblyVersion>
-		<PackageVersion>2.2.7</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui library. (1.91.9b)</Description>
+		<AssemblyVersion>1.92.1</AssemblyVersion>
+		<PackageVersion>2.2.8</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui library. (1.92.1)</Description>
 		<PackageTags>ImGui UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>
@@ -29,7 +29,7 @@
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="HexaGen.Runtime" Version="1.1.18" />
 	</ItemGroup>
@@ -94,7 +94,7 @@
 			<Pack>true</Pack>
 		</None>
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />

@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.91.3</AssemblyVersion>
-		<PackageVersion>2.2.7</PackageVersion>
-		<Description>A .NET wrapper for the ImGuizmo library. (1.91.3 WIP)</Description>
+		<AssemblyVersion>1.92.1</AssemblyVersion>
+		<PackageVersion>2.2.8</PackageVersion>
+		<Description>A .NET wrapper for the ImGuizmo library. (1.91.3 WIP) (for ImGui 1.92.1)</Description>
 		<PackageTags>ImGuizmo UI Immidate GUI Guizmo Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>
@@ -90,7 +90,7 @@
 			<Pack>true</Pack>
 		</None>
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
 	</ItemGroup>

@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.0.11</AssemblyVersion>
-		<PackageVersion>1.0.15</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.91.9b) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
+		<AssemblyVersion>1.0.12</AssemblyVersion>
+		<PackageVersion>1.0.17</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.92.1) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
 		<PackageTags>ImGui Backends UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
@@ -35,9 +35,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
 	</ItemGroup>
-
 
 	<ItemGroup>
 		<None Include="native\android-arm64\*.so">
@@ -96,16 +95,12 @@
 		</None>
 	</ItemGroup>
 
-
 	<ItemGroup>
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
-
 	<ItemGroup>
-	  <Folder Include="Generated\" />
+		<Folder Include="Generated\" />
 	</ItemGroup>
-
-
 </Project>

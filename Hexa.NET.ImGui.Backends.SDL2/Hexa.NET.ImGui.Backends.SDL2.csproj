@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.0.11</AssemblyVersion>
-		<PackageVersion>1.0.15</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.91.9b) library backend SDL2.</Description>
+		<AssemblyVersion>1.0.12</AssemblyVersion>
+		<PackageVersion>1.0.17</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.92.1) library backend SDL2.</Description>
 		<PackageTags>ImGui Backends SDL2 UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
@@ -99,5 +99,4 @@
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-
 </Project>
