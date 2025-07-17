@@ -1,3 +1,7 @@
+[![Build ImGui and Addons Libraries](https://github.com/HexaEngine/Hexa.NET.ImGui/actions/workflows/cmake.yml/badge.svg)](https://github.com/HexaEngine/Hexa.NET.ImGui/actions/workflows/cmake.yml)
+[![Build ImGui Backends](https://github.com/HexaEngine/Hexa.NET.ImGui/actions/workflows/cmake-backends.yml/badge.svg)](https://github.com/HexaEngine/Hexa.NET.ImGui/actions/workflows/cmake-backends.yml)
+[![Publish NuGet Packages](https://github.com/HexaEngine/Hexa.NET.ImGui/actions/workflows/push-nuget.yml/badge.svg)](https://github.com/HexaEngine/Hexa.NET.ImGui/actions/workflows/push-nuget.yml)
+
 # Hexa.NET.ImGui
 
 Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performance, API-compatible alternative to ImGuiNET, offering enhanced speed, additional functionality, and comprehensive access to ImGui's internal structures. With optimizations that bring near C performance and significantly reduced startup times, Hexa.NET.ImGui provides the best of both worlds: the power of C and the productivity of C#.
