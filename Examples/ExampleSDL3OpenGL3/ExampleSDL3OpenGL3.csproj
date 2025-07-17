@@ -15,9 +15,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Hexa.NET.ImGui.Backends.SDL3\Hexa.NET.ImGui.Backends.SDL3.csproj" />
-		<ProjectReference Include="..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
-		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+		<ProjectReference Include="..\..\Hexa.NET.ImGui.Backends.SDL3\Hexa.NET.ImGui.Backends.SDL3.csproj" />
+		<ProjectReference Include="..\..\Hexa.NET.ImGui.Backends\Hexa.NET.ImGui.Backends.csproj" />
+		<ProjectReference Include="..\..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
 	</ItemGroup>
 
 </Project>
