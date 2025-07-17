@@ -3,7 +3,7 @@ name: Publish NuGet Packages
 on: 
   push:
     tags:
-      - 1.**
+      - 2.**
   workflow_dispatch:
   
 
