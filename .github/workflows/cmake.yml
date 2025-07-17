@@ -9,7 +9,7 @@ jobs:
       lib-name: cimgui
       repo: JunaMeinhold/cimgui
       repo-tag: docking_inter
-      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       use-vcpkg: true
       vcpkg-packages: freetype
       bin-name-linux: cimgui.so
@@ -28,7 +28,7 @@ jobs:
       lib-name: cimplot
       repo: JunaMeinhold/cimplot
       repo-tag: master
-      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       bin-name-linux: cimplot.so
       bin-name-linux-normalized: cimplot.so
       bin-name-windows: Release/cimplot.dll
@@ -47,7 +47,7 @@ jobs:
       lib-name: cimnodes
       repo: JunaMeinhold/cimnodes
       repo-tag: master
-      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       bin-name-linux: cimnodes.so
       bin-name-linux-normalized: cimnodes.so
       bin-name-windows: Release/cimnodes.dll
@@ -66,7 +66,7 @@ jobs:
       lib-name: cimguizmo
       repo: JunaMeinhold/cimguizmo
       repo-tag: master
-      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       bin-name-linux: cimguizmo.so
       bin-name-linux-normalized: cimguizmo.so
       bin-name-windows: Release/cimguizmo.dll
