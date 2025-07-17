@@ -2,8 +2,8 @@ name: Publish NuGet Packages
 
 on: 
   push:
-    branches:
-      - master
+    tags:
+      - 1.**
 
 jobs:
   build:
