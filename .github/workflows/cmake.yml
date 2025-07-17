@@ -12,6 +12,7 @@ jobs:
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       use-vcpkg: true
       vcpkg-packages: freetype
+      vcpkg-triplet-windows: "{arch}-windows-static"
       bin-name-linux: cimgui.so
       bin-name-linux-normalized: cimgui.so
       bin-name-windows: Release/cimgui.dll
