@@ -15,6 +15,8 @@ namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
+		public const int CIMGUI_VARGS0 = 1;
+
 		public const int IMGUI_USE_WCHAR32 = 1;
 
 		public const int IMGUI_ENABLE_FREETYPE = 1;

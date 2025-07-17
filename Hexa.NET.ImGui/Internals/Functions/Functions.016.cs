@@ -21,284 +21,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, ReadOnlySpan<byte> textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, text, pStr0, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, pStr0, pStr1, (Vector2*)ptextSizeIfKnown);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ref byte text, ReadOnlySpan<byte> textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ref byte text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative(drawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, ReadOnlySpan<byte> textEnd, ref Vector2 textSizeIfKnown)
 		{
 			byte* pStr0 = null;
@@ -626,9 +348,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, byte borders, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1353])(pMin, pMax, fillCol, borders, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1355])(pMin, pMax, fillCol, borders, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1353])(pMin, pMax, fillCol, borders, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1355])(pMin, pMax, fillCol, borders, rounding);
 			#endif
 		}
 
@@ -671,9 +393,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderFrameBorderNative(Vector2 pMin, Vector2 pMax, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1354])(pMin, pMax, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1356])(pMin, pMax, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1354])(pMin, pMax, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1356])(pMin, pMax, rounding);
 			#endif
 		}
 
@@ -700,9 +422,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderColorRectWithAlphaCheckerboardNative(ImDrawList* drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1355])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1357])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1355])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1357])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
 			#endif
 		}
 
@@ -789,9 +511,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderNavCursorNative(ImRect bb, uint id, ImGuiNavRenderCursorFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1356])(bb, id, flags);
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1358])(bb, id, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1356])(bb, id, flags);
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1358])(bb, id, flags);
 			#endif
 		}
 
@@ -818,9 +540,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* FindRenderedTextEndNative(byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[1357])(text, textEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[1359])(text, textEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1357])((nint)text, (nint)textEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1359])((nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -1677,9 +1399,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderMouseCursorNative(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1358])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1360])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1358])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1360])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
 			#endif
 		}
 
@@ -1698,9 +1420,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowNative(ImDrawList* drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)funcTable[1359])(drawList, pos, col, dir, scale);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)funcTable[1361])(drawList, pos, col, dir, scale);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)funcTable[1359])((nint)drawList, pos, col, dir, scale);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)funcTable[1361])((nint)drawList, pos, col, dir, scale);
 			#endif
 		}
 
@@ -1749,9 +1471,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderBulletNative(ImDrawList* drawList, Vector2 pos, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)funcTable[1360])(drawList, pos, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)funcTable[1362])(drawList, pos, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)funcTable[1360])((nint)drawList, pos, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)funcTable[1362])((nint)drawList, pos, col);
 			#endif
 		}
 
@@ -1781,9 +1503,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderCheckMarkNative(ImDrawList* drawList, Vector2 pos, uint col, float sz)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)funcTable[1361])(drawList, pos, col, sz);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)funcTable[1363])(drawList, pos, col, sz);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)funcTable[1361])((nint)drawList, pos, col, sz);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)funcTable[1363])((nint)drawList, pos, col, sz);
 			#endif
 		}
 
@@ -1813,9 +1535,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowPointingAtNative(ImDrawList* drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1362])(drawList, pos, halfSz, direction, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1364])(drawList, pos, halfSz, direction, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1362])((nint)drawList, pos, halfSz, direction, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1364])((nint)drawList, pos, halfSz, direction, col);
 			#endif
 		}
 
@@ -1845,9 +1567,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowDockMenuNative(ImDrawList* drawList, Vector2 pMin, float sz, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)funcTable[1363])(drawList, pMin, sz, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)funcTable[1365])(drawList, pMin, sz, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, void>)funcTable[1363])((nint)drawList, pMin, sz, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, void>)funcTable[1365])((nint)drawList, pMin, sz, col);
 			#endif
 		}
 
@@ -1877,9 +1599,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderRectFilledRangeHNative(ImDrawList* drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)funcTable[1364])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)funcTable[1366])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, uint, float, float, float, void>)funcTable[1364])((nint)drawList, rect, col, xStartNorm, xEndNorm, rounding);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, uint, float, float, float, void>)funcTable[1366])((nint)drawList, rect, col, xStartNorm, xEndNorm, rounding);
 			#endif
 		}
 
@@ -1909,9 +1631,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderRectFilledWithHoleNative(ImDrawList* drawList, ImRect outer, ImRect inner, uint col, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)funcTable[1365])(drawList, outer, inner, col, rounding);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)funcTable[1367])(drawList, outer, inner, col, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect, uint, float, void>)funcTable[1365])((nint)drawList, outer, inner, col, rounding);
+			((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect, uint, float, void>)funcTable[1367])((nint)drawList, outer, inner, col, rounding);
 			#endif
 		}
 
@@ -1941,9 +1663,9 @@ namespace Hexa.NET.ImGui
 		internal static ImDrawFlags CalcRoundingFlagsForRectInRectNative(ImRect rIn, ImRect rOuter, float threshold)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1366])(rIn, rOuter, threshold);
+			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1368])(rIn, rOuter, threshold);
 			#else
-			return (ImDrawFlags)((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1366])(rIn, rOuter, threshold);
+			return (ImDrawFlags)((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1368])(rIn, rOuter, threshold);
 			#endif
 		}
 
@@ -1963,9 +1685,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextExNative(byte* text, byte* textEnd, ImGuiTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)funcTable[1367])(text, textEnd, flags);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)funcTable[1369])(text, textEnd, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTextFlags, void>)funcTable[1367])((nint)text, (nint)textEnd, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTextFlags, void>)funcTable[1369])((nint)text, (nint)textEnd, flags);
 			#endif
 		}
 
@@ -2779,84 +2501,12 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TextAlignedNative(float alignX, float sizeX, byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, byte*, void>)funcTable[1368])(alignX, sizeX, fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, nint, void>)funcTable[1368])(alignX, sizeX, (nint)fmt);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextAligned(float alignX, float sizeX, byte* fmt)
-		{
-			TextAlignedNative(alignX, sizeX, fmt);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextAligned(float alignX, float sizeX, ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextAlignedNative(alignX, sizeX, (byte*)pfmt);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextAligned(float alignX, float sizeX, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextAlignedNative(alignX, sizeX, (byte*)pfmt);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextAligned(float alignX, float sizeX, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextAlignedNative(alignX, sizeX, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextAlignedVNative(float alignX, float sizeX, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, byte*, nuint, void>)funcTable[1369])(alignX, sizeX, fmt, args);
+			((delegate* unmanaged[Cdecl]<float, float, byte*, nuint, void>)funcTable[1370])(alignX, sizeX, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, nint, nuint, void>)funcTable[1369])(alignX, sizeX, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<float, float, nint, nuint, void>)funcTable[1370])(alignX, sizeX, (nint)fmt, args);
 			#endif
 		}
 
@@ -2926,9 +2576,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ButtonExNative(byte* label, Vector2 sizeArg, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)funcTable[1370])(label, sizeArg, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)funcTable[1371])(label, sizeArg, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)funcTable[1370])((nint)label, sizeArg, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)funcTable[1371])((nint)label, sizeArg, flags);
 			#endif
 		}
 
@@ -3191,9 +2841,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ArrowButtonExNative(byte* strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)funcTable[1371])(strId, dir, sizeArg, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)funcTable[1372])(strId, dir, sizeArg, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)funcTable[1371])((nint)strId, dir, sizeArg, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)funcTable[1372])((nint)strId, dir, sizeArg, flags);
 			#endif
 		}
 
@@ -3330,9 +2980,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImageButtonExNative(uint id, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)funcTable[1372])(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
+			return ((delegate* unmanaged[Cdecl]<uint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)funcTable[1373])(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)funcTable[1372])(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)funcTable[1373])(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
 			#endif
 		}
 
@@ -3361,9 +3011,9 @@ namespace Hexa.NET.ImGui
 		internal static void SeparatorExNative(ImGuiSeparatorFlags flags, float thickness)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)funcTable[1373])(flags, thickness);
+			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)funcTable[1374])(flags, thickness);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)funcTable[1373])(flags, thickness);
+			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)funcTable[1374])(flags, thickness);
 			#endif
 		}
 
@@ -3390,9 +3040,9 @@ namespace Hexa.NET.ImGui
 		internal static void SeparatorTextExNative(uint id, byte* label, byte* labelEnd, float extraWidth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, byte*, byte*, float, void>)funcTable[1374])(id, label, labelEnd, extraWidth);
+			((delegate* unmanaged[Cdecl]<uint, byte*, byte*, float, void>)funcTable[1375])(id, label, labelEnd, extraWidth);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, nint, nint, float, void>)funcTable[1374])(id, (nint)label, (nint)labelEnd, extraWidth);
+			((delegate* unmanaged[Cdecl]<uint, nint, nint, float, void>)funcTable[1375])(id, (nint)label, (nint)labelEnd, extraWidth);
 			#endif
 		}
 
@@ -3747,9 +3397,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxFlagsNative(byte* label, long* flags, long flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, long*, long, byte>)funcTable[1375])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, long*, long, byte>)funcTable[1376])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, long, byte>)funcTable[1375])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, long, byte>)funcTable[1376])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -3823,9 +3473,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxFlagsNative(byte* label, ulong* flags, ulong flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong, byte>)funcTable[1376])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong, byte>)funcTable[1377])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ulong, byte>)funcTable[1376])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ulong, byte>)funcTable[1377])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -3899,9 +3549,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CloseButtonNative(uint id, Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, Vector2, byte>)funcTable[1377])(id, pos);
+			return ((delegate* unmanaged[Cdecl]<uint, Vector2, byte>)funcTable[1378])(id, pos);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, byte>)funcTable[1377])(id, pos);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, byte>)funcTable[1378])(id, pos);
 			#endif
 		}
 
@@ -3921,9 +3571,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CollapseButtonNative(uint id, Vector2 pos, ImGuiDockNode* dockNode)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNode*, byte>)funcTable[1378])(id, pos, dockNode);
+			return ((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNode*, byte>)funcTable[1379])(id, pos, dockNode);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, nint, byte>)funcTable[1378])(id, pos, (nint)dockNode);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, nint, byte>)funcTable[1379])(id, pos, (nint)dockNode);
 			#endif
 		}
 
@@ -3955,9 +3605,9 @@ namespace Hexa.NET.ImGui
 		internal static void ScrollbarNative(ImGuiAxis axis)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)funcTable[1379])(axis);
+			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)funcTable[1380])(axis);
 			#else
-			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)funcTable[1379])(axis);
+			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)funcTable[1380])(axis);
 			#endif
 		}
 
@@ -3976,9 +3626,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ScrollbarExNative(ImRect bb, uint id, ImGuiAxis axis, long* pScrollV, long availV, long contentsV, ImDrawFlags drawRoundingFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, long*, long, long, ImDrawFlags, byte>)funcTable[1380])(bb, id, axis, pScrollV, availV, contentsV, drawRoundingFlags);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, long*, long, long, ImDrawFlags, byte>)funcTable[1381])(bb, id, axis, pScrollV, availV, contentsV, drawRoundingFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, nint, long, long, ImDrawFlags, byte>)funcTable[1380])(bb, id, axis, (nint)pScrollV, availV, contentsV, drawRoundingFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, nint, long, long, ImDrawFlags, byte>)funcTable[1381])(bb, id, axis, (nint)pScrollV, availV, contentsV, drawRoundingFlags);
 			#endif
 		}
 
@@ -4007,9 +3657,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetWindowScrollbarRectNative(ImRect* pOut, ImGuiWindow* window, ImGuiAxis axis)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiWindow*, ImGuiAxis, void>)funcTable[1381])(pOut, window, axis);
+			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiWindow*, ImGuiAxis, void>)funcTable[1382])(pOut, window, axis);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiAxis, void>)funcTable[1381])((nint)pOut, (nint)window, axis);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiAxis, void>)funcTable[1382])((nint)pOut, (nint)window, axis);
 			#endif
 		}
 
@@ -4087,9 +3737,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetWindowScrollbarIDNative(ImGuiWindow* window, ImGuiAxis axis)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiAxis, uint>)funcTable[1382])(window, axis);
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiAxis, uint>)funcTable[1383])(window, axis);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImGuiAxis, uint>)funcTable[1382])((nint)window, axis);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImGuiAxis, uint>)funcTable[1383])((nint)window, axis);
 			#endif
 		}
 
@@ -4121,9 +3771,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetWindowResizeCornerIDNative(ImGuiWindow* window, int n)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, uint>)funcTable[1383])(window, n);
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, uint>)funcTable[1384])(window, n);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1383])((nint)window, n);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1384])((nint)window, n);
 			#endif
 		}
 
@@ -4155,9 +3805,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetWindowResizeBorderIDNative(ImGuiWindow* window, ImGuiDir dir)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiDir, uint>)funcTable[1384])(window, dir);
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiDir, uint>)funcTable[1385])(window, dir);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, uint>)funcTable[1384])((nint)window, dir);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, uint>)funcTable[1385])((nint)window, dir);
 			#endif
 		}
 
@@ -4189,9 +3839,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ButtonBehaviorNative(ImRect bb, uint id, bool* outHovered, bool* outHeld, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, bool*, bool*, ImGuiButtonFlags, byte>)funcTable[1385])(bb, id, outHovered, outHeld, flags);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, bool*, bool*, ImGuiButtonFlags, byte>)funcTable[1386])(bb, id, outHovered, outHeld, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, ImGuiButtonFlags, byte>)funcTable[1385])(bb, id, (nint)outHovered, (nint)outHeld, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, ImGuiButtonFlags, byte>)funcTable[1386])(bb, id, (nint)outHovered, (nint)outHeld, flags);
 			#endif
 		}
 
@@ -4298,9 +3948,9 @@ namespace Hexa.NET.ImGui
 		internal static byte DragBehaviorNative(uint id, ImGuiDataType dataType, void* pV, float vSpeed, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDataType, void*, float, void*, void*, byte*, ImGuiSliderFlags, byte>)funcTable[1386])(id, dataType, pV, vSpeed, pMin, pMax, format, flags);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDataType, void*, float, void*, void*, byte*, ImGuiSliderFlags, byte>)funcTable[1387])(id, dataType, pV, vSpeed, pMin, pMax, format, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, ImGuiDataType, nint, float, nint, nint, nint, ImGuiSliderFlags, byte>)funcTable[1386])(id, dataType, (nint)pV, vSpeed, (nint)pMin, (nint)pMax, (nint)format, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, ImGuiDataType, nint, float, nint, nint, nint, ImGuiSliderFlags, byte>)funcTable[1387])(id, dataType, (nint)pV, vSpeed, (nint)pMin, (nint)pMax, (nint)format, flags);
 			#endif
 		}
 
@@ -4374,9 +4024,9 @@ namespace Hexa.NET.ImGui
 		internal static byte SliderBehaviorNative(ImRect bb, uint id, ImGuiDataType dataType, void* pV, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags, ImRect* outGrabBb)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiDataType, void*, void*, void*, byte*, ImGuiSliderFlags, ImRect*, byte>)funcTable[1387])(bb, id, dataType, pV, pMin, pMax, format, flags, outGrabBb);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiDataType, void*, void*, void*, byte*, ImGuiSliderFlags, ImRect*, byte>)funcTable[1388])(bb, id, dataType, pV, pMin, pMax, format, flags, outGrabBb);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiDataType, nint, nint, nint, nint, ImGuiSliderFlags, nint, byte>)funcTable[1387])(bb, id, dataType, (nint)pV, (nint)pMin, (nint)pMax, (nint)format, flags, (nint)outGrabBb);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiDataType, nint, nint, nint, nint, ImGuiSliderFlags, nint, byte>)funcTable[1388])(bb, id, dataType, (nint)pV, (nint)pMin, (nint)pMax, (nint)format, flags, (nint)outGrabBb);
 			#endif
 		}
 
@@ -4525,9 +4175,9 @@ namespace Hexa.NET.ImGui
 		internal static byte SplitterBehaviorNative(ImRect bb, uint id, ImGuiAxis axis, float* size1, float* size2, float minsize1, float minsize2, float hoverExtend, float hoverVisibilityDelay, uint bgCol)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, float*, float*, float, float, float, float, uint, byte>)funcTable[1388])(bb, id, axis, size1, size2, minsize1, minsize2, hoverExtend, hoverVisibilityDelay, bgCol);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, float*, float*, float, float, float, float, uint, byte>)funcTable[1389])(bb, id, axis, size1, size2, minsize1, minsize2, hoverExtend, hoverVisibilityDelay, bgCol);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, nint, nint, float, float, float, float, uint, byte>)funcTable[1388])(bb, id, axis, (nint)size1, (nint)size2, minsize1, minsize2, hoverExtend, hoverVisibilityDelay, bgCol);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, nint, nint, float, float, float, float, uint, byte>)funcTable[1389])(bb, id, axis, (nint)size1, (nint)size2, minsize1, minsize2, hoverExtend, hoverVisibilityDelay, bgCol);
 			#endif
 		}
 
@@ -4826,9 +4476,9 @@ namespace Hexa.NET.ImGui
 		internal static byte TreeNodeBehaviorNative(uint id, ImGuiTreeNodeFlags flags, byte* label, byte* labelEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTreeNodeFlags, byte*, byte*, byte>)funcTable[1389])(id, flags, label, labelEnd);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTreeNodeFlags, byte*, byte*, byte>)funcTable[1390])(id, flags, label, labelEnd);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, ImGuiTreeNodeFlags, nint, nint, byte>)funcTable[1389])(id, flags, (nint)label, (nint)labelEnd);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, ImGuiTreeNodeFlags, nint, nint, byte>)funcTable[1390])(id, flags, (nint)label, (nint)labelEnd);
 			#endif
 		}
 
@@ -5025,6 +4675,351 @@ namespace Hexa.NET.ImGui
 					return ret != 0;
 				}
 			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, ReadOnlySpan<byte> label, ReadOnlySpan<byte> labelEnd)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* plabelEnd = labelEnd)
+				{
+					byte ret = TreeNodeBehaviorNative(id, flags, (byte*)plabel, (byte*)plabelEnd);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, string label, string labelEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TreeNodeBehaviorNative(id, flags, pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, ref byte label, ReadOnlySpan<byte> labelEnd)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* plabelEnd = labelEnd)
+				{
+					byte ret = TreeNodeBehaviorNative(id, flags, (byte*)plabel, (byte*)plabelEnd);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, ref byte label, string labelEnd)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TreeNodeBehaviorNative(id, flags, (byte*)plabel, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, ReadOnlySpan<byte> label, ref byte labelEnd)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* plabelEnd = &labelEnd)
+				{
+					byte ret = TreeNodeBehaviorNative(id, flags, (byte*)plabel, (byte*)plabelEnd);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, ReadOnlySpan<byte> label, string labelEnd)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TreeNodeBehaviorNative(id, flags, (byte*)plabel, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, string label, ref byte labelEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* plabelEnd = &labelEnd)
+			{
+				byte ret = TreeNodeBehaviorNative(id, flags, pStr0, (byte*)plabelEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeBehavior(uint id, ImGuiTreeNodeFlags flags, string label, ReadOnlySpan<byte> labelEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* plabelEnd = labelEnd)
+			{
+				byte ret = TreeNodeBehaviorNative(id, flags, pStr0, (byte*)plabelEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TreeNodeDrawLineToChildNodeNative(Vector2 targetPos)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[1391])(targetPos);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[1391])(targetPos);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TreeNodeDrawLineToChildNode(Vector2 targetPos)
+		{
+			TreeNodeDrawLineToChildNodeNative(targetPos);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TreeNodeDrawLineToTreePopNative(ImGuiTreeNodeStackData* data)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTreeNodeStackData*, void>)funcTable[1392])(data);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1392])((nint)data);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TreeNodeDrawLineToTreePop(ImGuiTreeNodeStackDataPtr data)
+		{
+			TreeNodeDrawLineToTreePopNative(data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TreeNodeDrawLineToTreePop(ref ImGuiTreeNodeStackData data)
+		{
+			fixed (ImGuiTreeNodeStackData* pdata = &data)
+			{
+				TreeNodeDrawLineToTreePopNative((ImGuiTreeNodeStackData*)pdata);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TreePushOverrideIDNative(uint id)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1393])(id);
+			#else
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1393])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TreePushOverrideID(uint id)
+		{
+			TreePushOverrideIDNative(id);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TreeNodeGetOpenNative(uint storageId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[1394])(storageId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[1394])(storageId);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TreeNodeGetOpen(uint storageId)
+		{
+			byte ret = TreeNodeGetOpenNative(storageId);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TreeNodeSetOpenNative(uint storageId, byte open)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1395])(storageId, open);
+			#else
+			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1395])(storageId, open);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TreeNodeSetOpen(uint storageId, bool open)
+		{
+			TreeNodeSetOpenNative(storageId, open ? (byte)1 : (byte)0);
 		}
 	}
 }

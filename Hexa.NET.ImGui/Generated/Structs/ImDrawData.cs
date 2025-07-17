@@ -242,7 +242,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<ImTextureDataPtr> Textures => ref Unsafe.AsRef<ImVector<ImTextureDataPtr>>(&Handle->Textures);
+		public ref ImVector<ImTextureDataPtr> Textures => ref Unsafe.AsRef<ImVector<ImTextureDataPtr>>(Handle->Textures);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

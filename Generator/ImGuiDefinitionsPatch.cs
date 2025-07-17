@@ -117,6 +117,23 @@
                 }
                 settings.ClassMappings.Add(mapping);
             }
+
+            foreach (var function in compilation.Functions)
+            {
+                if (function.Name.EndsWith('0'))
+                {
+                    var name = function.Name.TrimEnd('0');
+                    settings.IgnoredFunctions.Add(name);
+                    if (settings.TryGetFunctionMapping(name, out var mapping))
+                    {
+                        mapping.ExportedName = function.Name;
+                    }
+                    else
+                    {
+                        settings.FunctionMappings.Add(new(function.Name, settings.GetCsFunctionName(name), null, [], []));
+                    }
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 {
   "Usings": [ "System.Numerics" ],
+  "Defines": [ "CIMGUI_VARGS0=1" ],
   "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,

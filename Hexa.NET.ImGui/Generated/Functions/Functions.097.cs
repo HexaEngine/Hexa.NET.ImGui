@@ -1568,12 +1568,683 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImFormatStringNative(byte* buf, nuint bufSize, byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, nuint, byte*, int>)funcTable[694])(buf, bufSize, fmt);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, nuint, nint, int>)funcTable[694])((nint)buf, bufSize, (nint)fmt);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(byte* buf, nuint bufSize, byte* fmt)
+		{
+			int ret = ImFormatStringNative(buf, bufSize, fmt);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref byte buf, nuint bufSize, byte* fmt)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				int ret = ImFormatStringNative((byte*)pbuf, bufSize, fmt);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref string buf, nuint bufSize, byte* fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImFormatStringNative(pStr0, bufSize, fmt);
+			buf = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(byte* buf, nuint bufSize, ref byte fmt)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				int ret = ImFormatStringNative(buf, bufSize, (byte*)pfmt);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(byte* buf, nuint bufSize, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				int ret = ImFormatStringNative(buf, bufSize, (byte*)pfmt);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(byte* buf, nuint bufSize, string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImFormatStringNative(buf, bufSize, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref byte buf, nuint bufSize, ref byte fmt)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					int ret = ImFormatStringNative((byte*)pbuf, bufSize, (byte*)pfmt);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref byte buf, nuint bufSize, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				fixed (byte* pfmt = fmt)
+				{
+					int ret = ImFormatStringNative((byte*)pbuf, bufSize, (byte*)pfmt);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref string buf, nuint bufSize, string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			int ret = ImFormatStringNative(pStr0, bufSize, pStr1);
+			buf = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref byte buf, nuint bufSize, string fmt)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = ImFormatStringNative((byte*)pbuf, bufSize, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref string buf, nuint bufSize, ref byte fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmt = &fmt)
+			{
+				int ret = ImFormatStringNative(pStr0, bufSize, (byte*)pfmt);
+				buf = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFormatString(ref string buf, nuint bufSize, ReadOnlySpan<byte> fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmt = fmt)
+			{
+				int ret = ImFormatStringNative(pStr0, bufSize, (byte*)pfmt);
+				buf = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImFormatStringToTempBufferNative(byte** outBuf, byte** outBufEnd, byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, void>)funcTable[695])(outBuf, outBufEnd, fmt);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[695])((nint)outBuf, (nint)outBufEnd, (nint)fmt);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, byte** outBufEnd, byte* fmt)
+		{
+			ImFormatStringToTempBufferNative(outBuf, outBufEnd, fmt);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, byte** outBufEnd, byte* fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				ImFormatStringToTempBufferNative((byte**)poutBuf, outBufEnd, fmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, ref byte* outBufEnd, byte* fmt)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				ImFormatStringToTempBufferNative(outBuf, (byte**)poutBufEnd, fmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, ref byte* outBufEnd, byte* fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					ImFormatStringToTempBufferNative((byte**)poutBuf, (byte**)poutBufEnd, fmt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, byte** outBufEnd, ref byte fmt)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				ImFormatStringToTempBufferNative(outBuf, outBufEnd, (byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, byte** outBufEnd, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				ImFormatStringToTempBufferNative(outBuf, outBufEnd, (byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, byte** outBufEnd, string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFormatStringToTempBufferNative(outBuf, outBufEnd, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, byte** outBufEnd, ref byte fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					ImFormatStringToTempBufferNative((byte**)poutBuf, outBufEnd, (byte*)pfmt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, byte** outBufEnd, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte* pfmt = fmt)
+				{
+					ImFormatStringToTempBufferNative((byte**)poutBuf, outBufEnd, (byte*)pfmt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, byte** outBufEnd, string fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFormatStringToTempBufferNative((byte**)poutBuf, outBufEnd, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, ref byte* outBufEnd, ref byte fmt)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					ImFormatStringToTempBufferNative(outBuf, (byte**)poutBufEnd, (byte*)pfmt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, ref byte* outBufEnd, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				fixed (byte* pfmt = fmt)
+				{
+					ImFormatStringToTempBufferNative(outBuf, (byte**)poutBufEnd, (byte*)pfmt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(byte** outBuf, ref byte* outBufEnd, string fmt)
+		{
+			fixed (byte** poutBufEnd = &outBufEnd)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFormatStringToTempBufferNative(outBuf, (byte**)poutBufEnd, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, ref byte* outBufEnd, ref byte fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					fixed (byte* pfmt = &fmt)
+					{
+						ImFormatStringToTempBufferNative((byte**)poutBuf, (byte**)poutBufEnd, (byte*)pfmt);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, ref byte* outBufEnd, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					fixed (byte* pfmt = fmt)
+					{
+						ImFormatStringToTempBufferNative((byte**)poutBuf, (byte**)poutBufEnd, (byte*)pfmt);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFormatStringToTempBuffer(ref byte* outBuf, ref byte* outBufEnd, string fmt)
+		{
+			fixed (byte** poutBuf = &outBuf)
+			{
+				fixed (byte** poutBufEnd = &outBufEnd)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (fmt != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(fmt);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImFormatStringToTempBufferNative((byte**)poutBuf, (byte**)poutBufEnd, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TextAlignedNative(float alignX, float sizeX, byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, float, byte*, void>)funcTable[696])(alignX, sizeX, fmt);
+			#else
+			((delegate* unmanaged[Cdecl]<float, float, nint, void>)funcTable[696])(alignX, sizeX, (nint)fmt);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAligned(float alignX, float sizeX, byte* fmt)
+		{
+			TextAlignedNative(alignX, sizeX, fmt);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAligned(float alignX, float sizeX, ref byte fmt)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				TextAlignedNative(alignX, sizeX, (byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAligned(float alignX, float sizeX, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				TextAlignedNative(alignX, sizeX, (byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAligned(float alignX, float sizeX, string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextAlignedNative(alignX, sizeX, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImFontAtlasBakedAddFontGlyphAdvancedXNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, uint codepoint, float advanceX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, uint, float, void>)funcTable[694])(atlas, baked, src, codepoint, advanceX);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, uint, float, void>)funcTable[697])(atlas, baked, src, codepoint, advanceX);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, uint, float, void>)funcTable[694])((nint)atlas, (nint)baked, (nint)src, codepoint, advanceX);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, uint, float, void>)funcTable[697])((nint)atlas, (nint)baked, (nint)src, codepoint, advanceX);
 			#endif
 		}
 
@@ -1684,9 +2355,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontLoader* GetFontLoaderNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontLoader*>)funcTable[695])();
+			return ((delegate* unmanaged[Cdecl]<ImFontLoader*>)funcTable[698])();
 			#else
-			return (ImFontLoader*)((delegate* unmanaged[Cdecl]<nint>)funcTable[695])();
+			return (ImFontLoader*)((delegate* unmanaged[Cdecl]<nint>)funcTable[698])();
 			#endif
 		}
 
@@ -1706,9 +2377,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetAllocatorFunctionsNative(delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void*> allocFunc, delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void> freeFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void*>, delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>, void*, void>)funcTable[696])(allocFunc, freeFunc, userData);
+			((delegate* unmanaged[Cdecl]<delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void*>, delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>, void*, void>)funcTable[699])(allocFunc, freeFunc, userData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[696])((nint)allocFunc, (nint)freeFunc, (nint)userData);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[699])((nint)allocFunc, (nint)freeFunc, (nint)userData);
 			#endif
 		}
 
@@ -1735,9 +2406,9 @@ namespace Hexa.NET.ImGui
 		internal static byte DebugEditFontLoaderFlagsNative(ImGuiFreeTypeLoaderFlags* pFontLoaderFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiFreeTypeLoaderFlags*, byte>)funcTable[697])(pFontLoaderFlags);
+			return ((delegate* unmanaged[Cdecl]<ImGuiFreeTypeLoaderFlags*, byte>)funcTable[700])(pFontLoaderFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[697])((nint)pFontLoaderFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[700])((nint)pFontLoaderFlags);
 			#endif
 		}
 
@@ -1758,9 +2429,9 @@ namespace Hexa.NET.ImGui
 		internal static void appendfNative(ImGuiTextBuffer* self, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, void>)funcTable[698])(self, fmt);
+			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, void>)funcTable[701])(self, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[698])((nint)self, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[701])((nint)self, (nint)fmt);
 			#endif
 		}
 
@@ -1909,9 +2580,9 @@ namespace Hexa.NET.ImGui
 		internal static float GETFLTMAXNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[699])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[702])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[699])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[702])();
 			#endif
 		}
 
@@ -1931,9 +2602,9 @@ namespace Hexa.NET.ImGui
 		internal static float GETFLTMINNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[700])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[703])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[700])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[703])();
 			#endif
 		}
 
@@ -1953,9 +2624,9 @@ namespace Hexa.NET.ImGui
 		internal static ImVector<uint>* ImVectorImWcharCreateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImVector<uint>*>)funcTable[701])();
+			return ((delegate* unmanaged[Cdecl]<ImVector<uint>*>)funcTable[704])();
 			#else
-			return (ImVector<uint>*)((delegate* unmanaged[Cdecl]<nint>)funcTable[701])();
+			return (ImVector<uint>*)((delegate* unmanaged[Cdecl]<nint>)funcTable[704])();
 			#endif
 		}
 
@@ -1975,9 +2646,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImVectorImWcharDestroyNative(ImVector<uint>* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[702])(self);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[705])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[702])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[705])((nint)self);
 			#endif
 		}
 
@@ -2007,9 +2678,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImVectorImWcharInitNative(ImVector<uint>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[703])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[706])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[703])((nint)p);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[706])((nint)p);
 			#endif
 		}
 
@@ -2039,9 +2710,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImVectorImWcharUnInitNative(ImVector<uint>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[704])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[707])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[704])((nint)p);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[707])((nint)p);
 			#endif
 		}
 
@@ -2071,9 +2742,9 @@ namespace Hexa.NET.ImGui
 		internal static void PlatformIOSetPlatformGetWindowPosNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[705])(platformIo, userCallback);
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[708])(platformIo, userCallback);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[705])((nint)platformIo, (nint)userCallback);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[708])((nint)platformIo, (nint)userCallback);
 			#endif
 		}
 
@@ -2103,9 +2774,9 @@ namespace Hexa.NET.ImGui
 		internal static void PlatformIOSetPlatformGetWindowSizeNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[706])(platformIo, userCallback);
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[709])(platformIo, userCallback);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[706])((nint)platformIo, (nint)userCallback);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[709])((nint)platformIo, (nint)userCallback);
 			#endif
 		}
 

@@ -21,333 +21,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							fixed (ImTextureRect* pr = &r)
-							{
-								fixed (byte* psrcPixels = &srcPixels)
-								{
-									ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasPackInitNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1501])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1501])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackInit(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasPackInitNative(atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackInit(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasPackInitNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImFontAtlasPackAddRectNative(ImFontAtlas* atlas, int w, int h, ImFontAtlasRectEntry* overwriteEntry)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, ImFontAtlasRectEntry*, int>)funcTable[1502])(atlas, w, h, overwriteEntry);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int, nint, int>)funcTable[1502])((nint)atlas, w, h, (nint)overwriteEntry);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h, ImFontAtlasRectEntryPtr overwriteEntry)
-		{
-			int ret = ImFontAtlasPackAddRectNative(atlas, w, h, overwriteEntry);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h)
-		{
-			int ret = ImFontAtlasPackAddRectNative(atlas, w, h, (ImFontAtlasRectEntry*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h, ImFontAtlasRectEntryPtr overwriteEntry)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, overwriteEntry);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h)
 		{
 			fixed (ImFontAtlas* patlas = &atlas)
@@ -391,9 +64,9 @@ namespace Hexa.NET.ImGui
 		internal static ImTextureRect* ImFontAtlasPackGetRectNative(ImFontAtlas* atlas, int id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1503])(atlas, id);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1504])(atlas, id);
 			#else
-			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1503])((nint)atlas, id);
+			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1504])((nint)atlas, id);
 			#endif
 		}
 
@@ -425,9 +98,9 @@ namespace Hexa.NET.ImGui
 		internal static ImTextureRect* ImFontAtlasPackGetRectSafeNative(ImFontAtlas* atlas, int id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1504])(atlas, id);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1505])(atlas, id);
 			#else
-			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1504])((nint)atlas, id);
+			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1505])((nint)atlas, id);
 			#endif
 		}
 
@@ -459,9 +132,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasPackDiscardRectNative(ImFontAtlas* atlas, int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1505])(atlas, id);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1506])(atlas, id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1505])((nint)atlas, id);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1506])((nint)atlas, id);
 			#endif
 		}
 
@@ -491,9 +164,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasUpdateNewFrameNative(ImFontAtlas* atlas, int frameCount, byte rendererHasTextures)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, byte, void>)funcTable[1506])(atlas, frameCount, rendererHasTextures);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, byte, void>)funcTable[1507])(atlas, frameCount, rendererHasTextures);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[1506])((nint)atlas, frameCount, rendererHasTextures);
+			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[1507])((nint)atlas, frameCount, rendererHasTextures);
 			#endif
 		}
 
@@ -523,9 +196,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasAddDrawListSharedDataNative(ImFontAtlas* atlas, ImDrawListSharedData* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1507])(atlas, data);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1508])(atlas, data);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1507])((nint)atlas, (nint)data);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1508])((nint)atlas, (nint)data);
 			#endif
 		}
 
@@ -580,9 +253,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasRemoveDrawListSharedDataNative(ImFontAtlas* atlas, ImDrawListSharedData* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1508])(atlas, data);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1509])(atlas, data);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1508])((nint)atlas, (nint)data);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1509])((nint)atlas, (nint)data);
 			#endif
 		}
 
@@ -637,9 +310,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasUpdateDrawListsTexturesNative(ImFontAtlas* atlas, ImTextureRef oldTex, ImTextureRef newTex)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureRef, ImTextureRef, void>)funcTable[1509])(atlas, oldTex, newTex);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureRef, ImTextureRef, void>)funcTable[1510])(atlas, oldTex, newTex);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureRef, ImTextureRef, void>)funcTable[1509])((nint)atlas, oldTex, newTex);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureRef, ImTextureRef, void>)funcTable[1510])((nint)atlas, oldTex, newTex);
 			#endif
 		}
 
@@ -669,9 +342,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasUpdateDrawListsSharedDataNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1510])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1511])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1510])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1511])((nint)atlas);
 			#endif
 		}
 
@@ -701,9 +374,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureBlockConvertNative(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImTextureFormat, int, byte*, ImTextureFormat, int, int, int, void>)funcTable[1511])(srcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
+			((delegate* unmanaged[Cdecl]<byte*, ImTextureFormat, int, byte*, ImTextureFormat, int, int, int, void>)funcTable[1512])(srcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureFormat, int, nint, ImTextureFormat, int, int, int, void>)funcTable[1511])((nint)srcPixels, srcFmt, srcPitch, (nint)dstPixels, dstFmt, dstPitch, w, h);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureFormat, int, nint, ImTextureFormat, int, int, int, void>)funcTable[1512])((nint)srcPixels, srcFmt, srcPitch, (nint)dstPixels, dstFmt, dstPitch, w, h);
 			#endif
 		}
 
@@ -758,9 +431,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureBlockPostProcessNative(ImFontAtlasPostProcessData* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, void>)funcTable[1512])(data);
+			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, void>)funcTable[1513])(data);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1512])((nint)data);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1513])((nint)data);
 			#endif
 		}
 
@@ -790,9 +463,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureBlockPostProcessMultiplyNative(ImFontAtlasPostProcessData* data, float multiplyFactor)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, float, void>)funcTable[1513])(data, multiplyFactor);
+			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, float, void>)funcTable[1514])(data, multiplyFactor);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[1513])((nint)data, multiplyFactor);
+			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[1514])((nint)data, multiplyFactor);
 			#endif
 		}
 
@@ -822,9 +495,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureBlockFillNative(ImTextureData* dstTex, int dstX, int dstY, int w, int h, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, int, int, uint, void>)funcTable[1514])(dstTex, dstX, dstY, w, h, col);
+			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, int, int, uint, void>)funcTable[1515])(dstTex, dstX, dstY, w, h, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, uint, void>)funcTable[1514])((nint)dstTex, dstX, dstY, w, h, col);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, uint, void>)funcTable[1515])((nint)dstTex, dstX, dstY, w, h, col);
 			#endif
 		}
 
@@ -854,9 +527,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureBlockCopyNative(ImTextureData* srcTex, int srcX, int srcY, ImTextureData* dstTex, int dstX, int dstY, int w, int h)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, ImTextureData*, int, int, int, int, void>)funcTable[1515])(srcTex, srcX, srcY, dstTex, dstX, dstY, w, h);
+			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, ImTextureData*, int, int, int, int, void>)funcTable[1516])(srcTex, srcX, srcY, dstTex, dstX, dstY, w, h);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, nint, int, int, int, int, void>)funcTable[1515])((nint)srcTex, srcX, srcY, (nint)dstTex, dstX, dstY, w, h);
+			((delegate* unmanaged[Cdecl]<nint, int, int, nint, int, int, int, int, void>)funcTable[1516])((nint)srcTex, srcX, srcY, (nint)dstTex, dstX, dstY, w, h);
 			#endif
 		}
 
@@ -911,9 +584,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureBlockQueueUploadNative(ImFontAtlas* atlas, ImTextureData* tex, int x, int y, int w, int h)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureData*, int, int, int, int, void>)funcTable[1516])(atlas, tex, x, y, w, h);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureData*, int, int, int, int, void>)funcTable[1517])(atlas, tex, x, y, w, h);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, int, int, int, void>)funcTable[1516])((nint)atlas, (nint)tex, x, y, w, h);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, int, int, int, void>)funcTable[1517])((nint)atlas, (nint)tex, x, y, w, h);
 			#endif
 		}
 
@@ -968,9 +641,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextureDataGetFormatBytesPerPixelNative(ImTextureFormat format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1517])(format);
+			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1518])(format);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1517])(format);
+			return (int)((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1518])(format);
 			#endif
 		}
 
@@ -990,9 +663,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImTextureDataGetStatusNameNative(ImTextureStatus status)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureStatus, byte*>)funcTable[1518])(status);
+			return ((delegate* unmanaged[Cdecl]<ImTextureStatus, byte*>)funcTable[1519])(status);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureStatus, nint>)funcTable[1518])(status);
+			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureStatus, nint>)funcTable[1519])(status);
 			#endif
 		}
 
@@ -1021,9 +694,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImTextureDataGetFormatNameNative(ImTextureFormat format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, byte*>)funcTable[1519])(format);
+			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, byte*>)funcTable[1520])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureFormat, nint>)funcTable[1519])(format);
+			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureFormat, nint>)funcTable[1520])(format);
 			#endif
 		}
 
@@ -1052,9 +725,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasDebugLogTextureRequestsNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1520])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1521])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1520])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1521])((nint)atlas);
 			#endif
 		}
 
@@ -1084,9 +757,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImFontAtlasGetMouseCursorTexDataNative(ImFontAtlas* atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiMouseCursor, Vector2*, Vector2*, Vector2*, Vector2*, byte>)funcTable[1521])(atlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiMouseCursor, Vector2*, Vector2*, Vector2*, Vector2*, byte>)funcTable[1522])(atlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiMouseCursor, nint, nint, nint, nint, byte>)funcTable[1521])((nint)atlas, cursorType, (nint)outOffset, (nint)outSize, (nint)outUvBorder, (nint)outUvFill);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiMouseCursor, nint, nint, nint, nint, byte>)funcTable[1522])((nint)atlas, cursorType, (nint)outOffset, (nint)outSize, (nint)outUvBorder, (nint)outUvFill);
 			#endif
 		}
 

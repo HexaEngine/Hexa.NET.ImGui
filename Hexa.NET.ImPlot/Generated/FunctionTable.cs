@@ -324,13 +324,13 @@ namespace Hexa.NET.ImPlot
 			funcTable.Load(295, "ImPlot_DragLineY");
 			funcTable.Load(296, "ImPlot_DragRect");
 			funcTable.Load(297, "ImPlot_Annotation_Bool");
-			funcTable.Load(298, "ImPlot_Annotation_Str");
+			funcTable.Load(298, "ImPlot_Annotation_Str0");
 			funcTable.Load(299, "ImPlot_AnnotationV");
 			funcTable.Load(300, "ImPlot_TagX_Bool");
-			funcTable.Load(301, "ImPlot_TagX_Str");
+			funcTable.Load(301, "ImPlot_TagX_Str0");
 			funcTable.Load(302, "ImPlot_TagXV");
 			funcTable.Load(303, "ImPlot_TagY_Bool");
-			funcTable.Load(304, "ImPlot_TagY_Str");
+			funcTable.Load(304, "ImPlot_TagY_Str0");
 			funcTable.Load(305, "ImPlot_TagYV");
 			funcTable.Load(306, "ImPlot_SetAxis");
 			funcTable.Load(307, "ImPlot_SetAxes");
