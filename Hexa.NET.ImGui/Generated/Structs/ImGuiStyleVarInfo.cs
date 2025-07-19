@@ -22,21 +22,9 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiStyleVarInfo
 	{
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint Count;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiDataType DataType;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint Offset;
-
+		public uint RawBits0;
+		public ImGuiDataType RawBits1;
+		public uint RawBits2;
 
 		/// <summary>
 		/// To be documented.
@@ -48,6 +36,12 @@ namespace Hexa.NET.ImGui
 			Offset = offset;
 		}
 
+
+		public uint Count { get => Bitfield.Get(RawBits0, 0, 8); set => Bitfield.Set(ref RawBits0, value, 0, 8); }
+
+		public ImGuiDataType DataType { get => Bitfield.Get(RawBits1, 0, 8); set => Bitfield.Set(ref RawBits1, value, 0, 8); }
+
+		public uint Offset { get => Bitfield.Get(RawBits2, 0, 16); set => Bitfield.Set(ref RawBits2, value, 0, 16); }
 
 	}
 
@@ -95,15 +89,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint Count => ref Unsafe.AsRef<uint>(&Handle->Count);
+		public uint Count { get => Handle->Count; set => Handle->Count = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDataType DataType => ref Unsafe.AsRef<ImGuiDataType>(&Handle->DataType);
+		public ImGuiDataType DataType { get => Handle->DataType; set => Handle->DataType = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint Offset => ref Unsafe.AsRef<uint>(&Handle->Offset);
+		public uint Offset { get => Handle->Offset; set => Handle->Offset = value; }
 	}
 
 }

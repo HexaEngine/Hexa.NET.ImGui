@@ -392,11 +392,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte ActiveIdFromShortcut;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int ActiveIdMouseButton;
-
+		public int RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3253,6 +3249,8 @@ namespace Hexa.NET.ImGui
 		}
 
 
+		public int ActiveIdMouseButton { get => Bitfield.Get(RawBits0, 0, 8); set => Bitfield.Set(ref RawBits0, value, 0, 8); }
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -3618,7 +3616,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int ActiveIdMouseButton => ref Unsafe.AsRef<int>(&Handle->ActiveIdMouseButton);
+		public int ActiveIdMouseButton { get => Handle->ActiveIdMouseButton; set => Handle->ActiveIdMouseButton = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

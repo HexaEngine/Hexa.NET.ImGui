@@ -52,11 +52,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte RequestClear;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int KeyMods;
-
+		public int RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -120,6 +116,8 @@ namespace Hexa.NET.ImGui
 			BoxSelectRectCurr = boxSelectRectCurr;
 		}
 
+
+		public int KeyMods { get => Bitfield.Get(RawBits0, 0, 16); set => Bitfield.Set(ref RawBits0, value, 0, 16); }
 
 	}
 
@@ -191,7 +189,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int KeyMods => ref Unsafe.AsRef<int>(&Handle->KeyMods);
+		public int KeyMods { get => Handle->KeyMods; set => Handle->KeyMods = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

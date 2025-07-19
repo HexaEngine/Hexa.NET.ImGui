@@ -212,21 +212,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte CannotSkipItemsQueue;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte SortDirection;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte SortDirectionsAvailCount;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte SortDirectionsAvailMask;
-
+		public byte RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -282,6 +268,12 @@ namespace Hexa.NET.ImGui
 			SortDirectionsAvailList = sortDirectionsAvailList;
 		}
 
+
+		public byte SortDirection { get => Bitfield.Get(RawBits0, 0, 2); set => Bitfield.Set(ref RawBits0, value, 0, 2); }
+
+		public byte SortDirectionsAvailCount { get => Bitfield.Get(RawBits0, 2, 2); set => Bitfield.Set(ref RawBits0, value, 2, 2); }
+
+		public byte SortDirectionsAvailMask { get => Bitfield.Get(RawBits0, 4, 4); set => Bitfield.Set(ref RawBits0, value, 4, 4); }
 
 	}
 
@@ -481,15 +473,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte SortDirection => ref Unsafe.AsRef<byte>(&Handle->SortDirection);
+		public byte SortDirection { get => Handle->SortDirection; set => Handle->SortDirection = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte SortDirectionsAvailCount => ref Unsafe.AsRef<byte>(&Handle->SortDirectionsAvailCount);
+		public byte SortDirectionsAvailCount { get => Handle->SortDirectionsAvailCount; set => Handle->SortDirectionsAvailCount = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte SortDirectionsAvailMask => ref Unsafe.AsRef<byte>(&Handle->SortDirectionsAvailMask);
+		public byte SortDirectionsAvailMask { get => Handle->SortDirectionsAvailMask; set => Handle->SortDirectionsAvailMask = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

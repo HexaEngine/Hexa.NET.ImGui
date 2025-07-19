@@ -47,21 +47,9 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public sbyte SortOrder;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte SortDirection;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public sbyte IsEnabled;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte IsStretch;
-
+		public byte RawBits0;
+		public sbyte RawBits1;
+		public byte RawBits2;
 
 		/// <summary>
 		/// To be documented.
@@ -78,6 +66,12 @@ namespace Hexa.NET.ImGui
 			IsStretch = isStretch;
 		}
 
+
+		public byte SortDirection { get => Bitfield.Get(RawBits0, 0, 2); set => Bitfield.Set(ref RawBits0, value, 0, 2); }
+
+		public sbyte IsEnabled { get => Bitfield.Get(RawBits1, 0, 2); set => Bitfield.Set(ref RawBits1, value, 0, 2); }
+
+		public byte IsStretch { get => Bitfield.Get(RawBits2, 0, 1); set => Bitfield.Set(ref RawBits2, value, 0, 1); }
 
 	}
 
@@ -145,15 +139,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte SortDirection => ref Unsafe.AsRef<byte>(&Handle->SortDirection);
+		public byte SortDirection { get => Handle->SortDirection; set => Handle->SortDirection = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte IsEnabled => ref Unsafe.AsRef<sbyte>(&Handle->IsEnabled);
+		public sbyte IsEnabled { get => Handle->IsEnabled; set => Handle->IsEnabled = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte IsStretch => ref Unsafe.AsRef<byte>(&Handle->IsStretch);
+		public byte IsStretch { get => Handle->IsStretch; set => Handle->IsStretch = value; }
 	}
 
 }

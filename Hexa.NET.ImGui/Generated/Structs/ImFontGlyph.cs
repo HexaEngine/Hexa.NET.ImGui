@@ -22,26 +22,7 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyph
 	{
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint Colored;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint Visible;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint SourceIdx;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint Codepoint;
-
+		public uint RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -115,6 +96,14 @@ namespace Hexa.NET.ImGui
 		}
 
 
+		public uint Colored { get => Bitfield.Get(RawBits0, 0, 1); set => Bitfield.Set(ref RawBits0, value, 0, 1); }
+
+		public uint Visible { get => Bitfield.Get(RawBits0, 1, 1); set => Bitfield.Set(ref RawBits0, value, 1, 1); }
+
+		public uint SourceIdx { get => Bitfield.Get(RawBits0, 2, 4); set => Bitfield.Set(ref RawBits0, value, 2, 4); }
+
+		public uint Codepoint { get => Bitfield.Get(RawBits0, 6, 26); set => Bitfield.Set(ref RawBits0, value, 6, 26); }
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -172,19 +161,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint Colored => ref Unsafe.AsRef<uint>(&Handle->Colored);
+		public uint Colored { get => Handle->Colored; set => Handle->Colored = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint Visible => ref Unsafe.AsRef<uint>(&Handle->Visible);
+		public uint Visible { get => Handle->Visible; set => Handle->Visible = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint SourceIdx => ref Unsafe.AsRef<uint>(&Handle->SourceIdx);
+		public uint SourceIdx { get => Handle->SourceIdx; set => Handle->SourceIdx = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint Codepoint => ref Unsafe.AsRef<uint>(&Handle->Codepoint);
+		public uint Codepoint { get => Handle->Codepoint; set => Handle->Codepoint = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

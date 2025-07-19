@@ -377,26 +377,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public sbyte DisableInputsFrames;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiCond SetWindowPosAllowFlags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiCond SetWindowSizeAllowFlags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiCond SetWindowCollapsedAllowFlags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiCond SetWindowDockAllowFlags;
-
+		public ImGuiCond RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -605,26 +586,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte MemoryCompacted;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte DockIsActive;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte DockNodeIsVisible;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte DockTabIsVisible;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte DockTabWantClose;
-
+		public bool RawBits1;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -784,10 +746,10 @@ namespace Hexa.NET.ImGui
 			MemoryDrawListIdxCapacity = memoryDrawListIdxCapacity;
 			MemoryDrawListVtxCapacity = memoryDrawListVtxCapacity;
 			MemoryCompacted = memoryCompacted ? (byte)1 : (byte)0;
-			DockIsActive = dockIsActive ? (byte)1 : (byte)0;
-			DockNodeIsVisible = dockNodeIsVisible ? (byte)1 : (byte)0;
-			DockTabIsVisible = dockTabIsVisible ? (byte)1 : (byte)0;
-			DockTabWantClose = dockTabWantClose ? (byte)1 : (byte)0;
+			DockIsActive = dockIsActive;
+			DockNodeIsVisible = dockNodeIsVisible;
+			DockTabIsVisible = dockTabIsVisible;
+			DockTabWantClose = dockTabWantClose;
 			DockOrder = dockOrder;
 			DockStyle = dockStyle;
 			DockNode = dockNode;
@@ -928,10 +890,10 @@ namespace Hexa.NET.ImGui
 			MemoryDrawListIdxCapacity = memoryDrawListIdxCapacity;
 			MemoryDrawListVtxCapacity = memoryDrawListVtxCapacity;
 			MemoryCompacted = memoryCompacted ? (byte)1 : (byte)0;
-			DockIsActive = dockIsActive ? (byte)1 : (byte)0;
-			DockNodeIsVisible = dockNodeIsVisible ? (byte)1 : (byte)0;
-			DockTabIsVisible = dockTabIsVisible ? (byte)1 : (byte)0;
-			DockTabWantClose = dockTabWantClose ? (byte)1 : (byte)0;
+			DockIsActive = dockIsActive;
+			DockNodeIsVisible = dockNodeIsVisible;
+			DockTabIsVisible = dockTabIsVisible;
+			DockTabWantClose = dockTabWantClose;
 			DockOrder = dockOrder;
 			DockStyle = dockStyle;
 			DockNode = dockNode;
@@ -939,6 +901,22 @@ namespace Hexa.NET.ImGui
 			DockId = dockId;
 		}
 
+
+		public ImGuiCond SetWindowPosAllowFlags { get => Bitfield.Get(RawBits0, 0, 8); set => Bitfield.Set(ref RawBits0, value, 0, 8); }
+
+		public ImGuiCond SetWindowSizeAllowFlags { get => Bitfield.Get(RawBits0, 8, 8); set => Bitfield.Set(ref RawBits0, value, 8, 8); }
+
+		public ImGuiCond SetWindowCollapsedAllowFlags { get => Bitfield.Get(RawBits0, 16, 8); set => Bitfield.Set(ref RawBits0, value, 16, 8); }
+
+		public ImGuiCond SetWindowDockAllowFlags { get => Bitfield.Get(RawBits0, 24, 8); set => Bitfield.Set(ref RawBits0, value, 24, 8); }
+
+		public bool DockIsActive { get => Bitfield.Get(RawBits1, 0, 1); set => Bitfield.Set(ref RawBits1, value, 0, 1); }
+
+		public bool DockNodeIsVisible { get => Bitfield.Get(RawBits1, 1, 1); set => Bitfield.Set(ref RawBits1, value, 1, 1); }
+
+		public bool DockTabIsVisible { get => Bitfield.Get(RawBits1, 2, 1); set => Bitfield.Set(ref RawBits1, value, 2, 1); }
+
+		public bool DockTabWantClose { get => Bitfield.Get(RawBits1, 3, 1); set => Bitfield.Set(ref RawBits1, value, 3, 1); }
 
 		/// <summary>
 		/// To be documented.
@@ -1298,19 +1276,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiCond SetWindowPosAllowFlags => ref Unsafe.AsRef<ImGuiCond>(&Handle->SetWindowPosAllowFlags);
+		public ImGuiCond SetWindowPosAllowFlags { get => Handle->SetWindowPosAllowFlags; set => Handle->SetWindowPosAllowFlags = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiCond SetWindowSizeAllowFlags => ref Unsafe.AsRef<ImGuiCond>(&Handle->SetWindowSizeAllowFlags);
+		public ImGuiCond SetWindowSizeAllowFlags { get => Handle->SetWindowSizeAllowFlags; set => Handle->SetWindowSizeAllowFlags = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiCond SetWindowCollapsedAllowFlags => ref Unsafe.AsRef<ImGuiCond>(&Handle->SetWindowCollapsedAllowFlags);
+		public ImGuiCond SetWindowCollapsedAllowFlags { get => Handle->SetWindowCollapsedAllowFlags; set => Handle->SetWindowCollapsedAllowFlags = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiCond SetWindowDockAllowFlags => ref Unsafe.AsRef<ImGuiCond>(&Handle->SetWindowDockAllowFlags);
+		public ImGuiCond SetWindowDockAllowFlags { get => Handle->SetWindowDockAllowFlags; set => Handle->SetWindowDockAllowFlags = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -1499,19 +1477,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool DockIsActive => ref Unsafe.AsRef<bool>(&Handle->DockIsActive);
+		public bool DockIsActive { get => Handle->DockIsActive; set => Handle->DockIsActive = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool DockNodeIsVisible => ref Unsafe.AsRef<bool>(&Handle->DockNodeIsVisible);
+		public bool DockNodeIsVisible { get => Handle->DockNodeIsVisible; set => Handle->DockNodeIsVisible = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool DockTabIsVisible => ref Unsafe.AsRef<bool>(&Handle->DockTabIsVisible);
+		public bool DockTabIsVisible { get => Handle->DockTabIsVisible; set => Handle->DockTabIsVisible = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool DockTabWantClose => ref Unsafe.AsRef<bool>(&Handle->DockTabWantClose);
+		public bool DockTabWantClose { get => Handle->DockTabWantClose; set => Handle->DockTabWantClose = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

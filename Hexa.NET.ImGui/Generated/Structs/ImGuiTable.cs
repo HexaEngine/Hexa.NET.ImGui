@@ -142,16 +142,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public float RowIndentOffsetX;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiTableRowFlags RowFlags;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiTableRowFlags LastRowFlags;
-
+		public ImGuiTableRowFlags RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -838,6 +829,10 @@ namespace Hexa.NET.ImGui
 		}
 
 
+		public ImGuiTableRowFlags RowFlags { get => Bitfield.Get(RawBits0, 0, 16); set => Bitfield.Set(ref RawBits0, value, 0, 16); }
+
+		public ImGuiTableRowFlags LastRowFlags { get => Bitfield.Get(RawBits0, 16, 16); set => Bitfield.Set(ref RawBits0, value, 16, 16); }
+
 	}
 
 	/// <summary>
@@ -980,11 +975,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiTableRowFlags RowFlags => ref Unsafe.AsRef<ImGuiTableRowFlags>(&Handle->RowFlags);
+		public ImGuiTableRowFlags RowFlags { get => Handle->RowFlags; set => Handle->RowFlags = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiTableRowFlags LastRowFlags => ref Unsafe.AsRef<ImGuiTableRowFlags>(&Handle->LastRowFlags);
+		public ImGuiTableRowFlags LastRowFlags { get => Handle->LastRowFlags; set => Handle->LastRowFlags = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

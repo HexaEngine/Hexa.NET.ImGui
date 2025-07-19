@@ -22,21 +22,8 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontAtlasRectEntry
 	{
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int TargetIndex;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int Generation;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint IsUsed;
-
+		public int RawBits0;
+		public uint RawBits1;
 
 		/// <summary>
 		/// To be documented.
@@ -48,6 +35,12 @@ namespace Hexa.NET.ImGui
 			IsUsed = isUsed;
 		}
 
+
+		public int TargetIndex { get => Bitfield.Get(RawBits0, 0, 20); set => Bitfield.Set(ref RawBits0, value, 0, 20); }
+
+		public int Generation { get => Bitfield.Get(RawBits0, 20, 10); set => Bitfield.Set(ref RawBits0, value, 20, 10); }
+
+		public uint IsUsed { get => Bitfield.Get(RawBits1, 0, 1); set => Bitfield.Set(ref RawBits1, value, 0, 1); }
 
 	}
 
@@ -95,15 +88,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int TargetIndex => ref Unsafe.AsRef<int>(&Handle->TargetIndex);
+		public int TargetIndex { get => Handle->TargetIndex; set => Handle->TargetIndex = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int Generation => ref Unsafe.AsRef<int>(&Handle->Generation);
+		public int Generation { get => Handle->Generation; set => Handle->Generation = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint IsUsed => ref Unsafe.AsRef<uint>(&Handle->IsUsed);
+		public uint IsUsed { get => Handle->IsUsed; set => Handle->IsUsed = value; }
 	}
 
 }

@@ -67,21 +67,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public float Descent;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint MetricsTotalSurface;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint WantDestroy;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint LockLoadingFallback;
-
+		public uint RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -126,6 +112,12 @@ namespace Hexa.NET.ImGui
 			FontLoaderDatas = fontLoaderDatas;
 		}
 
+
+		public uint MetricsTotalSurface { get => Bitfield.Get(RawBits0, 0, 26); set => Bitfield.Set(ref RawBits0, value, 0, 26); }
+
+		public uint WantDestroy { get => Bitfield.Get(RawBits0, 26, 1); set => Bitfield.Set(ref RawBits0, value, 26, 1); }
+
+		public uint LockLoadingFallback { get => Bitfield.Get(RawBits0, 27, 1); set => Bitfield.Set(ref RawBits0, value, 27, 1); }
 
 		/// <summary>
 		/// To be documented.
@@ -279,15 +271,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint MetricsTotalSurface => ref Unsafe.AsRef<uint>(&Handle->MetricsTotalSurface);
+		public uint MetricsTotalSurface { get => Handle->MetricsTotalSurface; set => Handle->MetricsTotalSurface = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint WantDestroy => ref Unsafe.AsRef<uint>(&Handle->WantDestroy);
+		public uint WantDestroy { get => Handle->WantDestroy; set => Handle->WantDestroy = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint LockLoadingFallback => ref Unsafe.AsRef<uint>(&Handle->LockLoadingFallback);
+		public uint LockLoadingFallback { get => Handle->LockLoadingFallback; set => Handle->LockLoadingFallback = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

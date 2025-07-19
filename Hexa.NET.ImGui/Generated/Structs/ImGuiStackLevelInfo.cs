@@ -37,11 +37,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte QuerySuccess;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiDataType DataType;
-
+		public ImGuiDataType RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -247,6 +243,8 @@ namespace Hexa.NET.ImGui
 		}
 
 
+		public ImGuiDataType DataType { get => Bitfield.Get(RawBits0, 0, 8); set => Bitfield.Set(ref RawBits0, value, 0, 8); }
+
 	}
 
 	/// <summary>
@@ -305,7 +303,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiDataType DataType => ref Unsafe.AsRef<ImGuiDataType>(&Handle->DataType);
+		public ImGuiDataType DataType { get => Handle->DataType; set => Handle->DataType = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
