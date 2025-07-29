@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RollForward>Major</RollForward>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <TieredCompilation>false</TieredCompilation>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- package reference for StrBuilder.  If not using it, don't need it-->
+        <PackageReference Include="Hexa.NET.Utilities" Version="2.2.2" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+    </ItemGroup>
+</Project>
