@@ -35,8 +35,7 @@ public class ImGuiRenderer
     private int _scrollWheelValue;
     private int _horizontalScrollWheelValue;
     private readonly Keys[] _allKeys = Enum.GetValues<Keys>();
-
-
+    
     public ImGuiRenderer(Game game)
     {
         ArgumentNullException.ThrowIfNull(game);
@@ -138,11 +137,11 @@ public class ImGuiRenderer
 
         if (textureData.Pixels != null)
         {
-            var pixelCount = textureData.Width * textureData.Height;
-            var bytesPerPixel = textureData.Format == ImTextureFormat.Rgba32 ? 4 : 1;
-            var dataSize = pixelCount * bytesPerPixel;
+            int pixelCount = textureData.Width * textureData.Height;
+            int bytesPerPixel = textureData.Format == ImTextureFormat.Rgba32 ? 4 : 1;
+            int dataSize = pixelCount * bytesPerPixel;
 
-            var managedData = new byte[dataSize];
+            byte[] managedData = new byte[dataSize];
             Marshal.Copy(new IntPtr(textureData.Pixels), managedData, 0, dataSize);
             texture.SetData(managedData);
         }
@@ -160,7 +159,7 @@ public class ImGuiRenderer
     private unsafe void UpdateTextureData(ImTextureDataPtr textureData)
     {
         IntPtr texId = textureData.GetTexID();
-        if (!_textures.TryGetValue(texId, out var textureInfo))
+        if (!_textures.TryGetValue(texId, out TextureInfo textureInfo))
         {
             return;
         }
@@ -506,7 +505,7 @@ public class ImGuiRenderer
                 // In v1.92, we need to handle ImTextureRef instead of ImTextureID
                 ImTextureRef textureRef = drawCmd->TexRef;
                 ImTextureID texId = textureRef.GetTexID();
-                if (!_textures.TryGetValue(texId, out var textureInfo))
+                if (!_textures.TryGetValue(texId, out TextureInfo textureInfo))
                 {
                     throw new InvalidOperationException($"Could not find a texture with id '{texId}', please check your bindings");
                 }
@@ -518,9 +517,9 @@ public class ImGuiRenderer
                     (int)(drawCmd->ClipRect.W - drawCmd->ClipRect.Y)
                 );
 
-                var effect = UpdateEffect(textureInfo.Texture);
+                Effect effect = UpdateEffect(textureInfo.Texture);
 
-                foreach (var pass in effect.CurrentTechnique.Passes)
+                foreach (EffectPass pass in effect.CurrentTechnique.Passes)
                 {
                     pass.Apply();
 
@@ -549,11 +548,11 @@ public class ImGuiRenderer
         _effect?.Dispose();
 
         // Clean up managed textures
-        foreach (var kvp in _textures)
+        foreach(TextureInfo textureInfo in _textures.Values)
         {
-            if (kvp.Value.IsManaged)
+            if (textureInfo.IsManaged)
             {
-                kvp.Value.Texture?.Dispose();
+                textureInfo.Texture?.Dispose();
             }
         }
         _textures.Clear();

@@ -108,7 +108,7 @@ public class SampleGame : Game
                 builder.End();
                 ImGui.Text(builder);
             }
-
+            
             ImGui.InputText("Text input"u8, ref _textBuffer[0], 100);
 
             ImGui.Text("Texture sample"u8);
@@ -135,11 +135,11 @@ public class SampleGame : Game
     public static Texture2D CreateTexture(GraphicsDevice device, int width, int height, Func<int, Color> paint)
     {
         //initialize a texture
-        var texture = new Texture2D(device, width, height);
+        Texture2D texture = new Texture2D(device, width, height);
 
         //the array holds the color for each pixel in the texture
         Color[] data = new Color[width * height];
-        for (var pixel = 0; pixel < data.Length; pixel++)
+        for (int pixel = 0; pixel < data.Length; pixel++)
         {
             //the function applies the color according to the specified pixel
             data[pixel] = paint(pixel);
