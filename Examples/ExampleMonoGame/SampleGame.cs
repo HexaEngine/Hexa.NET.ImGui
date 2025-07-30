@@ -112,7 +112,6 @@ public class SampleGame : Game
             ImGui.InputText("Text input"u8, ref _textBuffer[0], 100);
 
             ImGui.Text("Texture sample"u8);
-            // Updated to use ImTextureRef - the API should be the same
             ImGui.Image(_imGuiTexture, new Num.Vector2(300, 150), Num.Vector2.Zero, Num.Vector2.One);
         }
 
