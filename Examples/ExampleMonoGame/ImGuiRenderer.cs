@@ -29,7 +29,7 @@ public class ImGuiRenderer
 
     // Textures
     private readonly Dictionary<ImTextureID, TextureInfo> _textures;
-    private int _nextTexId;
+    private int _nextTexId = 1;
 
     // Input
     private int _scrollWheelValue;
