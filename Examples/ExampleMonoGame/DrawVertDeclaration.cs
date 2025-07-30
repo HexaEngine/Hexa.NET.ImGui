@@ -1,7 +1,7 @@
 using Hexa.NET.ImGui;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGameExample;
+namespace ExampleMonoGame;
 
 public static class DrawVertDeclaration
 {

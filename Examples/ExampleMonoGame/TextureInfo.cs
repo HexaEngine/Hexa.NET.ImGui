@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGameExample;
+namespace ExampleMonoGame;
 
 public sealed class TextureInfo
 {

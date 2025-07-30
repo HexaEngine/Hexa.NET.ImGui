@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Num = System.Numerics;
 
-namespace MonoGameExample;
+namespace ExampleMonoGame;
 
 /// <summary>
 /// Simple Monogame + ImGui example
@@ -53,7 +53,7 @@ public class SampleGame : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(new Color(clear_color.X, clear_color.Y, clear_color.Z));
+        GraphicsDevice.Clear(new Color(_clearColor.X, _clearColor.Y, _clearColor.Z));
 
         // Call BeforeLayout first to set things up
         _imGuiRenderer.BeforeLayout(gameTime);
@@ -68,12 +68,12 @@ public class SampleGame : Game
     }
 
     // Direct port of the example at https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_opengl2/main.cpp
-    private float f = 0.0f;
-
-    private bool show_test_window = false;
-    private bool show_another_window = false;
-    private Num.Vector3 clear_color = new Num.Vector3(114f / 255f, 144f / 255f, 154f / 255f);
-    private byte[] _textBuffer = new byte[100];
+    private float _floatValue;
+    
+    private bool _showTestWindow;
+    private bool _showAnotherWindow;
+    private Num.Vector3 _clearColor = new Num.Vector3(114f / 255f, 144f / 255f, 154f / 255f);
+    private readonly byte[] _textBuffer = new byte[100];
 
     protected virtual void ImGuiLayout()
     {
@@ -81,16 +81,16 @@ public class SampleGame : Game
         // Tip: if we don't call ImGui.Begin()/ImGui.End() the widgets appears in a window automatically called "Debug"
         {
             ImGui.Text("Hello, world!"u8);
-            ImGui.SliderFloat("float"u8, ref f, 0.0f, 1.0f, string.Empty);
-            ImGui.ColorEdit3("clear color", ref clear_color);
+            ImGui.SliderFloat("float"u8, ref _floatValue, 0.0f, 1.0f, string.Empty);
+            ImGui.ColorEdit3("clear color", ref _clearColor);
             if (ImGui.Button("Test Window"u8))
             {
-                show_test_window = !show_test_window;
+                _showTestWindow = !_showTestWindow;
             }
 
             if (ImGui.Button("Another Window"u8))
             {
-                show_another_window = !show_another_window;
+                _showAnotherWindow = !_showAnotherWindow;
             }
 
             // Use StrBuilder for dynamic text instead of string.Format
@@ -117,19 +117,19 @@ public class SampleGame : Game
         }
 
         // 2. Show another simple window, this time using an explicit Begin/End pair
-        if (show_another_window)
+        if (_showAnotherWindow)
         {
             ImGui.SetNextWindowSize(new Num.Vector2(200, 100), ImGuiCond.FirstUseEver);
-            ImGui.Begin("Another Window"u8, ref show_another_window);
+            ImGui.Begin("Another Window"u8, ref _showAnotherWindow);
             ImGui.Text("Hello"u8);
             ImGui.End();
         }
 
         // 3. Show the ImGui test window. Most of the sample code is in ImGui.ShowTestWindow()
-        if (show_test_window)
+        if (_showTestWindow)
         {
             ImGui.SetNextWindowPos(new Num.Vector2(650, 20), ImGuiCond.FirstUseEver);
-            ImGui.ShowDemoWindow(ref show_test_window);
+            ImGui.ShowDemoWindow(ref _showTestWindow);
         }
     }
 

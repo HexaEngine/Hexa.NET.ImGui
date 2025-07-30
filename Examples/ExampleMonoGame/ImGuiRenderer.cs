@@ -6,18 +6,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGameExample;
+namespace ExampleMonoGame;
 
 public class ImGuiRenderer
 {
     private const float WHEEL_DELTA = 120;
 
-    private Game _game;
+    private readonly Game _game;
 
     // Graphics
-    private GraphicsDevice _graphicsDevice;
+    private readonly GraphicsDevice _graphicsDevice;
     private BasicEffect _effect;
-    private RasterizerState _rasterizerState;
+    private readonly RasterizerState _rasterizerState;
 
     private byte[] _vertexData;
     private VertexBuffer _vertexBuffer;
@@ -28,13 +28,13 @@ public class ImGuiRenderer
     private int _indexBufferSize;
 
     // Textures
-    private Dictionary<ImTextureID, TextureInfo> _textures;
-    private int _nextTexId = 0;
+    private readonly Dictionary<ImTextureID, TextureInfo> _textures;
+    private int _nextTexId;
 
     // Input
     private int _scrollWheelValue;
     private int _horizontalScrollWheelValue;
-    private Keys[] _allKeys = Enum.GetValues<Keys>();
+    private readonly Keys[] _allKeys = Enum.GetValues<Keys>();
 
 
     public ImGuiRenderer(Game game)
@@ -62,7 +62,7 @@ public class ImGuiRenderer
         SetupBackendCapabilities();
     }
 
-    private unsafe void SetupBackendCapabilities()
+    private void SetupBackendCapabilities()
     {
         ImGuiIOPtr io = ImGui.GetIO();
         io.BackendFlags |= ImGuiBackendFlags.RendererHasTextures;
@@ -109,7 +109,7 @@ public class ImGuiRenderer
         }
     }
 
-    public virtual unsafe void UpdateTexture(ImTextureDataPtr textureData)
+    public virtual void UpdateTexture(ImTextureDataPtr textureData)
     {
         switch (textureData.Status)
         {
@@ -468,8 +468,8 @@ public class ImGuiRenderer
             {
                 fixed (void* idxDstPtr = &_indexData[idxOffset * sizeof(ushort)])
                 {
-                    Buffer.MemoryCopy((void*)cmdList->VtxBuffer.Data, vtxDstPtr, _vertexData.Length, cmdList->VtxBuffer.Size * DrawVertDeclaration.Size);
-                    Buffer.MemoryCopy((void*)cmdList->IdxBuffer.Data, idxDstPtr, _indexData.Length, cmdList->IdxBuffer.Size * sizeof(ushort));
+                    Buffer.MemoryCopy(cmdList->VtxBuffer.Data, vtxDstPtr, _vertexData.Length, cmdList->VtxBuffer.Size * DrawVertDeclaration.Size);
+                    Buffer.MemoryCopy(cmdList->IdxBuffer.Data, idxDstPtr, _indexData.Length, cmdList->IdxBuffer.Size * sizeof(ushort));
                 }
             }
 
