@@ -53,6 +53,8 @@
     }
   ],
   "TypeMappings": {
+    "ImBitArray_ImGuiKey_NamedKey_COUNT__lessImGuiKey_NamedKey_BEGIN": "ImBitArrayForNamedKeys",
+    "ImBitArrayForNamedKeys": "ImBitArrayForNamedKeys",
     "ImVector_ImDrawCmd": "ImVector<ImDrawCmd>",
     "ImVec2": "Vector2",
     "ImVec3": "Vector3",
@@ -76,7 +78,6 @@
     "ImGuiTableDrawChannelIdx": "byte",
     "ImGuiTableColumnIdx": "sbyte",
     "ImGuiSelectionUserData": "long",
-    "ImBitArrayForNamedKeys": "nuint",
     "ImStbTexteditState": "STBTexteditState",
     "stbrp_node_im": "StbrpNode",
     "va_list": "nuint"

@@ -109,7 +109,9 @@ while (GLFW.WindowShouldClose(window) == 0)
 }
 
 ImGuiImplD3D11.Shutdown();
+ImGuiImplD3D11.SetCurrentContext(null);
 ImGuiImplGLFW.Shutdown();
+ImGuiImplGLFW.SetCurrentContext(null);
 ImGui.DestroyContext();
 builder.Dispose();
 manager.Dispose();

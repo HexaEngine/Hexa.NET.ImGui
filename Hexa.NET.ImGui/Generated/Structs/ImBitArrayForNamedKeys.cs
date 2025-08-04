@@ -20,7 +20,7 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN
+	public partial struct ImBitArrayForNamedKeys
 	{
 		/// <summary>
 		/// To be documented.
@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN(uint* storage = default)
+		public unsafe ImBitArrayForNamedKeys(uint* storage = default)
 		{
 			if (storage != default(uint*))
 			{
@@ -50,7 +50,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN(Span<uint> storage = default)
+		public unsafe ImBitArrayForNamedKeys(Span<uint> storage = default)
 		{
 			if (storage != default(Span<uint>))
 			{

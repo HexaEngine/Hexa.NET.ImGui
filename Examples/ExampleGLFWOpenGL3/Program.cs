@@ -79,7 +79,6 @@ if (!ImGuiImplOpenGL3.Init(glslVersion))
 }
 
 GL GL = new(new BindingsContext(window));
-
 // Main loop
 while (GLFW.WindowShouldClose(window) == 0)
 {
@@ -100,8 +99,6 @@ while (GLFW.WindowShouldClose(window) == 0)
     ImGuiImplGLFW.NewFrame();
     ImGui.NewFrame();
 
-    ImGui.ShowDemoWindow();
-
     ImGui.Render();
 
     GLFW.MakeContextCurrent(window);
@@ -120,7 +117,9 @@ while (GLFW.WindowShouldClose(window) == 0)
 }
 
 ImGuiImplOpenGL3.Shutdown();
+ImGuiImplOpenGL3.SetCurrentContext(null);
 ImGuiImplGLFW.Shutdown();
+ImGuiImplGLFW.SetCurrentContext(null);
 ImGui.DestroyContext();
 GL.Dispose();
 
