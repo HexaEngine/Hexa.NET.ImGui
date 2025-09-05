@@ -85,7 +85,7 @@ jobs:
     with:
       lib-name: cimplot3d
       repo: JunaMeinhold/cimplot3d
-      repo-tag: master
+      repo-tag: main
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       bin-name-linux: cimplot3d.so
       bin-name-linux-normalized: cimplot3d.so
