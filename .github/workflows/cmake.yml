@@ -83,7 +83,7 @@ jobs:
   build-cimplot3d:
     uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
-      lib-name: cimguizmo
+      lib-name: cimplot3d
       repo: JunaMeinhold/cimplot3d
       repo-tag: master
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
@@ -100,7 +100,7 @@ jobs:
       checkout-self: true
 
   create-pr:
-    needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo]
+    needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo, build-cimplot3d]
     uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
     with:
         lib-name: "ImGui"
