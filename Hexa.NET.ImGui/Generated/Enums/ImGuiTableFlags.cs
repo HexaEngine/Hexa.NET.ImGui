@@ -25,177 +25,177 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable resizing columns.<br/>
 		/// </summary>
 		Resizable = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable reordering columns in header row (need calling TableSetupColumn() + TableHeadersRow() to display headers)<br/>
 		/// </summary>
 		Reorderable = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable hidingdisabling columns in context menu.<br/>
 		/// </summary>
 		Hideable = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable sorting. Call TableGetSortSpecs() to obtain sort specs. Also see ImGuiTableFlags_SortMulti and ImGuiTableFlags_SortTristate.<br/>
 		/// </summary>
 		Sortable = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable persisting columns order, width and sort settings in the .ini file.<br/>
 		/// </summary>
 		NoSavedSettings = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Right-click on columns bodycontents will display table context menu. By default it is available in TableHeadersRow().<br/>
 		/// </summary>
 		ContextMenuInBody = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Set each RowBg color with ImGuiCol_TableRowBg or ImGuiCol_TableRowBgAlt (equivalent of calling TableSetBgColor with ImGuiTableBgFlags_RowBg0 on each row manually)<br/>
 		/// </summary>
 		RowBg = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw horizontal borders between rows.<br/>
 		/// </summary>
 		BordersInnerH = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw horizontal borders at the top and bottom.<br/>
 		/// </summary>
 		BordersOuterH = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw vertical borders between columns.<br/>
 		/// </summary>
 		BordersInnerV = unchecked(512),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw vertical borders on the left and right sides.<br/>
 		/// </summary>
 		BordersOuterV = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw horizontal borders.<br/>
 		/// </summary>
 		BordersH = unchecked(384),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw vertical borders.<br/>
 		/// </summary>
 		BordersV = unchecked(1536),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw inner borders.<br/>
 		/// </summary>
 		BordersInner = unchecked(640),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw outer borders.<br/>
 		/// </summary>
 		BordersOuter = unchecked(1280),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw all borders.<br/>
 		/// </summary>
 		Borders = unchecked(1920),
 
 		/// <summary>
-		/// To be documented.
+		/// [ALPHA] Disable vertical borders in columns Body (borders will always appear in Headers). -&gt; May move to style<br/>
 		/// </summary>
 		NoBordersInBody = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// [ALPHA] Disable vertical borders in columns Body until hovered for resize (borders will always appear in Headers). -&gt; May move to style<br/>
 		/// </summary>
 		NoBordersInBodyUntilResize = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
+		/// Columns default to _WidthFixed or _WidthAuto (if resizable or not resizable), matching contents width.<br/>
 		/// </summary>
 		SizingFixedFit = unchecked(8192),
 
 		/// <summary>
-		/// To be documented.
+		/// Columns default to _WidthFixed or _WidthAuto (if resizable or not resizable), matching the maximum contents width of all columns. Implicitly enable ImGuiTableFlags_NoKeepColumnsVisible.<br/>
 		/// </summary>
 		SizingFixedSame = unchecked(16384),
 
 		/// <summary>
-		/// To be documented.
+		/// Columns default to _WidthStretch with default weights proportional to each columns contents widths.<br/>
 		/// </summary>
 		SizingStretchProp = unchecked(24576),
 
 		/// <summary>
-		/// To be documented.
+		/// Columns default to _WidthStretch with default weights all equal, unless overridden by TableSetupColumn().<br/>
 		/// </summary>
 		SizingStretchSame = unchecked(32768),
 
 		/// <summary>
-		/// To be documented.
+		/// Make outer width auto-fit to columns, overriding outer_size.x value. Only available when ScrollXScrollY are disabled and Stretch columns are not used.<br/>
 		/// </summary>
 		NoHostExtendX = unchecked(65536),
 
 		/// <summary>
-		/// To be documented.
+		/// Make outer height stop exactly at outer_size.y (prevent auto-extending table past the limit). Only available when ScrollXScrollY are disabled. Data below the limit will be clipped and not visible.<br/>
 		/// </summary>
 		NoHostExtendY = unchecked(131072),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable keeping column always minimally visible when ScrollX is off and table gets too small. Not recommended if columns are resizable.<br/>
 		/// </summary>
 		NoKeepColumnsVisible = unchecked(262144),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable distributing remainder width to stretched columns (width allocation on a 100-wide table with 3 columns: Without this flag: 33,33,34. With this flag: 33,33,33). With larger number of columns, resizing will appear to be less smooth.<br/>
 		/// </summary>
 		PreciseWidths = unchecked(524288),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable clipping rectangle for every individual columns (reduce draw command count, items will be able to overflow into other columns). Generally incompatible with TableSetupScrollFreeze().<br/>
 		/// </summary>
 		NoClip = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Default if BordersOuterV is on. Enable outermost padding. Generally desirable if you have headers.<br/>
 		/// </summary>
 		PadOuterX = unchecked(2097152),
 
 		/// <summary>
-		/// To be documented.
+		/// Default if BordersOuterV is off. Disable outermost padding.<br/>
 		/// </summary>
 		NoPadOuterX = unchecked(4194304),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable inner padding between columns (double inner padding if BordersOuterV is on, single inner padding if BordersOuterV is off).<br/>
 		/// </summary>
 		NoPadInnerX = unchecked(8388608),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable horizontal scrolling. Require 'outer_size' parameter of BeginTable() to specify the container size. Changes default sizing policy. Because this creates a child window, ScrollY is currently generally recommended when using ScrollX.<br/>
 		/// </summary>
 		ScrollX = unchecked(16777216),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable vertical scrolling. Require 'outer_size' parameter of BeginTable() to specify the container size.<br/>
 		/// </summary>
 		ScrollY = unchecked(33554432),
 
 		/// <summary>
-		/// To be documented.
+		/// Hold shift when clicking headers to sort on multiple column. TableGetSortSpecs() may return specs where (SpecsCount &gt; 1).<br/>
 		/// </summary>
 		SortMulti = unchecked(67108864),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow no sorting, disable default sorting. TableGetSortSpecs() may return specs where (SpecsCount == 0).<br/>
 		/// </summary>
 		SortTristate = unchecked(134217728),
 
 		/// <summary>
-		/// To be documented.
+		/// Highlight column headers when hovered (may evolve into a fuller highlight)<br/>
 		/// </summary>
 		HighlightHoveredColumn = unchecked(268435456),
 

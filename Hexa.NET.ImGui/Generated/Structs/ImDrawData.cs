@@ -17,7 +17,9 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// All draw data to render a Dear ImGui frame<br/>
+	/// (NB: the style and the naming convention here is a little inconsistent, we currently preserve them for backward compatibility purpose,<br/>
+	/// as this is one of the oldest structure exposed by the library! Basically, ImDrawList == CmdList)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawData
@@ -92,7 +94,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public unsafe void AddDrawList(ImDrawListPtr drawList)
 		{
@@ -103,7 +105,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public unsafe void AddDrawList(ref ImDrawList drawList)
 		{
@@ -128,7 +130,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
 		/// </summary>
 		public unsafe void DeIndexAllBuffers()
 		{
@@ -150,7 +152,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
 		/// </summary>
 		public unsafe void ScaleClipRects(Vector2 fbScale)
 		{
@@ -244,7 +246,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImVector<ImTextureDataPtr> Textures => ref Unsafe.AsRef<ImVector<ImTextureDataPtr>>(Handle->Textures);
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public unsafe void AddDrawList(ImDrawListPtr drawList)
 		{
@@ -252,7 +254,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public unsafe void AddDrawList(ref ImDrawList drawList)
 		{
@@ -271,7 +273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
 		/// </summary>
 		public unsafe void DeIndexAllBuffers()
 		{
@@ -287,7 +289,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
 		/// </summary>
 		public unsafe void ScaleClipRects(Vector2 fbScale)
 		{

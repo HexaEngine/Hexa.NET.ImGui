@@ -17,7 +17,25 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Load and rasterize multiple TTFOTF fonts into a same texture. The font atlas will build a single texture holding:<br/>
+	/// - One or more fonts.<br/>
+	/// - Custom graphics data needed to render the shapes needed by Dear ImGui.<br/>
+	/// - Mouse cursor shapes for software cursor rendering (unless setting 'Flags |= ImFontAtlasFlags_NoMouseCursors' in the font atlas).<br/>
+	/// - If you don't call any AddFont*** functions, the default font embedded in the code will be loaded for you.<br/>
+	/// It is the rendering backend responsibility to upload texture into your graphics API:<br/>
+	/// - ImGui_ImplXXXX_RenderDrawData() functions generally iterate platform_io-&gt;Textures[] to createupdatedestroy each ImTextureData instance.<br/>
+	/// - Backend then set ImTextureData's TexID and BackendUserData.<br/>
+	/// - Texture id are passed back to you during rendering to identify the texture. Read FAQ entry about ImTextureIDImTextureRef for more details.<br/>
+	/// Legacy path:<br/>
+	/// - Call Build() + GetTexDataAsAlpha8() or GetTexDataAsRGBA32() to build and retrieve pixels data.<br/>
+	/// - Call SetTexID(my_tex_id); and pass the pointeridentifier to your texture in a format natural to your graphics API.<br/>
+	/// Common pitfalls:<br/>
+	/// - If you pass a 'glyph_ranges' array to AddFont*** functions, you need to make sure that your array persist up until the<br/>
+	/// atlas is build (when calling GetTexData*** or Build()). We only copy the pointer, not the data.<br/>
+	/// - Important: By default, AddFontFromMemoryTTF() takes ownership of the data. Even though we are not writing to it, we will free the pointer on destruction.<br/>
+	/// You can set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed,<br/>
+	/// - Even though many functions are suffixed with "TTF", OTF data is supported just as well.<br/>
+	/// - This is an old API and it is currently awkward for those and various other reasons! We will address them in the future!<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontAtlas
@@ -365,7 +383,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 		/// <summary>
-		/// To be documented.
+		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ImFontAtlasRect* outR)
 		{
@@ -377,7 +395,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height)
 		{
@@ -389,7 +407,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ref ImFontAtlasRect outR)
 		{
@@ -1418,7 +1436,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1430,7 +1448,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -1442,7 +1460,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels)
 		{
@@ -1454,7 +1472,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85)
 		{
@@ -1466,7 +1484,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -1478,7 +1496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -1490,7 +1508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -1502,7 +1520,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1514,7 +1532,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1529,7 +1547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -1544,7 +1562,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels)
 		{
@@ -1559,7 +1577,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85)
 		{
@@ -1574,7 +1592,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -1589,7 +1607,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -1604,7 +1622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -1619,7 +1637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1634,7 +1652,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1649,7 +1667,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -1664,7 +1682,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels)
 		{
@@ -1679,7 +1697,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85)
 		{
@@ -1694,7 +1712,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -1709,7 +1727,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -1724,7 +1742,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -1739,7 +1757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1754,7 +1772,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -1787,7 +1805,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -1820,7 +1838,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels)
 		{
@@ -1853,7 +1871,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85)
 		{
@@ -1886,7 +1904,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -1919,7 +1937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -1952,7 +1970,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -1985,7 +2003,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -2018,7 +2036,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2033,7 +2051,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -2048,7 +2066,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -2063,7 +2081,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2078,7 +2096,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2096,7 +2114,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -2114,7 +2132,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -2132,7 +2150,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2150,7 +2168,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2168,7 +2186,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -2186,7 +2204,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -2204,7 +2222,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2222,7 +2240,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2258,7 +2276,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -2294,7 +2312,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -2330,7 +2348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2366,7 +2384,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -2378,7 +2396,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -2390,7 +2408,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
 		{
@@ -2402,7 +2420,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize)
 		{
@@ -2414,7 +2432,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
 		{
@@ -2426,7 +2444,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
 		{
@@ -2438,7 +2456,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, uint* glyphRanges)
 		{
@@ -2450,7 +2468,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -2462,7 +2480,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2477,7 +2495,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -2492,7 +2510,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg)
 		{
@@ -2507,7 +2525,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2522,7 +2540,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -2534,7 +2552,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -2546,7 +2564,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
 		{
@@ -2558,7 +2576,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize)
 		{
@@ -2570,7 +2588,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg)
 		{
@@ -2582,7 +2600,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
 		{
@@ -2594,7 +2612,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, uint* glyphRanges)
 		{
@@ -2606,7 +2624,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -2618,7 +2636,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2633,7 +2651,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -2648,7 +2666,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg)
 		{
@@ -2663,7 +2681,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -2678,7 +2696,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear everything (input fonts, output glyphstextures)<br/>
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -2689,7 +2707,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [OBSOLETE] Clear input+output font data (same as ClearInputData() + glyphs storage, UV coordinates).<br/>
 		/// </summary>
 		public unsafe void ClearFonts()
 		{
@@ -2700,7 +2718,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [OBSOLETE] Clear input data (all ImFontConfig structures including sizes, TTF data, glyph ranges, etc.) = all the data used to build the texture and fonts.<br/>
 		/// </summary>
 		public unsafe void ClearInputData()
 		{
@@ -2711,7 +2729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [OBSOLETE] Clear CPU-side copy of the texture data. Saves RAM once the texture has been copied to graphics memory.<br/>
 		/// </summary>
 		public unsafe void ClearTexData()
 		{
@@ -2722,7 +2740,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Compact cached glyphs and texture.<br/>
 		/// </summary>
 		public unsafe void CompactCache()
 		{
@@ -2744,7 +2762,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get rectangle coordinates for current texture. Valid immediately, never store this (read above)!<br/>
 		/// </summary>
 		public unsafe bool GetCustomRect(int id, ImFontAtlasRect* outR)
 		{
@@ -2756,7 +2774,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get rectangle coordinates for current texture. Valid immediately, never store this (read above)!<br/>
 		/// </summary>
 		public unsafe bool GetCustomRect(int id, ref ImFontAtlasRect outR)
 		{
@@ -2771,7 +2789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Basic Latin, Extended Latin<br/>
 		/// </summary>
 		public unsafe uint* GetGlyphRangesDefault()
 		{
@@ -2783,7 +2801,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Unregister a rectangle. Existing pixels will stay in texture until resized  garbage collected.<br/>
 		/// </summary>
 		public unsafe void RemoveCustomRect(int id)
 		{
@@ -2814,6 +2832,31 @@ namespace Hexa.NET.ImGui
 				fixed (ImFont* pfont = &font)
 				{
 					ImGui.RemoveFontNative(@this, (ImFont*)pfont);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Change font loader at runtime.<br/>
+		/// </summary>
+		public unsafe void SetFontLoader(ImFontLoader* fontLoader)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.SetFontLoaderNative(@this, fontLoader);
+			}
+		}
+
+		/// <summary>
+		/// Change font loader at runtime.<br/>
+		/// </summary>
+		public unsafe void SetFontLoader(ref ImFontLoader fontLoader)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontLoader* pfontLoader = &fontLoader)
+				{
+					ImGui.SetFontLoaderNative(@this, (ImFontLoader*)pfontLoader);
 				}
 			}
 		}
@@ -2989,7 +3032,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImGuiContextPtr OwnerContext => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->OwnerContext);
 		/// <summary>
-		/// To be documented.
+		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ImFontAtlasRect* outR)
 		{
@@ -2998,7 +3041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height)
 		{
@@ -3007,7 +3050,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ref ImFontAtlasRect outR)
 		{
@@ -3874,7 +3917,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -3883,7 +3926,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -3892,7 +3935,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels)
 		{
@@ -3901,7 +3944,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85)
 		{
@@ -3910,7 +3953,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -3919,7 +3962,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -3928,7 +3971,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -3937,7 +3980,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -3946,7 +3989,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -3958,7 +4001,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -3970,7 +4013,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels)
 		{
@@ -3982,7 +4025,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85)
 		{
@@ -3994,7 +4037,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -4006,7 +4049,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -4018,7 +4061,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -4030,7 +4073,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4042,7 +4085,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4054,7 +4097,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -4066,7 +4109,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels)
 		{
@@ -4078,7 +4121,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85)
 		{
@@ -4090,7 +4133,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -4102,7 +4145,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -4114,7 +4157,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -4126,7 +4169,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4138,7 +4181,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4168,7 +4211,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -4198,7 +4241,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels)
 		{
@@ -4228,7 +4271,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85)
 		{
@@ -4258,7 +4301,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg)
 		{
@@ -4288,7 +4331,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, uint* glyphRanges)
 		{
@@ -4318,7 +4361,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, uint* glyphRanges)
 		{
@@ -4348,7 +4391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4378,7 +4421,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4390,7 +4433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -4402,7 +4445,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -4414,7 +4457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4426,7 +4469,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4441,7 +4484,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -4456,7 +4499,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -4471,7 +4514,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4486,7 +4529,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4501,7 +4544,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -4516,7 +4559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -4531,7 +4574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4546,7 +4589,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4579,7 +4622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -4612,7 +4655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg)
 		{
@@ -4645,7 +4688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4678,7 +4721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4687,7 +4730,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -4696,7 +4739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
 		{
@@ -4705,7 +4748,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize)
 		{
@@ -4714,7 +4757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
 		{
@@ -4723,7 +4766,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
 		{
@@ -4732,7 +4775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, uint* glyphRanges)
 		{
@@ -4741,7 +4784,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4750,7 +4793,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4762,7 +4805,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -4774,7 +4817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg)
 		{
@@ -4786,7 +4829,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4798,7 +4841,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4807,7 +4850,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
@@ -4816,7 +4859,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
 		{
@@ -4825,7 +4868,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize)
 		{
@@ -4834,7 +4877,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg)
 		{
@@ -4843,7 +4886,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
 		{
@@ -4852,7 +4895,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, uint* glyphRanges)
 		{
@@ -4861,7 +4904,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
@@ -4870,7 +4913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4882,7 +4925,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
@@ -4894,7 +4937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg)
 		{
@@ -4906,7 +4949,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
 		{
@@ -4918,7 +4961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear everything (input fonts, output glyphstextures)<br/>
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -4926,7 +4969,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [OBSOLETE] Clear input+output font data (same as ClearInputData() + glyphs storage, UV coordinates).<br/>
 		/// </summary>
 		public unsafe void ClearFonts()
 		{
@@ -4934,7 +4977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [OBSOLETE] Clear input data (all ImFontConfig structures including sizes, TTF data, glyph ranges, etc.) = all the data used to build the texture and fonts.<br/>
 		/// </summary>
 		public unsafe void ClearInputData()
 		{
@@ -4942,7 +4985,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [OBSOLETE] Clear CPU-side copy of the texture data. Saves RAM once the texture has been copied to graphics memory.<br/>
 		/// </summary>
 		public unsafe void ClearTexData()
 		{
@@ -4950,7 +4993,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Compact cached glyphs and texture.<br/>
 		/// </summary>
 		public unsafe void CompactCache()
 		{
@@ -4966,7 +5009,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get rectangle coordinates for current texture. Valid immediately, never store this (read above)!<br/>
 		/// </summary>
 		public unsafe bool GetCustomRect(int id, ImFontAtlasRect* outR)
 		{
@@ -4975,7 +5018,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get rectangle coordinates for current texture. Valid immediately, never store this (read above)!<br/>
 		/// </summary>
 		public unsafe bool GetCustomRect(int id, ref ImFontAtlasRect outR)
 		{
@@ -4987,7 +5030,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Basic Latin, Extended Latin<br/>
 		/// </summary>
 		public unsafe uint* GetGlyphRangesDefault()
 		{
@@ -4996,7 +5039,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Unregister a rectangle. Existing pixels will stay in texture until resized  garbage collected.<br/>
 		/// </summary>
 		public unsafe void RemoveCustomRect(int id)
 		{
@@ -5019,6 +5062,25 @@ namespace Hexa.NET.ImGui
 			fixed (ImFont* pfont = &font)
 			{
 				ImGui.RemoveFontNative(Handle, (ImFont*)pfont);
+			}
+		}
+
+		/// <summary>
+		/// Change font loader at runtime.<br/>
+		/// </summary>
+		public unsafe void SetFontLoader(ImFontLoader* fontLoader)
+		{
+			ImGui.SetFontLoaderNative(Handle, fontLoader);
+		}
+
+		/// <summary>
+		/// Change font loader at runtime.<br/>
+		/// </summary>
+		public unsafe void SetFontLoader(ref ImFontLoader fontLoader)
+		{
+			fixed (ImFontLoader* pfontLoader = &fontLoader)
+			{
+				ImGui.SetFontLoaderNative(Handle, (ImFontLoader*)pfontLoader);
 			}
 		}
 

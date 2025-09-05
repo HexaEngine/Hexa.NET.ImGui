@@ -250,6 +250,9 @@ CIMGUI_API void ImNodes_LoadEditorStateFromIniFile(ImNodesEditorContext* editor,
 //needed for io.link_detach_with_modifier_click.modifier = &ImGui::GetIO().KeyCtrl
 CIMGUI_API bool* getIOKeyCtrlPtr();
 
+CIMGUI_API void igSetAllocatorFunctions(ImGuiMemAllocFunc alloc_func, ImGuiMemFreeFunc free_func, void* user_data);
+CIMGUI_API void igGetAllocatorFunctions(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data);
+
 #endif //CIMNODES_INCLUDED
 
 

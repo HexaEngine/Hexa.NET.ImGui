@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Hold rendering data for one glyph.<br/>
+	/// (Note: some language parsers may fail to convert the bitfield members, in this case maybe drop store a single u32 or we can rework this)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyph

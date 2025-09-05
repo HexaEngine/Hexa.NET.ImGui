@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Font runtime data for a given size<br/>
+	/// Important: pointers to ImFontBaked are only valid for the current frame.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontBaked
@@ -92,7 +93,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontBaked(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float size = default, float rasterizerDensity = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, int fallbackGlyphIndex = default, float ascent = default, float descent = default, uint metricsTotalSurface = default, uint wantDestroy = default, uint lockLoadingFallback = default, int lastUsedFrame = default, uint bakedId = default, ImFontPtr containerFont = default, void* fontLoaderDatas = default)
+		public unsafe ImFontBaked(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float size = default, float rasterizerDensity = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, int fallbackGlyphIndex = default, float ascent = default, float descent = default, uint metricsTotalSurface = default, uint wantDestroy = default, uint loadNoFallback = default, uint loadNoRenderOnLayout = default, int lastUsedFrame = default, uint bakedId = default, ImFontPtr containerFont = default, void* fontLoaderDatas = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -105,7 +106,8 @@ namespace Hexa.NET.ImGui
 			Descent = descent;
 			MetricsTotalSurface = metricsTotalSurface;
 			WantDestroy = wantDestroy;
-			LockLoadingFallback = lockLoadingFallback;
+			LoadNoFallback = loadNoFallback;
+			LoadNoRenderOnLayout = loadNoRenderOnLayout;
 			LastUsedFrame = lastUsedFrame;
 			BakedId = bakedId;
 			ContainerFont = containerFont;
@@ -117,7 +119,9 @@ namespace Hexa.NET.ImGui
 
 		public uint WantDestroy { get => Bitfield.Get(RawBits0, 26, 1); set => Bitfield.Set(ref RawBits0, value, 26, 1); }
 
-		public uint LockLoadingFallback { get => Bitfield.Get(RawBits0, 27, 1); set => Bitfield.Set(ref RawBits0, value, 27, 1); }
+		public uint LoadNoFallback { get => Bitfield.Get(RawBits0, 27, 1); set => Bitfield.Set(ref RawBits0, value, 27, 1); }
+
+		public uint LoadNoRenderOnLayout { get => Bitfield.Get(RawBits0, 28, 1); set => Bitfield.Set(ref RawBits0, value, 28, 1); }
 
 		/// <summary>
 		/// To be documented.
@@ -142,7 +146,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Return U+FFFD glyph if requested glyph doesn't exists.<br/>
 		/// </summary>
 		public unsafe ImFontGlyph* FindGlyph(uint c)
 		{
@@ -154,7 +158,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Return NULL if glyph doesn't exist<br/>
 		/// </summary>
 		public unsafe ImFontGlyph* FindGlyphNoFallback(uint c)
 		{
@@ -279,7 +283,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint LockLoadingFallback { get => Handle->LockLoadingFallback; set => Handle->LockLoadingFallback = value; }
+		public uint LoadNoFallback { get => Handle->LoadNoFallback; set => Handle->LoadNoFallback = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint LoadNoRenderOnLayout { get => Handle->LoadNoRenderOnLayout; set => Handle->LoadNoRenderOnLayout = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -313,7 +321,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Return U+FFFD glyph if requested glyph doesn't exists.<br/>
 		/// </summary>
 		public unsafe ImFontGlyph* FindGlyph(uint c)
 		{
@@ -322,7 +330,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Return NULL if glyph doesn't exist<br/>
 		/// </summary>
 		public unsafe ImFontGlyph* FindGlyphNoFallback(uint c)
 		{

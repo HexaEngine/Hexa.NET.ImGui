@@ -25,17 +25,17 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// For BeginPopupContext*(): open on Left Mouse release. Guaranteed to always be == 0 (same as ImGuiMouseButton_Left)<br/>
 		/// </summary>
 		MouseButtonLeft = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// For BeginPopupContext*(): open on Right Mouse release. Guaranteed to always be == 1 (same as ImGuiMouseButton_Right)<br/>
 		/// </summary>
 		MouseButtonRight = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// For BeginPopupContext*(): open on Middle Mouse release. Guaranteed to always be == 2 (same as ImGuiMouseButton_Middle)<br/>
 		/// </summary>
 		MouseButtonMiddle = unchecked(2),
 
@@ -50,27 +50,27 @@ namespace Hexa.NET.ImGui
 		MouseButtonDefault = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// For OpenPopup*(), BeginPopupContext*(): don't reopen same popup if already open (won't reposition, won't reinitialize navigation)<br/>
 		/// </summary>
 		NoReopen = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// For OpenPopup*(), BeginPopupContext*(): don't open if there's already a popup at the same level of the popup stack<br/>
 		/// </summary>
 		NoOpenOverExistingPopup = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// For BeginPopupContextWindow(): don't return true when hovering items, only when hovering empty space<br/>
 		/// </summary>
 		NoOpenOverItems = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// For IsPopupOpen(): ignore the ImGuiID parameter and test for any popup.<br/>
 		/// </summary>
 		AnyPopupId = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// For IsPopupOpen(): searchtest at any level of the popup stack (default test in the current level)<br/>
 		/// </summary>
 		AnyPopupLevel = unchecked(2048),
 

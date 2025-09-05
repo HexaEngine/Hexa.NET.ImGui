@@ -20,12 +20,12 @@ namespace Hexa.NET.ImGui
 	public enum ImTextureFormat : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// 4 components per pixel, each is unsigned 8-bit. Total size = TexWidth * TexHeight * 4<br/>
 		/// </summary>
 		Rgba32 = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// 1 component per pixel, each is unsigned 8-bit. Total size = TexWidth * TexHeight<br/>
 		/// </summary>
 		Alpha8 = unchecked(1),
 	}

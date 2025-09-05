@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// ImGuiViewport PrivateInternals fields (cardinal sin: we are using inheritance!)<br/>
+	/// Every instance of ImGuiViewport is in fact a ImGuiViewportP.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiViewportP

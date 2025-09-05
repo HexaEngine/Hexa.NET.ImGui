@@ -17,7 +17,11 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Packed rectangle lookup entry (we need an indirection to allow removingreordering rectangles)<br/>
+	/// User are returned ImFontAtlasRectId values which are meant to be persistent.<br/>
+	/// We handle this with an indirection. While Rects[] may be in theory shuffled, compacted etc., RectsIndex[] cannot it is keyed by ImFontAtlasRectId.<br/>
+	/// RectsIndex[] is used both as an index into Rects[] and an index into itself. This is basically a free-list. See ImFontAtlasBuildAllocRectIndexEntry() code.<br/>
+	/// Having this also makes it easier to e.g. sort rectangles during repack.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontAtlasRectEntry

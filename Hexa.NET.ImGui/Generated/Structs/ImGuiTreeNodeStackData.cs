@@ -17,7 +17,10 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Store data emitted by TreeNode() for usage by TreePop()<br/>
+	/// - To implement ImGuiTreeNodeFlags_NavLeftJumpsToParent: store the minimum amount of data<br/>
+	/// which we can't infer in TreePop(), to perform the equivalent of NavApplyItemToResult().<br/>
+	/// Only stored when the node is a potential candidate for landing on a Left arrow jump.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTreeNodeStackData

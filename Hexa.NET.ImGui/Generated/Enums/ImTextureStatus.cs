@@ -25,22 +25,22 @@ namespace Hexa.NET.ImGui
 		Ok = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend destroyed the texture.<br/>
 		/// </summary>
 		Destroyed = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Requesting backend to create the texture. Set status OK when done.<br/>
 		/// </summary>
 		WantCreate = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Requesting backend to update specific blocks of pixels (write to texture portions which have never been used before). Set status OK when done.<br/>
 		/// </summary>
 		WantUpdates = unchecked(3),
 
 		/// <summary>
-		/// To be documented.
+		/// Requesting backend to destroy the texture. Set status to Destroyed when done.<br/>
 		/// </summary>
 		WantDestroy = unchecked(4),
 	}

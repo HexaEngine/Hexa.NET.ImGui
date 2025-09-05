@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{
@@ -126,7 +126,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{

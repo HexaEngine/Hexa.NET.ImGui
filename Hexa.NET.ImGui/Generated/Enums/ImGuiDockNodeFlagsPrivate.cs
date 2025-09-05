@@ -20,67 +20,65 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiDockNodeFlagsPrivate : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Saved  A dockspace is a node that occupy space within an existing user window. Otherwise the node is floating and create its own window.<br/>
 		/// </summary>
 		Space = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Saved  The central node has 2 main properties: stay visible when empty, only use "remaining" spaces from its neighbor.<br/>
 		/// </summary>
 		CentralNode = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// Saved  Tab bar is completely unavailable. No triangle in the corner to enable it back.<br/>
 		/// </summary>
 		NoTabBar = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
+		/// Saved  Tab bar is hidden, with a triangle in the corner to show it again (NB: actual tab-bar instance may be destroyed as this is only used for single-window tab bar)<br/>
 		/// </summary>
 		HiddenTabBar = unchecked(8192),
 
 		/// <summary>
-		/// To be documented.
+		/// Saved  Disable windowdocking menu (that one that appears instead of the collapse button)<br/>
 		/// </summary>
 		NoWindowMenuButton = unchecked(16384),
 
 		/// <summary>
-		/// To be documented.
+		/// Saved  Disable close button<br/>
 		/// </summary>
 		NoCloseButton = unchecked(32768),
 
 		/// <summary>
-		/// To be documented.
 		/// </summary>
 		NoResizeX = unchecked(65536),
 
 		/// <summary>
-		/// To be documented.
 		/// </summary>
 		NoResizeY = unchecked(131072),
 
 		/// <summary>
-		/// To be documented.
+		/// Any docked window will be automatically be focus-route chained (window-&gt;ParentWindowForFocusRoute set to this) so Shortcut() in this window can run when any docked window is focused.<br/>
 		/// </summary>
 		DockedWindowsInFocusRoute = unchecked(262144),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable this node from splitting other windowsnodes.<br/>
 		/// </summary>
 		NoDockingSplitOther = unchecked(524288),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable other windowsnodes from being docked over this node.<br/>
 		/// </summary>
 		NoDockingOverMe = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable this node from being docked over another window or non-empty node.<br/>
 		/// </summary>
 		NoDockingOverOther = unchecked(2097152),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable this node from being docked over an empty node (e.g. DockSpace with no other windows)<br/>
 		/// </summary>
 		NoDockingOverEmpty = unchecked(4194304),
 

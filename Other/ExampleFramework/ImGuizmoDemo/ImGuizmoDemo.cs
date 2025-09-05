@@ -13,13 +13,13 @@
     {
         public ImGuizmoDemo()
         {
+            UpdateCameraOrbit(Vector2.Zero, 0);
         }
 
         private CameraTransform camera = new();
         private Vector3 sc = new(10, 0.5f, 0.5f);
 
         private const float speed = 2;
-        private bool first = true;
 
         private string[] operationNames = Enum.GetNames<ImGuizmoOperation>();
         private ImGuizmoOperation[] operations = Enum.GetValues<ImGuizmoOperation>();
@@ -133,8 +133,27 @@
             // Display the gizmo state
             ImGui.Text($"IsOver: {overGimbal}");
             ImGui.Text($"IsUsed: {gimbalGrabbed}");
+            /*
+            //ImGuizmo.ViewManipulate(ref view, sc.X, new Vector2(200), new Vector2(128), 0x10101010);
 
+            Matrix4x4.Invert(view, out Matrix4x4 viewInverse);
+            Vector3 spherical = GetSphericalCoordinates(viewInverse.Translation);
+
+            sc.X = spherical.X;
+            sc.Y = spherical.Y;
+            sc.Z = spherical.Z;
+
+            UpdateCameraOrbit(default, default);
+            */
             ImGui.End();
+        }
+
+        public static Vector3 GetSphericalCoordinates(Vector3 cartesian)
+        {
+            float radius = cartesian.Length();
+            float yaw = MathF.Atan2(cartesian.Z, cartesian.X); // azimuth
+            float pitch = MathF.Asin(cartesian.Y / radius);    // elevation
+            return new Vector3(radius, yaw, pitch);
         }
 
         private void HandleInput()
@@ -143,7 +162,7 @@
             {
                 bool mouseMiddlePressed = ImGui.IsMouseDown(ImGuiMouseButton.Middle);
                 bool lCtrlPressed = ImGui.IsKeyPressed(ImGuiKey.LeftCtrl);
-                if (mouseMiddlePressed || lCtrlPressed || first)
+                if (mouseMiddlePressed || lCtrlPressed)
                 {
                     Vector2 delta = Vector2.Zero;
                     if (mouseMiddlePressed)
@@ -158,27 +177,30 @@
                     }
 
                     // Only update the camera's position if the mouse got moved in either direction
-                    if (delta.X != 0f || delta.Y != 0f || wheel != 0f || first)
+                    if (delta.X != 0f || delta.Y != 0f || wheel != 0f)
                     {
-                        sc.X += sc.X / 2 * -wheel;
-
-                        // Rotate the camera left and right
-                        sc.Y += -delta.X * 0.004f * speed;
-
-                        // Rotate the camera up and down
-                        // Prevent the camera from turning upside down (1.5f = approx. Pi / 2)
-                        sc.Z = Math.Clamp(sc.Z + delta.Y * 0.004f * speed, -MathF.PI / 2, MathF.PI / 2);
-
-                        first = false;
-
-                        // Calculate the cartesian coordinates
-                        Vector3 pos = SphereHelper.GetCartesianCoordinates(sc);
-                        var orientation = Quaternion.CreateFromYawPitchRoll(-sc.Y, sc.Z, 0);
-                        camera.PositionRotation = (pos, orientation);
-                        camera.Recalculate();
+                        UpdateCameraOrbit(delta, wheel);
                     }
                 }
             }
+        }
+
+        private void UpdateCameraOrbit(Vector2 delta, float wheel)
+        {
+            sc.X += sc.X / 2 * -wheel;
+
+            // Rotate the camera left and right
+            sc.Y += -delta.X * 0.004f * speed;
+
+            // Rotate the camera up and down
+            // Prevent the camera from turning upside down (1.5f = approx. Pi / 2)
+            sc.Z = Math.Clamp(sc.Z + delta.Y * 0.004f * speed, -MathF.PI / 2, MathF.PI / 2);
+
+            // Calculate the cartesian coordinates
+            Vector3 pos = SphereHelper.GetCartesianCoordinates(sc);
+            var orientation = Quaternion.CreateFromYawPitchRoll(-sc.Y, sc.Z, 0);
+            camera.PositionRotation = (pos, orientation);
+            camera.Recalculate();
         }
 
         private void DrawMenuBar()

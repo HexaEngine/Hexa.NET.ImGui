@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type, ImGuiDragDropFlags flags)
 		{
@@ -31,7 +31,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type)
 		{
@@ -43,7 +43,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(string type, ImGuiDragDropFlags flags)
 		{
@@ -73,7 +73,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(string type)
 		{
@@ -103,7 +103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndDragDropTarget() if BeginDragDropTarget() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndDragDropTargetNative()
@@ -116,7 +116,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndDragDropTarget() if BeginDragDropTarget() returns true!<br/>
 		/// </summary>
 		public static void EndDragDropTarget()
 		{
@@ -124,7 +124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// peek directly into the current payload from anywhere. returns NULL when drag and drop is finished or inactive. use ImGuiPayload::IsDataType() to test for the payload type.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiPayload* GetDragDropPayloadNative()
@@ -137,7 +137,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// peek directly into the current payload from anywhere. returns NULL when drag and drop is finished or inactive. use ImGuiPayload::IsDataType() to test for the payload type.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr GetDragDropPayload()
 		{
@@ -238,7 +238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// make last item the default focused item of a newly appearing window.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemDefaultFocusNative()
@@ -251,7 +251,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// make last item the default focused item of a newly appearing window.<br/>
 		/// </summary>
 		public static void SetItemDefaultFocus()
 		{
@@ -259,7 +259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetKeyboardFocusHereNative(int offset)
@@ -272,7 +272,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
 		/// </summary>
 		public static void SetKeyboardFocusHere(int offset)
 		{
@@ -280,7 +280,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
 		/// </summary>
 		public static void SetKeyboardFocusHere()
 		{
@@ -288,7 +288,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// alter visibility of keyboardgamepad cursor. by default: show when using an arrow key, hide when clicking with mouse.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNavCursorVisibleNative(byte visible)
@@ -301,7 +301,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// alter visibility of keyboardgamepad cursor. by default: show when using an arrow key, hide when clicking with mouse.<br/>
 		/// </summary>
 		public static void SetNavCursorVisible(bool visible)
 		{
@@ -309,7 +309,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// allow next item to be overlapped by a subsequent item. Useful with invisible buttons, selectable, treenode covering an area where subsequent items may need to be added. Note that both Selectable() and TreeNode() have dedicated flags doing this.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemAllowOverlapNative()
@@ -322,7 +322,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// allow next item to be overlapped by a subsequent item. Useful with invisible buttons, selectable, treenode covering an area where subsequent items may need to be added. Note that both Selectable() and TreeNode() have dedicated flags doing this.<br/>
 		/// </summary>
 		public static void SetNextItemAllowOverlap()
 		{
@@ -330,7 +330,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemHoveredNative(ImGuiHoveredFlags flags)
@@ -343,7 +343,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
 		/// </summary>
 		public static bool IsItemHovered(ImGuiHoveredFlags flags)
 		{
@@ -352,7 +352,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
 		/// </summary>
 		public static bool IsItemHovered()
 		{
@@ -361,7 +361,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item active? (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemActiveNative()
@@ -374,7 +374,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item active? (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)<br/>
 		/// </summary>
 		public static bool IsItemActive()
 		{
@@ -383,7 +383,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item focused for keyboardgamepad navigation?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemFocusedNative()
@@ -396,7 +396,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item focused for keyboardgamepad navigation?<br/>
 		/// </summary>
 		public static bool IsItemFocused()
 		{
@@ -405,7 +405,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemClickedNative(ImGuiMouseButton mouseButton)
@@ -418,7 +418,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
 		/// </summary>
 		public static bool IsItemClicked(ImGuiMouseButton mouseButton)
 		{
@@ -427,7 +427,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
 		/// </summary>
 		public static bool IsItemClicked()
 		{
@@ -436,7 +436,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item visible? (items may be out of sight because of clippingscrolling)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemVisibleNative()
@@ -449,7 +449,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is the last item visible? (items may be out of sight because of clippingscrolling)<br/>
 		/// </summary>
 		public static bool IsItemVisible()
 		{
@@ -458,7 +458,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did the last item modify its underlying value this frame? or was pressed? This is generally the same as the "bool" return value of many widgets.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemEditedNative()
@@ -471,7 +471,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did the last item modify its underlying value this frame? or was pressed? This is generally the same as the "bool" return value of many widgets.<br/>
 		/// </summary>
 		public static bool IsItemEdited()
 		{
@@ -480,7 +480,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item just made active (item was previously inactive).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemActivatedNative()
@@ -493,7 +493,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item just made active (item was previously inactive).<br/>
 		/// </summary>
 		public static bool IsItemActivated()
 		{
@@ -502,7 +502,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item just made inactive (item was previously active). Useful for UndoRedo patterns with widgets that require continuous editing.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemDeactivatedNative()
@@ -515,7 +515,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item just made inactive (item was previously active). Useful for UndoRedo patterns with widgets that require continuous editing.<br/>
 		/// </summary>
 		public static bool IsItemDeactivated()
 		{
@@ -524,7 +524,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item just made inactive and made a value change when it was active? (e.g. SliderDrag moved). Useful for UndoRedo patterns with widgets that require continuous editing. Note that you may get false positives (some widgets such as Combo()ListBox()Selectable() will return true even when clicking an already selected item).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemDeactivatedAfterEditNative()
@@ -537,7 +537,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item just made inactive and made a value change when it was active? (e.g. SliderDrag moved). Useful for UndoRedo patterns with widgets that require continuous editing. Note that you may get false positives (some widgets such as Combo()ListBox()Selectable() will return true even when clicking an already selected item).<br/>
 		/// </summary>
 		public static bool IsItemDeactivatedAfterEdit()
 		{
@@ -546,7 +546,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item open state toggled? set by TreeNode().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemToggledOpenNative()
@@ -559,7 +559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was the last item open state toggled? set by TreeNode().<br/>
 		/// </summary>
 		public static bool IsItemToggledOpen()
 		{
@@ -568,7 +568,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is any item hovered?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAnyItemHoveredNative()
@@ -581,7 +581,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is any item hovered?<br/>
 		/// </summary>
 		public static bool IsAnyItemHovered()
 		{
@@ -590,7 +590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is any item active?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAnyItemActiveNative()
@@ -603,7 +603,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is any item active?<br/>
 		/// </summary>
 		public static bool IsAnyItemActive()
 		{
@@ -612,7 +612,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is any item focused?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAnyItemFocusedNative()
@@ -625,7 +625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is any item focused?<br/>
 		/// </summary>
 		public static bool IsAnyItemFocused()
 		{
@@ -634,7 +634,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get ID of last item (~~ often same ImGui::GetID(label) beforehand)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetItemIDNative()
@@ -647,7 +647,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get ID of last item (~~ often same ImGui::GetID(label) beforehand)<br/>
 		/// </summary>
 		public static uint GetItemID()
 		{
@@ -656,7 +656,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get upper-left bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetItemRectMinNative(Vector2* pOut)
@@ -669,7 +669,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get upper-left bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		public static Vector2 GetItemRectMin()
 		{
@@ -679,7 +679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get upper-left bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		public static void GetItemRectMin(Vector2* pOut)
 		{
@@ -687,7 +687,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get upper-left bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		public static void GetItemRectMin(ref Vector2 pOut)
 		{
@@ -698,7 +698,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get lower-right bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetItemRectMaxNative(Vector2* pOut)
@@ -711,7 +711,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get lower-right bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		public static Vector2 GetItemRectMax()
 		{
@@ -721,7 +721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get lower-right bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		public static void GetItemRectMax(Vector2* pOut)
 		{
@@ -729,7 +729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get lower-right bounding rectangle of the last item (screen space)<br/>
 		/// </summary>
 		public static void GetItemRectMax(ref Vector2 pOut)
 		{
@@ -740,7 +740,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get size of last item<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetItemRectSizeNative(Vector2* pOut)
@@ -753,7 +753,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get size of last item<br/>
 		/// </summary>
 		public static Vector2 GetItemRectSize()
 		{
@@ -763,7 +763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get size of last item<br/>
 		/// </summary>
 		public static void GetItemRectSize(Vector2* pOut)
 		{
@@ -771,7 +771,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get size of last item<br/>
 		/// </summary>
 		public static void GetItemRectSize(ref Vector2 pOut)
 		{
@@ -782,7 +782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return primarydefault viewport. This can never be NULL.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiViewport* GetMainViewportNative()
@@ -795,7 +795,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return primarydefault viewport. This can never be NULL.<br/>
 		/// </summary>
 		public static ImGuiViewportPtr GetMainViewport()
 		{
@@ -804,7 +804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetBackgroundDrawListNative(ImGuiViewport* viewport)
@@ -817,7 +817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
 		/// </summary>
 		public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewportPtr viewport)
 		{
@@ -826,7 +826,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
 		/// </summary>
 		public static ImDrawListPtr GetBackgroundDrawList()
 		{
@@ -835,7 +835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
 		/// </summary>
 		public static ImDrawListPtr GetBackgroundDrawList(ref ImGuiViewport viewport)
 		{
@@ -847,7 +847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport)
@@ -860,7 +860,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
 		/// </summary>
 		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
 		{
@@ -869,7 +869,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
 		/// </summary>
 		public static ImDrawListPtr GetForegroundDrawList()
 		{
@@ -878,7 +878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
 		/// </summary>
 		public static ImDrawListPtr GetForegroundDrawList(ref ImGuiViewport viewport)
 		{
@@ -890,7 +890,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsRectVisibleNative(Vector2 size)
@@ -903,7 +903,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
 		/// </summary>
 		public static bool IsRectVisible(Vector2 size)
 		{
@@ -912,7 +912,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsRectVisibleNative(Vector2 rectMin, Vector2 rectMax)
@@ -925,7 +925,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// test if rectangle (in screen space) is visible  not clipped. to perform coarse clipping on user's side.<br/>
 		/// </summary>
 		public static bool IsRectVisible(Vector2 rectMin, Vector2 rectMax)
 		{
@@ -934,7 +934,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static double GetTimeNative()
@@ -947,7 +947,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
 		/// </summary>
 		public static double GetTime()
 		{
@@ -956,7 +956,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get global imgui frame count. incremented by 1 every frame.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetFrameCountNative()
@@ -969,7 +969,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get global imgui frame count. incremented by 1 every frame.<br/>
 		/// </summary>
 		public static int GetFrameCount()
 		{
@@ -978,7 +978,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// you may use this when creating your own ImDrawList instances.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawListSharedData* GetDrawListSharedDataNative()
@@ -991,7 +991,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// you may use this when creating your own ImDrawList instances.<br/>
 		/// </summary>
 		public static ImDrawListSharedDataPtr GetDrawListSharedData()
 		{
@@ -1000,7 +1000,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetStyleColorNameNative(ImGuiCol idx)
@@ -1013,7 +1013,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
 		/// </summary>
 		public static byte* GetStyleColorName(ImGuiCol idx)
 		{
@@ -1022,7 +1022,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
 		/// </summary>
 		public static string GetStyleColorNameS(ImGuiCol idx)
 		{
@@ -1031,7 +1031,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetStateStorageNative(ImGuiStorage* storage)
@@ -1044,7 +1044,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
 		/// </summary>
 		public static void SetStateStorage(ImGuiStoragePtr storage)
 		{
@@ -1052,7 +1052,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
 		/// </summary>
 		public static void SetStateStorage(ref ImGuiStorage storage)
 		{

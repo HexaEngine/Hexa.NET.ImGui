@@ -60,7 +60,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
@@ -73,7 +73,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -81,7 +81,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
@@ -89,7 +89,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -100,7 +100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
@@ -111,7 +111,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
@@ -124,7 +124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -132,7 +132,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -151,7 +151,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
@@ -1014,7 +1014,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use precomputed angles for a 12 steps circle<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
@@ -1027,7 +1027,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use precomputed angles for a 12 steps circle<br/>
 		/// </summary>
 		public static void PathArcToFast(ImDrawListPtr self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -1035,7 +1035,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use precomputed angles for a 12 steps circle<br/>
 		/// </summary>
 		public static void PathArcToFast(ref ImDrawList self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -1046,7 +1046,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
@@ -1059,7 +1059,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -1067,7 +1067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
@@ -1075,7 +1075,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -1086,7 +1086,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
@@ -1097,7 +1097,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
@@ -1110,7 +1110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -1118,7 +1118,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4)
 		{
@@ -1126,7 +1126,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -1137,7 +1137,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4)
 		{
@@ -1148,7 +1148,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments)
@@ -1161,7 +1161,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -1169,7 +1169,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3)
 		{
@@ -1177,7 +1177,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -1188,7 +1188,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3)
 		{
@@ -1339,7 +1339,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddDrawCmdNative(ImDrawList* self)
@@ -1352,7 +1352,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		public static void AddDrawCmd(ImDrawListPtr self)
 		{
@@ -1360,7 +1360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		public static void AddDrawCmd(ref ImDrawList self)
 		{
@@ -1371,7 +1371,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* CloneOutputNative(ImDrawList* self)
@@ -1384,7 +1384,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
 		/// </summary>
 		public static ImDrawListPtr CloneOutput(ImDrawListPtr self)
 		{
@@ -1393,7 +1393,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
 		/// </summary>
 		public static ImDrawListPtr CloneOutput(ref ImDrawList self)
 		{
@@ -1565,7 +1565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Axis aligned rectangle (composed of two triangles)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimRectNative(ImDrawList* self, Vector2 a, Vector2 b, uint col)
@@ -1578,7 +1578,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Axis aligned rectangle (composed of two triangles)<br/>
 		/// </summary>
 		public static void PrimRect(ImDrawListPtr self, Vector2 a, Vector2 b, uint col)
 		{
@@ -1586,7 +1586,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Axis aligned rectangle (composed of two triangles)<br/>
 		/// </summary>
 		public static void PrimRect(ref ImDrawList self, Vector2 a, Vector2 b, uint col)
 		{
@@ -1725,7 +1725,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Write vertex with unique index<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PrimVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
@@ -1738,7 +1738,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Write vertex with unique index<br/>
 		/// </summary>
 		public static void PrimVtx(ImDrawListPtr self, Vector2 pos, Vector2 uv, uint col)
 		{
@@ -1746,7 +1746,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Write vertex with unique index<br/>
 		/// </summary>
 		public static void PrimVtx(ref ImDrawList self, Vector2 pos, Vector2 uv, uint col)
 		{
@@ -2254,7 +2254,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddDrawListNative(ImDrawData* self, ImDrawList* drawList)
@@ -2267,7 +2267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public static void AddDrawList(ImDrawDataPtr self, ImDrawListPtr drawList)
 		{
@@ -2275,7 +2275,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public static void AddDrawList(ref ImDrawData self, ImDrawListPtr drawList)
 		{
@@ -2286,7 +2286,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public static void AddDrawList(ImDrawDataPtr self, ref ImDrawList drawList)
 		{
@@ -2297,7 +2297,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
 		public static void AddDrawList(ref ImDrawData self, ref ImDrawList drawList)
 		{
@@ -2311,7 +2311,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DeIndexAllBuffersNative(ImDrawData* self)
@@ -2324,7 +2324,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
 		/// </summary>
 		public static void DeIndexAllBuffers(ImDrawDataPtr self)
 		{
@@ -2332,7 +2332,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to convert all buffers from indexed to non-indexed, in case you cannot render indexed. Note: this is slow and most likely a waste of resources. Always prefer indexed rendering!<br/>
 		/// </summary>
 		public static void DeIndexAllBuffers(ref ImDrawData self)
 		{
@@ -2343,7 +2343,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ScaleClipRectsNative(ImDrawData* self, Vector2 fbScale)
@@ -2356,7 +2356,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
 		/// </summary>
 		public static void ScaleClipRects(ImDrawDataPtr self, Vector2 fbScale)
 		{
@@ -2364,7 +2364,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper to scale the ClipRect field of each ImDrawCmd. Use if your final output buffer is at a different scale than Dear ImGui expects, or if there is a difference between your window resolution and framebuffer resolution.<br/>
 		/// </summary>
 		public static void ScaleClipRects(ref ImDrawData self, Vector2 fbScale)
 		{
@@ -2709,7 +2709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImTextureID GetTexIDNative(ImTextureData* self)
@@ -2722,7 +2722,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ImTextureDataPtr self)
 		{
@@ -2731,7 +2731,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ref ImTextureData self)
 		{
@@ -2743,7 +2743,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetTexIDNative(ImTextureData* self, ImTextureID texId)
@@ -2756,7 +2756,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
 		/// </summary>
 		public static void SetTexID(ImTextureDataPtr self, ImTextureID texId)
 		{
@@ -2764,7 +2764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
 		/// </summary>
 		public static void SetTexID(ref ImTextureData self, ImTextureID texId)
 		{
@@ -2775,7 +2775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after honoring a request. Never modify Status directly!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetStatusNative(ImTextureData* self, ImTextureStatus status)
@@ -2788,7 +2788,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after honoring a request. Never modify Status directly!<br/>
 		/// </summary>
 		public static void SetStatus(ImTextureDataPtr self, ImTextureStatus status)
 		{
@@ -2796,7 +2796,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after honoring a request. Never modify Status directly!<br/>
 		/// </summary>
 		public static void SetStatus(ref ImTextureData self, ImTextureStatus status)
 		{
@@ -3001,7 +3001,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get bit n in the array<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte GetBitNative(ImFontGlyphRangesBuilder* self, nuint n)
@@ -3014,7 +3014,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get bit n in the array<br/>
 		/// </summary>
 		public static bool GetBit(ImFontGlyphRangesBuilderPtr self, nuint n)
 		{
@@ -3023,7 +3023,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get bit n in the array<br/>
 		/// </summary>
 		public static bool GetBit(ref ImFontGlyphRangesBuilder self, nuint n)
 		{
@@ -3035,7 +3035,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set bit n in the array<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetBitNative(ImFontGlyphRangesBuilder* self, nuint n)
@@ -3048,7 +3048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set bit n in the array<br/>
 		/// </summary>
 		public static void SetBit(ImFontGlyphRangesBuilderPtr self, nuint n)
 		{
@@ -3056,7 +3056,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set bit n in the array<br/>
 		/// </summary>
 		public static void SetBit(ref ImFontGlyphRangesBuilder self, nuint n)
 		{
@@ -3067,7 +3067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add character<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddCharNative(ImFontGlyphRangesBuilder* self, uint c)
@@ -3080,7 +3080,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add character<br/>
 		/// </summary>
 		public static void AddChar(ImFontGlyphRangesBuilderPtr self, uint c)
 		{
@@ -3088,7 +3088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add character<br/>
 		/// </summary>
 		public static void AddChar(ref ImFontGlyphRangesBuilder self, uint c)
 		{
@@ -3112,7 +3112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, byte* text, byte* textEnd)
 		{
@@ -3120,7 +3120,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, byte* text)
 		{
@@ -3128,7 +3128,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, byte* text, byte* textEnd)
 		{
@@ -3139,7 +3139,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, byte* text)
 		{
@@ -3150,7 +3150,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ref byte text, byte* textEnd)
 		{
@@ -3161,7 +3161,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ref byte text)
 		{
@@ -3172,7 +3172,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -3183,7 +3183,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ReadOnlySpan<byte> text)
 		{
@@ -3194,7 +3194,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, string text, byte* textEnd)
 		{
@@ -3223,7 +3223,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, string text)
 		{
@@ -3252,7 +3252,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ref byte text, byte* textEnd)
 		{
@@ -3266,7 +3266,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ref byte text)
 		{
@@ -3280,7 +3280,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -3294,7 +3294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ReadOnlySpan<byte> text)
 		{
@@ -3308,7 +3308,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, string text, byte* textEnd)
 		{
@@ -3340,7 +3340,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, string text)
 		{
@@ -3372,7 +3372,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, byte* text, ref byte textEnd)
 		{
@@ -3383,7 +3383,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3394,7 +3394,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, byte* text, string textEnd)
 		{
@@ -3423,7 +3423,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, byte* text, ref byte textEnd)
 		{
@@ -3437,7 +3437,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3451,7 +3451,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, byte* text, string textEnd)
 		{
@@ -3483,7 +3483,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ref byte text, ref byte textEnd)
 		{
@@ -3497,7 +3497,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3511,7 +3511,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, string text, string textEnd)
 		{
@@ -3561,7 +3561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3575,7 +3575,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ref byte text, string textEnd)
 		{
@@ -3607,7 +3607,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -3621,7 +3621,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -3653,7 +3653,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, string text, ref byte textEnd)
 		{
@@ -3685,7 +3685,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3717,7 +3717,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ref byte text, ref byte textEnd)
 		{
@@ -3734,7 +3734,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3751,7 +3751,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, string text, string textEnd)
 		{
@@ -3804,7 +3804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3821,7 +3821,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ref byte text, string textEnd)
 		{
@@ -3856,7 +3856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -3873,7 +3873,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -3908,7 +3908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, string text, ref byte textEnd)
 		{
@@ -3943,7 +3943,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public static void AddText(ref ImFontGlyphRangesBuilder self, string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3978,7 +3978,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddRangesNative(ImFontGlyphRangesBuilder* self, uint* ranges)
@@ -3991,7 +3991,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
 		public static void AddRanges(ImFontGlyphRangesBuilderPtr self, uint* ranges)
 		{
@@ -3999,7 +3999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
 		/// </summary>
 		public static void AddRanges(ref ImFontGlyphRangesBuilder self, uint* ranges)
 		{
@@ -4010,7 +4010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Output new ranges<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVector<uint>* outRanges)
@@ -4023,7 +4023,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Output new ranges<br/>
 		/// </summary>
 		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ImVector<uint>* outRanges)
 		{
@@ -4031,7 +4031,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Output new ranges<br/>
 		/// </summary>
 		public static void BuildRanges(ref ImFontGlyphRangesBuilder self, ImVector<uint>* outRanges)
 		{
@@ -4042,7 +4042,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Output new ranges<br/>
 		/// </summary>
 		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ref ImVector<uint> outRanges)
 		{
@@ -4053,7 +4053,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Output new ranges<br/>
 		/// </summary>
 		public static void BuildRanges(ref ImFontGlyphRangesBuilder self, ref ImVector<uint> outRanges)
 		{

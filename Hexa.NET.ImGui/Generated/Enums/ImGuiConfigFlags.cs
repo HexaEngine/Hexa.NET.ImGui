@@ -25,47 +25,47 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Master keyboard navigation enable flag. Enable full Tabbing + directional arrows + spaceenter to activate.<br/>
 		/// </summary>
 		NavEnableKeyboard = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Master gamepad navigation enable flag. Backend also needs to set ImGuiBackendFlags_HasGamepad.<br/>
 		/// </summary>
 		NavEnableGamepad = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Instruct dear imgui to disable mouse inputs and interactions.<br/>
 		/// </summary>
 		NoMouse = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Instruct backend to not alter mouse cursor shape and visibility. Use if the backend cursor changes are interfering with yours and you don't want to use SetMouseCursor() to change mouse cursor. You may want to honor requests from imgui by reading GetMouseCursor() yourself instead.<br/>
 		/// </summary>
 		NoMouseCursorChange = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Instruct dear imgui to disable keyboard inputs and interactions. This is done by ignoring keyboard events and clearing existing states.<br/>
 		/// </summary>
 		NoKeyboard = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Docking enable flags.<br/>
 		/// </summary>
 		DockingEnable = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Viewport enable flags (require both ImGuiBackendFlags_PlatformHasViewports + ImGuiBackendFlags_RendererHasViewports set by the respective backends)<br/>
 		/// </summary>
 		ViewportsEnable = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Application is SRGB-aware.<br/>
 		/// </summary>
 		IsSrgb = unchecked(1048576),
 
 		/// <summary>
-		/// To be documented.
+		/// Application is using a touch screen instead of a mouse.<br/>
 		/// </summary>
 		IsTouchScreen = unchecked(2097152),
 	}

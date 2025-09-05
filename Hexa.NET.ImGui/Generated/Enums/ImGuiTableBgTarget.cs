@@ -25,17 +25,17 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Set row background color 0 (generally used for background, automatically set when ImGuiTableFlags_RowBg is used)<br/>
 		/// </summary>
 		RowBg0 = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Set row background color 1 (generally used for selection marking)<br/>
 		/// </summary>
 		RowBg1 = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Set cell background color (top-most color)<br/>
 		/// </summary>
 		CellBg = unchecked(3),
 	}

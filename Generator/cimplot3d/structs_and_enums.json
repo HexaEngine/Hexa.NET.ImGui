@@ -1,0 +1,1111 @@
+{
+  "enum_comments": {
+    "ImAxis3D_": {
+      "above": "// Axis indices"
+    },
+    "ImPlane3D_": {
+      "above": "// Plane indices"
+    },
+    "ImPlot3DAxisFlags_": {
+      "above": "// Flags for axis"
+    },
+    "ImPlot3DColormap_": {
+      "above": "// Colormaps"
+    },
+    "ImPlot3DCond_": {
+      "above": "// Represents a condition for SetupAxisLimits etc. (same as ImGuiCond, but we only support a subset of those enums)"
+    },
+    "ImPlot3DFlags_": {
+      "above": "// Flags for ImPlot3D::BeginPlot()"
+    },
+    "ImPlot3DImageFlags_": {
+      "above": "// Flags for PlotImage"
+    },
+    "ImPlot3DItemFlags_": {
+      "above": "// Flags for items"
+    },
+    "ImPlot3DLegendFlags_": {
+      "above": "// Flags for legends"
+    },
+    "ImPlot3DLineFlags_": {
+      "above": "// Flags for PlotLine"
+    },
+    "ImPlot3DLocation_": {
+      "above": "// Used to position legend on a plot"
+    },
+    "ImPlot3DMeshFlags_": {
+      "above": "// Flags for PlotMesh"
+    },
+    "ImPlot3DQuadFlags_": {
+      "above": "// Flags for PlotQuad"
+    },
+    "ImPlot3DScatterFlags_": {
+      "above": "// Flags for PlotScatter"
+    },
+    "ImPlot3DStyleVar_": {
+      "above": "// Plot styling variables"
+    },
+    "ImPlot3DSurfaceFlags_": {
+      "above": "// Flags for PlotSurface"
+    },
+    "ImPlot3DTriangleFlags_": {
+      "above": "// Flags for PlotTriangle"
+    }
+  },
+  "enums": {
+    "ImAxis3D_": [
+      {
+        "calc_value": 0,
+        "name": "ImAxis3D_X",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImAxis3D_Y",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImAxis3D_Z",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "name": "ImAxis3D_COUNT",
+        "value": "3"
+      }
+    ],
+    "ImPlane3D_": [
+      {
+        "calc_value": 0,
+        "name": "ImPlane3D_YZ",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlane3D_XZ",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlane3D_XY",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "name": "ImPlane3D_COUNT",
+        "value": "3"
+      }
+    ],
+    "ImPlot3DAxisFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DAxisFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// No axis label will be displayed",
+        "name": "ImPlot3DAxisFlags_NoLabel",
+        "value": "1 << 0"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// No grid lines will be displayed",
+        "name": "ImPlot3DAxisFlags_NoGridLines",
+        "value": "1 << 1"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// No tick marks will be displayed",
+        "name": "ImPlot3DAxisFlags_NoTickMarks",
+        "value": "1 << 2"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// No tick labels will be displayed",
+        "name": "ImPlot3DAxisFlags_NoTickLabels",
+        "value": "1 << 3"
+      },
+      {
+        "calc_value": 16,
+        "comment": "// The axis minimum value will be locked when panning/zooming",
+        "name": "ImPlot3DAxisFlags_LockMin",
+        "value": "1 << 4"
+      },
+      {
+        "calc_value": 32,
+        "comment": "// The axis maximum value will be locked when panning/zooming",
+        "name": "ImPlot3DAxisFlags_LockMax",
+        "value": "1 << 5"
+      },
+      {
+        "calc_value": 64,
+        "comment": "// Axis will be auto-fitting to data extents",
+        "name": "ImPlot3DAxisFlags_AutoFit",
+        "value": "1 << 6"
+      },
+      {
+        "calc_value": 128,
+        "comment": "// The axis will be inverted",
+        "name": "ImPlot3DAxisFlags_Invert",
+        "value": "1 << 7"
+      },
+      {
+        "calc_value": 256,
+        "comment": "// Panning in a locked or constrained state will cause the axis to stretch if possible",
+        "name": "ImPlot3DAxisFlags_PanStretch",
+        "value": "1 << 8"
+      },
+      {
+        "calc_value": 48,
+        "name": "ImPlot3DAxisFlags_Lock",
+        "value": "ImPlot3DAxisFlags_LockMin | ImPlot3DAxisFlags_LockMax"
+      },
+      {
+        "calc_value": 11,
+        "name": "ImPlot3DAxisFlags_NoDecorations",
+        "value": "ImPlot3DAxisFlags_NoLabel | ImPlot3DAxisFlags_NoGridLines | ImPlot3DAxisFlags_NoTickLabels"
+      }
+    ],
+    "ImPlot3DCol_": [
+      {
+        "calc_value": 0,
+        "comment": "// Line color",
+        "name": "ImPlot3DCol_Line",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// Fill color",
+        "name": "ImPlot3DCol_Fill",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Marker outline color",
+        "name": "ImPlot3DCol_MarkerOutline",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "comment": "// Marker fill color",
+        "name": "ImPlot3DCol_MarkerFill",
+        "value": "3"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// Title color",
+        "name": "ImPlot3DCol_TitleText",
+        "value": "4"
+      },
+      {
+        "calc_value": 5,
+        "comment": "// Color for texts appearing inside of plots",
+        "name": "ImPlot3DCol_InlayText",
+        "value": "5"
+      },
+      {
+        "calc_value": 6,
+        "comment": "// Frame background color",
+        "name": "ImPlot3DCol_FrameBg",
+        "value": "6"
+      },
+      {
+        "calc_value": 7,
+        "comment": "// Plot area background color",
+        "name": "ImPlot3DCol_PlotBg",
+        "value": "7"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// Plot area border color",
+        "name": "ImPlot3DCol_PlotBorder",
+        "value": "8"
+      },
+      {
+        "calc_value": 9,
+        "comment": "// Legend background color",
+        "name": "ImPlot3DCol_LegendBg",
+        "value": "9"
+      },
+      {
+        "calc_value": 10,
+        "comment": "// Legend border color",
+        "name": "ImPlot3DCol_LegendBorder",
+        "value": "10"
+      },
+      {
+        "calc_value": 11,
+        "comment": "// Legend text color",
+        "name": "ImPlot3DCol_LegendText",
+        "value": "11"
+      },
+      {
+        "calc_value": 12,
+        "comment": "// Axis label and tick lables color",
+        "name": "ImPlot3DCol_AxisText",
+        "value": "12"
+      },
+      {
+        "calc_value": 13,
+        "comment": "// Axis grid color",
+        "name": "ImPlot3DCol_AxisGrid",
+        "value": "13"
+      },
+      {
+        "calc_value": 14,
+        "comment": "// Axis tick color (defaults to AxisGrid)",
+        "name": "ImPlot3DCol_AxisTick",
+        "value": "14"
+      },
+      {
+        "calc_value": 15,
+        "name": "ImPlot3DCol_COUNT",
+        "value": "15"
+      }
+    ],
+    "ImPlot3DColormap_": [
+      {
+        "calc_value": 0,
+        "comment": "// Same as seaborn \"deep\"",
+        "name": "ImPlot3DColormap_Deep",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// Same as matplotlib \"Set1\"",
+        "name": "ImPlot3DColormap_Dark",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Same as matplotlib \"Pastel1\"",
+        "name": "ImPlot3DColormap_Pastel",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "comment": "// Same as matplotlib \"Paired\"",
+        "name": "ImPlot3DColormap_Paired",
+        "value": "3"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// Same as matplotlib \"viridis\"",
+        "name": "ImPlot3DColormap_Viridis",
+        "value": "4"
+      },
+      {
+        "calc_value": 5,
+        "comment": "// Same as matplotlib \"plasma\"",
+        "name": "ImPlot3DColormap_Plasma",
+        "value": "5"
+      },
+      {
+        "calc_value": 6,
+        "comment": "// Same as matplotlib/MATLAB \"hot\"",
+        "name": "ImPlot3DColormap_Hot",
+        "value": "6"
+      },
+      {
+        "calc_value": 7,
+        "comment": "// Same as matplotlib/MATLAB \"cool\"",
+        "name": "ImPlot3DColormap_Cool",
+        "value": "7"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// Same as matplotlib/MATLAB \"pink\"",
+        "name": "ImPlot3DColormap_Pink",
+        "value": "8"
+      },
+      {
+        "calc_value": 9,
+        "comment": "// Same as matplotlib/MATLAB \"jet\"",
+        "name": "ImPlot3DColormap_Jet",
+        "value": "9"
+      },
+      {
+        "calc_value": 10,
+        "comment": "// Same as matplotlib \"twilight\"",
+        "name": "ImPlot3DColormap_Twilight",
+        "value": "10"
+      },
+      {
+        "calc_value": 11,
+        "comment": "// Same as matplotlib \"RdBu\"",
+        "name": "ImPlot3DColormap_RdBu",
+        "value": "11"
+      },
+      {
+        "calc_value": 12,
+        "comment": "// Same as matplotlib \"BrGB\"",
+        "name": "ImPlot3DColormap_BrBG",
+        "value": "12"
+      },
+      {
+        "calc_value": 13,
+        "comment": "// Same as matplotlib \"PiYG\"",
+        "name": "ImPlot3DColormap_PiYG",
+        "value": "13"
+      },
+      {
+        "calc_value": 14,
+        "comment": "// Same as matplotlib \"Spectral\"",
+        "name": "ImPlot3DColormap_Spectral",
+        "value": "14"
+      },
+      {
+        "calc_value": 15,
+        "comment": "// White/black",
+        "name": "ImPlot3DColormap_Greys",
+        "value": "15"
+      }
+    ],
+    "ImPlot3DCond_": [
+      {
+        "calc_value": 0,
+        "comment": "// No condition (always set the variable), same as _Always",
+        "name": "ImPlot3DCond_None",
+        "value": "ImGuiCond_None"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// No condition (always set the variable)",
+        "name": "ImPlot3DCond_Always",
+        "value": "ImGuiCond_Always"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Set the variable once per runtime session (only the first call will succeed)",
+        "name": "ImPlot3DCond_Once",
+        "value": "ImGuiCond_Once"
+      }
+    ],
+    "ImPlot3DFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// Hide plot title",
+        "name": "ImPlot3DFlags_NoTitle",
+        "value": "1 << 0"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Hide plot legend",
+        "name": "ImPlot3DFlags_NoLegend",
+        "value": "1 << 1"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// Hide mouse position in plot coordinates",
+        "name": "ImPlot3DFlags_NoMouseText",
+        "value": "1 << 2"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// Disable 3D box clipping",
+        "name": "ImPlot3DFlags_NoClip",
+        "value": "1 << 3"
+      },
+      {
+        "calc_value": 16,
+        "comment": "// The user will not be able to open context menus",
+        "name": "ImPlot3DFlags_NoMenus",
+        "value": "1 << 4"
+      },
+      {
+        "calc_value": 7,
+        "name": "ImPlot3DFlags_CanvasOnly",
+        "value": "ImPlot3DFlags_NoTitle | ImPlot3DFlags_NoLegend | ImPlot3DFlags_NoMouseText"
+      }
+    ],
+    "ImPlot3DImageFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DImageFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DImageFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DImageFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      }
+    ],
+    "ImPlot3DItemFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DItemFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// The item won't have a legend entry displayed",
+        "name": "ImPlot3DItemFlags_NoLegend",
+        "value": "1 << 0"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// The item won't be considered for plot fits",
+        "name": "ImPlot3DItemFlags_NoFit",
+        "value": "1 << 1"
+      }
+    ],
+    "ImPlot3DLegendFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DLegendFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// Legend icons will not function as hide/show buttons",
+        "name": "ImPlot3DLegendFlags_NoButtons",
+        "value": "1 << 0"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Plot items will not be highlighted when their legend entry is hovered",
+        "name": "ImPlot3DLegendFlags_NoHighlightItem",
+        "value": "1 << 1"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// Legend entries will be displayed horizontally",
+        "name": "ImPlot3DLegendFlags_Horizontal",
+        "value": "1 << 2"
+      }
+    ],
+    "ImPlot3DLineFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DLineFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DLineFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DLineFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      },
+      {
+        "calc_value": 1024,
+        "comment": "// A line segment will be rendered from every two consecutive points",
+        "name": "ImPlot3DLineFlags_Segments",
+        "value": "1 << 10"
+      },
+      {
+        "calc_value": 2048,
+        "comment": "// The last and first point will be connected to form a closed loop",
+        "name": "ImPlot3DLineFlags_Loop",
+        "value": "1 << 11"
+      },
+      {
+        "calc_value": 4096,
+        "comment": "// NaNs values will be skipped instead of rendered as missing data",
+        "name": "ImPlot3DLineFlags_SkipNaN",
+        "value": "1 << 12"
+      }
+    ],
+    "ImPlot3DLocation_": [
+      {
+        "calc_value": 0,
+        "comment": "// Center-center",
+        "name": "ImPlot3DLocation_Center",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// Top-center",
+        "name": "ImPlot3DLocation_North",
+        "value": "1 << 0"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Bottom-center",
+        "name": "ImPlot3DLocation_South",
+        "value": "1 << 1"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// Center-left",
+        "name": "ImPlot3DLocation_West",
+        "value": "1 << 2"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// Center-right",
+        "name": "ImPlot3DLocation_East",
+        "value": "1 << 3"
+      },
+      {
+        "calc_value": 5,
+        "comment": "// Top-left",
+        "name": "ImPlot3DLocation_NorthWest",
+        "value": "ImPlot3DLocation_North | ImPlot3DLocation_West"
+      },
+      {
+        "calc_value": 9,
+        "comment": "// Top-right",
+        "name": "ImPlot3DLocation_NorthEast",
+        "value": "ImPlot3DLocation_North | ImPlot3DLocation_East"
+      },
+      {
+        "calc_value": 6,
+        "comment": "// Bottom-left",
+        "name": "ImPlot3DLocation_SouthWest",
+        "value": "ImPlot3DLocation_South | ImPlot3DLocation_West"
+      },
+      {
+        "calc_value": 10,
+        "comment": "// Bottom-right",
+        "name": "ImPlot3DLocation_SouthEast",
+        "value": "ImPlot3DLocation_South | ImPlot3DLocation_East"
+      }
+    ],
+    "ImPlot3DMarker_": [
+      {
+        "calc_value": -1,
+        "comment": "// No marker",
+        "name": "ImPlot3DMarker_None",
+        "value": "-1"
+      },
+      {
+        "calc_value": 0,
+        "comment": "// Circle marker (default)",
+        "name": "ImPlot3DMarker_Circle",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// Square maker",
+        "name": "ImPlot3DMarker_Square",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// Diamond marker",
+        "name": "ImPlot3DMarker_Diamond",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "comment": "// Upward-pointing triangle marker",
+        "name": "ImPlot3DMarker_Up",
+        "value": "3"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// Downward-pointing triangle marker",
+        "name": "ImPlot3DMarker_Down",
+        "value": "4"
+      },
+      {
+        "calc_value": 5,
+        "comment": "// Leftward-pointing triangle marker",
+        "name": "ImPlot3DMarker_Left",
+        "value": "5"
+      },
+      {
+        "calc_value": 6,
+        "comment": "// Rightward-pointing triangle marker",
+        "name": "ImPlot3DMarker_Right",
+        "value": "6"
+      },
+      {
+        "calc_value": 7,
+        "comment": "// Cross marker (not fillable)",
+        "name": "ImPlot3DMarker_Cross",
+        "value": "7"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// Plus marker (not fillable)",
+        "name": "ImPlot3DMarker_Plus",
+        "value": "8"
+      },
+      {
+        "calc_value": 9,
+        "comment": "// Asterisk marker (not fillable)",
+        "name": "ImPlot3DMarker_Asterisk",
+        "value": "9"
+      },
+      {
+        "calc_value": 10,
+        "name": "ImPlot3DMarker_COUNT",
+        "value": "10"
+      }
+    ],
+    "ImPlot3DMeshFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DMeshFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DMeshFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DMeshFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      },
+      {
+        "calc_value": 1024,
+        "comment": "// No lines will be rendered",
+        "name": "ImPlot3DMeshFlags_NoLines",
+        "value": "1 << 10"
+      },
+      {
+        "calc_value": 2048,
+        "comment": "// No fill will be rendered",
+        "name": "ImPlot3DMeshFlags_NoFill",
+        "value": "1 << 11"
+      },
+      {
+        "calc_value": 4096,
+        "comment": "// No markers will be rendered",
+        "name": "ImPlot3DMeshFlags_NoMarkers",
+        "value": "1 << 12"
+      }
+    ],
+    "ImPlot3DQuadFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DQuadFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DQuadFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DQuadFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      },
+      {
+        "calc_value": 1024,
+        "comment": "// No lines will be rendered",
+        "name": "ImPlot3DQuadFlags_NoLines",
+        "value": "1 << 10"
+      },
+      {
+        "calc_value": 2048,
+        "comment": "// No fill will be rendered",
+        "name": "ImPlot3DQuadFlags_NoFill",
+        "value": "1 << 11"
+      },
+      {
+        "calc_value": 4096,
+        "comment": "// No markers will be rendered",
+        "name": "ImPlot3DQuadFlags_NoMarkers",
+        "value": "1 << 12"
+      }
+    ],
+    "ImPlot3DScatterFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DScatterFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DScatterFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DScatterFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      }
+    ],
+    "ImPlot3DStyleVar_": [
+      {
+        "calc_value": 0,
+        "comment": "// float, plot item line weight in pixels",
+        "name": "ImPlot3DStyleVar_LineWeight",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "comment": "// int,   marker specification",
+        "name": "ImPlot3DStyleVar_Marker",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "comment": "// float, marker size in pixels (roughly the marker's \"radius\")",
+        "name": "ImPlot3DStyleVar_MarkerSize",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "comment": "// float, plot outline weight of markers in pixels",
+        "name": "ImPlot3DStyleVar_MarkerWeight",
+        "value": "3"
+      },
+      {
+        "calc_value": 4,
+        "comment": "// float, alpha modifier applied to all plot item fills",
+        "name": "ImPlot3DStyleVar_FillAlpha",
+        "value": "4"
+      },
+      {
+        "calc_value": 5,
+        "comment": "// ImVec2, default size used when ImVec2(0,0) is passed to BeginPlot",
+        "name": "ImPlot3DStyleVar_PlotDefaultSize",
+        "value": "5"
+      },
+      {
+        "calc_value": 6,
+        "comment": "// ImVec2, minimum size plot frame can be when shrunk",
+        "name": "ImPlot3DStyleVar_PlotMinSize",
+        "value": "6"
+      },
+      {
+        "calc_value": 7,
+        "comment": "// ImVec2, padding between widget frame and plot area, labels, or outside legends (i.e. main padding)",
+        "name": "ImPlot3DStyleVar_PlotPadding",
+        "value": "7"
+      },
+      {
+        "calc_value": 8,
+        "comment": "// ImVec2, padding between axes labels, tick labels, and plot edge",
+        "name": "ImPlot3DStyleVar_LabelPadding",
+        "value": "8"
+      },
+      {
+        "calc_value": 9,
+        "comment": "// ImVec2, legend padding from plot edges",
+        "name": "ImPlot3DStyleVar_LegendPadding",
+        "value": "9"
+      },
+      {
+        "calc_value": 10,
+        "comment": "// ImVec2, legend inner padding from legend edges",
+        "name": "ImPlot3DStyleVar_LegendInnerPadding",
+        "value": "10"
+      },
+      {
+        "calc_value": 11,
+        "comment": "// ImVec2, spacing between legend entries",
+        "name": "ImPlot3DStyleVar_LegendSpacing",
+        "value": "11"
+      },
+      {
+        "calc_value": 12,
+        "name": "ImPlot3DStyleVar_COUNT",
+        "value": "12"
+      }
+    ],
+    "ImPlot3DSurfaceFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DSurfaceFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DSurfaceFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DSurfaceFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      },
+      {
+        "calc_value": 1024,
+        "comment": "// No lines will be rendered",
+        "name": "ImPlot3DSurfaceFlags_NoLines",
+        "value": "1 << 10"
+      },
+      {
+        "calc_value": 2048,
+        "comment": "// No fill will be rendered",
+        "name": "ImPlot3DSurfaceFlags_NoFill",
+        "value": "1 << 11"
+      },
+      {
+        "calc_value": 4096,
+        "comment": "// No markers will be rendered",
+        "name": "ImPlot3DSurfaceFlags_NoMarkers",
+        "value": "1 << 12"
+      }
+    ],
+    "ImPlot3DTriangleFlags_": [
+      {
+        "calc_value": 0,
+        "comment": "// Default",
+        "name": "ImPlot3DTriangleFlags_None",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "ImPlot3DTriangleFlags_NoLegend",
+        "value": "ImPlot3DItemFlags_NoLegend"
+      },
+      {
+        "calc_value": 2,
+        "name": "ImPlot3DTriangleFlags_NoFit",
+        "value": "ImPlot3DItemFlags_NoFit"
+      },
+      {
+        "calc_value": 1024,
+        "comment": "// No lines will be rendered",
+        "name": "ImPlot3DTriangleFlags_NoLines",
+        "value": "1 << 10"
+      },
+      {
+        "calc_value": 2048,
+        "comment": "// No fill will be rendered",
+        "name": "ImPlot3DTriangleFlags_NoFill",
+        "value": "1 << 11"
+      },
+      {
+        "calc_value": 4096,
+        "comment": "// No markers will be rendered",
+        "name": "ImPlot3DTriangleFlags_NoMarkers",
+        "value": "1 << 12"
+      }
+    ]
+  },
+  "enumtypes": [],
+  "locations": {
+    "ImAxis3D_": "implot3d:286",
+    "ImPlane3D_": "implot3d:294",
+    "ImPlot3DAxisFlags_": "implot3d:270",
+    "ImPlot3DBox": "implot3d:709",
+    "ImPlot3DCol_": "implot3d:119",
+    "ImPlot3DColormap_": "implot3d:302",
+    "ImPlot3DCond_": "implot3d:113",
+    "ImPlot3DFlags_": "implot3d:102",
+    "ImPlot3DImageFlags_": "implot3d:242",
+    "ImPlot3DItemFlags_": "implot3d:178",
+    "ImPlot3DLegendFlags_": "implot3d:249",
+    "ImPlot3DLineFlags_": "implot3d:192",
+    "ImPlot3DLocation_": "implot3d:257",
+    "ImPlot3DMarker_": "implot3d:162",
+    "ImPlot3DMeshFlags_": "implot3d:232",
+    "ImPlot3DPlane": "implot3d:700",
+    "ImPlot3DPoint": "implot3d:619",
+    "ImPlot3DQuadFlags_": "implot3d:212",
+    "ImPlot3DQuat": "implot3d:749",
+    "ImPlot3DRange": "implot3d:733",
+    "ImPlot3DRay": "implot3d:691",
+    "ImPlot3DScatterFlags_": "implot3d:185",
+    "ImPlot3DStyle": "implot3d:805",
+    "ImPlot3DStyleVar_": "implot3d:143",
+    "ImPlot3DSurfaceFlags_": "implot3d:222",
+    "ImPlot3DTriangleFlags_": "implot3d:202"
+  },
+  "nonPOD": {
+    "ImPlot3DBox": true,
+    "ImPlot3DPoint": true,
+    "ImPlot3DQuat": true,
+    "ImPlot3DRange": true,
+    "ImPlot3DStyle": true
+  },
+  "struct_comments": {
+    "ImPlot3DPoint": {
+      "above": "// ImPlot3DPoint: 3D vector to store points in 3D"
+    }
+  },
+  "structs": {
+    "ImPlot3DBox": [
+      {
+        "name": "Min",
+        "type": "ImPlot3DPoint"
+      },
+      {
+        "name": "Max",
+        "type": "ImPlot3DPoint"
+      }
+    ],
+    "ImPlot3DPlane": [
+      {
+        "name": "Point",
+        "type": "ImPlot3DPoint"
+      },
+      {
+        "name": "Normal",
+        "type": "ImPlot3DPoint"
+      }
+    ],
+    "ImPlot3DPoint": [
+      {
+        "name": "x",
+        "type": "float"
+      },
+      {
+        "name": "y",
+        "type": "float"
+      },
+      {
+        "name": "z",
+        "type": "float"
+      }
+    ],
+    "ImPlot3DQuat": [
+      {
+        "name": "x",
+        "type": "float"
+      },
+      {
+        "name": "y",
+        "type": "float"
+      },
+      {
+        "name": "z",
+        "type": "float"
+      },
+      {
+        "name": "w",
+        "type": "float"
+      }
+    ],
+    "ImPlot3DRange": [
+      {
+        "name": "Min",
+        "type": "float"
+      },
+      {
+        "name": "Max",
+        "type": "float"
+      }
+    ],
+    "ImPlot3DRay": [
+      {
+        "name": "Origin",
+        "type": "ImPlot3DPoint"
+      },
+      {
+        "name": "Direction",
+        "type": "ImPlot3DPoint"
+      }
+    ],
+    "ImPlot3DStyle": [
+      {
+        "comment": {
+          "above": "\n    // Item style",
+          "sameline": "// Line weight in pixels"
+        },
+        "name": "LineWeight",
+        "type": "float"
+      },
+      {
+        "comment": {
+          "sameline": "// Default marker type (ImPlot3DMarker_None)"
+        },
+        "name": "Marker",
+        "type": "int"
+      },
+      {
+        "comment": {
+          "sameline": "// Marker size in pixels (roughly the marker's \"radius\")"
+        },
+        "name": "MarkerSize",
+        "type": "float"
+      },
+      {
+        "comment": {
+          "sameline": "// Marker outline weight in pixels"
+        },
+        "name": "MarkerWeight",
+        "type": "float"
+      },
+      {
+        "comment": {
+          "sameline": "// Alpha modifier applied to plot fills"
+        },
+        "name": "FillAlpha",
+        "type": "float"
+      },
+      {
+        "comment": {
+          "above": "\n    // Plot style"
+        },
+        "name": "PlotDefaultSize",
+        "type": "ImVec2"
+      },
+      {
+        "name": "PlotMinSize",
+        "type": "ImVec2"
+      },
+      {
+        "name": "PlotPadding",
+        "type": "ImVec2"
+      },
+      {
+        "name": "LabelPadding",
+        "type": "ImVec2"
+      },
+      {
+        "comment": {
+          "above": "\n    // Legend style",
+          "sameline": "// Legend padding from plot edges"
+        },
+        "name": "LegendPadding",
+        "type": "ImVec2"
+      },
+      {
+        "comment": {
+          "sameline": "// Legend inner padding from legend edges"
+        },
+        "name": "LegendInnerPadding",
+        "type": "ImVec2"
+      },
+      {
+        "comment": {
+          "sameline": "// Spacing between legend entries"
+        },
+        "name": "LegendSpacing",
+        "type": "ImVec2"
+      },
+      {
+        "comment": {
+          "above": "\n    // Colors"
+        },
+        "name": "Colors[ImPlot3DCol_COUNT]",
+        "size": 15,
+        "type": "ImVec4"
+      },
+      {
+        "comment": {
+          "above": "\n    // Colormap",
+          "sameline": "// The current colormap. Set this to either an ImPlot3DColormap_ enum or an index returned by AddColormap"
+        },
+        "name": "Colormap",
+        "type": "ImPlot3DColormap"
+      }
+    ]
+  }
+}

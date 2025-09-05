@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Helper: ImRect (2D axis aligned bounding-box)<br/>
+	/// NB: we can't rely on ImVec2 math operators being available here!<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImRect

@@ -7,6 +7,7 @@
     using Hexa.NET.ImNodes;
     using Hexa.NET.ImPlot;
     using System.Numerics;
+    using System.Runtime.InteropServices;
 
     public class ImGuiManager : IDisposable
     {
@@ -14,8 +15,23 @@
         private ImNodesContextPtr nodesContext;
         private ImPlotContextPtr plotContext;
 
+        static unsafe void* Alloc(nuint sz, void* ud)
+        {
+            return NativeMemory.Alloc(sz);
+        }
+
+        static unsafe void Free(void* p, void* ud)
+        {
+             NativeMemory.Free(p);
+        }
+
         public unsafe ImGuiManager()
         {
+            ImGui.SetAllocatorFunctions(Alloc, Free);
+            ImPlot.SetAllocatorFunctions(Alloc, Free, null);
+            ImNodes.SetAllocatorFunctions(Alloc, Free, null);
+            ImGuizmo.SetAllocatorFunctions(Alloc, Free, null);
+
             // Create ImGui context
             guiContext = ImGui.CreateContext(null);
 
@@ -26,6 +42,8 @@
 
             // Set ImGui context for ImGuizmo
             ImGuizmo.SetImGuiContext(guiContext);
+
+         
 
             // Set ImGui context for ImPlot
             ImPlot.SetImGuiContext(guiContext);

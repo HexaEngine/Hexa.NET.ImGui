@@ -4325,7 +4325,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ColorButtonNative(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
@@ -4338,7 +4338,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4347,7 +4347,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4356,7 +4356,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col)
 		{
@@ -4365,7 +4365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(byte* descId, Vector4 col, Vector2 size)
 		{
@@ -4374,7 +4374,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4386,7 +4386,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4398,7 +4398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col)
 		{
@@ -4410,7 +4410,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ref byte descId, Vector4 col, Vector2 size)
 		{
@@ -4422,7 +4422,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4434,7 +4434,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4446,7 +4446,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col)
 		{
@@ -4458,7 +4458,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(ReadOnlySpan<byte> descId, Vector4 col, Vector2 size)
 		{
@@ -4470,7 +4470,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -4500,7 +4500,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col, ImGuiColorEditFlags flags)
 		{
@@ -4530,7 +4530,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col)
 		{
@@ -4560,7 +4560,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display a color squarebutton, hover for details, return true when pressed.<br/>
 		/// </summary>
 		public static bool ColorButton(string descId, Vector4 col, Vector2 size)
 		{
@@ -4590,7 +4590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// initialize current options (generally on application startup) if you want to select a default format, picker type, etc. User will be able to change many settings, unless you pass the _NoOptions flag to your calls.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColorEditOptionsNative(ImGuiColorEditFlags flags)
@@ -4603,7 +4603,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// initialize current options (generally on application startup) if you want to select a default format, picker type, etc. User will be able to change many settings, unless you pass the _NoOptions flag to your calls.<br/>
 		/// </summary>
 		public static void SetColorEditOptions(ImGuiColorEditFlags flags)
 		{
@@ -4700,7 +4700,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(byte* strId, byte* fmt)
 		{
@@ -4709,7 +4709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ref byte strId, byte* fmt)
 		{
@@ -4721,7 +4721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, byte* fmt)
 		{
@@ -4733,7 +4733,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(string strId, byte* fmt)
 		{
@@ -4763,7 +4763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(byte* strId, ref byte fmt)
 		{
@@ -4775,7 +4775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(byte* strId, ReadOnlySpan<byte> fmt)
 		{
@@ -4787,7 +4787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(byte* strId, string fmt)
 		{
@@ -4817,7 +4817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ref byte strId, ref byte fmt)
 		{
@@ -4832,7 +4832,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, ReadOnlySpan<byte> fmt)
 		{
@@ -4847,7 +4847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(string strId, string fmt)
 		{
@@ -4898,7 +4898,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ref byte strId, ReadOnlySpan<byte> fmt)
 		{
@@ -4913,7 +4913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ref byte strId, string fmt)
 		{
@@ -4946,7 +4946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, ref byte fmt)
 		{
@@ -4961,7 +4961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(ReadOnlySpan<byte> strId, string fmt)
 		{
@@ -4994,7 +4994,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(string strId, ref byte fmt)
 		{

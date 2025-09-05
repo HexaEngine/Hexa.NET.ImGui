@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -33,7 +33,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, string strIdEnd)
 		{
@@ -83,7 +83,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -97,7 +97,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, string strIdEnd)
 		{
@@ -129,7 +129,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
@@ -143,7 +143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -175,7 +175,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, ref byte strIdEnd)
 		{
@@ -207,7 +207,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -239,7 +239,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(void* ptrId)
@@ -252,7 +252,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push pointer into the ID stack (will hash pointer).<br/>
 		/// </summary>
 		public static void PushID(void* ptrId)
 		{
@@ -260,7 +260,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(int intId)
@@ -273,7 +273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push integer into the ID stack (will hash integer).<br/>
 		/// </summary>
 		public static void PushID(int intId)
 		{
@@ -281,7 +281,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pop from the ID stack.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopIDNative()
@@ -294,7 +294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pop from the ID stack.<br/>
 		/// </summary>
 		public static void PopID()
 		{
@@ -302,7 +302,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strId)
@@ -315,7 +315,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strId)
 		{
@@ -324,7 +324,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strId)
 		{
@@ -336,7 +336,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strId)
 		{
@@ -348,7 +348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strId)
 		{
@@ -378,7 +378,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
@@ -391,7 +391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -400,7 +400,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, byte* strIdEnd)
 		{
@@ -412,7 +412,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -424,7 +424,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, byte* strIdEnd)
 		{
@@ -454,7 +454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
 		{
@@ -466,7 +466,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -478,7 +478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, string strIdEnd)
 		{
@@ -508,7 +508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, ref byte strIdEnd)
 		{
@@ -523,7 +523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -538,7 +538,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, string strIdEnd)
 		{
@@ -589,7 +589,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -604,7 +604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ref byte strIdBegin, string strIdEnd)
 		{
@@ -637,7 +637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ref byte strIdEnd)
 		{
@@ -652,7 +652,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -685,7 +685,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, ref byte strIdEnd)
 		{
@@ -718,7 +718,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -751,7 +751,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(void* ptrId)
@@ -764,7 +764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(void* ptrId)
 		{
@@ -773,7 +773,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(int intId)
@@ -786,7 +786,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(int intId)
 		{
@@ -795,7 +795,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextUnformattedNative(byte* text, byte* textEnd)
@@ -808,7 +808,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(byte* text, byte* textEnd)
 		{
@@ -816,7 +816,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(byte* text)
 		{
@@ -824,7 +824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ref byte text, byte* textEnd)
 		{
@@ -835,7 +835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ref byte text)
 		{
@@ -846,7 +846,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -857,7 +857,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text)
 		{
@@ -868,7 +868,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(string text, byte* textEnd)
 		{
@@ -897,7 +897,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(string text)
 		{
@@ -926,7 +926,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(byte* text, ref byte textEnd)
 		{
@@ -937,7 +937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -948,7 +948,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(byte* text, string textEnd)
 		{
@@ -977,7 +977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ref byte text, ref byte textEnd)
 		{
@@ -991,7 +991,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1005,7 +1005,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(string text, string textEnd)
 		{
@@ -1055,7 +1055,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1069,7 +1069,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ref byte text, string textEnd)
 		{
@@ -1101,7 +1101,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -1115,7 +1115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -1147,7 +1147,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(string text, ref byte textEnd)
 		{
@@ -1179,7 +1179,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// raw text without formatting. Roughly equivalent to Text("%s", text) but: A) doesn't require null terminated string if 'text_end' is specified, B) it's faster, no memory copy is done, no buffer size limits, recommended for long chunks of text.<br/>
 		/// </summary>
 		public static void TextUnformatted(string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1211,7 +1211,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// formatted text<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextNative(byte* fmt)
@@ -1224,7 +1224,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// formatted text<br/>
 		/// </summary>
 		public static void Text(byte* fmt)
 		{
@@ -1232,7 +1232,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// formatted text<br/>
 		/// </summary>
 		public static void Text(ref byte fmt)
 		{
@@ -1243,7 +1243,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// formatted text<br/>
 		/// </summary>
 		public static void Text(ReadOnlySpan<byte> fmt)
 		{
@@ -1254,7 +1254,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// formatted text<br/>
 		/// </summary>
 		public static void Text(string fmt)
 		{
@@ -1355,7 +1355,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextColoredNative(Vector4 col, byte* fmt)
@@ -1368,7 +1368,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextColored(Vector4 col, byte* fmt)
 		{
@@ -1376,7 +1376,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextColored(Vector4 col, ref byte fmt)
 		{
@@ -1387,7 +1387,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextColored(Vector4 col, ReadOnlySpan<byte> fmt)
 		{
@@ -1398,7 +1398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, col); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextColored(Vector4 col, string fmt)
 		{
@@ -1499,7 +1499,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextDisabledNative(byte* fmt)
@@ -1512,7 +1512,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextDisabled(byte* fmt)
 		{
@@ -1520,7 +1520,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextDisabled(ref byte fmt)
 		{
@@ -1531,7 +1531,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextDisabled(ReadOnlySpan<byte> fmt)
 		{
@@ -1542,7 +1542,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_TextDisabled]); Text(fmt, ...); PopStyleColor();<br/>
 		/// </summary>
 		public static void TextDisabled(string fmt)
 		{
@@ -1643,7 +1643,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TextWrappedNative(byte* fmt)
@@ -1656,7 +1656,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
 		/// </summary>
 		public static void TextWrapped(byte* fmt)
 		{
@@ -1664,7 +1664,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
 		/// </summary>
 		public static void TextWrapped(ref byte fmt)
 		{
@@ -1675,7 +1675,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
 		/// </summary>
 		public static void TextWrapped(ReadOnlySpan<byte> fmt)
 		{
@@ -1686,7 +1686,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for PushTextWrapPos(0.0f); Text(fmt, ...); PopTextWrapPos();. Note that this won't work on an auto-resizing window if there's no other widgets to extend the window width, yoy may need to set a size using SetNextWindowSize().<br/>
 		/// </summary>
 		public static void TextWrapped(string fmt)
 		{
@@ -1787,7 +1787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LabelTextNative(byte* label, byte* fmt)
@@ -1800,7 +1800,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(byte* label, byte* fmt)
 		{
@@ -1808,7 +1808,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ref byte label, byte* fmt)
 		{
@@ -1819,7 +1819,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, byte* fmt)
 		{
@@ -1830,7 +1830,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(string label, byte* fmt)
 		{
@@ -1859,7 +1859,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(byte* label, ref byte fmt)
 		{
@@ -1870,7 +1870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(byte* label, ReadOnlySpan<byte> fmt)
 		{
@@ -1881,7 +1881,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(byte* label, string fmt)
 		{
@@ -1910,7 +1910,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ref byte label, ref byte fmt)
 		{
@@ -1924,7 +1924,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, ReadOnlySpan<byte> fmt)
 		{
@@ -1938,7 +1938,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(string label, string fmt)
 		{
@@ -1988,7 +1988,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ref byte label, ReadOnlySpan<byte> fmt)
 		{
@@ -2002,7 +2002,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ref byte label, string fmt)
 		{
@@ -2034,7 +2034,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, ref byte fmt)
 		{
@@ -2048,7 +2048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(ReadOnlySpan<byte> label, string fmt)
 		{
@@ -2080,7 +2080,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(string label, ref byte fmt)
 		{
@@ -2112,7 +2112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// display text+label aligned the same way as value+label widgets<br/>
 		/// </summary>
 		public static void LabelText(string label, ReadOnlySpan<byte> fmt)
 		{
@@ -2501,7 +2501,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for Bullet()+Text()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletTextNative(byte* fmt)
@@ -2514,7 +2514,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for Bullet()+Text()<br/>
 		/// </summary>
 		public static void BulletText(byte* fmt)
 		{
@@ -2522,7 +2522,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for Bullet()+Text()<br/>
 		/// </summary>
 		public static void BulletText(ref byte fmt)
 		{
@@ -2533,7 +2533,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for Bullet()+Text()<br/>
 		/// </summary>
 		public static void BulletText(ReadOnlySpan<byte> fmt)
 		{
@@ -2544,7 +2544,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut for Bullet()+Text()<br/>
 		/// </summary>
 		public static void BulletText(string fmt)
 		{
@@ -2645,7 +2645,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// currently: formatted text with a horizontal line<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SeparatorTextNative(byte* label)
@@ -2658,7 +2658,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// currently: formatted text with a horizontal line<br/>
 		/// </summary>
 		public static void SeparatorText(byte* label)
 		{
@@ -2666,7 +2666,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// currently: formatted text with a horizontal line<br/>
 		/// </summary>
 		public static void SeparatorText(ref byte label)
 		{
@@ -2677,7 +2677,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// currently: formatted text with a horizontal line<br/>
 		/// </summary>
 		public static void SeparatorText(ReadOnlySpan<byte> label)
 		{
@@ -2688,7 +2688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// currently: formatted text with a horizontal line<br/>
 		/// </summary>
 		public static void SeparatorText(string label)
 		{
@@ -2717,7 +2717,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ButtonNative(byte* label, Vector2 size)
@@ -2730,7 +2730,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(byte* label, Vector2 size)
 		{
@@ -2739,7 +2739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(byte* label)
 		{
@@ -2748,7 +2748,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(ref byte label, Vector2 size)
 		{
@@ -2760,7 +2760,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(ref byte label)
 		{
@@ -2772,7 +2772,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(ReadOnlySpan<byte> label, Vector2 size)
 		{
@@ -2784,7 +2784,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(ReadOnlySpan<byte> label)
 		{
@@ -2796,7 +2796,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(string label, Vector2 size)
 		{
@@ -2826,7 +2826,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button<br/>
 		/// </summary>
 		public static bool Button(string label)
 		{
@@ -2856,7 +2856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button with (FramePadding.y == 0) to easily embed within text<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SmallButtonNative(byte* label)
@@ -2869,7 +2869,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button with (FramePadding.y == 0) to easily embed within text<br/>
 		/// </summary>
 		public static bool SmallButton(byte* label)
 		{
@@ -2878,7 +2878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button with (FramePadding.y == 0) to easily embed within text<br/>
 		/// </summary>
 		public static bool SmallButton(ref byte label)
 		{
@@ -2890,7 +2890,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button with (FramePadding.y == 0) to easily embed within text<br/>
 		/// </summary>
 		public static bool SmallButton(ReadOnlySpan<byte> label)
 		{
@@ -2902,7 +2902,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// button with (FramePadding.y == 0) to easily embed within text<br/>
 		/// </summary>
 		public static bool SmallButton(string label)
 		{
@@ -2932,7 +2932,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InvisibleButtonNative(byte* strId, Vector2 size, ImGuiButtonFlags flags)
@@ -2945,7 +2945,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(byte* strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2954,7 +2954,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(byte* strId, Vector2 size)
 		{
@@ -2963,7 +2963,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(ref byte strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2975,7 +2975,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(ref byte strId, Vector2 size)
 		{
@@ -2987,7 +2987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(ReadOnlySpan<byte> strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -2999,7 +2999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(ReadOnlySpan<byte> strId, Vector2 size)
 		{
@@ -3011,7 +3011,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(string strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -3041,7 +3041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// flexible button behavior without the visuals, frequently useful to build custom behaviors using the public api (along with IsItemActive, IsItemHovered, etc.)<br/>
 		/// </summary>
 		public static bool InvisibleButton(string strId, Vector2 size)
 		{
@@ -3071,7 +3071,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// square button with an arrow shape<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ArrowButtonNative(byte* strId, ImGuiDir dir)
@@ -3084,7 +3084,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// square button with an arrow shape<br/>
 		/// </summary>
 		public static bool ArrowButton(byte* strId, ImGuiDir dir)
 		{
@@ -3093,7 +3093,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// square button with an arrow shape<br/>
 		/// </summary>
 		public static bool ArrowButton(ref byte strId, ImGuiDir dir)
 		{
@@ -3105,7 +3105,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// square button with an arrow shape<br/>
 		/// </summary>
 		public static bool ArrowButton(ReadOnlySpan<byte> strId, ImGuiDir dir)
 		{
@@ -3117,7 +3117,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// square button with an arrow shape<br/>
 		/// </summary>
 		public static bool ArrowButton(string strId, ImGuiDir dir)
 		{
@@ -3600,7 +3600,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte RadioButtonNative(byte* label, byte active)
@@ -3613,7 +3613,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
 		public static bool RadioButton(byte* label, bool active)
 		{
@@ -3622,7 +3622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
 		public static bool RadioButton(ref byte label, bool active)
 		{
@@ -3634,7 +3634,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
 		public static bool RadioButton(ReadOnlySpan<byte> label, bool active)
 		{
@@ -3646,7 +3646,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
 		public static bool RadioButton(string label, bool active)
 		{
@@ -3676,7 +3676,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// use with e.g. if (RadioButton("one", my_value==1))  my_value = 1;<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte RadioButtonNative(byte* label, int* v, int vButton)
@@ -3689,7 +3689,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(byte* label, int* v, int vButton)
 		{
@@ -3698,7 +3698,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(ref byte label, int* v, int vButton)
 		{
@@ -3710,7 +3710,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(ReadOnlySpan<byte> label, int* v, int vButton)
 		{
@@ -3722,7 +3722,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(string label, int* v, int vButton)
 		{
@@ -3752,7 +3752,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(byte* label, ref int v, int vButton)
 		{
@@ -3764,7 +3764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(ref byte label, ref int v, int vButton)
 		{
@@ -3779,7 +3779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(ReadOnlySpan<byte> label, ref int v, int vButton)
 		{
@@ -3794,7 +3794,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to handle the above pattern when value is an integer<br/>
 		/// </summary>
 		public static bool RadioButton(string label, ref int v, int vButton)
 		{
@@ -3974,7 +3974,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BulletNative()
@@ -3987,7 +3987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
 		/// </summary>
 		public static void Bullet()
 		{
@@ -3995,7 +3995,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, return true when clicked<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TextLinkNative(byte* label)
@@ -4008,7 +4008,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, return true when clicked<br/>
 		/// </summary>
 		public static bool TextLink(byte* label)
 		{
@@ -4017,7 +4017,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, return true when clicked<br/>
 		/// </summary>
 		public static bool TextLink(ref byte label)
 		{
@@ -4029,7 +4029,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, return true when clicked<br/>
 		/// </summary>
 		public static bool TextLink(ReadOnlySpan<byte> label)
 		{
@@ -4041,7 +4041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, return true when clicked<br/>
 		/// </summary>
 		public static bool TextLink(string label)
 		{
@@ -4071,7 +4071,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TextLinkOpenURLNative(byte* label, byte* url)
@@ -4084,7 +4084,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(byte* label, byte* url)
 		{
@@ -4093,7 +4093,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(byte* label)
 		{
@@ -4102,7 +4102,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ref byte label, byte* url)
 		{
@@ -4114,7 +4114,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ref byte label)
 		{
@@ -4126,7 +4126,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, byte* url)
 		{
@@ -4138,7 +4138,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label)
 		{
@@ -4150,7 +4150,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(string label, byte* url)
 		{
@@ -4180,7 +4180,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(string label)
 		{
@@ -4210,7 +4210,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(byte* label, ref byte url)
 		{
@@ -4222,7 +4222,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(byte* label, ReadOnlySpan<byte> url)
 		{
@@ -4234,7 +4234,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(byte* label, string url)
 		{
@@ -4264,7 +4264,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ref byte label, ref byte url)
 		{
@@ -4279,7 +4279,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, ReadOnlySpan<byte> url)
 		{
@@ -4294,7 +4294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(string label, string url)
 		{
@@ -4345,7 +4345,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ref byte label, ReadOnlySpan<byte> url)
 		{
@@ -4360,7 +4360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ref byte label, string url)
 		{
@@ -4393,7 +4393,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, ref byte url)
 		{
@@ -4408,7 +4408,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, string url)
 		{
@@ -4441,7 +4441,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(string label, ref byte url)
 		{
@@ -4474,7 +4474,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
 		/// </summary>
 		public static bool TextLinkOpenURL(string label, ReadOnlySpan<byte> url)
 		{

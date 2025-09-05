@@ -20,14 +20,17 @@
         private const string CImGuizmoConfig = "cimguizmo/generator.json";
         private const string CImNodesConfig = "cimnodes/generator.json";
         private const string CImPlotConfig = "cimplot/generator.json";
+        private const string CImPlot3DConfig = "cimplot3d/generator.json";
 
         private const string CImGuizmoHeader = "cimguizmo/cimguizmo.h";
         private const string CImNodesHeader = "cimnodes/cimnodes.h";
         private const string CImPlotHeader = "cimplot/cimplot.h";
+        private const string CImPlot3DHeader = "cimplot3d/cimplot3d.h";
 
         private const string ImGuizmoOutputPath = "../../../../Hexa.NET.ImGuizmo/Generated";
         private const string ImNodesOutputPath = "../../../../Hexa.NET.ImNodes/Generated";
         private const string ImPlotOutputPath = "../../../../Hexa.NET.ImPlot/Generated";
+        private const string ImPlot3DOutputPath = "../../../../Hexa.NET.ImPlot3D/Generated";
 
         public static BuildSystemBuilder AddImGuizmo(this BuildSystemBuilder builder, string configPath = CImGuizmoConfig, string outputPath = ImGuizmoOutputPath)
         {
@@ -64,6 +67,18 @@
             });
             return builder;
         }
+
+        public static BuildSystemBuilder AddImPlot3D(this BuildSystemBuilder builder, string configPath = CImPlot3DConfig, string outputPath = ImPlot3DOutputPath)
+        {
+            builder.AddTarget<ImPlot3DTarget, ImPlot3DTargetOptions>(options =>
+            {
+                options.Name = "implot3d";
+                options.Headers = [CImPlot3DHeader];
+                options.ConfigPath = configPath;
+                options.OutputPath = outputPath;
+            });
+            return builder;
+        }
     }
 
     public class ImPlotTarget(IOptions<ImPlotTargetOptions> options) : ImGuiAddonTarget(options)
@@ -75,6 +90,9 @@
     public class ImGuizmoTarget(IOptions<ImGuizmoTargetOptions> options) : ImGuiAddonTarget(options)
     { }
 
+    public class ImPlot3DTarget(IOptions<ImPlot3DTargetOptions> options) : ImGuiAddonTarget(options)
+    { }
+
     public class ImPlotTargetOptions() : ImGuiAddonTargetOptions()
     { }
 
@@ -83,6 +101,9 @@
 
     public class ImGuizmoTargetOptions() : ImGuiAddonTargetOptions()
 
+    { }
+
+    public class ImPlot3DTargetOptions() : ImGuiAddonTargetOptions()
     { }
 
     public class ImGuiAddonTarget : ImGuiBaseTarget

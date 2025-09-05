@@ -754,7 +754,7 @@ namespace ExampleOpenGL3
 ";
 
             const string fragment_shader_glsl_120 = @"
-# ifdef GL_ES
+#ifdef GL_ES
         precision mediump float;
 #endif
 uniform sampler2D Texture;
@@ -915,4 +915,4 @@ private static void ShutdownPlatformInterface()
     }
 }
 
-#end
+#endif

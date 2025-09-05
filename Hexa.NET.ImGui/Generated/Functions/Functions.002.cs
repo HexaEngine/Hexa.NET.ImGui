@@ -932,7 +932,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndCombo() if BeginCombo() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndComboNative()
@@ -945,7 +945,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndCombo() if BeginCombo() returns true!<br/>
 		/// </summary>
 		public static void EndCombo()
 		{
@@ -1631,7 +1631,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1640,7 +1640,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1649,7 +1649,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1661,7 +1661,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1673,7 +1673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1685,7 +1685,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1697,7 +1697,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1727,7 +1727,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1757,7 +1757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1769,7 +1769,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1781,7 +1781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1796,7 +1796,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1811,7 +1811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1826,7 +1826,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1841,7 +1841,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1874,7 +1874,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, byte* itemsSeparatedByZeros)
 		{
@@ -1907,7 +1907,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1919,7 +1919,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -1931,7 +1931,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1943,7 +1943,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -1955,7 +1955,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1985,7 +1985,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, string itemsSeparatedByZeros)
 		{
@@ -2015,7 +2015,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2030,7 +2030,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -2045,7 +2045,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2060,7 +2060,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -2075,7 +2075,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2126,7 +2126,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, string itemsSeparatedByZeros)
 		{
@@ -2177,7 +2177,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2192,7 +2192,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -2207,7 +2207,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2240,7 +2240,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, int* currentItem, string itemsSeparatedByZeros)
 		{
@@ -2273,7 +2273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2288,7 +2288,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -2303,7 +2303,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2336,7 +2336,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, string itemsSeparatedByZeros)
 		{
@@ -2369,7 +2369,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2402,7 +2402,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -2435,7 +2435,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2468,7 +2468,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -2501,7 +2501,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2516,7 +2516,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -2531,7 +2531,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2546,7 +2546,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -2561,7 +2561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2594,7 +2594,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, string itemsSeparatedByZeros)
 		{
@@ -2627,7 +2627,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2645,7 +2645,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -2663,7 +2663,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2681,7 +2681,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -2699,7 +2699,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2753,7 +2753,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, string itemsSeparatedByZeros)
 		{
@@ -2807,7 +2807,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2825,7 +2825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -2843,7 +2843,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2879,7 +2879,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ref byte label, ref int currentItem, string itemsSeparatedByZeros)
 		{
@@ -2915,7 +2915,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2933,7 +2933,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -2951,7 +2951,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -2987,7 +2987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, string itemsSeparatedByZeros)
 		{
@@ -3023,7 +3023,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -3059,7 +3059,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, ref byte itemsSeparatedByZeros)
 		{
@@ -3095,7 +3095,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -3131,7 +3131,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
 		public static bool Combo(string label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
@@ -3456,7 +3456,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DragFloatNative(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
@@ -3469,7 +3469,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3478,7 +3478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -3487,7 +3487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax)
 		{
@@ -3496,7 +3496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin)
 		{
@@ -3505,7 +3505,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed)
 		{
@@ -3514,7 +3514,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v)
 		{
@@ -3523,7 +3523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, byte* format)
 		{
@@ -3532,7 +3532,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, byte* format)
 		{
@@ -3541,7 +3541,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, byte* format)
 		{
@@ -3550,7 +3550,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3559,7 +3559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -3568,7 +3568,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -3577,7 +3577,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, ImGuiSliderFlags flags)
 		{
@@ -3586,7 +3586,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3595,7 +3595,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3604,7 +3604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, float* v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3613,7 +3613,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3625,7 +3625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -3637,7 +3637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax)
 		{
@@ -3649,7 +3649,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin)
 		{
@@ -3661,7 +3661,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed)
 		{
@@ -3673,7 +3673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v)
 		{
@@ -3685,7 +3685,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, byte* format)
 		{
@@ -3697,7 +3697,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, byte* format)
 		{
@@ -3709,7 +3709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, byte* format)
 		{
@@ -3721,7 +3721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3733,7 +3733,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -3745,7 +3745,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -3757,7 +3757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, ImGuiSliderFlags flags)
 		{
@@ -3769,7 +3769,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3781,7 +3781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3793,7 +3793,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, float* v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3805,7 +3805,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3817,7 +3817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -3829,7 +3829,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax)
 		{
@@ -3841,7 +3841,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin)
 		{
@@ -3853,7 +3853,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed)
 		{
@@ -3865,7 +3865,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v)
 		{
@@ -3877,7 +3877,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, byte* format)
 		{
@@ -3889,7 +3889,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, byte* format)
 		{
@@ -3901,7 +3901,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, byte* format)
 		{
@@ -3913,7 +3913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -3925,7 +3925,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -3937,7 +3937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -3949,7 +3949,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, ImGuiSliderFlags flags)
 		{
@@ -3961,7 +3961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3973,7 +3973,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3985,7 +3985,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -3997,7 +3997,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4027,7 +4027,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -4057,7 +4057,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax)
 		{
@@ -4087,7 +4087,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin)
 		{
@@ -4117,7 +4117,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed)
 		{
@@ -4147,7 +4147,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v)
 		{
@@ -4177,7 +4177,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, byte* format)
 		{
@@ -4207,7 +4207,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, byte* format)
 		{
@@ -4237,7 +4237,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, byte* format)
 		{
@@ -4267,7 +4267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -4297,7 +4297,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -4327,7 +4327,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -4357,7 +4357,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, ImGuiSliderFlags flags)
 		{
@@ -4387,7 +4387,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4417,7 +4417,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4447,7 +4447,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(string label, float* v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4477,7 +4477,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4489,7 +4489,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -4501,7 +4501,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax)
 		{
@@ -4513,7 +4513,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin)
 		{
@@ -4525,7 +4525,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed)
 		{
@@ -4537,7 +4537,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v)
 		{
@@ -4549,7 +4549,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, byte* format)
 		{
@@ -4561,7 +4561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, byte* format)
 		{
@@ -4573,7 +4573,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, byte* format)
 		{
@@ -4585,7 +4585,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -4597,7 +4597,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -4609,7 +4609,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -4621,7 +4621,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, ImGuiSliderFlags flags)
 		{
@@ -4633,7 +4633,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4645,7 +4645,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4657,7 +4657,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(byte* label, ref float v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4669,7 +4669,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4684,7 +4684,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -4699,7 +4699,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax)
 		{
@@ -4714,7 +4714,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin)
 		{
@@ -4729,7 +4729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed)
 		{
@@ -4744,7 +4744,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v)
 		{
@@ -4759,7 +4759,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, byte* format)
 		{
@@ -4774,7 +4774,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, byte* format)
 		{
@@ -4789,7 +4789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, byte* format)
 		{
@@ -4804,7 +4804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
@@ -4819,7 +4819,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
@@ -4834,7 +4834,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, ImGuiSliderFlags flags)
 		{
@@ -4849,7 +4849,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, ImGuiSliderFlags flags)
 		{
@@ -4864,7 +4864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4879,7 +4879,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4894,7 +4894,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ref byte label, ref float v, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4909,7 +4909,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4924,7 +4924,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
 		{
@@ -4939,7 +4939,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax)
 		{
@@ -4954,7 +4954,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin)
 		{
@@ -4969,7 +4969,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed)
 		{
@@ -4984,7 +4984,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v)
 		{
@@ -4999,7 +4999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, byte* format)
 		{
@@ -5014,7 +5014,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, byte* format)
 		{

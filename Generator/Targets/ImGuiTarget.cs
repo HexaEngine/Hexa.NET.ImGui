@@ -26,6 +26,9 @@
         {
             // don't worry about "NoInternals" internals will be generated in a substep (post-patch) when generating. see ImGuiPostPatch.cs
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
+            metadata.CppDefinedFunctions.Remove("igSetAllocatorFunctions");
+            metadata.CppDefinedFunctions.Remove("igGetAllocatorFunctions");
+            metadata.DefinedFunctions.RemoveAll(x => x.Name == "SetAllocatorFunctions" || x.Name == "GetAllocatorFunctions");
             context.SetVar(ImGuiMetadataKey, metadata);
         }
     }

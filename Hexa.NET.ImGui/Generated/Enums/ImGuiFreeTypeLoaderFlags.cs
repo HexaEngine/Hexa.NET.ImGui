@@ -20,52 +20,52 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiFreeTypeLoaderFlags : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Disable hinting. This generally generates 'blurrier' bitmap glyphs when the glyph are rendered in any of the anti-aliased modes.<br/>
 		/// </summary>
 		NoHinting = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable auto-hinter.<br/>
 		/// </summary>
 		NoAutoHint = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Indicates that the auto-hinter is preferred over the font's native hinter.<br/>
 		/// </summary>
 		ForceAutoHint = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// A lighter hinting algorithm for gray-level modes. Many generated glyphs are fuzzier but better resemble their original shape. This is achieved by snapping glyphs to the pixel grid only vertically (Y-axis), as is done by Microsoft's ClearType and Adobe's proprietary font renderer. This preserves inter-glyph spacing in horizontal text.<br/>
 		/// </summary>
 		LightHinting = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Strong hinting algorithm that should only be used for monochrome output.<br/>
 		/// </summary>
 		MonoHinting = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Styling: Should we artificially embolden the font?<br/>
 		/// </summary>
 		Bold = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Styling: Should we slant the font, emulating italic style?<br/>
 		/// </summary>
 		Oblique = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable anti-aliasing. Combine this with MonoHinting for best results!<br/>
 		/// </summary>
 		Monochrome = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable FreeType color-layered glyphs<br/>
 		/// </summary>
 		LoadColor = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable FreeType bitmap glyphs<br/>
 		/// </summary>
 		Bitmap = unchecked(512),
 	}

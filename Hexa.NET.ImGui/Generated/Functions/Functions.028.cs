@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, int vMax, ref byte format)
 		{
@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, ref byte format)
 		{
@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, ref byte format)
 		{
@@ -127,7 +127,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, ref byte format)
 		{
@@ -163,7 +163,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, ref byte format)
 		{
@@ -199,7 +199,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, int vMax, ref byte format)
 		{
@@ -235,7 +235,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -271,7 +271,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -307,7 +307,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -343,7 +343,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -379,7 +379,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, int vMax, ref byte format, ImGuiSliderFlags flags)
 		{
@@ -415,7 +415,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -451,7 +451,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, int vMax, ReadOnlySpan<byte> format)
 		{
@@ -487,7 +487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, ReadOnlySpan<byte> format)
 		{
@@ -523,7 +523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, ReadOnlySpan<byte> format)
 		{
@@ -559,7 +559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, ReadOnlySpan<byte> format)
 		{
@@ -595,7 +595,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, ReadOnlySpan<byte> format)
 		{
@@ -631,7 +631,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format)
 		{
@@ -667,7 +667,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, int vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -703,7 +703,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, float vSpeed, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -739,7 +739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -775,7 +775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
@@ -811,7 +811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
 		public static bool DragInt(string label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{

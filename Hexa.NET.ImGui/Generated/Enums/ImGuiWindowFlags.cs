@@ -25,102 +25,102 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable title-bar<br/>
 		/// </summary>
 		NoTitleBar = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable user resizing with the lower-right grip<br/>
 		/// </summary>
 		NoResize = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable user moving the window<br/>
 		/// </summary>
 		NoMove = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable scrollbars (window can still scroll with mouse or programmatically)<br/>
 		/// </summary>
 		NoScrollbar = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable user vertically scrolling with mouse wheel. On child window, mouse wheel will be forwarded to the parent unless NoScrollbar is also set.<br/>
 		/// </summary>
 		NoScrollWithMouse = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable user collapsing window by double-clicking on it. Also referred to as Window Menu Button (e.g. within a docking node).<br/>
 		/// </summary>
 		NoCollapse = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Resize every window to its content every frame<br/>
 		/// </summary>
 		AlwaysAutoResize = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable drawing background color (WindowBg, etc.) and outside border. Similar as using SetNextWindowBgAlpha(0.0f).<br/>
 		/// </summary>
 		NoBackground = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Never loadsave settings in .ini file<br/>
 		/// </summary>
 		NoSavedSettings = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable catching mouse, hovering test with pass through.<br/>
 		/// </summary>
 		NoMouseInputs = unchecked(512),
 
 		/// <summary>
-		/// To be documented.
+		/// Has a menu-bar<br/>
 		/// </summary>
 		MenuBar = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow horizontal scrollbar to appear (off by default). You may use SetNextWindowContentSize(ImVec2(width,0.0f)); prior to calling Begin() to specify width. Read code in imgui_demo in the "Horizontal Scrolling" section.<br/>
 		/// </summary>
 		HorizontalScrollbar = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable taking focus when transitioning from hidden to visible state<br/>
 		/// </summary>
 		NoFocusOnAppearing = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable bringing window to front when taking focus (e.g. clicking on it or programmatically giving it focus)<br/>
 		/// </summary>
 		NoBringToFrontOnFocus = unchecked(8192),
 
 		/// <summary>
-		/// To be documented.
+		/// Always show vertical scrollbar (even if ContentSize.y &lt; Size.y)<br/>
 		/// </summary>
 		AlwaysVerticalScrollbar = unchecked(16384),
 
 		/// <summary>
-		/// To be documented.
+		/// Always show horizontal scrollbar (even if ContentSize.x &lt; Size.x)<br/>
 		/// </summary>
 		AlwaysHorizontalScrollbar = unchecked(32768),
 
 		/// <summary>
-		/// To be documented.
+		/// No keyboardgamepad navigation within the window<br/>
 		/// </summary>
 		NoNavInputs = unchecked(65536),
 
 		/// <summary>
-		/// To be documented.
+		/// No focusing toward this window with keyboardgamepad navigation (e.g. skipped by CTRL+TAB)<br/>
 		/// </summary>
 		NoNavFocus = unchecked(131072),
 
 		/// <summary>
-		/// To be documented.
+		/// Display a dot next to the title. When used in a tabdocking context, tab is selected when clicking the X + closure is not assumed (will wait for user to stop submitting the tab). Otherwise closure is assumed when pressing the X, so if you keep submitting the tab may reappear at end of tab bar.<br/>
 		/// </summary>
 		UnsavedDocument = unchecked(262144),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable docking of this window<br/>
 		/// </summary>
 		NoDocking = unchecked(524288),
 
@@ -140,32 +140,32 @@ namespace Hexa.NET.ImGui
 		NoInputs = unchecked(197120),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't use! For internal use by Begin()NewFrame()<br/>
 		/// </summary>
 		DockNodeHost = unchecked(8388608),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't use! For internal use by BeginChild()<br/>
 		/// </summary>
 		ChildWindow = unchecked(16777216),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't use! For internal use by BeginTooltip()<br/>
 		/// </summary>
 		Tooltip = unchecked(33554432),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't use! For internal use by BeginPopup()<br/>
 		/// </summary>
 		Popup = unchecked(67108864),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't use! For internal use by BeginPopupModal()<br/>
 		/// </summary>
 		Modal = unchecked(134217728),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't use! For internal use by BeginMenu()<br/>
 		/// </summary>
 		ChildMenu = unchecked(268435456),
 	}

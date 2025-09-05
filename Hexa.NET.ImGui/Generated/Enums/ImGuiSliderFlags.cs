@@ -25,37 +25,37 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Make the widget logarithmic (linear otherwise). Consider using ImGuiSliderFlags_NoRoundToFormat with this if using a format-string with small amount of digits.<br/>
 		/// </summary>
 		Logarithmic = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable rounding underlying value to match precision of the display format string (e.g. %.3f values are rounded to those 3 digits).<br/>
 		/// </summary>
 		NoRoundToFormat = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable CTRL+Click or Enter key allowing to input text directly into the widget.<br/>
 		/// </summary>
 		NoInput = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable wrapping around from max to min and from min to max. Only supported by DragXXX() functions for now.<br/>
 		/// </summary>
 		WrapAround = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// Clamp value to minmax bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds.<br/>
 		/// </summary>
 		ClampOnInput = unchecked(512),
 
 		/// <summary>
-		/// To be documented.
+		/// Clamp even if min==max==0.0f. Otherwise due to legacy reason DragXXX functions don't clamp with those values. When your clamping limits are dynamic you almost always want to use it.<br/>
 		/// </summary>
 		ClampZeroRange = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable keyboard modifiers altering tweak speed. Useful if you want to alter tweak speed yourself based on your own logic.<br/>
 		/// </summary>
 		NoSpeedTweaks = unchecked(2048),
 
@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		AlwaysClamp = unchecked(1536),
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal] We treat using those bits as being potentially a 'float power' argument from the previous API that has got miscast to this enum, and will trigger an assert if needed.<br/>
 		/// </summary>
 		InvalidMask = unchecked(1879048207),
 	}

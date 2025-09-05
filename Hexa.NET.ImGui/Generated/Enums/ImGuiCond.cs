@@ -20,27 +20,27 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiCond : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// No condition (always set the variable), same as _Always<br/>
 		/// </summary>
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// No condition (always set the variable), same as _None<br/>
 		/// </summary>
 		Always = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Set the variable once per runtime session (only the first call will succeed)<br/>
 		/// </summary>
 		Once = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Set the variable if the objectwindow has no persistently saved data (no entry in .ini file)<br/>
 		/// </summary>
 		FirstUseEver = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Set the variable if the objectwindow is appearing after being hiddeninactive (or the first time)<br/>
 		/// </summary>
 		Appearing = unchecked(8),
 	}

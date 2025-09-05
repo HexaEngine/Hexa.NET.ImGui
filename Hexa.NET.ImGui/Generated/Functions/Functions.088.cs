@@ -891,7 +891,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DrawNative(ImGuiTextFilter* self, byte* label, float width)
@@ -904,7 +904,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, byte* label, float width)
 		{
@@ -913,7 +913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, byte* label)
 		{
@@ -922,7 +922,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self)
 		{
@@ -931,7 +931,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, float width)
 		{
@@ -940,7 +940,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, byte* label, float width)
 		{
@@ -952,7 +952,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, byte* label)
 		{
@@ -964,7 +964,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self)
 		{
@@ -976,7 +976,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, float width)
 		{
@@ -988,7 +988,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, ref byte label, float width)
 		{
@@ -1000,7 +1000,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, ref byte label)
 		{
@@ -1012,7 +1012,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, ReadOnlySpan<byte> label, float width)
 		{
@@ -1024,7 +1024,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, ReadOnlySpan<byte> label)
 		{
@@ -1036,7 +1036,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, string label, float width)
 		{
@@ -1066,7 +1066,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ImGuiTextFilterPtr self, string label)
 		{
@@ -1096,7 +1096,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, ref byte label, float width)
 		{
@@ -1111,7 +1111,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, ref byte label)
 		{
@@ -1126,7 +1126,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, ReadOnlySpan<byte> label, float width)
 		{
@@ -1141,7 +1141,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, ReadOnlySpan<byte> label)
 		{
@@ -1156,7 +1156,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, string label, float width)
 		{
@@ -1189,7 +1189,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helper calling InputText+Build<br/>
 		/// </summary>
 		public static bool Draw(ref ImGuiTextFilter self, string label)
 		{
@@ -2866,7 +2866,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* endNative(ImGuiTextBuffer* self)
@@ -2879,7 +2879,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public static byte* end(ImGuiTextBufferPtr self)
 		{
@@ -2888,7 +2888,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public static string endS(ImGuiTextBufferPtr self)
 		{
@@ -2897,7 +2897,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public static byte* end(ref ImGuiTextBuffer self)
 		{
@@ -2909,7 +2909,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public static string endS(ref ImGuiTextBuffer self)
 		{
@@ -3021,7 +3021,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void resizeNative(ImGuiTextBuffer* self, int size)
@@ -3034,7 +3034,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
 		/// </summary>
 		public static void resize(ImGuiTextBufferPtr self, int size)
 		{
@@ -3042,7 +3042,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
 		/// </summary>
 		public static void resize(ref ImGuiTextBuffer self, int size)
 		{
@@ -4553,7 +4553,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// default_val is NULL<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void* GetVoidPtrNative(ImGuiStorage* self, uint key)
@@ -4566,7 +4566,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// default_val is NULL<br/>
 		/// </summary>
 		public static void* GetVoidPtr(ImGuiStoragePtr self, uint key)
 		{
@@ -4575,7 +4575,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// default_val is NULL<br/>
 		/// </summary>
 		public static void* GetVoidPtr(ref ImGuiStorage self, uint key)
 		{

@@ -25,42 +25,42 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Platform supports gamepad and currently has one connected.<br/>
 		/// </summary>
 		HasGamepad = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Platform supports honoring GetMouseCursor() value to change the OS cursor shape.<br/>
 		/// </summary>
 		HasMouseCursors = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Platform supports io.WantSetMousePos requests to reposition the OS mouse position (only used if io.ConfigNavMoveSetMousePos is set).<br/>
 		/// </summary>
 		HasSetMousePos = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Renderer supports ImDrawCmd::VtxOffset. This enables output of large meshes (64K+ vertices) while still using 16-bit indices.<br/>
 		/// </summary>
 		RendererHasVtxOffset = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Renderer supports ImTextureData requests to createupdatedestroy textures. This enables incremental texture updates and texture reloads. See https:github.comocornutimguiblobmasterdocsBACKENDS.md for instructions on how to upgrade your custom backend.<br/>
 		/// </summary>
 		RendererHasTextures = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Platform supports multiple viewports.<br/>
 		/// </summary>
 		PlatformHasViewports = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Platform supports calling io.AddMouseViewportEvent() with the viewport under the mouse. IF POSSIBLE, ignore viewports with the ImGuiViewportFlags_NoInputs flag (Win32 backend, GLFW 3.30+ backend can do this, SDL backend cannot). If this cannot be done, Dear ImGui needs to use a flawed heuristic to find the viewport under.<br/>
 		/// </summary>
 		HasMouseHoveredViewport = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// Backend Renderer supports multiple viewports.<br/>
 		/// </summary>
 		RendererHasViewports = unchecked(4096),
 	}

@@ -88,6 +88,24 @@
 		<None Update="backends\include\cimgui_impl_win32.h">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="cimplot3d\cimgui.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimplot3d\cimplot3d.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimplot3d\definitions.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimplot3d\generator.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimplot3d\structs_and_enums.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimplot3d\typedefs_dict.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="config.backends.base.json">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

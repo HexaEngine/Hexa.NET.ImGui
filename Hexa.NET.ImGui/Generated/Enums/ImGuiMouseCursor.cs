@@ -30,52 +30,52 @@ namespace Hexa.NET.ImGui
 		Arrow = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// When hovering over InputText, etc.<br/>
 		/// </summary>
 		TextInput = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// (Unused by Dear ImGui functions)<br/>
 		/// </summary>
 		ResizeAll = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// When hovering over a horizontal border<br/>
 		/// </summary>
 		ResizeNs = unchecked(3),
 
 		/// <summary>
-		/// To be documented.
+		/// When hovering over a vertical border or a column<br/>
 		/// </summary>
 		ResizeEw = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// When hovering over the bottom-left corner of a window<br/>
 		/// </summary>
 		ResizeNesw = unchecked(5),
 
 		/// <summary>
-		/// To be documented.
+		/// When hovering over the bottom-right corner of a window<br/>
 		/// </summary>
 		ResizeNwse = unchecked(6),
 
 		/// <summary>
-		/// To be documented.
+		/// (Unused by Dear ImGui functions. Use for e.g. hyperlinks)<br/>
 		/// </summary>
 		Hand = unchecked(7),
 
 		/// <summary>
-		/// To be documented.
+		/// When waiting for something to processload.<br/>
 		/// </summary>
 		Wait = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// When waiting for something to processload, but application is still interactive.<br/>
 		/// </summary>
 		Progress = unchecked(9),
 
 		/// <summary>
-		/// To be documented.
+		/// When hovering something with disallowed interaction. Usually a crossed circle.<br/>
 		/// </summary>
 		NotAllowed = unchecked(10),
 

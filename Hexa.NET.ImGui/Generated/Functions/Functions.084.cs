@@ -1035,7 +1035,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set on parent window).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginMenuBarNative()
@@ -1048,7 +1048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set on parent window).<br/>
 		/// </summary>
 		public static bool BeginMenuBar()
 		{
@@ -1057,7 +1057,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndMenuBar() if BeginMenuBar() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndMenuBarNative()
@@ -1070,7 +1070,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndMenuBar() if BeginMenuBar() returns true!<br/>
 		/// </summary>
 		public static void EndMenuBar()
 		{
@@ -1078,7 +1078,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append to a full screen menu-bar.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginMainMenuBarNative()
@@ -1091,7 +1091,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append to a full screen menu-bar.<br/>
 		/// </summary>
 		public static bool BeginMainMenuBar()
 		{
@@ -1100,7 +1100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndMainMenuBar() if BeginMainMenuBar() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndMainMenuBarNative()
@@ -1113,7 +1113,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndMainMenuBar() if BeginMainMenuBar() returns true!<br/>
 		/// </summary>
 		public static void EndMainMenuBar()
 		{
@@ -1121,7 +1121,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginMenuNative(byte* label, byte enabled)
@@ -1134,7 +1134,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(byte* label, bool enabled)
 		{
@@ -1143,7 +1143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(byte* label)
 		{
@@ -1152,7 +1152,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(ref byte label, bool enabled)
 		{
@@ -1164,7 +1164,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(ref byte label)
 		{
@@ -1176,7 +1176,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(ReadOnlySpan<byte> label, bool enabled)
 		{
@@ -1188,7 +1188,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(ReadOnlySpan<byte> label)
 		{
@@ -1200,7 +1200,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(string label, bool enabled)
 		{
@@ -1230,7 +1230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
 		/// </summary>
 		public static bool BeginMenu(string label)
 		{
@@ -1260,7 +1260,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndMenu() if BeginMenu() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndMenuNative()
@@ -1273,7 +1273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndMenu() if BeginMenu() returns true!<br/>
 		/// </summary>
 		public static void EndMenu()
 		{
@@ -1281,7 +1281,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte MenuItemNative(byte* label, byte* shortcut, byte selected, byte enabled)
@@ -1294,7 +1294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1303,7 +1303,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool selected)
 		{
@@ -1312,7 +1312,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut)
 		{
@@ -1321,7 +1321,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label)
 		{
@@ -1330,7 +1330,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, bool selected)
 		{
@@ -1339,7 +1339,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, bool selected, bool enabled)
 		{
@@ -1348,7 +1348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1360,7 +1360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool selected)
 		{
@@ -1372,7 +1372,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut)
 		{
@@ -1384,7 +1384,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label)
 		{
@@ -1396,7 +1396,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, bool selected)
 		{
@@ -1408,7 +1408,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, bool selected, bool enabled)
 		{
@@ -1420,7 +1420,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1432,7 +1432,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool selected)
 		{
@@ -1444,7 +1444,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut)
 		{
@@ -1456,7 +1456,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label)
 		{
@@ -1468,7 +1468,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, bool selected)
 		{
@@ -1480,7 +1480,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, bool selected, bool enabled)
 		{
@@ -1492,7 +1492,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool selected, bool enabled)
 		{
@@ -1522,7 +1522,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool selected)
 		{
@@ -1552,7 +1552,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut)
 		{
@@ -1582,7 +1582,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label)
 		{
@@ -1612,7 +1612,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, bool selected)
 		{
@@ -1642,7 +1642,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, bool selected, bool enabled)
 		{
@@ -1672,7 +1672,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -1684,7 +1684,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool selected)
 		{
@@ -1696,7 +1696,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut)
 		{
@@ -1708,7 +1708,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -1720,7 +1720,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -1732,7 +1732,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut)
 		{
@@ -1744,7 +1744,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool selected, bool enabled)
 		{
@@ -1774,7 +1774,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool selected)
 		{
@@ -1804,7 +1804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut)
 		{
@@ -1834,7 +1834,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -1849,7 +1849,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool selected)
 		{
@@ -1864,7 +1864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut)
 		{
@@ -1879,7 +1879,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -1894,7 +1894,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -1909,7 +1909,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut)
 		{
@@ -1924,7 +1924,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool selected, bool enabled)
 		{
@@ -1975,7 +1975,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool selected)
 		{
@@ -2026,7 +2026,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut)
 		{
@@ -2077,7 +2077,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -2092,7 +2092,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -2107,7 +2107,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut)
 		{
@@ -2122,7 +2122,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool selected, bool enabled)
 		{
@@ -2155,7 +2155,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool selected)
 		{
@@ -2188,7 +2188,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut)
 		{
@@ -2221,7 +2221,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -2236,7 +2236,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool selected)
 		{
@@ -2251,7 +2251,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut)
 		{
@@ -2266,7 +2266,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool selected, bool enabled)
 		{
@@ -2299,7 +2299,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool selected)
 		{
@@ -2332,7 +2332,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut)
 		{
@@ -2365,7 +2365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool selected, bool enabled)
 		{
@@ -2398,7 +2398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool selected)
 		{
@@ -2431,7 +2431,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut)
 		{
@@ -2464,7 +2464,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
@@ -2497,7 +2497,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
@@ -2530,7 +2530,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut)
 		{
@@ -2563,7 +2563,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, byte enabled)
@@ -2576,7 +2576,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2585,7 +2585,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected)
 		{
@@ -2594,7 +2594,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2606,7 +2606,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, bool* pSelected)
 		{
@@ -2618,7 +2618,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2630,7 +2630,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected)
 		{
@@ -2642,7 +2642,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool* pSelected, bool enabled)
 		{
@@ -2672,7 +2672,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, bool* pSelected)
 		{
@@ -2702,7 +2702,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -2714,7 +2714,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, bool* pSelected)
 		{
@@ -2726,7 +2726,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -2738,7 +2738,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -2750,7 +2750,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -2780,7 +2780,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, bool* pSelected)
 		{
@@ -2810,7 +2810,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -2825,7 +2825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, bool* pSelected)
 		{
@@ -2840,7 +2840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -2855,7 +2855,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -2870,7 +2870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -2921,7 +2921,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, bool* pSelected)
 		{
@@ -2972,7 +2972,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -2987,7 +2987,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -3002,7 +3002,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -3035,7 +3035,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, bool* pSelected)
 		{
@@ -3068,7 +3068,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -3083,7 +3083,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, bool* pSelected)
 		{
@@ -3098,7 +3098,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected, bool enabled)
 		{
@@ -3131,7 +3131,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected)
 		{
@@ -3164,7 +3164,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool* pSelected, bool enabled)
 		{
@@ -3197,7 +3197,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, bool* pSelected)
 		{
@@ -3230,7 +3230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
@@ -3263,7 +3263,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
@@ -3296,7 +3296,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3308,7 +3308,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected)
 		{
@@ -3320,7 +3320,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3335,7 +3335,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, byte* shortcut, ref bool pSelected)
 		{
@@ -3350,7 +3350,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3365,7 +3365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected)
 		{
@@ -3380,7 +3380,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3413,7 +3413,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected)
 		{
@@ -3446,7 +3446,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3461,7 +3461,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3476,7 +3476,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3491,7 +3491,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3506,7 +3506,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3539,7 +3539,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected)
 		{
@@ -3572,7 +3572,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3590,7 +3590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3608,7 +3608,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3626,7 +3626,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3644,7 +3644,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3698,7 +3698,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, string shortcut, ref bool pSelected)
 		{
@@ -3752,7 +3752,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3770,7 +3770,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -3788,7 +3788,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3824,7 +3824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ref byte label, string shortcut, ref bool pSelected)
 		{
@@ -3860,7 +3860,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3878,7 +3878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, ref byte shortcut, ref bool pSelected)
 		{
@@ -3896,7 +3896,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected, bool enabled)
 		{
@@ -3932,7 +3932,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected)
 		{
@@ -3968,7 +3968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, ref bool pSelected, bool enabled)
 		{
@@ -4004,7 +4004,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ref byte shortcut, ref bool pSelected)
 		{
@@ -4040,7 +4040,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
 		{
@@ -4076,7 +4076,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
 		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
 		{
@@ -4112,7 +4112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// beginappend a tooltip window.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginTooltipNative()
@@ -4125,7 +4125,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// beginappend a tooltip window.<br/>
 		/// </summary>
 		public static bool BeginTooltip()
 		{
@@ -4134,7 +4134,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTooltipNative()
@@ -4147,7 +4147,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
 		/// </summary>
 		public static void EndTooltip()
 		{
@@ -4155,7 +4155,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetTooltipNative(byte* fmt)
@@ -4168,7 +4168,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetTooltip(byte* fmt)
 		{
@@ -4176,7 +4176,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetTooltip(ref byte fmt)
 		{
@@ -4187,7 +4187,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetTooltip(ReadOnlySpan<byte> fmt)
 		{
@@ -4198,7 +4198,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetTooltip(string fmt)
 		{
@@ -4299,7 +4299,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// beginappend a tooltip window if preceding item was hovered.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginItemTooltipNative()
@@ -4312,7 +4312,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// beginappend a tooltip window if preceding item was hovered.<br/>
 		/// </summary>
 		public static bool BeginItemTooltip()
 		{
@@ -4321,7 +4321,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemTooltipNative(byte* fmt)
@@ -4334,7 +4334,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetItemTooltip(byte* fmt)
 		{
@@ -4342,7 +4342,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetItemTooltip(ref byte fmt)
 		{
@@ -4353,7 +4353,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetItemTooltip(ReadOnlySpan<byte> fmt)
 		{
@@ -4364,7 +4364,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
 		public static void SetItemTooltip(string fmt)
 		{
@@ -4465,7 +4465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupNative(byte* strId, ImGuiWindowFlags flags)
@@ -4478,7 +4478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(byte* strId, ImGuiWindowFlags flags)
 		{
@@ -4487,7 +4487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(byte* strId)
 		{
@@ -4496,7 +4496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(ref byte strId, ImGuiWindowFlags flags)
 		{
@@ -4508,7 +4508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(ref byte strId)
 		{
@@ -4520,7 +4520,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(ReadOnlySpan<byte> strId, ImGuiWindowFlags flags)
 		{
@@ -4532,7 +4532,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(ReadOnlySpan<byte> strId)
 		{
@@ -4544,7 +4544,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(string strId, ImGuiWindowFlags flags)
 		{
@@ -4574,7 +4574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopup(string strId)
 		{
@@ -4604,7 +4604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupModalNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
@@ -4617,7 +4617,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4626,7 +4626,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, bool* pOpen)
 		{
@@ -4635,7 +4635,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(byte* name)
 		{
@@ -4644,7 +4644,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, ImGuiWindowFlags flags)
 		{
@@ -4653,7 +4653,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4665,7 +4665,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, bool* pOpen)
 		{
@@ -4677,7 +4677,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name)
 		{
@@ -4689,7 +4689,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, ImGuiWindowFlags flags)
 		{
@@ -4701,7 +4701,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4713,7 +4713,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, bool* pOpen)
 		{
@@ -4725,7 +4725,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name)
 		{
@@ -4737,7 +4737,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ImGuiWindowFlags flags)
 		{
@@ -4749,7 +4749,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(string name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -4779,7 +4779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(string name, bool* pOpen)
 		{
@@ -4809,7 +4809,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(string name)
 		{
@@ -4839,7 +4839,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(string name, ImGuiWindowFlags flags)
 		{
@@ -4869,7 +4869,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4881,7 +4881,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(byte* name, ref bool pOpen)
 		{
@@ -4893,7 +4893,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4908,7 +4908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ref byte name, ref bool pOpen)
 		{
@@ -4923,7 +4923,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4938,7 +4938,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ref bool pOpen)
 		{
@@ -4953,7 +4953,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(string name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -4986,7 +4986,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
 		public static bool BeginPopupModal(string name, ref bool pOpen)
 		{

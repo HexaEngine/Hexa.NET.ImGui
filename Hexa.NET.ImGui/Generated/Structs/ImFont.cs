@@ -17,7 +17,11 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Font runtime data and rendering<br/>
+	/// - ImFontAtlas automatically loads a default embedded font for you if you didn't load one manually.<br/>
+	/// - Since 1.92.X a font may be rendered as any size! Therefore a font doesn't have one specific size.<br/>
+	/// - Use 'font-&gt;GetFontBaked(size)' to retrieve the ImFontBaked* corresponding to a given size.<br/>
+	/// - If you used g.Font + g.FontSize (which is frequent from the ImGui layer), you can use g.FontBaked as a shortcut, as g.FontBaked == g.Font-&gt;GetFontBaked(g.FontSize).<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFont
@@ -177,7 +181,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// To be documented.
+		/// Makes 'from_codepoint' character points to 'to_codepoint' glyph.<br/>
 		/// </summary>
 		public unsafe void AddRemapChar(uint fromCodepoint, uint toCodepoint)
 		{
@@ -1026,7 +1030,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Fill ImFontConfig::Name.<br/>
 		/// </summary>
 		public unsafe byte* GetDebugName()
 		{
@@ -1038,7 +1042,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Fill ImFontConfig::Name.<br/>
 		/// </summary>
 		public unsafe string GetDebugNameS()
 		{
@@ -1050,7 +1054,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize, float density)
 		{
@@ -1062,7 +1066,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize)
 		{
@@ -4617,7 +4621,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImGuiStorage RemapPairs => ref Unsafe.AsRef<ImGuiStorage>(&Handle->RemapPairs);
 		/// <summary>
-		/// To be documented.
+		/// Makes 'from_codepoint' character points to 'to_codepoint' glyph.<br/>
 		/// </summary>
 		public unsafe void AddRemapChar(uint fromCodepoint, uint toCodepoint)
 		{
@@ -5361,7 +5365,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Fill ImFontConfig::Name.<br/>
 		/// </summary>
 		public unsafe byte* GetDebugName()
 		{
@@ -5370,7 +5374,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Fill ImFontConfig::Name.<br/>
 		/// </summary>
 		public unsafe string GetDebugNameS()
 		{
@@ -5379,7 +5383,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize, float density)
 		{
@@ -5388,7 +5392,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize)
 		{

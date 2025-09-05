@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Optional helper to apply multi-selection requests to existing randomly accessible storage.<br/>
+	/// Convenient if you want to quickly wire multi-select API on e.g. an array of bool or items storing their own selection state.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiSelectionExternalStorage
@@ -44,7 +45,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
 		{
@@ -55,7 +56,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
 		{
@@ -131,7 +132,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public void* AdapterSetItemSelected { get => Handle->AdapterSetItemSelected; set => Handle->AdapterSetItemSelected = value; }
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
 		{
@@ -139,7 +140,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
 		{

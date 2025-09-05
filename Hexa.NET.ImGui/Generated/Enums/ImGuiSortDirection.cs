@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Ascending = 0-&gt;9, A-&gt;Z etc.<br/>
 		/// </summary>
 		Ascending = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Descending = 9-&gt;0, Z-&gt;A etc.<br/>
 		/// </summary>
 		Descending = unchecked(2),
 	}

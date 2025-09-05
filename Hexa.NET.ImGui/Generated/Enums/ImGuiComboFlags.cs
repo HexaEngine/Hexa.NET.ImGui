@@ -25,42 +25,42 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Align the popup toward the left by default<br/>
 		/// </summary>
 		PopupAlignLeft = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Max ~4 items visible. Tip: If you want your combo popup to be a specific size you can use SetNextWindowSizeConstraints() prior to calling BeginCombo()<br/>
 		/// </summary>
 		HeightSmall = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Max ~8 items visible (default)<br/>
 		/// </summary>
 		HeightRegular = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Max ~20 items visible<br/>
 		/// </summary>
 		HeightLarge = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// As many fitting items as possible<br/>
 		/// </summary>
 		HeightLargest = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Display on the preview box without the square arrow button<br/>
 		/// </summary>
 		NoArrowButton = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Display only a square arrow button<br/>
 		/// </summary>
 		NoPreview = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Width dynamically calculated from preview contents<br/>
 		/// </summary>
 		WidthFitPreview = unchecked(128),
 

@@ -17,7 +17,15 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Draw command list<br/>
+	/// This is the low-level list of polygons that ImGui:: functions are filling. At the end of the frame,<br/>
+	/// all command lists are passed to your ImGuiIO::RenderDrawListFn function for rendering.<br/>
+	/// Each dear imgui window contains its own ImDrawList. You can use ImGui::GetWindowDrawList() to<br/>
+	/// access the current window draw list and draw custom primitives.<br/>
+	/// You can interleave normal ImGui:: calls and adding primitives to the current draw list.<br/>
+	/// In single viewport mode, top-left is == GetMainViewport()-&gt;Pos (generally 0,0), bottom-right is == GetMainViewport()-&gt;Pos+Size (generally io.DisplaySize).<br/>
+	/// You are totally free to apply whatever transformation matrix you want to the data (depending on the use of the transformation you may want to apply it to ClipRect as well!)<br/>
+	/// Important: Primitives are always added to the list and not culled (culling is done at higher-level by ImGui:: functions), if you use this API a lot consider coarse culling your drawn objects.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawList
@@ -275,7 +283,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -286,7 +294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
@@ -297,7 +305,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -308,7 +316,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
@@ -457,7 +465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		public unsafe void AddDrawCmd()
 		{
@@ -900,7 +908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
@@ -911,7 +919,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -922,7 +930,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -933,7 +941,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -944,7 +952,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -955,7 +963,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
@@ -966,7 +974,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -977,7 +985,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -988,7 +996,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -999,7 +1007,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -1010,7 +1018,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -7717,7 +7725,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
 		/// </summary>
 		public unsafe ImDrawList* CloneOutput()
 		{
@@ -7762,7 +7770,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use precomputed angles for a 12 steps circle<br/>
 		/// </summary>
 		public unsafe void PathArcToFast(Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -7773,7 +7781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -7784,7 +7792,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4)
 		{
@@ -7795,7 +7803,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -7806,7 +7814,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3)
 		{
@@ -7828,7 +7836,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -7839,7 +7847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
@@ -8015,7 +8023,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Axis aligned rectangle (composed of two triangles)<br/>
 		/// </summary>
 		public unsafe void PrimRect(Vector2 a, Vector2 b, uint col)
 		{
@@ -8059,7 +8067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Write vertex with unique index<br/>
 		/// </summary>
 		public unsafe void PrimVtx(Vector2 pos, Vector2 uv, uint col)
 		{
@@ -8092,7 +8100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
@@ -8103,7 +8111,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax)
 		{
@@ -8351,7 +8359,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -8359,7 +8367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
@@ -8367,7 +8375,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -8375,7 +8383,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
@@ -8485,7 +8493,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		public unsafe void AddDrawCmd()
 		{
@@ -8808,7 +8816,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
@@ -8816,7 +8824,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -8824,7 +8832,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -8832,7 +8840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -8840,7 +8848,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -8848,7 +8856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
@@ -8856,7 +8864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -8864,7 +8872,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -8872,7 +8880,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -8880,7 +8888,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -8888,7 +8896,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -14791,7 +14799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
 		/// </summary>
 		public unsafe ImDrawListPtr CloneOutput()
 		{
@@ -14824,7 +14832,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use precomputed angles for a 12 steps circle<br/>
 		/// </summary>
 		public unsafe void PathArcToFast(Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -14832,7 +14840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -14840,7 +14848,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cubic Bezier (4 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4)
 		{
@@ -14848,7 +14856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -14856,7 +14864,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Quadratic Bezier (3 control points)<br/>
 		/// </summary>
 		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3)
 		{
@@ -14872,7 +14880,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -14880,7 +14888,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Ellipse<br/>
 		/// </summary>
 		public unsafe void PathEllipticalArcTo(Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
@@ -15008,7 +15016,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Axis aligned rectangle (composed of two triangles)<br/>
 		/// </summary>
 		public unsafe void PrimRect(Vector2 a, Vector2 b, uint col)
 		{
@@ -15040,7 +15048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Write vertex with unique index<br/>
 		/// </summary>
 		public unsafe void PrimVtx(Vector2 pos, Vector2 uv, uint col)
 		{
@@ -15064,7 +15072,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
@@ -15072,7 +15080,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax)
 		{

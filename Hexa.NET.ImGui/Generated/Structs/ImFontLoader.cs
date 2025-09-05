@@ -17,7 +17,9 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Hooks and storage for a given font backend.<br/>
+	/// This structure is likely to evolve as we add support for incremental atlas updates.<br/>
+	/// Conceptually this could be public, but API is still going to be evolve.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontLoader

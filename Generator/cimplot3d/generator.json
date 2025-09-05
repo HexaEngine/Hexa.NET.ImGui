@@ -1,0 +1,31 @@
+{
+  "BaseConfig": {
+    "Url": "file://config.base.json"
+  },
+  "Namespace": "Hexa.NET.ImPlot3D",
+  "ApiName": "ImPlot3D",
+  "LibName": "cimplot3d",
+  "GenerateAdditionalOverloads": false,
+  "GenerateMetadata": true,
+  "TypeMappings": {
+  },
+  "KnownEnumValueNames": {
+    "ImGuiCond_None": "0",
+    "ImGuiCond_Always": "1",
+    "ImGuiCond_Once": "2",
+    "ImPlot3DItemFlags_NoLegend": "ImPlot3DItemFlags.NoLegend",
+    "ImPlot3DItemFlags_NoFit": "ImPlot3DItemFlags.NoFit"
+  },
+  "KnownDefaultValueNames": {
+    "sizeof(ImS8)": "sizeof(sbyte)",
+    "sizeof(ImU8)": "sizeof(byte)",
+    "sizeof(ImS16)": "sizeof(short)",
+    "sizeof(ImU16)": "sizeof(ushort)",
+    "sizeof(ImS32)": "sizeof(int)",
+    "sizeof(ImU32)": "sizeof(uint)",
+    "sizeof(ImS64)": "sizeof(long)",
+    "sizeof(ImU64)": "sizeof(ulong)"
+  },
+  "IgnoredParts": [ "ImPlot3D" ],
+  "Usings": [ "Hexa.NET.ImGui" ]
+}

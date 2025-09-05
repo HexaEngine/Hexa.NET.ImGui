@@ -25,87 +25,87 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw as selected<br/>
 		/// </summary>
 		Selected = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw frame with background (e.g. for CollapsingHeader)<br/>
 		/// </summary>
 		Framed = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Hit testing to allow subsequent widgets to overlap this one<br/>
 		/// </summary>
 		AllowOverlap = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't do a TreePush() when open (e.g. for CollapsingHeader) = no extra indent nor pushing on ID stack<br/>
 		/// </summary>
 		NoTreePushOnOpen = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't automatically and temporarily open node when Logging is active (by default logging will automatically open tree nodes)<br/>
 		/// </summary>
 		NoAutoOpenOnLog = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Default node to be open<br/>
 		/// </summary>
 		DefaultOpen = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Open on double-click instead of simple click (default for multi-select unless any _OpenOnXXX behavior is set explicitly). Both behaviors may be combined.<br/>
 		/// </summary>
 		OpenOnDoubleClick = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Open when clicking on the arrow part (default for multi-select unless any _OpenOnXXX behavior is set explicitly). Both behaviors may be combined.<br/>
 		/// </summary>
 		OpenOnArrow = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// No collapsing, no arrow (use as a convenience for leaf nodes).<br/>
 		/// </summary>
 		Leaf = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// Display a bullet instead of arrow. IMPORTANT: node can still be marked openclose if you don't set the _Leaf flag!<br/>
 		/// </summary>
 		Bullet = unchecked(512),
 
 		/// <summary>
-		/// To be documented.
+		/// Use FramePadding (even for an unframed text node) to vertically align text baseline to regular widget height. Equivalent to calling AlignTextToFramePadding() before the node.<br/>
 		/// </summary>
 		FramePadding = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Extend hit box to the right-most edge, even if not framed. This is not the default in order to allow adding other items on the same line without using AllowOverlap mode.<br/>
 		/// </summary>
 		SpanAvailWidth = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// Extend hit box to the left-most and right-most edges (cover the indent area).<br/>
 		/// </summary>
 		SpanFullWidth = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
+		/// Narrow hit box + narrow hovering highlight, will only cover the label text.<br/>
 		/// </summary>
 		SpanLabelWidth = unchecked(8192),
 
 		/// <summary>
-		/// To be documented.
+		/// Frame will span all columns of its container table (label will still fit in current column)<br/>
 		/// </summary>
 		SpanAllColumns = unchecked(16384),
 
 		/// <summary>
-		/// To be documented.
+		/// Label will span all columns of its container table<br/>
 		/// </summary>
 		LabelSpanAllColumns = unchecked(32768),
 
 		/// <summary>
-		/// To be documented.
+		/// Nav: left arrow moves back to parent. This is processed in TreePop() when there's an unfullfilled Left nav request remaining.<br/>
 		/// </summary>
 		NavLeftJumpsToParent = unchecked(131072),
 
@@ -115,17 +115,17 @@ namespace Hexa.NET.ImGui
 		CollapsingHeader = unchecked(26),
 
 		/// <summary>
-		/// To be documented.
+		/// No lines drawn<br/>
 		/// </summary>
 		DrawLinesNone = unchecked(262144),
 
 		/// <summary>
-		/// To be documented.
+		/// Horizontal lines to child nodes. Vertical line drawn down to TreePop() position: cover full contents. Faster (for large trees).<br/>
 		/// </summary>
 		DrawLinesFull = unchecked(524288),
 
 		/// <summary>
-		/// To be documented.
+		/// Horizontal lines to child nodes. Vertical line drawn down to bottom-most child node. Slower (for large trees).<br/>
 		/// </summary>
 		DrawLinesToNodes = unchecked(1048576),
 	}

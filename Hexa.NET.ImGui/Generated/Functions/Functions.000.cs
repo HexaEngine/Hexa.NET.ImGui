@@ -246,7 +246,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImTextureID GetTexIDNative(ImTextureRef* self)
@@ -259,7 +259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ImTextureRefPtr self)
 		{
@@ -268,7 +268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ref ImTextureRef self)
 		{
@@ -323,7 +323,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// NULL = destroy current context<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyContextNative(ImGuiContext* ctx)
@@ -336,7 +336,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// NULL = destroy current context<br/>
 		/// </summary>
 		public static void DestroyContext(ImGuiContextPtr ctx)
 		{
@@ -344,7 +344,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// NULL = destroy current context<br/>
 		/// </summary>
 		public static void DestroyContext()
 		{
@@ -352,7 +352,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// NULL = destroy current context<br/>
 		/// </summary>
 		public static void DestroyContext(ref ImGuiContext ctx)
 		{
@@ -417,7 +417,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// access the ImGuiIO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiIO* GetIONative()
@@ -430,7 +430,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// access the ImGuiIO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
 		/// </summary>
 		public static ImGuiIOPtr GetIO()
 		{
@@ -439,7 +439,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// access the ImGuiPlatformIO structure (mostly hooksfunctions to connect to platformrenderer and OS Clipboard, IME etc.)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiPlatformIO* GetPlatformIONative()
@@ -452,7 +452,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// access the ImGuiPlatformIO structure (mostly hooksfunctions to connect to platformrenderer and OS Clipboard, IME etc.)<br/>
 		/// </summary>
 		public static ImGuiPlatformIOPtr GetPlatformIO()
 		{
@@ -461,7 +461,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// access the Style structure (colors, sizes). Always use PushStyleColor(), PushStyleVar() to modify style mid-frame!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiStyle* GetStyleNative()
@@ -474,7 +474,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// access the Style structure (colors, sizes). Always use PushStyleColor(), PushStyleVar() to modify style mid-frame!<br/>
 		/// </summary>
 		public static ImGuiStylePtr GetStyle()
 		{
@@ -483,7 +483,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start a new Dear ImGui frame, you can submit any command from this point until Render()EndFrame().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void NewFrameNative()
@@ -496,7 +496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start a new Dear ImGui frame, you can submit any command from this point until Render()EndFrame().<br/>
 		/// </summary>
 		public static void NewFrame()
 		{
@@ -504,7 +504,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ends the Dear ImGui frame. automatically called by Render(). If you don't need to render data (skipping rendering) you may call EndFrame() without Render()... but you'll have wasted CPU already! If you don't need to render, better to not create any windows and not call NewFrame() at all!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndFrameNative()
@@ -517,7 +517,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ends the Dear ImGui frame. automatically called by Render(). If you don't need to render data (skipping rendering) you may call EndFrame() without Render()... but you'll have wasted CPU already! If you don't need to render, better to not create any windows and not call NewFrame() at all!<br/>
 		/// </summary>
 		public static void EndFrame()
 		{
@@ -525,7 +525,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ends the Dear ImGui frame, finalize the draw data. You can then get call GetDrawData().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void RenderNative()
@@ -538,7 +538,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ends the Dear ImGui frame, finalize the draw data. You can then get call GetDrawData().<br/>
 		/// </summary>
 		public static void Render()
 		{
@@ -546,7 +546,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// valid after Render() and until the next call to NewFrame(). Call ImGui_ImplXXXX_RenderDrawData() function in your Renderer Backend to render.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawData* GetDrawDataNative()
@@ -559,7 +559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// valid after Render() and until the next call to NewFrame(). Call ImGui_ImplXXXX_RenderDrawData() function in your Renderer Backend to render.<br/>
 		/// </summary>
 		public static ImDrawDataPtr GetDrawData()
 		{
@@ -568,7 +568,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowDemoWindowNative(bool* pOpen)
@@ -581,7 +581,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		public static void ShowDemoWindow(bool* pOpen)
 		{
@@ -589,7 +589,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		public static void ShowDemoWindow()
 		{
@@ -597,7 +597,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		public static void ShowDemoWindow(ref bool pOpen)
 		{
@@ -608,7 +608,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowMetricsWindowNative(bool* pOpen)
@@ -621,7 +621,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
 		/// </summary>
 		public static void ShowMetricsWindow(bool* pOpen)
 		{
@@ -629,7 +629,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
 		/// </summary>
 		public static void ShowMetricsWindow()
 		{
@@ -637,7 +637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
 		/// </summary>
 		public static void ShowMetricsWindow(ref bool pOpen)
 		{
@@ -648,7 +648,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowDebugLogWindowNative(bool* pOpen)
@@ -661,7 +661,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
 		/// </summary>
 		public static void ShowDebugLogWindow(bool* pOpen)
 		{
@@ -669,7 +669,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
 		/// </summary>
 		public static void ShowDebugLogWindow()
 		{
@@ -677,7 +677,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
 		/// </summary>
 		public static void ShowDebugLogWindow(ref bool pOpen)
 		{
@@ -688,7 +688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowIDStackToolWindowNative(bool* pOpen)
@@ -701,7 +701,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
 		/// </summary>
 		public static void ShowIDStackToolWindow(bool* pOpen)
 		{
@@ -709,7 +709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
 		/// </summary>
 		public static void ShowIDStackToolWindow()
 		{
@@ -717,7 +717,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
 		/// </summary>
 		public static void ShowIDStackToolWindow(ref bool pOpen)
 		{
@@ -728,7 +728,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowAboutWindowNative(bool* pOpen)
@@ -741,7 +741,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
 		/// </summary>
 		public static void ShowAboutWindow(bool* pOpen)
 		{
@@ -749,7 +749,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
 		/// </summary>
 		public static void ShowAboutWindow()
 		{
@@ -757,7 +757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
 		/// </summary>
 		public static void ShowAboutWindow(ref bool pOpen)
 		{
@@ -768,7 +768,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowStyleEditorNative(ImGuiStyle* reference)
@@ -781,7 +781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
 		/// </summary>
 		public static void ShowStyleEditor(ImGuiStylePtr reference)
 		{
@@ -789,7 +789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
 		/// </summary>
 		public static void ShowStyleEditor()
 		{
@@ -797,7 +797,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
 		/// </summary>
 		public static void ShowStyleEditor(ref ImGuiStyle reference)
 		{
@@ -808,7 +808,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ShowStyleSelectorNative(byte* label)
@@ -821,7 +821,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
 		/// </summary>
 		public static bool ShowStyleSelector(byte* label)
 		{
@@ -830,7 +830,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
 		/// </summary>
 		public static bool ShowStyleSelector(ref byte label)
 		{
@@ -842,7 +842,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
 		/// </summary>
 		public static bool ShowStyleSelector(ReadOnlySpan<byte> label)
 		{
@@ -854,7 +854,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
 		/// </summary>
 		public static bool ShowStyleSelector(string label)
 		{
@@ -884,7 +884,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowFontSelectorNative(byte* label)
@@ -897,7 +897,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
 		/// </summary>
 		public static void ShowFontSelector(byte* label)
 		{
@@ -905,7 +905,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
 		/// </summary>
 		public static void ShowFontSelector(ref byte label)
 		{
@@ -916,7 +916,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
 		/// </summary>
 		public static void ShowFontSelector(ReadOnlySpan<byte> label)
 		{
@@ -927,7 +927,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
 		/// </summary>
 		public static void ShowFontSelector(string label)
 		{
@@ -956,7 +956,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add basic helpinfo block (not a window): how to manipulate ImGui as an end-user (mousekeyboard controls).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowUserGuideNative()
@@ -969,7 +969,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add basic helpinfo block (not a window): how to manipulate ImGui as an end-user (mousekeyboard controls).<br/>
 		/// </summary>
 		public static void ShowUserGuide()
 		{
@@ -977,7 +977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get the compiled version string e.g. "1.80 WIP" (essentially the value for IMGUI_VERSION from the compiled version of imgui.cpp)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetVersionNative()
@@ -990,7 +990,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get the compiled version string e.g. "1.80 WIP" (essentially the value for IMGUI_VERSION from the compiled version of imgui.cpp)<br/>
 		/// </summary>
 		public static byte* GetVersion()
 		{
@@ -999,7 +999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get the compiled version string e.g. "1.80 WIP" (essentially the value for IMGUI_VERSION from the compiled version of imgui.cpp)<br/>
 		/// </summary>
 		public static string GetVersionS()
 		{
@@ -1008,7 +1008,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// new, recommended style (default)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsDarkNative(ImGuiStyle* dst)
@@ -1021,7 +1021,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// new, recommended style (default)<br/>
 		/// </summary>
 		public static void StyleColorsDark(ImGuiStylePtr dst)
 		{
@@ -1029,7 +1029,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// new, recommended style (default)<br/>
 		/// </summary>
 		public static void StyleColorsDark()
 		{
@@ -1037,7 +1037,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// new, recommended style (default)<br/>
 		/// </summary>
 		public static void StyleColorsDark(ref ImGuiStyle dst)
 		{
@@ -1048,7 +1048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// best used with borders and a custom, thicker font<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsLightNative(ImGuiStyle* dst)
@@ -1061,7 +1061,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// best used with borders and a custom, thicker font<br/>
 		/// </summary>
 		public static void StyleColorsLight(ImGuiStylePtr dst)
 		{
@@ -1069,7 +1069,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// best used with borders and a custom, thicker font<br/>
 		/// </summary>
 		public static void StyleColorsLight()
 		{
@@ -1077,7 +1077,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// best used with borders and a custom, thicker font<br/>
 		/// </summary>
 		public static void StyleColorsLight(ref ImGuiStyle dst)
 		{
@@ -1088,7 +1088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// classic imgui style<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsClassicNative(ImGuiStyle* dst)
@@ -1101,7 +1101,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// classic imgui style<br/>
 		/// </summary>
 		public static void StyleColorsClassic(ImGuiStylePtr dst)
 		{
@@ -1109,7 +1109,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// classic imgui style<br/>
 		/// </summary>
 		public static void StyleColorsClassic()
 		{
@@ -1117,7 +1117,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// classic imgui style<br/>
 		/// </summary>
 		public static void StyleColorsClassic(ref ImGuiStyle dst)
 		{
@@ -2231,7 +2231,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window focused? or its rootchild, depending on flags. see flags for options.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsWindowFocusedNative(ImGuiFocusedFlags flags)
@@ -2244,7 +2244,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window focused? or its rootchild, depending on flags. see flags for options.<br/>
 		/// </summary>
 		public static bool IsWindowFocused(ImGuiFocusedFlags flags)
 		{
@@ -2253,7 +2253,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window focused? or its rootchild, depending on flags. see flags for options.<br/>
 		/// </summary>
 		public static bool IsWindowFocused()
 		{
@@ -2262,7 +2262,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window hovered and hoverable (e.g. not blocked by a popupmodal)? See ImGuiHoveredFlags_ for options. IMPORTANT: If you are trying to check whether your mouse should be dispatched to Dear ImGui or to your underlying app, you should not use this function! Use the 'io.WantCaptureMouse' boolean for that! Refer to FAQ entry "How can I tell whether to dispatch mousekeyboard to Dear ImGui or my application?" for details.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsWindowHoveredNative(ImGuiHoveredFlags flags)
@@ -2275,7 +2275,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window hovered and hoverable (e.g. not blocked by a popupmodal)? See ImGuiHoveredFlags_ for options. IMPORTANT: If you are trying to check whether your mouse should be dispatched to Dear ImGui or to your underlying app, you should not use this function! Use the 'io.WantCaptureMouse' boolean for that! Refer to FAQ entry "How can I tell whether to dispatch mousekeyboard to Dear ImGui or my application?" for details.<br/>
 		/// </summary>
 		public static bool IsWindowHovered(ImGuiHoveredFlags flags)
 		{
@@ -2284,7 +2284,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window hovered and hoverable (e.g. not blocked by a popupmodal)? See ImGuiHoveredFlags_ for options. IMPORTANT: If you are trying to check whether your mouse should be dispatched to Dear ImGui or to your underlying app, you should not use this function! Use the 'io.WantCaptureMouse' boolean for that! Refer to FAQ entry "How can I tell whether to dispatch mousekeyboard to Dear ImGui or my application?" for details.<br/>
 		/// </summary>
 		public static bool IsWindowHovered()
 		{
@@ -2293,7 +2293,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get draw list associated to the current window, to append your own drawing primitives<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawList* GetWindowDrawListNative()
@@ -2306,7 +2306,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get draw list associated to the current window, to append your own drawing primitives<br/>
 		/// </summary>
 		public static ImDrawListPtr GetWindowDrawList()
 		{
@@ -2315,7 +2315,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get DPI scale currently associated to the current window's viewport.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetWindowDpiScaleNative()
@@ -2328,7 +2328,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get DPI scale currently associated to the current window's viewport.<br/>
 		/// </summary>
 		public static float GetWindowDpiScale()
 		{
@@ -2337,7 +2337,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetWindowPosNative(Vector2* pOut)
@@ -2350,7 +2350,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		public static Vector2 GetWindowPos()
 		{
@@ -2360,7 +2360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		public static void GetWindowPos(Vector2* pOut)
 		{
@@ -2368,7 +2368,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		public static void GetWindowPos(ref Vector2 pOut)
 		{
@@ -2379,7 +2379,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetWindowSizeNative(Vector2* pOut)
@@ -2392,7 +2392,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		public static Vector2 GetWindowSize()
 		{
@@ -2402,7 +2402,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		public static void GetWindowSize(Vector2* pOut)
 		{
@@ -2410,7 +2410,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		public static void GetWindowSize(ref Vector2 pOut)
 		{
@@ -2421,7 +2421,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window width (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().x.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetWindowWidthNative()
@@ -2434,7 +2434,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window width (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().x.<br/>
 		/// </summary>
 		public static float GetWindowWidth()
 		{
@@ -2443,7 +2443,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window height (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().y.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetWindowHeightNative()
@@ -2456,7 +2456,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current window height (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().y.<br/>
 		/// </summary>
 		public static float GetWindowHeight()
 		{
@@ -2465,7 +2465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get viewport currently associated to the current window.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiViewport* GetWindowViewportNative()
@@ -2478,7 +2478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get viewport currently associated to the current window.<br/>
 		/// </summary>
 		public static ImGuiViewportPtr GetWindowViewport()
 		{
@@ -2487,7 +2487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowPosNative(Vector2 pos, ImGuiCond cond, Vector2 pivot)
@@ -2500,7 +2500,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond, Vector2 pivot)
 		{
@@ -2508,7 +2508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond)
 		{
@@ -2516,7 +2516,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos)
 		{
@@ -2524,7 +2524,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, Vector2 pivot)
 		{
@@ -2532,7 +2532,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size. set axis to 0.0f to force an auto-fit on this axis. call before Begin()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowSizeNative(Vector2 size, ImGuiCond cond)
@@ -2545,7 +2545,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size. set axis to 0.0f to force an auto-fit on this axis. call before Begin()<br/>
 		/// </summary>
 		public static void SetNextWindowSize(Vector2 size, ImGuiCond cond)
 		{
@@ -2553,7 +2553,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size. set axis to 0.0f to force an auto-fit on this axis. call before Begin()<br/>
 		/// </summary>
 		public static void SetNextWindowSize(Vector2 size)
 		{
@@ -2561,7 +2561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowSizeConstraintsNative(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
@@ -2574,7 +2574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
 		{
@@ -2582,7 +2582,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback)
 		{
@@ -2590,7 +2590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax)
 		{
@@ -2598,7 +2598,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, void* customCallbackData)
 		{
@@ -2606,7 +2606,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window content size (~ scrollable client area, which enforce the range of scrollbars). Not including window decorations (title bar, menu bar, etc.) nor WindowPadding. set an axis to 0.0f to leave it automatic. call before Begin()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowContentSizeNative(Vector2 size)
@@ -2619,7 +2619,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window content size (~ scrollable client area, which enforce the range of scrollbars). Not including window decorations (title bar, menu bar, etc.) nor WindowPadding. set an axis to 0.0f to leave it automatic. call before Begin()<br/>
 		/// </summary>
 		public static void SetNextWindowContentSize(Vector2 size)
 		{
@@ -2627,7 +2627,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window collapsed state. call before Begin()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowCollapsedNative(byte collapsed, ImGuiCond cond)
@@ -2640,7 +2640,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window collapsed state. call before Begin()<br/>
 		/// </summary>
 		public static void SetNextWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
@@ -2648,7 +2648,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window collapsed state. call before Begin()<br/>
 		/// </summary>
 		public static void SetNextWindowCollapsed(bool collapsed)
 		{
@@ -2656,7 +2656,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window to be focused  top-most. call before Begin()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowFocusNative()
@@ -2669,7 +2669,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window to be focused  top-most. call before Begin()<br/>
 		/// </summary>
 		public static void SetNextWindowFocus()
 		{
@@ -2677,7 +2677,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window scrolling value (use &lt; 0.0f to not affect a given axis).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowScrollNative(Vector2 scroll)
@@ -2690,7 +2690,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window scrolling value (use &lt; 0.0f to not affect a given axis).<br/>
 		/// </summary>
 		public static void SetNextWindowScroll(Vector2 scroll)
 		{
@@ -2698,7 +2698,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window background color alpha. helper to easily override the Alpha component of ImGuiCol_WindowBgChildBgPopupBg. you may also use ImGuiWindowFlags_NoBackground.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowBgAlphaNative(float alpha)
@@ -2711,7 +2711,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window background color alpha. helper to easily override the Alpha component of ImGuiCol_WindowBgChildBgPopupBg. you may also use ImGuiWindowFlags_NoBackground.<br/>
 		/// </summary>
 		public static void SetNextWindowBgAlpha(float alpha)
 		{
@@ -2719,7 +2719,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window viewport<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowViewportNative(uint viewportId)
@@ -2732,7 +2732,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window viewport<br/>
 		/// </summary>
 		public static void SetNextWindowViewport(uint viewportId)
 		{
@@ -2740,7 +2740,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowPosNative(Vector2 pos, ImGuiCond cond)
@@ -2753,7 +2753,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
 		/// </summary>
 		public static void SetWindowPos(Vector2 pos, ImGuiCond cond)
 		{
@@ -2761,7 +2761,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
 		/// </summary>
 		public static void SetWindowPos(Vector2 pos)
 		{
@@ -2769,7 +2769,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowSizeNative(Vector2 size, ImGuiCond cond)
@@ -2782,7 +2782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
 		/// </summary>
 		public static void SetWindowSize(Vector2 size, ImGuiCond cond)
 		{
@@ -2790,7 +2790,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
 		/// </summary>
 		public static void SetWindowSize(Vector2 size)
 		{
@@ -2798,7 +2798,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond)
@@ -2811,7 +2811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
@@ -2819,7 +2819,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(bool collapsed)
 		{
@@ -2827,7 +2827,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowFocusNative()
@@ -2840,7 +2840,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
 		/// </summary>
 		public static void SetWindowFocus()
 		{
@@ -2848,7 +2848,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond)
@@ -2861,7 +2861,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(byte* name, Vector2 pos, ImGuiCond cond)
 		{
@@ -2869,7 +2869,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(byte* name, Vector2 pos)
 		{
@@ -2877,7 +2877,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(ref byte name, Vector2 pos, ImGuiCond cond)
 		{
@@ -2888,7 +2888,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(ref byte name, Vector2 pos)
 		{
@@ -2899,7 +2899,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos, ImGuiCond cond)
 		{
@@ -2910,7 +2910,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos)
 		{
@@ -2921,7 +2921,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(string name, Vector2 pos, ImGuiCond cond)
 		{
@@ -2950,7 +2950,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window position.<br/>
 		/// </summary>
 		public static void SetWindowPos(string name, Vector2 pos)
 		{
@@ -2979,7 +2979,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond)
@@ -2992,7 +2992,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(byte* name, Vector2 size, ImGuiCond cond)
 		{
@@ -3000,7 +3000,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(byte* name, Vector2 size)
 		{
@@ -3008,7 +3008,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(ref byte name, Vector2 size, ImGuiCond cond)
 		{
@@ -3019,7 +3019,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(ref byte name, Vector2 size)
 		{
@@ -3030,7 +3030,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size, ImGuiCond cond)
 		{
@@ -3041,7 +3041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size)
 		{
@@ -3052,7 +3052,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(string name, Vector2 size, ImGuiCond cond)
 		{
@@ -3081,7 +3081,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
 		public static void SetWindowSize(string name, Vector2 size)
 		{
@@ -3110,7 +3110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond)
@@ -3123,7 +3123,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(byte* name, bool collapsed, ImGuiCond cond)
 		{
@@ -3131,7 +3131,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(byte* name, bool collapsed)
 		{
@@ -3139,7 +3139,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(ref byte name, bool collapsed, ImGuiCond cond)
 		{
@@ -3150,7 +3150,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(ref byte name, bool collapsed)
 		{
@@ -3161,7 +3161,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed, ImGuiCond cond)
 		{
@@ -3172,7 +3172,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed)
 		{
@@ -3183,7 +3183,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(string name, bool collapsed, ImGuiCond cond)
 		{
@@ -3212,7 +3212,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window collapsed state<br/>
 		/// </summary>
 		public static void SetWindowCollapsed(string name, bool collapsed)
 		{
@@ -3241,7 +3241,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetWindowFocusNative(byte* name)
@@ -3254,7 +3254,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
 		/// </summary>
 		public static void SetWindowFocus(byte* name)
 		{
@@ -3262,7 +3262,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
 		/// </summary>
 		public static void SetWindowFocus(ref byte name)
 		{
@@ -3273,7 +3273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
 		/// </summary>
 		public static void SetWindowFocus(ReadOnlySpan<byte> name)
 		{
@@ -3284,7 +3284,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
 		/// </summary>
 		public static void SetWindowFocus(string name)
 		{
@@ -3313,7 +3313,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetScrollXNative()
@@ -3326,7 +3326,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
 		public static float GetScrollX()
 		{
@@ -3335,7 +3335,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get scrolling amount [0 .. GetScrollMaxY()]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetScrollYNative()
@@ -3348,7 +3348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get scrolling amount [0 .. GetScrollMaxY()]<br/>
 		/// </summary>
 		public static float GetScrollY()
 		{
@@ -3357,7 +3357,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollXNative(float scrollX)
@@ -3370,7 +3370,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
 		public static void SetScrollX(float scrollX)
 		{
@@ -3378,7 +3378,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollYNative(float scrollY)
@@ -3391,7 +3391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
 		/// </summary>
 		public static void SetScrollY(float scrollY)
 		{
@@ -3399,7 +3399,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get maximum scrolling amount ~~ ContentSize.x - WindowSize.x - DecorationsSize.x<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetScrollMaxXNative()
@@ -3412,7 +3412,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get maximum scrolling amount ~~ ContentSize.x - WindowSize.x - DecorationsSize.x<br/>
 		/// </summary>
 		public static float GetScrollMaxX()
 		{
@@ -3421,7 +3421,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get maximum scrolling amount ~~ ContentSize.y - WindowSize.y - DecorationsSize.y<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetScrollMaxYNative()
@@ -3434,7 +3434,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get maximum scrolling amount ~~ ContentSize.y - WindowSize.y - DecorationsSize.y<br/>
 		/// </summary>
 		public static float GetScrollMaxY()
 		{
@@ -3443,7 +3443,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make current cursor position visible. center_x_ratio=0.0: left, 0.5: center, 1.0: right. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollHereXNative(float centerXRatio)
@@ -3456,7 +3456,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make current cursor position visible. center_x_ratio=0.0: left, 0.5: center, 1.0: right. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
 		/// </summary>
 		public static void SetScrollHereX(float centerXRatio)
 		{
@@ -3464,7 +3464,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make current cursor position visible. center_x_ratio=0.0: left, 0.5: center, 1.0: right. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
 		/// </summary>
 		public static void SetScrollHereX()
 		{
@@ -3472,7 +3472,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make current cursor position visible. center_y_ratio=0.0: top, 0.5: center, 1.0: bottom. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollHereYNative(float centerYRatio)
@@ -3485,7 +3485,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make current cursor position visible. center_y_ratio=0.0: top, 0.5: center, 1.0: bottom. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
 		/// </summary>
 		public static void SetScrollHereY(float centerYRatio)
 		{
@@ -3493,7 +3493,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make current cursor position visible. center_y_ratio=0.0: top, 0.5: center, 1.0: bottom. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
 		/// </summary>
 		public static void SetScrollHereY()
 		{
@@ -3501,7 +3501,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollFromPosXNative(float localX, float centerXRatio)
@@ -3514,7 +3514,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
 		public static void SetScrollFromPosX(float localX, float centerXRatio)
 		{
@@ -3522,7 +3522,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
 		public static void SetScrollFromPosX(float localX)
 		{
@@ -3530,7 +3530,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetScrollFromPosYNative(float localY, float centerYRatio)
@@ -3543,7 +3543,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
 		public static void SetScrollFromPosY(float localY, float centerYRatio)
 		{
@@ -3551,7 +3551,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
 		/// </summary>
 		public static void SetScrollFromPosY(float localY)
 		{
@@ -3559,7 +3559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushFontNative(ImFont* font, float fontSizeBaseUnscaled)
@@ -3572,7 +3572,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
 		/// </summary>
 		public static void PushFont(ImFontPtr font, float fontSizeBaseUnscaled)
 		{
@@ -3580,7 +3580,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
 		/// </summary>
 		public static void PushFont(ref ImFont font, float fontSizeBaseUnscaled)
 		{
@@ -3612,7 +3612,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current font<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFont* GetFontNative()
@@ -3625,7 +3625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current font<br/>
 		/// </summary>
 		public static ImFontPtr GetFont()
 		{
@@ -3634,7 +3634,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current scaled font size (= height in pixels). AFTER global scale factors applied. *IMPORTANT* DO NOT PASS THIS VALUE TO PushFont()! Use ImGui::GetStyle().FontSizeBase to get value before global scale factors.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetFontSizeNative()
@@ -3647,7 +3647,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current scaled font size (= height in pixels). AFTER global scale factors applied. *IMPORTANT* DO NOT PASS THIS VALUE TO PushFont()! Use ImGui::GetStyle().FontSizeBase to get value before global scale factors.<br/>
 		/// </summary>
 		public static float GetFontSize()
 		{
@@ -3656,7 +3656,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current font bound at current size  == GetFont()-&gt;GetFontBaked(GetFontSize())<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontBaked* GetFontBakedNative()
@@ -3669,7 +3669,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current font bound at current size  == GetFont()-&gt;GetFontBaked(GetFontSize())<br/>
 		/// </summary>
 		public static ImFontBakedPtr GetFontBaked()
 		{
@@ -3678,7 +3678,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleColorNative(ImGuiCol idx, uint col)
@@ -3691,7 +3691,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		public static void PushStyleColor(ImGuiCol idx, uint col)
 		{
@@ -3699,7 +3699,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleColorNative(ImGuiCol idx, Vector4 col)
@@ -3712,7 +3712,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		public static void PushStyleColor(ImGuiCol idx, Vector4 col)
 		{
@@ -3749,7 +3749,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style float variable. always use this if you modify the style after NewFrame()!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleVarNative(ImGuiStyleVar idx, float val)
@@ -3762,7 +3762,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style float variable. always use this if you modify the style after NewFrame()!<br/>
 		/// </summary>
 		public static void PushStyleVar(ImGuiStyleVar idx, float val)
 		{
@@ -3770,7 +3770,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style float variable. always use this if you modify the style after NewFrame()!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleVarNative(ImGuiStyleVar idx, Vector2 val)
@@ -3783,7 +3783,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify a style ImVec2 variable. "<br/>
 		/// </summary>
 		public static void PushStyleVar(ImGuiStyleVar idx, Vector2 val)
 		{
@@ -3791,7 +3791,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify X component of a style ImVec2 variable. "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleVarXNative(ImGuiStyleVar idx, float valX)
@@ -3804,7 +3804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify X component of a style ImVec2 variable. "<br/>
 		/// </summary>
 		public static void PushStyleVarX(ImGuiStyleVar idx, float valX)
 		{
@@ -3812,7 +3812,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify Y component of a style ImVec2 variable. "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleVarYNative(ImGuiStyleVar idx, float valY)
@@ -3825,7 +3825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify Y component of a style ImVec2 variable. "<br/>
 		/// </summary>
 		public static void PushStyleVarY(ImGuiStyleVar idx, float valY)
 		{
@@ -3862,7 +3862,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify specified shared item flag, e.g. PushItemFlag(ImGuiItemFlags_NoTabStop, true)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushItemFlagNative(ImGuiItemFlags option, byte enabled)
@@ -3875,7 +3875,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// modify specified shared item flag, e.g. PushItemFlag(ImGuiItemFlags_NoTabStop, true)<br/>
 		/// </summary>
 		public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
 		{
@@ -3904,7 +3904,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushItemWidthNative(float itemWidth)
@@ -3917,7 +3917,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
 		/// </summary>
 		public static void PushItemWidth(float itemWidth)
 		{
@@ -3946,7 +3946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set width of the _next_ common large "item+label" widget. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemWidthNative(float itemWidth)
@@ -3959,7 +3959,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set width of the _next_ common large "item+label" widget. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side)<br/>
 		/// </summary>
 		public static void SetNextItemWidth(float itemWidth)
 		{
@@ -3967,7 +3967,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// width of item given pushed settings and current cursor position. NOT necessarily the width of last item unlike most 'Item' functions.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float CalcItemWidthNative()
@@ -3980,7 +3980,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// width of item given pushed settings and current cursor position. NOT necessarily the width of last item unlike most 'Item' functions.<br/>
 		/// </summary>
 		public static float CalcItemWidth()
 		{
@@ -3989,7 +3989,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushTextWrapPosNative(float wrapLocalPosX)
@@ -4002,7 +4002,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
 		/// </summary>
 		public static void PushTextWrapPos(float wrapLocalPosX)
 		{
@@ -4010,7 +4010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
 		/// </summary>
 		public static void PushTextWrapPos()
 		{
@@ -4039,7 +4039,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetFontTexUvWhitePixelNative(Vector2* pOut)
@@ -4052,7 +4052,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
 		/// </summary>
 		public static Vector2 GetFontTexUvWhitePixel()
 		{
@@ -4062,7 +4062,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
 		/// </summary>
 		public static void GetFontTexUvWhitePixel(Vector2* pOut)
 		{
@@ -4070,7 +4070,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
 		/// </summary>
 		public static void GetFontTexUvWhitePixel(ref Vector2 pOut)
 		{
@@ -4081,7 +4081,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetColorU32Native(ImGuiCol idx, float alphaMul)
@@ -4094,7 +4094,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		public static uint GetColorU32(ImGuiCol idx, float alphaMul)
 		{
@@ -4103,7 +4103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		public static uint GetColorU32(ImGuiCol idx)
 		{
@@ -4112,7 +4112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetColorU32Native(Vector4 col)
@@ -4125,7 +4125,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		public static uint GetColorU32(Vector4 col)
 		{
@@ -4134,7 +4134,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetColorU32Native(uint col, float alphaMul)
@@ -4147,7 +4147,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		public static uint GetColorU32(uint col, float alphaMul)
 		{
@@ -4156,7 +4156,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
 		/// </summary>
 		public static uint GetColorU32(uint col)
 		{
@@ -4165,7 +4165,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve style color as stored in ImGuiStyle structure. use to feed back into PushStyleColor(), otherwise use GetColorU32() to get style color with style alpha baked in.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Vector4* GetStyleColorVec4Native(ImGuiCol idx)
@@ -4178,7 +4178,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve style color as stored in ImGuiStyle structure. use to feed back into PushStyleColor(), otherwise use GetColorU32() to get style color with style alpha baked in.<br/>
 		/// </summary>
 		public static Vector4* GetStyleColorVec4(ImGuiCol idx)
 		{
@@ -4187,7 +4187,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetCursorScreenPosNative(Vector2* pOut)
@@ -4200,7 +4200,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
 		/// </summary>
 		public static Vector2 GetCursorScreenPos()
 		{
@@ -4210,7 +4210,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
 		/// </summary>
 		public static void GetCursorScreenPos(Vector2* pOut)
 		{
@@ -4218,7 +4218,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
 		/// </summary>
 		public static void GetCursorScreenPos(ref Vector2 pOut)
 		{
@@ -4229,7 +4229,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCursorScreenPosNative(Vector2 pos)
@@ -4242,7 +4242,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		public static void SetCursorScreenPos(Vector2 pos)
 		{
@@ -4250,7 +4250,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetContentRegionAvailNative(Vector2* pOut)
@@ -4263,7 +4263,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		public static Vector2 GetContentRegionAvail()
 		{
@@ -4273,7 +4273,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		public static void GetContentRegionAvail(Vector2* pOut)
 		{
@@ -4281,7 +4281,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		public static void GetContentRegionAvail(ref Vector2 pOut)
 		{
@@ -4292,7 +4292,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetCursorPosNative(Vector2* pOut)
@@ -4305,7 +4305,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
 		/// </summary>
 		public static Vector2 GetCursorPos()
 		{
@@ -4315,7 +4315,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
 		/// </summary>
 		public static void GetCursorPos(Vector2* pOut)
 		{
@@ -4323,7 +4323,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
 		/// </summary>
 		public static void GetCursorPos(ref Vector2 pOut)
 		{
@@ -4334,7 +4334,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetCursorPosXNative()
@@ -4347,7 +4347,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		public static float GetCursorPosX()
 		{
@@ -4356,7 +4356,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetCursorPosYNative()
@@ -4369,7 +4369,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		public static float GetCursorPosY()
 		{
@@ -4378,7 +4378,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCursorPosNative(Vector2 localPos)
@@ -4391,7 +4391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		public static void SetCursorPos(Vector2 localPos)
 		{
@@ -4399,7 +4399,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCursorPosXNative(float localX)
@@ -4412,7 +4412,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		public static void SetCursorPosX(float localX)
 		{
@@ -4420,7 +4420,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetCursorPosYNative(float localY)
@@ -4433,7 +4433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] "<br/>
 		/// </summary>
 		public static void SetCursorPosY(float localY)
 		{
@@ -4441,7 +4441,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetCursorStartPosNative(Vector2* pOut)
@@ -4454,7 +4454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
 		/// </summary>
 		public static Vector2 GetCursorStartPos()
 		{
@@ -4464,7 +4464,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
 		/// </summary>
 		public static void GetCursorStartPos(Vector2* pOut)
 		{
@@ -4472,7 +4472,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
 		/// </summary>
 		public static void GetCursorStartPos(ref Vector2 pOut)
 		{
@@ -4483,7 +4483,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// separator, generally horizontal. inside a menu bar or in horizontal layout mode, this becomes a vertical separator.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SeparatorNative()
@@ -4496,7 +4496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// separator, generally horizontal. inside a menu bar or in horizontal layout mode, this becomes a vertical separator.<br/>
 		/// </summary>
 		public static void Separator()
 		{
@@ -4504,7 +4504,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SameLineNative(float offsetFromStartX, float spacing)
@@ -4517,7 +4517,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
 		/// </summary>
 		public static void SameLine(float offsetFromStartX, float spacing)
 		{
@@ -4525,7 +4525,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
 		/// </summary>
 		public static void SameLine(float offsetFromStartX)
 		{
@@ -4533,7 +4533,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
 		/// </summary>
 		public static void SameLine()
 		{
@@ -4541,7 +4541,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// undo a SameLine() or force a new line when in a horizontal-layout context.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void NewLineNative()
@@ -4554,7 +4554,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// undo a SameLine() or force a new line when in a horizontal-layout context.<br/>
 		/// </summary>
 		public static void NewLine()
 		{
@@ -4562,7 +4562,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add vertical spacing.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SpacingNative()
@@ -4575,7 +4575,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add vertical spacing.<br/>
 		/// </summary>
 		public static void Spacing()
 		{
@@ -4583,7 +4583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add a dummy item of given size. unlike InvisibleButton(), Dummy() won't take the mouse click or be navigable into.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DummyNative(Vector2 size)
@@ -4596,7 +4596,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// add a dummy item of given size. unlike InvisibleButton(), Dummy() won't take the mouse click or be navigable into.<br/>
 		/// </summary>
 		public static void Dummy(Vector2 size)
 		{
@@ -4604,7 +4604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void IndentNative(float indentW)
@@ -4617,7 +4617,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
 		/// </summary>
 		public static void Indent(float indentW)
 		{
@@ -4625,7 +4625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
 		/// </summary>
 		public static void Indent()
 		{
@@ -4633,7 +4633,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void UnindentNative(float indentW)
@@ -4646,7 +4646,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
 		/// </summary>
 		public static void Unindent(float indentW)
 		{
@@ -4654,7 +4654,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
 		/// </summary>
 		public static void Unindent()
 		{
@@ -4662,7 +4662,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// lock horizontal starting position<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginGroupNative()
@@ -4675,7 +4675,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// lock horizontal starting position<br/>
 		/// </summary>
 		public static void BeginGroup()
 		{
@@ -4683,7 +4683,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// unlock horizontal starting position + capture the whole group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndGroupNative()
@@ -4696,7 +4696,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// unlock horizontal starting position + capture the whole group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)<br/>
 		/// </summary>
 		public static void EndGroup()
 		{
@@ -4704,7 +4704,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// vertically align upcoming text baseline to FramePadding.y so that it will align properly to regularly framed items (call if you have text on a line before a framed item)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AlignTextToFramePaddingNative()
@@ -4717,7 +4717,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// vertically align upcoming text baseline to FramePadding.y so that it will align properly to regularly framed items (call if you have text on a line before a framed item)<br/>
 		/// </summary>
 		public static void AlignTextToFramePadding()
 		{
@@ -4725,7 +4725,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetTextLineHeightNative()
@@ -4738,7 +4738,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize<br/>
 		/// </summary>
 		public static float GetTextLineHeight()
 		{
@@ -4747,7 +4747,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of text)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetTextLineHeightWithSpacingNative()
@@ -4760,7 +4760,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of text)<br/>
 		/// </summary>
 		public static float GetTextLineHeightWithSpacing()
 		{
@@ -4769,7 +4769,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize + style.FramePadding.y * 2<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetFrameHeightNative()
@@ -4782,7 +4782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize + style.FramePadding.y * 2<br/>
 		/// </summary>
 		public static float GetFrameHeight()
 		{
@@ -4791,7 +4791,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize + style.FramePadding.y * 2 + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of framed widgets)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetFrameHeightWithSpacingNative()
@@ -4804,7 +4804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ FontSize + style.FramePadding.y * 2 + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of framed widgets)<br/>
 		/// </summary>
 		public static float GetFrameHeightWithSpacing()
 		{
@@ -4813,7 +4813,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(byte* strId)
@@ -4826,7 +4826,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strId)
 		{
@@ -4834,7 +4834,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strId)
 		{
@@ -4845,7 +4845,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strId)
 		{
@@ -4856,7 +4856,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strId)
 		{
@@ -4885,7 +4885,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
@@ -4898,7 +4898,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -4906,7 +4906,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, byte* strIdEnd)
 		{
@@ -4917,7 +4917,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -4928,7 +4928,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, byte* strIdEnd)
 		{
@@ -4957,7 +4957,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, ref byte strIdEnd)
 		{
@@ -4968,7 +4968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -4979,7 +4979,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, string strIdEnd)
 		{
@@ -5008,7 +5008,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ref byte strIdBegin, ref byte strIdEnd)
 		{

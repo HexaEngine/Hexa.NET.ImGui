@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// helper variation to easily decorelate the id from the displayed string. Read the FAQ about why and how to use ID. to align arbitrary text at the same level as a TreeNode() you can use Bullet().<br/>
 		/// </summary>
 		public static bool TreeNode(string strId, ReadOnlySpan<byte> fmt)
 		{
@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "<br/>
 		/// </summary>
 		public static bool TreeNode(void* ptrId, byte* fmt)
 		{
@@ -74,7 +74,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "<br/>
 		/// </summary>
 		public static bool TreeNode(void* ptrId, ref byte fmt)
 		{
@@ -86,7 +86,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "<br/>
 		/// </summary>
 		public static bool TreeNode(void* ptrId, ReadOnlySpan<byte> fmt)
 		{
@@ -98,7 +98,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "<br/>
 		/// </summary>
 		public static bool TreeNode(void* ptrId, string fmt)
 		{
@@ -1614,7 +1614,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TreePushNative(byte* strId)
@@ -1627,7 +1627,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
 		public static void TreePush(byte* strId)
 		{
@@ -1635,7 +1635,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
 		public static void TreePush(ref byte strId)
 		{
@@ -1646,7 +1646,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
 		public static void TreePush(ReadOnlySpan<byte> strId)
 		{
@@ -1657,7 +1657,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
 		public static void TreePush(string strId)
 		{
@@ -1686,7 +1686,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Indent()+PushID(). Already called by TreeNode() when returning true, but you can call TreePushTreePop yourself if desired.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TreePushNative(void* ptrId)
@@ -1699,7 +1699,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "<br/>
 		/// </summary>
 		public static void TreePush(void* ptrId)
 		{
@@ -1707,7 +1707,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Unindent()+PopID()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TreePopNative()
@@ -1720,7 +1720,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// ~ Unindent()+PopID()<br/>
 		/// </summary>
 		public static void TreePop()
 		{
@@ -1728,7 +1728,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetTreeNodeToLabelSpacingNative()
@@ -1741,7 +1741,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode<br/>
 		/// </summary>
 		public static float GetTreeNodeToLabelSpacing()
 		{
@@ -1750,7 +1750,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CollapsingHeaderNative(byte* label, ImGuiTreeNodeFlags flags)
@@ -1763,7 +1763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(byte* label, ImGuiTreeNodeFlags flags)
 		{
@@ -1772,7 +1772,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(byte* label)
 		{
@@ -1781,7 +1781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ref byte label, ImGuiTreeNodeFlags flags)
 		{
@@ -1793,7 +1793,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ref byte label)
 		{
@@ -1805,7 +1805,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ReadOnlySpan<byte> label, ImGuiTreeNodeFlags flags)
 		{
@@ -1817,7 +1817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ReadOnlySpan<byte> label)
 		{
@@ -1829,7 +1829,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(string label, ImGuiTreeNodeFlags flags)
 		{
@@ -1859,7 +1859,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		public static bool CollapsingHeader(string label)
 		{
@@ -1889,7 +1889,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte CollapsingHeaderNative(byte* label, bool* pVisible, ImGuiTreeNodeFlags flags)
@@ -1902,7 +1902,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(byte* label, bool* pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -1911,7 +1911,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(byte* label, bool* pVisible)
 		{
@@ -1920,7 +1920,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ref byte label, bool* pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -1932,7 +1932,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ref byte label, bool* pVisible)
 		{
@@ -1944,7 +1944,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ReadOnlySpan<byte> label, bool* pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -1956,7 +1956,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ReadOnlySpan<byte> label, bool* pVisible)
 		{
@@ -1968,7 +1968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(string label, bool* pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -1998,7 +1998,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(string label, bool* pVisible)
 		{
@@ -2028,7 +2028,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(byte* label, ref bool pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -2040,7 +2040,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(byte* label, ref bool pVisible)
 		{
@@ -2052,7 +2052,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ref byte label, ref bool pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -2067,7 +2067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ref byte label, ref bool pVisible)
 		{
@@ -2082,7 +2082,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ReadOnlySpan<byte> label, ref bool pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -2097,7 +2097,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(ReadOnlySpan<byte> label, ref bool pVisible)
 		{
@@ -2112,7 +2112,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(string label, ref bool pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -2145,7 +2145,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// when 'p_visible != NULL': if '*p_visible==true' display an additional small close button on upper right of the header which will set the bool to false when clicked, if '*p_visible==false' don't display the header.<br/>
 		/// </summary>
 		public static bool CollapsingHeader(string label, ref bool pVisible)
 		{
@@ -2178,7 +2178,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next TreeNodeCollapsingHeader open state.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemOpenNative(byte isOpen, ImGuiCond cond)
@@ -2191,7 +2191,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next TreeNodeCollapsingHeader open state.<br/>
 		/// </summary>
 		public static void SetNextItemOpen(bool isOpen, ImGuiCond cond)
 		{
@@ -2199,7 +2199,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next TreeNodeCollapsingHeader open state.<br/>
 		/// </summary>
 		public static void SetNextItemOpen(bool isOpen)
 		{
@@ -2207,7 +2207,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set id to use for openclose storage (default to same as item id).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextItemStorageIDNative(uint storageId)
@@ -2220,7 +2220,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set id to use for openclose storage (default to same as item id).<br/>
 		/// </summary>
 		public static void SetNextItemStorageID(uint storageId)
 		{
@@ -2228,7 +2228,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SelectableNative(byte* label, byte selected, ImGuiSelectableFlags flags, Vector2 size)
@@ -2241,7 +2241,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2250,7 +2250,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool selected, ImGuiSelectableFlags flags)
 		{
@@ -2259,7 +2259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool selected)
 		{
@@ -2268,7 +2268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label)
 		{
@@ -2277,7 +2277,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, ImGuiSelectableFlags flags)
 		{
@@ -2286,7 +2286,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool selected, Vector2 size)
 		{
@@ -2295,7 +2295,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, Vector2 size)
 		{
@@ -2304,7 +2304,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2313,7 +2313,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2325,7 +2325,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool selected, ImGuiSelectableFlags flags)
 		{
@@ -2337,7 +2337,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool selected)
 		{
@@ -2349,7 +2349,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label)
 		{
@@ -2361,7 +2361,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, ImGuiSelectableFlags flags)
 		{
@@ -2373,7 +2373,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool selected, Vector2 size)
 		{
@@ -2385,7 +2385,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, Vector2 size)
 		{
@@ -2397,7 +2397,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2409,7 +2409,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2421,7 +2421,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool selected, ImGuiSelectableFlags flags)
 		{
@@ -2433,7 +2433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool selected)
 		{
@@ -2445,7 +2445,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label)
 		{
@@ -2457,7 +2457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, ImGuiSelectableFlags flags)
 		{
@@ -2469,7 +2469,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool selected, Vector2 size)
 		{
@@ -2481,7 +2481,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, Vector2 size)
 		{
@@ -2493,7 +2493,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2505,7 +2505,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2535,7 +2535,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool selected, ImGuiSelectableFlags flags)
 		{
@@ -2565,7 +2565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool selected)
 		{
@@ -2595,7 +2595,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label)
 		{
@@ -2625,7 +2625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, ImGuiSelectableFlags flags)
 		{
@@ -2655,7 +2655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool selected, Vector2 size)
 		{
@@ -2685,7 +2685,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, Vector2 size)
 		{
@@ -2715,7 +2715,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		public static bool Selectable(string label, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2745,7 +2745,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool selected" carry the selection state (read-only). Selectable() is clicked is returns true so you can modify your selection state. size.x==0.0: use remaining width, size.x&gt;0.0: specify width. size.y==0.0: use label height, size.y&gt;0.0: specify height<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SelectableNative(byte* label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
@@ -2758,7 +2758,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2767,7 +2767,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool* pSelected, ImGuiSelectableFlags flags)
 		{
@@ -2776,7 +2776,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool* pSelected)
 		{
@@ -2785,7 +2785,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, bool* pSelected, Vector2 size)
 		{
@@ -2794,7 +2794,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2806,7 +2806,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool* pSelected, ImGuiSelectableFlags flags)
 		{
@@ -2818,7 +2818,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool* pSelected)
 		{
@@ -2830,7 +2830,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, bool* pSelected, Vector2 size)
 		{
@@ -2842,7 +2842,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2854,7 +2854,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool* pSelected, ImGuiSelectableFlags flags)
 		{
@@ -2866,7 +2866,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool* pSelected)
 		{
@@ -2878,7 +2878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, bool* pSelected, Vector2 size)
 		{
@@ -2890,7 +2890,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -2920,7 +2920,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool* pSelected, ImGuiSelectableFlags flags)
 		{
@@ -2950,7 +2950,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool* pSelected)
 		{
@@ -2980,7 +2980,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, bool* pSelected, Vector2 size)
 		{
@@ -3010,7 +3010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, ref bool pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -3022,7 +3022,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, ref bool pSelected, ImGuiSelectableFlags flags)
 		{
@@ -3034,7 +3034,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, ref bool pSelected)
 		{
@@ -3046,7 +3046,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(byte* label, ref bool pSelected, Vector2 size)
 		{
@@ -3058,7 +3058,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, ref bool pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -3073,7 +3073,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, ref bool pSelected, ImGuiSelectableFlags flags)
 		{
@@ -3088,7 +3088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, ref bool pSelected)
 		{
@@ -3103,7 +3103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ref byte label, ref bool pSelected, Vector2 size)
 		{
@@ -3118,7 +3118,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, ref bool pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -3133,7 +3133,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, ref bool pSelected, ImGuiSelectableFlags flags)
 		{
@@ -3148,7 +3148,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, ref bool pSelected)
 		{
@@ -3163,7 +3163,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(ReadOnlySpan<byte> label, ref bool pSelected, Vector2 size)
 		{
@@ -3178,7 +3178,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, ref bool pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -3211,7 +3211,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, ref bool pSelected, ImGuiSelectableFlags flags)
 		{
@@ -3244,7 +3244,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, ref bool pSelected)
 		{
@@ -3277,7 +3277,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// "bool* p_selected" point to the selection state (read-write), as a convenient helper.<br/>
 		/// </summary>
 		public static bool Selectable(string label, ref bool pSelected, Vector2 size)
 		{
@@ -3393,7 +3393,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Was the last item selection state toggled? Useful if you need the per-item information _before_ reaching EndMultiSelect(). We only returns toggle _event_ in order to handle clipping correctly.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemToggledSelectionNative()
@@ -3406,7 +3406,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Was the last item selection state toggled? Useful if you need the per-item information _before_ reaching EndMultiSelect(). We only returns toggle _event_ in order to handle clipping correctly.<br/>
 		/// </summary>
 		public static bool IsItemToggledSelection()
 		{
@@ -3415,7 +3415,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginListBoxNative(byte* label, Vector2 size)
@@ -3428,7 +3428,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(byte* label, Vector2 size)
 		{
@@ -3437,7 +3437,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(byte* label)
 		{
@@ -3446,7 +3446,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(ref byte label, Vector2 size)
 		{
@@ -3458,7 +3458,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(ref byte label)
 		{
@@ -3470,7 +3470,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(ReadOnlySpan<byte> label, Vector2 size)
 		{
@@ -3482,7 +3482,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(ReadOnlySpan<byte> label)
 		{
@@ -3494,7 +3494,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(string label, Vector2 size)
 		{
@@ -3524,7 +3524,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open a framed scrolling region<br/>
 		/// </summary>
 		public static bool BeginListBox(string label)
 		{
@@ -3554,7 +3554,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndListBox() if BeginListBox() returned true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndListBoxNative()
@@ -3567,7 +3567,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndListBox() if BeginListBox() returned true!<br/>
 		/// </summary>
 		public static void EndListBox()
 		{

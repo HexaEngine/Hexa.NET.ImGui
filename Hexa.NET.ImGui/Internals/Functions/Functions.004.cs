@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -58,7 +58,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -97,7 +97,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -136,7 +136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -175,7 +175,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -232,7 +232,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -289,7 +289,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -328,7 +328,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -367,7 +367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -406,7 +406,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -445,7 +445,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -502,7 +502,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -559,7 +559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -616,7 +616,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -673,7 +673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -730,7 +730,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -787,7 +787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, string needleEnd)
 		{
@@ -862,7 +862,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, string needleEnd)
 		{
@@ -937,7 +937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -994,7 +994,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, ref byte needleEnd)
 		{
@@ -1051,7 +1051,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1108,7 +1108,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1165,7 +1165,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -1240,7 +1240,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, string needleEnd)
 		{
@@ -1315,7 +1315,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -1372,7 +1372,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ref byte needleEnd)
 		{
@@ -1429,7 +1429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1486,7 +1486,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1543,7 +1543,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -1618,7 +1618,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, string needleEnd)
 		{
@@ -1693,7 +1693,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -1768,7 +1768,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, string needle, ref byte needleEnd)
 		{
@@ -1843,7 +1843,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1918,7 +1918,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, string needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -1993,20 +1993,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove leading and trailing blanks from a buffer.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImStrTrimBlanksNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[727])(str);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[726])(str);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[727])((nint)str);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[726])((nint)str);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove leading and trailing blanks from a buffer.<br/>
 		/// </summary>
 		public static void ImStrTrimBlanks(byte* str)
 		{
@@ -2014,7 +2014,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove leading and trailing blanks from a buffer.<br/>
 		/// </summary>
 		public static void ImStrTrimBlanks(ref byte str)
 		{
@@ -2025,7 +2025,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove leading and trailing blanks from a buffer.<br/>
 		/// </summary>
 		public static void ImStrTrimBlanks(ref string str)
 		{
@@ -2055,20 +2055,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrSkipBlankNative(byte* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[728])(str);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[727])(str);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[728])((nint)str);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[727])((nint)str);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static byte* ImStrSkipBlank(byte* str)
 		{
@@ -2077,7 +2077,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static string ImStrSkipBlankS(byte* str)
 		{
@@ -2086,7 +2086,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static byte* ImStrSkipBlank(ref byte str)
 		{
@@ -2098,7 +2098,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static string ImStrSkipBlankS(ref byte str)
 		{
@@ -2110,7 +2110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static byte* ImStrSkipBlank(ReadOnlySpan<byte> str)
 		{
@@ -2122,7 +2122,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static string ImStrSkipBlankS(ReadOnlySpan<byte> str)
 		{
@@ -2134,7 +2134,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static byte* ImStrSkipBlank(string str)
 		{
@@ -2164,7 +2164,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find first non-blank character.<br/>
 		/// </summary>
 		public static string ImStrSkipBlankS(string str)
 		{
@@ -2194,20 +2194,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Computer string length (ImWchar string)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImStrlenWNative(uint* str)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int>)funcTable[729])(str);
+			return ((delegate* unmanaged[Cdecl]<uint*, int>)funcTable[728])(str);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[729])((nint)str);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[728])((nint)str);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Computer string length (ImWchar string)<br/>
 		/// </summary>
 		public static int ImStrlenW(uint* str)
 		{
@@ -2216,20 +2216,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImStrbolNative(byte* bufMidLine, byte* bufBegin)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[730])(bufMidLine, bufBegin);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[729])(bufMidLine, bufBegin);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[730])((nint)bufMidLine, (nint)bufBegin);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[729])((nint)bufMidLine, (nint)bufBegin);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, byte* bufBegin)
 		{
@@ -2238,7 +2238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, byte* bufBegin)
 		{
@@ -2247,7 +2247,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, byte* bufBegin)
 		{
@@ -2259,7 +2259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, byte* bufBegin)
 		{
@@ -2271,7 +2271,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, byte* bufBegin)
 		{
@@ -2283,7 +2283,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, byte* bufBegin)
 		{
@@ -2295,7 +2295,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, byte* bufBegin)
 		{
@@ -2325,7 +2325,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, byte* bufBegin)
 		{
@@ -2355,7 +2355,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, ref byte bufBegin)
 		{
@@ -2367,7 +2367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, ref byte bufBegin)
 		{
@@ -2379,7 +2379,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2391,7 +2391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2403,7 +2403,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(byte* bufMidLine, string bufBegin)
 		{
@@ -2433,7 +2433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(byte* bufMidLine, string bufBegin)
 		{
@@ -2463,7 +2463,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, ref byte bufBegin)
 		{
@@ -2478,7 +2478,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, ref byte bufBegin)
 		{
@@ -2493,7 +2493,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2508,7 +2508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2523,7 +2523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, string bufBegin)
 		{
@@ -2574,7 +2574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, string bufBegin)
 		{
@@ -2625,7 +2625,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2640,7 +2640,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2655,7 +2655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ref byte bufMidLine, string bufBegin)
 		{
@@ -2688,7 +2688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ref byte bufMidLine, string bufBegin)
 		{
@@ -2721,7 +2721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, ref byte bufBegin)
 		{
@@ -2736,7 +2736,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, ref byte bufBegin)
 		{
@@ -2751,7 +2751,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(ReadOnlySpan<byte> bufMidLine, string bufBegin)
 		{
@@ -2784,7 +2784,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(ReadOnlySpan<byte> bufMidLine, string bufBegin)
 		{
@@ -2817,7 +2817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, ref byte bufBegin)
 		{
@@ -2850,7 +2850,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, ref byte bufBegin)
 		{
@@ -2883,7 +2883,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static byte* ImStrbol(string bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2916,7 +2916,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find beginning-of-line<br/>
 		/// </summary>
 		public static string ImStrbolS(string bufMidLine, ReadOnlySpan<byte> bufBegin)
 		{
@@ -2955,9 +2955,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImToUpperNative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[731])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[730])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[731])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[730])(c);
 			#endif
 		}
 
@@ -2977,9 +2977,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsBlankANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[732])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[731])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[732])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[731])(c);
 			#endif
 		}
 
@@ -2999,9 +2999,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsBlankWNative(uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[733])(c);
+			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[732])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[733])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[732])(c);
 			#endif
 		}
 
@@ -3021,9 +3021,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImCharIsXdigitANative(byte c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[734])(c);
+			return ((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[733])(c);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[734])(c);
+			return (byte)((delegate* unmanaged[Cdecl]<byte, byte>)funcTable[733])(c);
 			#endif
 		}
 
@@ -3043,9 +3043,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFormatStringToTempBufferVNative(byte** outBuf, byte** outBufEnd, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[735])(outBuf, outBufEnd, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte**, byte**, byte*, nuint, void>)funcTable[734])(outBuf, outBufEnd, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[735])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, void>)funcTable[734])((nint)outBuf, (nint)outBufEnd, (nint)fmt, args);
 			#endif
 		}
 
@@ -3340,9 +3340,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatFindStartNative(byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[736])(format);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[735])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[736])((nint)format);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[735])((nint)format);
 			#endif
 		}
 
@@ -3479,9 +3479,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatFindEndNative(byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[737])(format);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*>)funcTable[736])(format);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[737])((nint)format);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[736])((nint)format);
 			#endif
 		}
 
@@ -3618,9 +3618,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImParseFormatSanitizeForPrintingNative(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)funcTable[738])(fmtIn, fmtOut, fmtOutSize);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)funcTable[737])(fmtIn, fmtOut, fmtOutSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[738])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[737])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
 			#endif
 		}
 
@@ -3908,9 +3908,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatSanitizeForScanningNative(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte*>)funcTable[739])(fmtIn, fmtOut, fmtOutSize);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte*>)funcTable[738])(fmtIn, fmtOut, fmtOutSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nuint, nint>)funcTable[739])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nuint, nint>)funcTable[738])((nint)fmtIn, (nint)fmtOut, fmtOutSize);
 			#endif
 		}
 
@@ -4499,9 +4499,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImParseFormatPrecisionNative(byte* format, int defaultValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[740])(format, defaultValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[739])(format, defaultValue);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[740])((nint)format, defaultValue);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[739])((nint)format, defaultValue);
 			#endif
 		}
 
@@ -4569,99 +4569,66 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return output UTF-8 bytes count<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* ImTextCharToUtf8Native(byte* outBuf, uint c)
+		internal static int ImTextCharToUtf8Native(byte* outBuf, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint, byte*>)funcTable[741])(outBuf, c);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, int>)funcTable[740])(outBuf, c);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[741])((nint)outBuf, c);
+			return (int)((delegate* unmanaged[Cdecl]<nint, uint, int>)funcTable[740])((nint)outBuf, c);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return output UTF-8 bytes count<br/>
 		/// </summary>
-		public static byte* ImTextCharToUtf8(byte* outBuf, uint c)
+		public static int ImTextCharToUtf8(byte* outBuf, uint c)
 		{
-			byte* ret = ImTextCharToUtf8Native(outBuf, c);
+			int ret = ImTextCharToUtf8Native(outBuf, c);
 			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return output UTF-8 bytes count<br/>
 		/// </summary>
-		public static string ImTextCharToUtf8S(byte* outBuf, uint c)
-		{
-			string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native(outBuf, c));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* ImTextCharToUtf8(ref byte outBuf, uint c)
+		public static int ImTextCharToUtf8(ref byte outBuf, uint c)
 		{
 			fixed (byte* poutBuf = &outBuf)
 			{
-				byte* ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				int ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
 				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return output UTF-8 bytes count<br/>
 		/// </summary>
-		public static string ImTextCharToUtf8S(ref byte outBuf, uint c)
-		{
-			fixed (byte* poutBuf = &outBuf)
-			{
-				string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native((byte*)poutBuf, c));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* ImTextCharToUtf8(ReadOnlySpan<byte> outBuf, uint c)
+		public static int ImTextCharToUtf8(ReadOnlySpan<byte> outBuf, uint c)
 		{
 			fixed (byte* poutBuf = outBuf)
 			{
-				byte* ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				int ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
 				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string ImTextCharToUtf8S(ReadOnlySpan<byte> outBuf, uint c)
-		{
-			fixed (byte* poutBuf = outBuf)
-			{
-				string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native((byte*)poutBuf, c));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImTextCharFromUtf8Native(uint* outChar, byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[742])(outChar, inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[741])(outChar, inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[742])((nint)outChar, (nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[741])((nint)outChar, (nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, byte* inTextEnd)
 		{
@@ -4670,7 +4637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, byte* inTextEnd)
 		{
@@ -4682,7 +4649,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, byte* inTextEnd)
 		{
@@ -4694,7 +4661,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, byte* inTextEnd)
 		{
@@ -4706,7 +4673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, string inText, byte* inTextEnd)
 		{
@@ -4736,7 +4703,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, ref byte inText, byte* inTextEnd)
 		{
@@ -4751,7 +4718,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, ReadOnlySpan<byte> inText, byte* inTextEnd)
 		{
@@ -4766,7 +4733,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, string inText, byte* inTextEnd)
 		{
@@ -4799,7 +4766,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, ref byte inTextEnd)
 		{
@@ -4811,7 +4778,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, ReadOnlySpan<byte> inTextEnd)
 		{
@@ -4823,7 +4790,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, string inTextEnd)
 		{
@@ -4853,7 +4820,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, ref byte inTextEnd)
 		{
@@ -4868,7 +4835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, ReadOnlySpan<byte> inTextEnd)
 		{
@@ -4883,7 +4850,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, string inTextEnd)
 		{
@@ -4916,7 +4883,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, ref byte inTextEnd)
 		{
@@ -4931,7 +4898,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, ReadOnlySpan<byte> inTextEnd)
 		{
@@ -4946,7 +4913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, string inText, string inTextEnd)
 		{
@@ -4997,7 +4964,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, ReadOnlySpan<byte> inTextEnd)
 		{
@@ -5012,7 +4979,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, string inTextEnd)
 		{
@@ -5041,6 +5008,21 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, ref byte inTextEnd)
+		{
+			fixed (byte* pinText = inText)
+			{
+				fixed (byte* pinTextEnd = &inTextEnd)
+				{
+					int ret = ImTextCharFromUtf8Native(outChar, (byte*)pinText, (byte*)pinTextEnd);
+					return ret;
+				}
 			}
 		}
 	}

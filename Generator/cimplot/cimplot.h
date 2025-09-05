@@ -1565,7 +1565,8 @@ CIMGUI_API void ImPlot_Locator_Time(ImPlotTicker* ticker,const ImPlotRange range
 CIMGUI_API void ImPlot_Locator_Log10(ImPlotTicker* ticker,const ImPlotRange range,float pixels,bool vertical,ImPlotFormatter formatter,void* formatter_data);
 CIMGUI_API void ImPlot_Locator_SymLog(ImPlotTicker* ticker,const ImPlotRange range,float pixels,bool vertical,ImPlotFormatter formatter,void* formatter_data);
 
-
+CIMGUI_API void igSetAllocatorFunctions(ImGuiMemAllocFunc alloc_func, ImGuiMemFreeFunc free_func, void* user_data);
+CIMGUI_API void igGetAllocatorFunctions(ImGuiMemAllocFunc* p_alloc_func, ImGuiMemFreeFunc* p_free_func, void** p_user_data);
 
 #endif //CIMGUIPLOT_INCLUDED
 

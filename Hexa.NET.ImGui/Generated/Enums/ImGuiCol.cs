@@ -30,17 +30,17 @@ namespace Hexa.NET.ImGui
 		TextDisabled = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Background of normal windows<br/>
 		/// </summary>
 		WindowBg = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Background of child windows<br/>
 		/// </summary>
 		ChildBg = unchecked(3),
 
 		/// <summary>
-		/// To be documented.
+		/// Background of popups, menus, tooltips windows<br/>
 		/// </summary>
 		PopupBg = unchecked(4),
 
@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		BorderShadow = unchecked(6),
 
 		/// <summary>
-		/// To be documented.
+		/// Background of checkbox, radio button, plot, slider, text input<br/>
 		/// </summary>
 		FrameBg = unchecked(7),
 
@@ -70,17 +70,17 @@ namespace Hexa.NET.ImGui
 		FrameBgActive = unchecked(9),
 
 		/// <summary>
-		/// To be documented.
+		/// Title bar<br/>
 		/// </summary>
 		TitleBg = unchecked(10),
 
 		/// <summary>
-		/// To be documented.
+		/// Title bar when focused<br/>
 		/// </summary>
 		TitleBgActive = unchecked(11),
 
 		/// <summary>
-		/// To be documented.
+		/// Title bar when collapsed<br/>
 		/// </summary>
 		TitleBgCollapsed = unchecked(12),
 
@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui
 		ScrollbarGrabActive = unchecked(17),
 
 		/// <summary>
-		/// To be documented.
+		/// Checkbox tick and RadioButton circle<br/>
 		/// </summary>
 		CheckMark = unchecked(18),
 
@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 		ButtonActive = unchecked(23),
 
 		/// <summary>
-		/// To be documented.
+		/// Header* colors are used for CollapsingHeader, TreeNode, Selectable, MenuItem<br/>
 		/// </summary>
 		Header = unchecked(24),
 
@@ -170,7 +170,7 @@ namespace Hexa.NET.ImGui
 		SeparatorActive = unchecked(29),
 
 		/// <summary>
-		/// To be documented.
+		/// Resize grip in lower-right and lower-left corners of windows.<br/>
 		/// </summary>
 		ResizeGrip = unchecked(30),
 
@@ -185,52 +185,52 @@ namespace Hexa.NET.ImGui
 		ResizeGripActive = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// InputText cursorcaret<br/>
 		/// </summary>
 		InputTextCursor = unchecked(33),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab background, when hovered<br/>
 		/// </summary>
 		TabHovered = unchecked(34),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab background, when tab-bar is focused &amp; tab is unselected<br/>
 		/// </summary>
 		Tab = unchecked(35),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab background, when tab-bar is focused &amp; tab is selected<br/>
 		/// </summary>
 		TabSelected = unchecked(36),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab horizontal overline, when tab-bar is focused &amp; tab is selected<br/>
 		/// </summary>
 		TabSelectedOverline = unchecked(37),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab background, when tab-bar is unfocused &amp; tab is unselected<br/>
 		/// </summary>
 		TabDimmed = unchecked(38),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab background, when tab-bar is unfocused &amp; tab is selected<br/>
 		/// </summary>
 		TabDimmedSelected = unchecked(39),
 
 		/// <summary>
-		/// To be documented.
+		/// ..horizontal overline, when tab-bar is unfocused &amp; tab is selected<br/>
 		/// </summary>
 		TabDimmedSelectedOverline = unchecked(40),
 
 		/// <summary>
-		/// To be documented.
+		/// Preview overlay color when about to docking something<br/>
 		/// </summary>
 		DockingPreview = unchecked(41),
 
 		/// <summary>
-		/// To be documented.
+		/// Background color for empty node (e.g. CentralNode with no window docked into it)<br/>
 		/// </summary>
 		DockingEmptyBg = unchecked(42),
 
@@ -255,67 +255,67 @@ namespace Hexa.NET.ImGui
 		PlotHistogramHovered = unchecked(46),
 
 		/// <summary>
-		/// To be documented.
+		/// Table header background<br/>
 		/// </summary>
 		TableHeaderBg = unchecked(47),
 
 		/// <summary>
-		/// To be documented.
+		/// Table outer and header borders (prefer using Alpha=1.0 here)<br/>
 		/// </summary>
 		TableBorderStrong = unchecked(48),
 
 		/// <summary>
-		/// To be documented.
+		/// Table inner borders (prefer using Alpha=1.0 here)<br/>
 		/// </summary>
 		TableBorderLight = unchecked(49),
 
 		/// <summary>
-		/// To be documented.
+		/// Table row background (even rows)<br/>
 		/// </summary>
 		TableRowBg = unchecked(50),
 
 		/// <summary>
-		/// To be documented.
+		/// Table row background (odd rows)<br/>
 		/// </summary>
 		TableRowBgAlt = unchecked(51),
 
 		/// <summary>
-		/// To be documented.
+		/// Hyperlink color<br/>
 		/// </summary>
 		TextLink = unchecked(52),
 
 		/// <summary>
-		/// To be documented.
+		/// Selected text inside an InputText<br/>
 		/// </summary>
 		TextSelectedBg = unchecked(53),
 
 		/// <summary>
-		/// To be documented.
+		/// Tree node hierarchy outlines when using ImGuiTreeNodeFlags_DrawLines<br/>
 		/// </summary>
 		TreeLines = unchecked(54),
 
 		/// <summary>
-		/// To be documented.
+		/// Rectangle highlighting a drop target<br/>
 		/// </summary>
 		DragDropTarget = unchecked(55),
 
 		/// <summary>
-		/// To be documented.
+		/// Color of keyboardgamepad navigation cursorrectangle, when visible<br/>
 		/// </summary>
 		NavCursor = unchecked(56),
 
 		/// <summary>
-		/// To be documented.
+		/// Highlight window when using CTRL+TAB<br/>
 		/// </summary>
 		NavWindowingHighlight = unchecked(57),
 
 		/// <summary>
-		/// To be documented.
+		/// Darkencolorize entire screen behind the CTRL+TAB window list, when active<br/>
 		/// </summary>
 		NavWindowingDimBg = unchecked(58),
 
 		/// <summary>
-		/// To be documented.
+		/// Darkencolorize entire screen behind a modal window, when one is active<br/>
 		/// </summary>
 		ModalWindowDimBg = unchecked(59),
 

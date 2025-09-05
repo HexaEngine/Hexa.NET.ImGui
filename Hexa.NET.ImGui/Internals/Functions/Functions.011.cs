@@ -1949,7 +1949,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove node and all its child, undock all windows<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DockBuilderRemoveNodeNative(uint nodeId)
@@ -1962,7 +1962,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove node and all its child, undock all windows<br/>
 		/// </summary>
 		public static void DockBuilderRemoveNode(uint nodeId)
 		{
@@ -1999,7 +1999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove all splithierarchy. All remaining docked windows will be re-docked to the remaining root node (node_id).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DockBuilderRemoveNodeChildNodesNative(uint nodeId)
@@ -2012,7 +2012,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove all splithierarchy. All remaining docked windows will be re-docked to the remaining root node (node_id).<br/>
 		/// </summary>
 		public static void DockBuilderRemoveNodeChildNodes(uint nodeId)
 		{
@@ -2062,7 +2062,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create 2 child nodes in this parent node.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint DockBuilderSplitNodeNative(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, uint* outIdAtDir, uint* outIdAtOppositeDir)
@@ -2075,7 +2075,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Create 2 child nodes in this parent node.<br/>
 		/// </summary>
 		public static uint DockBuilderSplitNode(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, uint* outIdAtDir, uint* outIdAtOppositeDir)
 		{
@@ -2568,7 +2568,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Focus scope we are outputting into, set by PushFocusScope()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetCurrentFocusScopeNative()
@@ -2581,7 +2581,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Focus scope we are outputting into, set by PushFocusScope()<br/>
 		/// </summary>
 		public static uint GetCurrentFocusScope()
 		{
@@ -3115,7 +3115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags)
@@ -3128,7 +3128,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(byte* strId, int count, ImGuiOldColumnFlags flags)
 		{
@@ -3136,7 +3136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(byte* strId, int count)
 		{
@@ -3144,7 +3144,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(ref byte strId, int count, ImGuiOldColumnFlags flags)
 		{
@@ -3155,7 +3155,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(ref byte strId, int count)
 		{
@@ -3166,7 +3166,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(ReadOnlySpan<byte> strId, int count, ImGuiOldColumnFlags flags)
 		{
@@ -3177,7 +3177,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(ReadOnlySpan<byte> strId, int count)
 		{
@@ -3188,7 +3188,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(string strId, int count, ImGuiOldColumnFlags flags)
 		{
@@ -3217,7 +3217,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
 		/// </summary>
 		public static void BeginColumns(string strId, int count)
 		{
@@ -3246,7 +3246,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// close columns<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndColumnsNative()
@@ -3259,7 +3259,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// close columns<br/>
 		/// </summary>
 		public static void EndColumns()
 		{
@@ -3579,7 +3579,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Retrieve *PREVIOUS FRAME* hovered row. This difference with TableGetHoveredColumn() is the reason why this is not public yet.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetHoveredRowNative()
@@ -3592,7 +3592,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Retrieve *PREVIOUS FRAME* hovered row. This difference with TableGetHoveredColumn() is the reason why this is not public yet.<br/>
 		/// </summary>
 		public static int TableGetHoveredRow()
 		{

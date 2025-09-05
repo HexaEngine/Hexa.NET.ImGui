@@ -25,58 +25,63 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow manually dragging tabs to re-order them + New tabs are appended at the end of list<br/>
 		/// </summary>
 		Reorderable = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Automatically select new tabs when they appear<br/>
 		/// </summary>
 		AutoSelectNewTabs = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable buttons to open the tab list popup<br/>
 		/// </summary>
 		ListPopupButton = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable behavior of closing tabs (that are submitted with p_open != NULL) with middle mouse button. You may handle this behavior manually on user's side with if (IsItemHovered() &amp;&amp; IsMouseClicked(2)) *p_open = false.<br/>
 		/// </summary>
 		NoCloseWithMiddleMouseButton = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable scrolling buttons (apply when fitting policy is ImGuiTabBarFlags_FittingPolicyScroll)<br/>
 		/// </summary>
 		NoTabListScrollingButtons = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable tooltips when hovering a tab<br/>
 		/// </summary>
 		NoTooltip = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Draw selected overline markers over selected tab<br/>
 		/// </summary>
 		DrawSelectedOverline = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Shrink down tabs when they don't fit, until width is style.TabMinWidthShrink, then enable scrolling buttons.<br/>
 		/// </summary>
-		FittingPolicyResizeDown = unchecked(128),
+		FittingPolicyMixed = unchecked(128),
+
+		/// <summary>
+		/// Shrink down tabs when they don't fit<br/>
+		/// </summary>
+		FittingPolicyShrink = unchecked(256),
+
+		/// <summary>
+		/// Enable scrolling buttons when tabs don't fit<br/>
+		/// </summary>
+		FittingPolicyScroll = unchecked(512),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		FittingPolicyScroll = unchecked(256),
+		FittingPolicyMask = unchecked(896),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		FittingPolicyMask = unchecked(384),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		FittingPolicyDefault = FittingPolicyResizeDown,
+		FittingPolicyDefault = FittingPolicyMixed,
 	}
 }

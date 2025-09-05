@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -34,7 +34,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -49,7 +49,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -64,7 +64,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -79,7 +79,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -130,7 +130,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -181,7 +181,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -196,7 +196,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -211,7 +211,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -244,7 +244,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -277,7 +277,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -292,7 +292,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -307,7 +307,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -340,7 +340,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -373,7 +373,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -406,7 +406,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -439,7 +439,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -472,7 +472,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -505,7 +505,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -523,7 +523,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -541,7 +541,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -559,7 +559,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -577,7 +577,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -649,7 +649,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -721,7 +721,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -739,7 +739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -757,7 +757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -793,7 +793,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -829,7 +829,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -847,7 +847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -865,7 +865,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -883,7 +883,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -901,7 +901,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -937,7 +937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -973,7 +973,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1009,7 +1009,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1045,7 +1045,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1081,7 +1081,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1117,7 +1117,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1171,7 +1171,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1225,7 +1225,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1243,7 +1243,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1261,7 +1261,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1279,7 +1279,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1297,7 +1297,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1333,7 +1333,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1369,7 +1369,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1387,7 +1387,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1405,7 +1405,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1441,7 +1441,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1477,7 +1477,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1513,7 +1513,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1549,7 +1549,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1585,7 +1585,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1621,7 +1621,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1675,7 +1675,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1729,7 +1729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1765,7 +1765,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -1801,7 +1801,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1837,7 +1837,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ref byte haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -1873,7 +1873,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1927,7 +1927,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ref byte haystackEnd, string needle, byte* needleEnd)
 		{
@@ -1981,7 +1981,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -2017,7 +2017,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -2053,7 +2053,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -2089,7 +2089,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -2125,7 +2125,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -2179,7 +2179,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ReadOnlySpan<byte> haystackEnd, string needle, byte* needleEnd)
 		{
@@ -2233,7 +2233,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -2287,7 +2287,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ref byte needle, byte* needleEnd)
 		{
@@ -2341,7 +2341,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -2395,7 +2395,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, ReadOnlySpan<byte> needle, byte* needleEnd)
 		{
@@ -2449,7 +2449,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2461,7 +2461,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2473,7 +2473,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2485,7 +2485,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2497,7 +2497,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2527,7 +2527,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2557,7 +2557,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2572,7 +2572,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2587,7 +2587,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2602,7 +2602,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2617,7 +2617,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2668,7 +2668,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2719,7 +2719,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2734,7 +2734,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -2749,7 +2749,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2782,7 +2782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2815,7 +2815,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2830,7 +2830,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2845,7 +2845,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2878,7 +2878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, byte* haystackEnd, byte* needle, string needleEnd)
 		{
@@ -2911,7 +2911,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2944,7 +2944,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -2977,7 +2977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3010,7 +3010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, byte* haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3043,7 +3043,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3058,7 +3058,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3073,7 +3073,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3088,7 +3088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3103,7 +3103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3154,7 +3154,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3205,7 +3205,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3220,7 +3220,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3235,7 +3235,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3268,7 +3268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3301,7 +3301,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3316,7 +3316,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3331,7 +3331,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3364,7 +3364,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3397,7 +3397,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, string haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3430,7 +3430,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, string haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3463,7 +3463,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(byte* haystack, string haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3496,7 +3496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(byte* haystack, string haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3529,7 +3529,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3547,7 +3547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3565,7 +3565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3583,7 +3583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3601,7 +3601,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3673,7 +3673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3745,7 +3745,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3763,7 +3763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3781,7 +3781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3817,7 +3817,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3853,7 +3853,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3871,7 +3871,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -3889,7 +3889,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3907,7 +3907,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -3925,7 +3925,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3961,7 +3961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, string needleEnd)
 		{
@@ -3997,7 +3997,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, string haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4033,7 +4033,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, string haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4069,7 +4069,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, string haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4105,7 +4105,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, string haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4141,7 +4141,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ref byte haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4195,7 +4195,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ref byte haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4249,7 +4249,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4267,7 +4267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4285,7 +4285,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4303,7 +4303,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4321,7 +4321,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4357,7 +4357,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4393,7 +4393,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4411,7 +4411,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4429,7 +4429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4465,7 +4465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4501,7 +4501,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4537,7 +4537,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4573,7 +4573,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4609,7 +4609,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4645,7 +4645,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(ReadOnlySpan<byte> haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4699,7 +4699,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(ReadOnlySpan<byte> haystack, string haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4753,7 +4753,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4789,7 +4789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
@@ -4825,7 +4825,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4861,7 +4861,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ref byte haystackEnd, byte* needle, ReadOnlySpan<byte> needleEnd)
 		{
@@ -4897,7 +4897,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -4951,7 +4951,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static string ImStristrS(string haystack, ref byte haystackEnd, byte* needle, string needleEnd)
 		{
@@ -5005,7 +5005,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find a substring in a string range.<br/>
 		/// </summary>
 		public static byte* ImStristr(string haystack, ReadOnlySpan<byte> haystackEnd, byte* needle, ref byte needleEnd)
 		{

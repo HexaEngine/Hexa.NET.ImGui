@@ -25,27 +25,27 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// React on left mouse button (default)<br/>
 		/// </summary>
 		MouseButtonLeft = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// React on right mouse button<br/>
 		/// </summary>
 		MouseButtonRight = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// React on center mouse button<br/>
 		/// </summary>
 		MouseButtonMiddle = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal]<br/>
 		/// </summary>
 		MouseButtonMask = unchecked(7),
 
 		/// <summary>
-		/// To be documented.
+		/// InvisibleButton(): do not disable navigationtabbing. Otherwise disabled by default.<br/>
 		/// </summary>
 		EnableNav = unchecked(8),
 	}

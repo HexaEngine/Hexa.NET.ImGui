@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// This extends ImGuiKeyData but only for named keys (legacy keys don't support the new features)<br/>
+	/// Stored in main context (1 per named key). In the future it might be merged into ImGuiKeyData.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiKeyOwnerData

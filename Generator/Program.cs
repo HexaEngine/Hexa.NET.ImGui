@@ -8,6 +8,7 @@ var builder =
     .AddImPlot()
     .AddImNodes()
     .AddImGuizmo()
+    .AddImPlot3D()
     .AddImGuiBackends()
     .AddImGuiNodeEditor(false);
 

@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// Automatically called on the last call of Step() that returns false.<br/>
 		/// </summary>
 		public static void End(ImGuiListClipperPtr self)
 		{
@@ -27,7 +27,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Automatically called on the last call of Step() that returns false.<br/>
 		/// </summary>
 		public static void End(ref ImGuiListClipper self)
 		{
@@ -38,7 +38,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte StepNative(ImGuiListClipper* self)
@@ -51,7 +51,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
 		/// </summary>
 		public static bool Step(ImGuiListClipperPtr self)
 		{
@@ -60,7 +60,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
 		/// </summary>
 		public static bool Step(ref ImGuiListClipper self)
 		{
@@ -104,7 +104,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void IncludeItemsByIndexNative(ImGuiListClipper* self, int itemBegin, int itemEnd)
@@ -117,7 +117,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
 		/// </summary>
 		public static void IncludeItemsByIndex(ImGuiListClipperPtr self, int itemBegin, int itemEnd)
 		{
@@ -125,7 +125,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
 		/// </summary>
 		public static void IncludeItemsByIndex(ref ImGuiListClipper self, int itemBegin, int itemEnd)
 		{
@@ -504,7 +504,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ApplyRequestsNative(ImGuiSelectionBasicStorage* self, ImGuiMultiSelectIO* msIo)
@@ -517,7 +517,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
 		/// </summary>
 		public static void ApplyRequests(ImGuiSelectionBasicStoragePtr self, ImGuiMultiSelectIOPtr msIo)
 		{
@@ -525,7 +525,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
 		/// </summary>
 		public static void ApplyRequests(ref ImGuiSelectionBasicStorage self, ImGuiMultiSelectIOPtr msIo)
 		{
@@ -536,7 +536,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
 		/// </summary>
 		public static void ApplyRequests(ImGuiSelectionBasicStoragePtr self, ref ImGuiMultiSelectIO msIo)
 		{
@@ -547,7 +547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
 		/// </summary>
 		public static void ApplyRequests(ref ImGuiSelectionBasicStorage self, ref ImGuiMultiSelectIO msIo)
 		{
@@ -561,7 +561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Query if an item id is in selection.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ContainsNative(ImGuiSelectionBasicStorage* self, uint id)
@@ -574,7 +574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Query if an item id is in selection.<br/>
 		/// </summary>
 		public static bool Contains(ImGuiSelectionBasicStoragePtr self, uint id)
 		{
@@ -583,7 +583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Query if an item id is in selection.<br/>
 		/// </summary>
 		public static bool Contains(ref ImGuiSelectionBasicStorage self, uint id)
 		{
@@ -608,7 +608,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear selection<br/>
 		/// </summary>
 		public static void Clear(ImGuiSelectionBasicStoragePtr self)
 		{
@@ -616,7 +616,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear selection<br/>
 		/// </summary>
 		public static void Clear(ref ImGuiSelectionBasicStorage self)
 		{
@@ -627,7 +627,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Swap two selections<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SwapNative(ImGuiSelectionBasicStorage* self, ImGuiSelectionBasicStorage* r)
@@ -640,7 +640,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Swap two selections<br/>
 		/// </summary>
 		public static void Swap(ImGuiSelectionBasicStoragePtr self, ImGuiSelectionBasicStoragePtr r)
 		{
@@ -648,7 +648,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Swap two selections<br/>
 		/// </summary>
 		public static void Swap(ref ImGuiSelectionBasicStorage self, ImGuiSelectionBasicStoragePtr r)
 		{
@@ -659,7 +659,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Swap two selections<br/>
 		/// </summary>
 		public static void Swap(ImGuiSelectionBasicStoragePtr self, ref ImGuiSelectionBasicStorage r)
 		{
@@ -670,7 +670,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Swap two selections<br/>
 		/// </summary>
 		public static void Swap(ref ImGuiSelectionBasicStorage self, ref ImGuiSelectionBasicStorage r)
 		{
@@ -684,7 +684,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemSelectedNative(ImGuiSelectionBasicStorage* self, uint id, byte selected)
@@ -697,7 +697,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
 		/// </summary>
 		public static void SetItemSelected(ImGuiSelectionBasicStoragePtr self, uint id, bool selected)
 		{
@@ -705,7 +705,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
 		/// </summary>
 		public static void SetItemSelected(ref ImGuiSelectionBasicStorage self, uint id, bool selected)
 		{
@@ -716,7 +716,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte GetNextSelectedItemNative(ImGuiSelectionBasicStorage* self, void** opaqueIt, uint* outId)
@@ -729,7 +729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, void** opaqueIt, uint* outId)
 		{
@@ -738,7 +738,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
 		/// </summary>
 		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, void** opaqueIt, uint* outId)
 		{
@@ -750,7 +750,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Convert index to item id based on provided adapter.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetStorageIdFromIndexNative(ImGuiSelectionBasicStorage* self, int idx)
@@ -763,7 +763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Convert index to item id based on provided adapter.<br/>
 		/// </summary>
 		public static uint GetStorageIdFromIndex(ImGuiSelectionBasicStoragePtr self, int idx)
 		{
@@ -772,7 +772,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Convert index to item id based on provided adapter.<br/>
 		/// </summary>
 		public static uint GetStorageIdFromIndex(ref ImGuiSelectionBasicStorage self, int idx)
 		{
@@ -838,7 +838,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ApplyRequestsNative(ImGuiSelectionExternalStorage* self, ImGuiMultiSelectIO* msIo)
@@ -851,7 +851,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public static void ApplyRequests(ImGuiSelectionExternalStoragePtr self, ImGuiMultiSelectIOPtr msIo)
 		{
@@ -859,7 +859,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public static void ApplyRequests(ref ImGuiSelectionExternalStorage self, ImGuiMultiSelectIOPtr msIo)
 		{
@@ -870,7 +870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public static void ApplyRequests(ImGuiSelectionExternalStoragePtr self, ref ImGuiMultiSelectIO msIo)
 		{
@@ -881,7 +881,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
 		/// </summary>
 		public static void ApplyRequests(ref ImGuiSelectionExternalStorage self, ref ImGuiMultiSelectIO msIo)
 		{
@@ -895,7 +895,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Also ensure our padding fields are zeroed<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImDrawCmd* ImDrawCmdNative()
@@ -908,7 +908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Also ensure our padding fields are zeroed<br/>
 		/// </summary>
 		public static ImDrawCmdPtr ImDrawCmd()
 		{
@@ -949,7 +949,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImTextureID GetTexIDNative(ImDrawCmd* self)
@@ -962,7 +962,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ImDrawCmdPtr self)
 		{
@@ -971,7 +971,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ref ImDrawCmd self)
 		{
@@ -1050,7 +1050,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Do not clear Channels[] so our allocations are reused next frame<br/>
 		/// </summary>
 		public static void Clear(ImDrawListSplitterPtr self)
 		{
@@ -1058,7 +1058,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Do not clear Channels[] so our allocations are reused next frame<br/>
 		/// </summary>
 		public static void Clear(ref ImDrawListSplitter self)
 		{
@@ -1351,7 +1351,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public static void PushClipRect(ImDrawListPtr self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
@@ -1359,7 +1359,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public static void PushClipRect(ImDrawListPtr self, Vector2 clipRectMin, Vector2 clipRectMax)
 		{
@@ -1367,7 +1367,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
@@ -1378,7 +1378,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
 		/// </summary>
 		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax)
 		{
@@ -1728,7 +1728,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddRectNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
@@ -1741,7 +1741,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
@@ -1749,7 +1749,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -1757,7 +1757,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -1765,7 +1765,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -1773,7 +1773,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -1781,7 +1781,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
@@ -1789,7 +1789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -1797,7 +1797,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
@@ -1808,7 +1808,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -1819,7 +1819,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -1830,7 +1830,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -1841,7 +1841,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -1852,7 +1852,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
@@ -1863,7 +1863,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -1874,7 +1874,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddRectFilledNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
@@ -1887,7 +1887,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -1895,7 +1895,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -1903,7 +1903,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -1911,7 +1911,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
@@ -1919,7 +1919,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -1930,7 +1930,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
@@ -1941,7 +1941,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -1952,7 +1952,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
 		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{

@@ -13,8 +13,8 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.0.12</AssemblyVersion>
-		<PackageVersion>1.0.17.4</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.92.1) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
+		<PackageVersion>1.0.18-prerelease</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.92.2b) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
 		<PackageTags>ImGui Backends UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>

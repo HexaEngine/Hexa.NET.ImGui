@@ -1613,7 +1613,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is key being held.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyDownNative(ImGuiKey key)
@@ -1626,7 +1626,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is key being held.<br/>
 		/// </summary>
 		public static bool IsKeyDown(ImGuiKey key)
 		{
@@ -1635,7 +1635,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyPressedNative(ImGuiKey key, byte repeat)
@@ -1648,7 +1648,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
 		/// </summary>
 		public static bool IsKeyPressed(ImGuiKey key, bool repeat)
 		{
@@ -1657,7 +1657,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
 		/// </summary>
 		public static bool IsKeyPressed(ImGuiKey key)
 		{
@@ -1666,7 +1666,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key released (went from Down to !Down)?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyReleasedNative(ImGuiKey key)
@@ -1679,7 +1679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key released (went from Down to !Down)?<br/>
 		/// </summary>
 		public static bool IsKeyReleased(ImGuiKey key)
 		{
@@ -1688,7 +1688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsKeyChordPressedNative(int keyChord)
@@ -1701,7 +1701,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
 		/// </summary>
 		public static bool IsKeyChordPressed(int keyChord)
 		{
@@ -1710,7 +1710,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetKeyPressedAmountNative(ImGuiKey key, float repeatDelay, float rate)
@@ -1723,7 +1723,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
 		/// </summary>
 		public static int GetKeyPressedAmount(ImGuiKey key, float repeatDelay, float rate)
 		{
@@ -1732,7 +1732,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* GetKeyNameNative(ImGuiKey key)
@@ -1745,7 +1745,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
 		/// </summary>
 		public static byte* GetKeyName(ImGuiKey key)
 		{
@@ -1754,7 +1754,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
 		/// </summary>
 		public static string GetKeyNameS(ImGuiKey key)
 		{
@@ -1763,7 +1763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextFrameWantCaptureKeyboardNative(byte wantCaptureKeyboard)
@@ -1776,7 +1776,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
 		/// </summary>
 		public static void SetNextFrameWantCaptureKeyboard(bool wantCaptureKeyboard)
 		{
@@ -1844,7 +1844,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetItemKeyOwnerNative(ImGuiKey key)
@@ -1857,7 +1857,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
 		/// </summary>
 		public static void SetItemKeyOwner(ImGuiKey key)
 		{
@@ -1865,7 +1865,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse button held?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseDownNative(ImGuiMouseButton button)
@@ -1878,7 +1878,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse button held?<br/>
 		/// </summary>
 		public static bool IsMouseDown(ImGuiMouseButton button)
 		{
@@ -1887,7 +1887,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat)
@@ -1900,7 +1900,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
 		/// </summary>
 		public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
 		{
@@ -1909,7 +1909,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
 		/// </summary>
 		public static bool IsMouseClicked(ImGuiMouseButton button)
 		{
@@ -1918,7 +1918,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button released? (went from Down to !Down)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseReleasedNative(ImGuiMouseButton button)
@@ -1931,7 +1931,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button released? (went from Down to !Down)<br/>
 		/// </summary>
 		public static bool IsMouseReleased(ImGuiMouseButton button)
 		{
@@ -1940,7 +1940,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseDoubleClickedNative(ImGuiMouseButton button)
@@ -1953,7 +1953,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
 		/// </summary>
 		public static bool IsMouseDoubleClicked(ImGuiMouseButton button)
 		{
@@ -1962,7 +1962,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseReleasedWithDelayNative(ImGuiMouseButton button, float delay)
@@ -1975,7 +1975,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
 		/// </summary>
 		public static bool IsMouseReleasedWithDelay(ImGuiMouseButton button, float delay)
 		{
@@ -1984,7 +1984,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetMouseClickedCountNative(ImGuiMouseButton button)
@@ -1997,7 +1997,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
 		/// </summary>
 		public static int GetMouseClickedCount(ImGuiMouseButton button)
 		{
@@ -2006,7 +2006,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip)
@@ -2019,7 +2019,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
 		/// </summary>
 		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax, bool clip)
 		{
@@ -2028,7 +2028,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
 		/// </summary>
 		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax)
 		{
@@ -2037,7 +2037,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMousePosValidNative(Vector2* mousePos)
@@ -2050,7 +2050,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
 		/// </summary>
 		public static bool IsMousePosValid(Vector2* mousePos)
 		{
@@ -2059,7 +2059,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
 		/// </summary>
 		public static bool IsMousePosValid()
 		{
@@ -2068,7 +2068,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
 		/// </summary>
 		public static bool IsMousePosValid(ref Vector2 mousePos)
 		{
@@ -2080,7 +2080,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsAnyMouseDownNative()
@@ -2093,7 +2093,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
 		/// </summary>
 		public static bool IsAnyMouseDown()
 		{
@@ -2102,7 +2102,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetMousePosNative(Vector2* pOut)
@@ -2115,7 +2115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
 		/// </summary>
 		public static Vector2 GetMousePos()
 		{
@@ -2125,7 +2125,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
 		/// </summary>
 		public static void GetMousePos(Vector2* pOut)
 		{
@@ -2133,7 +2133,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
 		/// </summary>
 		public static void GetMousePos(ref Vector2 pOut)
 		{
@@ -2144,7 +2144,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetMousePosOnOpeningCurrentPopupNative(Vector2* pOut)
@@ -2157,7 +2157,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
 		/// </summary>
 		public static Vector2 GetMousePosOnOpeningCurrentPopup()
 		{
@@ -2167,7 +2167,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
 		/// </summary>
 		public static void GetMousePosOnOpeningCurrentPopup(Vector2* pOut)
 		{
@@ -2175,7 +2175,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
 		/// </summary>
 		public static void GetMousePosOnOpeningCurrentPopup(ref Vector2 pOut)
 		{
@@ -2186,7 +2186,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsMouseDraggingNative(ImGuiMouseButton button, float lockThreshold)
@@ -2199,7 +2199,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static bool IsMouseDragging(ImGuiMouseButton button, float lockThreshold)
 		{
@@ -2208,7 +2208,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static bool IsMouseDragging(ImGuiMouseButton button)
 		{
@@ -2217,7 +2217,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void GetMouseDragDeltaNative(Vector2* pOut, ImGuiMouseButton button, float lockThreshold)
@@ -2230,7 +2230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static Vector2 GetMouseDragDelta()
 		{
@@ -2240,7 +2240,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
 		{
@@ -2250,7 +2250,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(Vector2* pOut)
 		{
@@ -2258,7 +2258,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static Vector2 GetMouseDragDelta(float lockThreshold)
 		{
@@ -2268,7 +2268,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lockThreshold)
 		{
@@ -2278,7 +2278,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(Vector2* pOut, ImGuiMouseButton button, float lockThreshold)
 		{
@@ -2286,7 +2286,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(Vector2* pOut, ImGuiMouseButton button)
 		{
@@ -2294,7 +2294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(Vector2* pOut, float lockThreshold)
 		{
@@ -2302,7 +2302,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(ref Vector2 pOut, ImGuiMouseButton button, float lockThreshold)
 		{
@@ -2313,7 +2313,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(ref Vector2 pOut, ImGuiMouseButton button)
 		{
@@ -2324,7 +2324,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(ref Vector2 pOut)
 		{
@@ -2335,7 +2335,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
 		/// </summary>
 		public static void GetMouseDragDelta(ref Vector2 pOut, float lockThreshold)
 		{
@@ -2346,7 +2346,6 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ResetMouseDragDeltaNative(ImGuiMouseButton button)
@@ -2359,7 +2358,6 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
 		/// </summary>
 		public static void ResetMouseDragDelta(ImGuiMouseButton button)
 		{
@@ -2367,7 +2365,6 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
 		/// </summary>
 		public static void ResetMouseDragDelta()
 		{
@@ -2375,7 +2372,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiMouseCursor GetMouseCursorNative()
@@ -2388,7 +2385,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
 		/// </summary>
 		public static ImGuiMouseCursor GetMouseCursor()
 		{
@@ -2397,7 +2394,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set desired mouse cursor shape<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetMouseCursorNative(ImGuiMouseCursor cursorType)
@@ -2410,7 +2407,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set desired mouse cursor shape<br/>
 		/// </summary>
 		public static void SetMouseCursor(ImGuiMouseCursor cursorType)
 		{
@@ -2418,7 +2415,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse)
@@ -2431,7 +2428,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
 		/// </summary>
 		public static void SetNextFrameWantCaptureMouse(bool wantCaptureMouse)
 		{
@@ -2542,7 +2539,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadIniSettingsFromDiskNative(byte* iniFilename)
@@ -2555,7 +2552,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromDisk(byte* iniFilename)
 		{
@@ -2563,7 +2560,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromDisk(ref byte iniFilename)
 		{
@@ -2574,7 +2571,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromDisk(ReadOnlySpan<byte> iniFilename)
 		{
@@ -2585,7 +2582,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromDisk(string iniFilename)
 		{
@@ -2614,7 +2611,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LoadIniSettingsFromMemoryNative(byte* iniData, nuint iniSize)
@@ -2627,7 +2624,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(byte* iniData, nuint iniSize)
 		{
@@ -2635,7 +2632,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(byte* iniData)
 		{
@@ -2643,7 +2640,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(ref byte iniData, nuint iniSize)
 		{
@@ -2654,7 +2651,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(ref byte iniData)
 		{
@@ -2665,7 +2662,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData, nuint iniSize)
 		{
@@ -2676,7 +2673,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData)
 		{
@@ -2687,7 +2684,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(string iniData, nuint iniSize)
 		{
@@ -2716,7 +2713,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
 		/// </summary>
 		public static void LoadIniSettingsFromMemory(string iniData)
 		{
@@ -2745,7 +2742,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SaveIniSettingsToDiskNative(byte* iniFilename)
@@ -2758,7 +2755,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
 		/// </summary>
 		public static void SaveIniSettingsToDisk(byte* iniFilename)
 		{
@@ -2766,7 +2763,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
 		/// </summary>
 		public static void SaveIniSettingsToDisk(ref byte iniFilename)
 		{
@@ -2777,7 +2774,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
 		/// </summary>
 		public static void SaveIniSettingsToDisk(ReadOnlySpan<byte> iniFilename)
 		{
@@ -2788,7 +2785,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
 		/// </summary>
 		public static void SaveIniSettingsToDisk(string iniFilename)
 		{
@@ -2817,7 +2814,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* SaveIniSettingsToMemoryNative(nuint* outIniSize)
@@ -2830,7 +2827,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
 		/// </summary>
 		public static byte* SaveIniSettingsToMemory(nuint* outIniSize)
 		{
@@ -2839,7 +2836,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
 		/// </summary>
 		public static byte* SaveIniSettingsToMemory()
 		{
@@ -2848,7 +2845,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
 		/// </summary>
 		public static string SaveIniSettingsToMemoryS()
 		{
@@ -2857,7 +2854,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
 		/// </summary>
 		public static string SaveIniSettingsToMemoryS(nuint* outIniSize)
 		{
@@ -2980,7 +2977,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte DebugCheckVersionAndDataLayoutNative(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
@@ -2993,7 +2990,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
 		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
 		{
@@ -3002,7 +2999,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
 		public static bool DebugCheckVersionAndDataLayout(ref byte versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
 		{
@@ -3014,7 +3011,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
 		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
 		{
@@ -3026,7 +3023,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
 		/// </summary>
 		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
 		{
@@ -3056,7 +3053,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugLogNative(byte* fmt)
@@ -3069,7 +3066,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
 		public static void DebugLog(byte* fmt)
 		{
@@ -3077,7 +3074,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
 		public static void DebugLog(ref byte fmt)
 		{
@@ -3088,7 +3085,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
 		public static void DebugLog(ReadOnlySpan<byte> fmt)
 		{
@@ -3099,7 +3096,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
 		public static void DebugLog(string fmt)
 		{
@@ -3293,7 +3290,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call in main loop. will call CreateWindowResizeWindowetc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void UpdatePlatformWindowsNative()
@@ -3306,7 +3303,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call in main loop. will call CreateWindowResizeWindowetc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.<br/>
 		/// </summary>
 		public static void UpdatePlatformWindows()
 		{
@@ -3314,7 +3311,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void RenderPlatformWindowsDefaultNative(void* platformRenderArg, void* rendererRenderArg)
@@ -3327,7 +3324,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
 		/// </summary>
 		public static void RenderPlatformWindowsDefault(void* platformRenderArg, void* rendererRenderArg)
 		{
@@ -3335,7 +3332,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
 		/// </summary>
 		public static void RenderPlatformWindowsDefault(void* platformRenderArg)
 		{
@@ -3343,7 +3340,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
 		/// </summary>
 		public static void RenderPlatformWindowsDefault()
 		{
@@ -3351,7 +3348,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call DestroyWindow platform functions for all viewports. call from backend Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DestroyPlatformWindowsNative()
@@ -3364,7 +3361,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call DestroyWindow platform functions for all viewports. call from backend Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().<br/>
 		/// </summary>
 		public static void DestroyPlatformWindows()
 		{
@@ -3372,7 +3369,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is a helper for backends.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiViewport* FindViewportByIDNative(uint id)
@@ -3385,7 +3382,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is a helper for backends.<br/>
 		/// </summary>
 		public static ImGuiViewportPtr FindViewportByID(uint id)
 		{
@@ -3394,7 +3391,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiViewport* FindViewportByPlatformHandleNative(void* platformHandle)
@@ -3407,7 +3404,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
 		/// </summary>
 		public static ImGuiViewportPtr FindViewportByPlatformHandle(void* platformHandle)
 		{
@@ -3578,7 +3575,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Scale all spacingpaddingthickness values. Do not scale fonts.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ScaleAllSizesNative(ImGuiStyle* self, float scaleFactor)
@@ -3591,7 +3588,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Scale all spacingpaddingthickness values. Do not scale fonts.<br/>
 		/// </summary>
 		public static void ScaleAllSizes(ImGuiStylePtr self, float scaleFactor)
 		{
@@ -3599,7 +3596,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Scale all spacingpaddingthickness values. Do not scale fonts.<br/>
 		/// </summary>
 		public static void ScaleAllSizes(ref ImGuiStyle self, float scaleFactor)
 		{
@@ -3610,7 +3607,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, byte down)
@@ -3623,7 +3620,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
 		/// </summary>
 		public static void AddKeyEvent(ImGuiIOPtr self, ImGuiKey key, bool down)
 		{
@@ -3631,7 +3628,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
 		/// </summary>
 		public static void AddKeyEvent(ref ImGuiIO self, ImGuiKey key, bool down)
 		{
@@ -3642,7 +3639,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new key downup event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddKeyAnalogEventNative(ImGuiIO* self, ImGuiKey key, byte down, float v)
@@ -3655,7 +3652,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new key downup event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.<br/>
 		/// </summary>
 		public static void AddKeyAnalogEvent(ImGuiIOPtr self, ImGuiKey key, bool down, float v)
 		{
@@ -3663,7 +3660,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new key downup event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.<br/>
 		/// </summary>
 		public static void AddKeyAnalogEvent(ref ImGuiIO self, ImGuiKey key, bool down, float v)
 		{
@@ -3674,7 +3671,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddMousePosEventNative(ImGuiIO* self, float x, float y)
@@ -3687,7 +3684,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)<br/>
 		/// </summary>
 		public static void AddMousePosEvent(ImGuiIOPtr self, float x, float y)
 		{
@@ -3695,7 +3692,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)<br/>
 		/// </summary>
 		public static void AddMousePosEvent(ref ImGuiIO self, float x, float y)
 		{
@@ -3706,7 +3703,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse button change<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddMouseButtonEventNative(ImGuiIO* self, int button, byte down)
@@ -3719,7 +3716,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse button change<br/>
 		/// </summary>
 		public static void AddMouseButtonEvent(ImGuiIOPtr self, int button, bool down)
 		{
@@ -3727,7 +3724,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse button change<br/>
 		/// </summary>
 		public static void AddMouseButtonEvent(ref ImGuiIO self, int button, bool down)
 		{
@@ -3738,7 +3735,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse wheel update. wheel_y&lt;0: scroll down, wheel_y&gt;0: scroll up, wheel_x&lt;0: scroll right, wheel_x&gt;0: scroll left.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddMouseWheelEventNative(ImGuiIO* self, float wheelX, float wheelY)
@@ -3751,7 +3748,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse wheel update. wheel_y&lt;0: scroll down, wheel_y&gt;0: scroll up, wheel_x&lt;0: scroll right, wheel_x&gt;0: scroll left.<br/>
 		/// </summary>
 		public static void AddMouseWheelEvent(ImGuiIOPtr self, float wheelX, float wheelY)
 		{
@@ -3759,7 +3756,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse wheel update. wheel_y&lt;0: scroll down, wheel_y&gt;0: scroll up, wheel_x&lt;0: scroll right, wheel_x&gt;0: scroll left.<br/>
 		/// </summary>
 		public static void AddMouseWheelEvent(ref ImGuiIO self, float wheelX, float wheelY)
 		{
@@ -3770,7 +3767,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse source change (MouseTouchScreenPen)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddMouseSourceEventNative(ImGuiIO* self, ImGuiMouseSource source)
@@ -3783,7 +3780,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse source change (MouseTouchScreenPen)<br/>
 		/// </summary>
 		public static void AddMouseSourceEvent(ImGuiIOPtr self, ImGuiMouseSource source)
 		{
@@ -3791,7 +3788,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse source change (MouseTouchScreenPen)<br/>
 		/// </summary>
 		public static void AddMouseSourceEvent(ref ImGuiIO self, ImGuiMouseSource source)
 		{
@@ -3802,7 +3799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse hovered viewport. Requires backend to set ImGuiBackendFlags_HasMouseHoveredViewport to call this (for multi-viewport support).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddMouseViewportEventNative(ImGuiIO* self, uint id)
@@ -3815,7 +3812,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse hovered viewport. Requires backend to set ImGuiBackendFlags_HasMouseHoveredViewport to call this (for multi-viewport support).<br/>
 		/// </summary>
 		public static void AddMouseViewportEvent(ImGuiIOPtr self, uint id)
 		{
@@ -3823,7 +3820,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a mouse hovered viewport. Requires backend to set ImGuiBackendFlags_HasMouseHoveredViewport to call this (for multi-viewport support).<br/>
 		/// </summary>
 		public static void AddMouseViewportEvent(ref ImGuiIO self, uint id)
 		{
@@ -3834,7 +3831,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a gainloss of focus for the application (generally based on OSplatform focus of your window)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddFocusEventNative(ImGuiIO* self, byte focused)
@@ -3847,7 +3844,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a gainloss of focus for the application (generally based on OSplatform focus of your window)<br/>
 		/// </summary>
 		public static void AddFocusEvent(ImGuiIOPtr self, bool focused)
 		{
@@ -3855,7 +3852,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a gainloss of focus for the application (generally based on OSplatform focus of your window)<br/>
 		/// </summary>
 		public static void AddFocusEvent(ref ImGuiIO self, bool focused)
 		{
@@ -3866,7 +3863,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new character input<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddInputCharacterNative(ImGuiIO* self, uint c)
@@ -3879,7 +3876,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new character input<br/>
 		/// </summary>
 		public static void AddInputCharacter(ImGuiIOPtr self, uint c)
 		{
@@ -3887,7 +3884,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new character input<br/>
 		/// </summary>
 		public static void AddInputCharacter(ref ImGuiIO self, uint c)
 		{
@@ -3898,7 +3895,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new character input from a UTF-16 character, it can be a surrogate<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddInputCharacterUTF16Native(ImGuiIO* self, ushort c)
@@ -3911,7 +3908,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new character input from a UTF-16 character, it can be a surrogate<br/>
 		/// </summary>
 		public static void AddInputCharacterUTF16(ImGuiIOPtr self, ushort c)
 		{
@@ -3919,7 +3916,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new character input from a UTF-16 character, it can be a surrogate<br/>
 		/// </summary>
 		public static void AddInputCharacterUTF16(ref ImGuiIO self, ushort c)
 		{
@@ -3930,7 +3927,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddInputCharactersUTF8Native(ImGuiIO* self, byte* str)
@@ -3943,7 +3940,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ImGuiIOPtr self, byte* str)
 		{
@@ -3951,7 +3948,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ref ImGuiIO self, byte* str)
 		{
@@ -3962,7 +3959,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ImGuiIOPtr self, ref byte str)
 		{
@@ -3973,7 +3970,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ImGuiIOPtr self, ReadOnlySpan<byte> str)
 		{
@@ -3984,7 +3981,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ImGuiIOPtr self, string str)
 		{
@@ -4013,7 +4010,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ref ImGuiIO self, ref byte str)
 		{
@@ -4027,7 +4024,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ref ImGuiIO self, ReadOnlySpan<byte> str)
 		{
@@ -4041,7 +4038,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
 		public static void AddInputCharactersUTF8(ref ImGuiIO self, string str)
 		{
@@ -4073,7 +4070,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetKeyEventNativeDataNative(ImGuiIO* self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
@@ -4086,7 +4083,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
 		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
 		{
@@ -4094,7 +4091,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
 		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode)
 		{
@@ -4102,7 +4099,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
 		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
 		{
@@ -4113,7 +4110,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
 		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode)
 		{
@@ -4124,7 +4121,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set master flag for accepting keymousetext events (default to true). Useful if you have native dialog boxes that are interrupting your application looprefresh, and you want to disable events being queued while your app is frozen.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetAppAcceptingEventsNative(ImGuiIO* self, byte acceptingEvents)
@@ -4137,7 +4134,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set master flag for accepting keymousetext events (default to true). Useful if you have native dialog boxes that are interrupting your application looprefresh, and you want to disable events being queued while your app is frozen.<br/>
 		/// </summary>
 		public static void SetAppAcceptingEvents(ImGuiIOPtr self, bool acceptingEvents)
 		{
@@ -4145,7 +4142,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Set master flag for accepting keymousetext events (default to true). Useful if you have native dialog boxes that are interrupting your application looprefresh, and you want to disable events being queued while your app is frozen.<br/>
 		/// </summary>
 		public static void SetAppAcceptingEvents(ref ImGuiIO self, bool acceptingEvents)
 		{
@@ -4156,7 +4153,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear all incoming events.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearEventsQueueNative(ImGuiIO* self)
@@ -4169,7 +4166,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear all incoming events.<br/>
 		/// </summary>
 		public static void ClearEventsQueue(ImGuiIOPtr self)
 		{
@@ -4177,7 +4174,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear all incoming events.<br/>
 		/// </summary>
 		public static void ClearEventsQueue(ref ImGuiIO self)
 		{
@@ -4188,7 +4185,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear current keyboardgamepad state + current frame text input buffer. Equivalent to releasing all keysbuttons.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearInputKeysNative(ImGuiIO* self)
@@ -4201,7 +4198,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear current keyboardgamepad state + current frame text input buffer. Equivalent to releasing all keysbuttons.<br/>
 		/// </summary>
 		public static void ClearInputKeys(ImGuiIOPtr self)
 		{
@@ -4209,7 +4206,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear current keyboardgamepad state + current frame text input buffer. Equivalent to releasing all keysbuttons.<br/>
 		/// </summary>
 		public static void ClearInputKeys(ref ImGuiIO self)
 		{
@@ -4220,7 +4217,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear current mouse state.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ClearInputMouseNative(ImGuiIO* self)
@@ -4233,7 +4230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear current mouse state.<br/>
 		/// </summary>
 		public static void ClearInputMouse(ImGuiIOPtr self)
 		{
@@ -4241,7 +4238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Clear current mouse state.<br/>
 		/// </summary>
 		public static void ClearInputMouse(ref ImGuiIO self)
 		{

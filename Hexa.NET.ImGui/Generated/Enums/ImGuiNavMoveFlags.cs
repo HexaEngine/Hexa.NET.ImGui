@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// On failed request, restart from opposite side<br/>
 		/// </summary>
 		LoopX = unchecked(1),
 
@@ -35,12 +35,12 @@ namespace Hexa.NET.ImGui
 		LoopY = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// On failed request, request from opposite side one line down (when NavDir==right) or one line up (when NavDir==left)<br/>
 		/// </summary>
 		WrapX = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// This is not super useful but provided for completeness<br/>
 		/// </summary>
 		WrapY = unchecked(8),
 
@@ -50,17 +50,17 @@ namespace Hexa.NET.ImGui
 		WrapMask = unchecked(15),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow scoring and considering the current NavId as a move target candidate. This is used when the move source is offset (e.g. pressing PageDown actually needs to send a Up move request, if we are pressing PageDown from the bottom-most item we need to stay in place)<br/>
 		/// </summary>
 		AllowCurrentNavId = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Store alternate result in NavMoveResultLocalVisible that only comprise elements that are already fully visible (used by PageUpPageDown)<br/>
 		/// </summary>
 		AlsoScoreVisibleSet = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Force scrolling to minmax (used by HomeEnd)  FIXME-NAV: Aim to remove or reword, probably unnecessary<br/>
 		/// </summary>
 		ScrollToEdgeY = unchecked(64),
 
@@ -70,42 +70,42 @@ namespace Hexa.NET.ImGui
 		Forwarded = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Dummy scoring for debug purpose, don't apply result<br/>
 		/// </summary>
 		DebugNoResult = unchecked(256),
 
 		/// <summary>
-		/// To be documented.
+		/// Requests from focus API can landfocusactivate items even if they are marked with _NoTabStop (see NavProcessItemForTabbingRequest() for details)<br/>
 		/// </summary>
 		FocusApi = unchecked(512),
 
 		/// <summary>
-		/// To be documented.
+		/// == Focus + Activate if item is Inputable + DontChangeNavHighlight<br/>
 		/// </summary>
 		IsTabbing = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Identify a PageDownPageUp request.<br/>
 		/// </summary>
 		IsPageMove = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// Activateselect target item.<br/>
 		/// </summary>
 		Activate = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't trigger selection by not setting g.NavJustMovedTo<br/>
 		/// </summary>
 		NoSelect = unchecked(8192),
 
 		/// <summary>
-		/// To be documented.
+		/// Do not alter the nav cursor visible state<br/>
 		/// </summary>
 		NoSetNavCursorVisible = unchecked(16384),
 
 		/// <summary>
-		/// To be documented.
+		/// (Experimental) Do not clear active id when applying move result<br/>
 		/// </summary>
 		NoClearActiveId = unchecked(32768),
 	}

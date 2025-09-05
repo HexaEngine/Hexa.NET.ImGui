@@ -17,7 +17,13 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Specs and pixel storage for a texture used by Dear ImGui.<br/>
+	/// This is only useful for (1) core library and (2) backends. End-userapplications do not need to care about this.<br/>
+	/// Renderer Backends will create a GPU-side version of this.<br/>
+	/// Why does we store two identifiers: TexID and BackendUserData?<br/>
+	/// - ImTextureID    TexID           = lower-level identifier stored in ImDrawCmd. ImDrawCmd can refer to textures not created by the backend, and for which there's no ImTextureData.<br/>
+	/// - void*          BackendUserData = higher-level opaque storage for backend own book-keeping. Some backends may have enough with TexID and not need both.<br/>
+	/// In columns below: who readswrites each fields? 'r'=read, 'w'=write, 'core'=main library, 'backend'=renderer backend<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImTextureData
@@ -221,7 +227,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after honoring a request. Never modify Status directly!<br/>
 		/// </summary>
 		public unsafe void SetStatus(ImTextureStatus status)
 		{
@@ -232,7 +238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
 		/// </summary>
 		public unsafe void SetTexID(ImTextureID texId)
 		{
@@ -419,7 +425,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after honoring a request. Never modify Status directly!<br/>
 		/// </summary>
 		public unsafe void SetStatus(ImTextureStatus status)
 		{
@@ -427,7 +433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
 		/// </summary>
 		public unsafe void SetTexID(ImTextureID texId)
 		{

@@ -17,7 +17,8 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Helper: Growable text buffer for loggingaccumulating text<br/>
+	/// (this could be called 'ImGuiTextBuilder'  'ImGuiStringBuilder')<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextBuffer
@@ -729,7 +730,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public unsafe byte* end()
 		{
@@ -741,7 +742,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public unsafe string endS()
 		{
@@ -764,7 +765,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
 		/// </summary>
 		public unsafe void resize(int size)
 		{
@@ -1420,7 +1421,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public unsafe byte* end()
 		{
@@ -1429,7 +1430,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
 		/// </summary>
 		public unsafe string endS()
 		{
@@ -1446,7 +1447,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
 		/// </summary>
 		public unsafe void resize(int size)
 		{

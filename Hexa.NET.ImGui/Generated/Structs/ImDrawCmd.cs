@@ -17,7 +17,11 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Typically, 1 command = 1 GPU draw call (unless command is a callback)<br/>
+	/// - VtxOffset: When 'io.BackendFlags &amp; ImGuiBackendFlags_RendererHasVtxOffset' is enabled,<br/>
+	/// this fields allow us to render meshes larger than 64K vertices while keeping 16-bit indices.<br/>
+	/// Backends made for &lt;1.71. will typically ignore the VtxOffset fields.<br/>
+	/// - The ClipRectTexRefVtxOffset fields must be contiguous as we memcmp() them together (this is asserted for).<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawCmd
@@ -96,7 +100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{
@@ -195,7 +199,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{

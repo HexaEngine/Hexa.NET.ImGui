@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// Return open state. Consume previous SetNextItemOpen() data, if any. May return true when logging.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TreeNodeUpdateNextOpenNative(uint storageId, ImGuiTreeNodeFlags flags)
@@ -32,7 +32,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Return open state. Consume previous SetNextItemOpen() data, if any. May return true when logging.<br/>
 		/// </summary>
 		public static bool TreeNodeUpdateNextOpen(uint storageId, ImGuiTreeNodeFlags flags)
 		{
@@ -2019,7 +2019,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get input text state if active<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiInputTextState* GetInputTextStateNative(uint id)
@@ -2032,7 +2032,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Get input text state if active<br/>
 		/// </summary>
 		public static ImGuiInputTextStatePtr GetInputTextState(uint id)
 		{
@@ -2062,7 +2062,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This may be useful to apply workaround that a based on distinguish whenever an item is active as a text input field.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsItemActiveAsInputTextNative()
@@ -2075,7 +2075,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// This may be useful to apply workaround that a based on distinguish whenever an item is active as a text input field.<br/>
 		/// </summary>
 		public static bool IsItemActiveAsInputText()
 		{
@@ -3102,7 +3102,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugAllocHookNative(ImGuiDebugAllocInfo* info, int frameCount, void* ptr, nuint size)
@@ -3115,7 +3115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
 		/// </summary>
 		public static void DebugAllocHook(ImGuiDebugAllocInfoPtr info, int frameCount, void* ptr, nuint size)
 		{
@@ -3123,7 +3123,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
 		/// </summary>
 		public static void DebugAllocHook(ref ImGuiDebugAllocInfo info, int frameCount, void* ptr, nuint size)
 		{
@@ -3578,7 +3578,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call sparingly: only 1 at the same time!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugLocateItemNative(uint targetId)
@@ -3591,7 +3591,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call sparingly: only 1 at the same time!<br/>
 		/// </summary>
 		public static void DebugLocateItem(uint targetId)
 		{
@@ -3599,7 +3599,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Only call on reaction to a mouse Hover: because only 1 at the same time!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void DebugLocateItemOnHoverNative(uint targetId)
@@ -3612,7 +3612,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Only call on reaction to a mouse Hover: because only 1 at the same time!<br/>
 		/// </summary>
 		public static void DebugLocateItemOnHover(uint targetId)
 		{

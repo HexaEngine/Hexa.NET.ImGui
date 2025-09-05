@@ -25,47 +25,47 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Show an outer border and enable WindowPadding. (IMPORTANT: this is always == 1 == true for legacy reason)<br/>
 		/// </summary>
 		Borders = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Pad with style.WindowPadding even if no border are drawn (no padding by default for non-bordered child windows because it makes more sense)<br/>
 		/// </summary>
 		AlwaysUseWindowPadding = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow resize from right border (layout direction). Enable .ini saving (unless ImGuiWindowFlags_NoSavedSettings passed to window flags)<br/>
 		/// </summary>
 		ResizeX = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow resize from bottom border (layout direction). "<br/>
 		/// </summary>
 		ResizeY = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable auto-resizing width. Read "IMPORTANT: Size measurement" details above.<br/>
 		/// </summary>
 		AutoResizeX = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Enable auto-resizing height. Read "IMPORTANT: Size measurement" details above.<br/>
 		/// </summary>
 		AutoResizeY = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Combined with AutoResizeXAutoResizeY. Always measure size even when child is hidden, always return true, always disable clipping optimization! NOT RECOMMENDED.<br/>
 		/// </summary>
 		AlwaysAutoResize = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Style the child window like a framed item: use FrameBg, FrameRounding, FrameBorderSize, FramePadding instead of ChildBg, ChildRounding, ChildBorderSize, WindowPadding.<br/>
 		/// </summary>
 		FrameStyle = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// [BETA] Share focus scope, allow keyboardgamepad navigation to cross over parent border to this child or between sibling child windows.<br/>
 		/// </summary>
 		NavFlattened = unchecked(256),
 	}

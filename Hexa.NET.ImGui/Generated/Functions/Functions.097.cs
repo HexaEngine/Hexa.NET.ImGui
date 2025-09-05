@@ -1123,7 +1123,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Makes 'from_codepoint' character points to 'to_codepoint' glyph.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddRemapCharNative(ImFont* self, uint fromCodepoint, uint toCodepoint)
@@ -1136,7 +1136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Makes 'from_codepoint' character points to 'to_codepoint' glyph.<br/>
 		/// </summary>
 		public static void AddRemapChar(ImFontPtr self, uint fromCodepoint, uint toCodepoint)
 		{
@@ -1144,7 +1144,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Makes 'from_codepoint' character points to 'to_codepoint' glyph.<br/>
 		/// </summary>
 		public static void AddRemapChar(ref ImFont self, uint fromCodepoint, uint toCodepoint)
 		{
@@ -2239,125 +2239,12 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBakedAddFontGlyphAdvancedXNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, uint codepoint, float advanceX)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, uint, float, void>)funcTable[697])(atlas, baked, src, codepoint, advanceX);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, uint, float, void>)funcTable[697])((nint)atlas, (nint)baked, (nint)src, codepoint, advanceX);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, baked, src, codepoint, advanceX);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, baked, src, codepoint, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, (ImFontBaked*)pbaked, src, codepoint, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, codepoint, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, baked, (ImFontConfig*)psrc, codepoint, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, codepoint, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, codepoint, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, codepoint, advanceX);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontLoader* GetFontLoaderNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontLoader*>)funcTable[698])();
+			return ((delegate* unmanaged[Cdecl]<ImFontLoader*>)funcTable[697])();
 			#else
-			return (ImFontLoader*)((delegate* unmanaged[Cdecl]<nint>)funcTable[698])();
+			return (ImFontLoader*)((delegate* unmanaged[Cdecl]<nint>)funcTable[697])();
 			#endif
 		}
 
@@ -2377,9 +2264,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetAllocatorFunctionsNative(delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void*> allocFunc, delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void> freeFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void*>, delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>, void*, void>)funcTable[699])(allocFunc, freeFunc, userData);
+			((delegate* unmanaged[Cdecl]<delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void*>, delegate*<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>, void*, void>)funcTable[698])(allocFunc, freeFunc, userData);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[699])((nint)allocFunc, (nint)freeFunc, (nint)userData);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[698])((nint)allocFunc, (nint)freeFunc, (nint)userData);
 			#endif
 		}
 
@@ -2406,9 +2293,9 @@ namespace Hexa.NET.ImGui
 		internal static byte DebugEditFontLoaderFlagsNative(ImGuiFreeTypeLoaderFlags* pFontLoaderFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiFreeTypeLoaderFlags*, byte>)funcTable[700])(pFontLoaderFlags);
+			return ((delegate* unmanaged[Cdecl]<ImGuiFreeTypeLoaderFlags*, byte>)funcTable[699])(pFontLoaderFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[700])((nint)pFontLoaderFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[699])((nint)pFontLoaderFlags);
 			#endif
 		}
 
@@ -2429,9 +2316,9 @@ namespace Hexa.NET.ImGui
 		internal static void appendfNative(ImGuiTextBuffer* self, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, void>)funcTable[701])(self, fmt);
+			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, void>)funcTable[700])(self, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[701])((nint)self, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[700])((nint)self, (nint)fmt);
 			#endif
 		}
 
@@ -2580,9 +2467,9 @@ namespace Hexa.NET.ImGui
 		internal static float GETFLTMAXNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[702])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[701])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[702])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[701])();
 			#endif
 		}
 
@@ -2602,9 +2489,9 @@ namespace Hexa.NET.ImGui
 		internal static float GETFLTMINNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[703])();
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[702])();
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[703])();
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[702])();
 			#endif
 		}
 
@@ -2624,9 +2511,9 @@ namespace Hexa.NET.ImGui
 		internal static ImVector<uint>* ImVectorImWcharCreateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImVector<uint>*>)funcTable[704])();
+			return ((delegate* unmanaged[Cdecl]<ImVector<uint>*>)funcTable[703])();
 			#else
-			return (ImVector<uint>*)((delegate* unmanaged[Cdecl]<nint>)funcTable[704])();
+			return (ImVector<uint>*)((delegate* unmanaged[Cdecl]<nint>)funcTable[703])();
 			#endif
 		}
 
@@ -2646,9 +2533,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImVectorImWcharDestroyNative(ImVector<uint>* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[705])(self);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[704])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[705])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[704])((nint)self);
 			#endif
 		}
 
@@ -2678,9 +2565,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImVectorImWcharInitNative(ImVector<uint>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[706])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[705])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[706])((nint)p);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[705])((nint)p);
 			#endif
 		}
 
@@ -2710,9 +2597,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImVectorImWcharUnInitNative(ImVector<uint>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[707])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, void>)funcTable[706])(p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[707])((nint)p);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[706])((nint)p);
 			#endif
 		}
 
@@ -2742,9 +2629,9 @@ namespace Hexa.NET.ImGui
 		internal static void PlatformIOSetPlatformGetWindowPosNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[708])(platformIo, userCallback);
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[707])(platformIo, userCallback);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[708])((nint)platformIo, (nint)userCallback);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[707])((nint)platformIo, (nint)userCallback);
 			#endif
 		}
 
@@ -2774,9 +2661,9 @@ namespace Hexa.NET.ImGui
 		internal static void PlatformIOSetPlatformGetWindowSizeNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[709])(platformIo, userCallback);
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)funcTable[708])(platformIo, userCallback);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[709])((nint)platformIo, (nint)userCallback);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[708])((nint)platformIo, (nint)userCallback);
 			#endif
 		}
 

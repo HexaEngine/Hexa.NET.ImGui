@@ -25,7 +25,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(context, 88);
+			funcTable = new FunctionTable(context, 90);
 			funcTable.Load(0, "EmulateThreeButtonMouse_EmulateThreeButtonMouse");
 			funcTable.Load(1, "EmulateThreeButtonMouse_destroy");
 			funcTable.Load(2, "LinkDetachWithModifierClick_LinkDetachWithModifierClick");
@@ -114,6 +114,8 @@ namespace Hexa.NET.ImNodes
 			funcTable.Load(85, "ImNodes_LoadCurrentEditorStateFromIniFile");
 			funcTable.Load(86, "ImNodes_LoadEditorStateFromIniFile");
 			funcTable.Load(87, "getIOKeyCtrlPtr");
+			funcTable.Load(88, "igSetAllocatorFunctions");
+			funcTable.Load(89, "igGetAllocatorFunctions");
 		}
 
 		public static void FreeApi()

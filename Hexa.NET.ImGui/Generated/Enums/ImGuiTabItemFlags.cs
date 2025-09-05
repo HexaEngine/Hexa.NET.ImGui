@@ -25,47 +25,47 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Display a dot next to the title + set ImGuiTabItemFlags_NoAssumedClosure.<br/>
 		/// </summary>
 		UnsavedDocument = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Trigger flag to programmatically make the tab selected when calling BeginTabItem()<br/>
 		/// </summary>
 		SetSelected = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable behavior of closing tabs (that are submitted with p_open != NULL) with middle mouse button. You may handle this behavior manually on user's side with if (IsItemHovered() &amp;&amp; IsMouseClicked(2)) *p_open = false.<br/>
 		/// </summary>
 		NoCloseWithMiddleMouseButton = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Don't call PushID()PopID() on BeginTabItem()EndTabItem()<br/>
 		/// </summary>
 		NoPushId = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable tooltip for the given tab<br/>
 		/// </summary>
 		NoTooltip = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable reordering this tab or having another tab cross over this tab<br/>
 		/// </summary>
 		NoReorder = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Enforce the tab position to the left of the tab bar (after the tab list popup button)<br/>
 		/// </summary>
 		Leading = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Enforce the tab position to the right of the tab bar (before the scrolling buttons)<br/>
 		/// </summary>
 		Trailing = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// Tab is selected when trying to close + closure is not immediately assumed (will wait for user to stop submitting the tab). Otherwise closure is assumed when pressing the X, so if you keep submitting the tab may reappear at end of tab bar.<br/>
 		/// </summary>
 		NoAssumedClosure = unchecked(256),
 	}

@@ -25,12 +25,12 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Request app to clear selection (if Selected==false) or select all items (if Selected==true). We cannot set RangeFirstItemRangeLastItem as its contents is entirely up to user (not necessarily an index)<br/>
 		/// </summary>
 		SetAll = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Request app to selectunselect [RangeFirstItem..RangeLastItem] items (inclusive) based on value of Selected. Only EndMultiSelect() request this, app code can read after BeginMultiSelect() and it will always be false.<br/>
 		/// </summary>
 		SetRange = unchecked(2),
 	}

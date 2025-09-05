@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Clearignore previously submitted tooltip (defaults to append)<br/>
 		/// </summary>
 		OverridePrevious = unchecked(2),
 	}

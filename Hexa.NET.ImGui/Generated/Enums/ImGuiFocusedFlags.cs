@@ -25,27 +25,27 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Return true if any children of the window is focused<br/>
 		/// </summary>
 		ChildWindows = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Test from root window (top most parent of the current hierarchy)<br/>
 		/// </summary>
 		RootWindow = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Return true if any window is focused. Important: If you are trying to tell how to dispatch your low-level inputs, do NOT use this. Use 'io.WantCaptureMouse' instead! Please read the FAQ!<br/>
 		/// </summary>
 		AnyWindow = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Do not consider popup hierarchy (do not treat popup emitter as parent of popup) (when used with _ChildWindows or _RootWindow)<br/>
 		/// </summary>
 		NoPopupHierarchy = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// Consider docking hierarchy (treat dockspace host as parent of docked window) (when used with _ChildWindows or _RootWindow)<br/>
 		/// </summary>
 		DockHierarchy = unchecked(16),
 

@@ -19,7 +19,7 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndPopup() if BeginPopupXXX() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndPopupNative()
@@ -32,7 +32,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndPopup() if BeginPopupXXX() returns true!<br/>
 		/// </summary>
 		public static void EndPopup()
 		{
@@ -40,7 +40,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void OpenPopupNative(byte* strId, ImGuiPopupFlags popupFlags)
@@ -53,7 +53,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -61,7 +61,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(byte* strId)
 		{
@@ -69,7 +69,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -80,7 +80,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(ref byte strId)
 		{
@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -102,7 +102,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(ReadOnlySpan<byte> strId)
 		{
@@ -113,7 +113,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -142,7 +142,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		public static void OpenPopup(string strId)
 		{
@@ -171,7 +171,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void OpenPopupNative(uint id, ImGuiPopupFlags popupFlags)
@@ -184,7 +184,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// id overload to facilitate calling from nested stacks<br/>
 		/// </summary>
 		public static void OpenPopup(uint id, ImGuiPopupFlags popupFlags)
 		{
@@ -192,7 +192,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// id overload to facilitate calling from nested stacks<br/>
 		/// </summary>
 		public static void OpenPopup(uint id)
 		{
@@ -200,7 +200,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void OpenPopupOnItemClickNative(byte* strId, ImGuiPopupFlags popupFlags)
@@ -213,7 +213,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -221,7 +221,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(byte* strId)
 		{
@@ -229,7 +229,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick()
 		{
@@ -237,7 +237,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(ImGuiPopupFlags popupFlags)
 		{
@@ -245,7 +245,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -256,7 +256,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(ref byte strId)
 		{
@@ -267,7 +267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -278,7 +278,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(ReadOnlySpan<byte> strId)
 		{
@@ -289,7 +289,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -318,7 +318,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
 		/// </summary>
 		public static void OpenPopupOnItemClick(string strId)
 		{
@@ -347,7 +347,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// manually close the popup we have begin-ed into.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void CloseCurrentPopupNative()
@@ -360,7 +360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// manually close the popup we have begin-ed into.<br/>
 		/// </summary>
 		public static void CloseCurrentPopup()
 		{
@@ -368,7 +368,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupContextItemNative(byte* strId, ImGuiPopupFlags popupFlags)
@@ -381,7 +381,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -390,7 +390,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(byte* strId)
 		{
@@ -399,7 +399,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem()
 		{
@@ -408,7 +408,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(ImGuiPopupFlags popupFlags)
 		{
@@ -417,7 +417,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -429,7 +429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(ref byte strId)
 		{
@@ -441,7 +441,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -453,7 +453,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(ReadOnlySpan<byte> strId)
 		{
@@ -465,7 +465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -495,7 +495,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
 		/// </summary>
 		public static bool BeginPopupContextItem(string strId)
 		{
@@ -525,7 +525,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupContextWindowNative(byte* strId, ImGuiPopupFlags popupFlags)
@@ -538,7 +538,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -547,7 +547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(byte* strId)
 		{
@@ -556,7 +556,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow()
 		{
@@ -565,7 +565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(ImGuiPopupFlags popupFlags)
 		{
@@ -574,7 +574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -586,7 +586,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(ref byte strId)
 		{
@@ -598,7 +598,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -610,7 +610,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(ReadOnlySpan<byte> strId)
 		{
@@ -622,7 +622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -652,7 +652,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked on current window.<br/>
 		/// </summary>
 		public static bool BeginPopupContextWindow(string strId)
 		{
@@ -682,7 +682,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginPopupContextVoidNative(byte* strId, ImGuiPopupFlags popupFlags)
@@ -695,7 +695,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(byte* strId, ImGuiPopupFlags popupFlags)
 		{
@@ -704,7 +704,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(byte* strId)
 		{
@@ -713,7 +713,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid()
 		{
@@ -722,7 +722,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(ImGuiPopupFlags popupFlags)
 		{
@@ -731,7 +731,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(ref byte strId, ImGuiPopupFlags popupFlags)
 		{
@@ -743,7 +743,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(ref byte strId)
 		{
@@ -755,7 +755,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
@@ -767,7 +767,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(ReadOnlySpan<byte> strId)
 		{
@@ -779,7 +779,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(string strId, ImGuiPopupFlags popupFlags)
 		{
@@ -809,7 +809,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
 		/// </summary>
 		public static bool BeginPopupContextVoid(string strId)
 		{
@@ -839,7 +839,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsPopupOpenNative(byte* strId, ImGuiPopupFlags flags)
@@ -852,7 +852,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(byte* strId, ImGuiPopupFlags flags)
 		{
@@ -861,7 +861,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(byte* strId)
 		{
@@ -870,7 +870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(ref byte strId, ImGuiPopupFlags flags)
 		{
@@ -882,7 +882,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(ref byte strId)
 		{
@@ -894,7 +894,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(ReadOnlySpan<byte> strId, ImGuiPopupFlags flags)
 		{
@@ -906,7 +906,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(ReadOnlySpan<byte> strId)
 		{
@@ -918,7 +918,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(string strId, ImGuiPopupFlags flags)
 		{
@@ -948,7 +948,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true if the popup is open.<br/>
 		/// </summary>
 		public static bool IsPopupOpen(string strId)
 		{
@@ -1495,7 +1495,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTable() if BeginTable() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTableNative()
@@ -1508,7 +1508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTable() if BeginTable() returns true!<br/>
 		/// </summary>
 		public static void EndTable()
 		{
@@ -1516,7 +1516,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the first cell of a new row.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableNextRowNative(ImGuiTableRowFlags rowFlags, float minRowHeight)
@@ -1529,7 +1529,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the first cell of a new row.<br/>
 		/// </summary>
 		public static void TableNextRow(ImGuiTableRowFlags rowFlags, float minRowHeight)
 		{
@@ -1537,7 +1537,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the first cell of a new row.<br/>
 		/// </summary>
 		public static void TableNextRow(ImGuiTableRowFlags rowFlags)
 		{
@@ -1545,7 +1545,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the first cell of a new row.<br/>
 		/// </summary>
 		public static void TableNextRow()
 		{
@@ -1553,7 +1553,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the first cell of a new row.<br/>
 		/// </summary>
 		public static void TableNextRow(float minRowHeight)
 		{
@@ -1561,7 +1561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the next column (or first column of next row if currently in last column). Return true when column is visible.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TableNextColumnNative()
@@ -1574,7 +1574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the next column (or first column of next row if currently in last column). Return true when column is visible.<br/>
 		/// </summary>
 		public static bool TableNextColumn()
 		{
@@ -1583,7 +1583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the specified column. Return true when column is visible.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TableSetColumnIndexNative(int columnN)
@@ -1596,7 +1596,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// append into the specified column. Return true when column is visible.<br/>
 		/// </summary>
 		public static bool TableSetColumnIndex(int columnN)
 		{
@@ -2090,7 +2090,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// lock columnsrows so they stay visible when scrolled.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableSetupScrollFreezeNative(int cols, int rows)
@@ -2103,7 +2103,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// lock columnsrows so they stay visible when scrolled.<br/>
 		/// </summary>
 		public static void TableSetupScrollFreeze(int cols, int rows)
 		{
@@ -2111,7 +2111,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit one header cell manually (rarely used)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableHeaderNative(byte* label)
@@ -2124,7 +2124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit one header cell manually (rarely used)<br/>
 		/// </summary>
 		public static void TableHeader(byte* label)
 		{
@@ -2132,7 +2132,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit one header cell manually (rarely used)<br/>
 		/// </summary>
 		public static void TableHeader(ref byte label)
 		{
@@ -2143,7 +2143,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit one header cell manually (rarely used)<br/>
 		/// </summary>
 		public static void TableHeader(ReadOnlySpan<byte> label)
 		{
@@ -2154,7 +2154,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit one header cell manually (rarely used)<br/>
 		/// </summary>
 		public static void TableHeader(string label)
 		{
@@ -2183,7 +2183,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit a row with headers cells based on data provided to TableSetupColumn() + submit context menu<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableHeadersRowNative()
@@ -2196,7 +2196,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit a row with headers cells based on data provided to TableSetupColumn() + submit context menu<br/>
 		/// </summary>
 		public static void TableHeadersRow()
 		{
@@ -2204,7 +2204,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit a row with angled headers for every column with the ImGuiTableColumnFlags_AngledHeader flag. MUST BE FIRST ROW.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableAngledHeadersRowNative()
@@ -2217,7 +2217,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// submit a row with angled headers for every column with the ImGuiTableColumnFlags_AngledHeader flag. MUST BE FIRST ROW.<br/>
 		/// </summary>
 		public static void TableAngledHeadersRow()
 		{
@@ -2225,7 +2225,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get latest sort specs for the table (NULL if not sorting).  Lifetime: don't hold on this pointer over multiple frames or past any subsequent call to BeginTable().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiTableSortSpecs* TableGetSortSpecsNative()
@@ -2238,7 +2238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get latest sort specs for the table (NULL if not sorting).  Lifetime: don't hold on this pointer over multiple frames or past any subsequent call to BeginTable().<br/>
 		/// </summary>
 		public static ImGuiTableSortSpecsPtr TableGetSortSpecs()
 		{
@@ -2247,7 +2247,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return number of columns (value passed to BeginTable)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetColumnCountNative()
@@ -2260,7 +2260,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return number of columns (value passed to BeginTable)<br/>
 		/// </summary>
 		public static int TableGetColumnCount()
 		{
@@ -2269,7 +2269,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return current column index.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetColumnIndexNative()
@@ -2282,7 +2282,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return current column index.<br/>
 		/// </summary>
 		public static int TableGetColumnIndex()
 		{
@@ -2291,7 +2291,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return current row index (header rows are accounted for)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetRowIndexNative()
@@ -2304,7 +2304,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return current row index (header rows are accounted for)<br/>
 		/// </summary>
 		public static int TableGetRowIndex()
 		{
@@ -2313,7 +2313,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* TableGetColumnNameNative(int columnN)
@@ -2326,7 +2326,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
 		/// </summary>
 		public static byte* TableGetColumnName(int columnN)
 		{
@@ -2335,7 +2335,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
 		/// </summary>
 		public static byte* TableGetColumnName()
 		{
@@ -2344,7 +2344,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
 		/// </summary>
 		public static string TableGetColumnNameS()
 		{
@@ -2353,7 +2353,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return "" if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.<br/>
 		/// </summary>
 		public static string TableGetColumnNameS(int columnN)
 		{
@@ -2362,7 +2362,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return column flags so you can query their EnabledVisibleSortedHovered status flags. Pass -1 to use current column.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiTableColumnFlags TableGetColumnFlagsNative(int columnN)
@@ -2375,7 +2375,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return column flags so you can query their EnabledVisibleSortedHovered status flags. Pass -1 to use current column.<br/>
 		/// </summary>
 		public static ImGuiTableColumnFlags TableGetColumnFlags(int columnN)
 		{
@@ -2384,7 +2384,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return column flags so you can query their EnabledVisibleSortedHovered status flags. Pass -1 to use current column.<br/>
 		/// </summary>
 		public static ImGuiTableColumnFlags TableGetColumnFlags()
 		{
@@ -2393,7 +2393,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// change user accessible enableddisabled state of a column. Set to false to hide the column. User can use the context menu to change this themselves (right-click in headers, or right-click in columns body with ImGuiTableFlags_ContextMenuInBody)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableSetColumnEnabledNative(int columnN, byte v)
@@ -2406,7 +2406,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// change user accessible enableddisabled state of a column. Set to false to hide the column. User can use the context menu to change this themselves (right-click in headers, or right-click in columns body with ImGuiTableFlags_ContextMenuInBody)<br/>
 		/// </summary>
 		public static void TableSetColumnEnabled(int columnN, bool v)
 		{
@@ -2414,7 +2414,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered. Can also use (TableGetColumnFlags() &amp; ImGuiTableColumnFlags_IsHovered) instead.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int TableGetHoveredColumnNative()
@@ -2427,7 +2427,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered. Can also use (TableGetColumnFlags() &amp; ImGuiTableColumnFlags_IsHovered) instead.<br/>
 		/// </summary>
 		public static int TableGetHoveredColumn()
 		{
@@ -2436,7 +2436,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// change the color of a cell, row, or column. See ImGuiTableBgTarget_ flags for details.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void TableSetBgColorNative(ImGuiTableBgTarget target, uint color, int columnN)
@@ -2449,7 +2449,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// change the color of a cell, row, or column. See ImGuiTableBgTarget_ flags for details.<br/>
 		/// </summary>
 		public static void TableSetBgColor(ImGuiTableBgTarget target, uint color, int columnN)
 		{
@@ -2457,7 +2457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// change the color of a cell, row, or column. See ImGuiTableBgTarget_ flags for details.<br/>
 		/// </summary>
 		public static void TableSetBgColor(ImGuiTableBgTarget target, uint color)
 		{
@@ -2746,7 +2746,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// next column, defaults to current row or next row if the current row is finished<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void NextColumnNative()
@@ -2759,7 +2759,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// next column, defaults to current row or next row if the current row is finished<br/>
 		/// </summary>
 		public static void NextColumn()
 		{
@@ -2767,7 +2767,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current column index<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int GetColumnIndexNative()
@@ -2780,7 +2780,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get current column index<br/>
 		/// </summary>
 		public static int GetColumnIndex()
 		{
@@ -2789,7 +2789,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get column width (in pixels). pass -1 to use current column<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetColumnWidthNative(int columnIndex)
@@ -2802,7 +2802,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get column width (in pixels). pass -1 to use current column<br/>
 		/// </summary>
 		public static float GetColumnWidth(int columnIndex)
 		{
@@ -2811,7 +2811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get column width (in pixels). pass -1 to use current column<br/>
 		/// </summary>
 		public static float GetColumnWidth()
 		{
@@ -2820,7 +2820,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set column width (in pixels). pass -1 to use current column<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColumnWidthNative(int columnIndex, float width)
@@ -2833,7 +2833,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set column width (in pixels). pass -1 to use current column<br/>
 		/// </summary>
 		public static void SetColumnWidth(int columnIndex, float width)
 		{
@@ -2841,7 +2841,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetColumnsCount() inclusive. column 0 is typically 0.0f<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetColumnOffsetNative(int columnIndex)
@@ -2854,7 +2854,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetColumnsCount() inclusive. column 0 is typically 0.0f<br/>
 		/// </summary>
 		public static float GetColumnOffset(int columnIndex)
 		{
@@ -2863,7 +2863,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get position of column line (in pixels, from the left side of the contents region). pass -1 to use current column, otherwise 0..GetColumnsCount() inclusive. column 0 is typically 0.0f<br/>
 		/// </summary>
 		public static float GetColumnOffset()
 		{
@@ -2872,7 +2872,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set position of column line (in pixels, from the left side of the contents region). pass -1 to use current column<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetColumnOffsetNative(int columnIndex, float offsetX)
@@ -2885,7 +2885,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set position of column line (in pixels, from the left side of the contents region). pass -1 to use current column<br/>
 		/// </summary>
 		public static void SetColumnOffset(int columnIndex, float offsetX)
 		{
@@ -2915,7 +2915,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginTabBarNative(byte* strId, ImGuiTabBarFlags flags)
@@ -2928,7 +2928,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(byte* strId, ImGuiTabBarFlags flags)
 		{
@@ -2937,7 +2937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(byte* strId)
 		{
@@ -2946,7 +2946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(ref byte strId, ImGuiTabBarFlags flags)
 		{
@@ -2958,7 +2958,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(ref byte strId)
 		{
@@ -2970,7 +2970,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(ReadOnlySpan<byte> strId, ImGuiTabBarFlags flags)
 		{
@@ -2982,7 +2982,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(ReadOnlySpan<byte> strId)
 		{
@@ -2994,7 +2994,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(string strId, ImGuiTabBarFlags flags)
 		{
@@ -3024,7 +3024,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create and append into a TabBar<br/>
 		/// </summary>
 		public static bool BeginTabBar(string strId)
 		{
@@ -3054,7 +3054,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTabBar() if BeginTabBar() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTabBarNative()
@@ -3067,7 +3067,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTabBar() if BeginTabBar() returns true!<br/>
 		/// </summary>
 		public static void EndTabBar()
 		{
@@ -3075,7 +3075,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginTabItemNative(byte* label, bool* pOpen, ImGuiTabItemFlags flags)
@@ -3088,7 +3088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(byte* label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3097,7 +3097,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(byte* label, bool* pOpen)
 		{
@@ -3106,7 +3106,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(byte* label)
 		{
@@ -3115,7 +3115,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(byte* label, ImGuiTabItemFlags flags)
 		{
@@ -3124,7 +3124,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3136,7 +3136,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, bool* pOpen)
 		{
@@ -3148,7 +3148,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ref byte label)
 		{
@@ -3160,7 +3160,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, ImGuiTabItemFlags flags)
 		{
@@ -3172,7 +3172,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3184,7 +3184,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, bool* pOpen)
 		{
@@ -3196,7 +3196,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label)
 		{
@@ -3208,7 +3208,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, ImGuiTabItemFlags flags)
 		{
@@ -3220,7 +3220,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(string label, bool* pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3250,7 +3250,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(string label, bool* pOpen)
 		{
@@ -3280,7 +3280,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(string label)
 		{
@@ -3310,7 +3310,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(string label, ImGuiTabItemFlags flags)
 		{
@@ -3340,7 +3340,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(byte* label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3352,7 +3352,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(byte* label, ref bool pOpen)
 		{
@@ -3364,7 +3364,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3379,7 +3379,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ref byte label, ref bool pOpen)
 		{
@@ -3394,7 +3394,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3409,7 +3409,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(ReadOnlySpan<byte> label, ref bool pOpen)
 		{
@@ -3424,7 +3424,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(string label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
@@ -3457,7 +3457,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab. Returns true if the Tab is selected.<br/>
 		/// </summary>
 		public static bool BeginTabItem(string label, ref bool pOpen)
 		{
@@ -3490,7 +3490,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTabItem() if BeginTabItem() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndTabItemNative()
@@ -3503,7 +3503,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndTabItem() if BeginTabItem() returns true!<br/>
 		/// </summary>
 		public static void EndTabItem()
 		{
@@ -3511,7 +3511,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte TabItemButtonNative(byte* label, ImGuiTabItemFlags flags)
@@ -3524,7 +3524,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(byte* label, ImGuiTabItemFlags flags)
 		{
@@ -3533,7 +3533,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(byte* label)
 		{
@@ -3542,7 +3542,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(ref byte label, ImGuiTabItemFlags flags)
 		{
@@ -3554,7 +3554,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(ref byte label)
 		{
@@ -3566,7 +3566,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(ReadOnlySpan<byte> label, ImGuiTabItemFlags flags)
 		{
@@ -3578,7 +3578,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(ReadOnlySpan<byte> label)
 		{
@@ -3590,7 +3590,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(string label, ImGuiTabItemFlags flags)
 		{
@@ -3620,7 +3620,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// create a Tab behaving like a button. return true when clicked. cannot be selected in the tab bar.<br/>
 		/// </summary>
 		public static bool TabItemButton(string label)
 		{
@@ -3650,7 +3650,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetTabItemClosedNative(byte* tabOrDockedWindowLabel)
@@ -3663,7 +3663,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
 		/// </summary>
 		public static void SetTabItemClosed(byte* tabOrDockedWindowLabel)
 		{
@@ -3671,7 +3671,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
 		/// </summary>
 		public static void SetTabItemClosed(ref byte tabOrDockedWindowLabel)
 		{
@@ -3682,7 +3682,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
 		/// </summary>
 		public static void SetTabItemClosed(ReadOnlySpan<byte> tabOrDockedWindowLabel)
 		{
@@ -3693,7 +3693,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// notify TabBar or Docking system of a closed tabwindow ahead (useful to reduce visual flicker on reorderable tab bars). For tab-bar: call after BeginTabBar() and before Tab submissions. Otherwise call with a window name.<br/>
 		/// </summary>
 		public static void SetTabItemClosed(string tabOrDockedWindowLabel)
 		{
@@ -4264,7 +4264,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window dock id<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowDockIDNative(uint dockId, ImGuiCond cond)
@@ -4277,7 +4277,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window dock id<br/>
 		/// </summary>
 		public static void SetNextWindowDockID(uint dockId, ImGuiCond cond)
 		{
@@ -4285,7 +4285,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window dock id<br/>
 		/// </summary>
 		public static void SetNextWindowDockID(uint dockId)
 		{
@@ -4293,7 +4293,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowClassNative(ImGuiWindowClass* windowClass)
@@ -4306,7 +4306,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
 		/// </summary>
 		public static void SetNextWindowClass(ImGuiWindowClassPtr windowClass)
 		{
@@ -4314,7 +4314,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
 		/// </summary>
 		public static void SetNextWindowClass(ref ImGuiWindowClass windowClass)
 		{
@@ -4347,7 +4347,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window docked into another window?<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsWindowDockedNative()
@@ -4360,7 +4360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// is current window docked into another window?<br/>
 		/// </summary>
 		public static bool IsWindowDocked()
 		{
@@ -4369,7 +4369,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to tty (stdout)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogToTTYNative(int autoOpenDepth)
@@ -4382,7 +4382,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to tty (stdout)<br/>
 		/// </summary>
 		public static void LogToTTY(int autoOpenDepth)
 		{
@@ -4390,7 +4390,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to tty (stdout)<br/>
 		/// </summary>
 		public static void LogToTTY()
 		{
@@ -4398,7 +4398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogToFileNative(int autoOpenDepth, byte* filename)
@@ -4411,7 +4411,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, byte* filename)
 		{
@@ -4419,7 +4419,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth)
 		{
@@ -4427,7 +4427,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile()
 		{
@@ -4435,7 +4435,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(byte* filename)
 		{
@@ -4443,7 +4443,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, ref byte filename)
 		{
@@ -4454,7 +4454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(ref byte filename)
 		{
@@ -4465,7 +4465,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, ReadOnlySpan<byte> filename)
 		{
@@ -4476,7 +4476,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(ReadOnlySpan<byte> filename)
 		{
@@ -4487,7 +4487,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(int autoOpenDepth, string filename)
 		{
@@ -4516,7 +4516,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to file<br/>
 		/// </summary>
 		public static void LogToFile(string filename)
 		{
@@ -4545,7 +4545,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to OS clipboard<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogToClipboardNative(int autoOpenDepth)
@@ -4558,7 +4558,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to OS clipboard<br/>
 		/// </summary>
 		public static void LogToClipboard(int autoOpenDepth)
 		{
@@ -4566,7 +4566,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// start logging to OS clipboard<br/>
 		/// </summary>
 		public static void LogToClipboard()
 		{
@@ -4574,7 +4574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// stop logging (close file, etc.)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogFinishNative()
@@ -4587,7 +4587,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// stop logging (close file, etc.)<br/>
 		/// </summary>
 		public static void LogFinish()
 		{
@@ -4595,7 +4595,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to display buttons for logging to ttyfileclipboard<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogButtonsNative()
@@ -4608,7 +4608,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// helper to display buttons for logging to ttyfileclipboard<br/>
 		/// </summary>
 		public static void LogButtons()
 		{
@@ -4616,7 +4616,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pass text data straight to log (without being displayed)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogTextNative(byte* fmt)
@@ -4629,7 +4629,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pass text data straight to log (without being displayed)<br/>
 		/// </summary>
 		public static void LogText(byte* fmt)
 		{
@@ -4637,7 +4637,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pass text data straight to log (without being displayed)<br/>
 		/// </summary>
 		public static void LogText(ref byte fmt)
 		{
@@ -4648,7 +4648,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pass text data straight to log (without being displayed)<br/>
 		/// </summary>
 		public static void LogText(ReadOnlySpan<byte> fmt)
 		{
@@ -4659,7 +4659,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pass text data straight to log (without being displayed)<br/>
 		/// </summary>
 		public static void LogText(string fmt)
 		{
@@ -4760,7 +4760,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginDragDropSourceNative(ImGuiDragDropFlags flags)
@@ -4773,7 +4773,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
 		/// </summary>
 		public static bool BeginDragDropSource(ImGuiDragDropFlags flags)
 		{
@@ -4782,7 +4782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
 		/// </summary>
 		public static bool BeginDragDropSource()
 		{
@@ -4791,7 +4791,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte SetDragDropPayloadNative(byte* type, void* data, nuint sz, ImGuiCond cond)
@@ -4804,7 +4804,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(byte* type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4813,7 +4813,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(byte* type, void* data, nuint sz)
 		{
@@ -4822,7 +4822,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(ref byte type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4834,7 +4834,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(ref byte type, void* data, nuint sz)
 		{
@@ -4846,7 +4846,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4858,7 +4858,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, nuint sz)
 		{
@@ -4870,7 +4870,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(string type, void* data, nuint sz, ImGuiCond cond)
 		{
@@ -4900,7 +4900,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
 		/// </summary>
 		public static bool SetDragDropPayload(string type, void* data, nuint sz)
 		{
@@ -4930,7 +4930,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndDragDropSource() if BeginDragDropSource() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void EndDragDropSourceNative()
@@ -4943,7 +4943,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// only call EndDragDropSource() if BeginDragDropSource() returns true!<br/>
 		/// </summary>
 		public static void EndDragDropSource()
 		{
@@ -4951,7 +4951,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after submitting an item that may receive a payload. If this returns true, you can call AcceptDragDropPayload() + EndDragDropTarget()<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginDragDropTargetNative()
@@ -4964,7 +4964,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// call after submitting an item that may receive a payload. If this returns true, you can call AcceptDragDropPayload() + EndDragDropTarget()<br/>
 		/// </summary>
 		public static bool BeginDragDropTarget()
 		{
@@ -4973,7 +4973,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiPayload* AcceptDragDropPayloadNative(byte* type, ImGuiDragDropFlags flags)
@@ -4986,7 +4986,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type, ImGuiDragDropFlags flags)
 		{
@@ -4995,7 +4995,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type)
 		{
@@ -5004,7 +5004,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(ref byte type, ImGuiDragDropFlags flags)
 		{
@@ -5016,7 +5016,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
 		/// </summary>
 		public static ImGuiPayloadPtr AcceptDragDropPayload(ref byte type)
 		{

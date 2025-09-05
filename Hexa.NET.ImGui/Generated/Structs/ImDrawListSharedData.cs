@@ -17,7 +17,10 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Data shared between all ImDrawList instances<br/>
+	/// Conceptually this could have been called e.g. ImDrawListSharedContext<br/>
+	/// Typically one ImGui context would create and maintain one of this.<br/>
+	/// You may want to create your own instance of you try to ImDrawList completely without ImGui. In that case, watch out for future changes to this structure.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawListSharedData

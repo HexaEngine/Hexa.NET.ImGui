@@ -505,7 +505,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Navigation highlight<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void RenderNavCursorNative(ImRect bb, uint id, ImGuiNavRenderCursorFlags flags)
@@ -518,7 +518,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Navigation highlight<br/>
 		/// </summary>
 		public static void RenderNavCursor(ImRect bb, uint id, ImGuiNavRenderCursorFlags flags)
 		{
@@ -526,7 +526,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Navigation highlight<br/>
 		/// </summary>
 		public static void RenderNavCursor(ImRect bb, uint id)
 		{
@@ -534,7 +534,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* FindRenderedTextEndNative(byte* text, byte* textEnd)
@@ -547,7 +547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(byte* text, byte* textEnd)
 		{
@@ -556,7 +556,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(byte* text)
 		{
@@ -565,7 +565,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(byte* text)
 		{
@@ -574,7 +574,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(byte* text, byte* textEnd)
 		{
@@ -583,7 +583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ref byte text, byte* textEnd)
 		{
@@ -595,7 +595,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ref byte text)
 		{
@@ -607,7 +607,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ref byte text)
 		{
@@ -619,7 +619,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ref byte text, byte* textEnd)
 		{
@@ -631,7 +631,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -643,7 +643,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text)
 		{
@@ -655,7 +655,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text)
 		{
@@ -667,7 +667,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, byte* textEnd)
 		{
@@ -679,7 +679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(string text, byte* textEnd)
 		{
@@ -709,7 +709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(string text)
 		{
@@ -739,7 +739,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(string text)
 		{
@@ -769,7 +769,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(string text, byte* textEnd)
 		{
@@ -799,7 +799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(byte* text, ref byte textEnd)
 		{
@@ -811,7 +811,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(byte* text, ref byte textEnd)
 		{
@@ -823,7 +823,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -835,7 +835,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(byte* text, ReadOnlySpan<byte> textEnd)
 		{
@@ -847,7 +847,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(byte* text, string textEnd)
 		{
@@ -877,7 +877,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(byte* text, string textEnd)
 		{
@@ -907,7 +907,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ref byte text, ref byte textEnd)
 		{
@@ -922,7 +922,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ref byte text, ref byte textEnd)
 		{
@@ -937,7 +937,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -952,7 +952,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
 		{
@@ -967,7 +967,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(string text, string textEnd)
 		{
@@ -1018,7 +1018,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(string text, string textEnd)
 		{
@@ -1069,7 +1069,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1084,7 +1084,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ref byte text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1099,7 +1099,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ref byte text, string textEnd)
 		{
@@ -1132,7 +1132,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ref byte text, string textEnd)
 		{
@@ -1165,7 +1165,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -1180,7 +1180,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, ref byte textEnd)
 		{
@@ -1195,7 +1195,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -1228,7 +1228,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, string textEnd)
 		{
@@ -1261,7 +1261,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(string text, ref byte textEnd)
 		{
@@ -1294,7 +1294,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(string text, ref byte textEnd)
 		{
@@ -1327,7 +1327,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static byte* FindRenderedTextEnd(string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -1360,7 +1360,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Find the optional ## from which we stop displaying text.<br/>
 		/// </summary>
 		public static string FindRenderedTextEndS(string text, ReadOnlySpan<byte> textEnd)
 		{
@@ -3765,7 +3765,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 0..3: corners<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetWindowResizeCornerIDNative(ImGuiWindow* window, int n)
@@ -3778,7 +3778,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 0..3: corners<br/>
 		/// </summary>
 		public static uint GetWindowResizeCornerID(ImGuiWindowPtr window, int n)
 		{
@@ -3787,7 +3787,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// 0..3: corners<br/>
 		/// </summary>
 		public static uint GetWindowResizeCornerID(ref ImGuiWindow window, int n)
 		{

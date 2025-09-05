@@ -25,62 +25,62 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable preview tooltip. By default, a successful call to BeginDragDropSource opens a tooltip so you can display a preview or description of the source contents. This flag disables this behavior.<br/>
 		/// </summary>
 		SourceNoPreviewTooltip = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// By default, when dragging we clear data so that IsItemHovered() will return false, to avoid subsequent user code submitting tooltips. This flag disables this behavior so you can still call IsItemHovered() on the source item.<br/>
 		/// </summary>
 		SourceNoDisableHover = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable the behavior that allows to open tree nodes and collapsing header by holding over them while dragging a source item.<br/>
 		/// </summary>
 		SourceNoHoldToOpenOthers = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit.<br/>
 		/// </summary>
 		SourceAllowNullId = unchecked(8),
 
 		/// <summary>
-		/// To be documented.
+		/// External source (from outside of dear imgui), won't attempt to read current itemwindow info. Will always return true. Only one Extern source can be active simultaneously.<br/>
 		/// </summary>
 		SourceExtern = unchecked(16),
 
 		/// <summary>
-		/// To be documented.
+		/// Automatically expire the payload if the source cease to be submitted (otherwise payloads are persisting while being dragged)<br/>
 		/// </summary>
 		PayloadAutoExpire = unchecked(32),
 
 		/// <summary>
-		/// To be documented.
+		/// Hint to specify that the payload may not be copied outside current dear imgui context.<br/>
 		/// </summary>
 		PayloadNoCrossContext = unchecked(64),
 
 		/// <summary>
-		/// To be documented.
+		/// Hint to specify that the payload may not be copied outside current process.<br/>
 		/// </summary>
 		PayloadNoCrossProcess = unchecked(128),
 
 		/// <summary>
-		/// To be documented.
+		/// AcceptDragDropPayload() will returns true even before the mouse button is released. You can then call IsDelivery() to test if the payload needs to be delivered.<br/>
 		/// </summary>
 		AcceptBeforeDelivery = unchecked(1024),
 
 		/// <summary>
-		/// To be documented.
+		/// Do not draw the default highlight rectangle when hovering over target.<br/>
 		/// </summary>
 		AcceptNoDrawDefaultRect = unchecked(2048),
 
 		/// <summary>
-		/// To be documented.
+		/// Request hiding the BeginDragDropSource tooltip from the BeginDragDropTarget site.<br/>
 		/// </summary>
 		AcceptNoPreviewTooltip = unchecked(4096),
 
 		/// <summary>
-		/// To be documented.
+		/// For peeking ahead and inspecting the payload before delivery.<br/>
 		/// </summary>
 		AcceptPeekOnly = unchecked(3072),
 	}

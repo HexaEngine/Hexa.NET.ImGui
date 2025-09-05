@@ -25,7 +25,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void InitApi(INativeContext context)
 		{
-			funcTable = new FunctionTable(context, 745);
+			funcTable = new FunctionTable(context, 747);
 			funcTable.Load(0, "ImPlotPoint_ImPlotPoint_Nil");
 			funcTable.Load(1, "ImPlotPoint_destroy");
 			funcTable.Load(2, "ImPlotPoint_ImPlotPoint_double");
@@ -771,6 +771,8 @@ namespace Hexa.NET.ImPlot
 			funcTable.Load(742, "ImPlot_Locator_Time");
 			funcTable.Load(743, "ImPlot_Locator_Log10");
 			funcTable.Load(744, "ImPlot_Locator_SymLog");
+			funcTable.Load(745, "igSetAllocatorFunctions");
+			funcTable.Load(746, "igGetAllocatorFunctions");
 		}
 
 		public static void FreeApi()

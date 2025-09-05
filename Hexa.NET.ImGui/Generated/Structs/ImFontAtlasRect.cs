@@ -17,7 +17,9 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Output of ImFontAtlas::GetCustomRect() when using custom rectangles.<br/>
+	/// Those values may not be cachedstored as they are only valid for the current value of atlas-&gt;TexRef<br/>
+	/// (this is in theory derived from ImTextureRect but we use separate structures for reasons)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontAtlasRect

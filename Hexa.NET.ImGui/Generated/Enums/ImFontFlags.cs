@@ -25,17 +25,17 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Disable throwing an errorassert when calling AddFontXXX() with missing filedata. Calling code is expected to check AddFontXXX() return value.<br/>
 		/// </summary>
 		NoLoadError = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal] Disable loading new glyphs.<br/>
 		/// </summary>
 		NoLoadGlyphs = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal] Disable loading new baked sizes, disable garbage collecting current ones. e.g. if you want to lock a font to a single size. Important: if you use this to preload given sizes, consider the possibility of multiple font density used on Retina display.<br/>
 		/// </summary>
 		LockBakedSizes = unchecked(8),
 	}

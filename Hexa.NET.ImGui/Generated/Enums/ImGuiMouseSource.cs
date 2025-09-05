@@ -20,17 +20,17 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiMouseSource : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// Input is coming from an actual mouse.<br/>
 		/// </summary>
 		Mouse = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// Input is coming from a touch screen (no hovering prior to initial press, less precise initial press aiming, dual-axis wheeling possible).<br/>
 		/// </summary>
 		TouchScreen = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// Input is coming from a pressuremagnetic pen (often used in conjunction with high-sampling rates).<br/>
 		/// </summary>
 		Pen = unchecked(2),
 

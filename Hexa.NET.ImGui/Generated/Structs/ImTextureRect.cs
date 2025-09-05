@@ -17,7 +17,9 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Coordinates of a rectangle within a texture.<br/>
+	/// When a texture is in ImTextureStatus_WantUpdates state, we provide a list of individual rectangles to copy to the graphics system.<br/>
+	/// You may use ImTextureData::Updates[] for the list, or ImTextureData::UpdateBox for a single bounding box.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImTextureRect

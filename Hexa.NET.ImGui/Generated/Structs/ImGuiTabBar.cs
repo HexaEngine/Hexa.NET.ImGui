@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// To be documented.
+	/// Storage for a tab bar (sizeof() 160 bytes)<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTabBar
@@ -71,6 +71,11 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ImRect BarRect;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float BarRectPrevWidth;
 
 		/// <summary>
 		/// To be documented.
@@ -165,6 +170,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public byte ScrollButtonEnabled;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public short TabsActiveCount;
 
 		/// <summary>
@@ -196,7 +206,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTabBar(ImGuiWindowPtr window = default, ImVector<ImGuiTabItem> tabs = default, ImGuiTabBarFlags flags = default, uint id = default, uint selectedTabId = default, uint nextSelectedTabId = default, uint visibleTabId = default, int currFrameVisible = default, int prevFrameVisible = default, ImRect barRect = default, float currTabsContentsHeight = default, float prevTabsContentsHeight = default, float widthAllTabs = default, float widthAllTabsIdeal = default, float scrollingAnim = default, float scrollingTarget = default, float scrollingTargetDistToVisibility = default, float scrollingSpeed = default, float scrollingRectMinX = default, float scrollingRectMaxX = default, float separatorMinX = default, float separatorMaxX = default, uint reorderRequestTabId = default, short reorderRequestOffset = default, sbyte beginCount = default, bool wantLayout = default, bool visibleTabWasSubmitted = default, bool tabsAddedNew = default, short tabsActiveCount = default, short lastTabItemIdx = default, float itemSpacingY = default, Vector2 framePadding = default, Vector2 backupCursorPos = default, ImGuiTextBuffer tabsNames = default)
+		public unsafe ImGuiTabBar(ImGuiWindowPtr window = default, ImVector<ImGuiTabItem> tabs = default, ImGuiTabBarFlags flags = default, uint id = default, uint selectedTabId = default, uint nextSelectedTabId = default, uint visibleTabId = default, int currFrameVisible = default, int prevFrameVisible = default, ImRect barRect = default, float barRectPrevWidth = default, float currTabsContentsHeight = default, float prevTabsContentsHeight = default, float widthAllTabs = default, float widthAllTabsIdeal = default, float scrollingAnim = default, float scrollingTarget = default, float scrollingTargetDistToVisibility = default, float scrollingSpeed = default, float scrollingRectMinX = default, float scrollingRectMaxX = default, float separatorMinX = default, float separatorMaxX = default, uint reorderRequestTabId = default, short reorderRequestOffset = default, sbyte beginCount = default, bool wantLayout = default, bool visibleTabWasSubmitted = default, bool tabsAddedNew = default, bool scrollButtonEnabled = default, short tabsActiveCount = default, short lastTabItemIdx = default, float itemSpacingY = default, Vector2 framePadding = default, Vector2 backupCursorPos = default, ImGuiTextBuffer tabsNames = default)
 		{
 			Window = window;
 			Tabs = tabs;
@@ -208,6 +218,7 @@ namespace Hexa.NET.ImGui
 			CurrFrameVisible = currFrameVisible;
 			PrevFrameVisible = prevFrameVisible;
 			BarRect = barRect;
+			BarRectPrevWidth = barRectPrevWidth;
 			CurrTabsContentsHeight = currTabsContentsHeight;
 			PrevTabsContentsHeight = prevTabsContentsHeight;
 			WidthAllTabs = widthAllTabs;
@@ -226,6 +237,7 @@ namespace Hexa.NET.ImGui
 			WantLayout = wantLayout ? (byte)1 : (byte)0;
 			VisibleTabWasSubmitted = visibleTabWasSubmitted ? (byte)1 : (byte)0;
 			TabsAddedNew = tabsAddedNew ? (byte)1 : (byte)0;
+			ScrollButtonEnabled = scrollButtonEnabled ? (byte)1 : (byte)0;
 			TabsActiveCount = tabsActiveCount;
 			LastTabItemIdx = lastTabItemIdx;
 			ItemSpacingY = itemSpacingY;
@@ -321,6 +333,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref float BarRectPrevWidth => ref Unsafe.AsRef<float>(&Handle->BarRectPrevWidth);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref float CurrTabsContentsHeight => ref Unsafe.AsRef<float>(&Handle->CurrTabsContentsHeight);
 		/// <summary>
 		/// To be documented.
@@ -390,6 +406,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool TabsAddedNew => ref Unsafe.AsRef<bool>(&Handle->TabsAddedNew);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref bool ScrollButtonEnabled => ref Unsafe.AsRef<bool>(&Handle->ScrollButtonEnabled);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

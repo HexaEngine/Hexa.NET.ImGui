@@ -32,4 +32,13 @@
 		<ProjectReference Include="..\..\Hexa.NET.ImPlot\Hexa.NET.ImPlot.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="cimguizmo.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="cimguizmo.pdb">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>
