@@ -30,6 +30,7 @@ jobs:
           dotnet restore Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj
           dotnet restore Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj
           dotnet restore Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj
+          dotnet restore Hexa.NET.ImPlot3D/Hexa.NET.ImPlot3D.csproj
 
       - name: Build the project
         run: |
@@ -41,6 +42,7 @@ jobs:
           dotnet build Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release
           dotnet build Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release
           dotnet build Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release
+          dotnet build Hexa.NET.ImPlot3D/Hexa.NET.ImPlot3D.csproj --configuration Release
 
       - name: Pack the project
         run: |
@@ -52,6 +54,7 @@ jobs:
           dotnet pack Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj --configuration Release --output ./nupkgs
           dotnet pack Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj --configuration Release --output ./nupkgs
+          dotnet pack Hexa.NET.ImPlot3D/Hexa.NET.ImPlot3D.csproj --configuration Release --output ./nupkgs
 
       - name: Exclude unwanted packages
         run: |
