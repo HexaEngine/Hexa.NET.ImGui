@@ -80,12 +80,31 @@ jobs:
       pre-configure-steps: "bash scripts/setup_addon_build.sh"
       checkout-self: true
 
+  build-cimplot3d:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimguizmo
+      repo: JunaMeinhold/cimplot3d
+      repo-tag: master
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
+      bin-name-linux: cimplot3d.so
+      bin-name-linux-normalized: cimplot3d.so
+      bin-name-windows: Release/cimplot3d.dll
+      bin-name-windows-normalized: cimplot3d.dll
+      bin-name-osx: cimplot3d.dylib
+      bin-name-osx-normalized: cimplot3d.dylib
+      bin-name-android: cimplot3d.so
+      bin-name-android-normalized: cimplot3d.so
+      android-api: 23
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
+
   create-pr:
     needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo]
     uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
     with:
         lib-name: "ImGui"
-        lib-version: "v1.92.1"
+        lib-version: "v1.92.2b"
         pr-base-branch: "master"
         pr-reviewers: JunaMeinhold
         pr-branch: imgui-artifacts
