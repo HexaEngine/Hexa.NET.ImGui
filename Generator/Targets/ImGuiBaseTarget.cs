@@ -32,9 +32,9 @@
             throw new NotImplementedException();
         }
 
-        protected static void Generate(IEnumerable<string> headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
+        protected void Generate(IEnumerable<string> headers, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata, InternalsGenerationType type)
         {
-            GeneratorBuilder.Create<ImGuiCodeGenerator>(settingsPath)
+            var builder = GeneratorBuilder.Create<ImGuiCodeGenerator>(settingsPath)
                 .AlterConfig(config =>
                 {
                     config.WrapPointersAsHandle = true;
@@ -47,9 +47,18 @@
                 .WithPostPatch<ImGuiPostPatch>()
                 .WithPostPatch<ImGuiBackendsPostPatch>()
                 .WithPostPatch<ImGuiGenQuirksPostPatch>()
-                .CopyFromMetadata(lib)
+                .CopyFromMetadata(lib);
+
+            OnSetup(builder);
+
+            builder
                 .Generate([.. headers], output)
                 .GetMetadata(out metadata);
+        }
+
+        protected virtual void OnSetup(GeneratorBuilder builder)
+        {
+
         }
     }
 }

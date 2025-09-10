@@ -1806,9 +1806,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, sbyte*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[53])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, sbyte*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[54])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[53])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[54])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -2223,9 +2223,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[54])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[55])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[54])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[55])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -2640,9 +2640,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, short*, short*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[55])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, short*, short*, short*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[56])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[55])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[56])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -3057,9 +3057,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, ushort*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[56])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, ushort*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[57])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[56])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[57])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -3474,9 +3474,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[57])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[58])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[57])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[58])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -3891,9 +3891,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, uint*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[58])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, uint*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[59])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[58])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[59])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4308,9 +4308,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, long*, long*, long*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[59])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, long*, long*, long*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[60])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[59])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[60])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -4725,9 +4725,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, ulong*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[60])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, ulong*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[61])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[60])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[61])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 

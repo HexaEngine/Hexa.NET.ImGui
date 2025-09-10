@@ -1,6 +1,8 @@
 ﻿namespace Generator.Targets
 {
+    using HexaGen;
     using HexaGen.BuildSystems;
+    using HexaGen.Metadata;
     using Microsoft.Extensions.Options;
     using System.Collections.Generic;
 
@@ -91,7 +93,17 @@
     { }
 
     public class ImPlot3DTarget(IOptions<ImPlot3DTargetOptions> options) : ImGuiAddonTarget(options)
-    { }
+    {
+        protected override void OnSetup(GeneratorBuilder builder)
+        {
+            builder.AlterConfig(c =>
+            {
+                FunctionTableBuilder tableBuilder = new();
+                tableBuilder.Add("igSetCurrentContext");
+                c.FunctionTableEntries = tableBuilder.Entries;
+            });
+        }
+    }
 
     public class ImPlotTargetOptions() : ImGuiAddonTargetOptions()
     { }

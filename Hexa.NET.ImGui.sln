@@ -68,8 +68,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|x64.Build.0 = Debug|Any CPU
+		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|x64.ActiveCfg = Debug|x64
+		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|x64.Build.0 = Debug|x64
 		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{AF90A242-F593-40D0-9305-65D475EDE3C0}.Debug|x86.Build.0 = Debug|Any CPU
 		{AF90A242-F593-40D0-9305-65D475EDE3C0}.NodeEditor|Any CPU.ActiveCfg = NodeEditor|Any CPU
