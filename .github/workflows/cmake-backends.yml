@@ -118,7 +118,7 @@ jobs:
     with:
         lib-name: "ImGuiImpl"
         lib-version: "v1.92.1"
-        pr-base-branch: "master"
+        pr-base-branch: "main"
         pr-reviewers: JunaMeinhold
         pr-branch: backends-artifacts
         pr-manifest-path: imgui_impl
