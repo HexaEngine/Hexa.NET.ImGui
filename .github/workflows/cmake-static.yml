@@ -1,4 +1,4 @@
-name: Build ImGui and Addons Libraries
+name: Build ImGui and Addons Libraries (Static)
 
 on: [workflow_dispatch]
 
