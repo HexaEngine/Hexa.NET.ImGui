@@ -1,0 +1,111 @@
+name: Build ImGui and Addons Libraries
+
+on: [workflow_dispatch]
+
+jobs:
+  build-cimgui:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimgui
+      repo: JunaMeinhold/cimgui
+      repo-tag: docking_inter
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1 -DIMGUI_STATIC=ON
+      use-vcpkg: true
+      vcpkg-packages: freetype
+      vcpkg-triplet-windows: "{arch}-windows-static"
+      bin-name-linux: cimgui.a
+      bin-name-linux-normalized: cimgui.a
+      bin-name-windows: Release/cimgui.lib
+      bin-name-windows-normalized: cimgui.lib
+      bin-name-osx: cimgui.a
+      bin-name-osx-normalized: cimgui.a
+      bin-name-android: cimgui.a
+      bin-name-android-normalized: cimgui.a
+      android-api: 23
+
+  build-cimplot:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimplot
+      repo: JunaMeinhold/cimplot
+      repo-tag: master
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1 -DIMGUI_STATIC=ON
+      bin-name-linux: cimplot.a
+      bin-name-linux-normalized: cimplot.a
+      bin-name-windows: Release/cimplot.lib
+      bin-name-windows-normalized: cimplot.lib
+      bin-name-osx: cimplot.a
+      bin-name-osx-normalized: cimplot.a
+      bin-name-android: cimplot.a
+      bin-name-android-normalized: cimplot.a
+      android-api: 23
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
+
+  build-cimnodes:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimnodes
+      repo: JunaMeinhold/cimnodes
+      repo-tag: master
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1 -DIMGUI_STATIC=ON
+      bin-name-linux: cimnodes.a
+      bin-name-linux-normalized: cimnodes.a
+      bin-name-windows: Release/cimnodes.lib
+      bin-name-windows-normalized: cimnodes.lib
+      bin-name-osx: cimnodes.a
+      bin-name-osx-normalized: cimnodes.a
+      bin-name-android: cimnodes.a
+      bin-name-android-normalized: cimnodes.a
+      android-api: 23
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
+
+  build-cimguizmo:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimguizmo
+      repo: JunaMeinhold/cimguizmo
+      repo-tag: master
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1 -DIMGUI_STATIC=ON
+      bin-name-linux: cimguizmo.a
+      bin-name-linux-normalized: cimguizmo.a
+      bin-name-windows: Release/cimguizmo.lib
+      bin-name-windows-normalized: cimguizmo.lib
+      bin-name-osx: cimguizmo.a
+      bin-name-osx-normalized: cimguizmo.a
+      bin-name-android: cimguizmo.a
+      bin-name-android-normalized: cimguizmo.a
+      android-api: 23
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
+
+  build-cimplot3d:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimplot3d
+      repo: JunaMeinhold/cimplot3d
+      repo-tag: main
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1 -DIMGUI_STATIC=ON
+      bin-name-linux: cimplot3d.a
+      bin-name-linux-normalized: cimplot3d.a
+      bin-name-windows: Release/cimplot3d.lib
+      bin-name-windows-normalized: cimplot3d.lib
+      bin-name-osx: cimplot3d.a
+      bin-name-osx-normalized: cimplot3d.a
+      bin-name-android: cimplot3d.a
+      bin-name-android-normalized: cimplot3d.a
+      android-api: 23
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
+
+  create-pr:
+    needs: [build-cimgui, build-cimplot, build-cimnodes, build-cimguizmo, build-cimplot3d]
+    uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
+    with:
+        lib-name: "ImGui"
+        lib-version: "v1.92.2b"
+        pr-base-branch: "master"
+        pr-reviewers: JunaMeinhold
+        pr-branch: imgui-artifacts
+        pr-manifest-path: imgui
