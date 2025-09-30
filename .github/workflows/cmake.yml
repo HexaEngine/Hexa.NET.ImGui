@@ -104,7 +104,7 @@ jobs:
     uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
     with:
         lib-name: "ImGui"
-        lib-version: "v1.92.2b"
+        lib-version: "v1.92.3"
         pr-base-branch: "main"
         pr-reviewers: JunaMeinhold
         pr-branch: imgui-artifacts
