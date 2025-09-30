@@ -81,11 +81,16 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void* TempData;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImGuiListClipperFlags Flags;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiListClipper(ImGuiContextPtr ctx = default, int displayStart = default, int displayEnd = default, int itemsCount = default, float itemsHeight = default, double startPosY = default, double startSeekOffsetY = default, void* tempData = default)
+		public unsafe ImGuiListClipper(ImGuiContextPtr ctx = default, int displayStart = default, int displayEnd = default, int itemsCount = default, float itemsHeight = default, double startPosY = default, double startSeekOffsetY = default, void* tempData = default, ImGuiListClipperFlags flags = default)
 		{
 			Ctx = ctx;
 			DisplayStart = displayStart;
@@ -95,6 +100,7 @@ namespace Hexa.NET.ImGui
 			StartPosY = startPosY;
 			StartSeekOffsetY = startSeekOffsetY;
 			TempData = tempData;
+			Flags = flags;
 		}
 
 
@@ -262,6 +268,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public void* TempData { get => Handle->TempData; set => Handle->TempData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImGuiListClipperFlags Flags => ref Unsafe.AsRef<ImGuiListClipperFlags>(&Handle->Flags);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

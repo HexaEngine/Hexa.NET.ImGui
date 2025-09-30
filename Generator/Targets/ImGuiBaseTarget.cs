@@ -37,6 +37,14 @@
             var builder = GeneratorBuilder.Create<ImGuiCodeGenerator>(settingsPath)
                 .AlterConfig(config =>
                 {
+                    if (config.ApiName == "ImPlot3D") // Fix for ImPlot3D not generating those overloads correctly
+                    {
+                        config.FunctionTableEntries = [
+                            new(0, "igSetCurrentContext"),
+                            new(1, "igGetCurrentContext"),
+                            new(2, "igSetAllocatorFunctions"),
+                            new(3, "igGetAllocatorFunctions")];
+                    }
                     config.WrapPointersAsHandle = true;
                 })
                 .WithPrePatch<ImVectorPatch>()

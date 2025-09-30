@@ -25,11 +25,6 @@ namespace Hexa.NET.ImGui
 		NoHoldingActiveId = unchecked(1048576),
 
 		/// <summary>
-		/// (WIP) Auto-select when moved into. This is not exposed in public API as to handle multi-select and modifiers we will need user to explicitly control focus scope. May be replaced with a BeginSelection() API.<br/>
-		/// </summary>
-		SelectOnNav = unchecked(2097152),
-
-		/// <summary>
 		/// Override button behavior to react on Click (default is Click+Release)<br/>
 		/// </summary>
 		SelectOnClick = unchecked(4194304),

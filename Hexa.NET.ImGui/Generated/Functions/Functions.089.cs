@@ -962,7 +962,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ImDrawCmdPtr self)
 		{
@@ -971,7 +971,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public static ImTextureID GetTexID(ref ImDrawCmd self)
 		{

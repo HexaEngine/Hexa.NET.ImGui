@@ -100,7 +100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{
@@ -199,7 +199,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID<br/>
+		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{

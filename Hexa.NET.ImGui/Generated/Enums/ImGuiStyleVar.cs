@@ -120,103 +120,108 @@ namespace Hexa.NET.ImGui
 		ScrollbarRounding = unchecked(19),
 
 		/// <summary>
+		/// float     ScrollbarPadding<br/>
+		/// </summary>
+		ScrollbarPadding = unchecked(20),
+
+		/// <summary>
 		/// float     GrabMinSize<br/>
 		/// </summary>
-		GrabMinSize = unchecked(20),
+		GrabMinSize = unchecked(21),
 
 		/// <summary>
 		/// float     GrabRounding<br/>
 		/// </summary>
-		GrabRounding = unchecked(21),
+		GrabRounding = unchecked(22),
 
 		/// <summary>
 		/// float     ImageBorderSize<br/>
 		/// </summary>
-		ImageBorderSize = unchecked(22),
+		ImageBorderSize = unchecked(23),
 
 		/// <summary>
 		/// float     TabRounding<br/>
 		/// </summary>
-		TabRounding = unchecked(23),
+		TabRounding = unchecked(24),
 
 		/// <summary>
 		/// float     TabBorderSize<br/>
 		/// </summary>
-		TabBorderSize = unchecked(24),
+		TabBorderSize = unchecked(25),
 
 		/// <summary>
 		/// float     TabMinWidthBase<br/>
 		/// </summary>
-		TabMinWidthBase = unchecked(25),
+		TabMinWidthBase = unchecked(26),
 
 		/// <summary>
 		/// float     TabMinWidthShrink<br/>
 		/// </summary>
-		TabMinWidthShrink = unchecked(26),
+		TabMinWidthShrink = unchecked(27),
 
 		/// <summary>
 		/// float     TabBarBorderSize<br/>
 		/// </summary>
-		TabBarBorderSize = unchecked(27),
+		TabBarBorderSize = unchecked(28),
 
 		/// <summary>
 		/// float     TabBarOverlineSize<br/>
 		/// </summary>
-		TabBarOverlineSize = unchecked(28),
+		TabBarOverlineSize = unchecked(29),
 
 		/// <summary>
 		/// float     TableAngledHeadersAngle<br/>
 		/// </summary>
-		TableAngledHeadersAngle = unchecked(29),
+		TableAngledHeadersAngle = unchecked(30),
 
 		/// <summary>
 		/// ImVec2  TableAngledHeadersTextAlign<br/>
 		/// </summary>
-		TableAngledHeadersTextAlign = unchecked(30),
+		TableAngledHeadersTextAlign = unchecked(31),
 
 		/// <summary>
 		/// float     TreeLinesSize<br/>
 		/// </summary>
-		TreeLinesSize = unchecked(31),
+		TreeLinesSize = unchecked(32),
 
 		/// <summary>
 		/// float     TreeLinesRounding<br/>
 		/// </summary>
-		TreeLinesRounding = unchecked(32),
+		TreeLinesRounding = unchecked(33),
 
 		/// <summary>
 		/// ImVec2    ButtonTextAlign<br/>
 		/// </summary>
-		ButtonTextAlign = unchecked(33),
+		ButtonTextAlign = unchecked(34),
 
 		/// <summary>
 		/// ImVec2    SelectableTextAlign<br/>
 		/// </summary>
-		SelectableTextAlign = unchecked(34),
+		SelectableTextAlign = unchecked(35),
 
 		/// <summary>
 		/// float     SeparatorTextBorderSize<br/>
 		/// </summary>
-		SeparatorTextBorderSize = unchecked(35),
+		SeparatorTextBorderSize = unchecked(36),
 
 		/// <summary>
 		/// ImVec2    SeparatorTextAlign<br/>
 		/// </summary>
-		SeparatorTextAlign = unchecked(36),
+		SeparatorTextAlign = unchecked(37),
 
 		/// <summary>
 		/// ImVec2    SeparatorTextPadding<br/>
 		/// </summary>
-		SeparatorTextPadding = unchecked(37),
+		SeparatorTextPadding = unchecked(38),
 
 		/// <summary>
 		/// float     DockingSeparatorSize<br/>
 		/// </summary>
-		DockingSeparatorSize = unchecked(38),
+		DockingSeparatorSize = unchecked(39),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(39),
+		Count = unchecked(40),
 	}
 }

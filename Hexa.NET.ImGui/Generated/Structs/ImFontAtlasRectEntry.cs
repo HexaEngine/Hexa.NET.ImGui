@@ -32,7 +32,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlasRectEntry(int targetIndex = default, int generation = default, uint isUsed = default)
+		public unsafe ImFontAtlasRectEntry(int targetIndex = default, uint generation = default, uint isUsed = default)
 		{
 			TargetIndex = targetIndex;
 			Generation = generation;
@@ -42,9 +42,9 @@ namespace Hexa.NET.ImGui
 
 		public int TargetIndex { get => Bitfield.Get(RawBits0, 0, 20); set => Bitfield.Set(ref RawBits0, value, 0, 20); }
 
-		public int Generation { get => Bitfield.Get(RawBits0, 20, 10); set => Bitfield.Set(ref RawBits0, value, 20, 10); }
+		public uint Generation { get => Bitfield.Get(RawBits1, 0, 10); set => Bitfield.Set(ref RawBits1, value, 0, 10); }
 
-		public uint IsUsed { get => Bitfield.Get(RawBits1, 0, 1); set => Bitfield.Set(ref RawBits1, value, 0, 1); }
+		public uint IsUsed { get => Bitfield.Get(RawBits1, 10, 1); set => Bitfield.Set(ref RawBits1, value, 10, 1); }
 
 	}
 
@@ -96,7 +96,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Generation { get => Handle->Generation; set => Handle->Generation = value; }
+		public uint Generation { get => Handle->Generation; set => Handle->Generation = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

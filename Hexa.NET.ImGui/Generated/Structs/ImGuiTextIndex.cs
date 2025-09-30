@@ -26,7 +26,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImVector<int> LineOffsets;
+		public ImVector<int> Offsets;
 
 		/// <summary>
 		/// To be documented.
@@ -37,9 +37,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTextIndex(ImVector<int> lineOffsets = default, int endOffset = default)
+		public unsafe ImGuiTextIndex(ImVector<int> offsets = default, int endOffset = default)
 		{
-			LineOffsets = lineOffsets;
+			Offsets = offsets;
 			EndOffset = endOffset;
 		}
 
@@ -90,7 +90,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImVector<int> LineOffsets => ref Unsafe.AsRef<ImVector<int>>(&Handle->LineOffsets);
+		public ref ImVector<int> Offsets => ref Unsafe.AsRef<ImVector<int>>(&Handle->Offsets);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

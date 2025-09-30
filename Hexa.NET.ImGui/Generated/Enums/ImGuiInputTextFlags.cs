@@ -143,5 +143,10 @@ namespace Hexa.NET.ImGui
 		/// Callback on any edit. Note that InputText() already returns true on edit + you can always use IsItemEdited(). The callback is useful to manipulate the underlying buffer while focus is active.<br/>
 		/// </summary>
 		CallbackEdit = unchecked(8388608),
+
+		/// <summary>
+		/// InputTextMultine(): word-wrap lines that are too long.<br/>
+		/// </summary>
+		WordWrap = unchecked(16777216),
 	}
 }

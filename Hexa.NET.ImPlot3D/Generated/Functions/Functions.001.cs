@@ -3910,9 +3910,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxesLimitsNative([NativeName(NativeNameType.Param, "x_min")] [NativeName(NativeNameType.Type, "double")] double xMin, [NativeName(NativeNameType.Param, "x_max")] [NativeName(NativeNameType.Type, "double")] double xMax, [NativeName(NativeNameType.Param, "y_min")] [NativeName(NativeNameType.Type, "double")] double yMin, [NativeName(NativeNameType.Param, "y_max")] [NativeName(NativeNameType.Type, "double")] double yMax, [NativeName(NativeNameType.Param, "z_min")] [NativeName(NativeNameType.Type, "double")] double zMin, [NativeName(NativeNameType.Param, "z_max")] [NativeName(NativeNameType.Type, "double")] double zMax, [NativeName(NativeNameType.Param, "cond")] [NativeName(NativeNameType.Type, "ImPlot3DCond")] ImPlot3DCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, double, double, double, double, double, ImPlot3DCond, void>)funcTable[15])(xMin, xMax, yMin, yMax, zMin, zMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, double, double, ImPlot3DCond, void>)funcTable[18])(xMin, xMax, yMin, yMax, zMin, zMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<double, double, double, double, double, double, ImPlot3DCond, void>)funcTable[15])(xMin, xMax, yMin, yMax, zMin, zMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, double, double, ImPlot3DCond, void>)funcTable[18])(xMin, xMax, yMin, yMax, zMin, zMax, cond);
 			#endif
 		}
 
@@ -3945,9 +3945,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupBoxRotationNative([NativeName(NativeNameType.Param, "elevation")] [NativeName(NativeNameType.Type, "float")] float elevation, [NativeName(NativeNameType.Param, "azimuth")] [NativeName(NativeNameType.Type, "float")] float azimuth, [NativeName(NativeNameType.Param, "animate")] [NativeName(NativeNameType.Type, "bool")] byte animate, [NativeName(NativeNameType.Param, "cond")] [NativeName(NativeNameType.Type, "ImPlot3DCond")] ImPlot3DCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, byte, ImPlot3DCond, void>)funcTable[16])(elevation, azimuth, animate, cond);
+			((delegate* unmanaged[Cdecl]<float, float, byte, ImPlot3DCond, void>)funcTable[19])(elevation, azimuth, animate, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, byte, ImPlot3DCond, void>)funcTable[16])(elevation, azimuth, animate, cond);
+			((delegate* unmanaged[Cdecl]<float, float, byte, ImPlot3DCond, void>)funcTable[19])(elevation, azimuth, animate, cond);
 			#endif
 		}
 
@@ -4000,9 +4000,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupBoxRotationNative([NativeName(NativeNameType.Param, "rotation")] [NativeName(NativeNameType.Type, "ImPlot3DQuat")] ImPlot3DQuat rotation, [NativeName(NativeNameType.Param, "animate")] [NativeName(NativeNameType.Type, "bool")] byte animate, [NativeName(NativeNameType.Param, "cond")] [NativeName(NativeNameType.Type, "ImPlot3DCond")] ImPlot3DCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, byte, ImPlot3DCond, void>)funcTable[17])(rotation, animate, cond);
+			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, byte, ImPlot3DCond, void>)funcTable[20])(rotation, animate, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, byte, ImPlot3DCond, void>)funcTable[17])(rotation, animate, cond);
+			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, byte, ImPlot3DCond, void>)funcTable[20])(rotation, animate, cond);
 			#endif
 		}
 
@@ -4055,9 +4055,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupBoxInitialRotationNative([NativeName(NativeNameType.Param, "elevation")] [NativeName(NativeNameType.Type, "float")] float elevation, [NativeName(NativeNameType.Param, "azimuth")] [NativeName(NativeNameType.Type, "float")] float azimuth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[18])(elevation, azimuth);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[21])(elevation, azimuth);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[18])(elevation, azimuth);
+			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[21])(elevation, azimuth);
 			#endif
 		}
 
@@ -4080,9 +4080,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupBoxInitialRotationNative([NativeName(NativeNameType.Param, "rotation")] [NativeName(NativeNameType.Type, "ImPlot3DQuat")] ImPlot3DQuat rotation)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, void>)funcTable[19])(rotation);
+			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, void>)funcTable[22])(rotation);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, void>)funcTable[19])(rotation);
+			((delegate* unmanaged[Cdecl]<ImPlot3DQuat, void>)funcTable[22])(rotation);
 			#endif
 		}
 
@@ -4105,9 +4105,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupBoxScaleNative([NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, void>)funcTable[20])(x, y, z);
+			((delegate* unmanaged[Cdecl]<float, float, float, void>)funcTable[23])(x, y, z);
 			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, void>)funcTable[20])(x, y, z);
+			((delegate* unmanaged[Cdecl]<float, float, float, void>)funcTable[23])(x, y, z);
 			#endif
 		}
 
@@ -4130,9 +4130,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupLegendNative([NativeName(NativeNameType.Param, "location")] [NativeName(NativeNameType.Type, "ImPlot3DLocation")] ImPlot3DLocation location, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLegendFlags")] ImPlot3DLegendFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DLocation, ImPlot3DLegendFlags, void>)funcTable[21])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlot3DLocation, ImPlot3DLegendFlags, void>)funcTable[24])(location, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DLocation, ImPlot3DLegendFlags, void>)funcTable[21])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlot3DLocation, ImPlot3DLegendFlags, void>)funcTable[24])(location, flags);
 			#endif
 		}
 
@@ -4165,9 +4165,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const float*")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const float*")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const float*")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, float*, float*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[22])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, float*, float*, float*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[25])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[22])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[25])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 

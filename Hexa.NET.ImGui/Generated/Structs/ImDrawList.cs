@@ -7725,7 +7725,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer. For multi-threaded rendering, consider using `imgui_threaded_rendering` from https:github.comocornutimgui_club instead.<br/>
 		/// </summary>
 		public unsafe ImDrawList* CloneOutput()
 		{
@@ -14799,7 +14799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Create a clone of the CmdBufferIdxBufferVtxBuffer.<br/>
+		/// Create a clone of the CmdBufferIdxBufferVtxBuffer. For multi-threaded rendering, consider using `imgui_threaded_rendering` from https:github.comocornutimgui_club instead.<br/>
 		/// </summary>
 		public unsafe ImDrawListPtr CloneOutput()
 		{

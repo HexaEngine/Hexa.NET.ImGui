@@ -81,12 +81,27 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public int LineCount;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public float WrapWidth;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float CursorAnim;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public byte CursorFollow;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte CursorCenterY;
 
 		/// <summary>
 		/// To be documented.
@@ -106,6 +121,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public sbyte LastMoveDirectionLR;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public int ReloadSelectionStart;
 
 		/// <summary>
@@ -117,7 +137,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, ImGuiInputTextFlags flags = default, uint id = default, int textLen = default, byte* textSrc = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, bool wantReloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, ImGuiInputTextFlags flags = default, uint id = default, int textLen = default, byte* textSrc = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, int lineCount = default, float wrapWidth = default, float cursorAnim = default, bool cursorFollow = default, bool cursorCenterY = default, bool selectedAllMouseLock = default, bool edited = default, bool wantReloadUserBuf = default, sbyte lastMoveDirectionLr = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
 			Stb = stb;
@@ -130,11 +150,15 @@ namespace Hexa.NET.ImGui
 			CallbackTextBackup = callbackTextBackup;
 			BufCapacity = bufCapacity;
 			Scroll = scroll;
+			LineCount = lineCount;
+			WrapWidth = wrapWidth;
 			CursorAnim = cursorAnim;
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
+			CursorCenterY = cursorCenterY ? (byte)1 : (byte)0;
 			SelectedAllMouseLock = selectedAllMouseLock ? (byte)1 : (byte)0;
 			Edited = edited ? (byte)1 : (byte)0;
 			WantReloadUserBuf = wantReloadUserBuf ? (byte)1 : (byte)0;
+			LastMoveDirectionLR = lastMoveDirectionLr;
 			ReloadSelectionStart = reloadSelectionStart;
 			ReloadSelectionEnd = reloadSelectionEnd;
 		}
@@ -230,11 +254,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref int LineCount => ref Unsafe.AsRef<int>(&Handle->LineCount);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float WrapWidth => ref Unsafe.AsRef<float>(&Handle->WrapWidth);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref float CursorAnim => ref Unsafe.AsRef<float>(&Handle->CursorAnim);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref bool CursorFollow => ref Unsafe.AsRef<bool>(&Handle->CursorFollow);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref bool CursorCenterY => ref Unsafe.AsRef<bool>(&Handle->CursorCenterY);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -247,6 +283,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool WantReloadUserBuf => ref Unsafe.AsRef<bool>(&Handle->WantReloadUserBuf);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref sbyte LastMoveDirectionLR => ref Unsafe.AsRef<sbyte>(&Handle->LastMoveDirectionLR);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

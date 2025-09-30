@@ -14,8 +14,8 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.92.1</AssemblyVersion>
-		<PackageVersion>2.2.9.1-prerelease</PackageVersion>
-		<Description>A .NET wrapper for the ImPlot3D library. (0.3 WIP / commit c3af49c) (for ImGui 1.92.2b)</Description>
+		<PackageVersion>2.2.10-prerelease</PackageVersion>
+		<Description>A .NET wrapper for the ImPlot3D library. (0.3 WIP / commit c3af49c) (for ImGui 1.92.3)</Description>
 		<PackageTags>ImPlot3D UI Immidate GUI Plot 3D Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2025 Juna Meinhold</Copyright>

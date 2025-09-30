@@ -40,7 +40,7 @@ namespace Hexa.NET.ImGui
 		TryToPreserveState = unchecked(4),
 
 		/// <summary>
-		/// Activation requested by a tabbing request<br/>
+		/// Activation requested by a tabbing request (ImGuiNavMoveFlags_IsTabbing)<br/>
 		/// </summary>
 		FromTabbing = unchecked(8),
 
@@ -48,5 +48,10 @@ namespace Hexa.NET.ImGui
 		/// Activation requested by an item shortcut via SetNextItemShortcut() function.<br/>
 		/// </summary>
 		FromShortcut = unchecked(16),
+
+		/// <summary>
+		/// Activation requested by an api request (ImGuiNavMoveFlags_FocusApi)<br/>
+		/// </summary>
+		FromFocusApi = unchecked(32),
 	}
 }

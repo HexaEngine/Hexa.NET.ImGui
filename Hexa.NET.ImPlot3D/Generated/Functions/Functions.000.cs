@@ -27,9 +27,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static ImPlot3DContext* CreateContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DContext*>)funcTable[1])();
+			return ((delegate* unmanaged[Cdecl]<ImPlot3DContext*>)funcTable[4])();
 			#else
-			return (ImPlot3DContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1])();
+			return (ImPlot3DContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[4])();
 			#endif
 		}
 
@@ -53,9 +53,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void DestroyContextNative([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImPlot3DContext*")] ImPlot3DContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DContext*, void>)funcTable[2])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlot3DContext*, void>)funcTable[5])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[2])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[5])((nint)ctx);
 			#endif
 		}
 
@@ -101,9 +101,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static ImPlot3DContext* GetCurrentContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DContext*>)funcTable[3])();
+			return ((delegate* unmanaged[Cdecl]<ImPlot3DContext*>)funcTable[6])();
 			#else
-			return (ImPlot3DContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[3])();
+			return (ImPlot3DContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[6])();
 			#endif
 		}
 
@@ -127,9 +127,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetCurrentContextNative([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImPlot3DContext*")] ImPlot3DContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DContext*, void>)funcTable[4])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlot3DContext*, void>)funcTable[7])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[4])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[7])((nint)ctx);
 			#endif
 		}
 
@@ -165,9 +165,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static byte BeginPlotNative([NativeName(NativeNameType.Param, "title_id")] [NativeName(NativeNameType.Type, "const char*")] byte* titleId, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 size, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DFlags")] ImPlot3DFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlot3DFlags, byte>)funcTable[5])(titleId, size, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlot3DFlags, byte>)funcTable[8])(titleId, size, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlot3DFlags, byte>)funcTable[5])((nint)titleId, size, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlot3DFlags, byte>)funcTable[8])((nint)titleId, size, flags);
 			#endif
 		}
 
@@ -464,9 +464,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void EndPlotNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[6])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[9])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[6])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[9])();
 			#endif
 		}
 
@@ -489,9 +489,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "label")] [NativeName(NativeNameType.Type, "const char*")] byte* label, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DAxisFlags")] ImPlot3DAxisFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, byte*, ImPlot3DAxisFlags, void>)funcTable[7])(axis, label, flags);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, byte*, ImPlot3DAxisFlags, void>)funcTable[10])(axis, label, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, nint, ImPlot3DAxisFlags, void>)funcTable[7])(axis, (nint)label, flags);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, nint, ImPlot3DAxisFlags, void>)funcTable[10])(axis, (nint)label, flags);
 			#endif
 		}
 
@@ -658,9 +658,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisLimitsNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "v_min")] [NativeName(NativeNameType.Type, "double")] double vMin, [NativeName(NativeNameType.Param, "v_max")] [NativeName(NativeNameType.Type, "double")] double vMax, [NativeName(NativeNameType.Param, "cond")] [NativeName(NativeNameType.Type, "ImPlot3DCond")] ImPlot3DCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, ImPlot3DCond, void>)funcTable[8])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, ImPlot3DCond, void>)funcTable[11])(axis, vMin, vMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, ImPlot3DCond, void>)funcTable[8])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, ImPlot3DCond, void>)funcTable[11])(axis, vMin, vMax, cond);
 			#endif
 		}
 
@@ -693,9 +693,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisFormatNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "formatter")] [NativeName(NativeNameType.Type, "ImPlot3DFormatter")] ImPlot3DFormatter formatter, [NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "void*")] void* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, delegate*<float, byte*, int, void*, int>, void*, void>)funcTable[9])(axis, (delegate*<float, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, delegate*<float, byte*, int, void*, int>, void*, void>)funcTable[12])(axis, (delegate*<float, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, nint, nint, void>)funcTable[9])(axis, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, nint, nint, void>)funcTable[12])(axis, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
 			#endif
 		}
 
@@ -728,9 +728,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisTicksNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "values")] [NativeName(NativeNameType.Type, "const double*")] double* values, [NativeName(NativeNameType.Param, "n_ticks")] [NativeName(NativeNameType.Type, "int")] int nTicks, [NativeName(NativeNameType.Param, "labels")] [NativeName(NativeNameType.Type, "const const char*[-1]")] byte** labels, [NativeName(NativeNameType.Param, "keep_default")] [NativeName(NativeNameType.Type, "bool")] byte keepDefault)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double*, int, byte**, byte, void>)funcTable[10])(axis, values, nTicks, labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double*, int, byte**, byte, void>)funcTable[13])(axis, values, nTicks, labels, keepDefault);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, nint, int, nint, byte, void>)funcTable[10])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, nint, int, nint, byte, void>)funcTable[13])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
 			#endif
 		}
 
@@ -985,9 +985,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisTicksNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "v_min")] [NativeName(NativeNameType.Type, "double")] double vMin, [NativeName(NativeNameType.Param, "v_max")] [NativeName(NativeNameType.Type, "double")] double vMax, [NativeName(NativeNameType.Param, "n_ticks")] [NativeName(NativeNameType.Type, "int")] int nTicks, [NativeName(NativeNameType.Param, "labels")] [NativeName(NativeNameType.Type, "const const char*[-1]")] byte** labels, [NativeName(NativeNameType.Param, "keep_default")] [NativeName(NativeNameType.Type, "bool")] byte keepDefault)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, int, byte**, byte, void>)funcTable[11])(axis, vMin, vMax, nTicks, labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, int, byte**, byte, void>)funcTable[14])(axis, vMin, vMax, nTicks, labels, keepDefault);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, int, nint, byte, void>)funcTable[11])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, int, nint, byte, void>)funcTable[14])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
 			#endif
 		}
 
@@ -1112,9 +1112,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisLimitsConstraintsNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "v_min")] [NativeName(NativeNameType.Type, "double")] double vMin, [NativeName(NativeNameType.Param, "v_max")] [NativeName(NativeNameType.Type, "double")] double vMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[12])(axis, vMin, vMax);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[15])(axis, vMin, vMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[12])(axis, vMin, vMax);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[15])(axis, vMin, vMax);
 			#endif
 		}
 
@@ -1137,9 +1137,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxisZoomConstraintsNative([NativeName(NativeNameType.Param, "axis")] [NativeName(NativeNameType.Type, "ImAxis3D")] ImAxis3D axis, [NativeName(NativeNameType.Param, "z_min")] [NativeName(NativeNameType.Type, "double")] double zMin, [NativeName(NativeNameType.Param, "z_max")] [NativeName(NativeNameType.Type, "double")] double zMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[13])(axis, zMin, zMax);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[16])(axis, zMin, zMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[13])(axis, zMin, zMax);
+			((delegate* unmanaged[Cdecl]<ImAxis3D, double, double, void>)funcTable[16])(axis, zMin, zMax);
 			#endif
 		}
 
@@ -1162,9 +1162,9 @@ namespace Hexa.NET.ImPlot3D
 		internal static void SetupAxesNative([NativeName(NativeNameType.Param, "x_label")] [NativeName(NativeNameType.Type, "const char*")] byte* xLabel, [NativeName(NativeNameType.Param, "y_label")] [NativeName(NativeNameType.Type, "const char*")] byte* yLabel, [NativeName(NativeNameType.Param, "z_label")] [NativeName(NativeNameType.Type, "const char*")] byte* zLabel, [NativeName(NativeNameType.Param, "x_flags")] [NativeName(NativeNameType.Type, "ImPlot3DAxisFlags")] ImPlot3DAxisFlags xFlags, [NativeName(NativeNameType.Param, "y_flags")] [NativeName(NativeNameType.Type, "ImPlot3DAxisFlags")] ImPlot3DAxisFlags yFlags, [NativeName(NativeNameType.Param, "z_flags")] [NativeName(NativeNameType.Type, "ImPlot3DAxisFlags")] ImPlot3DAxisFlags zFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, ImPlot3DAxisFlags, ImPlot3DAxisFlags, ImPlot3DAxisFlags, void>)funcTable[14])(xLabel, yLabel, zLabel, xFlags, yFlags, zFlags);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, ImPlot3DAxisFlags, ImPlot3DAxisFlags, ImPlot3DAxisFlags, void>)funcTable[17])(xLabel, yLabel, zLabel, xFlags, yFlags, zFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, ImPlot3DAxisFlags, ImPlot3DAxisFlags, ImPlot3DAxisFlags, void>)funcTable[14])((nint)xLabel, (nint)yLabel, (nint)zLabel, xFlags, yFlags, zFlags);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, ImPlot3DAxisFlags, ImPlot3DAxisFlags, ImPlot3DAxisFlags, void>)funcTable[17])((nint)xLabel, (nint)yLabel, (nint)zLabel, xFlags, yFlags, zFlags);
 			#endif
 		}
 

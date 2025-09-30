@@ -53,5 +53,10 @@ namespace Hexa.NET.ImGui
 		/// Make the item be displayed as if it is hovered<br/>
 		/// </summary>
 		Highlight = unchecked(32),
+
+		/// <summary>
+		/// Auto-select when moved into, unless Ctrl is held. Automatic when in a BeginMultiSelect() block.<br/>
+		/// </summary>
+		SelectOnNav = unchecked(64),
 	}
 }
