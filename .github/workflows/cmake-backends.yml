@@ -31,6 +31,8 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+      pre-deps-steps: "bash scripts/downgrade_cmake.sh"
+      checkout-self: true
 
   build-sdl2:
     name: Build (SDL2)
@@ -58,6 +60,8 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+      pre-deps-steps: "bash scripts/downgrade_cmake.sh"
+      checkout-self: true
 
   build-sdl3:
     name: Build (SDL3)
@@ -84,6 +88,7 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+      pre-deps-steps: "bash scripts/downgrade_cmake.sh"
 
   build-glfw:
     name: Build (GLFW)
@@ -111,6 +116,8 @@ jobs:
       setup-vulkan: true
       setup-vulkan-linux: false
       setup-vulkan-windows: false
+      pre-deps-steps: "bash scripts/downgrade_cmake.sh"
+      checkout-self: true
 
   create-pr:
     needs: [build-base, build-sdl2, build-sdl3, build-glfw]
