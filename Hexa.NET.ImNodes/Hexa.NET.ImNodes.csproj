@@ -12,8 +12,8 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.92.1</AssemblyVersion>
-		<PackageVersion>2.2.9-prerelease</PackageVersion>
+		<AssemblyVersion>1.92.2</AssemblyVersion>
+		<PackageVersion>2.2.9</PackageVersion>
 		<Description>A .NET wrapper for the ImNodes library. (0.5.0 / commit b2ec254) (for ImGui 1.92.2b)</Description>
 		<PackageTags>ImNodes UI Immidate GUI Nodes Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
