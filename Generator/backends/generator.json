@@ -10,6 +10,7 @@
     "VkPipelineRenderingCreateInfoKHR": "VkPipelineRenderingCreateInfo",
     "VkStructureType": "uint",
     "ImGui_ImplVulkanH_Frame": "ImGuiImplVulkanHFrame",
-    "ImGui_ImplVulkanH_FrameSemaphores": "ImGuiImplVulkanHFrameSemaphores"
+    "ImGui_ImplVulkanH_FrameSemaphores": "ImGuiImplVulkanHFrameSemaphores",
+    "VkImageUsageFlagBits": "VkImageUsageFlags"
   }
 }

@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.92.1</AssemblyVersion>
-		<PackageVersion>2.2.10-prerelease</PackageVersion>
-		<Description>A .NET wrapper for the ImPlot library. (0.17 / commit 3da8bd3) (for ImGui 1.92.3)</Description>
+		<AssemblyVersion>1.92.3</AssemblyVersion>
+		<PackageVersion>2.2.11-prerelease</PackageVersion>
+		<Description>A .NET wrapper for the ImPlot library. (0.17 / commit 3da8bd3) (for ImGui 1.92.4)</Description>
 		<PackageTags>ImPlot UI Immidate GUI Plot Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>

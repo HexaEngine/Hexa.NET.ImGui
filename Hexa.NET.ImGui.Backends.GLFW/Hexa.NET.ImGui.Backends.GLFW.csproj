@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.0.12</AssemblyVersion>
-		<PackageVersion>1.0.19-prerelease</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.92.3) library backend GLFW.</Description>
+		<AssemblyVersion>1.0.19</AssemblyVersion>
+		<PackageVersion>1.0.20-prerelease</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.92.4) library backend GLFW.</Description>
 		<PackageTags>ImGui Backends GLFW UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
