@@ -123,9 +123,9 @@ jobs:
     needs: [build-base, build-sdl2, build-sdl3, build-glfw]
     uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
     with:
-        lib-name: "ImGuiImpl"
-        lib-version: "v1.92.3"
-        pr-base-branch: "main"
-        pr-reviewers: JunaMeinhold
-        pr-branch: backends-artifacts
-        pr-manifest-path: imgui_impl
+      lib-name: "ImGuiImpl"
+      lib-version: "v1.92.4"
+      pr-base-branch: "main"
+      pr-reviewers: JunaMeinhold
+      pr-branch: backends-artifacts
+      pr-manifest-path: imgui_impl

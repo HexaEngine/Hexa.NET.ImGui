@@ -2743,7 +2743,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetTexIDNative(ImTextureData* self, ImTextureID texId)
@@ -2756,7 +2756,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTexID(ImTextureDataPtr self, ImTextureID texId)
 		{
@@ -2764,7 +2764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetTexID(ref ImTextureData self, ImTextureID texId)
 		{
@@ -2775,7 +2775,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after honoring a request. Never modify Status directly!<br/>
+		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetStatusNative(ImTextureData* self, ImTextureStatus status)
@@ -2788,7 +2788,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after honoring a request. Never modify Status directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetStatus(ImTextureDataPtr self, ImTextureStatus status)
 		{
@@ -2796,7 +2796,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after honoring a request. Never modify Status directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public static void SetStatus(ref ImTextureData self, ImTextureStatus status)
 		{

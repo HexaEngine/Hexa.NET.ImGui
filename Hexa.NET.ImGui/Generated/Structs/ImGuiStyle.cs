@@ -390,6 +390,7 @@ namespace Hexa.NET.ImGui
 		public Vector4 Colors_57;
 		public Vector4 Colors_58;
 		public Vector4 Colors_59;
+		public Vector4 Colors_60;
 
 		/// <summary>
 		/// To be documented.
@@ -555,6 +556,7 @@ namespace Hexa.NET.ImGui
 				Colors_57 = colors[57];
 				Colors_58 = colors[58];
 				Colors_59 = colors[59];
+				Colors_60 = colors[60];
 			}
 			HoverStationaryDelay = hoverStationaryDelay;
 			HoverDelayShort = hoverDelayShort;
@@ -693,6 +695,7 @@ namespace Hexa.NET.ImGui
 				Colors_57 = colors[57];
 				Colors_58 = colors[58];
 				Colors_59 = colors[59];
+				Colors_60 = colors[60];
 			}
 			HoverStationaryDelay = hoverStationaryDelay;
 			HoverDelayShort = hoverDelayShort;
@@ -714,7 +717,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (Vector4* p = &this.Colors_0)
 				{
-					return new Span<Vector4>(p, 60);
+					return new Span<Vector4>(p, 61);
 				}
 			}
 		}
@@ -1035,7 +1038,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<Vector4>(&Handle->Colors_0, 60);
+				return new Span<Vector4>(&Handle->Colors_0, 61);
 			}
 		}
 		/// <summary>

@@ -266,6 +266,28 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
+		/// Clear all Platform_XXX fields. Typically called on Platform Backend shutdown.<br/>
+		/// </summary>
+		public unsafe void ClearPlatformHandlers()
+		{
+			fixed (ImGuiPlatformIO* @this = &this)
+			{
+				ImGui.ClearPlatformHandlersNative(@this);
+			}
+		}
+
+		/// <summary>
+		/// Clear all Renderer_XXX fields. Typically called on Renderer Backend shutdown.<br/>
+		/// </summary>
+		public unsafe void ClearRendererHandlers()
+		{
+			fixed (ImGuiPlatformIO* @this = &this)
+			{
+				ImGui.ClearRendererHandlersNative(@this);
+			}
+		}
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public unsafe void Destroy()
@@ -475,6 +497,22 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImVector<ImGuiViewportPtr> Viewports => ref Unsafe.AsRef<ImVector<ImGuiViewportPtr>>(&Handle->Viewports);
+		/// <summary>
+		/// Clear all Platform_XXX fields. Typically called on Platform Backend shutdown.<br/>
+		/// </summary>
+		public unsafe void ClearPlatformHandlers()
+		{
+			ImGui.ClearPlatformHandlersNative(Handle);
+		}
+
+		/// <summary>
+		/// Clear all Renderer_XXX fields. Typically called on Renderer Backend shutdown.<br/>
+		/// </summary>
+		public unsafe void ClearRendererHandlers()
+		{
+			ImGui.ClearRendererHandlersNative(Handle);
+		}
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>

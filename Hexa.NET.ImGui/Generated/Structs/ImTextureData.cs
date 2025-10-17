@@ -227,7 +227,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after honoring a request. Never modify Status directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetStatus(ImTextureStatus status)
 		{
@@ -238,7 +238,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetTexID(ImTextureID texId)
 		{
@@ -425,7 +425,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after honoring a request. Never modify Status directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetStatus(ImTextureStatus status)
 		{
@@ -433,7 +433,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call after creating or destroying the texture. Never modify TexID directly!<br/>
+		/// To be documented.
 		/// </summary>
 		public unsafe void SetTexID(ImTextureID texId)
 		{

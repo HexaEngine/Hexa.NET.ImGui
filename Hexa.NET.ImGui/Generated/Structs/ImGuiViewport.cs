@@ -76,6 +76,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe ImGuiViewport* ParentViewport;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe ImDrawData* DrawData;
 
 		/// <summary>
@@ -122,7 +127,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImDrawData* drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
+		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImGuiViewport* parentViewport = default, ImDrawData* drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -133,6 +138,7 @@ namespace Hexa.NET.ImGui
 			WorkSize = workSize;
 			DpiScale = dpiScale;
 			ParentViewportId = parentViewportId;
+			ParentViewport = parentViewport;
 			DrawData = drawData;
 			RendererUserData = rendererUserData;
 			PlatformUserData = platformUserData;
@@ -235,6 +241,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint ParentViewportId => ref Unsafe.AsRef<uint>(&Handle->ParentViewportId);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImGuiViewportPtr ParentViewport => ref Unsafe.AsRef<ImGuiViewportPtr>(&Handle->ParentViewport);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

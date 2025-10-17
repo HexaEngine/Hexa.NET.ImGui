@@ -35,12 +35,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte RoutingCurrScore;
+		public ushort RoutingCurrScore;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte RoutingNextScore;
+		public ushort RoutingNextScore;
 
 		/// <summary>
 		/// To be documented.
@@ -56,7 +56,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiKeyRoutingData(short nextEntryIndex = default, ushort mods = default, byte routingCurrScore = default, byte routingNextScore = default, uint routingCurr = default, uint routingNext = default)
+		public unsafe ImGuiKeyRoutingData(short nextEntryIndex = default, ushort mods = default, ushort routingCurrScore = default, ushort routingNextScore = default, uint routingCurr = default, uint routingNext = default)
 		{
 			NextEntryIndex = nextEntryIndex;
 			Mods = mods;
@@ -121,11 +121,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte RoutingCurrScore => ref Unsafe.AsRef<byte>(&Handle->RoutingCurrScore);
+		public ref ushort RoutingCurrScore => ref Unsafe.AsRef<ushort>(&Handle->RoutingCurrScore);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte RoutingNextScore => ref Unsafe.AsRef<byte>(&Handle->RoutingNextScore);
+		public ref ushort RoutingNextScore => ref Unsafe.AsRef<ushort>(&Handle->RoutingNextScore);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

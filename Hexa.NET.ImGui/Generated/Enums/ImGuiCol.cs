@@ -300,28 +300,33 @@ namespace Hexa.NET.ImGui
 		DragDropTarget = unchecked(55),
 
 		/// <summary>
+		/// Unsaved Document marker (in window title and tabs)<br/>
+		/// </summary>
+		UnsavedMarker = unchecked(56),
+
+		/// <summary>
 		/// Color of keyboardgamepad navigation cursorrectangle, when visible<br/>
 		/// </summary>
-		NavCursor = unchecked(56),
+		NavCursor = unchecked(57),
 
 		/// <summary>
 		/// Highlight window when using CTRL+TAB<br/>
 		/// </summary>
-		NavWindowingHighlight = unchecked(57),
+		NavWindowingHighlight = unchecked(58),
 
 		/// <summary>
 		/// Darkencolorize entire screen behind the CTRL+TAB window list, when active<br/>
 		/// </summary>
-		NavWindowingDimBg = unchecked(58),
+		NavWindowingDimBg = unchecked(59),
 
 		/// <summary>
 		/// Darkencolorize entire screen behind a modal window, when one is active<br/>
 		/// </summary>
-		ModalWindowDimBg = unchecked(59),
+		ModalWindowDimBg = unchecked(60),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(60),
+		Count = unchecked(61),
 	}
 }
