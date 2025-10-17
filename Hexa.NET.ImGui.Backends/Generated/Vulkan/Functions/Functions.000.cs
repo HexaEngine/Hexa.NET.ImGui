@@ -254,55 +254,55 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// Helpers<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void HCreateOrResizeWindowNative(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindow* wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount)
+		internal static void HCreateOrResizeWindowNative(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindow* wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, void>)funcTable[53])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, VkImageUsageFlags, void>)funcTable[53])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount, imageUsage);
 			#else
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, void>)funcTable[53])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, VkImageUsageFlags, void>)funcTable[53])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount, imageUsage);
 			#endif
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
 		{
-			HCreateOrResizeWindowNative(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount);
+			HCreateOrResizeWindowNative(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount, imageUsage);
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
 		{
 			fixed (ImGuiImplVulkanHWindow* pwd = &wd)
 			{
-				HCreateOrResizeWindowNative(instance, physicalDevice, device, (ImGuiImplVulkanHWindow*)pwd, queueFamily, allocator, w, h, minImageCount);
+				HCreateOrResizeWindowNative(instance, physicalDevice, device, (ImGuiImplVulkanHWindow*)pwd, queueFamily, allocator, w, h, minImageCount, imageUsage);
 			}
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, ref VkAllocationCallbacks allocator, int w, int h, uint minImageCount)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, ref VkAllocationCallbacks allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
 		{
 			fixed (VkAllocationCallbacks* pallocator = &allocator)
 			{
-				HCreateOrResizeWindowNative(instance, physicalDevice, device, wd, queueFamily, (VkAllocationCallbacks*)pallocator, w, h, minImageCount);
+				HCreateOrResizeWindowNative(instance, physicalDevice, device, wd, queueFamily, (VkAllocationCallbacks*)pallocator, w, h, minImageCount, imageUsage);
 			}
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, ref VkAllocationCallbacks allocator, int w, int h, uint minImageCount)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, ref VkAllocationCallbacks allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
 		{
 			fixed (ImGuiImplVulkanHWindow* pwd = &wd)
 			{
 				fixed (VkAllocationCallbacks* pallocator = &allocator)
 				{
-					HCreateOrResizeWindowNative(instance, physicalDevice, device, (ImGuiImplVulkanHWindow*)pwd, queueFamily, (VkAllocationCallbacks*)pallocator, w, h, minImageCount);
+					HCreateOrResizeWindowNative(instance, physicalDevice, device, (ImGuiImplVulkanHWindow*)pwd, queueFamily, (VkAllocationCallbacks*)pallocator, w, h, minImageCount, imageUsage);
 				}
 			}
 		}

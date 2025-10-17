@@ -30,7 +30,7 @@ typedef struct VkPipelineLayout_T* VkPipelineLayout;
 #define VKAPI_CALL
 #define VKAPI_PTR VKAPI_CALL
 
-typedef void (VKAPI_PTR *PFN_vkVoidFunction)(void);
+typedef void (VKAPI_PTR* PFN_vkVoidFunction)(void);
 
 // Simplified Vulkan types
 typedef int VkResult;
@@ -45,6 +45,9 @@ typedef enum VkStructureType;
 // Format and color space types
 typedef unsigned int VkFormat;
 typedef unsigned int VkColorSpaceKHR;
+
+typedef uint32_t VkFlags;
+typedef VkFlags VkImageUsageFlags;
 
 // Pipeline and layout types
 typedef struct VkPipeline_T* VkPipeline;
@@ -183,7 +186,7 @@ struct ImGui_ImplVulkanH_Window;
 #endif
 
 // Helpers
-CIMGUI_API void                 CImGui_ImplVulkanH_CreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physical_device, VkDevice device, ImGui_ImplVulkanH_Window* wd, uint32_t queue_family, const VkAllocationCallbacks* allocator, int w, int h, uint32_t min_image_count);
+CIMGUI_API void                 CImGui_ImplVulkanH_CreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physical_device, VkDevice device, ImGui_ImplVulkanH_Window* wd, uint32_t queue_family, const VkAllocationCallbacks* allocator, int w, int h, uint32_t min_image_count, VkImageUsageFlags image_usage);
 CIMGUI_API void                 CImGui_ImplVulkanH_DestroyWindow(VkInstance instance, VkDevice device, ImGui_ImplVulkanH_Window* wd, const VkAllocationCallbacks* allocator);
 CIMGUI_API VkSurfaceFormatKHR   CImGui_ImplVulkanH_SelectSurfaceFormat(VkPhysicalDevice physical_device, VkSurfaceKHR surface, const VkFormat* request_formats, int request_formats_count, VkColorSpaceKHR request_color_space);
 CIMGUI_API VkPresentModeKHR     CImGui_ImplVulkanH_SelectPresentMode(VkPhysicalDevice physical_device, VkSurfaceKHR surface, const VkPresentModeKHR* request_modes, int request_modes_count);
