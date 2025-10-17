@@ -99,6 +99,8 @@ while (GLFW.WindowShouldClose(window) == 0)
     ImGuiImplGLFW.NewFrame();
     ImGui.NewFrame();
 
+    ImGui.ShowDemoWindow();
+
     ImGui.Render();
 
     GLFW.MakeContextCurrent(window);
