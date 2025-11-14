@@ -8,7 +8,7 @@ jobs:
     with:
       lib-name: cimgui
       repo: cimgui/cimgui
-      repo-tag: conv2
+      repo-tag: conv3
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       use-vcpkg: true
       vcpkg-packages: freetype
