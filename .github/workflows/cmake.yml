@@ -7,8 +7,8 @@ jobs:
     uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
     with:
       lib-name: cimgui
-      repo: JunaMeinhold/cimgui
-      repo-tag: docking_inter
+      repo: cimgui/cimgui
+      repo-tag: conv2
       cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
       use-vcpkg: true
       vcpkg-packages: freetype
@@ -112,7 +112,7 @@ jobs:
     with:
       lib-name: "ImGui"
       lib-version: "v1.92.4"
-      pr-base-branch: "main"
+      pr-base-branch: "arm-abi-patch"
       pr-reviewers: JunaMeinhold
       pr-branch: imgui-artifacts
       pr-manifest-path: imgui
