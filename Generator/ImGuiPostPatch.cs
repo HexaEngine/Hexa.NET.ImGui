@@ -27,7 +27,7 @@
             }
 
             Generate(metadata, CImGuiHeader, CImGuiInternalsConfig, ImGuiInternalsOutputPath, InternalsGenerationType.OnlyInternals, out var internalsMetadata);
-            metadata.Merge(internalsMetadata, true);
+            metadata.Merge(internalsMetadata, new HexaGen.Metadata.MergeOptions() { MergeFunctionTable = true });
             File.Delete(Path.Combine(ImGuiOutputPath, "FunctionTable.cs")); // Delete base.
             File.Delete(Path.Combine(ImGuiInternalsOutputPath, "FunctionTable.cs")); // Delete intermediate.
 

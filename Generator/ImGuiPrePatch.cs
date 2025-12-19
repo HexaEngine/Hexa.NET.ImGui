@@ -1,13 +1,12 @@
 ﻿namespace Generator
 {
-    using CppAst;
     using HexaGen;
     using HexaGen.Patching;
     using System.Collections.Generic;
 
     public class ImGuiPrePatch : PrePatch
     {
-        public override void Apply(PatchContext context, CsCodeGeneratorConfig config, List<string> files, CppCompilation compilation)
+        public override void Apply(PatchContext context, CsCodeGeneratorConfig config, List<string> files, ParseResult result)
         {
             if (config.LibName != "cimgui")
             {

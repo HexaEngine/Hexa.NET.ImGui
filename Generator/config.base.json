@@ -1,6 +1,6 @@
 {
   "Usings": [ "System.Numerics" ],
-  "Defines": [ "CIMGUI_VARGS0=1" ],
+  "Defines": [ "CIMGUI_VARGS0=1", "CIMGUI_DEFINE_ENUMS_AND_STRUCTS=1" ],
   "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
@@ -80,6 +80,8 @@
     "ImGuiSelectionUserData": "long",
     "ImStbTexteditState": "STBTexteditState",
     "stbrp_node_im": "StbrpNode",
-    "va_list": "nuint"
+    "va_list": "nuint",
+    "ImTextureID": "ImTextureID",
+    "ImFileHandle": "ImFileHandle"
   }
 }

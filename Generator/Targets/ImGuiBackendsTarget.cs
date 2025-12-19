@@ -126,7 +126,7 @@
                 .GetMetadata(out metadata)
                 .GetConfig(out var config);
 
-            lib?.Merge(metadata, true);
+            lib?.Merge(metadata, new() { MergeFunctionTable = true });
 
             string destPath = Path.Combine(originalOutput, "FunctionTable.cs");
             File.Move(Path.Combine(output, "FunctionTable.cs"), destPath, true);

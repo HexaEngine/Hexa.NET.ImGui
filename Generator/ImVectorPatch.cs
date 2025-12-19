@@ -1,15 +1,15 @@
 ﻿namespace Generator
 {
-    using CppAst;
     using HexaGen;
+    using HexaGen.CppAst.Model.Declarations;
     using HexaGen.Patching;
     using System.Collections.Generic;
 
     public class ImVectorPatch : PrePatch
     {
-        public override void Apply(PatchContext context, CsCodeGeneratorConfig settings, List<string> files, CppCompilation compilation)
+        public override void Apply(PatchContext context, CsCodeGeneratorConfig settings, List<string> files, ParseResult result)
         {
-            base.Apply(context, settings, files, compilation);
+            base.Apply(context, settings, files, result);
         }
 
         protected override void PatchClass(CsCodeGeneratorConfig settings, CppClass cppClass)

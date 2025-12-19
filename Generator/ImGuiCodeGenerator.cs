@@ -1,11 +1,11 @@
 ﻿namespace Generator
 {
-    using CppAst;
     using HexaGen;
-    using HexaGen.Batteries.Legacy.Steps;
     using HexaGen.Core.CSharp;
+    using HexaGen.CppAst.Model.Metadata;
     using HexaGen.FunctionGeneration;
     using HexaGen.FunctionGeneration.ParameterWriters;
+    using HexaGen.GenerationSteps;
     using System.Collections.Generic;
 
     public class ImGuiCodeGenerator : CsCodeGenerator
@@ -28,8 +28,8 @@
             config.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
             LogLevel = HexaGen.Core.Logging.LogSeverity.Error;
 
-            Environment.SetEnvironmentVariable("VCINSTALLDIR", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532");
-            Environment.SetEnvironmentVariable("VCToolsInstallDir", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532\");
+            //Environment.SetEnvironmentVariable("VCINSTALLDIR", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532");
+            //Environment.SetEnvironmentVariable("VCToolsInstallDir", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532\");
         }
 
         public override bool GenerateCore(CppCompilation compilation, List<string> headerFiles, string outputPath, List<string>? allowedHeaders = null)
