@@ -23,11 +23,7 @@
         protected override void OnPostConfigure(CsCodeGeneratorConfig config)
         {
             config.LogLevel = HexaGen.Core.Logging.LogSeverity.Error;
-            config.Defines.Add("IMGUI_USE_WCHAR32");
-            config.Defines.Add("IMGUI_ENABLE_FREETYPE");
-            config.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
             LogLevel = HexaGen.Core.Logging.LogSeverity.Error;
-
             //Environment.SetEnvironmentVariable("VCINSTALLDIR", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532");
             //Environment.SetEnvironmentVariable("VCToolsInstallDir", @"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.36.32532\");
         }

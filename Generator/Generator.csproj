@@ -11,7 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen" Version="1.1.22" />
+		<PackageReference Include="HexaGen" Version="1.1.22.1" />
 		<PackageReference Include="HexaGen.BuildSystems" Version="0.0.1-alpha" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
 	</ItemGroup>

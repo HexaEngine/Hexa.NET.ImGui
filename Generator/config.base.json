@@ -1,6 +1,6 @@
 {
   "Usings": [ "System.Numerics" ],
-  "Defines": [ "CIMGUI_VARGS0=1", "CIMGUI_DEFINE_ENUMS_AND_STRUCTS=1" ],
+  "Defines": [ "CIMGUI_VARGS0=1", "IMGUI_USE_WCHAR32=1", "IMGUI_ENABLE_FREETYPE=1", "CIMGUI_DEFINE_ENUMS_AND_STRUCTS=1" ],
   "ImportType": "FunctionTable",
   "EnableExperimentalOptions": true,
   "GenerateConstructorsForStructs": true,
