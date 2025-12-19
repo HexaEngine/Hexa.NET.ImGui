@@ -22,14 +22,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ref byte format)
+		public static void PlotErrorBars(in byte labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* pformat = &format)
+				fixed (short* pneg = &neg)
 				{
-					byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-					return ret != 0;
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+					}
 				}
 			}
 		}
@@ -37,14 +39,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
+		public static void PlotErrorBars(in byte labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* pformat = format)
+				fixed (short* pneg = &neg)
 				{
-					byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, (byte*)pformat, cmap);
-					return ret != 0;
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+					}
 				}
 			}
 		}
@@ -52,14 +56,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ReadOnlySpan<byte> format)
+		public static void PlotErrorBars(in byte labelId, short* xs, short* ys, in short neg, in short pos, int count)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* pformat = format)
+				fixed (short* pneg = &neg)
 				{
-					byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-					return ret != 0;
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
 				}
 			}
 		}
@@ -67,151 +73,2806 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static void PlotErrorBars(in byte labelId, short* xs, short* ys, in short neg, in short pos, int count, int offset)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
+				fixed (short* pneg = &neg)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, short* ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, short* ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pneg = &neg)
+			{
+				fixed (short* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, ys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						Utils.Free(pStr0);
 					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, pStr0, cmap);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pneg = &neg)
+			{
+				fixed (short* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pneg = &neg)
+			{
+				fixed (short* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, short* ys, in short neg, in short pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pneg = &neg)
+			{
+				fixed (short* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, short* ys, in short neg, in short pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pneg = &neg)
+			{
+				fixed (short* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pneg = &neg)
+			{
+				fixed (short* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, short* ys, in short neg, in short pos, int count)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, short* ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, short* ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, short* ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, short* ys, in short neg, in short pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, short* ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, (short*)pxs, ys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, short* xs, in short ys, in short neg, in short pos, int count)
+		{
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, in short ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, in short ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, in short ys, in short neg, in short pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, short* xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				fixed (short* pneg = &neg)
+				{
+					fixed (short* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, in short ys, in short neg, in short pos, int count)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, in short ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, in short ys, in short neg, in short pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						fixed (short* pneg = &neg)
+						{
+							fixed (short* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, stride);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, offset, (int)(sizeof(short)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, in short ys, in short neg, in short pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, flags, (int)(0), (int)(sizeof(short)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, in short ys, in short neg, in short pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(short)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(short)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in short xs, in short ys, in short neg, in short pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					fixed (short* pneg = &neg)
+					{
+						fixed (short* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (short*)pxs, (short*)pys, (short*)pneg, (short*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PlotErrorBarsNative(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, ushort*, ushort*, int, ImPlotErrorBarsFlags, int, int, void>)funcTable[194])(labelId, xs, ys, neg, pos, count, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, int, ImPlotErrorBarsFlags, int, int, void>)funcTable[194])((nint)labelId, (nint)xs, (nint)ys, (nint)neg, (nint)pos, count, flags, offset, stride);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (ushort*)pxs, ys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (ushort*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (ushort*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, neg, pos, count, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, string format)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (Vector4* poutput = &output)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, cmap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, float* t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, cmap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, float* t, ref Vector4 output, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -221,51 +2882,29 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+			fixed (ushort* pxs = &xs)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, pStr1, cmap);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, string format)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -275,54 +2914,605 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+			fixed (ushort* pxs = &xs)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, pStr1, (ImPlotColormap)(-1));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset)
 		{
-			fixed (byte* plabel = &label)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (Vector4* poutput = &output)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (byte* pformat = format)
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (ushort*)pys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(labelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(pStr0, xs, (ushort*)pys, neg, pos, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(pStr0, xs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(pStr0, xs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(pStr0, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(pStr0, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotErrorBarsNative(pStr0, xs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, cmap);
-						return ret != 0;
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, stride);
 					}
 				}
 			}
@@ -331,16 +3521,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ReadOnlySpan<byte> format)
+		public static void PlotErrorBars(in byte labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (ushort* pxs = &xs)
 				{
-					fixed (byte* pformat = format)
+					fixed (ushort* pys = &ys)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						return ret != 0;
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
 					}
 				}
 			}
@@ -349,35 +3538,204 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static void PlotErrorBars(in byte labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (ushort* pxs = &xs)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
+					fixed (ushort* pys = &ys)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
 					}
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, pStr0, cmap);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -385,35 +3743,34 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, string format)
+		public static void PlotErrorBars(string labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (byte* plabel = &label)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (Vector4* poutput = &output)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, offset, (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -421,71 +3778,34 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, float* t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
+		public static void PlotErrorBars(string labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (byte* plabel = label)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (Vector4* poutput = &output)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, cmap);
-						return ret != 0;
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, float* t, ref Vector4 output, ref byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (Vector4* poutput = &output)
+				else
 				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						return ret != 0;
-					}
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, float* t, ref Vector4 output, string format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = label)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (ushort* pys = &ys)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, pStr0, cmap);
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, (ushort*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -493,35 +3813,34 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, float* t, ref Vector4 output, string format)
+		public static void PlotErrorBars(string labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count)
 		{
-			fixed (byte* plabel = label)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (Vector4* poutput = &output)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -529,13 +3848,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
+		public static void PlotErrorBars(string labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -545,19 +3864,18 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (byte* pformat = &format)
+				fixed (ushort* pys = &ys)
 				{
-					byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, (byte*)pformat, cmap);
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -565,13 +3883,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, ref byte format)
+		public static void PlotErrorBars(string labelId, in ushort xs, in ushort ys, ushort* neg, ushort* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -581,19 +3899,18 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (byte* pformat = &format)
+				fixed (ushort* pys = &ys)
 				{
-					byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, (ushort*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -601,13 +3918,247 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -617,19 +4168,498 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+			fixed (ushort* pneg = &neg)
 			{
-				fixed (byte* pformat = format)
+				PlotErrorBarsNative(pStr0, xs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, (byte*)pformat, cmap);
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, ushort* xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -637,13 +4667,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, ReadOnlySpan<byte> format)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -653,19 +4683,18 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (byte* pformat = format)
+				fixed (ushort* pneg = &neg)
 				{
-					byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -673,107 +4702,34 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (float* pt = &t)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (Vector4* poutput = &output)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-						return ret != 0;
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, ref byte format)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
+				else
 				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						return ret != 0;
-					}
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (ushort* pneg = &neg)
 				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, string format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, pStr0, cmap);
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -781,35 +4737,34 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, string format)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count)
 		{
-			fixed (float* pt = &t)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (Vector4* poutput = &output)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (format != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(format);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -817,97 +4772,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						fixed (byte* pformat = &format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						fixed (byte* pformat = &format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						fixed (byte* pformat = format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						fixed (byte* pformat = format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -917,40 +4788,18 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pt = &t)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (ushort* pneg = &neg)
 				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (format != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(format);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, pStr1, cmap);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -958,13 +4807,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, string format)
+		public static void PlotErrorBars(string labelId, in ushort xs, ushort* ys, in ushort neg, ushort* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -974,40 +4823,18 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pt = &t)
+			fixed (ushort* pxs = &xs)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (ushort* pneg = &neg)
 				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (format != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(format);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, pStr1, (ImPlotColormap)(-1));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
+					PlotErrorBarsNative(pStr0, (ushort*)pxs, ys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
-					return ret != 0;
 				}
 			}
 		}
@@ -1015,19 +4842,99 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabel = &label)
+			fixed (ushort* pys = &ys)
 			{
-				fixed (float* pt = &t)
+				fixed (ushort* pneg = &neg)
 				{
-					fixed (Vector4* poutput = &output)
+					PlotErrorBarsNative(labelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, int offset)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, int offset, int stride)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				fixed (ushort* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					fixed (ushort* pneg = &neg)
 					{
-						fixed (byte* pformat = format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-							return ret != 0;
-						}
+						PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, flags, offset, stride);
 					}
 				}
 			}
@@ -1036,19 +4943,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format)
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (float* pt = &t)
+				fixed (ushort* pys = &ys)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (ushort* pneg = &neg)
 					{
-						fixed (byte* pformat = format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-							return ret != 0;
-						}
+						PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, flags, offset, (int)(sizeof(ushort)));
 					}
 				}
 			}
@@ -1057,37 +4960,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (float* pt = &t)
+				fixed (ushort* pys = &ys)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (ushort* pneg = &neg)
 					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (format != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(format);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, pStr0, cmap);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
+						PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, flags, (int)(0), (int)(sizeof(ushort)));
 					}
 				}
 			}
@@ -1096,37 +4977,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, string format)
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (float* pt = &t)
+				fixed (ushort* pys = &ys)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (ushort* pneg = &neg)
 					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (format != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(format);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
+						PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 					}
 				}
 			}
@@ -1135,19 +4994,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, ref float t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, int offset)
 		{
-			fixed (byte* plabel = label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (float* pt = &t)
+				fixed (ushort* pys = &ys)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (ushort* pneg = &neg)
 					{
-						fixed (byte* pformat = &format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-							return ret != 0;
-						}
+						PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ushort)));
 					}
 				}
 			}
@@ -1156,3877 +5011,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, ref float t, ref Vector4 output, ref byte format)
+		public static void PlotErrorBars(in byte labelId, ushort* xs, in ushort ys, in ushort neg, ushort* pos, int count, int offset, int stride)
 		{
-			fixed (byte* plabel = label)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (float* pt = &t)
+				fixed (ushort* pys = &ys)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (ushort* pneg = &neg)
 					{
-						fixed (byte* pformat = &format)
-						{
-							byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-							return ret != 0;
-						}
+						PlotErrorBarsNative((byte*)plabelId, xs, (ushort*)pys, (ushort*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, ref float t, ref Vector4 output, string format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (format != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(format);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, pStr0, cmap);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(ReadOnlySpan<byte> label, ref float t, ref Vector4 output, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (format != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(format);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, ref byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, (byte*)pformat, cmap);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, ReadOnlySpan<byte> format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ColormapButtonNative(byte* label, Vector2 size, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotColormap, byte>)funcTable[369])(label, size, cmap);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlotColormap, byte>)funcTable[369])((nint)label, size, cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(byte* label, Vector2 size, ImPlotColormap cmap)
-		{
-			byte ret = ColormapButtonNative(label, size, cmap);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(byte* label, Vector2 size)
-		{
-			byte ret = ColormapButtonNative(label, size, (ImPlotColormap)(-1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(byte* label)
-		{
-			byte ret = ColormapButtonNative(label, (Vector2)(new Vector2(0,0)), (ImPlotColormap)(-1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(byte* label, ImPlotColormap cmap)
-		{
-			byte ret = ColormapButtonNative(label, (Vector2)(new Vector2(0,0)), cmap);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ref byte label, Vector2 size, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, size, cmap);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ref byte label, Vector2 size)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, size, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, (Vector2)(new Vector2(0,0)), (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ref byte label, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, (Vector2)(new Vector2(0,0)), cmap);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ReadOnlySpan<byte> label, Vector2 size, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, size, cmap);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ReadOnlySpan<byte> label, Vector2 size)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, size, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, (Vector2)(new Vector2(0,0)), (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(ReadOnlySpan<byte> label, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ColormapButtonNative((byte*)plabel, (Vector2)(new Vector2(0,0)), cmap);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(string label, Vector2 size, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapButtonNative(pStr0, size, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(string label, Vector2 size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapButtonNative(pStr0, size, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapButtonNative(pStr0, (Vector2)(new Vector2(0,0)), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ColormapButton(string label, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapButtonNative(pStr0, (Vector2)(new Vector2(0,0)), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BustColorCacheNative(byte* plotTitleId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[370])(plotTitleId);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[370])((nint)plotTitleId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BustColorCache(byte* plotTitleId)
-		{
-			BustColorCacheNative(plotTitleId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BustColorCache()
-		{
-			BustColorCacheNative((byte*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BustColorCache(ref byte plotTitleId)
-		{
-			fixed (byte* pplotTitleId = &plotTitleId)
-			{
-				BustColorCacheNative((byte*)pplotTitleId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BustColorCache(ReadOnlySpan<byte> plotTitleId)
-		{
-			fixed (byte* pplotTitleId = plotTitleId)
-			{
-				BustColorCacheNative((byte*)pplotTitleId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BustColorCache(string plotTitleId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (plotTitleId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(plotTitleId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(plotTitleId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			BustColorCacheNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotInputMap* GetInputMapNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)funcTable[371])();
-			#else
-			return (ImPlotInputMap*)((delegate* unmanaged[Cdecl]<nint>)funcTable[371])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotInputMapPtr GetInputMap()
-		{
-			ImPlotInputMapPtr ret = GetInputMapNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MapInputDefaultNative(ImPlotInputMap* dst)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)funcTable[372])(dst);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[372])((nint)dst);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MapInputDefault(ImPlotInputMapPtr dst)
-		{
-			MapInputDefaultNative(dst);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MapInputDefault()
-		{
-			MapInputDefaultNative((ImPlotInputMap*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MapInputDefault(ref ImPlotInputMap dst)
-		{
-			fixed (ImPlotInputMap* pdst = &dst)
-			{
-				MapInputDefaultNative((ImPlotInputMap*)pdst);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MapInputReverseNative(ImPlotInputMap* dst)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)funcTable[373])(dst);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[373])((nint)dst);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MapInputReverse(ImPlotInputMapPtr dst)
-		{
-			MapInputReverseNative(dst);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MapInputReverse()
-		{
-			MapInputReverseNative((ImPlotInputMap*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MapInputReverse(ref ImPlotInputMap dst)
-		{
-			fixed (ImPlotInputMap* pdst = &dst)
-			{
-				MapInputReverseNative((ImPlotInputMap*)pdst);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ItemIconNative(Vector4 col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, void>)funcTable[374])(col);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector4, void>)funcTable[374])(col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ItemIcon(Vector4 col)
-		{
-			ItemIconNative(col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ItemIconNative(uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[375])(col);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[375])(col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ItemIcon(uint col)
-		{
-			ItemIconNative(col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ColormapIconNative(ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)funcTable[376])(cmap);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)funcTable[376])(cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColormapIcon(ImPlotColormap cmap)
-		{
-			ColormapIconNative(cmap);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* GetPlotDrawListNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)funcTable[377])();
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint>)funcTable[377])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawListPtr GetPlotDrawList()
-		{
-			ImDrawListPtr ret = GetPlotDrawListNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushPlotClipRectNative(float expand)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[378])(expand);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[378])(expand);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushPlotClipRect(float expand)
-		{
-			PushPlotClipRectNative(expand);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushPlotClipRect()
-		{
-			PushPlotClipRectNative((float)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopPlotClipRectNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[379])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[379])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopPlotClipRect()
-		{
-			PopPlotClipRectNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ShowStyleSelectorNative(byte* label)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[380])(label);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[380])((nint)label);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowStyleSelector(byte* label)
-		{
-			byte ret = ShowStyleSelectorNative(label);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowStyleSelector(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ShowStyleSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowStyleSelector(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ShowStyleSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowStyleSelector(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ShowStyleSelectorNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ShowColormapSelectorNative(byte* label)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[381])(label);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[381])((nint)label);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowColormapSelector(byte* label)
-		{
-			byte ret = ShowColormapSelectorNative(label);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowColormapSelector(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ShowColormapSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowColormapSelector(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ShowColormapSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowColormapSelector(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ShowColormapSelectorNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ShowInputMapSelectorNative(byte* label)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[382])(label);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[382])((nint)label);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowInputMapSelector(byte* label)
-		{
-			byte ret = ShowInputMapSelectorNative(label);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowInputMapSelector(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ShowInputMapSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowInputMapSelector(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ShowInputMapSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ShowInputMapSelector(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ShowInputMapSelectorNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowStyleEditorNative(ImPlotStyle* reference)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)funcTable[383])(reference);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[383])((nint)reference);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowStyleEditor(ImPlotStylePtr reference)
-		{
-			ShowStyleEditorNative(reference);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowStyleEditor()
-		{
-			ShowStyleEditorNative((ImPlotStyle*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowStyleEditor(ref ImPlotStyle reference)
-		{
-			fixed (ImPlotStyle* preference = &reference)
-			{
-				ShowStyleEditorNative((ImPlotStyle*)preference);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowUserGuideNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[384])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[384])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowUserGuide()
-		{
-			ShowUserGuideNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowMetricsWindowNative(bool* pPopen)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<bool*, void>)funcTable[385])(pPopen);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[385])((nint)pPopen);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowMetricsWindow(bool* pPopen)
-		{
-			ShowMetricsWindowNative(pPopen);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowMetricsWindow()
-		{
-			ShowMetricsWindowNative((bool*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowMetricsWindow(ref bool pPopen)
-		{
-			fixed (bool* ppPopen = &pPopen)
-			{
-				ShowMetricsWindowNative((bool*)ppPopen);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowDemoWindowNative(bool* pOpen)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<bool*, void>)funcTable[386])(pOpen);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[386])((nint)pOpen);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowDemoWindow(bool* pOpen)
-		{
-			ShowDemoWindowNative(pOpen);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowDemoWindow()
-		{
-			ShowDemoWindowNative((bool*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ShowDemoWindow(ref bool pOpen)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				ShowDemoWindowNative((bool*)ppOpen);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImLog10Native(float x)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float>)funcTable[387])(x);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float, float>)funcTable[387])(x);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImLog10(float x)
-		{
-			float ret = ImLog10Native(x);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImLog10Native(double x)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[388])(x);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[388])(x);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImLog10(double x)
-		{
-			double ret = ImLog10Native(x);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImSinhNative(float x)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float>)funcTable[389])(x);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float, float>)funcTable[389])(x);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImSinh(float x)
-		{
-			float ret = ImSinhNative(x);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImSinhNative(double x)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[390])(x);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[390])(x);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImSinh(double x)
-		{
-			double ret = ImSinhNative(x);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImAsinhNative(float x)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float>)funcTable[391])(x);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float, float>)funcTable[391])(x);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImAsinh(float x)
-		{
-			float ret = ImAsinhNative(x);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImAsinhNative(double x)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[392])(x);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[392])(x);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImAsinh(double x)
-		{
-			double ret = ImAsinhNative(x);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImRemapNative(float x, float x0, float x1, float y0, float y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, float, float>)funcTable[393])(x, x0, x1, y0, y1);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float, float, float, float, float, float>)funcTable[393])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImRemap(float x, float x0, float x1, float y0, float y1)
-		{
-			float ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImRemapNative(double x, double x0, double x1, double y0, double y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, double, double>)funcTable[394])(x, x0, x1, y0, y1);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double, double, double, double, double>)funcTable[394])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImRemap(double x, double x0, double x1, double y0, double y1)
-		{
-			double ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static sbyte ImRemapNative(sbyte x, sbyte x0, sbyte x1, sbyte y0, sbyte y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte, sbyte, sbyte>)funcTable[395])(x, x0, x1, y0, y1);
-			#else
-			return (sbyte)((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte, sbyte, sbyte>)funcTable[395])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static sbyte ImRemap(sbyte x, sbyte x0, sbyte x1, sbyte y0, sbyte y1)
-		{
-			sbyte ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImRemapNative(byte x, byte x0, byte x1, byte y0, byte y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte, byte>)funcTable[396])(x, x0, x1, y0, y1);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte, byte>)funcTable[396])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte ImRemap(byte x, byte x0, byte x1, byte y0, byte y1)
-		{
-			byte ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static short ImRemapNative(short x, short x0, short x1, short y0, short y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short, short, short>)funcTable[397])(x, x0, x1, y0, y1);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<short, short, short, short, short, short>)funcTable[397])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImRemap(short x, short x0, short x1, short y0, short y1)
-		{
-			short ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ushort ImRemapNative(ushort x, ushort x0, ushort x1, ushort y0, ushort y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, ushort, ushort>)funcTable[398])(x, x0, x1, y0, y1);
-			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, ushort, ushort>)funcTable[398])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ushort ImRemap(ushort x, ushort x0, ushort x1, ushort y0, ushort y1)
-		{
-			ushort ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImRemapNative(int x, int x0, int x1, int y0, int y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int, int, int>)funcTable[399])(x, x0, x1, y0, y1);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int, int, int, int>)funcTable[399])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImRemap(int x, int x0, int x1, int y0, int y1)
-		{
-			int ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImRemapNative(uint x, uint x0, uint x1, uint y0, uint y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, uint, uint>)funcTable[400])(x, x0, x1, y0, y1);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, uint, uint>)funcTable[400])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImRemap(uint x, uint x0, uint x1, uint y0, uint y1)
-		{
-			uint ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static long ImRemapNative(long x, long x0, long x1, long y0, long y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long, long, long>)funcTable[401])(x, x0, x1, y0, y1);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<long, long, long, long, long, long>)funcTable[401])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static long ImRemap(long x, long x0, long x1, long y0, long y1)
-		{
-			long ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ulong ImRemapNative(ulong x, ulong x0, ulong x1, ulong y0, ulong y1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, ulong, ulong>)funcTable[402])(x, x0, x1, y0, y1);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, ulong, ulong>)funcTable[402])(x, x0, x1, y0, y1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ulong ImRemap(ulong x, ulong x0, ulong x1, ulong y0, ulong y1)
-		{
-			ulong ret = ImRemapNative(x, x0, x1, y0, y1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImRemap01Native(float x, float x0, float x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float>)funcTable[403])(x, x0, x1);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float, float, float, float>)funcTable[403])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImRemap01(float x, float x0, float x1)
-		{
-			float ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImRemap01Native(double x, double x0, double x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double>)funcTable[404])(x, x0, x1);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double, double, double>)funcTable[404])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImRemap01(double x, double x0, double x1)
-		{
-			double ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static sbyte ImRemap01Native(sbyte x, sbyte x0, sbyte x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte>)funcTable[405])(x, x0, x1);
-			#else
-			return (sbyte)((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte>)funcTable[405])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static sbyte ImRemap01(sbyte x, sbyte x0, sbyte x1)
-		{
-			sbyte ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImRemap01Native(byte x, byte x0, byte x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)funcTable[406])(x, x0, x1);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte>)funcTable[406])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte ImRemap01(byte x, byte x0, byte x1)
-		{
-			byte ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static short ImRemap01Native(short x, short x0, short x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short>)funcTable[407])(x, x0, x1);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<short, short, short, short>)funcTable[407])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImRemap01(short x, short x0, short x1)
-		{
-			short ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ushort ImRemap01Native(ushort x, ushort x0, ushort x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort>)funcTable[408])(x, x0, x1);
-			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort>)funcTable[408])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ushort ImRemap01(ushort x, ushort x0, ushort x1)
-		{
-			ushort ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImRemap01Native(int x, int x0, int x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int>)funcTable[409])(x, x0, x1);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int, int>)funcTable[409])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImRemap01(int x, int x0, int x1)
-		{
-			int ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImRemap01Native(uint x, uint x0, uint x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)funcTable[410])(x, x0, x1);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)funcTable[410])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImRemap01(uint x, uint x0, uint x1)
-		{
-			uint ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static long ImRemap01Native(long x, long x0, long x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long>)funcTable[411])(x, x0, x1);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<long, long, long, long>)funcTable[411])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static long ImRemap01(long x, long x0, long x1)
-		{
-			long ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ulong ImRemap01Native(ulong x, ulong x0, ulong x1)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong>)funcTable[412])(x, x0, x1);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong>)funcTable[412])(x, x0, x1);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ulong ImRemap01(ulong x, ulong x0, ulong x1)
-		{
-			ulong ret = ImRemap01Native(x, x0, x1);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImPosModNative(int l, int r)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int>)funcTable[413])(l, r);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int, int>)funcTable[413])(l, r);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImPosMod(int l, int r)
-		{
-			int ret = ImPosModNative(l, r);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImNanNative(double val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte>)funcTable[414])(val);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, byte>)funcTable[414])(val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImNan(double val)
-		{
-			byte ret = ImNanNative(val);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImNanOrInfNative(double val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte>)funcTable[415])(val);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, byte>)funcTable[415])(val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImNanOrInf(double val)
-		{
-			byte ret = ImNanOrInfNative(val);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImConstrainNanNative(double val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[416])(val);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[416])(val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImConstrainNan(double val)
-		{
-			double ret = ImConstrainNanNative(val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImConstrainInfNative(double val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[417])(val);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[417])(val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImConstrainInf(double val)
-		{
-			double ret = ImConstrainInfNative(val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImConstrainLogNative(double val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[418])(val);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[418])(val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImConstrainLog(double val)
-		{
-			double ret = ImConstrainLogNative(val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImConstrainTimeNative(double val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double>)funcTable[419])(val);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double, double>)funcTable[419])(val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImConstrainTime(double val)
-		{
-			double ret = ImConstrainTimeNative(val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImAlmostEqualNative(double v1, double v2, int ulp)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, int, byte>)funcTable[420])(v1, v2, ulp);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, double, int, byte>)funcTable[420])(v1, v2, ulp);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImAlmostEqual(double v1, double v2, int ulp)
-		{
-			byte ret = ImAlmostEqualNative(v1, v2, ulp);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImAlmostEqual(double v1, double v2)
-		{
-			byte ret = ImAlmostEqualNative(v1, v2, (int)(2));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImMinArrayNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)funcTable[421])(values, count);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[421])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImMinArray(float* values, int count)
-		{
-			float ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImMinArray(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				float ret = ImMinArrayNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMinArrayNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)funcTable[422])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[422])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMinArray(double* values, int count)
-		{
-			double ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMinArray(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImMinArrayNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static sbyte ImMinArrayNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, sbyte>)funcTable[423])(values, count);
-			#else
-			return (sbyte)((delegate* unmanaged[Cdecl]<nint, int, sbyte>)funcTable[423])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static sbyte ImMinArray(sbyte* values, int count)
-		{
-			sbyte ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImMinArrayNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)funcTable[424])(values, count);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)funcTable[424])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte ImMinArray(byte* values, int count)
-		{
-			byte ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static short ImMinArrayNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)funcTable[425])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)funcTable[425])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImMinArray(short* values, int count)
-		{
-			short ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ushort ImMinArrayNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)funcTable[426])(values, count);
-			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)funcTable[426])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ushort ImMinArray(ushort* values, int count)
-		{
-			ushort ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImMinArrayNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)funcTable[427])(values, count);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[427])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImMinArray(int* values, int count)
-		{
-			int ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImMinArrayNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)funcTable[428])(values, count);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[428])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImMinArray(uint* values, int count)
-		{
-			uint ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static long ImMinArrayNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)funcTable[429])(values, count);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)funcTable[429])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static long ImMinArray(long* values, int count)
-		{
-			long ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ulong ImMinArrayNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)funcTable[430])(values, count);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)funcTable[430])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ulong ImMinArray(ulong* values, int count)
-		{
-			ulong ret = ImMinArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImMaxArrayNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)funcTable[431])(values, count);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[431])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImMaxArray(float* values, int count)
-		{
-			float ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImMaxArray(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				float ret = ImMaxArrayNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMaxArrayNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)funcTable[432])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[432])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMaxArray(double* values, int count)
-		{
-			double ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMaxArray(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImMaxArrayNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static sbyte ImMaxArrayNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, sbyte>)funcTable[433])(values, count);
-			#else
-			return (sbyte)((delegate* unmanaged[Cdecl]<nint, int, sbyte>)funcTable[433])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static sbyte ImMaxArray(sbyte* values, int count)
-		{
-			sbyte ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImMaxArrayNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)funcTable[434])(values, count);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)funcTable[434])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte ImMaxArray(byte* values, int count)
-		{
-			byte ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static short ImMaxArrayNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)funcTable[435])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)funcTable[435])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImMaxArray(short* values, int count)
-		{
-			short ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ushort ImMaxArrayNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)funcTable[436])(values, count);
-			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)funcTable[436])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ushort ImMaxArray(ushort* values, int count)
-		{
-			ushort ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImMaxArrayNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)funcTable[437])(values, count);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[437])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImMaxArray(int* values, int count)
-		{
-			int ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImMaxArrayNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)funcTable[438])(values, count);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[438])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImMaxArray(uint* values, int count)
-		{
-			uint ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static long ImMaxArrayNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)funcTable[439])(values, count);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)funcTable[439])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static long ImMaxArray(long* values, int count)
-		{
-			long ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ulong ImMaxArrayNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)funcTable[440])(values, count);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)funcTable[440])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ulong ImMaxArray(ulong* values, int count)
-		{
-			ulong ret = ImMaxArrayNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(float* values, int count, float* minOut, float* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float*, int, float*, float*, void>)funcTable[441])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[441])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(float* values, int count, float* minOut, float* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref float values, int count, float* minOut, float* maxOut)
-		{
-			fixed (float* pvalues = &values)
-			{
-				ImMinMaxArrayNative((float*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(float* values, int count, ref float minOut, float* maxOut)
-		{
-			fixed (float* pminOut = &minOut)
-			{
-				ImMinMaxArrayNative(values, count, (float*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref float values, int count, ref float minOut, float* maxOut)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (float* pminOut = &minOut)
-				{
-					ImMinMaxArrayNative((float*)pvalues, count, (float*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(float* values, int count, float* minOut, ref float maxOut)
-		{
-			fixed (float* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayNative(values, count, minOut, (float*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref float values, int count, float* minOut, ref float maxOut)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (float* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayNative((float*)pvalues, count, minOut, (float*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(float* values, int count, ref float minOut, ref float maxOut)
-		{
-			fixed (float* pminOut = &minOut)
-			{
-				fixed (float* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayNative(values, count, (float*)pminOut, (float*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref float values, int count, ref float minOut, ref float maxOut)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (float* pminOut = &minOut)
-				{
-					fixed (float* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayNative((float*)pvalues, count, (float*)pminOut, (float*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(double* values, int count, double* minOut, double* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double*, int, double*, double*, void>)funcTable[442])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[442])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(double* values, int count, double* minOut, double* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref double values, int count, double* minOut, double* maxOut)
-		{
-			fixed (double* pvalues = &values)
-			{
-				ImMinMaxArrayNative((double*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(double* values, int count, ref double minOut, double* maxOut)
-		{
-			fixed (double* pminOut = &minOut)
-			{
-				ImMinMaxArrayNative(values, count, (double*)pminOut, maxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref double values, int count, ref double minOut, double* maxOut)
-		{
-			fixed (double* pvalues = &values)
-			{
-				fixed (double* pminOut = &minOut)
-				{
-					ImMinMaxArrayNative((double*)pvalues, count, (double*)pminOut, maxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(double* values, int count, double* minOut, ref double maxOut)
-		{
-			fixed (double* pmaxOut = &maxOut)
-			{
-				ImMinMaxArrayNative(values, count, minOut, (double*)pmaxOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref double values, int count, double* minOut, ref double maxOut)
-		{
-			fixed (double* pvalues = &values)
-			{
-				fixed (double* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayNative((double*)pvalues, count, minOut, (double*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(double* values, int count, ref double minOut, ref double maxOut)
-		{
-			fixed (double* pminOut = &minOut)
-			{
-				fixed (double* pmaxOut = &maxOut)
-				{
-					ImMinMaxArrayNative(values, count, (double*)pminOut, (double*)pmaxOut);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ref double values, int count, ref double minOut, ref double maxOut)
-		{
-			fixed (double* pvalues = &values)
-			{
-				fixed (double* pminOut = &minOut)
-				{
-					fixed (double* pmaxOut = &maxOut)
-					{
-						ImMinMaxArrayNative((double*)pvalues, count, (double*)pminOut, (double*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(sbyte* values, int count, sbyte* minOut, sbyte* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<sbyte*, int, sbyte*, sbyte*, void>)funcTable[443])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[443])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(sbyte* values, int count, sbyte* minOut, sbyte* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(byte* values, int count, byte* minOut, byte* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, byte*, byte*, void>)funcTable[444])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[444])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(byte* values, int count, byte* minOut, byte* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(short* values, int count, short* minOut, short* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<short*, int, short*, short*, void>)funcTable[445])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[445])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(short* values, int count, short* minOut, short* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(ushort* values, int count, ushort* minOut, ushort* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ushort*, int, ushort*, ushort*, void>)funcTable[446])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[446])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ushort* values, int count, ushort* minOut, ushort* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(int* values, int count, int* minOut, int* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int*, int, int*, int*, void>)funcTable[447])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[447])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(int* values, int count, int* minOut, int* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(uint* values, int count, uint* minOut, uint* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, uint*, uint*, void>)funcTable[448])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[448])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(uint* values, int count, uint* minOut, uint* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(long* values, int count, long* minOut, long* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<long*, int, long*, long*, void>)funcTable[449])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[449])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(long* values, int count, long* minOut, long* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImMinMaxArrayNative(ulong* values, int count, ulong* minOut, ulong* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ulong*, int, ulong*, ulong*, void>)funcTable[450])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)funcTable[450])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImMinMaxArray(ulong* values, int count, ulong* minOut, ulong* maxOut)
-		{
-			ImMinMaxArrayNative(values, count, minOut, maxOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float ImSumNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)funcTable[451])(values, count);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[451])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImSum(float* values, int count)
-		{
-			float ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float ImSum(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				float ret = ImSumNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImSumNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)funcTable[452])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[452])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImSum(double* values, int count)
-		{
-			double ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImSum(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImSumNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static sbyte ImSumNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, sbyte>)funcTable[453])(values, count);
-			#else
-			return (sbyte)((delegate* unmanaged[Cdecl]<nint, int, sbyte>)funcTable[453])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static sbyte ImSum(sbyte* values, int count)
-		{
-			sbyte ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImSumNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)funcTable[454])(values, count);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)funcTable[454])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte ImSum(byte* values, int count)
-		{
-			byte ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static short ImSumNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)funcTable[455])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)funcTable[455])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static short ImSum(short* values, int count)
-		{
-			short ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ushort ImSumNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)funcTable[456])(values, count);
-			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)funcTable[456])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ushort ImSum(ushort* values, int count)
-		{
-			ushort ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImSumNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)funcTable[457])(values, count);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[457])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImSum(int* values, int count)
-		{
-			int ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImSumNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)funcTable[458])(values, count);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[458])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImSum(uint* values, int count)
-		{
-			uint ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static long ImSumNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)funcTable[459])(values, count);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)funcTable[459])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static long ImSum(long* values, int count)
-		{
-			long ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ulong ImSumNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)funcTable[460])(values, count);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)funcTable[460])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ulong ImSum(ulong* values, int count)
-		{
-			ulong ret = ImSumNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, double>)funcTable[461])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[461])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(float* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				double ret = ImMeanNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)funcTable[462])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[462])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(double* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImMeanNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, double>)funcTable[463])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[463])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(sbyte* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)funcTable[464])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[464])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(byte* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, double>)funcTable[465])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[465])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(short* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)funcTable[466])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[466])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(ushort* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, double>)funcTable[467])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[467])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(int* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)funcTable[468])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[468])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(uint* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, double>)funcTable[469])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[469])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(long* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImMeanNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)funcTable[470])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[470])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImMean(ulong* values, int count)
-		{
-			double ret = ImMeanNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, double>)funcTable[471])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[471])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(float* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				double ret = ImStdDevNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)funcTable[472])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[472])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(double* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImStdDevNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, double>)funcTable[473])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[473])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(sbyte* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)funcTable[474])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[474])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(byte* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, double>)funcTable[475])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[475])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(short* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)funcTable[476])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[476])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(ushort* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, double>)funcTable[477])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[477])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(int* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)funcTable[478])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[478])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(uint* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, double>)funcTable[479])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[479])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(long* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ImStdDevNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)funcTable[480])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)funcTable[480])((nint)values, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static double ImStdDev(ulong* values, int count)
-		{
-			double ret = ImStdDevNative(values, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImMixU32Native(uint a, uint b, uint s)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)funcTable[481])(a, b, s);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)funcTable[481])(a, b, s);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImMixU32(uint a, uint b, uint s)
-		{
-			uint ret = ImMixU32Native(a, b, s);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImLerpU32Native(uint* colors, int size, float t)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, float, uint>)funcTable[482])(colors, size, t);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, float, uint>)funcTable[482])((nint)colors, size, t);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImLerpU32(uint* colors, int size, float t)
-		{
-			uint ret = ImLerpU32Native(colors, size, t);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImAlphaU32Native(uint col, float alpha)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[483])(col, alpha);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[483])(col, alpha);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImAlphaU32(uint col, float alpha)
-		{
-			uint ret = ImAlphaU32Native(col, alpha);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(float minA, float maxA, float minB, float maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)funcTable[484])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)funcTable[484])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(float minA, float maxA, float minB, float maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(double minA, double maxA, double minB, double maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)funcTable[485])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)funcTable[485])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(double minA, double maxA, double minB, double maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(sbyte minA, sbyte maxA, sbyte minB, sbyte maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte, byte>)funcTable[486])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte, byte>)funcTable[486])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(sbyte minA, sbyte maxA, sbyte minB, sbyte maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(byte minA, byte maxA, byte minB, byte maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)funcTable[487])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)funcTable[487])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(byte minA, byte maxA, byte minB, byte maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(short minA, short maxA, short minB, short maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)funcTable[488])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)funcTable[488])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(short minA, short maxA, short minB, short maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(ushort minA, ushort maxA, ushort minB, ushort maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)funcTable[489])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)funcTable[489])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(ushort minA, ushort maxA, ushort minB, ushort maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(int minA, int maxA, int minB, int maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)funcTable[490])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)funcTable[490])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(int minA, int maxA, int minB, int maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(uint minA, uint maxA, uint minB, uint maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)funcTable[491])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)funcTable[491])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(uint minA, uint maxA, uint minB, uint maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(long minA, long maxA, long minB, long maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)funcTable[492])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)funcTable[492])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(long minA, long maxA, long minB, long maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImOverlapsNative(ulong minA, ulong maxA, ulong minB, ulong maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)funcTable[493])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)funcTable[493])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImOverlaps(ulong minA, ulong maxA, ulong minB, ulong maxB)
-		{
-			byte ret = ImOverlapsNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotDateTimeSpec* ImPlotDateTimeSpecNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*>)funcTable[494])();
-			#else
-			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<nint>)funcTable[494])();
-			#endif
 		}
 	}
 }

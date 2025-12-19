@@ -19,9 +19,687 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(in byte fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ReadOnlySpan<byte> fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ReadOnlySpan<byte> fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(string fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmtOut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = ImParseFormatSanitizeForScanningNative(pStr0, pStr1, fmtOutSize);
+			fmtOut = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmtOut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, pStr1, fmtOutSize));
+			fmtOut = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(in byte fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize);
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(in byte fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize));
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(ReadOnlySpan<byte> fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize);
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(ReadOnlySpan<byte> fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = fmtIn)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmtOut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, pStr0, fmtOutSize));
+				fmtOut = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* ImParseFormatSanitizeForScanning(string fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				byte* ret = ImParseFormatSanitizeForScanningNative(pStr0, (byte*)pfmtOut, fmtOutSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, (byte*)pfmtOut, fmtOutSize));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImParseFormatPrecisionNative(byte* format, int defaultValue)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[741])(format, defaultValue);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[741])((nint)format, defaultValue);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(byte* format, int defaultValue)
+		{
+			int ret = ImParseFormatPrecisionNative(format, defaultValue);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(in byte format, int defaultValue)
+		{
+			fixed (byte* pformat = &format)
+			{
+				int ret = ImParseFormatPrecisionNative((byte*)pformat, defaultValue);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(ReadOnlySpan<byte> format, int defaultValue)
+		{
+			fixed (byte* pformat = format)
+			{
+				int ret = ImParseFormatPrecisionNative((byte*)pformat, defaultValue);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImParseFormatPrecision(string format, int defaultValue)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImParseFormatPrecisionNative(pStr0, defaultValue);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// return output UTF-8 bytes count<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImTextCharToUtf8Native(byte* outBuf, uint c)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, int>)funcTable[742])(outBuf, c);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, uint, int>)funcTable[742])((nint)outBuf, c);
+			#endif
+		}
+
+		/// <summary>
+		/// return output UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharToUtf8(byte* outBuf, uint c)
+		{
+			int ret = ImTextCharToUtf8Native(outBuf, c);
+			return ret;
+		}
+
+		/// <summary>
+		/// return output UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharToUtf8(ref byte outBuf, uint c)
+		{
+			fixed (byte* poutBuf = &outBuf)
+			{
+				int ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return output UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharToUtf8(ReadOnlySpan<byte> outBuf, uint c)
+		{
+			fixed (byte* poutBuf = outBuf)
+			{
+				int ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				return ret;
+			}
+		}
+
+		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, ref byte inTextEnd)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImTextCharFromUtf8Native(uint* outChar, byte* inText, byte* inTextEnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[743])(outChar, inText, inTextEnd);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[743])((nint)outChar, (nint)inText, (nint)inTextEnd);
+			#endif
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, byte* inTextEnd)
+		{
+			int ret = ImTextCharFromUtf8Native(outChar, inText, inTextEnd);
+			return ret;
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, byte* inTextEnd)
+		{
+			fixed (uint* poutChar = &outChar)
+			{
+				int ret = ImTextCharFromUtf8Native((uint*)poutChar, inText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, in byte inText, byte* inTextEnd)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				int ret = ImTextCharFromUtf8Native(outChar, (byte*)pinText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, byte* inTextEnd)
+		{
+			fixed (byte* pinText = inText)
+			{
+				int ret = ImTextCharFromUtf8Native(outChar, (byte*)pinText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, string inText, byte* inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImTextCharFromUtf8Native(outChar, pStr0, inTextEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(ref uint outChar, in byte inText, byte* inTextEnd)
+		{
+			fixed (uint* poutChar = &outChar)
+			{
+				fixed (byte* pinText = &inText)
+				{
+					int ret = ImTextCharFromUtf8Native((uint*)poutChar, (byte*)pinText, inTextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(ref uint outChar, ReadOnlySpan<byte> inText, byte* inTextEnd)
+		{
+			fixed (uint* poutChar = &outChar)
+			{
+				fixed (byte* pinText = inText)
+				{
+					int ret = ImTextCharFromUtf8Native((uint*)poutChar, (byte*)pinText, inTextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(ref uint outChar, string inText, byte* inTextEnd)
+		{
+			fixed (uint* poutChar = &outChar)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (inText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(inText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = ImTextCharFromUtf8Native((uint*)poutChar, pStr0, inTextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, in byte inTextEnd)
+		{
+			fixed (byte* pinTextEnd = &inTextEnd)
+			{
+				int ret = ImTextCharFromUtf8Native(outChar, inText, (byte*)pinTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, ReadOnlySpan<byte> inTextEnd)
+		{
+			fixed (byte* pinTextEnd = inTextEnd)
+			{
+				int ret = ImTextCharFromUtf8Native(outChar, inText, (byte*)pinTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(uint* outChar, byte* inText, string inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inTextEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inTextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inTextEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImTextCharFromUtf8Native(outChar, inText, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// read one character. return input UTF-8 bytes count<br/>
+		/// </summary>
+		public static int ImTextCharFromUtf8(ref uint outChar, byte* inText, in byte inTextEnd)
 		{
 			fixed (uint* poutChar = &outChar)
 			{
@@ -84,7 +762,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, ref byte inTextEnd)
+		public static int ImTextCharFromUtf8(uint* outChar, in byte inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -165,7 +843,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, ReadOnlySpan<byte> inTextEnd)
+		public static int ImTextCharFromUtf8(uint* outChar, in byte inText, ReadOnlySpan<byte> inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -180,7 +858,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(uint* outChar, ref byte inText, string inTextEnd)
+		public static int ImTextCharFromUtf8(uint* outChar, in byte inText, string inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -213,7 +891,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, ref byte inTextEnd)
+		public static int ImTextCharFromUtf8(uint* outChar, ReadOnlySpan<byte> inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = inText)
 			{
@@ -261,7 +939,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(uint* outChar, string inText, ref byte inTextEnd)
+		public static int ImTextCharFromUtf8(uint* outChar, string inText, in byte inTextEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -327,7 +1005,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(ref uint outChar, ref byte inText, ref byte inTextEnd)
+		public static int ImTextCharFromUtf8(ref uint outChar, in byte inText, in byte inTextEnd)
 		{
 			fixed (uint* poutChar = &outChar)
 			{
@@ -417,7 +1095,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(ref uint outChar, ref byte inText, ReadOnlySpan<byte> inTextEnd)
+		public static int ImTextCharFromUtf8(ref uint outChar, in byte inText, ReadOnlySpan<byte> inTextEnd)
 		{
 			fixed (uint* poutChar = &outChar)
 			{
@@ -435,7 +1113,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(ref uint outChar, ref byte inText, string inTextEnd)
+		public static int ImTextCharFromUtf8(ref uint outChar, in byte inText, string inTextEnd)
 		{
 			fixed (uint* poutChar = &outChar)
 			{
@@ -471,7 +1149,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(ref uint outChar, ReadOnlySpan<byte> inText, ref byte inTextEnd)
+		public static int ImTextCharFromUtf8(ref uint outChar, ReadOnlySpan<byte> inText, in byte inTextEnd)
 		{
 			fixed (uint* poutChar = &outChar)
 			{
@@ -525,7 +1203,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// read one character. return input UTF-8 bytes count<br/>
 		/// </summary>
-		public static int ImTextCharFromUtf8(ref uint outChar, string inText, ref byte inTextEnd)
+		public static int ImTextCharFromUtf8(ref uint outChar, string inText, in byte inTextEnd)
 		{
 			fixed (uint* poutChar = &outChar)
 			{
@@ -601,9 +1279,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountCharsFromUtf8Native(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[745])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[744])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[745])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[744])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -619,7 +1297,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(ref byte inText, byte* inTextEnd)
+		public static int ImTextCountCharsFromUtf8(in byte inText, byte* inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -673,7 +1351,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(byte* inText, ref byte inTextEnd)
+		public static int ImTextCountCharsFromUtf8(byte* inText, in byte inTextEnd)
 		{
 			fixed (byte* pinTextEnd = &inTextEnd)
 			{
@@ -727,7 +1405,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(ref byte inText, ref byte inTextEnd)
+		public static int ImTextCountCharsFromUtf8(in byte inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -808,7 +1486,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(ref byte inText, ReadOnlySpan<byte> inTextEnd)
+		public static int ImTextCountCharsFromUtf8(in byte inText, ReadOnlySpan<byte> inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -823,7 +1501,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(ref byte inText, string inTextEnd)
+		public static int ImTextCountCharsFromUtf8(in byte inText, string inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -856,7 +1534,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(ReadOnlySpan<byte> inText, ref byte inTextEnd)
+		public static int ImTextCountCharsFromUtf8(ReadOnlySpan<byte> inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = inText)
 			{
@@ -904,7 +1582,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of UTF-8 code-points (NOT bytes count)<br/>
 		/// </summary>
-		public static int ImTextCountCharsFromUtf8(string inText, ref byte inTextEnd)
+		public static int ImTextCountCharsFromUtf8(string inText, in byte inTextEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -974,9 +1652,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountUtf8BytesFromCharNative(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[746])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[745])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[746])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[745])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -992,7 +1670,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(ref byte inText, byte* inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(in byte inText, byte* inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -1046,7 +1724,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(byte* inText, ref byte inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(byte* inText, in byte inTextEnd)
 		{
 			fixed (byte* pinTextEnd = &inTextEnd)
 			{
@@ -1100,7 +1778,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(ref byte inText, ref byte inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(in byte inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -1181,7 +1859,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(ref byte inText, ReadOnlySpan<byte> inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(in byte inText, ReadOnlySpan<byte> inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -1196,7 +1874,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(ref byte inText, string inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(in byte inText, string inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -1229,7 +1907,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(ReadOnlySpan<byte> inText, ref byte inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(ReadOnlySpan<byte> inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = inText)
 			{
@@ -1277,7 +1955,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of bytes to express one char in UTF-8<br/>
 		/// </summary>
-		public static int ImTextCountUtf8BytesFromChar(string inText, ref byte inTextEnd)
+		public static int ImTextCountUtf8BytesFromChar(string inText, in byte inTextEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1347,9 +2025,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountUtf8BytesFromStrNative(uint* inText, uint* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, uint*, int>)funcTable[747])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<uint*, uint*, int>)funcTable[746])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[747])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[746])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -1363,15 +2041,54 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// return number of bytes to express string in UTF-8<br/>
+		/// </summary>
+		public static int ImTextCountUtf8BytesFromStr(in uint inText, uint* inTextEnd)
+		{
+			fixed (uint* pinText = &inText)
+			{
+				int ret = ImTextCountUtf8BytesFromStrNative((uint*)pinText, inTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return number of bytes to express string in UTF-8<br/>
+		/// </summary>
+		public static int ImTextCountUtf8BytesFromStr(uint* inText, in uint inTextEnd)
+		{
+			fixed (uint* pinTextEnd = &inTextEnd)
+			{
+				int ret = ImTextCountUtf8BytesFromStrNative(inText, (uint*)pinTextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return number of bytes to express string in UTF-8<br/>
+		/// </summary>
+		public static int ImTextCountUtf8BytesFromStr(in uint inText, in uint inTextEnd)
+		{
+			fixed (uint* pinText = &inText)
+			{
+				fixed (uint* pinTextEnd = &inTextEnd)
+				{
+					int ret = ImTextCountUtf8BytesFromStrNative((uint*)pinText, (uint*)pinTextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* ImTextFindPreviousUtf8CodepointNative(byte* inTextStart, byte* inTextCurr)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[748])(inTextStart, inTextCurr);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[747])(inTextStart, inTextCurr);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[748])((nint)inTextStart, (nint)inTextCurr);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[747])((nint)inTextStart, (nint)inTextCurr);
 			#endif
 		}
 
@@ -1396,7 +2113,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(ref byte inTextStart, byte* inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(in byte inTextStart, byte* inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1408,7 +2125,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(ref byte inTextStart, byte* inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(in byte inTextStart, byte* inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1504,7 +2221,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(byte* inTextStart, ref byte inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(byte* inTextStart, in byte inTextCurr)
 		{
 			fixed (byte* pinTextCurr = &inTextCurr)
 			{
@@ -1516,7 +2233,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(byte* inTextStart, ref byte inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(byte* inTextStart, in byte inTextCurr)
 		{
 			fixed (byte* pinTextCurr = &inTextCurr)
 			{
@@ -1612,7 +2329,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(ref byte inTextStart, ref byte inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(in byte inTextStart, in byte inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1627,7 +2344,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(ref byte inTextStart, ref byte inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(in byte inTextStart, in byte inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1774,7 +2491,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(ref byte inTextStart, ReadOnlySpan<byte> inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(in byte inTextStart, ReadOnlySpan<byte> inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1789,7 +2506,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(ref byte inTextStart, ReadOnlySpan<byte> inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(in byte inTextStart, ReadOnlySpan<byte> inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1804,7 +2521,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(ref byte inTextStart, string inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(in byte inTextStart, string inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1837,7 +2554,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(ref byte inTextStart, string inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(in byte inTextStart, string inTextCurr)
 		{
 			fixed (byte* pinTextStart = &inTextStart)
 			{
@@ -1870,7 +2587,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(ReadOnlySpan<byte> inTextStart, ref byte inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(ReadOnlySpan<byte> inTextStart, in byte inTextCurr)
 		{
 			fixed (byte* pinTextStart = inTextStart)
 			{
@@ -1885,7 +2602,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(ReadOnlySpan<byte> inTextStart, ref byte inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(ReadOnlySpan<byte> inTextStart, in byte inTextCurr)
 		{
 			fixed (byte* pinTextStart = inTextStart)
 			{
@@ -1966,7 +2683,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static byte* ImTextFindPreviousUtf8Codepoint(string inTextStart, ref byte inTextCurr)
+		public static byte* ImTextFindPreviousUtf8Codepoint(string inTextStart, in byte inTextCurr)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1999,7 +2716,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return previous UTF-8 code-point.<br/>
 		/// </summary>
-		public static string ImTextFindPreviousUtf8CodepointS(string inTextStart, ref byte inTextCurr)
+		public static string ImTextFindPreviousUtf8CodepointS(string inTextStart, in byte inTextCurr)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2102,9 +2819,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountLinesNative(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[749])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[748])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[749])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[748])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -2120,7 +2837,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(ref byte inText, byte* inTextEnd)
+		public static int ImTextCountLines(in byte inText, byte* inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -2174,7 +2891,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(byte* inText, ref byte inTextEnd)
+		public static int ImTextCountLines(byte* inText, in byte inTextEnd)
 		{
 			fixed (byte* pinTextEnd = &inTextEnd)
 			{
@@ -2228,7 +2945,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(ref byte inText, ref byte inTextEnd)
+		public static int ImTextCountLines(in byte inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -2309,7 +3026,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(ref byte inText, ReadOnlySpan<byte> inTextEnd)
+		public static int ImTextCountLines(in byte inText, ReadOnlySpan<byte> inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -2324,7 +3041,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(ref byte inText, string inTextEnd)
+		public static int ImTextCountLines(in byte inText, string inTextEnd)
 		{
 			fixed (byte* pinText = &inText)
 			{
@@ -2357,7 +3074,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(ReadOnlySpan<byte> inText, ref byte inTextEnd)
+		public static int ImTextCountLines(ReadOnlySpan<byte> inText, in byte inTextEnd)
 		{
 			fixed (byte* pinText = inText)
 			{
@@ -2405,7 +3122,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// return number of lines taken by text. trailing carriage return doesn't count as an extra line.<br/>
 		/// </summary>
-		public static int ImTextCountLines(string inText, ref byte inTextEnd)
+		public static int ImTextCountLines(string inText, in byte inTextEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2475,9 +3192,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontCalcTextSizeExNative(Vector2* pOut, ImFont* font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImFont*, float, float, float, byte*, byte*, byte*, byte**, Vector2*, ImDrawTextFlags, void>)funcTable[750])(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImFont*, float, float, float, byte*, byte*, byte*, byte**, Vector2*, ImDrawTextFlags, void>)funcTable[749])(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, float, float, float, nint, nint, nint, nint, nint, ImDrawTextFlags, void>)funcTable[750])((nint)pOut, (nint)font, size, maxWidth, wrapWidth, (nint)textBegin, (nint)textEndDisplay, (nint)textEnd, (nint)outRemaining, (nint)outOffset, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, float, float, float, nint, nint, nint, nint, nint, ImDrawTextFlags, void>)funcTable[749])((nint)pOut, (nint)font, size, maxWidth, wrapWidth, (nint)textBegin, (nint)textEndDisplay, (nint)textEnd, (nint)outRemaining, (nint)outOffset, flags);
 			#endif
 		}
 
@@ -2487,7 +3204,7 @@ namespace Hexa.NET.ImGui
 		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			Vector2 ret;
-			ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			return ret;
 		}
 
@@ -2496,7 +3213,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
-			ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 		}
 
 		/// <summary>
@@ -2506,7 +3223,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
-				ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			}
 		}
 
@@ -2551,12 +3268,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 				return ret;
 			}
 		}
@@ -2569,7 +3286,7 @@ namespace Hexa.NET.ImGui
 			fixed (byte* ptextBegin = textBegin)
 			{
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 				return ret;
 			}
 		}
@@ -2597,7 +3314,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2608,13 +3325,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 				}
 			}
 		}
@@ -2628,7 +3345,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextBegin = textBegin)
 				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 				}
 			}
 		}
@@ -2657,7 +3374,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2668,7 +3385,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -2734,7 +3451,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -2803,11 +3520,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			}
 		}
 
@@ -2818,7 +3535,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			}
 		}
 
@@ -2844,7 +3561,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2854,7 +3571,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -2914,12 +3631,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextEndDisplay = &textEndDisplay)
 			{
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 				return ret;
 			}
 		}
@@ -2932,7 +3649,7 @@ namespace Hexa.NET.ImGui
 			fixed (byte* ptextEndDisplay = textEndDisplay)
 			{
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 				return ret;
 			}
 		}
@@ -2960,7 +3677,7 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2971,13 +3688,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
 				fixed (byte* ptextEndDisplay = &textEndDisplay)
 				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 				}
 			}
 		}
@@ -2991,7 +3708,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEndDisplay = textEndDisplay)
 				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 				}
 			}
 		}
@@ -3020,7 +3737,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3031,7 +3748,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -3097,7 +3814,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -3166,11 +3883,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextEndDisplay = &textEndDisplay)
 			{
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 			}
 		}
 
@@ -3181,7 +3898,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextEndDisplay = textEndDisplay)
 			{
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 			}
 		}
 
@@ -3207,7 +3924,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(pOut, (ImFont*)font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3217,7 +3934,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -3277,14 +3994,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEndDisplay = &textEndDisplay)
 				{
 					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					return ret;
 				}
 			}
@@ -3300,7 +4017,7 @@ namespace Hexa.NET.ImGui
 				fixed (byte* ptextEndDisplay = textEndDisplay)
 				{
 					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					return ret;
 				}
 			}
@@ -3346,7 +4063,7 @@ namespace Hexa.NET.ImGui
 				pStr1[pStrOffset1] = 0;
 			}
 			Vector2 ret;
-			ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, outRemaining, outOffset, flags);
+			ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, outRemaining, outOffset, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3361,14 +4078,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEndDisplay = textEndDisplay)
 				{
 					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					return ret;
 				}
 			}
@@ -3377,7 +4094,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -3399,7 +4116,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3411,14 +4128,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
 				fixed (byte* ptextEndDisplay = &textEndDisplay)
 				{
 					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					return ret;
 				}
 			}
@@ -3449,7 +4166,7 @@ namespace Hexa.NET.ImGui
 					pStr0[pStrOffset0] = 0;
 				}
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3461,7 +4178,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3483,7 +4200,7 @@ namespace Hexa.NET.ImGui
 			fixed (byte* ptextEndDisplay = &textEndDisplay)
 			{
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3517,7 +4234,7 @@ namespace Hexa.NET.ImGui
 			fixed (byte* ptextEndDisplay = textEndDisplay)
 			{
 				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative(&ret, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3529,7 +4246,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -3537,7 +4254,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEndDisplay = &textEndDisplay)
 					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+						ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					}
 				}
 			}
@@ -3554,7 +4271,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEndDisplay = textEndDisplay)
 					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+						ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					}
 				}
 			}
@@ -3601,7 +4318,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, outRemaining, outOffset, flags);
+				ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, outRemaining, outOffset, flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3616,7 +4333,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -3624,7 +4341,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEndDisplay = textEndDisplay)
 					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+						ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					}
 				}
 			}
@@ -3633,7 +4350,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, in byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -3656,7 +4373,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3668,7 +4385,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -3676,7 +4393,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEndDisplay = &textEndDisplay)
 					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+						ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					}
 				}
 			}
@@ -3708,7 +4425,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3720,7 +4437,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -3743,7 +4460,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEndDisplay = &textEndDisplay)
 				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3778,7 +4495,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEndDisplay = textEndDisplay)
 				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
+					ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3790,7 +4507,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -3883,7 +4600,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -3902,7 +4619,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -3939,7 +4656,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -3995,7 +4712,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -4069,7 +4786,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -4165,7 +4882,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -4185,7 +4902,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, in byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -4223,7 +4940,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -4281,7 +4998,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
+		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, in byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
@@ -4313,722 +5030,6 @@ namespace Hexa.NET.ImGui
 						}
 					}
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEndDisplay != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, outRemaining, outOffset, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEndDisplay = &textEndDisplay)
-			{
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEndDisplay = textEndDisplay)
-			{
-				ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, outRemaining, outOffset, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, outRemaining, outOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, outRemaining, outOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, outRemaining, outOffset, flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, outRemaining, outOffset, flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret;
-			ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, outRemaining, outOffset, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, outRemaining, outOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, outRemaining, outOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, outRemaining, outOffset, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, outRemaining, outOffset, flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, outRemaining, outOffset, flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, outRemaining, outOffset, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
 			}
 		}
 	}

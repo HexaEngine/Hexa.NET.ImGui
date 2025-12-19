@@ -63,7 +63,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, byte* strEnd)
+		public unsafe void append(in byte str, byte* strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -77,7 +77,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str)
+		public unsafe void append(in byte str)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -183,7 +183,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, ref byte strEnd)
+		public unsafe void append(byte* str, in byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -243,7 +243,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ref byte strEnd)
+		public unsafe void append(in byte str, in byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -330,7 +330,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ReadOnlySpan<byte> strEnd)
+		public unsafe void append(in byte str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -347,7 +347,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, string strEnd)
+		public unsafe void append(in byte str, string strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -382,7 +382,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, ref byte strEnd)
+		public unsafe void append(ReadOnlySpan<byte> str, in byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -434,7 +434,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, ref byte strEnd)
+		public unsafe void append(string str, in byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -517,7 +517,7 @@ namespace Hexa.NET.ImGui
 		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(ref byte fmt)
+		public unsafe void appendf(in byte fmt)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -590,7 +590,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(ref byte fmt, nuint args)
+		public unsafe void appendfv(in byte fmt, nuint args)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
@@ -853,7 +853,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, byte* strEnd)
+		public unsafe void append(in byte str, byte* strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
@@ -864,7 +864,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str)
+		public unsafe void append(in byte str)
 		{
 			fixed (byte* pstr = &str)
 			{
@@ -955,7 +955,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(byte* str, ref byte strEnd)
+		public unsafe void append(byte* str, in byte strEnd)
 		{
 			fixed (byte* pstrEnd = &strEnd)
 			{
@@ -1006,7 +1006,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ref byte strEnd)
+		public unsafe void append(in byte str, in byte strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
@@ -1084,7 +1084,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, ReadOnlySpan<byte> strEnd)
+		public unsafe void append(in byte str, ReadOnlySpan<byte> strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
@@ -1098,7 +1098,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ref byte str, string strEnd)
+		public unsafe void append(in byte str, string strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
@@ -1130,7 +1130,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(ReadOnlySpan<byte> str, ref byte strEnd)
+		public unsafe void append(ReadOnlySpan<byte> str, in byte strEnd)
 		{
 			fixed (byte* pstr = str)
 			{
@@ -1176,7 +1176,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void append(string str, ref byte strEnd)
+		public unsafe void append(string str, in byte strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1250,7 +1250,7 @@ namespace Hexa.NET.ImGui
 		/// //////////////////////hand written functions<br/>
 		/// no appendfV<br/>
 		/// </summary>
-		public unsafe void appendf(ref byte fmt)
+		public unsafe void appendf(in byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
@@ -1311,7 +1311,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void appendfv(ref byte fmt, nuint args)
+		public unsafe void appendfv(in byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{

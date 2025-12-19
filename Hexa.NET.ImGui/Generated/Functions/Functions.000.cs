@@ -209,7 +209,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void Destroy(ImTextureRefPtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((ImTextureRef*)self);
 		}
 
 		/// <summary>
@@ -263,7 +263,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static ImTextureID GetTexID(ImTextureRefPtr self)
 		{
-			ImTextureID ret = GetTexIDNative(self);
+			ImTextureID ret = GetTexIDNative((ImTextureRef*)self);
 			return ret;
 		}
 
@@ -297,7 +297,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static ImGuiContextPtr CreateContext(ImFontAtlasPtr sharedFontAtlas)
 		{
-			ImGuiContextPtr ret = CreateContextNative(sharedFontAtlas);
+			ImGuiContextPtr ret = CreateContextNative((ImFontAtlas*)sharedFontAtlas);
 			return ret;
 		}
 
@@ -340,7 +340,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void DestroyContext(ImGuiContextPtr ctx)
 		{
-			DestroyContextNative(ctx);
+			DestroyContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -402,7 +402,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
-			SetCurrentContextNative(ctx);
+			SetCurrentContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -785,7 +785,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void ShowStyleEditor(ImGuiStylePtr reference)
 		{
-			ShowStyleEditorNative(reference);
+			ShowStyleEditorNative((ImGuiStyle*)reference);
 		}
 
 		/// <summary>
@@ -832,7 +832,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
 		/// </summary>
-		public static bool ShowStyleSelector(ref byte label)
+		public static bool ShowStyleSelector(in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -907,7 +907,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
 		/// </summary>
-		public static void ShowFontSelector(ref byte label)
+		public static void ShowFontSelector(in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1025,7 +1025,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void StyleColorsDark(ImGuiStylePtr dst)
 		{
-			StyleColorsDarkNative(dst);
+			StyleColorsDarkNative((ImGuiStyle*)dst);
 		}
 
 		/// <summary>
@@ -1065,7 +1065,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void StyleColorsLight(ImGuiStylePtr dst)
 		{
-			StyleColorsLightNative(dst);
+			StyleColorsLightNative((ImGuiStyle*)dst);
 		}
 
 		/// <summary>
@@ -1105,7 +1105,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void StyleColorsClassic(ImGuiStylePtr dst)
 		{
-			StyleColorsClassicNative(dst);
+			StyleColorsClassicNative((ImGuiStyle*)dst);
 		}
 
 		/// <summary>
@@ -1179,7 +1179,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Begin(ref byte name, bool* pOpen, ImGuiWindowFlags flags)
+		public static bool Begin(in byte name, bool* pOpen, ImGuiWindowFlags flags)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -1191,7 +1191,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Begin(ref byte name, bool* pOpen)
+		public static bool Begin(in byte name, bool* pOpen)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -1203,7 +1203,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Begin(ref byte name)
+		public static bool Begin(in byte name)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -1215,7 +1215,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Begin(ref byte name, ImGuiWindowFlags flags)
+		public static bool Begin(in byte name, ImGuiWindowFlags flags)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -1419,7 +1419,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Begin(ref byte name, ref bool pOpen, ImGuiWindowFlags flags)
+		public static bool Begin(in byte name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -1434,7 +1434,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Begin(ref byte name, ref bool pOpen)
+		public static bool Begin(in byte name, ref bool pOpen)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -1651,7 +1651,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		public static bool BeginChild(in byte strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1663,7 +1663,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiChildFlags childFlags)
+		public static bool BeginChild(in byte strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1675,7 +1675,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, Vector2 size)
+		public static bool BeginChild(in byte strId, Vector2 size)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1687,7 +1687,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId)
+		public static bool BeginChild(in byte strId)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1699,7 +1699,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, ImGuiChildFlags childFlags)
+		public static bool BeginChild(in byte strId, ImGuiChildFlags childFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1711,7 +1711,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiWindowFlags windowFlags)
+		public static bool BeginChild(in byte strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1723,7 +1723,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, ImGuiWindowFlags windowFlags)
+		public static bool BeginChild(in byte strId, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -1735,7 +1735,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginChild(ref byte strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		public static bool BeginChild(in byte strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -2564,19 +2564,19 @@ namespace Hexa.NET.ImGui
 		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextWindowSizeConstraintsNative(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
+		internal static void SetNextWindowSizeConstraintsNative(Vector2 sizeMin, Vector2 sizeMax, delegate*<ImGuiSizeCallbackData*, void> customCallback, void* customCallbackData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, delegate*<ImGuiSizeCallbackData*, void>, void*, void>)funcTable[52])(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)Utils.GetFunctionPointerForDelegate(customCallback), customCallbackData);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, delegate*<ImGuiSizeCallbackData*, void>, void*, void>)funcTable[52])(sizeMin, sizeMax, customCallback, customCallbackData);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, void>)funcTable[52])(sizeMin, sizeMax, (nint)Utils.GetFunctionPointerForDelegate(customCallback), (nint)customCallbackData);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, void>)funcTable[52])(sizeMin, sizeMax, (nint)customCallback, (nint)customCallbackData);
 			#endif
 		}
 
 		/// <summary>
 		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
-		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, delegate*<ImGuiSizeCallbackData*, void> customCallback, void* customCallbackData)
 		{
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, customCallback, customCallbackData);
 		}
@@ -2584,7 +2584,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
 		/// </summary>
-		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback)
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, delegate*<ImGuiSizeCallbackData*, void> customCallback)
 		{
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, customCallback, (void*)(default));
 		}
@@ -2594,7 +2594,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax)
 		{
-			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (ImGuiSizeCallback)(default), (void*)(default));
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)(default), (void*)(default));
 		}
 
 		/// <summary>
@@ -2602,7 +2602,47 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, void* customCallbackData)
 		{
-			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (ImGuiSizeCallback)(default), customCallbackData);
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)(default), customCallbackData);
+		}
+
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
+		{
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)Utils.GetFunctionPointerForDelegate(customCallback), customCallbackData);
+		}
+
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback)
+		{
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)Utils.GetFunctionPointerForDelegate(customCallback), (void*)(default));
+		}
+
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, delegate*<ImGuiSizeCallbackData*, void> customCallback, nint customCallbackData)
+		{
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, customCallback, (void*)customCallbackData);
+		}
+
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, nint customCallbackData)
+		{
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)(default), (void*)customCallbackData);
+		}
+
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
+		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, nint customCallbackData)
+		{
+			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)Utils.GetFunctionPointerForDelegate(customCallback), (void*)customCallbackData);
 		}
 
 		/// <summary>
@@ -2879,7 +2919,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window position.<br/>
 		/// </summary>
-		public static void SetWindowPos(ref byte name, Vector2 pos, ImGuiCond cond)
+		public static void SetWindowPos(in byte name, Vector2 pos, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -2890,7 +2930,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window position.<br/>
 		/// </summary>
-		public static void SetWindowPos(ref byte name, Vector2 pos)
+		public static void SetWindowPos(in byte name, Vector2 pos)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -3010,7 +3050,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
-		public static void SetWindowSize(ref byte name, Vector2 size, ImGuiCond cond)
+		public static void SetWindowSize(in byte name, Vector2 size, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -3021,7 +3061,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
 		/// </summary>
-		public static void SetWindowSize(ref byte name, Vector2 size)
+		public static void SetWindowSize(in byte name, Vector2 size)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -3141,7 +3181,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window collapsed state<br/>
 		/// </summary>
-		public static void SetWindowCollapsed(ref byte name, bool collapsed, ImGuiCond cond)
+		public static void SetWindowCollapsed(in byte name, bool collapsed, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -3152,7 +3192,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window collapsed state<br/>
 		/// </summary>
-		public static void SetWindowCollapsed(ref byte name, bool collapsed)
+		public static void SetWindowCollapsed(in byte name, bool collapsed)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -3264,7 +3304,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
 		/// </summary>
-		public static void SetWindowFocus(ref byte name)
+		public static void SetWindowFocus(in byte name)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -3576,7 +3616,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static void PushFont(ImFontPtr font, float fontSizeBaseUnscaled)
 		{
-			PushFontNative(font, fontSizeBaseUnscaled);
+			PushFontNative((ImFont*)font, fontSizeBaseUnscaled);
 		}
 
 		/// <summary>
@@ -4836,7 +4876,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
-		public static void PushID(ref byte strId)
+		public static void PushID(in byte strId)
 		{
 			fixed (byte* pstrId = &strId)
 			{
@@ -4908,7 +4948,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
-		public static void PushID(ref byte strIdBegin, byte* strIdEnd)
+		public static void PushID(in byte strIdBegin, byte* strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
 			{
@@ -4959,7 +4999,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
-		public static void PushID(byte* strIdBegin, ref byte strIdEnd)
+		public static void PushID(byte* strIdBegin, in byte strIdEnd)
 		{
 			fixed (byte* pstrIdEnd = &strIdEnd)
 			{
@@ -4975,49 +5015,6 @@ namespace Hexa.NET.ImGui
 			fixed (byte* pstrIdEnd = strIdEnd)
 			{
 				PushIDNative(strIdBegin, (byte*)pstrIdEnd);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(byte* strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PushIDNative(strIdBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ref byte strIdBegin, ref byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
 			}
 		}
 	}

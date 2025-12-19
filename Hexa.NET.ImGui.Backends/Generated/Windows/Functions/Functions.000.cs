@@ -41,6 +41,15 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		}
 
 		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool Init(nint hwnd)
+		{
+			byte ret = InitNative((void*)hwnd);
+			return ret != 0;
+		}
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -59,6 +68,15 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		public static bool InitForOpenGL(void* hwnd)
 		{
 			byte ret = InitForOpenGLNative(hwnd);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InitForOpenGL(nint hwnd)
+		{
+			byte ret = InitForOpenGLNative((void*)hwnd);
 			return ret != 0;
 		}
 
@@ -192,6 +210,15 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static float GetDpiScaleForHwnd(nint hwnd)
+		{
+			float ret = GetDpiScaleForHwndNative((void*)hwnd);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetDpiScaleForMonitorNative(void* monitor)
 		{
@@ -208,6 +235,15 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		public static float GetDpiScaleForMonitor(void* monitor)
 		{
 			float ret = GetDpiScaleForMonitorNative(monitor);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetDpiScaleForMonitor(nint monitor)
+		{
+			float ret = GetDpiScaleForMonitorNative((void*)monitor);
 			return ret;
 		}
 
@@ -234,6 +270,16 @@ namespace Hexa.NET.ImGui.Backends.Win32
 		public static void EnableAlphaCompositing(void* hwnd)
 		{
 			EnableAlphaCompositingNative(hwnd);
+		}
+
+		/// <summary>
+		/// Transparency related helpers (optional) [experimental]<br/>
+		/// - Use to enable alpha compositing transparency with the desktop.<br/>
+		/// - Use together with e.g. clearing your framebuffer with zero-alpha.<br/>
+		/// </summary>
+		public static void EnableAlphaCompositing(nint hwnd)
+		{
+			EnableAlphaCompositingNative((void*)hwnd);
 		}
 
 	}

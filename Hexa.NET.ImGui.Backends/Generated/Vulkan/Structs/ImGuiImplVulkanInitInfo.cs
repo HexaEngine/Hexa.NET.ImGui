@@ -149,7 +149,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 			UseDynamicRendering = useDynamicRendering ? (byte)1 : (byte)0;
 			PipelineRenderingCreateInfo = pipelineRenderingCreateInfo;
 			Allocator = allocator;
-			CheckVkResultFn = (void*)checkVkResultFn;
+			CheckVkResultFn = (delegate*<int, void>*)checkVkResultFn;
 			MinAllocationSize = minAllocationSize;
 		}
 

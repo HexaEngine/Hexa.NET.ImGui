@@ -78,7 +78,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawData(bool valid = default, int cmdListsCount = default, int totalIdxCount = default, int totalVtxCount = default, ImVector<ImDrawListPtr> cmdLists = default, Vector2 displayPos = default, Vector2 displaySize = default, Vector2 framebufferScale = default, ImGuiViewportPtr ownerViewport = default, ImVector<ImTextureDataPtr>* textures = default)
+		public unsafe ImDrawData(bool valid = default, int cmdListsCount = default, int totalIdxCount = default, int totalVtxCount = default, ImVector<ImDrawListPtr> cmdLists = default, Vector2 displayPos = default, Vector2 displaySize = default, Vector2 framebufferScale = default, ImGuiViewport* ownerViewport = default, ImVector<ImTextureDataPtr>* textures = default)
 		{
 			Valid = valid ? (byte)1 : (byte)0;
 			CmdListsCount = cmdListsCount;
@@ -96,7 +96,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
-		public unsafe void AddDrawList(ImDrawListPtr drawList)
+		public unsafe void AddDrawList(ImDrawList* drawList)
 		{
 			fixed (ImDrawData* @this = &this)
 			{
@@ -248,7 +248,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper to add an external draw list into an existing ImDrawData.<br/>
 		/// </summary>
-		public unsafe void AddDrawList(ImDrawListPtr drawList)
+		public unsafe void AddDrawList(ImDrawList* drawList)
 		{
 			ImGui.AddDrawListNative(Handle, drawList);
 		}

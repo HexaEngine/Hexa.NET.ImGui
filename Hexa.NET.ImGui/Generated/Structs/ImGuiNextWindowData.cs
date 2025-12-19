@@ -140,7 +140,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNextWindowData(ImGuiNextWindowDataFlags hasFlags = default, ImGuiCond posCond = default, ImGuiCond sizeCond = default, ImGuiCond collapsedCond = default, ImGuiCond dockCond = default, Vector2 posVal = default, Vector2 posPivotVal = default, Vector2 sizeVal = default, Vector2 contentSizeVal = default, Vector2 scrollVal = default, ImGuiWindowFlags windowFlags = default, ImGuiChildFlags childFlags = default, bool posUndock = default, bool collapsedVal = default, ImRect sizeConstraintRect = default, ImGuiSizeCallback sizeCallback = default, void* sizeCallbackUserData = default, float bgAlphaVal = default, uint viewportId = default, uint dockId = default, ImGuiWindowClass windowClass = default, Vector2 menuBarOffsetMinVal = default, ImGuiWindowRefreshFlags refreshFlagsVal = default)
+		public unsafe ImGuiNextWindowData(ImGuiNextWindowDataFlags hasFlags = default, ImGuiCond posCond = default, ImGuiCond sizeCond = default, ImGuiCond collapsedCond = default, ImGuiCond dockCond = default, Vector2 posVal = default, Vector2 posPivotVal = default, Vector2 sizeVal = default, Vector2 contentSizeVal = default, Vector2 scrollVal = default, ImGuiWindowFlags windowFlags = default, ImGuiChildFlags childFlags = default, bool posUndock = default, bool collapsedVal = default, ImRect sizeConstraintRect = default, delegate*<ImGuiSizeCallbackData*, void> sizeCallback = default, void* sizeCallbackUserData = default, float bgAlphaVal = default, uint viewportId = default, uint dockId = default, ImGuiWindowClass windowClass = default, Vector2 menuBarOffsetMinVal = default, ImGuiWindowRefreshFlags refreshFlagsVal = default)
 		{
 			HasFlags = hasFlags;
 			PosCond = posCond;
@@ -157,7 +157,7 @@ namespace Hexa.NET.ImGui
 			PosUndock = posUndock ? (byte)1 : (byte)0;
 			CollapsedVal = collapsedVal ? (byte)1 : (byte)0;
 			SizeConstraintRect = sizeConstraintRect;
-			SizeCallback = (void*)Marshal.GetFunctionPointerForDelegate(sizeCallback);
+			SizeCallback = (delegate*<ImGuiSizeCallbackData*, void>)sizeCallback;
 			SizeCallbackUserData = sizeCallbackUserData;
 			BgAlphaVal = bgAlphaVal;
 			ViewportId = viewportId;

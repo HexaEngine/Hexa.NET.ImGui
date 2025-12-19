@@ -329,7 +329,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata, nuint userdataSize)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -340,11 +340,77 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
 				ImGui.AddCallbackNative(@this, callback, userdata, (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), userdata, userdataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), userdata, (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata, nuint userdataSize)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, callback, (void*)userdata, userdataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, callback, (void*)userdata, (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, nint userdata, nuint userdataSize)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)userdata, userdataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, nint userdata)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)userdata, (nuint)(0));
 			}
 		}
 
@@ -428,7 +494,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddConcavePolyFilled(ref Vector2 points, int numPoints, uint col)
+		public unsafe void AddConcavePolyFilled(in Vector2 points, int numPoints, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -453,7 +519,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddConvexPolyFilled(ref Vector2 points, int numPoints, uint col)
+		public unsafe void AddConvexPolyFilled(in Vector2 points, int numPoints, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -863,7 +929,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddPolyline(ref Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1064,7 +1130,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1078,7 +1144,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1184,7 +1250,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1244,7 +1310,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1331,7 +1397,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1348,7 +1414,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, string textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, string textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1383,7 +1449,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1435,7 +1501,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, string textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, string textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1705,7 +1771,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1719,7 +1785,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1733,7 +1799,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1747,7 +1813,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1761,7 +1827,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1775,7 +1841,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1789,7 +1855,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -1803,7 +1869,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2185,7 +2251,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2202,7 +2268,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2219,7 +2285,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2236,7 +2302,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2253,7 +2319,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2270,7 +2336,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2287,7 +2353,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2304,7 +2370,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2737,7 +2803,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2751,7 +2817,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2765,7 +2831,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2779,7 +2845,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2977,7 +3043,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -2994,7 +3060,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3011,7 +3077,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3028,7 +3094,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3253,7 +3319,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3270,7 +3336,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3287,7 +3353,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3304,7 +3370,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3601,7 +3667,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3618,7 +3684,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3635,7 +3701,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3652,7 +3718,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3669,7 +3735,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3704,7 +3770,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3739,7 +3805,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3774,7 +3840,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3809,7 +3875,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3826,7 +3892,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3843,7 +3909,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3860,7 +3926,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4017,7 +4083,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4052,7 +4118,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4087,7 +4153,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4122,7 +4188,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4297,7 +4363,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4317,7 +4383,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4337,7 +4403,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4357,7 +4423,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4681,7 +4747,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4701,7 +4767,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4721,7 +4787,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4741,7 +4807,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4761,7 +4827,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4799,7 +4865,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4837,7 +4903,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4875,7 +4941,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4913,7 +4979,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4933,7 +4999,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4953,7 +5019,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -4973,7 +5039,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5145,7 +5211,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5183,7 +5249,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5221,7 +5287,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5259,7 +5325,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5449,7 +5515,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5463,7 +5529,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5477,7 +5543,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5491,7 +5557,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5505,7 +5571,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5522,7 +5588,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5539,7 +5605,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5556,7 +5622,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5573,7 +5639,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5590,7 +5656,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5607,7 +5673,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5624,7 +5690,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5641,7 +5707,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5658,7 +5724,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5675,7 +5741,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5692,7 +5758,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5709,7 +5775,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5744,7 +5810,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5779,7 +5845,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5814,7 +5880,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5849,7 +5915,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5869,7 +5935,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5889,7 +5955,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5909,7 +5975,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5929,7 +5995,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5949,7 +6015,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5969,7 +6035,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -5989,7 +6055,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6009,7 +6075,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6047,7 +6113,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6085,7 +6151,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6123,7 +6189,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6161,7 +6227,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6178,7 +6244,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6195,7 +6261,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6212,7 +6278,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6229,7 +6295,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6264,7 +6330,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6299,7 +6365,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6319,7 +6385,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6339,7 +6405,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6359,7 +6425,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6379,7 +6445,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6417,7 +6483,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6455,7 +6521,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6475,7 +6541,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6495,7 +6561,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6515,7 +6581,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6535,7 +6601,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6591,7 +6657,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6647,7 +6713,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6667,7 +6733,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6687,7 +6753,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6725,7 +6791,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6763,7 +6829,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6783,7 +6849,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6803,7 +6869,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6841,7 +6907,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6879,7 +6945,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6917,7 +6983,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6955,7 +7021,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -6993,7 +7059,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7031,7 +7097,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7054,7 +7120,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7077,7 +7143,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7100,7 +7166,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7123,7 +7189,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7182,7 +7248,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7241,7 +7307,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7264,7 +7330,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7287,7 +7353,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7328,7 +7394,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7369,7 +7435,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7392,7 +7458,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7415,7 +7481,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7456,7 +7522,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7497,7 +7563,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7538,7 +7604,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7579,7 +7645,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -7620,7 +7686,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -8393,7 +8459,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata, nuint userdataSize)
 		{
 			ImGui.AddCallbackNative(Handle, callback, userdata, userdataSize);
 		}
@@ -8401,9 +8467,57 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata)
 		{
 			ImGui.AddCallbackNative(Handle, callback, userdata, (nuint)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
+		{
+			ImGui.AddCallbackNative(Handle, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), userdata, userdataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
+		{
+			ImGui.AddCallbackNative(Handle, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), userdata, (nuint)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata, nuint userdataSize)
+		{
+			ImGui.AddCallbackNative(Handle, callback, (void*)userdata, userdataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata)
+		{
+			ImGui.AddCallbackNative(Handle, callback, (void*)userdata, (nuint)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, nint userdata, nuint userdataSize)
+		{
+			ImGui.AddCallbackNative(Handle, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)userdata, userdataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, nint userdata)
+		{
+			ImGui.AddCallbackNative(Handle, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)userdata, (nuint)(0));
 		}
 
 		/// <summary>
@@ -8465,7 +8579,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddConcavePolyFilled(ref Vector2 points, int numPoints, uint col)
+		public unsafe void AddConcavePolyFilled(in Vector2 points, int numPoints, uint col)
 		{
 			fixed (Vector2* ppoints = &points)
 			{
@@ -8484,7 +8598,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddConvexPolyFilled(ref Vector2 points, int numPoints, uint col)
+		public unsafe void AddConvexPolyFilled(in Vector2 points, int numPoints, uint col)
 		{
 			fixed (Vector2* ppoints = &points)
 			{
@@ -8783,7 +8897,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddPolyline(ref Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
 		{
 			fixed (Vector2* ppoints = &points)
 			{
@@ -8930,7 +9044,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -8941,7 +9055,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9032,7 +9146,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -9083,7 +9197,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9161,7 +9275,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9175,7 +9289,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, string textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, in byte textBegin, string textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9207,7 +9321,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -9253,7 +9367,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(Vector2 pos, uint col, string textBegin, ref byte textEnd)
+		public unsafe void AddText(Vector2 pos, uint col, string textBegin, in byte textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -9469,7 +9583,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9480,7 +9594,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9491,7 +9605,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9502,7 +9616,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9513,7 +9627,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9524,7 +9638,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9535,7 +9649,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9546,7 +9660,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -9877,7 +9991,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9891,7 +10005,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9905,7 +10019,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9919,7 +10033,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9933,7 +10047,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9947,7 +10061,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9961,7 +10075,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -9975,7 +10089,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -10357,7 +10471,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -10368,7 +10482,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -10379,7 +10493,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -10390,7 +10504,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -10561,7 +10675,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -10575,7 +10689,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -10589,7 +10703,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -10603,7 +10717,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -10801,7 +10915,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -10815,7 +10929,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -10829,7 +10943,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -10843,7 +10957,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11113,7 +11227,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11127,7 +11241,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11141,7 +11255,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11155,7 +11269,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11169,7 +11283,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11201,7 +11315,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11233,7 +11347,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11265,7 +11379,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -11297,7 +11411,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -11311,7 +11425,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -11325,7 +11439,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -11339,7 +11453,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -11481,7 +11595,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -11513,7 +11627,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -11545,7 +11659,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -11577,7 +11691,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -11737,7 +11851,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -11754,7 +11868,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -11771,7 +11885,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -11788,7 +11902,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12085,7 +12199,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12102,7 +12216,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12119,7 +12233,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12136,7 +12250,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12153,7 +12267,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12188,7 +12302,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12223,7 +12337,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12258,7 +12372,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12293,7 +12407,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12310,7 +12424,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12327,7 +12441,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12344,7 +12458,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12501,7 +12615,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12536,7 +12650,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12571,7 +12685,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12606,7 +12720,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12781,7 +12895,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
@@ -12792,7 +12906,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
@@ -12803,7 +12917,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
@@ -12814,7 +12928,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
@@ -12825,7 +12939,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12839,7 +12953,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12853,7 +12967,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12867,7 +12981,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -12881,7 +12995,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -12895,7 +13009,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -12909,7 +13023,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -12923,7 +13037,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -12937,7 +13051,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -12951,7 +13065,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -12965,7 +13079,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -12979,7 +13093,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -12993,7 +13107,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13025,7 +13139,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13057,7 +13171,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13089,7 +13203,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13121,7 +13235,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13138,7 +13252,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13155,7 +13269,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13172,7 +13286,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13189,7 +13303,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13206,7 +13320,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13223,7 +13337,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13240,7 +13354,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13257,7 +13371,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13292,7 +13406,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13327,7 +13441,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13362,7 +13476,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13397,7 +13511,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -13411,7 +13525,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -13425,7 +13539,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
@@ -13439,7 +13553,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
@@ -13453,7 +13567,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13485,7 +13599,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13517,7 +13631,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13534,7 +13648,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13551,7 +13665,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13568,7 +13682,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13585,7 +13699,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13620,7 +13734,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -13655,7 +13769,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -13672,7 +13786,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -13689,7 +13803,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -13706,7 +13820,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -13723,7 +13837,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13776,7 +13890,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -13829,7 +13943,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -13846,7 +13960,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -13863,7 +13977,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -13898,7 +14012,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -13933,7 +14047,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -13950,7 +14064,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -13967,7 +14081,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -14002,7 +14116,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -14037,7 +14151,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -14072,7 +14186,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -14107,7 +14221,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -14142,7 +14256,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -14177,7 +14291,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14197,7 +14311,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14217,7 +14331,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14237,7 +14351,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14257,7 +14371,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14313,7 +14427,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14369,7 +14483,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14389,7 +14503,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14409,7 +14523,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14447,7 +14561,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, in byte textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14485,7 +14599,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14505,7 +14619,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14525,7 +14639,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14563,7 +14677,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, string textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14601,7 +14715,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14639,7 +14753,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, in byte textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14677,7 +14791,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14715,7 +14829,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ReadOnlySpan<byte> textEnd, in Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
 			{
@@ -14801,9 +14915,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Create a clone of the CmdBufferIdxBufferVtxBuffer. For multi-threaded rendering, consider using `imgui_threaded_rendering` from https:github.comocornutimgui_club instead.<br/>
 		/// </summary>
-		public unsafe ImDrawListPtr CloneOutput()
+		public unsafe ImDrawList* CloneOutput()
 		{
-			ImDrawListPtr ret = ImGui.CloneOutputNative(Handle);
+			ImDrawList* ret = ImGui.CloneOutputNative(Handle);
 			return ret;
 		}
 

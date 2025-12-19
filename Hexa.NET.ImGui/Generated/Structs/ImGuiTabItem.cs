@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTabItem(uint id = default, ImGuiTabItemFlags flags = default, ImGuiWindowPtr window = default, int lastFrameVisible = default, int lastFrameSelected = default, float offset = default, float width = default, float contentWidth = default, float requestedWidth = default, int nameOffset = default, short beginOrder = default, short indexDuringLayout = default, bool wantClose = default)
+		public unsafe ImGuiTabItem(uint id = default, ImGuiTabItemFlags flags = default, ImGuiWindow* window = default, int lastFrameVisible = default, int lastFrameSelected = default, float offset = default, float width = default, float contentWidth = default, float requestedWidth = default, int nameOffset = default, short beginOrder = default, short indexDuringLayout = default, bool wantClose = default)
 		{
 			ID = id;
 			Flags = flags;

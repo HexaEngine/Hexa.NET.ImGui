@@ -51,7 +51,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiListClipperData(ImGuiListClipper* listClipper = default, float lossynessOffset = default, int stepNo = default, int itemsFrozen = default, ImVector<ImGuiListClipperRange> ranges = default)
+		public unsafe ImGuiListClipperData(ImGuiListClipperPtr listClipper = default, float lossynessOffset = default, int stepNo = default, int itemsFrozen = default, ImVector<ImGuiListClipperRange> ranges = default)
 		{
 			ListClipper = listClipper;
 			LossynessOffset = lossynessOffset;

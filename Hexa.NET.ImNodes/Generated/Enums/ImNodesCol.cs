@@ -17,7 +17,6 @@ namespace Hexa.NET.ImNodes
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImNodesCol : int
 	{
 		/// <summary>

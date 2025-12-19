@@ -21,6 +21,66 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
 		{
 			byte* pStr0 = null;
@@ -232,7 +292,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, byte* previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(in byte label, byte* previewValue, ImGuiComboFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -244,7 +304,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, byte* previewValue)
+		public static bool BeginCombo(in byte label, byte* previewValue)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -340,7 +400,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(byte* label, ref byte previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(byte* label, in byte previewValue, ImGuiComboFlags flags)
 		{
 			fixed (byte* ppreviewValue = &previewValue)
 			{
@@ -352,7 +412,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(byte* label, ref byte previewValue)
+		public static bool BeginCombo(byte* label, in byte previewValue)
 		{
 			fixed (byte* ppreviewValue = &previewValue)
 			{
@@ -448,7 +508,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, ref byte previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(in byte label, in byte previewValue, ImGuiComboFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -463,7 +523,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, ref byte previewValue)
+		public static bool BeginCombo(in byte label, in byte previewValue)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -610,7 +670,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, ReadOnlySpan<byte> previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(in byte label, ReadOnlySpan<byte> previewValue, ImGuiComboFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -625,7 +685,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, ReadOnlySpan<byte> previewValue)
+		public static bool BeginCombo(in byte label, ReadOnlySpan<byte> previewValue)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -640,7 +700,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, string previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(in byte label, string previewValue, ImGuiComboFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -673,7 +733,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ref byte label, string previewValue)
+		public static bool BeginCombo(in byte label, string previewValue)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -706,7 +766,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ReadOnlySpan<byte> label, ref byte previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(ReadOnlySpan<byte> label, in byte previewValue, ImGuiComboFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -721,7 +781,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(ReadOnlySpan<byte> label, ref byte previewValue)
+		public static bool BeginCombo(ReadOnlySpan<byte> label, in byte previewValue)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -802,7 +862,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(string label, ref byte previewValue, ImGuiComboFlags flags)
+		public static bool BeginCombo(string label, in byte previewValue, ImGuiComboFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -835,7 +895,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginCombo(string label, ref byte previewValue)
+		public static bool BeginCombo(string label, in byte previewValue)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -986,7 +1046,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -998,7 +1058,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, byte** items, int itemsCount)
+		public static bool Combo(in byte label, int* currentItem, byte** items, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1118,7 +1178,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, ref int currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1133,7 +1193,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, byte** items, int itemsCount)
+		public static bool Combo(in byte label, ref int currentItem, byte** items, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1244,6 +1304,30 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool Combo(byte* label, int* currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte** pitems = &items)
+			{
+				byte ret = ComboNative(label, currentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, int* currentItem, in byte* items, int itemsCount)
+		{
+			fixed (byte** pitems = &items)
+			{
+				byte ret = ComboNative(label, currentItem, (byte**)pitems, itemsCount, (int)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Combo(byte* label, int* currentItem, string[] items, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte** pStrArray0 = null;
@@ -1309,6 +1393,66 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStrArray0);
 			}
 			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, int* currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative((byte*)plabel, currentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, int* currentItem, in byte* items, int itemsCount)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative((byte*)plabel, currentItem, (byte**)pitems, itemsCount, (int)(-1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative((byte*)plabel, currentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, in byte* items, int itemsCount)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative((byte*)plabel, currentItem, (byte**)pitems, itemsCount, (int)(-1));
+					return ret != 0;
+				}
+			}
 		}
 
 		/// <summary>
@@ -1426,6 +1570,102 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool Combo(string label, int* currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** pitems = &items)
+			{
+				byte ret = ComboNative(pStr0, currentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(string label, int* currentItem, in byte* items, int itemsCount)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** pitems = &items)
+			{
+				byte ret = ComboNative(pStr0, currentItem, (byte**)pitems, itemsCount, (int)(-1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, ref int currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative(label, (int*)pcurrentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, ref int currentItem, in byte* items, int itemsCount)
+		{
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative(label, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Combo(byte* label, ref int currentItem, string[] items, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (int* pcurrentItem = &currentItem)
@@ -1496,6 +1736,78 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStrArray0);
 				}
 				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, ref int currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					fixed (byte** pitems = &items)
+					{
+						byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, ref int currentItem, in byte* items, int itemsCount)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					fixed (byte** pitems = &items)
+					{
+						byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					fixed (byte** pitems = &items)
+					{
+						byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, in byte* items, int itemsCount)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					fixed (byte** pitems = &items)
+					{
+						byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
+						return ret != 0;
+					}
+				}
 			}
 		}
 
@@ -1620,6 +1932,78 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool Combo(string label, ref int currentItem, in byte* items, int itemsCount, int popupMaxHeightInItems)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative(pStr0, (int*)pcurrentItem, (byte**)pitems, itemsCount, popupMaxHeightInItems);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(string label, ref int currentItem, in byte* items, int itemsCount)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				fixed (byte** pitems = &items)
+				{
+					byte ret = ComboNative(pStr0, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte ComboNative(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1651,7 +2035,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1663,7 +2047,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, byte* itemsSeparatedByZeros)
+		public static bool Combo(in byte label, int* currentItem, byte* itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1783,7 +2167,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, ref int currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1798,7 +2182,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, byte* itemsSeparatedByZeros)
+		public static bool Combo(in byte label, ref int currentItem, byte* itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1909,7 +2293,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, int* currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* pitemsSeparatedByZeros = &itemsSeparatedByZeros)
 			{
@@ -1921,7 +2305,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(byte* label, int* currentItem, in byte itemsSeparatedByZeros)
 		{
 			fixed (byte* pitemsSeparatedByZeros = &itemsSeparatedByZeros)
 			{
@@ -2017,7 +2401,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, int* currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2032,7 +2416,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(in byte label, int* currentItem, in byte itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2179,7 +2563,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2194,7 +2578,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
+		public static bool Combo(in byte label, int* currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2209,7 +2593,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, int* currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2242,7 +2626,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, string itemsSeparatedByZeros)
+		public static bool Combo(in byte label, int* currentItem, string itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2275,7 +2659,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2290,7 +2674,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, in byte itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2371,7 +2755,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(string label, int* currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(string label, int* currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2404,7 +2788,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(string label, int* currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(string label, int* currentItem, in byte itemsSeparatedByZeros)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2503,7 +2887,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, ref int currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
@@ -2518,7 +2902,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(byte* label, ref int currentItem, in byte itemsSeparatedByZeros)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
@@ -2629,7 +3013,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, ref int currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2647,7 +3031,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(in byte label, ref int currentItem, in byte itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2809,7 +3193,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2827,7 +3211,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
+		public static bool Combo(in byte label, ref int currentItem, ReadOnlySpan<byte> itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2845,7 +3229,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, ref int currentItem, string itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2881,7 +3265,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, string itemsSeparatedByZeros)
+		public static bool Combo(in byte label, ref int currentItem, string itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2917,7 +3301,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2935,7 +3319,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, in byte itemsSeparatedByZeros)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3025,7 +3409,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(string label, ref int currentItem, ref byte itemsSeparatedByZeros, int popupMaxHeightInItems)
+		public static bool Combo(string label, ref int currentItem, in byte itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3061,7 +3445,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
 		/// </summary>
-		public static bool Combo(string label, ref int currentItem, ref byte itemsSeparatedByZeros)
+		public static bool Combo(string label, ref int currentItem, in byte itemsSeparatedByZeros)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3170,10 +3554,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ComboNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		internal static byte ComboNative(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*>, void*, int, int, byte>)funcTable[170])(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte>)funcTable[170])(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 			#else
 			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, int, byte>)funcTable[170])((nint)label, (nint)currentItem, (nint)getter, (nint)userData, itemsCount, popupMaxHeightInItems);
 			#endif
@@ -3182,7 +3566,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte ret = ComboNative(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 			return ret != 0;
@@ -3191,7 +3575,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			byte ret = ComboNative(label, currentItem, getter, userData, itemsCount, (int)(-1));
 			return ret != 0;
@@ -3200,7 +3584,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3212,7 +3596,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3224,7 +3608,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3236,7 +3620,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3248,7 +3632,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3278,7 +3662,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3308,7 +3692,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
@@ -3320,7 +3704,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
@@ -3332,7 +3716,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3347,7 +3731,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3362,7 +3746,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3377,7 +3761,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3392,7 +3776,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3425,7 +3809,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte*> getter, void* userData, int itemsCount)
+		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3447,6 +3831,282 @@ namespace Hexa.NET.ImGui
 			fixed (int* pcurrentItem = &currentItem)
 			{
 				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			byte ret = ComboNative(label, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			byte ret = ComboNative(label, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ComboNative(pStr0, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ComboNative(pStr0, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				byte ret = ComboNative(label, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				byte ret = ComboNative(label, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pcurrentItem = &currentItem)
+				{
+					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pcurrentItem = &currentItem)
+			{
+				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3615,7 +4275,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3627,7 +4287,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, byte* format)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3639,7 +4299,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3651,7 +4311,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3663,7 +4323,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed)
+		public static bool DragFloat(in byte label, float* v, float vSpeed)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3675,7 +4335,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v)
+		public static bool DragFloat(in byte label, float* v)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3687,7 +4347,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, byte* format)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3699,7 +4359,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, byte* format)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3711,7 +4371,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, byte* format)
+		public static bool DragFloat(in byte label, float* v, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3723,7 +4383,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3735,7 +4395,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3747,7 +4407,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3759,7 +4419,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3771,7 +4431,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3783,7 +4443,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3795,7 +4455,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// If v_min &gt;= v_max we have no bound<br/>
 		/// </summary>
-		public static bool DragFloat(ref byte label, float* v, byte* format, ImGuiSliderFlags flags)
+		public static bool DragFloat(in byte label, float* v, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4384,648 +5044,6 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, vMin, (float)(0.0f), format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, vMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, byte* format)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, byte* format)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, byte* format)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, format, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), format, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ref byte label, ref float v, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, format, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, float vMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					bool ret = DragFloat((byte*)plabel, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, float vMin, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, ref float v, float vSpeed, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (float* pv = &v)
-				{
-					byte ret = DragFloatNative((byte*)plabel, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
 		}
 	}
 }

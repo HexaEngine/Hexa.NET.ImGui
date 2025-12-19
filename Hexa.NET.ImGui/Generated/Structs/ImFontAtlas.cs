@@ -226,7 +226,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureFormat texDesiredFormat = default, int texGlyphPadding = default, int texMinWidth = default, int texMinHeight = default, int texMaxWidth = default, int texMaxHeight = default, void* userData = default, ImTextureRef texRef = default, ImTextureDataPtr texData = default, ImVector<ImTextureDataPtr> texList = default, bool locked = default, bool rendererHasTextures = default, bool texIsBuilt = default, bool texPixelsUseColors = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontConfig> sources = default, Vector4* texUvLines = default, int texNextUniqueId = default, int fontNextUniqueId = default, ImVector<ImDrawListSharedDataPtr> drawListSharedDatas = default, ImFontAtlasBuilder* builder = default, ImFontLoader* fontLoader = default, byte* fontLoaderName = default, void* fontLoaderData = default, uint fontLoaderFlags = default, int refCount = default, ImGuiContext* ownerContext = default)
+		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureFormat texDesiredFormat = default, int texGlyphPadding = default, int texMinWidth = default, int texMinHeight = default, int texMaxWidth = default, int texMaxHeight = default, void* userData = default, ImTextureRef texRef = default, ImTextureData* texData = default, ImVector<ImTextureDataPtr> texList = default, bool locked = default, bool rendererHasTextures = default, bool texIsBuilt = default, bool texPixelsUseColors = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontConfig> sources = default, Vector4* texUvLines = default, int texNextUniqueId = default, int fontNextUniqueId = default, ImVector<ImDrawListSharedDataPtr> drawListSharedDatas = default, ImFontAtlasBuilder* builder = default, ImFontLoader* fontLoader = default, byte* fontLoaderName = default, void* fontLoaderData = default, uint fontLoaderFlags = default, int refCount = default, ImGuiContext* ownerContext = default)
 		{
 			Flags = flags;
 			TexDesiredFormat = texDesiredFormat;
@@ -298,7 +298,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureFormat texDesiredFormat = default, int texGlyphPadding = default, int texMinWidth = default, int texMinHeight = default, int texMaxWidth = default, int texMaxHeight = default, void* userData = default, ImTextureRef texRef = default, ImTextureDataPtr texData = default, ImVector<ImTextureDataPtr> texList = default, bool locked = default, bool rendererHasTextures = default, bool texIsBuilt = default, bool texPixelsUseColors = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontConfig> sources = default, Span<Vector4> texUvLines = default, int texNextUniqueId = default, int fontNextUniqueId = default, ImVector<ImDrawListSharedDataPtr> drawListSharedDatas = default, ImFontAtlasBuilder* builder = default, ImFontLoader* fontLoader = default, byte* fontLoaderName = default, void* fontLoaderData = default, uint fontLoaderFlags = default, int refCount = default, ImGuiContext* ownerContext = default)
+		public unsafe ImFontAtlas(ImFontAtlasFlags flags = default, ImTextureFormat texDesiredFormat = default, int texGlyphPadding = default, int texMinWidth = default, int texMinHeight = default, int texMaxWidth = default, int texMaxHeight = default, void* userData = default, ImTextureRef texRef = default, ImTextureData* texData = default, ImVector<ImTextureDataPtr> texList = default, bool locked = default, bool rendererHasTextures = default, bool texIsBuilt = default, bool texPixelsUseColors = default, Vector2 texUvScale = default, Vector2 texUvWhitePixel = default, ImVector<ImFontPtr> fonts = default, ImVector<ImFontConfig> sources = default, Span<Vector4> texUvLines = default, int texNextUniqueId = default, int fontNextUniqueId = default, ImVector<ImDrawListSharedDataPtr> drawListSharedDatas = default, ImFontAtlasBuilder* builder = default, ImFontLoader* fontLoader = default, byte* fontLoaderName = default, void* fontLoaderData = default, uint fontLoaderFlags = default, int refCount = default, ImGuiContext* ownerContext = default)
 		{
 			Flags = flags;
 			TexDesiredFormat = texDesiredFormat;
@@ -424,11 +424,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFont(ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFont(ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontNative(@this, fontCfg);
+				ImFontPtr ret = ImGui.AddFontNative(@this, fontCfg);
 				return ret;
 			}
 		}
@@ -436,13 +436,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFont(ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFont(in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontNative(@this, (ImFontConfig*)pfontCfg);
+					ImFontPtr ret = ImGui.AddFontNative(@this, (ImFontConfig*)pfontCfg);
 					return ret;
 				}
 			}
@@ -451,11 +451,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontDefault(ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontDefault(ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontDefaultNative(@this, fontCfg);
+				ImFontPtr ret = ImGui.AddFontDefaultNative(@this, fontCfg);
 				return ret;
 			}
 		}
@@ -463,11 +463,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontDefault()
+		public unsafe ImFontPtr AddFontDefault()
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontDefaultNative(@this, (ImFontConfig*)(default));
+				ImFontPtr ret = ImGui.AddFontDefaultNative(@this, (ImFontConfig*)(default));
 				return ret;
 			}
 		}
@@ -475,13 +475,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontDefault(ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontDefault(in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontDefaultNative(@this, (ImFontConfig*)pfontCfg);
+					ImFontPtr ret = ImGui.AddFontDefaultNative(@this, (ImFontConfig*)pfontCfg);
 					return ret;
 				}
 			}
@@ -490,11 +490,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -502,11 +502,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -514,11 +514,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 				return ret;
 			}
 		}
@@ -526,11 +526,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 				return ret;
 			}
 		}
@@ -538,11 +538,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), fontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -550,11 +550,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
@@ -562,11 +562,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
@@ -574,11 +574,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -586,13 +586,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -601,13 +601,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -616,13 +616,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 					return ret;
 				}
 			}
@@ -631,13 +631,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 					return ret;
 				}
 			}
@@ -646,13 +646,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -661,13 +661,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
 					return ret;
 				}
 			}
@@ -676,13 +676,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 					return ret;
 				}
 			}
@@ -691,13 +691,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -706,13 +706,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -721,13 +721,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -736,13 +736,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 					return ret;
 				}
 			}
@@ -751,13 +751,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 					return ret;
 				}
 			}
@@ -766,13 +766,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -781,13 +781,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
 					return ret;
 				}
 			}
@@ -796,13 +796,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 					return ret;
 				}
 			}
@@ -811,13 +811,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (byte* pfilename = filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -826,7 +826,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -847,7 +847,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -859,7 +859,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -880,7 +880,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -892,7 +892,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -913,7 +913,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -925,7 +925,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -946,7 +946,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -958,7 +958,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -979,7 +979,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -991,7 +991,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1012,7 +1012,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1024,7 +1024,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1045,7 +1045,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1057,7 +1057,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1078,7 +1078,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), fontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1090,13 +1090,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -1105,13 +1105,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -1120,13 +1120,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -1135,13 +1135,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -1150,7 +1150,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1158,7 +1158,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
@@ -1168,7 +1168,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1176,7 +1176,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 						return ret;
 					}
 				}
@@ -1186,7 +1186,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1194,7 +1194,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 						return ret;
 					}
 				}
@@ -1204,7 +1204,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1212,7 +1212,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
@@ -1222,7 +1222,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1230,7 +1230,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
@@ -1240,7 +1240,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1248,7 +1248,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 						return ret;
 					}
 				}
@@ -1258,7 +1258,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1266,7 +1266,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 						return ret;
 					}
 				}
@@ -1276,7 +1276,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1284,7 +1284,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
@@ -1294,7 +1294,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1317,7 +1317,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1330,7 +1330,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1353,7 +1353,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1366,7 +1366,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1389,7 +1389,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1402,7 +1402,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -1425,7 +1425,1393 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, glyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, (uint*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), fontCfg, glyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1438,811 +2824,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, (uint*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDatabase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), fontCfg, glyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -2265,7 +2847,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2278,7 +2860,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -2301,7 +2883,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2314,7 +2896,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -2337,7 +2919,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2350,7 +2932,475 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (uint* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -2373,11 +3423,260 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDatabase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -2386,109 +3685,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -2497,13 +3700,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -2512,13 +3715,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -2527,13 +3730,457 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -2542,109 +4189,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontAtlas* @this = &this)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -2653,13 +4204,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -2668,13 +4219,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -2683,14 +4234,251 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
 				}
 			}
 		}
@@ -2814,11 +4602,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RemoveFont(ImFont* font)
+		public unsafe void RemoveFont(ImFontPtr font)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.RemoveFontNative(@this, font);
+				ImGui.RemoveFontNative(@this, (ImFont*)font);
 			}
 		}
 
@@ -2850,7 +4638,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Change font loader at runtime.<br/>
 		/// </summary>
-		public unsafe void SetFontLoader(ref ImFontLoader fontLoader)
+		public unsafe void SetFontLoader(in ImFontLoader fontLoader)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -3064,20 +4852,20 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFont(ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFont(ImFontConfig* fontCfg)
 		{
-			ImFont* ret = ImGui.AddFontNative(Handle, fontCfg);
+			ImFontPtr ret = ImGui.AddFontNative(Handle, fontCfg);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFont(ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFont(in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontNative(Handle, (ImFontConfig*)pfontCfg);
+				ImFontPtr ret = ImGui.AddFontNative(Handle, (ImFontConfig*)pfontCfg);
 				return ret;
 			}
 		}
@@ -3085,29 +4873,29 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontDefault(ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontDefault(ImFontConfig* fontCfg)
 		{
-			ImFont* ret = ImGui.AddFontDefaultNative(Handle, fontCfg);
+			ImFontPtr ret = ImGui.AddFontDefaultNative(Handle, fontCfg);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontDefault()
+		public unsafe ImFontPtr AddFontDefault()
 		{
-			ImFont* ret = ImGui.AddFontDefaultNative(Handle, (ImFontConfig*)(default));
+			ImFontPtr ret = ImGui.AddFontDefaultNative(Handle, (ImFontConfig*)(default));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontDefault(ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontDefault(in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontDefaultNative(Handle, (ImFontConfig*)pfontCfg);
+				ImFontPtr ret = ImGui.AddFontDefaultNative(Handle, (ImFontConfig*)pfontCfg);
 				return ret;
 			}
 		}
@@ -3115,83 +4903,83 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, fontCfg, (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, fontCfg, (uint*)(default));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), fontCfg, (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), fontCfg, (uint*)(default));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, uint* glyphRanges)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)(default), glyphRanges);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, uint* glyphRanges)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), fontCfg, glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), fontCfg, glyphRanges);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3199,11 +4987,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -3211,11 +4999,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 				return ret;
 			}
 		}
@@ -3223,11 +5011,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 				return ret;
 			}
 		}
@@ -3235,11 +5023,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, ImFontConfig* fontCfg)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -3247,11 +5035,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
@@ -3259,11 +5047,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
@@ -3271,11 +5059,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3283,11 +5071,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3295,11 +5083,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -3307,11 +5095,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 				return ret;
 			}
 		}
@@ -3319,11 +5107,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 				return ret;
 			}
 		}
@@ -3331,11 +5119,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -3343,11 +5131,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
@@ -3355,11 +5143,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
@@ -3367,11 +5155,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = filename)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3379,7 +5167,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3398,7 +5186,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, fontCfg, glyphRanges);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3409,7 +5197,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3428,7 +5216,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, fontCfg, (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, fontCfg, (uint*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3439,7 +5227,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3458,7 +5246,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3469,7 +5257,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3488,7 +5276,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3499,7 +5287,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, ImFontConfig* fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3518,7 +5306,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3529,7 +5317,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3548,7 +5336,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3559,7 +5347,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3578,7 +5366,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3589,7 +5377,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ImFontConfig* fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, ImFontConfig* fontCfg, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3608,7 +5396,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), fontCfg, glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), fontCfg, glyphRanges);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3619,11 +5407,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3631,11 +5419,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -3643,11 +5431,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -3655,11 +5443,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(byte* filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3667,13 +5455,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3682,13 +5470,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -3697,13 +5485,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in ImFontConfig fontCfg)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -3712,13 +5500,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3727,13 +5515,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3742,13 +5530,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (byte* pfilename = filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -3757,13 +5545,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in ImFontConfig fontCfg)
 		{
 			fixed (byte* pfilename = filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 					return ret;
 				}
 			}
@@ -3772,13 +5560,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(ReadOnlySpan<byte> filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (byte* pfilename = filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3787,7 +5575,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3808,7 +5596,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3820,7 +5608,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in ImFontConfig fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3841,7 +5629,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3853,7 +5641,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in ImFontConfig fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3874,7 +5662,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3886,7 +5674,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* AddFontFromFileTTF(string filename, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3907,7 +5695,1186 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = &filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = &filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = &filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = &filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (filename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, fontCfg, (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (filename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (filename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (filename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, filename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = &filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(in byte filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = &filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (filename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromFileTTF(string filename, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (filename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, fontCfg, glyphRanges);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, fontCfg, (uint*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, uint* glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, uint* glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), fontCfg, glyphRanges);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in ImFontConfig fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in ImFontConfig fontCfg)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3919,679 +6886,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, fontCfg, glyphRanges);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, fontCfg, (uint*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), fontCfg, (uint*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, uint* glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), glyphRanges);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, uint* glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDatabase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), fontCfg, glyphRanges);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
-		{
-			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4612,7 +6907,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4624,7 +6919,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in ImFontConfig fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4645,7 +6940,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4657,7 +6952,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4678,7 +6973,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4690,7 +6985,409 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, fontCfg, (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, compressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(in byte compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = &compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (byte* pcompressedFontDatabase85 = compressedFontDatabase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (uint* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDatabase85, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4711,11 +7408,206 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data_base85' still owned by caller. Compress with binary_to_compressed_c.cpp with -base85 parameter.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(string compressedFontDatabase85, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (compressedFontDatabase85 != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDatabase85);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDatabase85, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, pStr0, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4723,83 +7615,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -4807,11 +7627,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -4819,11 +7639,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4831,11 +7651,359 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(nint compressedFontData, int compressedFontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, (void*)compressedFontData, compressedFontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, ImFontConfig* fontCfg)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
+		{
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), fontCfg, glyphRanges);
+			return ret;
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4843,83 +8011,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, uint* glyphRanges)
-		{
-			ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), fontCfg, glyphRanges);
-			return ret;
-		}
-
-		/// <summary>
-		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
-		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -4927,11 +8023,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
 				return ret;
 			}
 		}
@@ -4939,11 +8035,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4951,12 +8047,204 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
 		/// </summary>
-		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontDataSize, ref ImFontConfig fontCfg, uint* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, uint* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in ImFontConfig fontCfg, uint* glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)(default), (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, ImFontConfig* fontCfg, in uint glyphRanges)
+		{
+			fixed (uint* pglyphRanges = &glyphRanges)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), fontCfg, (uint*)pglyphRanges);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, float sizePixels, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.<br/>
+		/// </summary>
+		public unsafe ImFontPtr AddFontFromMemoryTTF(nint fontData, int fontDataSize, in ImFontConfig fontCfg, in uint glyphRanges)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				fixed (uint* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, (void*)fontData, fontDataSize, (float)(0.0f), (ImFontConfig*)pfontCfg, (uint*)pglyphRanges);
+					return ret;
+				}
 			}
 		}
 
@@ -5049,9 +8337,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RemoveFont(ImFont* font)
+		public unsafe void RemoveFont(ImFontPtr font)
 		{
-			ImGui.RemoveFontNative(Handle, font);
+			ImGui.RemoveFontNative(Handle, (ImFont*)font);
 		}
 
 		/// <summary>
@@ -5076,7 +8364,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Change font loader at runtime.<br/>
 		/// </summary>
-		public unsafe void SetFontLoader(ref ImFontLoader fontLoader)
+		public unsafe void SetFontLoader(in ImFontLoader fontLoader)
 		{
 			fixed (ImFontLoader* pfontLoader = &fontLoader)
 			{

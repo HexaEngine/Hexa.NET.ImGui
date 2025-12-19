@@ -74,14 +74,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureRef texRef = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, ImDrawCallback userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
+		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureRef texRef = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, delegate*<ImDrawList*, ImDrawCmd*, void> userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
 		{
 			ClipRect = clipRect;
 			TexRef = texRef;
 			VtxOffset = vtxOffset;
 			IdxOffset = idxOffset;
 			ElemCount = elemCount;
-			UserCallback = (void*)Marshal.GetFunctionPointerForDelegate(userCallback);
+			UserCallback = (delegate*<ImDrawList*, ImDrawCmd*, void>)userCallback;
 			UserCallbackData = userCallbackData;
 			UserCallbackDataSize = userCallbackDataSize;
 			UserCallbackDataOffset = userCallbackDataOffset;

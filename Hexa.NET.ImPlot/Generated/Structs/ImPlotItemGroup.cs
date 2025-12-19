@@ -70,11 +70,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(uint id)
+		public unsafe ImPlotItemPtr GetItem(uint id)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				ImPlotItem* ret = ImPlot.GetItemNative(@this, id);
+				ImPlotItemPtr ret = ImPlot.GetItemNative(@this, id);
 				return ret;
 			}
 		}
@@ -82,11 +82,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(byte* labelId)
+		public unsafe ImPlotItemPtr GetItem(byte* labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				ImPlotItem* ret = ImPlot.GetItemNative(@this, labelId);
+				ImPlotItemPtr ret = ImPlot.GetItemNative(@this, labelId);
 				return ret;
 			}
 		}
@@ -94,13 +94,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(ref byte labelId)
+		public unsafe ImPlotItemPtr GetItem(in byte labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
 				fixed (byte* plabelId = &labelId)
 				{
-					ImPlotItem* ret = ImPlot.GetItemNative(@this, (byte*)plabelId);
+					ImPlotItemPtr ret = ImPlot.GetItemNative(@this, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -109,13 +109,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(ReadOnlySpan<byte> labelId)
+		public unsafe ImPlotItemPtr GetItem(ReadOnlySpan<byte> labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
 				fixed (byte* plabelId = labelId)
 				{
-					ImPlotItem* ret = ImPlot.GetItemNative(@this, (byte*)plabelId);
+					ImPlotItemPtr ret = ImPlot.GetItemNative(@this, (byte*)plabelId);
 					return ret;
 				}
 			}
@@ -124,7 +124,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(string labelId)
+		public unsafe ImPlotItemPtr GetItem(string labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -145,7 +145,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImPlotItem* ret = ImPlot.GetItemNative(@this, pStr0);
+				ImPlotItemPtr ret = ImPlot.GetItemNative(@this, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -157,11 +157,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItemByIndex(int i)
+		public unsafe ImPlotItemPtr GetItemByIndex(int i)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				ImPlotItem* ret = ImPlot.GetItemByIndexNative(@this, i);
+				ImPlotItemPtr ret = ImPlot.GetItemByIndexNative(@this, i);
 				return ret;
 			}
 		}
@@ -193,7 +193,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint GetItemID(ref byte labelId)
+		public unsafe uint GetItemID(in byte labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -256,11 +256,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemIndex(ImPlotItem* item)
+		public unsafe int GetItemIndex(ImPlotItemPtr item)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				int ret = ImPlot.GetItemIndexNative(@this, item);
+				int ret = ImPlot.GetItemIndexNative(@this, (ImPlotItem*)item);
 				return ret;
 			}
 		}
@@ -295,11 +295,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetLegendItem(int i)
+		public unsafe ImPlotItemPtr GetLegendItem(int i)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				ImPlotItem* ret = ImPlot.GetLegendItemNative(@this, i);
+				ImPlotItemPtr ret = ImPlot.GetLegendItemNative(@this, i);
 				return ret;
 			}
 		}
@@ -331,11 +331,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetOrAddItem(uint id)
+		public unsafe ImPlotItemPtr GetOrAddItem(uint id)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
-				ImPlotItem* ret = ImPlot.GetOrAddItemNative(@this, id);
+				ImPlotItemPtr ret = ImPlot.GetOrAddItemNative(@this, id);
 				return ret;
 			}
 		}
@@ -421,29 +421,29 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(uint id)
+		public unsafe ImPlotItemPtr GetItem(uint id)
 		{
-			ImPlotItem* ret = ImPlot.GetItemNative(Handle, id);
+			ImPlotItemPtr ret = ImPlot.GetItemNative(Handle, id);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(byte* labelId)
+		public unsafe ImPlotItemPtr GetItem(byte* labelId)
 		{
-			ImPlotItem* ret = ImPlot.GetItemNative(Handle, labelId);
+			ImPlotItemPtr ret = ImPlot.GetItemNative(Handle, labelId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(ref byte labelId)
+		public unsafe ImPlotItemPtr GetItem(in byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				ImPlotItem* ret = ImPlot.GetItemNative(Handle, (byte*)plabelId);
+				ImPlotItemPtr ret = ImPlot.GetItemNative(Handle, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -451,11 +451,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(ReadOnlySpan<byte> labelId)
+		public unsafe ImPlotItemPtr GetItem(ReadOnlySpan<byte> labelId)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				ImPlotItem* ret = ImPlot.GetItemNative(Handle, (byte*)plabelId);
+				ImPlotItemPtr ret = ImPlot.GetItemNative(Handle, (byte*)plabelId);
 				return ret;
 			}
 		}
@@ -463,7 +463,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(string labelId)
+		public unsafe ImPlotItemPtr GetItem(string labelId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -482,7 +482,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlotItem* ret = ImPlot.GetItemNative(Handle, pStr0);
+			ImPlotItemPtr ret = ImPlot.GetItemNative(Handle, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -493,9 +493,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItemByIndex(int i)
+		public unsafe ImPlotItemPtr GetItemByIndex(int i)
 		{
-			ImPlotItem* ret = ImPlot.GetItemByIndexNative(Handle, i);
+			ImPlotItemPtr ret = ImPlot.GetItemByIndexNative(Handle, i);
 			return ret;
 		}
 
@@ -520,7 +520,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint GetItemID(ref byte labelId)
+		public unsafe uint GetItemID(in byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -574,9 +574,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int GetItemIndex(ImPlotItem* item)
+		public unsafe int GetItemIndex(ImPlotItemPtr item)
 		{
-			int ret = ImPlot.GetItemIndexNative(Handle, item);
+			int ret = ImPlot.GetItemIndexNative(Handle, (ImPlotItem*)item);
 			return ret;
 		}
 
@@ -604,9 +604,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetLegendItem(int i)
+		public unsafe ImPlotItemPtr GetLegendItem(int i)
 		{
-			ImPlotItem* ret = ImPlot.GetLegendItemNative(Handle, i);
+			ImPlotItemPtr ret = ImPlot.GetLegendItemNative(Handle, i);
 			return ret;
 		}
 
@@ -631,9 +631,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetOrAddItem(uint id)
+		public unsafe ImPlotItemPtr GetOrAddItem(uint id)
 		{
-			ImPlotItem* ret = ImPlot.GetOrAddItemNative(Handle, id);
+			ImPlotItemPtr ret = ImPlot.GetOrAddItemNative(Handle, id);
 			return ret;
 		}
 

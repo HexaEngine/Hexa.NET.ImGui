@@ -914,7 +914,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper calling InputText+Build<br/>
 		/// </summary>
-		public unsafe bool Draw(ref byte label, float width)
+		public unsafe bool Draw(in byte label, float width)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -929,7 +929,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper calling InputText+Build<br/>
 		/// </summary>
-		public unsafe bool Draw(ref byte label)
+		public unsafe bool Draw(in byte label)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1076,7 +1076,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, byte* textEnd)
+		public unsafe bool PassFilter(in byte text, byte* textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1091,7 +1091,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text)
+		public unsafe bool PassFilter(in byte text)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1202,7 +1202,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(byte* text, ref byte textEnd)
+		public unsafe bool PassFilter(byte* text, in byte textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1265,7 +1265,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, ref byte textEnd)
+		public unsafe bool PassFilter(in byte text, in byte textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1355,7 +1355,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, ReadOnlySpan<byte> textEnd)
+		public unsafe bool PassFilter(in byte text, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1373,7 +1373,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, string textEnd)
+		public unsafe bool PassFilter(in byte text, string textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1409,7 +1409,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ReadOnlySpan<byte> text, ref byte textEnd)
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text, in byte textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1463,7 +1463,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(string text, ref byte textEnd)
+		public unsafe bool PassFilter(string text, in byte textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
@@ -1657,7 +1657,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper calling InputText+Build<br/>
 		/// </summary>
-		public unsafe bool Draw(ref byte label, float width)
+		public unsafe bool Draw(in byte label, float width)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1669,7 +1669,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Helper calling InputText+Build<br/>
 		/// </summary>
-		public unsafe bool Draw(ref byte label)
+		public unsafe bool Draw(in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1792,7 +1792,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, byte* textEnd)
+		public unsafe bool PassFilter(in byte text, byte* textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -1804,7 +1804,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text)
+		public unsafe bool PassFilter(in byte text)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -1900,7 +1900,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(byte* text, ref byte textEnd)
+		public unsafe bool PassFilter(byte* text, in byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -1954,7 +1954,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, ref byte textEnd)
+		public unsafe bool PassFilter(in byte text, in byte textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -2035,7 +2035,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, ReadOnlySpan<byte> textEnd)
+		public unsafe bool PassFilter(in byte text, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -2050,7 +2050,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ref byte text, string textEnd)
+		public unsafe bool PassFilter(in byte text, string textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -2083,7 +2083,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(ReadOnlySpan<byte> text, ref byte textEnd)
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text, in byte textEnd)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -2131,7 +2131,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe bool PassFilter(string text, ref byte textEnd)
+		public unsafe bool PassFilter(string text, in byte textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;

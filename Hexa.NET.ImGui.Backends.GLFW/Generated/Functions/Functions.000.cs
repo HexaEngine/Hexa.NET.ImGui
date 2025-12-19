@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
-			SetCurrentContextNative(ctx);
+			SetCurrentContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static bool InitForOpenGL(GLFWwindowPtr window, bool installCallbacks)
 		{
-			byte ret = InitForOpenGLNative(window, installCallbacks ? (byte)1 : (byte)0);
+			byte ret = InitForOpenGLNative((GLFWwindow*)window, installCallbacks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -124,7 +124,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static bool InitForVulkan(GLFWwindowPtr window, bool installCallbacks)
 		{
-			byte ret = InitForVulkanNative(window, installCallbacks ? (byte)1 : (byte)0);
+			byte ret = InitForVulkanNative((GLFWwindow*)window, installCallbacks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -158,7 +158,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static bool InitForOther(GLFWwindowPtr window, bool installCallbacks)
 		{
-			byte ret = InitForOtherNative(window, installCallbacks ? (byte)1 : (byte)0);
+			byte ret = InitForOtherNative((GLFWwindow*)window, installCallbacks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -238,7 +238,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void InstallCallbacks(GLFWwindowPtr window)
 		{
-			InstallCallbacksNative(window);
+			InstallCallbacksNative((GLFWwindow*)window);
 		}
 
 		/// <summary>
@@ -272,7 +272,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void RestoreCallbacks(GLFWwindowPtr window)
 		{
-			RestoreCallbacksNative(window);
+			RestoreCallbacksNative((GLFWwindow*)window);
 		}
 
 		/// <summary>
@@ -327,7 +327,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void WindowFocusCallback(GLFWwindowPtr window, int focused)
 		{
-			WindowFocusCallbackNative(window, focused);
+			WindowFocusCallbackNative((GLFWwindow*)window, focused);
 		}
 
 		/// <summary>
@@ -359,7 +359,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void CursorEnterCallback(GLFWwindowPtr window, int entered)
 		{
-			CursorEnterCallbackNative(window, entered);
+			CursorEnterCallbackNative((GLFWwindow*)window, entered);
 		}
 
 		/// <summary>
@@ -391,7 +391,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void CursorPosCallback(GLFWwindowPtr window, double x, double y)
 		{
-			CursorPosCallbackNative(window, x, y);
+			CursorPosCallbackNative((GLFWwindow*)window, x, y);
 		}
 
 		/// <summary>
@@ -423,7 +423,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void MouseButtonCallback(GLFWwindowPtr window, int button, int action, int mods)
 		{
-			MouseButtonCallbackNative(window, button, action, mods);
+			MouseButtonCallbackNative((GLFWwindow*)window, button, action, mods);
 		}
 
 		/// <summary>
@@ -455,7 +455,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void ScrollCallback(GLFWwindowPtr window, double xoffset, double yoffset)
 		{
-			ScrollCallbackNative(window, xoffset, yoffset);
+			ScrollCallbackNative((GLFWwindow*)window, xoffset, yoffset);
 		}
 
 		/// <summary>
@@ -487,7 +487,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void KeyCallback(GLFWwindowPtr window, int key, int scancode, int action, int mods)
 		{
-			KeyCallbackNative(window, key, scancode, action, mods);
+			KeyCallbackNative((GLFWwindow*)window, key, scancode, action, mods);
 		}
 
 		/// <summary>
@@ -519,7 +519,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void CharCallback(GLFWwindowPtr window, uint c)
 		{
-			CharCallbackNative(window, c);
+			CharCallbackNative((GLFWwindow*)window, c);
 		}
 
 		/// <summary>
@@ -551,7 +551,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static void MonitorCallback(GLFWmonitorPtr monitor, int evnt)
 		{
-			MonitorCallbackNative(monitor, evnt);
+			MonitorCallbackNative((GLFWmonitor*)monitor, evnt);
 		}
 
 		/// <summary>
@@ -604,7 +604,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static float GetContentScaleForWindow(GLFWwindowPtr window)
 		{
-			float ret = GetContentScaleForWindowNative(window);
+			float ret = GetContentScaleForWindowNative((GLFWwindow*)window);
 			return ret;
 		}
 
@@ -638,7 +638,7 @@ namespace Hexa.NET.ImGui.Backends.GLFW
 		/// </summary>
 		public static float GetContentScaleForMonitor(GLFWmonitorPtr monitor)
 		{
-			float ret = GetContentScaleForMonitorNative(monitor);
+			float ret = GetContentScaleForMonitorNative((GLFWmonitor*)monitor);
 			return ret;
 		}
 

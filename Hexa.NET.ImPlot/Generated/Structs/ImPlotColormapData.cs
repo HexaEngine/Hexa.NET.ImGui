@@ -124,7 +124,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int Append(ref byte name, uint* keys, int count, bool qual)
+		public unsafe int Append(in byte name, uint* keys, int count, bool qual)
 		{
 			fixed (ImPlotColormapData* @this = &this)
 			{
@@ -187,6 +187,93 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe int Append(byte* name, in uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(@this, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(in byte name, in uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = &name)
+				{
+					fixed (uint* pkeys = &keys)
+					{
+						int ret = ImPlot.AppendNative(@this, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ReadOnlySpan<byte> name, in uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				fixed (byte* pname = name)
+				{
+					fixed (uint* pkeys = &keys)
+					{
+						int ret = ImPlot.AppendNative(@this, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(string name, in uint keys, int count, bool qual)
+		{
+			fixed (ImPlotColormapData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (name != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(name);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(@this, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void Destroy()
 		{
 			fixed (ImPlotColormapData* @this = &this)
@@ -210,7 +297,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotColormap GetIndex(ref byte name)
+		public unsafe ImPlotColormap GetIndex(in byte name)
 		{
 			fixed (ImPlotColormapData* @this = &this)
 			{
@@ -519,7 +606,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe int Append(ref byte name, uint* keys, int count, bool qual)
+		public unsafe int Append(in byte name, uint* keys, int count, bool qual)
 		{
 			fixed (byte* pname = &name)
 			{
@@ -573,6 +660,81 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe int Append(byte* name, in uint keys, int count, bool qual)
+		{
+			fixed (uint* pkeys = &keys)
+			{
+				int ret = ImPlot.AppendNative(Handle, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(in byte name, in uint keys, int count, bool qual)
+		{
+			fixed (byte* pname = &name)
+			{
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(Handle, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(ReadOnlySpan<byte> name, in uint keys, int count, bool qual)
+		{
+			fixed (byte* pname = name)
+			{
+				fixed (uint* pkeys = &keys)
+				{
+					int ret = ImPlot.AppendNative(Handle, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe int Append(string name, in uint keys, int count, bool qual)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pkeys = &keys)
+			{
+				int ret = ImPlot.AppendNative(Handle, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void Destroy()
 		{
 			ImPlot.DestroyNative(Handle);
@@ -590,7 +752,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotColormap GetIndex(ref byte name)
+		public unsafe ImPlotColormap GetIndex(in byte name)
 		{
 			fixed (byte* pname = &name)
 			{

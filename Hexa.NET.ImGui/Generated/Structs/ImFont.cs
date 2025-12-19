@@ -106,7 +106,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImFontBaked* lastBaked = default, ImFontAtlasPtr containerAtlas = default, ImFontFlags flags = default, float currentRasterizerDensity = default, uint fontId = default, float legacySize = default, ImVector<ImFontConfigPtr> sources = default, uint ellipsisChar = default, uint fallbackChar = default, byte* used8KPagesMap = default, bool ellipsisAutoBake = default, ImGuiStorage remapPairs = default)
+		public unsafe ImFont(ImFontBaked* lastBaked = default, ImFontAtlas* containerAtlas = default, ImFontFlags flags = default, float currentRasterizerDensity = default, uint fontId = default, float legacySize = default, ImVector<ImFontConfigPtr> sources = default, uint ellipsisChar = default, uint fallbackChar = default, byte* used8KPagesMap = default, bool ellipsisAutoBake = default, ImGuiStorage remapPairs = default)
 		{
 			LastBaked = lastBaked;
 			ContainerAtlas = containerAtlas;
@@ -144,7 +144,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont(ImFontBaked* lastBaked = default, ImFontAtlasPtr containerAtlas = default, ImFontFlags flags = default, float currentRasterizerDensity = default, uint fontId = default, float legacySize = default, ImVector<ImFontConfigPtr> sources = default, uint ellipsisChar = default, uint fallbackChar = default, Span<byte> used8KPagesMap = default, bool ellipsisAutoBake = default, ImGuiStorage remapPairs = default)
+		public unsafe ImFont(ImFontBaked* lastBaked = default, ImFontAtlas* containerAtlas = default, ImFontFlags flags = default, float currentRasterizerDensity = default, uint fontId = default, float legacySize = default, ImVector<ImFontConfigPtr> sources = default, uint ellipsisChar = default, uint fallbackChar = default, Span<byte> used8KPagesMap = default, bool ellipsisAutoBake = default, ImGuiStorage remapPairs = default)
 		{
 			LastBaked = lastBaked;
 			ContainerAtlas = containerAtlas;
@@ -218,7 +218,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -233,7 +233,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -344,7 +344,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -359,7 +359,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -470,7 +470,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -488,7 +488,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -650,7 +650,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -668,7 +668,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -686,7 +686,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -722,7 +722,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -758,7 +758,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -776,7 +776,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -866,7 +866,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, string text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -902,7 +902,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, string text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1120,7 +1120,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderCharNative(@this, drawList, size, pos, col, c, cpuFineClip);
+				ImGui.RenderCharNative(@this, (ImDrawList*)drawList, size, pos, col, c, cpuFineClip);
 			}
 		}
 
@@ -1131,7 +1131,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderCharNative(@this, drawList, size, pos, col, c, (Vector4*)(default));
+				ImGui.RenderCharNative(@this, (ImDrawList*)drawList, size, pos, col, c, (Vector4*)(default));
 			}
 		}
 
@@ -1166,13 +1166,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, in Vector4 cpuFineClip)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (Vector4* pcpuFineClip = &cpuFineClip)
 				{
-					ImGui.RenderCharNative(@this, drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+					ImGui.RenderCharNative(@this, (ImDrawList*)drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
 				}
 			}
 		}
@@ -1180,7 +1180,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, in Vector4 cpuFineClip)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1201,7 +1201,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, flags);
 			}
 		}
 
@@ -1212,7 +1212,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 			}
 		}
 
@@ -1223,7 +1223,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 			}
 		}
 
@@ -1234,7 +1234,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), flags);
 			}
 		}
 
@@ -1297,13 +1297,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -1311,13 +1311,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1325,13 +1325,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1339,13 +1339,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -1359,7 +1359,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextBegin = textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -1373,7 +1373,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextBegin = textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1387,7 +1387,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextBegin = textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1401,7 +1401,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextBegin = textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -1430,7 +1430,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1462,7 +1462,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1494,7 +1494,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1526,7 +1526,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1537,7 +1537,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1554,7 +1554,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1571,7 +1571,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1588,7 +1588,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -1813,13 +1813,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -1827,13 +1827,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1841,13 +1841,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1855,13 +1855,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -1875,7 +1875,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -1889,7 +1889,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1903,7 +1903,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -1917,7 +1917,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -1946,7 +1946,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1978,7 +1978,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2010,7 +2010,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2042,7 +2042,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2053,7 +2053,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2070,7 +2070,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2087,7 +2087,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2104,7 +2104,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2329,7 +2329,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2337,7 +2337,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 					}
 				}
 			}
@@ -2346,7 +2346,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2354,7 +2354,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2363,7 +2363,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2371,7 +2371,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2380,7 +2380,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2388,7 +2388,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 					}
 				}
 			}
@@ -2405,7 +2405,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 					}
 				}
 			}
@@ -2422,7 +2422,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2439,7 +2439,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2456,7 +2456,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 					}
 				}
 			}
@@ -2503,7 +2503,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2556,7 +2556,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2609,7 +2609,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2662,7 +2662,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), flags);
+				ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2677,7 +2677,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2685,7 +2685,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 					}
 				}
 			}
@@ -2694,7 +2694,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2702,7 +2702,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2711,7 +2711,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2719,7 +2719,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2728,7 +2728,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2736,7 +2736,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 					}
 				}
 			}
@@ -2745,7 +2745,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2768,7 +2768,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2780,7 +2780,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2803,7 +2803,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2815,7 +2815,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2838,7 +2838,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2850,7 +2850,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2873,7 +2873,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2885,7 +2885,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2893,7 +2893,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 					}
 				}
 			}
@@ -2902,7 +2902,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2910,7 +2910,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2919,7 +2919,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2927,7 +2927,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 					}
 				}
 			}
@@ -2936,7 +2936,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -2944,7 +2944,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+						ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 					}
 				}
 			}
@@ -2976,7 +2976,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3011,7 +3011,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3046,7 +3046,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3081,7 +3081,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3093,7 +3093,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3116,7 +3116,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3128,7 +3128,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3151,7 +3151,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3163,7 +3163,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3186,7 +3186,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3198,7 +3198,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3221,7 +3221,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3256,7 +3256,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3291,7 +3291,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3326,7 +3326,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3361,7 +3361,7 @@ namespace Hexa.NET.ImGui
 				}
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(@this, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3373,7 +3373,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3393,7 +3393,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3413,7 +3413,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3433,7 +3433,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3757,7 +3757,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3777,7 +3777,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3797,7 +3797,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3817,7 +3817,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3837,7 +3837,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3875,7 +3875,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3913,7 +3913,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3951,7 +3951,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -3989,7 +3989,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4009,7 +4009,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4029,7 +4029,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4049,7 +4049,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4221,7 +4221,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4259,7 +4259,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4297,7 +4297,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4335,7 +4335,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImFont* @this = &this)
 			{
@@ -4649,7 +4649,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -4661,7 +4661,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, byte* textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -4757,7 +4757,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, byte* text, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -4769,7 +4769,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, byte* text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, byte* text, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -4865,7 +4865,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -4880,7 +4880,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5027,7 +5027,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5042,7 +5042,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5057,7 +5057,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ref byte text, string textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, in byte text, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5090,7 +5090,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ref byte text, string textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, in byte text, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -5123,7 +5123,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -5138,7 +5138,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -5219,7 +5219,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* CalcWordWrapPosition(float size, string text, ref byte textEnd, float wrapWidth)
+		public unsafe byte* CalcWordWrapPosition(float size, string text, in byte textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5252,7 +5252,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string CalcWordWrapPositionS(float size, string text, ref byte textEnd, float wrapWidth)
+		public unsafe string CalcWordWrapPositionS(float size, string text, in byte textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5432,7 +5432,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, Vector4* cpuFineClip)
 		{
-			ImGui.RenderCharNative(Handle, drawList, size, pos, col, c, cpuFineClip);
+			ImGui.RenderCharNative(Handle, (ImDrawList*)drawList, size, pos, col, c, cpuFineClip);
 		}
 
 		/// <summary>
@@ -5440,7 +5440,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c)
 		{
-			ImGui.RenderCharNative(Handle, drawList, size, pos, col, c, (Vector4*)(default));
+			ImGui.RenderCharNative(Handle, (ImDrawList*)drawList, size, pos, col, c, (Vector4*)(default));
 		}
 
 		/// <summary>
@@ -5468,18 +5468,18 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		public unsafe void RenderChar(ImDrawListPtr drawList, float size, Vector2 pos, uint col, uint c, in Vector4 cpuFineClip)
 		{
 			fixed (Vector4* pcpuFineClip = &cpuFineClip)
 			{
-				ImGui.RenderCharNative(Handle, drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
+				ImGui.RenderCharNative(Handle, (ImDrawList*)drawList, size, pos, col, c, (Vector4*)pcpuFineClip);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, ref Vector4 cpuFineClip)
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, uint c, in Vector4 cpuFineClip)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -5495,7 +5495,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, flags);
 		}
 
 		/// <summary>
@@ -5503,7 +5503,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 		}
 
 		/// <summary>
@@ -5511,7 +5511,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 		}
 
 		/// <summary>
@@ -5519,7 +5519,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, ImDrawTextFlags flags)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), flags);
 		}
 
 		/// <summary>
@@ -5569,44 +5569,44 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
 			}
 		}
 
@@ -5617,7 +5617,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, flags);
 			}
 		}
 
@@ -5628,7 +5628,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 			}
 		}
 
@@ -5639,7 +5639,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 			}
 		}
 
@@ -5650,7 +5650,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), flags);
 			}
 		}
 
@@ -5676,7 +5676,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5705,7 +5705,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (ImDrawTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5734,7 +5734,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5763,7 +5763,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5773,7 +5773,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -5787,7 +5787,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -5801,7 +5801,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -5815,7 +5815,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, byte* textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -6013,44 +6013,44 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 			}
 		}
 
@@ -6061,7 +6061,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, flags);
 			}
 		}
 
@@ -6072,7 +6072,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 			}
 		}
 
@@ -6083,7 +6083,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 			}
 		}
 
@@ -6094,7 +6094,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 			}
 		}
 
@@ -6120,7 +6120,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6149,7 +6149,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6178,7 +6178,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6207,7 +6207,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6217,7 +6217,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -6231,7 +6231,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -6245,7 +6245,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -6259,7 +6259,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -6457,13 +6457,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -6471,13 +6471,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6485,13 +6485,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6499,13 +6499,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -6519,7 +6519,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -6533,7 +6533,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6547,7 +6547,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6561,7 +6561,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -6605,7 +6605,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -6655,7 +6655,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (ImDrawTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -6705,7 +6705,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (ImDrawTextFlags)(0));
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (ImDrawTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -6755,7 +6755,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), flags);
+			ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -6769,13 +6769,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -6783,13 +6783,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6797,13 +6797,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6811,13 +6811,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -6825,7 +6825,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -6846,7 +6846,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6857,7 +6857,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -6878,7 +6878,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6889,7 +6889,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -6910,7 +6910,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6921,7 +6921,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -6942,7 +6942,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6953,13 +6953,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, flags);
 				}
 			}
 		}
@@ -6967,13 +6967,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6981,13 +6981,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				}
 			}
 		}
@@ -6995,13 +6995,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), flags);
 				}
 			}
 		}
@@ -7030,7 +7030,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7062,7 +7062,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7094,7 +7094,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7126,7 +7126,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, (byte*)ptextBegin, pStr0, (float)(0.0f), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7137,7 +7137,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -7158,7 +7158,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7169,7 +7169,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -7190,7 +7190,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7201,7 +7201,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -7222,7 +7222,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7233,7 +7233,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -7254,7 +7254,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7286,7 +7286,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7318,7 +7318,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, wrapWidth, (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7350,7 +7350,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), (ImDrawTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7382,7 +7382,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* ptextEnd = textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)drawList, size, pos, col, clipRect, pStr0, (byte*)ptextEnd, (float)(0.0f), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7393,7 +7393,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7410,7 +7410,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7427,7 +7427,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7444,7 +7444,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7741,7 +7741,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7758,7 +7758,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7775,7 +7775,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7792,7 +7792,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, ReadOnlySpan<byte> textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7809,7 +7809,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7844,7 +7844,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7879,7 +7879,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7914,7 +7914,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, string textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, in byte textBegin, string textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7949,7 +7949,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7966,7 +7966,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -7983,7 +7983,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -8000,7 +8000,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -8157,7 +8157,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -8192,7 +8192,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, float wrapWidth)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -8227,7 +8227,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -8262,7 +8262,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, ref byte textEnd, ImDrawTextFlags flags)
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, in byte textEnd, ImDrawTextFlags flags)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{

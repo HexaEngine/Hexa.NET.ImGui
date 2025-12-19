@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.D3D9
 		/// </summary>
 		public static bool Init(IDirect3DDevice9Ptr device)
 		{
-			byte ret = InitNative(device);
+			byte ret = InitNative((IDirect3DDevice9*)device);
 			return ret != 0;
 		}
 
@@ -112,7 +112,7 @@ namespace Hexa.NET.ImGui.Backends.D3D9
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData)
 		{
-			RenderDrawDataNative(drawData);
+			RenderDrawDataNative((ImDrawData*)drawData);
 		}
 
 		/// <summary>
@@ -144,7 +144,7 @@ namespace Hexa.NET.ImGui.Backends.D3D9
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>

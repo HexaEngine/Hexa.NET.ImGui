@@ -187,7 +187,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, byte* textEnd)
+		public unsafe void InsertChars(int pos, in byte text, byte* textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -201,7 +201,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text)
+		public unsafe void InsertChars(int pos, in byte text)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -307,7 +307,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, byte* text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, byte* text, in byte textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -367,7 +367,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, in byte text, in byte textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -454,7 +454,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, ReadOnlySpan<byte> textEnd)
+		public unsafe void InsertChars(int pos, in byte text, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -471,7 +471,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, string textEnd)
+		public unsafe void InsertChars(int pos, in byte text, string textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -506,7 +506,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, in byte textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -558,7 +558,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, string text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, string text, in byte textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
@@ -783,7 +783,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, byte* textEnd)
+		public unsafe void InsertChars(int pos, in byte text, byte* textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -794,7 +794,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text)
+		public unsafe void InsertChars(int pos, in byte text)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -885,7 +885,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, byte* text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, byte* text, in byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -936,7 +936,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, in byte text, in byte textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -1014,7 +1014,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, ReadOnlySpan<byte> textEnd)
+		public unsafe void InsertChars(int pos, in byte text, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -1028,7 +1028,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ref byte text, string textEnd)
+		public unsafe void InsertChars(int pos, in byte text, string textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -1060,7 +1060,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, in byte textEnd)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -1106,7 +1106,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void InsertChars(int pos, string text, ref byte textEnd)
+		public unsafe void InsertChars(int pos, string text, in byte textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;

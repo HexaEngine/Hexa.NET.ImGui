@@ -127,7 +127,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImGuiViewport* parentViewport = default, ImDrawData* drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
+		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImGuiViewport* parentViewport = default, ImDrawDataPtr drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
 		{
 			ID = id;
 			Flags = flags;
