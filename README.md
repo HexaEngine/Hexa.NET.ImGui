@@ -23,18 +23,6 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 - **Wide range .NET support**: Supported versions net8.0, net7.0, netstandard2.1, netstandard2.0
 
-## 🎉 Acknowledgment to Our Sponsors
-We extend our heartfelt gratitude to all our sponsors for their generous support!
-
- - @Doprez
- - @qian-o
- - @NotNite
- - Mr Villa
- - @TheSameCat2
- - @SadE54
-
-Your contributions help keep this project thriving—thank you!
-
 ## Community
 - Discord: [https://discord.gg/VawN5d8HMh](https://discord.gg/VawN5d8HMh)
 
@@ -143,3 +131,12 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/LICENSE.txt) file for more details.
+
+-----
+<div align="center" id="sponsor-section">
+
+## Thanks to our sponsors!
+
+[![Sponsors](https://raw.githubusercontent.com/HexaEngine/Sponsors/refs/heads/main/sponsors.svg)](https://ko-fi.com/junameinhold)
+
+</div>
