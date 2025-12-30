@@ -1,0 +1,56 @@
+name: Question
+description: Ask a question about usage or functionality
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question? Let's see if we can help!
+        
+        **Before asking, please check:**
+        - [FAQ Wiki](https://github.com/HexaEngine/Hexa.NET.ImGui/wiki/FAQ) - Common questions answered here
+        - [README](https://github.com/HexaEngine/Hexa.NET.ImGui#readme) - Features and usage overview
+        - [Existing Issues](https://github.com/HexaEngine/Hexa.NET.ImGui/issues) - Your question may already be answered
+        
+        **Common topics already covered:**
+        - "Missing" functions → Check `ImGuiP` namespace (see FAQ)
+        - Docking/DockBuilder → Already included, see FAQ for examples
+        - Multi-viewport → Included by default
+        - Backends → Available in separate `Hexa.NET.ImGui.Backends` package
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you've completed these steps
+      options:
+        - label: I have read the [FAQ Wiki](https://github.com/HexaEngine/Hexa.NET.ImGui/wiki/FAQ)
+          required: true
+        - label: I have searched existing issues for similar questions
+          required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: How do I...?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to accomplish? What have you tried so far?
+      placeholder: |
+        I'm working on...
+        I've tried...
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Sample (if applicable)
+      description: If relevant, provide code showing what you're trying to do
+      render: csharp
