@@ -13,6 +13,7 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **Comprehensive Wrapper**: Integrates the core Dear ImGui library along with essential addons such as ImGuizmo, ImNodes, and ImPlot.
 - **Backends**: Includes a collection of native backends in the Hexa.NET.ImGui.Backends package. (incl. Android, Win32, OSX, D3D9, D3D10, D3D11, D3D12, Metal, OpenGL2, OpenGL3, Vulkan and extra packages for SDL2 and GLFW)
 - **FreeType Fonts**: Allows better text rendering and colored fonts to be loaded.
+- **Docking Support**: Full docking branch integration with access to DockBuilder APIs (via ImGuiP for internals)
 - **Multi Viewport Support**: Enables seamless multi-viewport rendering for advanced UI scenarios.
 - **Active Development**: Regular updates and improvements to ensure compatibility with the latest Dear ImGui features and .NET advancements.
 - **Trustworthy Builds**: Native libraries are built using GitHub Actions for added trustworthiness and can be found [here](https://github.com/HexaEngine/Hexa.NET.ImGui/actions).
