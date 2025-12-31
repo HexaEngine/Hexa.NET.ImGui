@@ -77,7 +77,7 @@ To get started with Hexa.NET.ImGui, follow these steps:
 
 ### Usage Example
 
-For a comprehensive example of how to use the library, refer to the [ExampleGFWLD3D11 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/master/ExampleGLFWD3D11) [ExampleSDL3OpenGL3 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/master/ExampleSDL3OpenGL3/).
+For a comprehensive example of how to use the library, refer to the [ExampleGFWLD3D11 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/main/Examples/ExampleGLFWD3D11) [ExampleSDL3OpenGL3 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/main/Examples/ExampleSDL3OpenGL3/).
 
 ### Using the Flexible and Optimized API
 
@@ -131,7 +131,7 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/LICENSE.txt) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/main/LICENSE.txt) file for more details.
 
 -----
 <div align="center" id="sponsor-section">
