@@ -66,7 +66,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiPopupData(uint popupId = default, ImGuiWindowPtr window = default, ImGuiWindowPtr restoreNavWindow = default, int parentNavLayer = default, int openFrameCount = default, uint openParentId = default, Vector2 openPopupPos = default, Vector2 openMousePos = default)
+		public unsafe ImGuiPopupData(uint popupId = default, ImGuiWindow* window = default, ImGuiWindow* restoreNavWindow = default, int parentNavLayer = default, int openFrameCount = default, uint openParentId = default, Vector2 openPopupPos = default, Vector2 openMousePos = default)
 		{
 			PopupId = popupId;
 			Window = window;

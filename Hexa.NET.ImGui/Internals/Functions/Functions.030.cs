@@ -19,3558 +19,181 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// Legacy<br/>
+		/// To be documented.
 		/// </summary>
-		public static void ImFontAtlasBuildLegacyPreloadAllGlyphRanges(ImFontAtlasPtr atlas)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
-			ImFontAtlasBuildLegacyPreloadAllGlyphRangesNative(atlas);
-		}
-
-		/// <summary>
-		/// Legacy<br/>
-		/// </summary>
-		public static void ImFontAtlasBuildLegacyPreloadAllGlyphRanges(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				ImFontAtlasBuildLegacyPreloadAllGlyphRangesNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBuildGetOversampleFactorsNative(ImFontConfig* src, ImFontBaked* baked, int* outOversampleH, int* outOversampleV)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontConfig*, ImFontBaked*, int*, int*, void>)funcTable[1499])(src, baked, outOversampleH, outOversampleV);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[1499])((nint)src, (nint)baked, (nint)outOversampleH, (nint)outOversampleV);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ImFontBakedPtr baked, int* outOversampleH, int* outOversampleV)
-		{
-			ImFontAtlasBuildGetOversampleFactorsNative(src, baked, outOversampleH, outOversampleV);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ImFontBakedPtr baked, int* outOversampleH, int* outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, baked, outOversampleH, outOversampleV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ref ImFontBaked baked, int* outOversampleH, int* outOversampleV)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontAtlasBuildGetOversampleFactorsNative(src, (ImFontBaked*)pbaked, outOversampleH, outOversampleV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ref ImFontBaked baked, int* outOversampleH, int* outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, (ImFontBaked*)pbaked, outOversampleH, outOversampleV);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ImFontBakedPtr baked, ref int outOversampleH, int* outOversampleV)
-		{
-			fixed (int* poutOversampleH = &outOversampleH)
-			{
-				ImFontAtlasBuildGetOversampleFactorsNative(src, baked, (int*)poutOversampleH, outOversampleV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ImFontBakedPtr baked, ref int outOversampleH, int* outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (int* poutOversampleH = &outOversampleH)
+				else
 				{
-					ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, baked, (int*)poutOversampleH, outOversampleV);
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ref ImFontBaked baked, ref int outOversampleH, int* outOversampleV)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				fixed (int* poutOversampleH = &outOversampleH)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					ImFontAtlasBuildGetOversampleFactorsNative(src, (ImFontBaked*)pbaked, (int*)poutOversampleH, outOversampleV);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ref ImFontBaked baked, ref int outOversampleH, int* outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
+				else
 				{
-					fixed (int* poutOversampleH = &outOversampleH)
-					{
-						ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, (ImFontBaked*)pbaked, (int*)poutOversampleH, outOversampleV);
-					}
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ImFontBakedPtr baked, int* outOversampleH, ref int outOversampleV)
-		{
-			fixed (int* poutOversampleV = &outOversampleV)
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
-				ImFontAtlasBuildGetOversampleFactorsNative(src, baked, outOversampleH, (int*)poutOversampleV);
+				Utils.Free(pStr1);
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ImFontBakedPtr baked, int* outOversampleH, ref int outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				fixed (int* poutOversampleV = &outOversampleV)
-				{
-					ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, baked, outOversampleH, (int*)poutOversampleV);
-				}
+				Utils.Free(pStr0);
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ref ImFontBaked baked, int* outOversampleH, ref int outOversampleV)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (int* poutOversampleV = &outOversampleV)
-				{
-					ImFontAtlasBuildGetOversampleFactorsNative(src, (ImFontBaked*)pbaked, outOversampleH, (int*)poutOversampleV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ref ImFontBaked baked, int* outOversampleH, ref int outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (int* poutOversampleV = &outOversampleV)
-					{
-						ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, (ImFontBaked*)pbaked, outOversampleH, (int*)poutOversampleV);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ImFontBakedPtr baked, ref int outOversampleH, ref int outOversampleV)
-		{
-			fixed (int* poutOversampleH = &outOversampleH)
-			{
-				fixed (int* poutOversampleV = &outOversampleV)
-				{
-					ImFontAtlasBuildGetOversampleFactorsNative(src, baked, (int*)poutOversampleH, (int*)poutOversampleV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ImFontBakedPtr baked, ref int outOversampleH, ref int outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (int* poutOversampleH = &outOversampleH)
-				{
-					fixed (int* poutOversampleV = &outOversampleV)
-					{
-						ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, baked, (int*)poutOversampleH, (int*)poutOversampleV);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ImFontConfigPtr src, ref ImFontBaked baked, ref int outOversampleH, ref int outOversampleV)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (int* poutOversampleH = &outOversampleH)
-				{
-					fixed (int* poutOversampleV = &outOversampleV)
-					{
-						ImFontAtlasBuildGetOversampleFactorsNative(src, (ImFontBaked*)pbaked, (int*)poutOversampleH, (int*)poutOversampleV);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildGetOversampleFactors(ref ImFontConfig src, ref ImFontBaked baked, ref int outOversampleH, ref int outOversampleV)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (int* poutOversampleH = &outOversampleH)
-					{
-						fixed (int* poutOversampleV = &outOversampleV)
-						{
-							ImFontAtlasBuildGetOversampleFactorsNative((ImFontConfig*)psrc, (ImFontBaked*)pbaked, (int*)poutOversampleH, (int*)poutOversampleV);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBuildDiscardBakesNative(ImFontAtlas* atlas, int unusedFrames)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1500])(atlas, unusedFrames);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1500])((nint)atlas, unusedFrames);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildDiscardBakes(ImFontAtlasPtr atlas, int unusedFrames)
-		{
-			ImFontAtlasBuildDiscardBakesNative(atlas, unusedFrames);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBuildDiscardBakes(ref ImFontAtlas atlas, int unusedFrames)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasBuildDiscardBakesNative((ImFontAtlas*)patlas, unusedFrames);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImFontAtlasFontSourceInitNative(ImFontAtlas* atlas, ImFontConfig* src)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, byte>)funcTable[1501])(atlas, src);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1501])((nint)atlas, (nint)src);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasFontSourceInit(ImFontAtlasPtr atlas, ImFontConfigPtr src)
-		{
-			byte ret = ImFontAtlasFontSourceInitNative(atlas, src);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasFontSourceInit(ref ImFontAtlas atlas, ImFontConfigPtr src)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				byte ret = ImFontAtlasFontSourceInitNative((ImFontAtlas*)patlas, src);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasFontSourceInit(ImFontAtlasPtr atlas, ref ImFontConfig src)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				byte ret = ImFontAtlasFontSourceInitNative(atlas, (ImFontConfig*)psrc);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasFontSourceInit(ref ImFontAtlas atlas, ref ImFontConfig src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					byte ret = ImFontAtlasFontSourceInitNative((ImFontAtlas*)patlas, (ImFontConfig*)psrc);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasFontSourceAddToFontNative(ImFontAtlas* atlas, ImFont* font, ImFontConfig* src)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontConfig*, void>)funcTable[1502])(atlas, font, src);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1502])((nint)atlas, (nint)font, (nint)src);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ImFontAtlasPtr atlas, ImFontPtr font, ImFontConfigPtr src)
-		{
-			ImFontAtlasFontSourceAddToFontNative(atlas, font, src);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ref ImFontAtlas atlas, ImFontPtr font, ImFontConfigPtr src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasFontSourceAddToFontNative((ImFontAtlas*)patlas, font, src);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ImFontAtlasPtr atlas, ref ImFont font, ImFontConfigPtr src)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontAtlasFontSourceAddToFontNative(atlas, (ImFont*)pfont, src);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ref ImFontAtlas atlas, ref ImFont font, ImFontConfigPtr src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontAtlasFontSourceAddToFontNative((ImFontAtlas*)patlas, (ImFont*)pfont, src);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ImFontAtlasPtr atlas, ImFontPtr font, ref ImFontConfig src)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontAtlasFontSourceAddToFontNative(atlas, font, (ImFontConfig*)psrc);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ref ImFontAtlas atlas, ImFontPtr font, ref ImFontConfig src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasFontSourceAddToFontNative((ImFontAtlas*)patlas, font, (ImFontConfig*)psrc);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ImFontAtlasPtr atlas, ref ImFont font, ref ImFontConfig src)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasFontSourceAddToFontNative(atlas, (ImFont*)pfont, (ImFontConfig*)psrc);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontSourceAddToFont(ref ImFontAtlas atlas, ref ImFont font, ref ImFontConfig src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						ImFontAtlasFontSourceAddToFontNative((ImFontAtlas*)patlas, (ImFont*)pfont, (ImFontConfig*)psrc);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasFontDestroySourceDataNative(ImFontAtlas* atlas, ImFontConfig* src)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, void>)funcTable[1503])(atlas, src);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1503])((nint)atlas, (nint)src);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroySourceData(ImFontAtlasPtr atlas, ImFontConfigPtr src)
-		{
-			ImFontAtlasFontDestroySourceDataNative(atlas, src);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroySourceData(ref ImFontAtlas atlas, ImFontConfigPtr src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasFontDestroySourceDataNative((ImFontAtlas*)patlas, src);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroySourceData(ImFontAtlasPtr atlas, ref ImFontConfig src)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontAtlasFontDestroySourceDataNative(atlas, (ImFontConfig*)psrc);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroySourceData(ref ImFontAtlas atlas, ref ImFontConfig src)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasFontDestroySourceDataNative((ImFontAtlas*)patlas, (ImFontConfig*)psrc);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Using FontDestroyOutputFontInitOutput sequence useful notably if font loader params have changed<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImFontAtlasFontInitOutputNative(ImFontAtlas* atlas, ImFont* font)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, byte>)funcTable[1504])(atlas, font);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1504])((nint)atlas, (nint)font);
-			#endif
-		}
-
-		/// <summary>
-		/// Using FontDestroyOutputFontInitOutput sequence useful notably if font loader params have changed<br/>
-		/// </summary>
-		public static bool ImFontAtlasFontInitOutput(ImFontAtlasPtr atlas, ImFontPtr font)
-		{
-			byte ret = ImFontAtlasFontInitOutputNative(atlas, font);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Using FontDestroyOutputFontInitOutput sequence useful notably if font loader params have changed<br/>
-		/// </summary>
-		public static bool ImFontAtlasFontInitOutput(ref ImFontAtlas atlas, ImFontPtr font)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				byte ret = ImFontAtlasFontInitOutputNative((ImFontAtlas*)patlas, font);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Using FontDestroyOutputFontInitOutput sequence useful notably if font loader params have changed<br/>
-		/// </summary>
-		public static bool ImFontAtlasFontInitOutput(ImFontAtlasPtr atlas, ref ImFont font)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte ret = ImFontAtlasFontInitOutputNative(atlas, (ImFont*)pfont);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Using FontDestroyOutputFontInitOutput sequence useful notably if font loader params have changed<br/>
-		/// </summary>
-		public static bool ImFontAtlasFontInitOutput(ref ImFontAtlas atlas, ref ImFont font)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte ret = ImFontAtlasFontInitOutputNative((ImFontAtlas*)patlas, (ImFont*)pfont);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasFontDestroyOutputNative(ImFontAtlas* atlas, ImFont* font)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, void>)funcTable[1505])(atlas, font);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1505])((nint)atlas, (nint)font);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroyOutput(ImFontAtlasPtr atlas, ImFontPtr font)
-		{
-			ImFontAtlasFontDestroyOutputNative(atlas, font);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroyOutput(ref ImFontAtlas atlas, ImFontPtr font)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasFontDestroyOutputNative((ImFontAtlas*)patlas, font);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroyOutput(ImFontAtlasPtr atlas, ref ImFont font)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontAtlasFontDestroyOutputNative(atlas, (ImFont*)pfont);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDestroyOutput(ref ImFontAtlas atlas, ref ImFont font)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontAtlasFontDestroyOutputNative((ImFontAtlas*)patlas, (ImFont*)pfont);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasFontDiscardBakesNative(ImFontAtlas* atlas, ImFont* font, int unusedFrames)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, int, void>)funcTable[1506])(atlas, font, unusedFrames);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1506])((nint)atlas, (nint)font, unusedFrames);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDiscardBakes(ImFontAtlasPtr atlas, ImFontPtr font, int unusedFrames)
-		{
-			ImFontAtlasFontDiscardBakesNative(atlas, font, unusedFrames);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDiscardBakes(ref ImFontAtlas atlas, ImFontPtr font, int unusedFrames)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasFontDiscardBakesNative((ImFontAtlas*)patlas, font, unusedFrames);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDiscardBakes(ImFontAtlasPtr atlas, ref ImFont font, int unusedFrames)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontAtlasFontDiscardBakesNative(atlas, (ImFont*)pfont, unusedFrames);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasFontDiscardBakes(ref ImFontAtlas atlas, ref ImFont font, int unusedFrames)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontAtlasFontDiscardBakesNative((ImFontAtlas*)patlas, (ImFont*)pfont, unusedFrames);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ImFontAtlasBakedGetIdNative(uint fontId, float bakedSize, float rasterizerDensity)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, float, uint>)funcTable[1507])(fontId, bakedSize, rasterizerDensity);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, float, uint>)funcTable[1507])(fontId, bakedSize, rasterizerDensity);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ImFontAtlasBakedGetId(uint fontId, float bakedSize, float rasterizerDensity)
-		{
-			uint ret = ImFontAtlasBakedGetIdNative(fontId, bakedSize, rasterizerDensity);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontBaked* ImFontAtlasBakedGetOrAddNative(ImFontAtlas* atlas, ImFont* font, float fontSize, float fontRasterizerDensity)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, ImFontBaked*>)funcTable[1508])(atlas, font, fontSize, fontRasterizerDensity);
-			#else
-			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint>)funcTable[1508])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetOrAdd(ImFontAtlasPtr atlas, ImFontPtr font, float fontSize, float fontRasterizerDensity)
-		{
-			ImFontBakedPtr ret = ImFontAtlasBakedGetOrAddNative(atlas, font, fontSize, fontRasterizerDensity);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetOrAdd(ref ImFontAtlas atlas, ImFontPtr font, float fontSize, float fontRasterizerDensity)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontBakedPtr ret = ImFontAtlasBakedGetOrAddNative((ImFontAtlas*)patlas, font, fontSize, fontRasterizerDensity);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetOrAdd(ImFontAtlasPtr atlas, ref ImFont font, float fontSize, float fontRasterizerDensity)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontBakedPtr ret = ImFontAtlasBakedGetOrAddNative(atlas, (ImFont*)pfont, fontSize, fontRasterizerDensity);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetOrAdd(ref ImFontAtlas atlas, ref ImFont font, float fontSize, float fontRasterizerDensity)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontBakedPtr ret = ImFontAtlasBakedGetOrAddNative((ImFontAtlas*)patlas, (ImFont*)pfont, fontSize, fontRasterizerDensity);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontBaked* ImFontAtlasBakedGetClosestMatchNative(ImFontAtlas* atlas, ImFont* font, float fontSize, float fontRasterizerDensity)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, ImFontBaked*>)funcTable[1509])(atlas, font, fontSize, fontRasterizerDensity);
-			#else
-			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint>)funcTable[1509])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetClosestMatch(ImFontAtlasPtr atlas, ImFontPtr font, float fontSize, float fontRasterizerDensity)
-		{
-			ImFontBakedPtr ret = ImFontAtlasBakedGetClosestMatchNative(atlas, font, fontSize, fontRasterizerDensity);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetClosestMatch(ref ImFontAtlas atlas, ImFontPtr font, float fontSize, float fontRasterizerDensity)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontBakedPtr ret = ImFontAtlasBakedGetClosestMatchNative((ImFontAtlas*)patlas, font, fontSize, fontRasterizerDensity);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetClosestMatch(ImFontAtlasPtr atlas, ref ImFont font, float fontSize, float fontRasterizerDensity)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontBakedPtr ret = ImFontAtlasBakedGetClosestMatchNative(atlas, (ImFont*)pfont, fontSize, fontRasterizerDensity);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedGetClosestMatch(ref ImFontAtlas atlas, ref ImFont font, float fontSize, float fontRasterizerDensity)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontBakedPtr ret = ImFontAtlasBakedGetClosestMatchNative((ImFontAtlas*)patlas, (ImFont*)pfont, fontSize, fontRasterizerDensity);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontBaked* ImFontAtlasBakedAddNative(ImFontAtlas* atlas, ImFont* font, float fontSize, float fontRasterizerDensity, uint bakedId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, uint, ImFontBaked*>)funcTable[1510])(atlas, font, fontSize, fontRasterizerDensity, bakedId);
-			#else
-			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, uint, nint>)funcTable[1510])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity, bakedId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedAdd(ImFontAtlasPtr atlas, ImFontPtr font, float fontSize, float fontRasterizerDensity, uint bakedId)
-		{
-			ImFontBakedPtr ret = ImFontAtlasBakedAddNative(atlas, font, fontSize, fontRasterizerDensity, bakedId);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedAdd(ref ImFontAtlas atlas, ImFontPtr font, float fontSize, float fontRasterizerDensity, uint bakedId)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontBakedPtr ret = ImFontAtlasBakedAddNative((ImFontAtlas*)patlas, font, fontSize, fontRasterizerDensity, bakedId);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedAdd(ImFontAtlasPtr atlas, ref ImFont font, float fontSize, float fontRasterizerDensity, uint bakedId)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontBakedPtr ret = ImFontAtlasBakedAddNative(atlas, (ImFont*)pfont, fontSize, fontRasterizerDensity, bakedId);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontBakedPtr ImFontAtlasBakedAdd(ref ImFontAtlas atlas, ref ImFont font, float fontSize, float fontRasterizerDensity, uint bakedId)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontBakedPtr ret = ImFontAtlasBakedAddNative((ImFontAtlas*)patlas, (ImFont*)pfont, fontSize, fontRasterizerDensity, bakedId);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBakedDiscardNative(ImFontAtlas* atlas, ImFont* font, ImFontBaked* baked)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontBaked*, void>)funcTable[1511])(atlas, font, baked);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1511])((nint)atlas, (nint)font, (nint)baked);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ImFontAtlasPtr atlas, ImFontPtr font, ImFontBakedPtr baked)
-		{
-			ImFontAtlasBakedDiscardNative(atlas, font, baked);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ref ImFontAtlas atlas, ImFontPtr font, ImFontBakedPtr baked)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasBakedDiscardNative((ImFontAtlas*)patlas, font, baked);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ImFontAtlasPtr atlas, ref ImFont font, ImFontBakedPtr baked)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontAtlasBakedDiscardNative(atlas, (ImFont*)pfont, baked);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ref ImFontAtlas atlas, ref ImFont font, ImFontBakedPtr baked)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontAtlasBakedDiscardNative((ImFontAtlas*)patlas, (ImFont*)pfont, baked);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ImFontAtlasPtr atlas, ImFontPtr font, ref ImFontBaked baked)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontAtlasBakedDiscardNative(atlas, font, (ImFontBaked*)pbaked);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ref ImFontAtlas atlas, ImFontPtr font, ref ImFontBaked baked)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedDiscardNative((ImFontAtlas*)patlas, font, (ImFontBaked*)pbaked);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ImFontAtlasPtr atlas, ref ImFont font, ref ImFontBaked baked)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedDiscardNative(atlas, (ImFont*)pfont, (ImFontBaked*)pbaked);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscard(ref ImFontAtlas atlas, ref ImFont font, ref ImFontBaked baked)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (ImFontBaked* pbaked = &baked)
-					{
-						ImFontAtlasBakedDiscardNative((ImFontAtlas*)patlas, (ImFont*)pfont, (ImFontBaked*)pbaked);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImFontGlyph* ImFontAtlasBakedAddFontGlyphNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, ImFontGlyph* inGlyph)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, ImFontGlyph*, ImFontGlyph*>)funcTable[1512])(atlas, baked, src, inGlyph);
-			#else
-			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)funcTable[1512])((nint)atlas, (nint)baked, (nint)src, (nint)inGlyph);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr inGlyph)
-		{
-			ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, baked, src, inGlyph);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, baked, src, inGlyph);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, (ImFontBaked*)pbaked, src, inGlyph);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, inGlyph);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, baked, (ImFontConfig*)psrc, inGlyph);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, inGlyph);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, inGlyph);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, inGlyph);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontGlyph* pinGlyph = &inGlyph)
-			{
-				ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, baked, src, (ImFontGlyph*)pinGlyph);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pinGlyph = &inGlyph)
-				{
-					ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, baked, src, (ImFontGlyph*)pinGlyph);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pinGlyph = &inGlyph)
-				{
-					ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pinGlyph);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pinGlyph = &inGlyph)
-					{
-						ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pinGlyph);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pinGlyph = &inGlyph)
-				{
-					ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pinGlyph);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pinGlyph = &inGlyph)
-					{
-						ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pinGlyph);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pinGlyph = &inGlyph)
-					{
-						ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pinGlyph);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImFontGlyphPtr ImFontAtlasBakedAddFontGlyph(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph inGlyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pinGlyph = &inGlyph)
-						{
-							ImFontGlyphPtr ret = ImFontAtlasBakedAddFontGlyphNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pinGlyph);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBakedAddFontGlyphAdvancedXNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, uint codepoint, float advanceX)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, uint, float, void>)funcTable[1513])(atlas, baked, src, codepoint, advanceX);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, uint, float, void>)funcTable[1513])((nint)atlas, (nint)baked, (nint)src, codepoint, advanceX);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, baked, src, codepoint, advanceX);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, baked, src, codepoint, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, (ImFontBaked*)pbaked, src, codepoint, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, codepoint, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, baked, (ImFontConfig*)psrc, codepoint, advanceX);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, codepoint, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasBakedAddFontGlyphAdvancedXNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, codepoint, advanceX);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedAddFontGlyphAdvancedX(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, uint codepoint, float advanceX)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						ImFontAtlasBakedAddFontGlyphAdvancedXNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, codepoint, advanceX);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBakedDiscardFontGlyphNative(ImFontAtlas* atlas, ImFont* font, ImFontBaked* baked, ImFontGlyph* glyph)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontBaked*, ImFontGlyph*, void>)funcTable[1514])(atlas, font, baked, glyph);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[1514])((nint)atlas, (nint)font, (nint)baked, (nint)glyph);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ImFontPtr font, ImFontBakedPtr baked, ImFontGlyphPtr glyph)
-		{
-			ImFontAtlasBakedDiscardFontGlyphNative(atlas, font, baked, glyph);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ImFontPtr font, ImFontBakedPtr baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, font, baked, glyph);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ref ImFont font, ImFontBakedPtr baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				ImFontAtlasBakedDiscardFontGlyphNative(atlas, (ImFont*)pfont, baked, glyph);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ref ImFont font, ImFontBakedPtr baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, (ImFont*)pfont, baked, glyph);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ImFontPtr font, ref ImFontBaked baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontAtlasBakedDiscardFontGlyphNative(atlas, font, (ImFontBaked*)pbaked, glyph);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ImFontPtr font, ref ImFontBaked baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, font, (ImFontBaked*)pbaked, glyph);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ref ImFont font, ref ImFontBaked baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedDiscardFontGlyphNative(atlas, (ImFont*)pfont, (ImFontBaked*)pbaked, glyph);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ref ImFont font, ref ImFontBaked baked, ImFontGlyphPtr glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (ImFontBaked* pbaked = &baked)
-					{
-						ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, (ImFont*)pfont, (ImFontBaked*)pbaked, glyph);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ImFontPtr font, ImFontBakedPtr baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				ImFontAtlasBakedDiscardFontGlyphNative(atlas, font, baked, (ImFontGlyph*)pglyph);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ImFontPtr font, ImFontBakedPtr baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, font, baked, (ImFontGlyph*)pglyph);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ref ImFont font, ImFontBakedPtr baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					ImFontAtlasBakedDiscardFontGlyphNative(atlas, (ImFont*)pfont, baked, (ImFontGlyph*)pglyph);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ref ImFont font, ImFontBakedPtr baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, (ImFont*)pfont, baked, (ImFontGlyph*)pglyph);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ImFontPtr font, ref ImFontBaked baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					ImFontAtlasBakedDiscardFontGlyphNative(atlas, font, (ImFontBaked*)pbaked, (ImFontGlyph*)pglyph);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ImFontPtr font, ref ImFontBaked baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, font, (ImFontBaked*)pbaked, (ImFontGlyph*)pglyph);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ImFontAtlasPtr atlas, ref ImFont font, ref ImFontBaked baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						ImFontAtlasBakedDiscardFontGlyphNative(atlas, (ImFont*)pfont, (ImFontBaked*)pbaked, (ImFontGlyph*)pglyph);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedDiscardFontGlyph(ref ImFontAtlas atlas, ref ImFont font, ref ImFontBaked baked, ref ImFontGlyph glyph)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (ImFontBaked* pbaked = &baked)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							ImFontAtlasBakedDiscardFontGlyphNative((ImFontAtlas*)patlas, (ImFont*)pfont, (ImFontBaked*)pbaked, (ImFontGlyph*)pglyph);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasBakedSetFontGlyphBitmapNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, ImFontGlyph* glyph, ImTextureRect* r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, ImFontGlyph*, ImTextureRect*, byte*, ImTextureFormat, int, void>)funcTable[1515])(atlas, baked, src, glyph, r, srcPixels, srcFmt, srcPitch);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, nint, ImTextureFormat, int, void>)funcTable[1515])((nint)atlas, (nint)baked, (nint)src, (nint)glyph, (nint)r, (nint)srcPixels, srcFmt, srcPitch);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, glyph, r, srcPixels, srcFmt, srcPitch);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, glyph, r, srcPixels, srcFmt, srcPitch);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, glyph, r, srcPixels, srcFmt, srcPitch);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, glyph, r, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, glyph, r, srcPixels, srcFmt, srcPitch);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, glyph, r, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, r, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, r, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, srcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImTextureRect* pr = &r)
-			{
-				ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							fixed (ImTextureRect* pr = &r)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, srcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (byte* psrcPixels = &srcPixels)
-			{
-				ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, r, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImTextureRect* pr = &r)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative(atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							fixed (ImTextureRect* pr = &r)
-							{
-								fixed (byte* psrcPixels = &srcPixels)
-								{
-									ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasPackInitNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1516])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1516])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackInit(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasPackInitNative(atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackInit(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasPackInitNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImFontAtlasPackAddRectNative(ImFontAtlas* atlas, int w, int h, ImFontAtlasRectEntry* overwriteEntry)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, ImFontAtlasRectEntry*, int>)funcTable[1517])(atlas, w, h, overwriteEntry);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int, nint, int>)funcTable[1517])((nint)atlas, w, h, (nint)overwriteEntry);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h, ImFontAtlasRectEntryPtr overwriteEntry)
-		{
-			int ret = ImFontAtlasPackAddRectNative(atlas, w, h, overwriteEntry);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h)
-		{
-			int ret = ImFontAtlasPackAddRectNative(atlas, w, h, (ImFontAtlasRectEntry*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h, ImFontAtlasRectEntryPtr overwriteEntry)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, overwriteEntry);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, (ImFontAtlasRectEntry*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h, ref ImFontAtlasRectEntry overwriteEntry)
-		{
-			fixed (ImFontAtlasRectEntry* poverwriteEntry = &overwriteEntry)
-			{
-				int ret = ImFontAtlasPackAddRectNative(atlas, w, h, (ImFontAtlasRectEntry*)poverwriteEntry);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h, ref ImFontAtlasRectEntry overwriteEntry)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontAtlasRectEntry* poverwriteEntry = &overwriteEntry)
-				{
-					int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, (ImFontAtlasRectEntry*)poverwriteEntry);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImTextureRect* ImFontAtlasPackGetRectNative(ImFontAtlas* atlas, int id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1518])(atlas, id);
-			#else
-			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1518])((nint)atlas, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRect(ImFontAtlasPtr atlas, int id)
-		{
-			ImTextureRectPtr ret = ImFontAtlasPackGetRectNative(atlas, id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRect(ref ImFontAtlas atlas, int id)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImTextureRectPtr ret = ImFontAtlasPackGetRectNative((ImFontAtlas*)patlas, id);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImTextureRect* ImFontAtlasPackGetRectSafeNative(ImFontAtlas* atlas, int id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1519])(atlas, id);
-			#else
-			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1519])((nint)atlas, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRectSafe(ImFontAtlasPtr atlas, int id)
-		{
-			ImTextureRectPtr ret = ImFontAtlasPackGetRectSafeNative(atlas, id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRectSafe(ref ImFontAtlas atlas, int id)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImTextureRectPtr ret = ImFontAtlasPackGetRectSafeNative((ImFontAtlas*)patlas, id);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasPackDiscardRectNative(ImFontAtlas* atlas, int id)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1520])(atlas, id);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1520])((nint)atlas, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackDiscardRect(ImFontAtlasPtr atlas, int id)
-		{
-			ImFontAtlasPackDiscardRectNative(atlas, id);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackDiscardRect(ref ImFontAtlas atlas, int id)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasPackDiscardRectNative((ImFontAtlas*)patlas, id);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasUpdateNewFrameNative(ImFontAtlas* atlas, int frameCount, byte rendererHasTextures)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, byte, void>)funcTable[1521])(atlas, frameCount, rendererHasTextures);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[1521])((nint)atlas, frameCount, rendererHasTextures);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateNewFrame(ImFontAtlasPtr atlas, int frameCount, bool rendererHasTextures)
-		{
-			ImFontAtlasUpdateNewFrameNative(atlas, frameCount, rendererHasTextures ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateNewFrame(ref ImFontAtlas atlas, int frameCount, bool rendererHasTextures)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasUpdateNewFrameNative((ImFontAtlas*)patlas, frameCount, rendererHasTextures ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasAddDrawListSharedDataNative(ImFontAtlas* atlas, ImDrawListSharedData* data)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1522])(atlas, data);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1522])((nint)atlas, (nint)data);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ImFontAtlasPtr atlas, ImDrawListSharedDataPtr data)
-		{
-			ImFontAtlasAddDrawListSharedDataNative(atlas, data);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ref ImFontAtlas atlas, ImDrawListSharedDataPtr data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasAddDrawListSharedDataNative((ImFontAtlas*)patlas, data);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ImFontAtlasPtr atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImDrawListSharedData* pdata = &data)
-			{
-				ImFontAtlasAddDrawListSharedDataNative(atlas, (ImDrawListSharedData*)pdata);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ref ImFontAtlas atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImDrawListSharedData* pdata = &data)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					ImFontAtlasAddDrawListSharedDataNative((ImFontAtlas*)patlas, (ImDrawListSharedData*)pdata);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasRemoveDrawListSharedDataNative(ImFontAtlas* atlas, ImDrawListSharedData* data)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1523])(atlas, data);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1523])((nint)atlas, (nint)data);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ImFontAtlasPtr atlas, ImDrawListSharedDataPtr data)
-		{
-			ImFontAtlasRemoveDrawListSharedDataNative(atlas, data);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ref ImFontAtlas atlas, ImDrawListSharedDataPtr data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasRemoveDrawListSharedDataNative((ImFontAtlas*)patlas, data);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ImFontAtlasPtr atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImDrawListSharedData* pdata = &data)
-			{
-				ImFontAtlasRemoveDrawListSharedDataNative(atlas, (ImDrawListSharedData*)pdata);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ref ImFontAtlas atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImDrawListSharedData* pdata = &data)
+				else
 				{
-					ImFontAtlasRemoveDrawListSharedDataNative((ImFontAtlas*)patlas, (ImDrawListSharedData*)pdata);
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasUpdateDrawListsTexturesNative(ImFontAtlas* atlas, ImTextureRef oldTex, ImTextureRef newTex)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureRef, ImTextureRef, void>)funcTable[1524])(atlas, oldTex, newTex);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureRef, ImTextureRef, void>)funcTable[1524])((nint)atlas, oldTex, newTex);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsTextures(ImFontAtlasPtr atlas, ImTextureRef oldTex, ImTextureRef newTex)
-		{
-			ImFontAtlasUpdateDrawListsTexturesNative(atlas, oldTex, newTex);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsTextures(ref ImFontAtlas atlas, ImTextureRef oldTex, ImTextureRef newTex)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasUpdateDrawListsTexturesNative((ImFontAtlas*)patlas, oldTex, newTex);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasUpdateDrawListsSharedDataNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1525])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1525])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsSharedData(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasUpdateDrawListsSharedDataNative(atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsSharedData(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasUpdateDrawListsSharedDataNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockConvertNative(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImTextureFormat, int, byte*, ImTextureFormat, int, int, int, void>)funcTable[1526])(srcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureFormat, int, nint, ImTextureFormat, int, int, int, void>)funcTable[1526])((nint)srcPixels, srcFmt, srcPitch, (nint)dstPixels, dstFmt, dstPitch, w, h);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			ImFontAtlasTextureBlockConvertNative(srcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			fixed (byte* psrcPixels = &srcPixels)
-			{
-				ImFontAtlasTextureBlockConvertNative((byte*)psrcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, ref byte dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			fixed (byte* pdstPixels = &dstPixels)
-			{
-				ImFontAtlasTextureBlockConvertNative(srcPixels, srcFmt, srcPitch, (byte*)pdstPixels, dstFmt, dstPitch, w, h);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(ref byte srcPixels, ImTextureFormat srcFmt, int srcPitch, ref byte dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			fixed (byte* psrcPixels = &srcPixels)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				fixed (byte* pdstPixels = &dstPixels)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					ImFontAtlasTextureBlockConvertNative((byte*)psrcPixels, srcFmt, srcPitch, (byte*)pdstPixels, dstFmt, dstPitch, w, h);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockPostProcessNative(ImFontAtlasPostProcessData* data)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, void>)funcTable[1527])(data);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1527])((nint)data);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcess(ImFontAtlasPostProcessDataPtr data)
-		{
-			ImFontAtlasTextureBlockPostProcessNative(data);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcess(ref ImFontAtlasPostProcessData data)
-		{
-			fixed (ImFontAtlasPostProcessData* pdata = &data)
-			{
-				ImFontAtlasTextureBlockPostProcessNative((ImFontAtlasPostProcessData*)pdata);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockPostProcessMultiplyNative(ImFontAtlasPostProcessData* data, float multiplyFactor)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, float, void>)funcTable[1528])(data, multiplyFactor);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[1528])((nint)data, multiplyFactor);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcessMultiply(ImFontAtlasPostProcessDataPtr data, float multiplyFactor)
-		{
-			ImFontAtlasTextureBlockPostProcessMultiplyNative(data, multiplyFactor);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcessMultiply(ref ImFontAtlasPostProcessData data, float multiplyFactor)
-		{
-			fixed (ImFontAtlasPostProcessData* pdata = &data)
-			{
-				ImFontAtlasTextureBlockPostProcessMultiplyNative((ImFontAtlasPostProcessData*)pdata, multiplyFactor);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockFillNative(ImTextureData* dstTex, int dstX, int dstY, int w, int h, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, int, int, uint, void>)funcTable[1529])(dstTex, dstX, dstY, w, h, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, uint, void>)funcTable[1529])((nint)dstTex, dstX, dstY, w, h, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockFill(ImTextureDataPtr dstTex, int dstX, int dstY, int w, int h, uint col)
-		{
-			ImFontAtlasTextureBlockFillNative(dstTex, dstX, dstY, w, h, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockFill(ref ImTextureData dstTex, int dstX, int dstY, int w, int h, uint col)
-		{
-			fixed (ImTextureData* pdstTex = &dstTex)
-			{
-				ImFontAtlasTextureBlockFillNative((ImTextureData*)pdstTex, dstX, dstY, w, h, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockCopyNative(ImTextureData* srcTex, int srcX, int srcY, ImTextureData* dstTex, int dstX, int dstY, int w, int h)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, ImTextureData*, int, int, int, int, void>)funcTable[1530])(srcTex, srcX, srcY, dstTex, dstX, dstY, w, h);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, nint, int, int, int, int, void>)funcTable[1530])((nint)srcTex, srcX, srcY, (nint)dstTex, dstX, dstY, w, h);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ImTextureDataPtr srcTex, int srcX, int srcY, ImTextureDataPtr dstTex, int dstX, int dstY, int w, int h)
-		{
-			ImFontAtlasTextureBlockCopyNative(srcTex, srcX, srcY, dstTex, dstX, dstY, w, h);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ref ImTextureData srcTex, int srcX, int srcY, ImTextureDataPtr dstTex, int dstX, int dstY, int w, int h)
-		{
-			fixed (ImTextureData* psrcTex = &srcTex)
-			{
-				ImFontAtlasTextureBlockCopyNative((ImTextureData*)psrcTex, srcX, srcY, dstTex, dstX, dstY, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ImTextureDataPtr srcTex, int srcX, int srcY, ref ImTextureData dstTex, int dstX, int dstY, int w, int h)
-		{
-			fixed (ImTextureData* pdstTex = &dstTex)
-			{
-				ImFontAtlasTextureBlockCopyNative(srcTex, srcX, srcY, (ImTextureData*)pdstTex, dstX, dstY, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ref ImTextureData srcTex, int srcX, int srcY, ref ImTextureData dstTex, int dstX, int dstY, int w, int h)
-		{
-			fixed (ImTextureData* psrcTex = &srcTex)
-			{
-				fixed (ImTextureData* pdstTex = &dstTex)
+				else
 				{
-					ImFontAtlasTextureBlockCopyNative((ImTextureData*)psrcTex, srcX, srcY, (ImTextureData*)pdstTex, dstX, dstY, w, h);
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockQueueUploadNative(ImFontAtlas* atlas, ImTextureData* tex, int x, int y, int w, int h)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureData*, int, int, int, int, void>)funcTable[1531])(atlas, tex, x, y, w, h);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, int, int, int, void>)funcTable[1531])((nint)atlas, (nint)tex, x, y, w, h);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ImFontAtlasPtr atlas, ImTextureDataPtr tex, int x, int y, int w, int h)
-		{
-			ImFontAtlasTextureBlockQueueUploadNative(atlas, tex, x, y, w, h);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ref ImFontAtlas atlas, ImTextureDataPtr tex, int x, int y, int w, int h)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasTextureBlockQueueUploadNative((ImFontAtlas*)patlas, tex, x, y, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ImFontAtlasPtr atlas, ref ImTextureData tex, int x, int y, int w, int h)
-		{
-			fixed (ImTextureData* ptex = &tex)
-			{
-				ImFontAtlasTextureBlockQueueUploadNative(atlas, (ImTextureData*)ptex, x, y, w, h);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ref ImFontAtlas atlas, ref ImTextureData tex, int x, int y, int w, int h)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)(default), (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
-				fixed (ImTextureData* ptex = &tex)
-				{
-					ImFontAtlasTextureBlockQueueUploadNative((ImFontAtlas*)patlas, (ImTextureData*)ptex, x, y, w, h);
-				}
+				Utils.Free(pStr1);
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImTextureDataGetFormatBytesPerPixelNative(ImTextureFormat format)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1532])(format);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1532])(format);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImTextureDataGetFormatBytesPerPixel(ImTextureFormat format)
-		{
-			int ret = ImTextureDataGetFormatBytesPerPixelNative(format);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* ImTextureDataGetStatusNameNative(ImTextureStatus status)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureStatus, byte*>)funcTable[1533])(status);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureStatus, nint>)funcTable[1533])(status);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* ImTextureDataGetStatusName(ImTextureStatus status)
-		{
-			byte* ret = ImTextureDataGetStatusNameNative(status);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string ImTextureDataGetStatusNameS(ImTextureStatus status)
-		{
-			string ret = Utils.DecodeStringUTF8(ImTextureDataGetStatusNameNative(status));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* ImTextureDataGetFormatNameNative(ImTextureFormat format)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, byte*>)funcTable[1534])(format);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureFormat, nint>)funcTable[1534])(format);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* ImTextureDataGetFormatName(ImTextureFormat format)
-		{
-			byte* ret = ImTextureDataGetFormatNameNative(format);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string ImTextureDataGetFormatNameS(ImTextureFormat format)
-		{
-			string ret = Utils.DecodeStringUTF8(ImTextureDataGetFormatNameNative(format));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasDebugLogTextureRequestsNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1535])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1535])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasDebugLogTextureRequests(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasDebugLogTextureRequestsNative(atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasDebugLogTextureRequests(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				ImFontAtlasDebugLogTextureRequestsNative((ImFontAtlas*)patlas);
+				Utils.Free(pStr0);
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImFontAtlasGetMouseCursorTexDataNative(ImFontAtlas* atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiMouseCursor, Vector2*, Vector2*, Vector2*, Vector2*, byte>)funcTable[1536])(atlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiMouseCursor, nint, nint, nint, nint, byte>)funcTable[1536])((nint)atlas, cursorType, (nint)outOffset, (nint)outSize, (nint)outUvBorder, (nint)outUvFill);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3578,11 +201,32 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = &label)
 			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, outUvFill);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3590,26 +234,32 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, outUvFill);
-					return ret != 0;
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3617,13 +267,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -3632,13 +282,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
 					return ret != 0;
 				}
 			}
@@ -3647,29 +297,47 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				fixed (byte* pformat = &format)
 				{
-					fixed (Vector2* poutSize = &outSize)
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-						return ret != 0;
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutUvBorder = &outUvBorder)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3677,11 +345,32 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
-			fixed (Vector2* poutUvBorder = outUvBorder)
+			fixed (byte* plabel = label)
 			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3689,251 +378,32 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
+					else
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
 					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvBorder = &outUvBorder)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvBorder = outUvBorder)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (Vector2* poutUvFill = &outUvFill)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
 				return ret != 0;
 			}
 		}
@@ -3941,11 +411,32 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, void* pClampMax)
 		{
-			fixed (Vector2* poutUvFill = outUvFill)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3953,13 +444,538 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (Vector2* poutUvFill = &outUvFill)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)pClampMin, pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)pClampMin, (void*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -3968,13 +984,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutUvFill = outUvFill)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
 					return ret != 0;
 				}
 			}
@@ -3983,13 +999,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvFill = &outUvFill)
+				fixed (byte* pformat = format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -3998,13 +1014,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvFill = outUvFill)
+				fixed (byte* pformat = format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
 					return ret != 0;
 				}
 			}
@@ -4013,49 +1029,115 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (Vector2* poutUvFill = &outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)pClampMin, pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
 		{
-			fixed (Vector2* poutSize = &outSize)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutUvFill = &outUvFill)
+				fixed (byte* pformat = format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -4064,13 +1146,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
 		{
-			fixed (Vector2* poutSize = &outSize)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutUvFill = outUvFill)
+				fixed (byte* pformat = format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
 					return ret != 0;
 				}
 			}
@@ -4079,127 +1161,79 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutUvFill = &outUvFill)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutUvFill = outUvFill)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				fixed (byte* pformat = &format)
 				{
-					fixed (Vector2* poutUvFill = &outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvFill = &outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvFill = outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (Vector2* poutUvBorder = &outUvBorder)
-			{
-				fixed (Vector2* poutUvFill = &outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -4208,13 +1242,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
 		{
-			fixed (Vector2* poutUvBorder = outUvBorder)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvFill = outUvFill)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
 					return ret != 0;
 				}
 			}
@@ -4223,17 +1257,320 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutUvFill = &outUvFill)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4241,17 +1578,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
+				fixed (byte* pformat = &format)
 				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4259,17 +1593,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
+				fixed (byte* pformat = format)
 				{
-					fixed (Vector2* poutUvFill = &outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4277,17 +1608,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
+				fixed (byte* pformat = format)
 				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4295,20 +1623,116 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						fixed (Vector2* poutUvFill = &outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)pClampMin, pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4316,20 +1740,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				fixed (byte* pformat = format)
 				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						fixed (Vector2* poutUvFill = outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4337,17 +1755,80 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
 		{
-			fixed (Vector2* poutSize = &outSize)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutUvFill = &outUvFill)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4355,17 +1836,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
 		{
-			fixed (Vector2* poutSize = &outSize)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
+				fixed (byte* pformat = &format)
 				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4373,20 +1851,392 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						fixed (Vector2* poutUvFill = &outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4394,20 +2244,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				fixed (byte* pformat = format)
 				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						fixed (Vector2* poutUvFill = outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4415,20 +2259,65 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						fixed (Vector2* poutUvFill = &outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4436,20 +2325,47 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
 		{
-			fixed (Vector2* poutOffset = &outOffset)
+			fixed (byte* plabel = &label)
 			{
-				fixed (Vector2* poutSize = &outSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						fixed (Vector2* poutUvFill = outUvFill)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative(atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret != 0;
-						}
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4457,23 +2373,167 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					fixed (Vector2* poutSize = &outSize)
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						fixed (Vector2* poutUvBorder = &outUvBorder)
-						{
-							fixed (Vector2* poutUvFill = &outUvFill)
-							{
-								byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-								return ret != 0;
-							}
-						}
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4481,26 +2541,2486 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
 		{
-			fixed (ImFontAtlas* patlas = &atlas)
+			fixed (byte* plabel = label)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				fixed (byte* pformat = format)
 				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvBorder = outUvBorder)
-						{
-							fixed (Vector2* poutUvFill = outUvFill)
-							{
-								byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-								return ret != 0;
-							}
-						}
-					}
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
 				}
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TempInputIsActiveNative(uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[1417])(id);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<uint, byte>)funcTable[1417])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputIsActive(uint id)
+		{
+			byte ret = TempInputIsActiveNative(id);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Get input text state if active<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiInputTextState* GetInputTextStateNative(uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiInputTextState*>)funcTable[1418])(id);
+			#else
+			return (ImGuiInputTextState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1418])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// Get input text state if active<br/>
+		/// </summary>
+		public static ImGuiInputTextStatePtr GetInputTextState(uint id)
+		{
+			ImGuiInputTextStatePtr ret = GetInputTextStateNative(id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetNextItemRefValNative(ImGuiDataType dataType, void* pData)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiDataType, void*, void>)funcTable[1419])(dataType, pData);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiDataType, nint, void>)funcTable[1419])(dataType, (nint)pData);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetNextItemRefVal(ImGuiDataType dataType, void* pData)
+		{
+			SetNextItemRefValNative(dataType, pData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetNextItemRefVal(ImGuiDataType dataType, nint pData)
+		{
+			SetNextItemRefValNative(dataType, (void*)pData);
+		}
+
+		/// <summary>
+		/// This may be useful to apply workaround that a based on distinguish whenever an item is active as a text input field.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsItemActiveAsInputTextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1420])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1420])();
+			#endif
+		}
+
+		/// <summary>
+		/// This may be useful to apply workaround that a based on distinguish whenever an item is active as a text input field.<br/>
+		/// </summary>
+		public static bool IsItemActiveAsInputText()
+		{
+			byte ret = IsItemActiveAsInputTextNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ColorTooltipNative(byte* text, float* col, ImGuiColorEditFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, void>)funcTable[1421])(text, col, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, void>)funcTable[1421])((nint)text, (nint)col, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(byte* text, float* col, ImGuiColorEditFlags flags)
+		{
+			ColorTooltipNative(text, col, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(in byte text, float* col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				ColorTooltipNative((byte*)ptext, col, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(ReadOnlySpan<byte> text, float* col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				ColorTooltipNative((byte*)ptext, col, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(string text, float* col, ImGuiColorEditFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ColorTooltipNative(pStr0, col, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(byte* text, in float col, ImGuiColorEditFlags flags)
+		{
+			fixed (float* pcol = &col)
+			{
+				ColorTooltipNative(text, (float*)pcol, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(in byte text, in float col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (float* pcol = &col)
+				{
+					ColorTooltipNative((byte*)ptext, (float*)pcol, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(ReadOnlySpan<byte> text, in float col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (float* pcol = &col)
+				{
+					ColorTooltipNative((byte*)ptext, (float*)pcol, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorTooltip(string text, in float col, ImGuiColorEditFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pcol = &col)
+			{
+				ColorTooltipNative(pStr0, (float*)pcol, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ColorEditOptionsPopupNative(float* col, ImGuiColorEditFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float*, ImGuiColorEditFlags, void>)funcTable[1422])(col, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiColorEditFlags, void>)funcTable[1422])((nint)col, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorEditOptionsPopup(float* col, ImGuiColorEditFlags flags)
+		{
+			ColorEditOptionsPopupNative(col, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorEditOptionsPopup(in float col, ImGuiColorEditFlags flags)
+		{
+			fixed (float* pcol = &col)
+			{
+				ColorEditOptionsPopupNative((float*)pcol, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ColorPickerOptionsPopupNative(float* refCol, ImGuiColorEditFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float*, ImGuiColorEditFlags, void>)funcTable[1423])(refCol, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiColorEditFlags, void>)funcTable[1423])((nint)refCol, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorPickerOptionsPopup(float* refCol, ImGuiColorEditFlags flags)
+		{
+			ColorPickerOptionsPopupNative(refCol, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorPickerOptionsPopup(in float refCol, ImGuiColorEditFlags flags)
+		{
+			fixed (float* prefCol = &refCol)
+			{
+				ColorPickerOptionsPopupNative((float*)prefCol, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int PlotExNative(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiPlotType, byte*, delegate*<void*, int, float>, void*, int, int, byte*, float, float, Vector2, int>)funcTable[1424])(plotType, label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<ImGuiPlotType, nint, nint, nint, int, int, nint, float, float, Vector2, int>)funcTable[1424])(plotType, (nint)label, (nint)valuesGetter, (nint)data, valuesCount, valuesOffset, (nint)overlayText, scaleMin, scaleMax, sizeArg);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			int ret = PlotExNative(plotType, label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = PlotExNative(plotType, pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			int ret = PlotExNative(plotType, label, valuesGetter, (void*)data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = PlotExNative(plotType, pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, sizeArg);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				int ret = PlotExNative(plotType, label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				int ret = PlotExNative(plotType, label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = PlotExNative(plotType, label, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, sizeArg);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			int ret = PlotExNative(plotType, pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, sizeArg);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = &overlayText)
+			{
+				int ret = PlotExNative(plotType, pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				int ret = PlotExNative(plotType, pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* poverlayText = &overlayText)
+			{
+				int ret = PlotExNative(plotType, label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				int ret = PlotExNative(plotType, label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = PlotExNative(plotType, label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, sizeArg);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			int ret = PlotExNative(plotType, pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, sizeArg);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = PlotExNative(plotType, (byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = &overlayText)
+			{
+				int ret = PlotExNative(plotType, pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int PlotEx(ImGuiPlotType plotType, string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				int ret = PlotExNative(plotType, pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, sizeArg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ShadeVertsLinearColorGradientKeepAlphaNative(ImDrawList* drawList, int vertStartIdx, int vertEndIdx, Vector2 gradientp0, Vector2 gradientp1, uint col0, uint col1)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, Vector2, Vector2, uint, uint, void>)funcTable[1425])(drawList, vertStartIdx, vertEndIdx, gradientp0, gradientp1, col0, col1);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, Vector2, uint, uint, void>)funcTable[1425])((nint)drawList, vertStartIdx, vertEndIdx, gradientp0, gradientp1, col0, col1);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShadeVertsLinearColorGradientKeepAlpha(ImDrawListPtr drawList, int vertStartIdx, int vertEndIdx, Vector2 gradientp0, Vector2 gradientp1, uint col0, uint col1)
+		{
+			ShadeVertsLinearColorGradientKeepAlphaNative((ImDrawList*)drawList, vertStartIdx, vertEndIdx, gradientp0, gradientp1, col0, col1);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShadeVertsLinearColorGradientKeepAlpha(ref ImDrawList drawList, int vertStartIdx, int vertEndIdx, Vector2 gradientp0, Vector2 gradientp1, uint col0, uint col1)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ShadeVertsLinearColorGradientKeepAlphaNative((ImDrawList*)pdrawList, vertStartIdx, vertEndIdx, gradientp0, gradientp1, col0, col1);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ShadeVertsLinearUVNative(ImDrawList* drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, byte clamp)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, Vector2, Vector2, Vector2, Vector2, byte, void>)funcTable[1426])(drawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, Vector2, Vector2, Vector2, byte, void>)funcTable[1426])((nint)drawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShadeVertsLinearUV(ImDrawListPtr drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, bool clamp)
+		{
+			ShadeVertsLinearUVNative((ImDrawList*)drawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShadeVertsLinearUV(ref ImDrawList drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, bool clamp)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ShadeVertsLinearUVNative((ImDrawList*)pdrawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ShadeVertsTransformPosNative(ImDrawList* drawList, int vertStartIdx, int vertEndIdx, Vector2 pivotIn, float cosA, float sinA, Vector2 pivotOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, Vector2, float, float, Vector2, void>)funcTable[1427])(drawList, vertStartIdx, vertEndIdx, pivotIn, cosA, sinA, pivotOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, float, float, Vector2, void>)funcTable[1427])((nint)drawList, vertStartIdx, vertEndIdx, pivotIn, cosA, sinA, pivotOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShadeVertsTransformPos(ImDrawListPtr drawList, int vertStartIdx, int vertEndIdx, Vector2 pivotIn, float cosA, float sinA, Vector2 pivotOut)
+		{
+			ShadeVertsTransformPosNative((ImDrawList*)drawList, vertStartIdx, vertEndIdx, pivotIn, cosA, sinA, pivotOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ShadeVertsTransformPos(ref ImDrawList drawList, int vertStartIdx, int vertEndIdx, Vector2 pivotIn, float cosA, float sinA, Vector2 pivotOut)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ShadeVertsTransformPosNative((ImDrawList*)pdrawList, vertStartIdx, vertEndIdx, pivotIn, cosA, sinA, pivotOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void GcCompactTransientMiscBuffersNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1428])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1428])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GcCompactTransientMiscBuffers()
+		{
+			GcCompactTransientMiscBuffersNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void GcCompactTransientWindowBuffersNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1429])(window);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1429])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GcCompactTransientWindowBuffers(ImGuiWindowPtr window)
+		{
+			GcCompactTransientWindowBuffersNative((ImGuiWindow*)window);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GcCompactTransientWindowBuffers(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				GcCompactTransientWindowBuffersNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void GcAwakeTransientWindowBuffersNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1430])(window);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1430])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GcAwakeTransientWindowBuffers(ImGuiWindowPtr window)
+		{
+			GcAwakeTransientWindowBuffersNative((ImGuiWindow*)window);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GcAwakeTransientWindowBuffers(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				GcAwakeTransientWindowBuffersNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ErrorLogNative(byte* msg)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[1431])(msg);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1431])((nint)msg);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ErrorLog(byte* msg)
+		{
+			byte ret = ErrorLogNative(msg);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ErrorLog(in byte msg)
+		{
+			fixed (byte* pmsg = &msg)
+			{
+				byte ret = ErrorLogNative((byte*)pmsg);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ErrorLog(ReadOnlySpan<byte> msg)
+		{
+			fixed (byte* pmsg = msg)
+			{
+				byte ret = ErrorLogNative((byte*)pmsg);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ErrorLog(string msg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (msg != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(msg);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(msg, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ErrorLogNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ErrorRecoveryStoreStateNative(ImGuiErrorRecoveryState* stateOut)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[1432])(stateOut);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1432])((nint)stateOut);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorRecoveryStoreState(ImGuiErrorRecoveryStatePtr stateOut)
+		{
+			ErrorRecoveryStoreStateNative((ImGuiErrorRecoveryState*)stateOut);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorRecoveryStoreState(ref ImGuiErrorRecoveryState stateOut)
+		{
+			fixed (ImGuiErrorRecoveryState* pstateOut = &stateOut)
+			{
+				ErrorRecoveryStoreStateNative((ImGuiErrorRecoveryState*)pstateOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ErrorRecoveryTryToRecoverStateNative(ImGuiErrorRecoveryState* stateIn)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[1433])(stateIn);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1433])((nint)stateIn);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorRecoveryTryToRecoverState(ImGuiErrorRecoveryStatePtr stateIn)
+		{
+			ErrorRecoveryTryToRecoverStateNative((ImGuiErrorRecoveryState*)stateIn);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorRecoveryTryToRecoverState(in ImGuiErrorRecoveryState stateIn)
+		{
+			fixed (ImGuiErrorRecoveryState* pstateIn = &stateIn)
+			{
+				ErrorRecoveryTryToRecoverStateNative((ImGuiErrorRecoveryState*)pstateIn);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ErrorRecoveryTryToRecoverWindowStateNative(ImGuiErrorRecoveryState* stateIn)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[1434])(stateIn);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1434])((nint)stateIn);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorRecoveryTryToRecoverWindowState(ImGuiErrorRecoveryStatePtr stateIn)
+		{
+			ErrorRecoveryTryToRecoverWindowStateNative((ImGuiErrorRecoveryState*)stateIn);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorRecoveryTryToRecoverWindowState(in ImGuiErrorRecoveryState stateIn)
+		{
+			fixed (ImGuiErrorRecoveryState* pstateIn = &stateIn)
+			{
+				ErrorRecoveryTryToRecoverWindowStateNative((ImGuiErrorRecoveryState*)pstateIn);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ErrorCheckUsingSetCursorPosToExtendParentBoundariesNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1435])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1435])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorCheckUsingSetCursorPosToExtendParentBoundaries()
+		{
+			ErrorCheckUsingSetCursorPosToExtendParentBoundariesNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ErrorCheckEndFrameFinalizeErrorTooltipNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1436])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1436])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ErrorCheckEndFrameFinalizeErrorTooltip()
+		{
+			ErrorCheckEndFrameFinalizeErrorTooltipNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginErrorTooltipNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1437])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1437])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginErrorTooltip()
+		{
+			byte ret = BeginErrorTooltipNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndErrorTooltipNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1438])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1438])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void EndErrorTooltip()
+		{
+			EndErrorTooltipNative();
+		}
+
+		/// <summary>
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugAllocHookNative(ImGuiDebugAllocInfo* info, int frameCount, void* ptr, nuint size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*, int, void*, nuint, void>)funcTable[1439])(info, frameCount, ptr, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, nuint, void>)funcTable[1439])((nint)info, frameCount, (nint)ptr, size);
+			#endif
+		}
+
+		/// <summary>
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
+		/// </summary>
+		public static void DebugAllocHook(ImGuiDebugAllocInfoPtr info, int frameCount, void* ptr, nuint size)
+		{
+			DebugAllocHookNative((ImGuiDebugAllocInfo*)info, frameCount, ptr, size);
+		}
+
+		/// <summary>
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
+		/// </summary>
+		public static void DebugAllocHook(ref ImGuiDebugAllocInfo info, int frameCount, void* ptr, nuint size)
+		{
+			fixed (ImGuiDebugAllocInfo* pinfo = &info)
+			{
+				DebugAllocHookNative((ImGuiDebugAllocInfo*)pinfo, frameCount, ptr, size);
+			}
+		}
+
+		/// <summary>
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
+		/// </summary>
+		public static void DebugAllocHook(ImGuiDebugAllocInfoPtr info, int frameCount, nint ptr, nuint size)
+		{
+			DebugAllocHookNative((ImGuiDebugAllocInfo*)info, frameCount, (void*)ptr, size);
+		}
+
+		/// <summary>
+		/// size &gt;= 0 : alloc, size = -1 : free<br/>
+		/// </summary>
+		public static void DebugAllocHook(ref ImGuiDebugAllocInfo info, int frameCount, nint ptr, nuint size)
+		{
+			fixed (ImGuiDebugAllocInfo* pinfo = &info)
+			{
+				DebugAllocHookNative((ImGuiDebugAllocInfo*)pinfo, frameCount, (void*)ptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugDrawCursorPosNative(uint col)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1440])(col);
+			#else
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1440])(col);
+			#endif
+		}
 	}
 }

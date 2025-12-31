@@ -21,1260 +21,83 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputInt(string label, ref int v)
+		public static bool SliderAngle(byte* label, float* vRad)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputIntNative(pStr0, (int*)pv, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt(string label, ref int v, int step, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputIntNative(pStr0, (int*)pv, step, (int)(100), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt(string label, ref int v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputIntNative(pStr0, (int*)pv, (int)(1), (int)(100), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InputInt2Native(byte* label, int* v, ImGuiInputTextFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[202])(label, v, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[202])((nint)label, (nint)v, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(byte* label, int* v, ImGuiInputTextFlags flags)
-		{
-			byte ret = InputInt2Native(label, v, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(byte* label, int* v)
-		{
-			byte ret = InputInt2Native(label, v, (ImGuiInputTextFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ref byte label, int* v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputInt2Native((byte*)plabel, v, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ref byte label, int* v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputInt2Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputInt2Native((byte*)plabel, v, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ReadOnlySpan<byte> label, int* v)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputInt2Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(string label, int* v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputInt2Native(pStr0, v, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(string label, int* v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputInt2Native(pStr0, v, (ImGuiInputTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(byte* label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt2Native(label, (int*)pv, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(byte* label, ref int v)
-		{
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt2Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(byte* label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
-		{
-			fixed (int* pv = v)
-			{
-				byte ret = InputInt2Native(label, (int*)pv, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(byte* label, ReadOnlySpan<int> v)
-		{
-			fixed (int* pv = v)
-			{
-				byte ret = InputInt2Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ref byte label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt2Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ref byte label, ref int v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt2Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = v)
-				{
-					byte ret = InputInt2Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ReadOnlySpan<byte> label, ReadOnlySpan<int> v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = v)
-				{
-					byte ret = InputInt2Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(string label, ref int v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt2Native(pStr0, (int*)pv, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(string label, ref int v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt2Native(pStr0, (int*)pv, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ReadOnlySpan<byte> label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt2Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt2(ReadOnlySpan<byte> label, ref int v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt2Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InputInt3Native(byte* label, int* v, ImGuiInputTextFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[203])(label, v, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[203])((nint)label, (nint)v, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(byte* label, int* v, ImGuiInputTextFlags flags)
-		{
-			byte ret = InputInt3Native(label, v, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(byte* label, int* v)
-		{
-			byte ret = InputInt3Native(label, v, (ImGuiInputTextFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ref byte label, int* v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputInt3Native((byte*)plabel, v, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ref byte label, int* v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputInt3Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputInt3Native((byte*)plabel, v, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ReadOnlySpan<byte> label, int* v)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputInt3Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(string label, int* v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputInt3Native(pStr0, v, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(string label, int* v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputInt3Native(pStr0, v, (ImGuiInputTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(byte* label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt3Native(label, (int*)pv, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(byte* label, ref int v)
-		{
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt3Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(byte* label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
-		{
-			fixed (int* pv = v)
-			{
-				byte ret = InputInt3Native(label, (int*)pv, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(byte* label, ReadOnlySpan<int> v)
-		{
-			fixed (int* pv = v)
-			{
-				byte ret = InputInt3Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ref byte label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt3Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ref byte label, ref int v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt3Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = v)
-				{
-					byte ret = InputInt3Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ReadOnlySpan<byte> label, ReadOnlySpan<int> v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = v)
-				{
-					byte ret = InputInt3Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(string label, ref int v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt3Native(pStr0, (int*)pv, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(string label, ref int v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt3Native(pStr0, (int*)pv, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ReadOnlySpan<byte> label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt3Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt3(ReadOnlySpan<byte> label, ref int v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt3Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InputInt4Native(byte* label, int* v, ImGuiInputTextFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)funcTable[204])(label, v, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)funcTable[204])((nint)label, (nint)v, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(byte* label, int* v, ImGuiInputTextFlags flags)
-		{
-			byte ret = InputInt4Native(label, v, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(byte* label, int* v)
-		{
-			byte ret = InputInt4Native(label, v, (ImGuiInputTextFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ref byte label, int* v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputInt4Native((byte*)plabel, v, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ref byte label, int* v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputInt4Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputInt4Native((byte*)plabel, v, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ReadOnlySpan<byte> label, int* v)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputInt4Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(string label, int* v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputInt4Native(pStr0, v, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(string label, int* v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputInt4Native(pStr0, v, (ImGuiInputTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(byte* label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt4Native(label, (int*)pv, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(byte* label, ref int v)
-		{
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt4Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(byte* label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
-		{
-			fixed (int* pv = v)
-			{
-				byte ret = InputInt4Native(label, (int*)pv, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(byte* label, ReadOnlySpan<int> v)
-		{
-			fixed (int* pv = v)
-			{
-				byte ret = InputInt4Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ref byte label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt4Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ref byte label, ref int v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt4Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = v)
-				{
-					byte ret = InputInt4Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ReadOnlySpan<byte> label, ReadOnlySpan<int> v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = v)
-				{
-					byte ret = InputInt4Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(string label, ref int v, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt4Native(pStr0, (int*)pv, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(string label, ref int v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pv = &v)
-			{
-				byte ret = InputInt4Native(pStr0, (int*)pv, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ReadOnlySpan<byte> label, ref int v, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt4Native((byte*)plabel, (int*)pv, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputInt4(ReadOnlySpan<byte> label, ref int v)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pv = &v)
-				{
-					byte ret = InputInt4Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte InputDoubleNative(byte* label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, double*, double, double, byte*, ImGuiInputTextFlags, byte>)funcTable[205])(label, v, step, stepFast, format, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, double, double, nint, ImGuiInputTextFlags, byte>)funcTable[205])((nint)label, (nint)v, step, stepFast, (nint)format, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
-		{
-			byte ret = InputDoubleNative(label, v, step, stepFast, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, byte* format)
-		{
-			byte ret = InputDoubleNative(label, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast)
-		{
-			bool ret = InputDouble(label, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+			bool ret = SliderAngle(label, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, byte* format)
 		{
-			bool ret = InputDouble(label, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(byte* label, double* v)
-		{
-			bool ret = InputDouble(label, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, byte* format)
-		{
-			byte ret = InputDoubleNative(label, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, byte* format)
+		public static bool SliderAngle(byte* label, float* vRad, byte* format)
 		{
-			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
-			bool ret = InputDouble(label, v, step, stepFast, (string)"%.6f", flags);
+			bool ret = SliderAngle(label, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
-			bool ret = InputDouble(label, v, step, (double)(0.0), (string)"%.6f", flags);
+			bool ret = SliderAngle(label, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, ImGuiSliderFlags flags)
 		{
-			bool ret = InputDouble(label, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+			bool ret = SliderAngle(label, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
-			byte ret = InputDoubleNative(label, v, step, (double)(0.0), format, flags);
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), format, flags);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, byte* format, ImGuiSliderFlags flags)
 		{
-			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), format, flags);
+			byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, format, flags);
 				return ret != 0;
 			}
 		}
@@ -1282,11 +105,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1294,11 +117,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax)
 		{
 			fixed (byte* plabel = &label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1306,11 +129,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin)
 		{
 			fixed (byte* plabel = &label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1318,11 +141,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v)
+		public static bool SliderAngle(in byte label, float* vRad)
 		{
 			fixed (byte* plabel = &label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1330,11 +153,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, byte* format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1342,11 +165,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, byte* format)
+		public static bool SliderAngle(in byte label, float* vRad, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1354,11 +177,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", flags);
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -1366,11 +189,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -1378,11 +201,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -1390,11 +213,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), format, flags);
 				return ret != 0;
 			}
 		}
@@ -1402,11 +225,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 				return ret != 0;
 			}
 		}
@@ -1414,11 +237,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, format, flags);
 				return ret != 0;
 			}
 		}
@@ -1426,11 +249,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1438,11 +261,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax)
 		{
 			fixed (byte* plabel = label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1450,11 +273,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin)
 		{
 			fixed (byte* plabel = label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1462,11 +285,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad)
 		{
 			fixed (byte* plabel = label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1474,11 +297,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, byte* format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1486,11 +309,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, byte* format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1498,11 +321,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", flags);
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -1510,11 +333,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -1522,11 +345,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -1534,11 +357,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), format, flags);
 				return ret != 0;
 			}
 		}
@@ -1546,11 +369,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 				return ret != 0;
 			}
 		}
@@ -1558,7 +381,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1577,7 +400,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, stepFast, format, flags);
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, format, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1588,7 +411,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1607,7 +430,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1618,7 +441,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1637,7 +460,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			bool ret = InputDouble(pStr0, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+			bool ret = SliderAngle(pStr0, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1648,7 +471,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1667,7 +490,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			bool ret = InputDouble(pStr0, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+			bool ret = SliderAngle(pStr0, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1678,7 +501,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v)
+		public static bool SliderAngle(string label, float* vRad)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1697,7 +520,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			bool ret = InputDouble(pStr0, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+			bool ret = SliderAngle(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1708,7 +531,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, byte* format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1727,7 +550,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1738,7 +561,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, byte* format)
+		public static bool SliderAngle(string label, float* vRad, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1757,7 +580,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1768,7 +591,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1787,7 +610,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			bool ret = InputDouble(pStr0, v, step, stepFast, (string)"%.6f", flags);
+			bool ret = SliderAngle(pStr0, vRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1798,7 +621,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1817,7 +640,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			bool ret = InputDouble(pStr0, v, step, (double)(0.0), (string)"%.6f", flags);
+			bool ret = SliderAngle(pStr0, vRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1828,7 +651,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1847,7 +670,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			bool ret = InputDouble(pStr0, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+			bool ret = SliderAngle(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1858,7 +681,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1877,7 +700,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), format, flags);
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), format, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1888,7 +711,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1907,7 +730,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), format, flags);
+			byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1918,11 +741,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, format, flags);
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
 				return ret != 0;
 			}
 		}
@@ -1930,11 +753,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1942,11 +765,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(label, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1954,11 +777,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(label, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1966,11 +789,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v)
+		public static bool SliderAngle(byte* label, ref float vRad)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(label, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				return ret;
 			}
 		}
@@ -1978,11 +801,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, byte* format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, byte* format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1990,11 +813,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, byte* format)
+		public static bool SliderAngle(byte* label, ref float vRad, byte* format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2002,11 +825,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(label, (double*)pv, step, stepFast, (string)"%.6f", flags);
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -2014,11 +837,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(label, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -2026,11 +849,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(label, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 				return ret;
 			}
 		}
@@ -2038,11 +861,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), format, flags);
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
 				return ret != 0;
 			}
 		}
@@ -2050,11 +873,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, byte* format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 				return ret != 0;
 			}
 		}
@@ -2062,13 +885,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
 					return ret != 0;
 				}
 			}
@@ -2077,13 +900,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2092,13 +915,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 					return ret;
 				}
 			}
@@ -2107,13 +930,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 					return ret;
 				}
 			}
@@ -2122,13 +945,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v)
+		public static bool SliderAngle(in byte label, ref float vRad)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 					return ret;
 				}
 			}
@@ -2137,13 +960,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, byte* format)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2152,13 +975,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, byte* format)
+		public static bool SliderAngle(in byte label, ref float vRad, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2167,13 +990,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", flags);
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 					return ret;
 				}
 			}
@@ -2182,13 +1005,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 					return ret;
 				}
 			}
@@ -2197,13 +1020,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 					return ret;
 				}
 			}
@@ -2212,13 +1035,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
 					return ret != 0;
 				}
 			}
@@ -2227,13 +1050,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 					return ret != 0;
 				}
 			}
@@ -2242,13 +1065,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
 					return ret != 0;
 				}
 			}
@@ -2257,13 +1080,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2272,13 +1095,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 					return ret;
 				}
 			}
@@ -2287,13 +1110,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 					return ret;
 				}
 			}
@@ -2302,13 +1125,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 					return ret;
 				}
 			}
@@ -2317,13 +1140,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, byte* format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2332,13 +1155,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, byte* format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2347,13 +1170,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", flags);
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 					return ret;
 				}
 			}
@@ -2362,13 +1185,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 					return ret;
 				}
 			}
@@ -2377,13 +1200,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 					return ret;
 				}
 			}
@@ -2392,13 +1215,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
 					return ret != 0;
 				}
 			}
@@ -2407,13 +1230,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 					return ret != 0;
 				}
 			}
@@ -2422,7 +1245,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2441,9 +1264,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, format, flags);
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2455,7 +1278,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, double stepFast, byte* format)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2474,9 +1297,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2488,7 +1311,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, double stepFast)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2507,9 +1330,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(pStr0, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2521,7 +1344,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2540,9 +1363,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(pStr0, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2554,7 +1377,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v)
+		public static bool SliderAngle(string label, ref float vRad)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2573,9 +1396,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(pStr0, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				bool ret = SliderAngle(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2587,7 +1410,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, byte* format)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2606,9 +1429,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(pStr0, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2620,7 +1443,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, byte* format)
+		public static bool SliderAngle(string label, ref float vRad, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2639,9 +1462,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(pStr0, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2653,7 +1476,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2672,9 +1495,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(pStr0, (double*)pv, step, stepFast, (string)"%.6f", flags);
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2686,7 +1509,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2705,9 +1528,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(pStr0, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2719,7 +1542,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2738,9 +1561,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				bool ret = InputDouble(pStr0, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				bool ret = SliderAngle(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2752,7 +1575,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2771,9 +1594,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(pStr0, (double*)pv, step, (double)(0.0), format, flags);
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2785,7 +1608,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2804,9 +1627,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				byte ret = InputDoubleNative(pStr0, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2818,11 +1641,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, flags);
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2830,11 +1653,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ref byte format)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2842,11 +1665,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, ref byte format)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2854,11 +1677,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, ref byte format)
+		public static bool SliderAngle(byte* label, float* vRad, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2866,11 +1689,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2878,11 +1701,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2890,11 +1713,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, flags);
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2902,11 +1725,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2914,11 +1737,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2926,11 +1749,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(byte* label, float* vRad, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2938,11 +1761,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2950,11 +1773,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2962,7 +1785,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2981,7 +1804,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(label, v, step, stepFast, pStr0, flags);
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2992,7 +1815,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, double stepFast, string format)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3011,7 +1834,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(label, v, step, stepFast, pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3022,7 +1845,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, string format)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3041,7 +1864,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(label, v, step, (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3052,7 +1875,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, string format)
+		public static bool SliderAngle(byte* label, float* vRad, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3071,7 +1894,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3082,7 +1905,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, double step, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3101,7 +1924,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(label, v, step, (double)(0.0), pStr0, flags);
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3112,7 +1935,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, double* v, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, float* vRad, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3131,7 +1954,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), pStr0, flags);
+			byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3142,13 +1965,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3157,13 +1980,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ref byte format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3172,13 +1995,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, ref byte format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3187,13 +2010,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, ref byte format)
+		public static bool SliderAngle(in byte label, float* vRad, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3202,13 +2025,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3217,13 +2040,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3232,13 +2055,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3247,13 +2070,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3262,13 +2085,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3277,13 +2100,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3292,13 +2115,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3307,13 +2130,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3322,7 +2145,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3358,7 +2181,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, stepFast, pStr1, flags);
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3373,7 +2196,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, string format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3409,7 +2232,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, stepFast, pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3424,7 +2247,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, string format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3460,7 +2283,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3475,7 +2298,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, string format)
+		public static bool SliderAngle(string label, float* vRad, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3511,7 +2334,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3526,7 +2349,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3562,7 +2385,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), pStr1, flags);
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3577,7 +2400,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3613,7 +2436,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), pStr1, flags);
+			byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3628,13 +2451,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3643,13 +2466,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3658,13 +2481,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3673,13 +2496,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(in byte label, float* vRad, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3688,13 +2511,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3703,13 +2526,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3718,7 +2541,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3739,7 +2562,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, pStr0, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3751,7 +2574,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, string format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3772,7 +2595,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3784,7 +2607,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, string format)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3805,7 +2628,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3817,7 +2640,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, string format)
+		public static bool SliderAngle(in byte label, float* vRad, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3838,7 +2661,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3850,7 +2673,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, double step, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3871,7 +2694,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), pStr0, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3883,7 +2706,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, double* v, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3904,7 +2727,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), pStr0, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3916,13 +2739,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3931,13 +2754,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ref byte format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3946,13 +2769,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ref byte format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3961,13 +2784,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ref byte format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3976,13 +2799,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3991,13 +2814,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4006,7 +2829,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4027,7 +2850,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, pStr0, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4039,7 +2862,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, string format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4060,7 +2883,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4072,7 +2895,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, string format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4093,7 +2916,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4105,7 +2928,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, string format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4126,7 +2949,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4138,7 +2961,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4159,7 +2982,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), pStr0, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4171,7 +2994,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4192,7 +3015,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), pStr0, flags);
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4204,7 +3027,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4225,7 +3048,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, stepFast, (byte*)pformat, flags);
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4237,7 +3060,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, ref byte format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4258,7 +3081,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4270,7 +3093,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, ref byte format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4291,7 +3114,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4303,7 +3126,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, ref byte format)
+		public static bool SliderAngle(string label, float* vRad, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4324,7 +3147,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4336,7 +3159,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4357,7 +3180,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4369,7 +3192,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4390,7 +3213,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4402,7 +3225,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4423,7 +3246,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, stepFast, (byte*)pformat, flags);
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4435,7 +3258,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, double stepFast, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4456,7 +3279,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4468,7 +3291,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4489,7 +3312,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4501,7 +3324,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(string label, float* vRad, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4522,7 +3345,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4534,7 +3357,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4555,7 +3378,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4567,7 +3390,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(string label, double* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(string label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4588,7 +3411,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4600,13 +3423,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, flags);
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4615,13 +3438,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ref byte format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4630,13 +3453,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, ref byte format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, in byte format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4645,13 +3468,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, ref byte format)
+		public static bool SliderAngle(byte* label, ref float vRad, in byte format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4660,13 +3483,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4675,13 +3498,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, in byte format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4690,13 +3513,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, flags);
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4705,13 +3528,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4720,13 +3543,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4735,13 +3558,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(byte* label, ref float vRad, ReadOnlySpan<byte> format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4750,13 +3573,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4765,13 +3588,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4780,9 +3603,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4801,7 +3624,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, pStr0, flags);
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4813,9 +3636,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, string format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4834,7 +3657,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4846,9 +3669,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, string format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, string format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4867,7 +3690,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4879,9 +3702,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, string format)
+		public static bool SliderAngle(byte* label, ref float vRad, string format)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4900,7 +3723,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4912,9 +3735,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, double step, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4933,7 +3756,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), pStr0, flags);
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4945,9 +3768,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(byte* label, ref double v, string format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(byte* label, ref float vRad, string format, ImGuiSliderFlags flags)
 		{
-			fixed (double* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4966,7 +3789,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), pStr0, flags);
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4978,15 +3801,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = &format)
 					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, flags);
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 						return ret != 0;
 					}
 				}
@@ -4996,15 +3819,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, ref byte format)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = &format)
 					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
 				}
@@ -5014,17 +3837,1187 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputDouble(ref byte label, ref double v, double step, ref byte format)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (double* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = &format)
 					{
-						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
 				}
 			}
 		}

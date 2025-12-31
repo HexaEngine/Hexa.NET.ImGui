@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		/// </summary>
 		public static bool Init(ID3D11DevicePtr device, ID3D11DeviceContextPtr deviceContext)
 		{
-			byte ret = InitNative(device, deviceContext);
+			byte ret = InitNative((ID3D11Device*)device, (ID3D11DeviceContext*)deviceContext);
 			return ret != 0;
 		}
 
@@ -47,7 +47,7 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		{
 			fixed (ID3D11Device* pdevice = &device)
 			{
-				byte ret = InitNative((ID3D11Device*)pdevice, deviceContext);
+				byte ret = InitNative((ID3D11Device*)pdevice, (ID3D11DeviceContext*)deviceContext);
 				return ret != 0;
 			}
 		}
@@ -59,7 +59,7 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		{
 			fixed (ID3D11DeviceContext* pdeviceContext = &deviceContext)
 			{
-				byte ret = InitNative(device, (ID3D11DeviceContext*)pdeviceContext);
+				byte ret = InitNative((ID3D11Device*)device, (ID3D11DeviceContext*)pdeviceContext);
 				return ret != 0;
 			}
 		}
@@ -139,7 +139,7 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData)
 		{
-			RenderDrawDataNative(drawData);
+			RenderDrawDataNative((ImDrawData*)drawData);
 		}
 
 		/// <summary>
@@ -171,7 +171,7 @@ namespace Hexa.NET.ImGui.Backends.D3D11
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>

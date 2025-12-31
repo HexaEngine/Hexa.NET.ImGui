@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
-			SetCurrentContextNative(ctx);
+			SetCurrentContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
 		{
-			byte ret = InitForOpenGLNative(window, sdlGlContext);
+			byte ret = InitForOpenGLNative((SDLWindow*)window, sdlGlContext);
 			return ret != 0;
 		}
 
@@ -102,6 +102,27 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			fixed (SDLWindow* pwindow = &window)
 			{
 				byte ret = InitForOpenGLNative((SDLWindow*)pwindow, sdlGlContext);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool InitForOpenGL(SDLWindowPtr window, nint sdlGlContext)
+		{
+			byte ret = InitForOpenGLNative((SDLWindow*)window, (void*)sdlGlContext);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool InitForOpenGL(ref SDLWindow window, nint sdlGlContext)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = InitForOpenGLNative((SDLWindow*)pwindow, (void*)sdlGlContext);
 				return ret != 0;
 			}
 		}
@@ -124,7 +145,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForVulkan(SDLWindowPtr window)
 		{
-			byte ret = InitForVulkanNative(window);
+			byte ret = InitForVulkanNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -158,7 +179,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForD3D(SDLWindowPtr window)
 		{
-			byte ret = InitForD3DNative(window);
+			byte ret = InitForD3DNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -192,7 +213,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForMetal(SDLWindowPtr window)
 		{
-			byte ret = InitForMetalNative(window);
+			byte ret = InitForMetalNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -226,7 +247,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForSDLRenderer(SDLWindowPtr window, SDLRendererPtr renderer)
 		{
-			byte ret = InitForSDLRendererNative(window, renderer);
+			byte ret = InitForSDLRendererNative((SDLWindow*)window, (SDLRenderer*)renderer);
 			return ret != 0;
 		}
 
@@ -237,7 +258,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = InitForSDLRendererNative((SDLWindow*)pwindow, renderer);
+				byte ret = InitForSDLRendererNative((SDLWindow*)pwindow, (SDLRenderer*)renderer);
 				return ret != 0;
 			}
 		}
@@ -249,7 +270,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLRenderer* prenderer = &renderer)
 			{
-				byte ret = InitForSDLRendererNative(window, (SDLRenderer*)prenderer);
+				byte ret = InitForSDLRendererNative((SDLWindow*)window, (SDLRenderer*)prenderer);
 				return ret != 0;
 			}
 		}
@@ -287,7 +308,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForSDLGPU(SDLWindowPtr window)
 		{
-			byte ret = InitForSDLGPUNative(window);
+			byte ret = InitForSDLGPUNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -321,7 +342,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool InitForOther(SDLWindowPtr window)
 		{
-			byte ret = InitForOtherNative(window);
+			byte ret = InitForOtherNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -397,14 +418,14 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool ProcessEvent(SDLEventPtr evnt)
 		{
-			byte ret = ProcessEventNative(evnt);
+			byte ret = ProcessEventNative((SDLEvent*)evnt);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ProcessEvent(ref SDLEvent evnt)
+		public static bool ProcessEvent(in SDLEvent evnt)
 		{
 			fixed (SDLEvent* pevnt = &evnt)
 			{
@@ -433,7 +454,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void SetGamepadMode(ImGuiImplSDL3GamepadMode mode, SDLGamepadPtrPtr manualGamepadsArray, int manualGamepadsCount)
 		{
-			SetGamepadModeNative(mode, manualGamepadsArray, manualGamepadsCount);
+			SetGamepadModeNative(mode, (SDLGamepad**)manualGamepadsArray, manualGamepadsCount);
 		}
 
 		/// <summary>
@@ -466,7 +487,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool SDLRenderer3Init(SDLRendererPtr renderer)
 		{
-			byte ret = SDLRenderer3InitNative(renderer);
+			byte ret = SDLRenderer3InitNative((SDLRenderer*)renderer);
 			return ret != 0;
 		}
 
@@ -542,7 +563,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void SDLRenderer3RenderDrawData(ImDrawDataPtr drawData, SDLRendererPtr renderer)
 		{
-			SDLRenderer3RenderDrawDataNative(drawData, renderer);
+			SDLRenderer3RenderDrawDataNative((ImDrawData*)drawData, (SDLRenderer*)renderer);
 		}
 
 		/// <summary>
@@ -552,7 +573,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				SDLRenderer3RenderDrawDataNative((ImDrawData*)pdrawData, renderer);
+				SDLRenderer3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLRenderer*)renderer);
 			}
 		}
 
@@ -563,7 +584,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLRenderer* prenderer = &renderer)
 			{
-				SDLRenderer3RenderDrawDataNative(drawData, (SDLRenderer*)prenderer);
+				SDLRenderer3RenderDrawDataNative((ImDrawData*)drawData, (SDLRenderer*)prenderer);
 			}
 		}
 
@@ -641,7 +662,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void SDLRenderer3UpdateTexture(ImTextureDataPtr tex)
 		{
-			SDLRenderer3UpdateTextureNative(tex);
+			SDLRenderer3UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>
@@ -675,7 +696,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static bool SDLGPU3Init(ImGuiImplSDLGPU3InitInfoPtr info)
 		{
-			byte ret = SDLGPU3InitNative(info);
+			byte ret = SDLGPU3InitNative((ImGuiImplSDLGPU3InitInfo*)info);
 			return ret != 0;
 		}
 
@@ -754,7 +775,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void SDLGPU3PrepareDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer)
 		{
-			SDLGPU3PrepareDrawDataNative(drawData, commandBuffer);
+			SDLGPU3PrepareDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)commandBuffer);
 		}
 
 		/// <summary>
@@ -765,7 +786,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				SDLGPU3PrepareDrawDataNative((ImDrawData*)pdrawData, commandBuffer);
+				SDLGPU3PrepareDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)commandBuffer);
 			}
 		}
 
@@ -777,7 +798,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
 			{
-				SDLGPU3PrepareDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer);
+				SDLGPU3PrepareDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)pcommandBuffer);
 			}
 		}
 
@@ -814,7 +835,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// </summary>
 		public static void SDLGPU3RenderDrawData(ImDrawDataPtr drawData, SDLGPUCommandBufferPtr commandBuffer, SDLGPURenderPassPtr renderPass, SDLGPUGraphicsPipelinePtr pipeline)
 		{
-			SDLGPU3RenderDrawDataNative(drawData, commandBuffer, renderPass, pipeline);
+			SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)pipeline);
 		}
 
 		/// <summary>
@@ -824,7 +845,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, renderPass, pipeline);
+				SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)pipeline);
 			}
 		}
 
@@ -835,7 +856,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
 			{
-				SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, pipeline);
+				SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)pipeline);
 			}
 		}
 
@@ -848,7 +869,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			{
 				fixed (SDLGPUCommandBuffer* pcommandBuffer = &commandBuffer)
 				{
-					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, pipeline);
+					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)pipeline);
 				}
 			}
 		}
@@ -860,7 +881,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLGPURenderPass* prenderPass = &renderPass)
 			{
-				SDLGPU3RenderDrawDataNative(drawData, commandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+				SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)pipeline);
 			}
 		}
 
@@ -873,7 +894,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			{
 				fixed (SDLGPURenderPass* prenderPass = &renderPass)
 				{
-					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)pipeline);
 				}
 			}
 		}
@@ -887,7 +908,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			{
 				fixed (SDLGPURenderPass* prenderPass = &renderPass)
 				{
-					SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+					SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)pipeline);
 				}
 			}
 		}
@@ -903,7 +924,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 				{
 					fixed (SDLGPURenderPass* prenderPass = &renderPass)
 					{
-						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, pipeline);
+						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)pipeline);
 					}
 				}
 			}
@@ -916,7 +937,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		{
 			fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 			{
-				SDLGPU3RenderDrawDataNative(drawData, commandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+				SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 			}
 		}
 
@@ -929,7 +950,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			{
 				fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 				{
-					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+					SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 				}
 			}
 		}
@@ -943,7 +964,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			{
 				fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 				{
-					SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+					SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 				}
 			}
 		}
@@ -959,7 +980,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 				{
 					fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 					{
-						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)renderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 					}
 				}
 			}
@@ -974,7 +995,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 			{
 				fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 				{
-					SDLGPU3RenderDrawDataNative(drawData, commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+					SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 				}
 			}
 		}
@@ -990,7 +1011,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 				{
 					fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 					{
-						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+						SDLGPU3RenderDrawDataNative((ImDrawData*)pdrawData, (SDLGPUCommandBuffer*)commandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 					}
 				}
 			}
@@ -1007,7 +1028,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 				{
 					fixed (SDLGPUGraphicsPipeline* ppipeline = &pipeline)
 					{
-						SDLGPU3RenderDrawDataNative(drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
+						SDLGPU3RenderDrawDataNative((ImDrawData*)drawData, (SDLGPUCommandBuffer*)pcommandBuffer, (SDLGPURenderPass*)prenderPass, (SDLGPUGraphicsPipeline*)ppipeline);
 					}
 				}
 			}
@@ -1099,6 +1120,42 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void SDLGPU3GetSPIRVVertexShader(ref nint ptr, nuint* size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				SDLGPU3GetSPIRVVertexShaderNative((void**)pptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVVertexShader(void** ptr, ref nuint size)
+		{
+			fixed (nuint* psize = &size)
+			{
+				SDLGPU3GetSPIRVVertexShaderNative(ptr, (nuint*)psize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVVertexShader(ref nint ptr, ref nuint size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				fixed (nuint* psize = &size)
+				{
+					SDLGPU3GetSPIRVVertexShaderNative((void**)pptr, (nuint*)psize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SDLGPU3GetSPIRVFragmentShaderNative(void** ptr, nuint* size)
 		{
@@ -1115,6 +1172,42 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		public static void SDLGPU3GetSPIRVFragmentShader(void** ptr, nuint* size)
 		{
 			SDLGPU3GetSPIRVFragmentShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVFragmentShader(ref nint ptr, nuint* size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				SDLGPU3GetSPIRVFragmentShaderNative((void**)pptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVFragmentShader(void** ptr, ref nuint size)
+		{
+			fixed (nuint* psize = &size)
+			{
+				SDLGPU3GetSPIRVFragmentShaderNative(ptr, (nuint*)psize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetSPIRVFragmentShader(ref nint ptr, ref nuint size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				fixed (nuint* psize = &size)
+				{
+					SDLGPU3GetSPIRVFragmentShaderNative((void**)pptr, (nuint*)psize);
+				}
+			}
 		}
 
 		/// <summary>
@@ -1141,6 +1234,42 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void SDLGPU3GetDXBCVertexShader(ref nint ptr, nuint* size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				SDLGPU3GetDXBCVertexShaderNative((void**)pptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCVertexShader(void** ptr, ref nuint size)
+		{
+			fixed (nuint* psize = &size)
+			{
+				SDLGPU3GetDXBCVertexShaderNative(ptr, (nuint*)psize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCVertexShader(ref nint ptr, ref nuint size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				fixed (nuint* psize = &size)
+				{
+					SDLGPU3GetDXBCVertexShaderNative((void**)pptr, (nuint*)psize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SDLGPU3GetDXBCFragmentShaderNative(void** ptr, nuint* size)
 		{
@@ -1157,6 +1286,42 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		public static void SDLGPU3GetDXBCFragmentShader(void** ptr, nuint* size)
 		{
 			SDLGPU3GetDXBCFragmentShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCFragmentShader(ref nint ptr, nuint* size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				SDLGPU3GetDXBCFragmentShaderNative((void**)pptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCFragmentShader(void** ptr, ref nuint size)
+		{
+			fixed (nuint* psize = &size)
+			{
+				SDLGPU3GetDXBCFragmentShaderNative(ptr, (nuint*)psize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetDXBCFragmentShader(ref nint ptr, ref nuint size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				fixed (nuint* psize = &size)
+				{
+					SDLGPU3GetDXBCFragmentShaderNative((void**)pptr, (nuint*)psize);
+				}
+			}
 		}
 
 		/// <summary>
@@ -1183,6 +1348,42 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void SDLGPU3GetMetallibVertexShader(ref nint ptr, nuint* size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				SDLGPU3GetMetallibVertexShaderNative((void**)pptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibVertexShader(void** ptr, ref nuint size)
+		{
+			fixed (nuint* psize = &size)
+			{
+				SDLGPU3GetMetallibVertexShaderNative(ptr, (nuint*)psize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibVertexShader(ref nint ptr, ref nuint size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				fixed (nuint* psize = &size)
+				{
+					SDLGPU3GetMetallibVertexShaderNative((void**)pptr, (nuint*)psize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SDLGPU3GetMetallibFragmentShaderNative(void** ptr, nuint* size)
 		{
@@ -1199,6 +1400,42 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 		public static void SDLGPU3GetMetallibFragmentShader(void** ptr, nuint* size)
 		{
 			SDLGPU3GetMetallibFragmentShaderNative(ptr, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibFragmentShader(ref nint ptr, nuint* size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				SDLGPU3GetMetallibFragmentShaderNative((void**)pptr, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibFragmentShader(void** ptr, ref nuint size)
+		{
+			fixed (nuint* psize = &size)
+			{
+				SDLGPU3GetMetallibFragmentShaderNative(ptr, (nuint*)psize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SDLGPU3GetMetallibFragmentShader(ref nint ptr, ref nuint size)
+		{
+			fixed (nint* pptr = &ptr)
+			{
+				fixed (nuint* psize = &size)
+				{
+					SDLGPU3GetMetallibFragmentShaderNative((void**)pptr, (nuint*)psize);
+				}
+			}
 		}
 
 	}

@@ -100,7 +100,7 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData)
 		{
-			RenderDrawDataNative(drawData);
+			RenderDrawDataNative((ImDrawData*)drawData);
 		}
 
 		/// <summary>
@@ -132,7 +132,7 @@ namespace Hexa.NET.ImGui.Backends.OpenGL2
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>

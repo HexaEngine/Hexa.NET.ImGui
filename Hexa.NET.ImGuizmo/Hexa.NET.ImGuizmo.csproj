@@ -31,7 +31,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen.Runtime" Version="1.1.21" />
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.22" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -94,9 +94,13 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Generated\Functions\" />
 	</ItemGroup>
 </Project>

@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
-			SetCurrentContextNative(ctx);
+			SetCurrentContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool InitForOpenGL(SDLWindowPtr window, void* sdlGlContext)
 		{
-			byte ret = InitForOpenGLNative(window, sdlGlContext);
+			byte ret = InitForOpenGLNative((SDLWindow*)window, sdlGlContext);
 			return ret != 0;
 		}
 
@@ -102,6 +102,27 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 			fixed (SDLWindow* pwindow = &window)
 			{
 				byte ret = InitForOpenGLNative((SDLWindow*)pwindow, sdlGlContext);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool InitForOpenGL(SDLWindowPtr window, nint sdlGlContext)
+		{
+			byte ret = InitForOpenGLNative((SDLWindow*)window, (void*)sdlGlContext);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool InitForOpenGL(ref SDLWindow window, nint sdlGlContext)
+		{
+			fixed (SDLWindow* pwindow = &window)
+			{
+				byte ret = InitForOpenGLNative((SDLWindow*)pwindow, (void*)sdlGlContext);
 				return ret != 0;
 			}
 		}
@@ -124,7 +145,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool InitForVulkan(SDLWindowPtr window)
 		{
-			byte ret = InitForVulkanNative(window);
+			byte ret = InitForVulkanNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -158,7 +179,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool InitForD3D(SDLWindowPtr window)
 		{
-			byte ret = InitForD3DNative(window);
+			byte ret = InitForD3DNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -192,7 +213,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool InitForMetal(SDLWindowPtr window)
 		{
-			byte ret = InitForMetalNative(window);
+			byte ret = InitForMetalNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -226,7 +247,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool InitForSDLRenderer(SDLWindowPtr window, SDLRendererPtr renderer)
 		{
-			byte ret = InitForSDLRendererNative(window, renderer);
+			byte ret = InitForSDLRendererNative((SDLWindow*)window, (SDLRenderer*)renderer);
 			return ret != 0;
 		}
 
@@ -237,7 +258,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		{
 			fixed (SDLWindow* pwindow = &window)
 			{
-				byte ret = InitForSDLRendererNative((SDLWindow*)pwindow, renderer);
+				byte ret = InitForSDLRendererNative((SDLWindow*)pwindow, (SDLRenderer*)renderer);
 				return ret != 0;
 			}
 		}
@@ -249,7 +270,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		{
 			fixed (SDLRenderer* prenderer = &renderer)
 			{
-				byte ret = InitForSDLRendererNative(window, (SDLRenderer*)prenderer);
+				byte ret = InitForSDLRendererNative((SDLWindow*)window, (SDLRenderer*)prenderer);
 				return ret != 0;
 			}
 		}
@@ -287,7 +308,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool InitForOther(SDLWindowPtr window)
 		{
-			byte ret = InitForOtherNative(window);
+			byte ret = InitForOtherNative((SDLWindow*)window);
 			return ret != 0;
 		}
 
@@ -363,14 +384,14 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool ProcessEvent(SDLEventPtr evnt)
 		{
-			byte ret = ProcessEventNative(evnt);
+			byte ret = ProcessEventNative((SDLEvent*)evnt);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ProcessEvent(ref SDLEvent evnt)
+		public static bool ProcessEvent(in SDLEvent evnt)
 		{
 			fixed (SDLEvent* pevnt = &evnt)
 			{
@@ -397,7 +418,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static void SetGamepadMode(ImGuiImplSDL2GamepadMode mode, SDLGameControllerPtrPtr manualGamepadsArray, int manualGamepadsCount)
 		{
-			SetGamepadModeNative(mode, manualGamepadsArray, manualGamepadsCount);
+			SetGamepadModeNative(mode, (SDLGameController**)manualGamepadsArray, manualGamepadsCount);
 		}
 
 		/// <summary>
@@ -429,7 +450,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static bool SDLRenderer2Init(SDLRendererPtr renderer)
 		{
-			byte ret = SDLRenderer2InitNative(renderer);
+			byte ret = SDLRenderer2InitNative((SDLRenderer*)renderer);
 			return ret != 0;
 		}
 
@@ -505,7 +526,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static void SDLRenderer2RenderDrawData(ImDrawDataPtr drawData, SDLRendererPtr renderer)
 		{
-			SDLRenderer2RenderDrawDataNative(drawData, renderer);
+			SDLRenderer2RenderDrawDataNative((ImDrawData*)drawData, (SDLRenderer*)renderer);
 		}
 
 		/// <summary>
@@ -515,7 +536,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				SDLRenderer2RenderDrawDataNative((ImDrawData*)pdrawData, renderer);
+				SDLRenderer2RenderDrawDataNative((ImDrawData*)pdrawData, (SDLRenderer*)renderer);
 			}
 		}
 
@@ -526,7 +547,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		{
 			fixed (SDLRenderer* prenderer = &renderer)
 			{
-				SDLRenderer2RenderDrawDataNative(drawData, (SDLRenderer*)prenderer);
+				SDLRenderer2RenderDrawDataNative((ImDrawData*)drawData, (SDLRenderer*)prenderer);
 			}
 		}
 
@@ -604,7 +625,7 @@ namespace Hexa.NET.ImGui.Backends.SDL2
 		/// </summary>
 		public static void SDLRenderer2UpdateTexture(ImTextureDataPtr tex)
 		{
-			SDLRenderer2UpdateTextureNative(tex);
+			SDLRenderer2UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>

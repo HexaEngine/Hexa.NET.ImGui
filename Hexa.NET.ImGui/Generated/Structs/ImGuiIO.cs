@@ -1631,7 +1631,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
-		public unsafe void AddInputCharactersUTF8(ref byte str)
+		public unsafe void AddInputCharactersUTF8(in byte str)
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
@@ -2479,7 +2479,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Queue a new characters input from a UTF-8 string<br/>
 		/// </summary>
-		public unsafe void AddInputCharactersUTF8(ref byte str)
+		public unsafe void AddInputCharactersUTF8(in byte str)
 		{
 			fixed (byte* pstr = &str)
 			{

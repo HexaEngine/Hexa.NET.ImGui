@@ -62,7 +62,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Cross")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPoint* self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint rhs)
+		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ImPlot3DPoint* self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "ImPlot3DPoint const")] ImPlot3DPoint rhs)
 		{
 			fixed (ImPlot3DPoint* @this = &this)
 			{
@@ -75,7 +75,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Cross")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint rhs)
+		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ref ImPlot3DPoint self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "ImPlot3DPoint const")] ImPlot3DPoint rhs)
 		{
 			fixed (ImPlot3DPoint* @this = &this)
 			{
@@ -104,7 +104,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Dot")]
 		[return: NativeName(NativeNameType.Type, "float")]
-		public unsafe float Dot([NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint rhs)
+		public unsafe float Dot([NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "ImPlot3DPoint const")] ImPlot3DPoint rhs)
 		{
 			fixed (ImPlot3DPoint* @this = &this)
 			{
@@ -173,7 +173,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Normalized")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPoint* self)
+		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ImPlot3DPoint* self)
 		{
 			fixed (ImPlot3DPoint* @this = &this)
 			{
@@ -186,7 +186,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Normalized")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint self)
+		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ref ImPlot3DPoint self)
 		{
 			fixed (ImPlot3DPoint* @this = &this)
 			{
@@ -258,7 +258,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Cross")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint rhs)
+		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ImPlot3DPoint* self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "ImPlot3DPoint const")] ImPlot3DPoint rhs)
 		{
 			ImPlot3D.CrossNative(Handle, self, rhs);
 		}
@@ -268,7 +268,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Cross")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint rhs)
+		public unsafe void Cross([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ref ImPlot3DPoint self, [NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "ImPlot3DPoint const")] ImPlot3DPoint rhs)
 		{
 			fixed (ImPlot3DPoint* pself = &self)
 			{
@@ -291,7 +291,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Dot")]
 		[return: NativeName(NativeNameType.Type, "float")]
-		public unsafe float Dot([NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint rhs)
+		public unsafe float Dot([NativeName(NativeNameType.Param, "rhs")] [NativeName(NativeNameType.Type, "ImPlot3DPoint const")] ImPlot3DPoint rhs)
 		{
 			float ret = ImPlot3D.DotNative(Handle, rhs);
 			return ret;
@@ -345,7 +345,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Normalized")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr self)
+		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ImPlot3DPoint* self)
 		{
 			ImPlot3D.NormalizedNative(Handle, self);
 		}
@@ -355,7 +355,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DPoint_Normalized")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint self)
+		public unsafe void Normalized([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint *")] ref ImPlot3DPoint self)
 		{
 			fixed (ImPlot3DPoint* pself = &self)
 			{

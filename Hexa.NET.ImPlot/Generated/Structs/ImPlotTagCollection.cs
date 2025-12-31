@@ -64,7 +64,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Append(ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
+		public unsafe void Append(ImAxis axis, double value, uint bg, uint fg, in byte fmt)
 		{
 			fixed (ImPlotTagCollection* @this = &this)
 			{
@@ -135,7 +135,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AppendV(ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
+		public unsafe void AppendV(ImAxis axis, double value, uint bg, uint fg, in byte fmt, nuint args)
 		{
 			fixed (ImPlotTagCollection* @this = &this)
 			{
@@ -304,7 +304,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Append(ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
+		public unsafe void Append(ImAxis axis, double value, uint bg, uint fg, in byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
@@ -363,7 +363,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AppendV(ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
+		public unsafe void AppendV(ImAxis axis, double value, uint bg, uint fg, in byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{

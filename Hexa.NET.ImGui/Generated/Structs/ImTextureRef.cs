@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImTextureRef(ImTextureData* texData = default, ImTextureID texId = default)
+		public unsafe ImTextureRef(ImTextureDataPtr texData = default, ImTextureID texId = default)
 		{
 			TexData = texData;
 			TexID = texId;

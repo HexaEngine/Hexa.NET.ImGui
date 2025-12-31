@@ -66,7 +66,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiMultiSelectState(ImGuiWindowPtr window = default, uint id = default, int lastFrameActive = default, int lastSelectionSize = default, sbyte rangeSelected = default, sbyte navIdSelected = default, long rangeSrcItem = default, long navIdItem = default)
+		public unsafe ImGuiMultiSelectState(ImGuiWindow* window = default, uint id = default, int lastFrameActive = default, int lastSelectionSize = default, sbyte rangeSelected = default, sbyte navIdSelected = default, long rangeSrcItem = default, long navIdItem = default)
 		{
 			Window = window;
 			ID = id;

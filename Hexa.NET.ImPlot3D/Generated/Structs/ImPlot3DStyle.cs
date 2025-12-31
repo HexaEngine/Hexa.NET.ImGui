@@ -246,7 +246,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DStyle_SetColor")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void SetColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col)
+		public unsafe void SetColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "ImVec4 const")] Vector4 col)
 		{
 			fixed (ImPlot3DStyle* @this = &this)
 			{
@@ -376,7 +376,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3DStyle_SetColor")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public unsafe void SetColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col)
+		public unsafe void SetColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "ImVec4 const")] Vector4 col)
 		{
 			ImPlot3D.SetColorNative(Handle, idx, col);
 		}

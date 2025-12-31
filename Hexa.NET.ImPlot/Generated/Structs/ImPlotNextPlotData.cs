@@ -87,7 +87,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextPlotData(ImPlotCond* rangeCond = default, ImPlotRangePtr range = default, bool* hasRange = default, bool* fit = default, double** linkedMin = default, double** linkedMax = default)
+		public unsafe ImPlotNextPlotData(ImPlotCond* rangeCond = default, ImPlotRange* range = default, bool* hasRange = default, bool* fit = default, double** linkedMin = default, double** linkedMax = default)
 		{
 			if (rangeCond != default(ImPlotCond*))
 			{
@@ -98,7 +98,7 @@ namespace Hexa.NET.ImPlot
 				RangeCond_4 = rangeCond[4];
 				RangeCond_5 = rangeCond[5];
 			}
-			if (range != default(ImPlotRangePtr))
+			if (range != default(ImPlotRange*))
 			{
 				Range_0 = range[0];
 				Range_1 = range[1];

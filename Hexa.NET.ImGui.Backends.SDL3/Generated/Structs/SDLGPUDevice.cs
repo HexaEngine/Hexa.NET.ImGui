@@ -18,7 +18,7 @@ using Hexa.NET.ImGui;
 namespace Hexa.NET.ImGui.Backends.SDL3
 {
 	/// <summary>
-	/// typedefs for SDL_GPU3 types used in this header<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct SDLGPUDevice
@@ -28,7 +28,7 @@ namespace Hexa.NET.ImGui.Backends.SDL3
 	}
 
 	/// <summary>
-	/// typedefs for SDL_GPU3 types used in this header<br/>
+	/// To be documented.
 	/// </summary>
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]

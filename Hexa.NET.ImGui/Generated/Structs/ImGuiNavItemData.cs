@@ -71,7 +71,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNavItemData(ImGuiWindowPtr window = default, uint id = default, uint focusScopeId = default, ImRect rectRel = default, ImGuiItemFlags itemFlags = default, float distBox = default, float distCenter = default, float distAxial = default, long selectionUserData = default)
+		public unsafe ImGuiNavItemData(ImGuiWindow* window = default, uint id = default, uint focusScopeId = default, ImRect rectRel = default, ImGuiItemFlags itemFlags = default, float distBox = default, float distCenter = default, float distAxial = default, long selectionUserData = default)
 		{
 			Window = window;
 			ID = id;

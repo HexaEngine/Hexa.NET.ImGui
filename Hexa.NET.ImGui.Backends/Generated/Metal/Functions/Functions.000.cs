@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		/// </summary>
 		public static bool Init(MTLDevicePtr device)
 		{
-			byte ret = InitNative(device);
+			byte ret = InitNative((MTLDevice*)device);
 			return ret != 0;
 		}
 
@@ -91,7 +91,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		/// </summary>
 		public static void NewFrame(MTLRenderPassDescriptorPtr renderPassDescriptor)
 		{
-			NewFrameNative(renderPassDescriptor);
+			NewFrameNative((MTLRenderPassDescriptor*)renderPassDescriptor);
 		}
 
 		/// <summary>
@@ -123,7 +123,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData, MTLCommandBufferPtr commandBuffer, MTLRenderCommandEncoderPtr commandEncoder)
 		{
-			RenderDrawDataNative(drawData, commandBuffer, commandEncoder);
+			RenderDrawDataNative((ImDrawData*)drawData, (MTLCommandBuffer*)commandBuffer, (MTLRenderCommandEncoder*)commandEncoder);
 		}
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, commandEncoder);
+				RenderDrawDataNative((ImDrawData*)pdrawData, (MTLCommandBuffer*)commandBuffer, (MTLRenderCommandEncoder*)commandEncoder);
 			}
 		}
 
@@ -144,7 +144,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		{
 			fixed (MTLCommandBuffer* pcommandBuffer = &commandBuffer)
 			{
-				RenderDrawDataNative(drawData, (MTLCommandBuffer*)pcommandBuffer, commandEncoder);
+				RenderDrawDataNative((ImDrawData*)drawData, (MTLCommandBuffer*)pcommandBuffer, (MTLRenderCommandEncoder*)commandEncoder);
 			}
 		}
 
@@ -157,7 +157,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 			{
 				fixed (MTLCommandBuffer* pcommandBuffer = &commandBuffer)
 				{
-					RenderDrawDataNative((ImDrawData*)pdrawData, (MTLCommandBuffer*)pcommandBuffer, commandEncoder);
+					RenderDrawDataNative((ImDrawData*)pdrawData, (MTLCommandBuffer*)pcommandBuffer, (MTLRenderCommandEncoder*)commandEncoder);
 				}
 			}
 		}
@@ -169,7 +169,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		{
 			fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
 			{
-				RenderDrawDataNative(drawData, commandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+				RenderDrawDataNative((ImDrawData*)drawData, (MTLCommandBuffer*)commandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
 			}
 		}
 
@@ -182,7 +182,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 			{
 				fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
 				{
-					RenderDrawDataNative((ImDrawData*)pdrawData, commandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+					RenderDrawDataNative((ImDrawData*)pdrawData, (MTLCommandBuffer*)commandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
 				}
 			}
 		}
@@ -196,7 +196,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 			{
 				fixed (MTLRenderCommandEncoder* pcommandEncoder = &commandEncoder)
 				{
-					RenderDrawDataNative(drawData, (MTLCommandBuffer*)pcommandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
+					RenderDrawDataNative((ImDrawData*)drawData, (MTLCommandBuffer*)pcommandBuffer, (MTLRenderCommandEncoder*)pcommandEncoder);
 				}
 			}
 		}
@@ -236,7 +236,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>
@@ -268,7 +268,7 @@ namespace Hexa.NET.ImGui.Backends.Metal
 		/// </summary>
 		public static bool CreateDeviceObjects(MTLDevicePtr device)
 		{
-			byte ret = CreateDeviceObjectsNative(device);
+			byte ret = CreateDeviceObjectsNative((MTLDevice*)device);
 			return ret != 0;
 		}
 

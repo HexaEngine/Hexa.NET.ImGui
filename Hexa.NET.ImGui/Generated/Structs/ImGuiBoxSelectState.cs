@@ -97,7 +97,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiBoxSelectState(uint id = default, bool isActive = default, bool isStarting = default, bool isStartedFromVoid = default, bool isStartedSetNavIdOnce = default, bool requestClear = default, int keyMods = default, Vector2 startPosRel = default, Vector2 endPosRel = default, Vector2 scrollAccum = default, ImGuiWindowPtr window = default, bool unclipMode = default, ImRect unclipRect = default, ImRect boxSelectRectPrev = default, ImRect boxSelectRectCurr = default)
+		public unsafe ImGuiBoxSelectState(uint id = default, bool isActive = default, bool isStarting = default, bool isStartedFromVoid = default, bool isStartedSetNavIdOnce = default, bool requestClear = default, int keyMods = default, Vector2 startPosRel = default, Vector2 endPosRel = default, Vector2 scrollAccum = default, ImGuiWindow* window = default, bool unclipMode = default, ImRect unclipRect = default, ImRect boxSelectRectPrev = default, ImRect boxSelectRectCurr = default)
 		{
 			ID = id;
 			IsActive = isActive ? (byte)1 : (byte)0;
