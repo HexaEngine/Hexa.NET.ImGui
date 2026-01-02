@@ -12,7 +12,7 @@ jobs:
       repo: HexaEngine/cimgui_impl
       repo-tag: main
       cmake-flags: -DBACKENDS_BASE_ONLY=ON -DIMGUI_WCHAR32=ON
-      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.18362.0
       bin-name-osx: libImGuiImpl.dylib
       bin-name-linux: libImGuiImpl.so
       bin-name-android: libImGuiImpl.so
@@ -43,7 +43,7 @@ jobs:
       repo: HexaEngine/cimgui_impl
       repo-tag: main
       cmake-flags: -DBACKENDS_SDL2_ONLY=ON -DIMGUI_WCHAR32=ON
-      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.18362.0
       bin-name-osx: libImGuiImplSDL2.dylib
       bin-name-linux: libImGuiImplSDL2.so
       bin-name-android: libImGuiImplSDL2.so
@@ -73,7 +73,7 @@ jobs:
       repo-tag: main
       checkout-self: true
       cmake-flags: -DBACKENDS_SDL3_ONLY=ON -DIMGUI_WCHAR32=ON -DCMAKE_PREFIX_PATH="./SDL/install"
-      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.18362.0
       bin-name-osx: libImGuiImplSDL3.dylib
       bin-name-linux: libImGuiImplSDL3.so
       bin-name-android: libImGuiImplSDL3.so
@@ -99,7 +99,7 @@ jobs:
       repo: HexaEngine/cimgui_impl
       repo-tag: main
       cmake-flags: -DBACKENDS_GLFW_ONLY=ON -DIMGUI_WCHAR32=ON
-      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
+      cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.18362.0
       bin-name-osx: libImGuiImplGLFW.dylib
       bin-name-linux: libImGuiImplGLFW.so
       bin-name-android: libImGuiImplGLFW.so
