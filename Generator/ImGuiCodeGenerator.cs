@@ -41,6 +41,7 @@
             AddRule(new FunctionGenRuleRef());
             AddRule(new FunctionGenRuleSpan());
             AddRule(new FunctionGenRuleString());
+            AddRule(new FunctionGenRuleArray(config));
             AddStep(new ImGuiDefaultValueStep());
             AddStep(new ImGuiReturnVariationStep());
             AddStep(new StringReturnGenStep());

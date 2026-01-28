@@ -32,24 +32,24 @@
   ],
   "ArrayMappings": [
     {
-      "Primitive": 11,
+      "Primitive": "Float",
       "Size": 4,
-      "Name": "ref Vector4"
+      "Name": "Vector4"
     },
     {
-      "Primitive": 11,
+      "Primitive": "Float",
       "Size": 3,
-      "Name": "ref Vector3"
+      "Name": "Vector3"
     },
     {
-      "Primitive": 11,
+      "Primitive": "Float",
       "Size": 2,
-      "Name": "ref Vector2"
+      "Name": "Vector2"
     },
     {
-      "Primitive": 11,
+      "Primitive": "Float",
       "Size": 16,
-      "Name": "ref Matrix4x4"
+      "Name": "Matrix4x4"
     }
   ],
   "TypeMappings": {

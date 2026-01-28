@@ -1,11 +1,15 @@
 version: "1.0"
 
 env:
-  # Global environment vars if needed
+  Workspace: "./.CosyCache/Workspace"
 
 targets:
   clone-repos:
     steps:
+      - name: Make temp dir
+        uses: core:mkdir@v1
+        with:
+          path: ${{ env.Workspace }}
       - name: Clone Hexa.NET.ImGui
         run: git clone --recursive https://github.com/HexaEngine/Hexa.NET.ImGui.git
       - name: Clone cimgui
