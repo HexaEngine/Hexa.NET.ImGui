@@ -22,6 +22,17 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void CalculateBins(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		{
+			fixed (double* pwidthOut = &widthOut)
+			{
+				CalculateBinsNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void CalculateBins(in uint values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (uint* pvalues = &values)

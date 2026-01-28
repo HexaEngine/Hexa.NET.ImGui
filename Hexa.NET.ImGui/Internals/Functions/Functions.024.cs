@@ -1772,6 +1772,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void TabItemCalcSize(Vector2* pOut, in byte label, bool hasCloseButtonOrUnsavedMarker)
+		{
+			fixed (byte* plabel = &label)
+			{
+				TabItemCalcSizeNative(pOut, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void TabItemCalcSize(ref Vector2 pOut, in byte label, bool hasCloseButtonOrUnsavedMarker)
 		{
 			fixed (Vector2* ppOut = &pOut)
@@ -1826,17 +1837,6 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStr0);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TabItemCalcSize(Vector2* pOut, in byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TabItemCalcSizeNative(pOut, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 			}
 		}
 

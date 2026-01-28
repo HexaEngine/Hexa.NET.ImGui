@@ -26,7 +26,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn);1591</NoWarn>
+		<NoWarn>$(NoWarn);1591;1570</NoWarn>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
@@ -100,5 +100,4 @@
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-
 </Project>

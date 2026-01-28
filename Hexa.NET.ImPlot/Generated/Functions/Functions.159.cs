@@ -3406,6 +3406,17 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void CalcTextSizeVertical(Vector2* pOut, in byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				CalcTextSizeVerticalNative(pOut, (byte*)ptext);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void CalcTextSizeVertical(ref Vector2 pOut, in byte text)
 		{
 			fixed (Vector2* ppOut = &pOut)
@@ -5011,17 +5022,6 @@ namespace Hexa.NET.ImPlot
 				{
 					CalculateBinsNative((uint*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalculateBins(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
-		{
-			fixed (double* pwidthOut = &widthOut)
-			{
-				CalculateBinsNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 	}

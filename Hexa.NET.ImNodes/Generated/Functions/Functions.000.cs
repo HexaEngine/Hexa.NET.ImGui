@@ -958,7 +958,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)nodeHoveringCallback, nodeHoveringCallbackData);
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -966,7 +966,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
-			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)nodeHoveringCallback, (void*)(default));
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
 		}
 
 		/// <summary>
@@ -974,7 +974,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)nodeHoveringCallback, (void*)(default));
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
 		}
 
 		/// <summary>
@@ -982,7 +982,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)nodeHoveringCallback, (void*)(default));
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
 		}
 
 		/// <summary>
@@ -990,7 +990,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
-			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)nodeHoveringCallback, (void*)(default));
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
 		}
 
 		/// <summary>
@@ -998,7 +998,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)nodeHoveringCallback, nodeHoveringCallbackData);
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1006,7 +1006,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)nodeHoveringCallback, nodeHoveringCallbackData);
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1014,7 +1014,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)nodeHoveringCallback, nodeHoveringCallbackData);
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1086,7 +1086,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
 		{
-			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1094,7 +1094,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1102,7 +1102,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1110,7 +1110,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
 		{
-			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
 		}
 
 		/// <summary>
