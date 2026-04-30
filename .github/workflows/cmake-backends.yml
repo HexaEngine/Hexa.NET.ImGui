@@ -56,6 +56,7 @@ jobs:
       macos-deps: "sdl2 glfw glew glm"
       use-vcpkg: true
       use-vcpkg-linux: false
+      vcpkg-triplet-macos: "{arch}-osx-dynamic"
       vcpkg-packages: "sdl2"
       setup-vulkan: true
       setup-vulkan-linux: false
@@ -112,6 +113,7 @@ jobs:
       macos-deps: "sdl2 glfw glew glm"
       use-vcpkg: true
       use-vcpkg-linux: false
+      vcpkg-triplet-macos: "{arch}-osx-dynamic"
       vcpkg-packages: "glfw3"
       setup-vulkan: true
       setup-vulkan-linux: false
